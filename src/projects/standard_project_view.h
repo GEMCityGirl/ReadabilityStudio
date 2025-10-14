@@ -11,17 +11,14 @@
  *   Blake Madden - initial implementation
  ********************************************************************************/
 
-#ifndef __PROJECT_VIEW_H__
-#define __PROJECT_VIEW_H__
+#ifndef RS_PROJECT_VIEW_H
+#define RS_PROJECT_VIEW_H
 
 #include "../Wisteria-Dataviz/src/math/statistics.h"
+#include "../Wisteria-Dataviz/src/util/windowcontainer.h"
 #include "../graphs/frygraph.h"
-#include "../results-format/readability_messages.h"
 #include "../ui/dialogs/edit_text_dlg.h"
 #include "base_project_view.h"
-#include <map>
-#include <vector>
-#include <wx/utils.h>
 
 /// @brief The results window interface for a standard project.
 class ProjectView final : public BaseProjectView
@@ -216,4 +213,4 @@ class ProjectView final : public BaseProjectView
     wxDECLARE_DYNAMIC_CLASS(ProjectView);
     };
 
-#endif //__PROJECT_VIEW_H__
+#endif // RS_PROJECT_VIEW_H

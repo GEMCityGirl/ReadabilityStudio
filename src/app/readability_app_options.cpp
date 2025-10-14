@@ -3981,7 +3981,7 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
         industrySecondaryLanguage->SetAttribute(
             XML_VALUE.data(),
             static_cast<int>(pos->has_industry_classification(
-                readability::industry_classification::sedondary_language_industry)));
+                readability::industry_classification::secondary_language_industry)));
         customFamWordTest->InsertEndChild(industrySecondaryLanguage);
 
         auto* industryChildrensHealthCare =

@@ -11,7 +11,8 @@ google-*,-readability-function-cognitive-complexity,-bugprone-branch-clone,-hicp
 -bugprone-unchecked-optional-access,-cert-err58-cpp,-cppcoreguidelines-avoid-do-while,
 -cppcoreguidelines-pro-bounds-pointer-arithmetic,
 -bugprone-suspicious-stringview-data-usage,
--readability-redundant-inline-specifier'
+-readability-redundant-inline-specifier,
+-google-runtime-int'
 HeaderFilterRegex:   '^src/'
 FormatStyle:         none
 InheritParentConfig: true

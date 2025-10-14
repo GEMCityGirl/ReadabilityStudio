@@ -11,8 +11,8 @@
  *   Blake Madden - initial implementation
  ********************************************************************************/
 
-#ifndef __READABILITY_TEST_H__
-#define __READABILITY_TEST_H__
+#ifndef READABILITY_TEST_H
+#define READABILITY_TEST_H
 
 #include "../indexing/character_traits.h"
 #include <bitset>
@@ -91,7 +91,7 @@ namespace readability
         childrens_healthcare_industry,
         adult_healthcare_industry,
         military_government_industry,
-        sedondary_language_industry,
+        secondary_language_industry,
         broadcasting_industry,
         INDUSTRY_CLASSIFICATION_COUNT
         };
@@ -147,7 +147,7 @@ namespace readability
                                         industryAdultHealthCareSelected);
             add_industry_classification(industry_classification::military_government_industry,
                                         industryMilitaryGovernmentSelected);
-            add_industry_classification(industry_classification::sedondary_language_industry,
+            add_industry_classification(industry_classification::secondary_language_industry,
                                         industrySecondaryLanguageSelected);
             add_industry_classification(industry_classification::broadcasting_industry,
                                         industryBroadcastingSelected);
@@ -319,7 +319,7 @@ namespace readability
             }
 
         /// Copy CTOR.
-        explicit readability_test(const readability_test& that)
+        readability_test(const readability_test& that)
             : test_with_classification(that), m_id(that.m_id), m_short_name(that.m_short_name),
               m_long_name(that.m_long_name), m_description(that.m_description),
               m_formula(that.m_formula), m_readability_test_type(that.m_readability_test_type),
@@ -355,7 +355,7 @@ namespace readability
             return m_id < that.get_test().get_id();
             }
 
-        /// Compares (case insensitive) a string value to the test's ID, short name, or long name.
+        /// Compares (case-insensitively) a string value to the test's ID, short name, or long name.
         /// If any of those match, then returns true.
         [[nodiscard]]
         bool operator==(const readability_test& that) const noexcept
@@ -420,7 +420,7 @@ namespace readability
         bool m_is_integral{ false };
         };
 
-    /// Class to hold all of the tests for a project.
+    /// Class to hold all the tests for a project.
     template<typename test_typeT>
     class readability_test_collection
         {
@@ -524,65 +524,57 @@ namespace readability
         /// @returns The ID for a given @c test.
         template<typename T>
         [[nodiscard]]
-        const string_type get_test_id(const T& test) const
+        string_type get_test_id(const T& test) const
             {
             auto [iterator, found] = find_test(test);
             if (!found)
                 {
                 return string_type{};
                 }
-            else
-                {
-                return iterator->get_test().get_id();
-                }
+
+            return iterator->get_test().get_id();
             }
 
         /// @returns The short name for a given test.
         template<typename T>
         [[nodiscard]]
-        const string_type get_test_short_name(const T& test) const
+        string_type get_test_short_name(const T& test) const
             {
             auto [iterator, found] = find_test(test);
             if (!found)
                 {
                 return string_type{};
                 }
-            else
-                {
-                return iterator->get_test().get_short_name();
-                }
+
+            return iterator->get_test().get_short_name();
             }
 
         /// @returns The long name for a given test.
         template<typename T>
         [[nodiscard]]
-        const string_type get_test_long_name(const T& test) const
+        string_type get_test_long_name(const T& test) const
             {
             auto [iterator, found] = find_test(test);
             if (!found)
                 {
                 return string_type{};
                 }
-            else
-                {
-                return iterator->get_test().get_long_name();
-                }
+
+            return iterator->get_test().get_long_name();
             }
 
         /// @returns The description for a given test.
         template<typename T>
         [[nodiscard]]
-        const string_type get_test_description(const T& test) const
+        string_type get_test_description(const T& test) const
             {
             auto [iterator, found] = find_test(test);
             if (!found)
                 {
                 return string_type{};
                 }
-            else
-                {
-                return iterator->get_test().get_description();
-                }
+
+            return iterator->get_test().get_description();
             }
 
         /// @brief Searches for a test.
@@ -672,4 +664,4 @@ namespace readability
         };
     } // namespace readability
 
-#endif //__READABILITY_TEST_H__
+#endif // READABILITY_TEST_H

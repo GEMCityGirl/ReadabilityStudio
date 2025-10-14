@@ -13,9 +13,12 @@
 
 #include "batch_project_doc.h"
 #include "../Wisteria-Dataviz/src/base/reportenumconvert.h"
+#include "../Wisteria-Dataviz/src/graphs/danielsonbryan2plot.h"
+#include "../Wisteria-Dataviz/src/graphs/lixgauge.h"
+#include "../Wisteria-Dataviz/src/graphs/lixgaugegerman.h"
 #include "../Wisteria-Dataviz/src/graphs/wordcloud.h"
-#include "../Wisteria-Dataviz/src/util/string_util.h"
 #include "../app/readability_app.h"
+#include "../graphs/schwartzgraph.h"
 #include "../indexing/character_traits.h"
 #include "../results-format/project_report_format.h"
 #include "../ui/dialogs/project_wizard_dlg.h"
@@ -29,7 +32,7 @@ wxIMPLEMENT_DYNAMIC_CLASS(BatchProjectDoc, wxDocument)
     //-------------------------------------------------------
     void BatchProjectDoc::ShowQueuedMessages()
     {
-    BaseProjectView* view = dynamic_cast<BaseProjectView*>(GetFirstView());
+    auto* view = dynamic_cast<BaseProjectView*>(GetFirstView());
     for (auto queuedMsgIter = GetQueuedMessages().cbegin();
          queuedMsgIter != GetQueuedMessages().cend(); ++queuedMsgIter)
         {
@@ -122,10 +125,10 @@ void BatchProjectDoc::RemoveMisspellings(const wxArrayString& misspellingsToRemo
             ++i;
             }
         }
-    BatchProjectView* view = dynamic_cast<BatchProjectView*>(GetFirstView());
-    Wisteria::UI::ListCtrlEx* listView = dynamic_cast<Wisteria::UI::ListCtrlEx*>(
+    auto* view = dynamic_cast<BatchProjectView*>(GetFirstView());
+    auto* listView = dynamic_cast<Wisteria::UI::ListCtrlEx*>(
         view->GetGrammarView().FindWindowById(BaseProjectView::MISSPELLED_WORD_LIST_PAGE_ID));
-    if (listView)
+    if (listView != nullptr)
         {
         if (GetMisspelledWordData()->GetItemCount() == 0)
             {
@@ -158,10 +161,10 @@ bool BatchProjectDoc::OnCreate(const wxString& path, long flags)
             {
             wxArrayString files;
                 {
-                wxWindowDisabler disableAll;
-                wxBusyInfo wait(wxBusyInfoFlags()
-                                    .Text(_(L"Retrieving files..."))
-                                    .Parent(wxGetApp().GetParentingWindow()));
+                const wxWindowDisabler disableAll;
+                const wxBusyInfo wait(wxBusyInfoFlags()
+                                          .Text(_(L"Retrieving files..."))
+                                          .Parent(wxGetApp().GetParentingWindow()));
 #ifdef __WXGTK__
                 wxMilliSleep(100);
                 wxTheApp->Yield();
@@ -175,30 +178,30 @@ bool BatchProjectDoc::OnCreate(const wxString& path, long flags)
             for (const auto& fl : files)
                 {
                 wxLogMessage(fl);
-                GetSourceFilesInfo().push_back(comparable_first_pair{ fl, wxString{} });
+                GetSourceFilesInfo().emplace_back(fl, wxString{});
                 }
             ProjectWizardDlg::SetLastSelectedFolder(path);
             return wxDocument::OnCreate(wxString{}, flags);
             }
         // if passed a single, "regular" file (i.e., not an archive or spreadsheet), then just load
         // it with the defaults and bypass the wizard.
-        else if (!path.empty() && FilePathResolver(path, false).IsLocalOrNetworkFile() &&
-                 !FilePathResolver::IsSpreadsheet(path) && !FilePathResolver::IsArchive(path))
+        if (!path.empty() && FilePathResolver(path, false).IsLocalOrNetworkFile() &&
+            !FilePathResolver::IsSpreadsheet(path) && !FilePathResolver::IsArchive(path))
             {
             GetSourceFilesInfo().clear();
-            GetSourceFilesInfo().push_back(comparable_first_pair{ path, wxString{} });
+            GetSourceFilesInfo().emplace_back(path, wxString{});
 
             const wxArrayString folders = wxFileName(wxFileName(path).GetPathWithSep()).GetDirs();
-            ProjectWizardDlg::SetLastSelectedFolder(folders.size() ? folders.back() : wxString{});
+            ProjectWizardDlg::SetLastSelectedFolder(!folders.empty() ? folders.back() : wxString{});
             return wxDocument::OnCreate(wxString{}, flags);
             }
         // scripting framework passes this in to create an empty project
         // that can have files added later
-        else if (path == L"EMPTY_PROJECT")
+        if (path == L"EMPTY_PROJECT")
             {
             return wxDocument::OnCreate(wxString{}, flags);
             }
-        else if (!RunProjectWizard(path))
+        if (!RunProjectWizard(path))
             {
             return false;
             }
@@ -214,7 +217,7 @@ bool BatchProjectDoc::OnNewDocument()
         return false;
         }
 
-    BaseProjectProcessingLock processingLock(this);
+    const BaseProjectProcessingLock processingLock(this);
 
     // load the images now
     SetPlotBackGroundImagePath(GetPlotBackGroundImagePath());
@@ -334,7 +337,7 @@ bool BatchProjectDoc::OnNewDocument()
         }
     DisplayWarnings();
 
-    BatchProjectView* view = dynamic_cast<BatchProjectView*>(GetFirstView());
+    auto* view = dynamic_cast<BatchProjectView*>(GetFirstView());
     view->UpdateSideBarIcons();
     view->UpdateRibbonState();
     view->Present();
@@ -351,15 +354,15 @@ bool BatchProjectDoc::OnNewDocument()
         }
 
     // try to base the default name of this project from the folder/web domain of the first file
-    if (GetSourceFilesInfo().size() > 0)
+    if (!GetSourceFilesInfo().empty())
         {
-        FilePathResolver resolvePath(GetOriginalDocumentFilePath(0), false);
+        const FilePathResolver resolvePath(GetOriginalDocumentFilePath(0), false);
         // if a local file, use the name of the last folder in the path as the project name
         if (resolvePath.IsLocalOrNetworkFile())
             {
             const wxArrayString dirs =
                 wxFileName::DirName(ProjectWizardDlg::GetLastSelectedFolder()).GetDirs();
-            if (dirs.size())
+            if (!dirs.empty())
                 {
                 SetTitle(dirs.back());
                 SetFilename(dirs.back(), true);
@@ -403,7 +406,7 @@ void BatchProjectDoc::InitializeDocuments()
         wxDELETE(*pos);
         }
     // should certainly be the case
-    if (GetSourceFilesInfo().size() > 0)
+    if (!GetSourceFilesInfo().empty())
         {
         m_docs.resize(GetSourceFilesInfo().size(), nullptr);
         }
@@ -424,7 +427,7 @@ void BatchProjectDoc::LoadGroupingLabelsFromDocumentsInfo()
     {
     m_docLabels.clear();
     m_groupStringTable.clear();
-    for (const auto doc : m_docs)
+    for (auto* const doc : m_docs)
         {
         if (doc->LoadingOriginalTextSucceeded())
             {
@@ -462,7 +465,7 @@ bool BatchProjectDoc::CheckForFailedDocuments()
             }
         }
 
-    BatchProjectView* view = dynamic_cast<BatchProjectView*>(GetFirstView());
+    const BatchProjectView* view = dynamic_cast<BatchProjectView*>(GetFirstView());
     wxASSERT_MSG(view->GetFrame(), L"Invalid frame for newly created document!");
     // show the names of the failed documents somehow so the user can review it before removing them
     Wisteria::UI::ListDlg listDlg(
@@ -473,7 +476,7 @@ bool BatchProjectDoc::CheckForFailedDocuments()
         _(L"The following documents could not be loaded because they either do not contain "
           "enough valid text or could not be found. Do you wish to remove these documents "
           "from this project?"));
-    if (failedDocs.GetCount() && listDlg.ShowModal() == wxID_YES)
+    if ((failedDocs.GetCount() != 0U) && listDlg.ShowModal() == wxID_YES)
         {
         RemoveFailedDocuments();
         return true;
@@ -517,17 +520,17 @@ void BatchProjectDoc::RefreshStatisticsReports()
         }
 
     // if refresh is not necessary then return
-    if (IsRefreshRequired() == false)
+    if (!IsRefreshRequired())
         {
         return;
         }
 
-    BatchProjectView* view = dynamic_cast<BatchProjectView*>(GetFirstView());
+    auto* view = dynamic_cast<BatchProjectView*>(GetFirstView());
     const wxString currentlySelectedFile = view->GetCurrentlySelectedFileName();
     const auto selectedItem = view->GetSideBar()->GetSelectedFolderId();
 
-    BaseProjectProcessingLock processingLock(this);
-    wxWindowUpdateLocker noUpdates(GetDocumentWindow());
+    const BaseProjectProcessingLock processingLock(this);
+    const wxWindowUpdateLocker noUpdates(GetDocumentWindow());
 
     LoadSummaryStatsSection();
     DisplaySummaryStats();
@@ -561,12 +564,12 @@ void BatchProjectDoc::RefreshGraphs()
         }
 
     // if refresh is not necessary then return
-    if (IsRefreshRequired() == false)
+    if (!IsRefreshRequired())
         {
         return;
         }
-    BaseProjectProcessingLock processingLock(this);
-    wxWindowUpdateLocker noUpdates(GetDocumentWindow());
+    const BaseProjectProcessingLock processingLock(this);
+    const wxWindowUpdateLocker noUpdates(GetDocumentWindow());
 
     DisplayReadabilityGraphs();
     DisplayBoxPlots();
@@ -584,15 +587,15 @@ void BatchProjectDoc::RefreshProject()
         {
         return;
         }
-    wxBusyCursor wait;
+    const wxBusyCursor wait;
 
     // if refresh is not necessary then return
-    if (IsRefreshRequired() == false)
+    if (!IsRefreshRequired())
         {
         return;
         }
-    BaseProjectProcessingLock processingLock(this);
-    wxWindowUpdateLocker noUpdates(GetDocumentWindow());
+    const BaseProjectProcessingLock processingLock(this);
+    const wxWindowUpdateLocker noUpdates(GetDocumentWindow());
 
     // reload the excluded phrases
     LoadExcludePhrases();
@@ -600,7 +603,7 @@ void BatchProjectDoc::RefreshProject()
     // load appended template file (if there is one)
     LoadAppendedDocument();
 
-    BatchProjectView* view = dynamic_cast<BatchProjectView*>(GetFirstView());
+    auto* view = dynamic_cast<BatchProjectView*>(GetFirstView());
     wxProgressDialog progressDlg(
         wxString::Format(_(L"Reloading \"%s\""), GetTitle()), _(L"Analyzing documents..."),
         IsDocumentReindexingRequired() ? static_cast<int>(GetSourceFilesInfo().size() + 13) : 13,
@@ -1324,9 +1327,9 @@ void BatchProjectDoc::LoadSummaryStatsSection()
             }
         if (GetStatisticsReportInfo().IsWordsEnabled())
             {
-            const double averageCharacterCount =
+            const auto averageCharacterCount =
                 safe_divide<double>(doc->GetTotalCharacters(), doc->GetTotalWords());
-            const double averageSyllableCount =
+            const auto averageSyllableCount =
                 safe_divide<double>(doc->GetTotalSyllables(), doc->GetTotalWords());
             assert(m_summaryStatsColumnNames[columnCount] == _(L"Number of words"));
             m_summaryStatsData->SetItemValue(rowCount, columnCount++, doc->GetTotalWords());
@@ -1619,7 +1622,7 @@ void BatchProjectDoc::LoadSummaryStatsSection()
 void BatchProjectDoc::LoadWarningsSection()
     {
     m_warnings->DeleteAllItems();
-    m_warnings->SetSize(m_docs.size() * 2 + GetSubProjectMessages().size(), 3);
+    m_warnings->SetSize((m_docs.size() * 2) + GetSubProjectMessages().size(), 3);
 
     size_t warningCount = 0;
 
@@ -1636,7 +1639,7 @@ void BatchProjectDoc::LoadWarningsSection()
         }
     for (std::vector<BaseProject*>::iterator pos = m_docs.begin(); pos != m_docs.end(); ++pos)
         {
-        if ((*pos)->GetSubProjectMessages().size())
+        if (!(*pos)->GetSubProjectMessages().empty())
             {
             for (const auto& message : (*pos)->GetSubProjectMessages())
                 {
@@ -1722,7 +1725,7 @@ bool BatchProjectDoc::LoadDocuments(wxProgressDialog& progressDlg)
             (*pos)->SetParagraphsParsingMethod(ParagraphParse::EachNewLineIsAParagraph);
             }
 
-        FilePathResolver fileResolve((*pos)->GetOriginalDocumentFilePath(), false);
+        const FilePathResolver fileResolve((*pos)->GetOriginalDocumentFilePath(), false);
         if (fileResolve.IsExcelCell())
             {
             FilePathResolver fileResolver;
@@ -1749,11 +1752,10 @@ bool BatchProjectDoc::LoadDocuments(wxProgressDialog& progressDlg)
                 const size_t slash = worksheetName.find_last_of(L'#');
                 if (slash != wxString::npos)
                     {
-                    wxString CellName = worksheetName.substr(slash + 1);
+                    const wxString CellName = worksheetName.substr(slash + 1);
                     worksheetName.Truncate(slash);
                     const wxString workSheetPath = fn.GetFullPath() + L"#" + worksheetName;
-                    std::map<wxString, ExcelFile*>::iterator excelFilePos =
-                        excelFiles.find(workSheetPath);
+                    auto excelFilePos = excelFiles.find(workSheetPath);
                     if (excelFilePos == excelFiles.end())
                         {
                         excelFilePos = excelFiles
@@ -1761,14 +1763,14 @@ bool BatchProjectDoc::LoadDocuments(wxProgressDialog& progressDlg)
                                                workSheetPath, new ExcelFile(fn.GetFullPath())))
                                            .first;
                         // read in the worksheets
-                        std::wstring workBookFileText =
+                        const std::wstring workBookFileText =
                             excelFilePos->second->m_zip.ReadTextFile(L"xl/workbook.xml");
                         excelFilePos->second->m_xlsx_extract.read_worksheet_names(
                             workBookFileText.c_str(), workBookFileText.length());
                         // read in the string table
                         const std::wstring sharedStrings =
                             excelFilePos->second->m_zip.ReadTextFile(L"xl/sharedStrings.xml");
-                        if (sharedStrings.length())
+                        if (!sharedStrings.empty())
                             {
                             excelFilePos->second->m_xlsx_extract.read_shared_strings(
                                 sharedStrings.c_str(), sharedStrings.length());
@@ -1794,7 +1796,7 @@ bool BatchProjectDoc::LoadDocuments(wxProgressDialog& progressDlg)
                         // wasn't loaded before, so load it now
                         if (internalSheetPos == excelFilePos->second->m_worksheets.end())
                             {
-                            std::pair<ExcelFile::Workbook::iterator, bool> insertPos =
+                            const std::pair<ExcelFile::Workbook::iterator, bool> insertPos =
                                 excelFilePos->second->m_worksheets.insert(
                                     std::pair<wxString,
                                               lily_of_the_valley::xlsx_extract_text::worksheet>(
@@ -1803,15 +1805,16 @@ bool BatchProjectDoc::LoadDocuments(wxProgressDialog& progressDlg)
                             internalSheetPos = insertPos.first;
                             const std::wstring sheetFile =
                                 excelFilePos->second->m_zip.ReadTextFile(internalSheetName);
-                            if (sheetFile.length())
+                            if (!sheetFile.empty())
                                 {
                                 excelFilePos->second->m_xlsx_extract(sheetFile.c_str(),
                                                                      sheetFile.length(),
                                                                      internalSheetPos->second);
                                 }
                             }
-                        wxString cellText = excelFilePos->second->m_xlsx_extract.get_cell_text(
-                            CellName.wc_str(), internalSheetPos->second);
+                        const wxString cellText =
+                            lily_of_the_valley::xlsx_extract_text::get_cell_text(
+                                CellName.wc_str(), internalSheetPos->second);
                         fileResolver.ResolvePath(cellText, false);
                         if (!fileResolver.IsInvalidFile())
                             {
@@ -1876,7 +1879,7 @@ bool BatchProjectDoc::LoadDocuments(wxProgressDialog& progressDlg)
                 wxMemoryOutputStream memstream;
                 if (!archiveFilePos->second->ReadFile(
                         (*pos)->GetOriginalDocumentFilePath().substr(archiveTag + 5), memstream) &&
-                    archiveFilePos->second->GetMessages().size())
+                    !archiveFilePos->second->GetMessages().empty())
                     {
                     AddQuietSubProjectMessage(
                         archiveFilePos->second->GetMessages().back().m_message,
@@ -1886,7 +1889,7 @@ bool BatchProjectDoc::LoadDocuments(wxProgressDialog& progressDlg)
                 // Only load the document if the archive read didn't fail.
                 // Otherwise, LoadDocumentNoUI() will try to load the ZIP file and
                 // get the same error.
-                if (memstream.GetLength())
+                if (memstream.GetLength() != 0)
                     {
                     const std::pair<bool, std::wstring> extractResult = (*pos)->ExtractRawText(
                         { static_cast<const char*>(
@@ -2198,11 +2201,9 @@ bool BatchProjectDoc::LoadDocuments(wxProgressDialog& progressDlg)
             // piece the sentence together
             const grammar::sentence_info& sentence =
                 (*pos)->GetWords()->get_sentences()[(*pos)->GetLongestSentenceIndex()];
-            std::vector<punctuation::punctuation_mark>::const_iterator punctPos =
-                (*pos)->GetWords()->get_punctuation().begin();
-            std::vector<punctuation::punctuation_mark>::const_iterator punctEnd =
-                (*pos)->GetWords()->get_punctuation().end();
-            wxString currentSentence =
+            auto punctPos = (*pos)->GetWords()->get_punctuation().begin();
+            auto punctEnd = (*pos)->GetWords()->get_punctuation().end();
+            const wxString currentSentence =
                 ProjectReportFormat::FormatSentence(*pos, sentence, punctPos, punctEnd);
 
             m_overlyLongSentenceData->SetItemText(longSenteceCount++, 4, currentSentence);
@@ -2291,7 +2292,7 @@ bool BatchProjectDoc::LoadDocuments(wxProgressDialog& progressDlg)
             m_sentenceStartingWithLowercaseData->SetItemText(lowercaseSentencesCount++, 3,
                                                              lowercasesStr);
             }
-        // wordy items & cliches
+        // wordy items & clichés
         if ((*pos)->LoadingOriginalTextSucceeded() &&
             (*pos)->GetWords()->get_known_phrase_indices().size() > 0)
             {
@@ -2331,7 +2332,7 @@ bool BatchProjectDoc::LoadDocuments(wxProgressDialog& progressDlg)
                 }
 
             // if anything was found in this document then add it to the lists
-            if (errorsAndSuggestions.get_data().size())
+            if (!errorsAndSuggestions.get_data().empty())
                 {
                 wxString values;
                 wxString suggestions;
@@ -2606,7 +2607,7 @@ bool BatchProjectDoc::LoadDocuments(wxProgressDialog& progressDlg)
     auto keyWordsColumn = m_keyWordsDataset->GetCategoricalColumn(GetWordsColumnName());
     auto keydWordsFreqColumn = m_keyWordsDataset->GetContinuousColumn(GetWordsCountsColumnName());
 
-        // condensed key words & word cloud
+        // condensed keywords & word cloud
         {
         GetKeyWordsBatchData()->DeleteAllItems();
         GetKeyWordsBatchData()->SetSize(keyWordsStemmedWithCounts.get_data().size(), 2);
@@ -2642,7 +2643,7 @@ bool BatchProjectDoc::LoadDocuments(wxProgressDialog& progressDlg)
                 keyWordsColumn->GetStringTable().insert(
                     std::make_pair(nextKey, mostFrequentWordVariation->first.c_str()));
                 }
-            // could never happen, but for robustness sake use the stem word
+            // could never happen, but for robustness’s sake use the stem word
             // if the word list for the stem is empty
             else
                 {
@@ -2691,10 +2692,10 @@ bool BatchProjectDoc::LoadDocuments(wxProgressDialog& progressDlg)
 void BatchProjectDoc::LoadScoresSection()
     {
     PROFILE();
-    BatchProjectView* view = dynamic_cast<BatchProjectView*>(GetFirstView());
+    auto* view = dynamic_cast<BatchProjectView*>(GetFirstView());
 
     // update any stats goals (test goals are reviewed as the tests are added below).
-    for (auto doc : m_docs)
+    for (auto* doc : m_docs)
         {
         doc->ReviewStatGoals();
         }
@@ -2848,13 +2849,13 @@ void BatchProjectDoc::LoadScoresSection()
                         }
                     else if (fryGraph->GetScores().at(i).IsScoreOutOfGradeRange())
                         {
-                        const wxString TOO_DIFFICULT_DESCRIPTION =
+                        const wxString tooDifficultDescription =
                             fryGraph->GetScores().at(i).IsWordsHard() ?
                                 _(L"Text is too difficult to be classified to a specific grade "
                                   "level because it contains too many high syllable words.") :
                                 _(L"Text is too difficult to be classified to a specific grade "
                                   "level because it contains too many long sentences.");
-                        m_scoreRawData->SetItemText(i, currentColumn++, TOO_DIFFICULT_DESCRIPTION);
+                        m_scoreRawData->SetItemText(i, currentColumn++, tooDifficultDescription);
                         (*pos)->ReviewTestGoal(ReadabilityMessages::FRY(),
                                                std::numeric_limits<double>::quiet_NaN());
                         }
@@ -2900,14 +2901,14 @@ void BatchProjectDoc::LoadScoresSection()
                         }
                     else if (fryGraph->GetScores().at(i).IsScoreOutOfGradeRange())
                         {
-                        const wxString TOO_DIFFICULT_DESCRIPTION =
+                        const wxString tooDifficultDescription =
                             fryGraph->GetScores().at(i).IsWordsHard() ?
                                 _(L"Text is too difficult to be classified to a specific "
                                   "grade level because it contains too many high syllable words.") :
                                 _(L"Text is too difficult to be classified to a specific "
                                   "grade level because it contains too many long sentences.");
 
-                        m_scoreRawData->SetItemText(i, currentColumn++, TOO_DIFFICULT_DESCRIPTION);
+                        m_scoreRawData->SetItemText(i, currentColumn++, tooDifficultDescription);
                         (*pos)->ReviewTestGoal(ReadabilityMessages::GPM_FRY(),
                                                std::numeric_limits<double>::quiet_NaN());
                         }
@@ -2953,13 +2954,13 @@ void BatchProjectDoc::LoadScoresSection()
                         }
                     else if (schwartzGraph->GetScores().at(i).IsScoreOutOfGradeRange())
                         {
-                        const wxString TOO_DIFFICULT_DESCRIPTION =
+                        const wxString tooDifficultDescription =
                             schwartzGraph->GetScores().at(i).IsWordsHard() ?
                                 _(L"Text is too difficult to be classified to a specific grade "
                                   "level because it contains too many high syllable words.") :
                                 _(L"Text is too difficult to be classified to a specific grade "
                                   "level because it contains too many long sentences.");
-                        m_scoreRawData->SetItemText(i, currentColumn++, TOO_DIFFICULT_DESCRIPTION);
+                        m_scoreRawData->SetItemText(i, currentColumn++, tooDifficultDescription);
                         (*pos)->ReviewTestGoal(ReadabilityMessages::SCHWARTZ(),
                                                std::numeric_limits<double>::quiet_NaN());
                         }
@@ -3006,14 +3007,14 @@ void BatchProjectDoc::LoadScoresSection()
                         }
                     else if (raygorGraph->GetScores().at(i).IsScoreOutOfGradeRange())
                         {
-                        const wxString TOO_DIFFICULT_DESCRIPTION =
+                        const wxString tooDifficultDescription =
                             raygorGraph->GetScores().at(i).IsWordsHard() ?
                                 _(L"Text is too difficult to be classified to a specific "
                                   "grade level because it contains too many 6+ character words.") :
                                 _(L"Text is too difficult to be classified to a specific "
                                   "grade level because it contains too many long sentences.");
 
-                        m_scoreRawData->SetItemText(i, currentColumn++, TOO_DIFFICULT_DESCRIPTION);
+                        m_scoreRawData->SetItemText(i, currentColumn++, tooDifficultDescription);
                         (*pos)->ReviewTestGoal(ReadabilityMessages::RAYGOR(),
                                                std::numeric_limits<double>::quiet_NaN());
                         }
@@ -3411,7 +3412,7 @@ void BatchProjectDoc::LoadScoresSection()
             SetScoreStatsRow(m_aggregatedGradeScoresData, (*pos)->GetOriginalDocumentFilePath(),
                              // a bit of a hack--need to pass in something to force the use of
                              // description column.
-                             (*pos)->GetOriginalDocumentDescription().length() ?
+                             !(*pos)->GetOriginalDocumentDescription().empty() ?
                                  (*pos)->GetOriginalDocumentDescription() :
                                  wxString{ L"  " },
                              currentRow++, (*pos)->GetAggregatedGradeScores(), 1,
@@ -3444,7 +3445,7 @@ void BatchProjectDoc::LoadScoresSection()
 //------------------------------------------------------------
 void BatchProjectDoc::DisplayWarnings()
     {
-    BatchProjectView* view = dynamic_cast<BatchProjectView*>(GetFirstView());
+    auto* view = dynamic_cast<BatchProjectView*>(GetFirstView());
 
     // initialize the warnings listctrl if it doesn't have any columns in it yet
     if (view->GetWarningsView()->GetColumnCount() == 0)
@@ -3486,13 +3487,13 @@ void BatchProjectDoc::DisplayWarnings()
 void BatchProjectDoc::DisplayScores()
     {
     PROFILE();
-    BatchProjectView* view = dynamic_cast<BatchProjectView*>(GetFirstView());
+    auto* view = dynamic_cast<BatchProjectView*>(GetFirstView());
 
         // main scores grid
         {
-        Wisteria::UI::ListCtrlEx* listView = dynamic_cast<Wisteria::UI::ListCtrlEx*>(
+        auto* listView = dynamic_cast<Wisteria::UI::ListCtrlEx*>(
             view->GetScoresView().FindWindowById(BaseProjectView::ID_SCORE_LIST_PAGE_ID));
-        if (!listView)
+        if (listView == nullptr)
             {
             listView = new Wisteria::UI::ListCtrlEx(
                 view->GetSplitter(), BaseProjectView::ID_SCORE_LIST_PAGE_ID, wxDefaultPosition,
@@ -3583,11 +3584,11 @@ void BatchProjectDoc::DisplayScores()
         }
 
     // add/remove the goals
-    if (GetTestGoals().size() || GetStatGoals().size())
+    if (!GetTestGoals().empty() || !GetStatGoals().empty())
         {
-        Wisteria::UI::ListCtrlEx* goalsList = dynamic_cast<Wisteria::UI::ListCtrlEx*>(
+        auto* goalsList = dynamic_cast<Wisteria::UI::ListCtrlEx*>(
             view->GetScoresView().FindWindowById(BaseProjectView::READABILITY_GOALS_PAGE_ID));
-        if (!goalsList)
+        if (goalsList == nullptr)
             {
             goalsList = new Wisteria::UI::ListCtrlEx(
                 view->GetSplitter(), BaseProjectView::READABILITY_GOALS_PAGE_ID, wxDefaultPosition,
@@ -3622,14 +3623,14 @@ void BatchProjectDoc::DisplayScores()
                 {
                 goalsList->InsertColumn(goalsList->GetColumnCount(),
                                         wxString::Format(
-                                            // TRANSLATORS: %s is test name
+                                            // TRANSLATORS: %s is a test name
                                             _(L"%s Min"), testName));
                 }
             if (!std::isnan(goal.GetMaxGoal()))
                 {
                 goalsList->InsertColumn(goalsList->GetColumnCount(),
                                         wxString::Format(
-                                            // TRANSLATORS: %s is test name
+                                            // TRANSLATORS: %s is a test name
                                             _(L"%s Max"), testName));
                 }
             }
@@ -3821,53 +3822,53 @@ void BatchProjectDoc::DisplayScores()
         }
 
     // add these here so that they are ordered after the aggregated stats
-    if (view->GetCrawfordGraph() &&
+    if ((view->GetCrawfordGraph() != nullptr) &&
         GetReadabilityTests().is_test_included(ReadabilityMessages::CRAWFORD()) &&
         GetDocuments().size())
         {
         view->GetScoresView().AddWindow(view->GetCrawfordGraph());
         }
-    if (view->GetFleschChart() &&
+    if ((view->GetFleschChart() != nullptr) &&
         GetReadabilityTests().is_test_included(ReadabilityMessages::FLESCH()) &&
         GetDocuments().size())
         {
         view->GetScoresView().AddWindow(view->GetFleschChart());
         }
-    if (view->GetDB2Plot() &&
+    if ((view->GetDB2Plot() != nullptr) &&
         GetReadabilityTests().is_test_included(ReadabilityMessages::DANIELSON_BRYAN_2()) &&
         GetDocuments().size())
         {
         view->GetScoresView().AddWindow(view->GetDB2Plot());
         }
-    if (view->GetFryGraph() && GetReadabilityTests().is_test_included(ReadabilityMessages::FRY()) &&
-        GetDocuments().size())
+    if ((view->GetFryGraph() != nullptr) &&
+        GetReadabilityTests().is_test_included(ReadabilityMessages::FRY()) && GetDocuments().size())
         {
         view->GetScoresView().AddWindow(view->GetFryGraph());
         }
-    if (view->GetGpmFryGraph() &&
+    if ((view->GetGpmFryGraph() != nullptr) &&
         GetReadabilityTests().is_test_included(ReadabilityMessages::GPM_FRY()) &&
         GetDocuments().size())
         {
         view->GetScoresView().AddWindow(view->GetGpmFryGraph());
         }
-    if (view->GetFraseGraph() &&
+    if ((view->GetFraseGraph() != nullptr) &&
         GetReadabilityTests().is_test_included(ReadabilityMessages::FRASE()) &&
         GetDocuments().size())
         {
         view->GetScoresView().AddWindow(view->GetFraseGraph());
         }
-    if (view->GetSchwartzGraph() &&
+    if ((view->GetSchwartzGraph() != nullptr) &&
         GetReadabilityTests().is_test_included(ReadabilityMessages::SCHWARTZ()) &&
         GetDocuments().size())
         {
         view->GetScoresView().AddWindow(view->GetSchwartzGraph());
         }
-    if (view->GetLixGauge() && GetReadabilityTests().is_test_included(ReadabilityMessages::LIX()) &&
-        GetDocuments().size())
+    if ((view->GetLixGauge() != nullptr) &&
+        GetReadabilityTests().is_test_included(ReadabilityMessages::LIX()) && GetDocuments().size())
         {
         view->GetScoresView().AddWindow(view->GetLixGauge());
         }
-    if (view->GetGermanLixGauge() &&
+    if ((view->GetGermanLixGauge() != nullptr) &&
         (GetReadabilityTests().is_test_included(
              ReadabilityMessages::LIX_GERMAN_CHILDRENS_LITERATURE()) ||
          GetReadabilityTests().is_test_included(ReadabilityMessages::LIX_GERMAN_TECHNICAL())) &&
@@ -3875,7 +3876,7 @@ void BatchProjectDoc::DisplayScores()
         {
         view->GetScoresView().AddWindow(view->GetGermanLixGauge());
         }
-    if (view->GetRaygorGraph() &&
+    if ((view->GetRaygorGraph() != nullptr) &&
         GetReadabilityTests().is_test_included(ReadabilityMessages::RAYGOR()) &&
         GetDocuments().size())
         {
@@ -3886,14 +3887,14 @@ void BatchProjectDoc::DisplayScores()
 //------------------------------------------------------------
 void BatchProjectDoc::DisplayScoreStatisticsWindow(
     const wxString& windowName, const int windowId,
-    std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider> data,
+    const std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider>& data,
     const wxString& firstColumnName, const wxString& optionalSecondColumnName,
     const bool multiSelectable)
     {
-    BatchProjectView* view = dynamic_cast<BatchProjectView*>(GetFirstView());
-    Wisteria::UI::ListCtrlEx* listView =
+    auto* view = dynamic_cast<BatchProjectView*>(GetFirstView());
+    auto* listView =
         dynamic_cast<Wisteria::UI::ListCtrlEx*>(view->GetScoresView().FindWindowById(windowId));
-    if (!listView)
+    if (listView == nullptr)
         {
         long style = wxLC_VIRTUAL | wxLC_REPORT | wxBORDER_SUNKEN;
         if (!multiSelectable)
@@ -3958,7 +3959,7 @@ void BatchProjectDoc::DisplayScoreStatisticsWindow(
 //------------------------------------------------------------
 void BatchProjectDoc::DisplayCrawfordGraph()
     {
-    BatchProjectView* view = dynamic_cast<BatchProjectView*>(GetFirstView());
+    auto* view = dynamic_cast<BatchProjectView*>(GetFirstView());
 
     const wxString scoresColumnName{ _DT(L"SCORES") };
     const wxString syllablesColumnName{ _DT(L"SYLLABLES") };
@@ -3996,10 +3997,10 @@ void BatchProjectDoc::DisplayCrawfordGraph()
     if (GetReadabilityTests().is_test_included(ReadabilityMessages::CRAWFORD()) && m_docs.size())
         {
         std::shared_ptr<Wisteria::Graphs::CrawfordGraph> crawfordGraph{ nullptr };
-        Wisteria::Canvas* crawfordGraphCanvas = dynamic_cast<Wisteria::Canvas*>(
+        auto* crawfordGraphCanvas = dynamic_cast<Wisteria::Canvas*>(
             view->GetScoresView().FindWindowById(BaseProjectView::CRAWFORD_GRAPH_PAGE_ID));
 
-        if (!crawfordGraphCanvas)
+        if (crawfordGraphCanvas == nullptr)
             {
             crawfordGraphCanvas =
                 new Wisteria::Canvas(view->GetSplitter(), BaseProjectView::CRAWFORD_GRAPH_PAGE_ID);
@@ -4062,7 +4063,7 @@ void BatchProjectDoc::DisplayCrawfordGraph()
 //------------------------------------------------------------
 void BatchProjectDoc::DisplayDB2Plot()
     {
-    BatchProjectView* view = dynamic_cast<BatchProjectView*>(GetFirstView());
+    auto* view = dynamic_cast<BatchProjectView*>(GetFirstView());
 
     const wxString scoresColumnName{ _DT(L"SCORES") };
     const wxString groupColumnName{ _DT(L"GROUP") };
@@ -4098,10 +4099,10 @@ void BatchProjectDoc::DisplayDB2Plot()
         m_docs.size())
         {
         std::shared_ptr<Wisteria::Graphs::DanielsonBryan2Plot> db2Plot{ nullptr };
-        Wisteria::Canvas* db2PlotCanvas = dynamic_cast<Wisteria::Canvas*>(
+        auto* db2PlotCanvas = dynamic_cast<Wisteria::Canvas*>(
             view->GetScoresView().FindWindowById(BaseProjectView::DB2_PAGE_ID));
 
-        if (!db2PlotCanvas)
+        if (db2PlotCanvas == nullptr)
             {
             db2PlotCanvas = new Wisteria::Canvas(view->GetSplitter(), BaseProjectView::DB2_PAGE_ID);
             db2PlotCanvas->SetFixedObjectsGridSize(1, 1);
@@ -4168,7 +4169,7 @@ void BatchProjectDoc::DisplayDB2Plot()
 //------------------------------------------------------------
 void BatchProjectDoc::DisplayFleschChart()
     {
-    BatchProjectView* view = dynamic_cast<BatchProjectView*>(GetFirstView());
+    auto* view = dynamic_cast<BatchProjectView*>(GetFirstView());
 
     const wxString wordsColumnName{ _DT(L"WORDS") };
     const wxString scoresColumnName{ _DT(L"SCORES") };
@@ -4187,9 +4188,9 @@ void BatchProjectDoc::DisplayFleschChart()
         {
         if ((*pos)->LoadingOriginalTextSucceeded())
             {
-            const double ASL =
+            const auto asl =
                 safe_divide<double>((*pos)->GetTotalWords(), (*pos)->GetTotalSentences());
-            const double ASW =
+            const auto asw =
                 safe_divide<double>(((*pos)->GetFleschNumeralSyllabizeMethod() ==
                                      FleschNumeralSyllabize::NumeralIsOneSyllable) ?
                                         (*pos)->GetTotalSyllablesNumeralsOneSyllable() :
@@ -4212,7 +4213,7 @@ void BatchProjectDoc::DisplayFleschChart()
                 Wisteria::Data::RowInfo()
                     .Id(wxFileName((*pos)->GetOriginalDocumentFilePath()).GetFullName().wc_str())
                     .Categoricals({ IsShowingGroupLegends() ? foundGroupId->second : 0 })
-                    .Continuous({ ASL, static_cast<double>(score), ASW }));
+                    .Continuous({ asl, static_cast<double>(score), asw }));
             }
         }
 
@@ -4220,14 +4221,14 @@ void BatchProjectDoc::DisplayFleschChart()
     if (GetReadabilityTests().is_test_included(ReadabilityMessages::FLESCH()) && m_docs.size())
         {
         std::shared_ptr<Wisteria::Graphs::FleschChart> fleschChart{ nullptr };
-        Wisteria::Canvas* fleschChartCanvas = dynamic_cast<Wisteria::Canvas*>(
+        auto* fleschChartCanvas = dynamic_cast<Wisteria::Canvas*>(
             view->GetScoresView().FindWindowById(BaseProjectView::FLESCH_CHART_PAGE_ID));
 
         // document name brackets next to syllable ruler will
-        // will override the legend. (It would be to busy showing both of these.)
+        // override the legend. (It would be to busy showing both of these.)
         const bool showLegend = (IsShowingGroupLegends() && !IsIncludingFleschRulerDocGroups());
 
-        if (!fleschChartCanvas)
+        if (fleschChartCanvas == nullptr)
             {
             fleschChartCanvas =
                 new Wisteria::Canvas(view->GetSplitter(), BaseProjectView::FLESCH_CHART_PAGE_ID);
@@ -4284,7 +4285,7 @@ void BatchProjectDoc::DisplayFleschChart()
 //------------------------------------------------------------
 void BatchProjectDoc::DisplayGermanLixGauge()
     {
-    BatchProjectView* view = dynamic_cast<BatchProjectView*>(GetFirstView());
+    auto* view = dynamic_cast<BatchProjectView*>(GetFirstView());
 
     const wxString scoresColumnName{ _DT(L"SCORES") };
     const wxString groupColumnName{ _DT(L"GROUP") };
@@ -4323,10 +4324,10 @@ void BatchProjectDoc::DisplayGermanLixGauge()
         m_docs.size())
         {
         std::shared_ptr<Wisteria::Graphs::LixGaugeGerman> lixGauge{ nullptr };
-        Wisteria::Canvas* lixGaugeCanvas = dynamic_cast<Wisteria::Canvas*>(
+        auto* lixGaugeCanvas = dynamic_cast<Wisteria::Canvas*>(
             view->GetScoresView().FindWindowById(BaseProjectView::LIX_GAUGE_GERMAN_PAGE_ID));
 
-        if (!lixGaugeCanvas)
+        if (lixGaugeCanvas == nullptr)
             {
             lixGaugeCanvas = new Wisteria::Canvas(view->GetSplitter(),
                                                   BaseProjectView::LIX_GAUGE_GERMAN_PAGE_ID);
@@ -4387,7 +4388,7 @@ void BatchProjectDoc::DisplayGermanLixGauge()
 //------------------------------------------------------------
 void BatchProjectDoc::DisplayLixGauge()
     {
-    BatchProjectView* view = dynamic_cast<BatchProjectView*>(GetFirstView());
+    auto* view = dynamic_cast<BatchProjectView*>(GetFirstView());
 
     const wxString scoresColumnName{ _DT(L"SCORES") };
     const wxString groupColumnName{ _DT(L"GROUP") };
@@ -4423,10 +4424,10 @@ void BatchProjectDoc::DisplayLixGauge()
     if (GetReadabilityTests().is_test_included(ReadabilityMessages::LIX()) && m_docs.size())
         {
         std::shared_ptr<Wisteria::Graphs::LixGauge> lixGauge{ nullptr };
-        Wisteria::Canvas* lixGaugeCanvas = dynamic_cast<Wisteria::Canvas*>(
+        auto* lixGaugeCanvas = dynamic_cast<Wisteria::Canvas*>(
             view->GetScoresView().FindWindowById(BaseProjectView::LIX_GAUGE_PAGE_ID));
 
-        if (!lixGaugeCanvas)
+        if (lixGaugeCanvas == nullptr)
             {
             lixGaugeCanvas =
                 new Wisteria::Canvas(view->GetSplitter(), BaseProjectView::LIX_GAUGE_PAGE_ID);
@@ -4527,7 +4528,7 @@ void BatchProjectDoc::DisplayReadabilityGraphs()
     scoreDataset->AddCategoricalColumn(groupColumnName, m_groupStringTable);
     scoreDataset->Reserve(GetDocuments().size());
 
-    for (const auto doc : GetDocuments())
+    for (auto* const doc : GetDocuments())
         {
         if (doc->LoadingOriginalTextSucceeded())
             {
@@ -4550,15 +4551,15 @@ void BatchProjectDoc::DisplayReadabilityGraphs()
             }
         }
 
-    BatchProjectView* view = dynamic_cast<BatchProjectView*>(GetFirstView());
+    auto* view = dynamic_cast<BatchProjectView*>(GetFirstView());
 
     // Fry graph
-    Wisteria::Canvas* fryGraphCanvas = dynamic_cast<Wisteria::Canvas*>(
+    auto* fryGraphCanvas = dynamic_cast<Wisteria::Canvas*>(
         view->GetScoresView().FindWindowById(BaseProjectView::FRY_PAGE_ID));
     if (GetReadabilityTests().is_test_included(ReadabilityMessages::FRY()) && GetDocuments().size())
         {
         std::shared_ptr<Wisteria::Graphs::FryGraph> fryGraph{ nullptr };
-        if (!fryGraphCanvas)
+        if (fryGraphCanvas == nullptr)
             {
             fryGraphCanvas =
                 new Wisteria::Canvas(view->GetSplitter(), BaseProjectView::FRY_PAGE_ID);
@@ -4628,7 +4629,7 @@ void BatchProjectDoc::DisplayReadabilityGraphs()
         GetDocuments().size())
         {
         std::shared_ptr<Wisteria::Graphs::FryGraph> gFryGraph{ nullptr };
-        if (!fryGraphCanvas)
+        if (fryGraphCanvas == nullptr)
             {
             fryGraphCanvas =
                 new Wisteria::Canvas(view->GetSplitter(), BaseProjectView::GPM_FRY_PAGE_ID);
@@ -4692,13 +4693,13 @@ void BatchProjectDoc::DisplayReadabilityGraphs()
         }
 
     // Schwartz graph
-    Wisteria::Canvas* schwartzGraphCanvas = dynamic_cast<Wisteria::Canvas*>(
+    auto* schwartzGraphCanvas = dynamic_cast<Wisteria::Canvas*>(
         view->GetScoresView().FindWindowById(BaseProjectView::SCHWARTZ_PAGE_ID));
     if (GetReadabilityTests().is_test_included(ReadabilityMessages::SCHWARTZ()) &&
         GetDocuments().size())
         {
         std::shared_ptr<Wisteria::Graphs::SchwartzGraph> schwartzGraph{ nullptr };
-        if (!schwartzGraphCanvas)
+        if (schwartzGraphCanvas == nullptr)
             {
             schwartzGraphCanvas =
                 new Wisteria::Canvas(view->GetSplitter(), BaseProjectView::SCHWARTZ_PAGE_ID);
@@ -4762,13 +4763,13 @@ void BatchProjectDoc::DisplayReadabilityGraphs()
         }
 
     // FRASE graph
-    Wisteria::Canvas* fraseGraphCanvas = dynamic_cast<Wisteria::Canvas*>(
+    auto* fraseGraphCanvas = dynamic_cast<Wisteria::Canvas*>(
         view->GetScoresView().FindWindowById(BaseProjectView::FRASE_PAGE_ID));
     if (GetReadabilityTests().is_test_included(ReadabilityMessages::FRASE()) &&
         GetDocuments().size())
         {
         std::shared_ptr<Wisteria::Graphs::FraseGraph> fraseGraph{ nullptr };
-        if (!fraseGraphCanvas)
+        if (fraseGraphCanvas == nullptr)
             {
             fraseGraphCanvas =
                 new Wisteria::Canvas(view->GetSplitter(), BaseProjectView::FRASE_PAGE_ID);
@@ -4830,13 +4831,13 @@ void BatchProjectDoc::DisplayReadabilityGraphs()
         }
 
     // Raygor graph
-    Wisteria::Canvas* raygorGraphCanvas = dynamic_cast<Wisteria::Canvas*>(
+    auto* raygorGraphCanvas = dynamic_cast<Wisteria::Canvas*>(
         view->GetScoresView().FindWindowById(BaseProjectView::RAYGOR_PAGE_ID));
     if (GetReadabilityTests().is_test_included(ReadabilityMessages::RAYGOR()) &&
-        GetDocuments().size())
+        !GetDocuments().empty())
         {
         std::shared_ptr<Wisteria::Graphs::RaygorGraph> raygorGraph{ nullptr };
-        if (!raygorGraphCanvas)
+        if (raygorGraphCanvas == nullptr)
             {
             raygorGraphCanvas =
                 new Wisteria::Canvas(view->GetSplitter(), BaseProjectView::RAYGOR_PAGE_ID);
@@ -4906,7 +4907,7 @@ void BatchProjectDoc::DisplayReadabilityGraphs()
 void BatchProjectDoc::DisplayBoxPlots()
     {
     PROFILE();
-    BatchProjectView* view = dynamic_cast<BatchProjectView*>(GetFirstView());
+    auto* view = dynamic_cast<BatchProjectView*>(GetFirstView());
 
     // standard tests
     for (auto& sTest : GetReadabilityTests().get_tests())
@@ -4922,14 +4923,14 @@ void BatchProjectDoc::DisplayBoxPlots()
                                            wxString(sTest.get_test().get_short_name().c_str()) :
                                            BatchProjectView::FormatGradeLevelsLabel(
                                                sTest.get_test().get_short_name().c_str());
-            Wisteria::Canvas* boxPlotCanvas =
+            auto* boxPlotCanvas =
                 dynamic_cast<Wisteria::Canvas*>(view->GetBoxPlotView().FindWindowByIdAndLabel(
                     sTest.get_test().get_interface_id(), pageLabel));
             if (sTest.is_included() && sTest.get_grade_point_collection()
                                            ->GetContinuousColumn(GetScoreColumnName())
                                            ->GetRowCount())
                 {
-                if (!boxPlotCanvas)
+                if (boxPlotCanvas == nullptr)
                     {
                     boxPlotCanvas = new Wisteria::Canvas(view->GetSplitter(),
                                                          sTest.get_test().get_interface_id());
@@ -5007,7 +5008,7 @@ void BatchProjectDoc::DisplayBoxPlots()
                 }
             }
         // some tests can have grade levels AND cloze or index values, so don't use "else" here,
-        // go through each logic gate to plot all of the test's results
+        // go through each logic gate to plot all the test's results
         if (sTest.get_test().get_test_type() == readability::readability_test_type::index_value ||
             sTest.get_test().get_test_type() ==
                 readability::readability_test_type::index_value_and_grade_level)
@@ -5017,14 +5018,14 @@ void BatchProjectDoc::DisplayBoxPlots()
                                            wxString(sTest.get_test().get_short_name().c_str()) :
                                            BatchProjectView::FormatIndexValuesLabel(
                                                sTest.get_test().get_short_name().c_str());
-            Wisteria::Canvas* boxPlotCanvas =
+            auto* boxPlotCanvas =
                 dynamic_cast<Wisteria::Canvas*>(view->GetBoxPlotView().FindWindowByIdAndLabel(
                     sTest.get_test().get_interface_id(), pageLabel));
             if (sTest.is_included() && sTest.get_index_point_collection()
                                            ->GetContinuousColumn(GetScoreColumnName())
                                            ->GetRowCount())
                 {
-                if (!boxPlotCanvas)
+                if (boxPlotCanvas == nullptr)
                     {
                     boxPlotCanvas = new Wisteria::Canvas(view->GetSplitter(),
                                                          sTest.get_test().get_interface_id());
@@ -5082,7 +5083,7 @@ void BatchProjectDoc::DisplayBoxPlots()
 
                 const auto [rangeStart, rangeEnd] = boxPlot->GetLeftYAxis().GetRange();
                 // Set the ranges to fit the index range. Note that the calculated outlier ranges
-                // may go outside of the standard test range, so use the calculated range if larger.
+                // may go outside the standard test range, so use the calculated range if larger.
                 if (sTest.get_test().get_id() == ReadabilityMessages::FLESCH().wc_str())
                     {
                     boxPlot->GetLeftYAxis().SetRange(std::min<double>(0, rangeStart),
@@ -5123,14 +5124,14 @@ void BatchProjectDoc::DisplayBoxPlots()
                                            wxString(sTest.get_test().get_short_name().c_str()) :
                                            BatchProjectView::FormatClozeValuesLabel(
                                                sTest.get_test().get_short_name().c_str());
-            Wisteria::Canvas* boxPlotCanvas =
+            auto* boxPlotCanvas =
                 dynamic_cast<Wisteria::Canvas*>(view->GetBoxPlotView().FindWindowByIdAndLabel(
                     sTest.get_test().get_interface_id(), pageLabel));
             if (sTest.is_included() && sTest.get_cloze_point_collection()
                                            ->GetContinuousColumn(GetScoreColumnName())
                                            ->GetRowCount())
                 {
-                if (!boxPlotCanvas)
+                if (boxPlotCanvas == nullptr)
                     {
                     boxPlotCanvas = new Wisteria::Canvas(view->GetSplitter(),
                                                          sTest.get_test().get_interface_id());
@@ -5213,7 +5214,7 @@ void BatchProjectDoc::DisplayBoxPlots()
             auto& scoreDataset = m_customTestScores[(testPos - GetCustTestsInUse().begin())];
             if (scoreDataset->GetContinuousColumn(GetScoreColumnName())->GetRowCount())
                 {
-                if (!boxPlotCanvas)
+                if (boxPlotCanvas == nullptr)
                     {
                     boxPlotCanvas = new Wisteria::Canvas(
                         view->GetSplitter(), testPos->GetIterator()->get_interface_id());
@@ -5299,7 +5300,7 @@ void BatchProjectDoc::DisplayBoxPlots()
             auto& scoreDataset = m_customTestScores[(testPos - GetCustTestsInUse().begin())];
             if (scoreDataset->GetContinuousColumn(GetScoreColumnName())->GetRowCount())
                 {
-                if (!boxPlotCanvas)
+                if (boxPlotCanvas == nullptr)
                     {
                     boxPlotCanvas = new Wisteria::Canvas(
                         view->GetSplitter(), testPos->GetIterator()->get_interface_id());
@@ -5379,7 +5380,7 @@ void BatchProjectDoc::DisplayHistograms()
     {
     PROFILE();
     // First, remove any custom-test histograms that had their test removed from the project.
-    BatchProjectView* view = dynamic_cast<BatchProjectView*>(GetFirstView());
+    auto* view = dynamic_cast<BatchProjectView*>(GetFirstView());
     std::set<wxWindowID> validTestNames;
     for (auto rTests = GetReadabilityTests().get_tests().begin();
          rTests != GetReadabilityTests().get_tests().end(); ++rTests)
@@ -5396,7 +5397,7 @@ void BatchProjectDoc::DisplayHistograms()
     for (long i = pageCount - 1; i >= 0; --i)
         {
         const wxWindowID currentId = view->GetHistogramsView().GetWindow(i)->GetId();
-        if (validTestNames.find(currentId) == validTestNames.end())
+        if (!validTestNames.contains(currentId))
             {
             view->GetHistogramsView().RemoveWindowById(currentId);
             }
@@ -5494,17 +5495,17 @@ void BatchProjectDoc::DisplayHistograms()
 //------------------------------------------------
 void BatchProjectDoc::DisplayHistogram(const wxString& name, const wxWindowID Id,
                                        const wxString& topLabel, const wxString& bottomLabel,
-                                       std::shared_ptr<const Wisteria::Data::Dataset> data,
+                                       const std::shared_ptr<const Wisteria::Data::Dataset>& data,
                                        const bool includeTest, const bool isTestGradeLevel,
                                        const bool startAtOne)
     {
-    BatchProjectView* view = dynamic_cast<BatchProjectView*>(GetFirstView());
+    auto* view = dynamic_cast<BatchProjectView*>(GetFirstView());
 
-    Wisteria::Canvas* canvas =
+    auto* canvas =
         dynamic_cast<Wisteria::Canvas*>(view->GetHistogramsView().FindWindowByIdAndLabel(Id, name));
-    if (includeTest && data->GetRowCount())
+    if (includeTest && (data->GetRowCount() != 0U))
         {
-        if (!canvas)
+        if (canvas == nullptr)
             {
             canvas = new Wisteria::Canvas(view->GetSplitter(), Id);
             canvas->SetFixedObjectsGridSize(1, 1);
@@ -5658,7 +5659,7 @@ void BatchProjectDoc::DisplayHistogram(const wxString& name, const wxWindowID Id
 bool BatchProjectDoc::RunProjectWizard(const wxString& path)
     {
     // Run through the project wizard
-    ProjectWizardDlg* wizard =
+    auto* wizard =
         new ProjectWizardDlg(wxGetApp().GetParentingWindow(), ProjectType::BatchProject, path);
     if (wizard->ShowModal() != wxID_OK)
         {
@@ -5833,14 +5834,14 @@ bool BatchProjectDoc::RunProjectWizard(const wxString& path)
                 }
             }
         else if (wizard->GetSelectedIndustryType() ==
-                 readability::industry_classification::sedondary_language_industry)
+                 readability::industry_classification::secondary_language_industry)
             {
             for (auto rTest = GetReadabilityTests().get_tests().begin();
                  rTest != GetReadabilityTests().get_tests().end(); ++rTest)
                 {
                 rTest->include(
                     rTest->get_test().has_industry_classification(
-                        readability::industry_classification::sedondary_language_industry) &&
+                        readability::industry_classification::secondary_language_industry) &&
                     rTest->get_test().has_language(GetProjectLanguage()));
                 }
             IncludeDolchSightWords(
@@ -5849,7 +5850,7 @@ bool BatchProjectDoc::RunProjectWizard(const wxString& path)
                  pos != m_custom_word_tests.cend(); ++pos)
                 {
                 if (pos->has_industry_classification(
-                        readability::industry_classification::sedondary_language_industry))
+                        readability::industry_classification::secondary_language_industry))
                     {
                     AddCustomReadabilityTest(wxString(pos->get_name().c_str()));
                     }
@@ -5972,12 +5973,13 @@ bool BatchProjectDoc::RunProjectWizard(const wxString& path)
         // Custom tests. See what was selected, look it up in the global list of test, and add
         // its unique test ID to the options manager's list of included custom tests.
         wxGetApp().GetAppOptions()->GetIncludedCustomTests().clear();
-        wxArrayInt selectedTestIndices = wizard->GetSelectedCustomTests();
+        const wxArrayInt selectedTestIndices = wizard->GetSelectedCustomTests();
         for (size_t i = 0; i < selectedTestIndices.Count(); ++i)
             {
-            CustomReadabilityTest selectedTest = m_custom_word_tests[selectedTestIndices.Item(i)];
+            const CustomReadabilityTest& selectedTest =
+                m_custom_word_tests[selectedTestIndices.Item(i)];
             AddCustomReadabilityTest(selectedTest.get_name().c_str());
-            wxGetApp().GetAppOptions()->GetIncludedCustomTests().push_back(
+            wxGetApp().GetAppOptions()->GetIncludedCustomTests().emplace_back(
                 selectedTest.get_name().c_str());
             }
         }
@@ -6115,7 +6117,7 @@ bool BatchProjectDoc::OnSaveDocument(const wxString& filename)
 
     if (!m_File.IsOpened())
         {
-        // if the file is already there and it is in use then fail
+        // if the file is already there, and it is in use, then fail
         if (!m_File.Open(filename, wxFile::write))
             {
             m_FileReadOnly = true;
@@ -6148,7 +6150,7 @@ bool BatchProjectDoc::OnSaveDocument(const wxString& filename)
         progressDlg.Centre();
         /* Use buffered output stream, NOT text output stream. Text output buffer
            messes around with the newlines in the text, whereas buffer streams preserve the text.*/
-        for (std::vector<BaseProject*>::iterator pos = m_docs.begin(); pos != m_docs.end(); ++pos)
+        for (auto pos = m_docs.begin(); pos != m_docs.end(); ++pos)
             {
             Wisteria::ZipCatalog::WriteText(
                 zip, wxString::Format(L"Content%zu.txt", pos - m_docs.begin()),
@@ -6189,7 +6191,7 @@ bool BatchProjectDoc::OnOpenDocument(const wxString& filename)
     // make sure there aren't any projects getting updated before we start opening a new one.
     // opening a project may try to add new custom tests, which would cause a race condition with
     // the processing project
-    wxList docs = wxGetApp().GetDocManager()->GetDocuments();
+    const wxList docs = wxGetApp().GetDocManager()->GetDocuments();
     for (size_t i = 0; i < docs.GetCount(); ++i)
         {
         const BaseProjectDoc* doc = dynamic_cast<BaseProjectDoc*>(docs.Item(i)->GetData());
@@ -6199,7 +6201,7 @@ bool BatchProjectDoc::OnOpenDocument(const wxString& filename)
             }
         }
 
-    wxBusyCursor wait;
+    const wxBusyCursor wait;
 
     // make sure the file exists first
     if (!wxFile::Exists(filename))
@@ -6219,7 +6221,7 @@ bool BatchProjectDoc::OnOpenDocument(const wxString& filename)
     Modify(false);
     SetDocumentSaved(true);
 
-    BaseProjectProcessingLock processingLock(this);
+    const BaseProjectProcessingLock processingLock(this);
 
     MemoryMappedFile sourceFile;
     try
@@ -6406,7 +6408,7 @@ bool BatchProjectDoc::OnOpenDocument(const wxString& filename)
         }
     DisplayWarnings();
 
-    BatchProjectView* view = dynamic_cast<BatchProjectView*>(GetFirstView());
+    auto* view = dynamic_cast<BatchProjectView*>(GetFirstView());
     view->UpdateSideBarIcons();
     view->UpdateRibbonState();
     view->Present();
@@ -6427,10 +6429,10 @@ bool BatchProjectDoc::OnOpenDocument(const wxString& filename)
 //-------------------------------------------------------
 void BatchProjectDoc::LoadProjectFile(const char* projectFileText, const size_t textLength)
     {
-    Wisteria::ZipCatalog cat(projectFileText, textLength);
+    const Wisteria::ZipCatalog cat(projectFileText, textLength);
 
     // open the project settings file
-    std::wstring settingsFile = cat.ReadTextFile(ProjectSettingsFileLabel());
+    const std::wstring settingsFile = cat.ReadTextFile(ProjectSettingsFileLabel());
     if (!settingsFile.empty())
         {
         LoadSettingsFile(settingsFile.c_str());
@@ -6460,15 +6462,15 @@ void BatchProjectDoc::LoadProjectFile(const char* projectFileText, const size_t 
 void BatchProjectDoc::DisplayGrammar()
     {
     PROFILE();
-    BatchProjectView* view = dynamic_cast<BatchProjectView*>(GetFirstView());
+    auto* view = dynamic_cast<BatchProjectView*>(GetFirstView());
     assert(view);
 
     // Wording Errors
-    Wisteria::UI::ListCtrlEx* listView = dynamic_cast<Wisteria::UI::ListCtrlEx*>(
+    auto* listView = dynamic_cast<Wisteria::UI::ListCtrlEx*>(
         view->GetGrammarView().FindWindowById(BaseProjectView::WORDING_ERRORS_LIST_PAGE_ID));
     if (GetGrammarInfo().IsWordingErrorsEnabled() && m_wordingErrorData->GetItemCount())
         {
-        if (!listView)
+        if (listView == nullptr)
             {
             listView = new Wisteria::UI::ListCtrlEx(
                 view->GetSplitter(), BaseProjectView::WORDING_ERRORS_LIST_PAGE_ID,
@@ -6517,7 +6519,7 @@ void BatchProjectDoc::DisplayGrammar()
         view->GetGrammarView().FindWindowById(BaseProjectView::MISSPELLED_WORD_LIST_PAGE_ID));
     if (GetGrammarInfo().IsMisspellingsEnabled() && GetMisspelledWordData()->GetItemCount())
         {
-        if (!listView)
+        if (listView == nullptr)
             {
             listView = new Wisteria::UI::ListCtrlEx(
                 view->GetSplitter(), BaseProjectView::MISSPELLED_WORD_LIST_PAGE_ID,
@@ -6564,7 +6566,7 @@ void BatchProjectDoc::DisplayGrammar()
         view->GetGrammarView().FindWindowById(BaseProjectView::DUPLICATES_LIST_PAGE_ID));
     if (GetGrammarInfo().IsRepeatedWordsEnabled() && GetRepeatedWordData()->GetItemCount())
         {
-        if (!listView)
+        if (listView == nullptr)
             {
             listView = new Wisteria::UI::ListCtrlEx(
                 view->GetSplitter(), BaseProjectView::DUPLICATES_LIST_PAGE_ID, wxDefaultPosition,
@@ -6610,7 +6612,7 @@ void BatchProjectDoc::DisplayGrammar()
         view->GetGrammarView().FindWindowById(BaseProjectView::INCORRECT_ARTICLE_PAGE_ID));
     if (GetGrammarInfo().IsArticleMismatchesEnabled() && m_incorrectArticleData->GetItemCount())
         {
-        if (!listView)
+        if (listView == nullptr)
             {
             listView = new Wisteria::UI::ListCtrlEx(
                 view->GetSplitter(), BaseProjectView::INCORRECT_ARTICLE_PAGE_ID, wxDefaultPosition,
@@ -6656,7 +6658,7 @@ void BatchProjectDoc::DisplayGrammar()
         view->GetGrammarView().FindWindowById(BaseProjectView::REDUNDANT_PHRASE_LIST_PAGE_ID));
     if (GetGrammarInfo().IsRedundantPhrasesEnabled() && m_redundantPhraseData->GetItemCount())
         {
-        if (!listView)
+        if (listView == nullptr)
             {
             listView = new Wisteria::UI::ListCtrlEx(
                 view->GetSplitter(), BaseProjectView::REDUNDANT_PHRASE_LIST_PAGE_ID,
@@ -6706,7 +6708,7 @@ void BatchProjectDoc::DisplayGrammar()
     if (GetGrammarInfo().IsOverUsedWordsBySentenceEnabled() &&
         m_overusedWordBySentenceData->GetItemCount())
         {
-        if (!listView)
+        if (listView == nullptr)
             {
             listView = new Wisteria::UI::ListCtrlEx(
                 view->GetSplitter(), BaseProjectView::OVERUSED_WORDS_BY_SENTENCE_LIST_PAGE_ID,
@@ -6753,7 +6755,7 @@ void BatchProjectDoc::DisplayGrammar()
         view->GetGrammarView().FindWindowById(BaseProjectView::WORDY_PHRASES_LIST_PAGE_ID));
     if (GetGrammarInfo().IsWordyPhrasesEnabled() && m_wordyPhraseData->GetItemCount())
         {
-        if (!listView)
+        if (listView == nullptr)
             {
             listView = new Wisteria::UI::ListCtrlEx(
                 view->GetSplitter(), BaseProjectView::WORDY_PHRASES_LIST_PAGE_ID, wxDefaultPosition,
@@ -6802,7 +6804,7 @@ void BatchProjectDoc::DisplayGrammar()
         view->GetGrammarView().FindWindowById(BaseProjectView::CLICHES_LIST_PAGE_ID));
     if (GetGrammarInfo().IsClichesEnabled() && m_clichePhraseData->GetItemCount())
         {
-        if (!listView)
+        if (listView == nullptr)
             {
             listView = new Wisteria::UI::ListCtrlEx(
                 view->GetSplitter(), BaseProjectView::CLICHES_LIST_PAGE_ID, wxDefaultPosition,
@@ -6851,7 +6853,7 @@ void BatchProjectDoc::DisplayGrammar()
         view->GetGrammarView().FindWindowById(BaseProjectView::PASSIVE_VOICE_PAGE_ID));
     if (GetGrammarInfo().IsPassiveVoiceEnabled() && m_passiveVoiceData->GetItemCount())
         {
-        if (!listView)
+        if (listView == nullptr)
             {
             listView = new Wisteria::UI::ListCtrlEx(
                 view->GetSplitter(), BaseProjectView::PASSIVE_VOICE_PAGE_ID, wxDefaultPosition,
@@ -6898,7 +6900,7 @@ void BatchProjectDoc::DisplayGrammar()
     if (GetGrammarInfo().IsConjunctionStartingSentencesEnabled() &&
         m_sentenceStartingWithConjunctionsData->GetItemCount())
         {
-        if (!listView)
+        if (listView == nullptr)
             {
             listView = new Wisteria::UI::ListCtrlEx(
                 view->GetSplitter(), BaseProjectView::SENTENCES_CONJUNCTION_START_LIST_PAGE_ID,
@@ -6946,7 +6948,7 @@ void BatchProjectDoc::DisplayGrammar()
     if (GetGrammarInfo().IsLowercaseSentencesEnabled() &&
         m_sentenceStartingWithLowercaseData->GetItemCount())
         {
-        if (!listView)
+        if (listView == nullptr)
             {
             listView = new Wisteria::UI::ListCtrlEx(
                 view->GetSplitter(), BaseProjectView::SENTENCES_LOWERCASE_START_LIST_PAGE_ID,
@@ -6993,14 +6995,14 @@ void BatchProjectDoc::DisplayGrammar()
 //-------------------------------------------------------
 void BatchProjectDoc::DisplaySummaryStats()
     {
-    BatchProjectView* view = dynamic_cast<BatchProjectView*>(GetFirstView());
+    auto* view = dynamic_cast<BatchProjectView*>(GetFirstView());
     // summary stats
-    Wisteria::UI::ListCtrlEx* listView = dynamic_cast<Wisteria::UI::ListCtrlEx*>(
+    auto* listView = dynamic_cast<Wisteria::UI::ListCtrlEx*>(
         view->GetSummaryStatsView().FindWindowById(BaseProjectView::STATS_LIST_PAGE_ID));
     if (m_summaryStatsData->GetItemCount() && GetStatisticsInfo().IsTableEnabled() &&
         GetStatisticsReportInfo().HasStatisticsEnabled())
         {
-        if (!listView)
+        if (listView == nullptr)
             {
             listView = new Wisteria::UI::ListCtrlEx(
                 view->GetSplitter(), BaseProjectView::STATS_LIST_PAGE_ID, wxDefaultPosition,
@@ -7049,14 +7051,14 @@ void BatchProjectDoc::DisplaySummaryStats()
 //-------------------------------------------------------
 void BatchProjectDoc::DisplaySentencesBreakdown()
     {
-    BatchProjectView* view = dynamic_cast<BatchProjectView*>(GetFirstView());
+    auto* view = dynamic_cast<BatchProjectView*>(GetFirstView());
     // long sentences
-    Wisteria::UI::ListCtrlEx* listView =
+    auto* listView =
         dynamic_cast<Wisteria::UI::ListCtrlEx*>(view->GetSentencesBreakdownView().FindWindowById(
             BaseProjectView::LONG_SENTENCES_LIST_PAGE_ID));
     if (m_overlyLongSentenceData->GetItemCount())
         {
-        if (!listView)
+        if (listView == nullptr)
             {
             listView = new Wisteria::UI::ListCtrlEx(
                 view->GetSplitter(), BaseProjectView::LONG_SENTENCES_LIST_PAGE_ID,
@@ -7104,15 +7106,15 @@ void BatchProjectDoc::DisplaySentencesBreakdown()
 void BatchProjectDoc::DisplayHardWords()
     {
     PROFILE();
-    BatchProjectView* view = dynamic_cast<BatchProjectView*>(GetFirstView());
+    auto* view = dynamic_cast<BatchProjectView*>(GetFirstView());
 
     // Difficult words
     if (m_hardWordsData->GetItemCount())
         {
-        Wisteria::UI::ListCtrlEx* listView =
+        auto* listView =
             dynamic_cast<Wisteria::UI::ListCtrlEx*>(view->GetWordsBreakdownView().FindWindowById(
                 BaseProjectView::ID_DIFFICULT_WORDS_LIST_PAGE_ID));
-        if (!listView)
+        if (listView == nullptr)
             {
             listView = new Wisteria::UI::ListCtrlEx(
                 view->GetSplitter(), BaseProjectView::ID_DIFFICULT_WORDS_LIST_PAGE_ID,
@@ -7253,7 +7255,7 @@ void BatchProjectDoc::DisplayHardWords()
         view->GetWordsBreakdownView().RemoveWindowById(BaseProjectView::ALL_WORDS_LIST_PAGE_ID);
         }
 
-    // key words (uncommon words removed, remaining stemmed and combined)
+    // keywords (uncommon words removed, remaining stemmed and combined)
     if (GetKeyWordsBatchData()->GetItemCount() &&
         // don't bother with condensed list if it has the same item count as the all words list
         // (that would mean that there was no condensing [stemming] that took place and that
@@ -7561,31 +7563,31 @@ void BatchProjectDoc::SetScoreStatsRow(
         std::vector<double> sortedData(data.begin(), data.end());
         std::sort(sortedData.begin(), sortedData.end());
 
-        double minVal = *std::min_element(sortedData.begin(), sortedData.end());
-        double maxVal = *std::max_element(sortedData.begin(), sortedData.end());
+        const double minVal = *std::min_element(sortedData.begin(), sortedData.end());
+        const double maxVal = *std::max_element(sortedData.begin(), sortedData.end());
         std::set<double> modes = statistics::mode(sortedData, floor_value<double>());
         const double rangeVal = maxVal - minVal;
         const double meansVal = statistics::mean(sortedData);
-        double medianVal = statistics::median_presorted(sortedData);
-        double Skewness = 0;
-        double Kurtosis = 0;
+        const double medianVal = statistics::median_presorted(sortedData);
+        double skewness = 0;
+        double kurtosis = 0;
         double stddev = 0;
-        double Variance = 0;
+        double variance = 0;
         if (sortedData.size() >= 2)
             {
             stddev = statistics::standard_deviation(sortedData, varianceMethod ==
                                                                     VarianceMethod::SampleVariance);
-            Variance =
+            variance =
                 statistics::variance(sortedData, varianceMethod == VarianceMethod::SampleVariance);
             }
         if (sortedData.size() >= 3)
             {
-            Skewness =
+            skewness =
                 statistics::skewness(sortedData, varianceMethod == VarianceMethod::SampleVariance);
             }
         if (sortedData.size() >= 4)
             {
-            Kurtosis =
+            kurtosis =
                 statistics::kurtosis(sortedData, varianceMethod == VarianceMethod::SampleVariance);
             }
         double lowerQuartile(0), upperQuartile(0);
@@ -7672,7 +7674,7 @@ void BatchProjectDoc::SetScoreStatsRow(
         else
             {
             dataGrid->SetItemValue(
-                rowNum, currentColumn++, Skewness,
+                rowNum, currentColumn++, skewness,
                 Wisteria::NumberFormatInfo(
                     Wisteria::NumberFormatInfo::NumberFormatType::StandardFormatting,
                     std::max(decimalSize, HIGHER_PRECISION)));
@@ -7686,7 +7688,7 @@ void BatchProjectDoc::SetScoreStatsRow(
         else
             {
             dataGrid->SetItemValue(
-                rowNum, currentColumn++, Kurtosis,
+                rowNum, currentColumn++, kurtosis,
                 Wisteria::NumberFormatInfo(
                     Wisteria::NumberFormatInfo::NumberFormatType::StandardFormatting,
                     std::max(decimalSize, HIGHER_PRECISION)));
@@ -7708,7 +7710,7 @@ void BatchProjectDoc::SetScoreStatsRow(
                     Wisteria::NumberFormatInfo::NumberFormatType::StandardFormatting,
                     std::max(decimalSize, HIGHER_PRECISION)));
             dataGrid->SetItemValue(
-                rowNum, currentColumn++, Variance,
+                rowNum, currentColumn++, variance,
                 Wisteria::NumberFormatInfo(
                     Wisteria::NumberFormatInfo::NumberFormatType::StandardFormatting,
                     std::max(decimalSize, HIGHER_PRECISION)));
@@ -7771,7 +7773,7 @@ void BatchProjectDoc::RemoveDocument(const wxString& docName)
         {
         GetSourceFilesInfo().erase(GetSourceFilesInfo().begin() + position.value());
         }
-    // should never happen, this is a fail safe
+    // should never happen, this is a fail-safe
     else
         {
         SyncFilePathsWithDocuments();

@@ -21,13 +21,9 @@
 #include "base_project_view.h"
 #include "batch_project_doc.h"
 #include "standard_project_doc.h"
+#include "wx/generic/numdlgg.h"
 
 wxDECLARE_APP(ReadabilityApp);
-
-using namespace Wisteria;
-using namespace Wisteria::Graphs;
-using namespace Wisteria::GraphItems;
-using namespace Wisteria::UI;
 
 //---------------------------------------------------
 ProjectDocChildFrame::ProjectDocChildFrame(wxDocument* doc, wxView* view, wxFrame* parent,
@@ -116,7 +112,7 @@ ProjectDocChildFrame::ProjectDocChildFrame(wxDocument* doc, wxView* view, wxFram
          XRCID("ID_BOX_PLOT_DISPLAY_LABELS"));
     Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &ProjectDocChildFrame::OnIgnoreBlankLines, this,
          XRCID("ID_IGNORE_BLANK_LINES"));
-    Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &ProjectDocChildFrame::OnIgnoreIdenting, this,
+    Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &ProjectDocChildFrame::OnIgnoreIndenting, this,
          XRCID("ID_IGNORE_INDENTING"));
     Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &ProjectDocChildFrame::OnStrictCapitalization, this,
          XRCID("ID_SENTENCES_CAPITALIZED"));
@@ -460,7 +456,7 @@ ProjectDocChildFrame::ProjectDocChildFrame(wxDocument* doc, wxView* view, wxFram
         wxEVT_MENU,
         [this]([[maybe_unused]] wxCommandEvent&)
         {
-            BaseProjectDoc* projDoc = dynamic_cast<BaseProjectDoc*>(GetDocument());
+            auto* projDoc = dynamic_cast<BaseProjectDoc*>(GetDocument());
             assert(projDoc && L"Failed to get document!");
             if (!projDoc)
                 {
@@ -526,7 +522,7 @@ ProjectDocChildFrame::ProjectDocChildFrame(wxDocument* doc, wxView* view, wxFram
 //---------------------------------------------------
 void ProjectDocChildFrame::OnMenuCapture(wxCommandEvent& event)
     {
-    BaseProjectView* activeView = dynamic_cast<BaseProjectView*>(GetView());
+    auto* activeView = dynamic_cast<BaseProjectView*>(GetView());
     assert(activeView);
     if (activeView == nullptr)
         {
@@ -555,8 +551,8 @@ void ProjectDocChildFrame::OnInvalidRegionColor(wxRibbonButtonBarEvent& event)
 //-------------------------------------------------------
 void ProjectDocChildFrame::OnDocumentRefresh([[maybe_unused]] wxRibbonButtonBarEvent& event)
     {
-    BaseProjectDoc* activeProject = dynamic_cast<BaseProjectDoc*>(GetDocument());
-    if (!activeProject || !activeProject->IsSafeToUpdate())
+    auto* activeProject = dynamic_cast<BaseProjectDoc*>(GetDocument());
+    if ((activeProject == nullptr) || !activeProject->IsSafeToUpdate())
         {
         return;
         }
@@ -572,7 +568,7 @@ void ProjectDocChildFrame::OnDocumentRefresh([[maybe_unused]] wxRibbonButtonBarE
         }
     // only refresh if we are linking to an external document.
     // if the documents were embedded, then ask if they want to change this to link to the files.
-    else if (activeProject->GetDocumentStorageMethod() == TextStorage::EmbedText)
+    if (activeProject->GetDocumentStorageMethod() == TextStorage::EmbedText)
         {
         if (wxMessageBox(
                 _(L"Only projects linked to its source document can be reloaded. "
@@ -584,7 +580,7 @@ void ProjectDocChildFrame::OnDocumentRefresh([[maybe_unused]] wxRibbonButtonBarE
             }
         if (activeProject->IsKindOf(wxCLASSINFO(ProjectDoc)))
             {
-            FilePathResolver resolvePath(activeProject->GetOriginalDocumentFilePath(), true);
+            const FilePathResolver resolvePath(activeProject->GetOriginalDocumentFilePath(), true);
             if (resolvePath.IsInvalidFile() ||
                 (resolvePath.IsLocalOrNetworkFile() &&
                  !wxFile::Exists(activeProject->GetOriginalDocumentFilePath())))
@@ -725,7 +721,7 @@ void ProjectDocChildFrame::OnTestBundle(wxCommandEvent& event)
         }
     else if (event.GetId() == XRCID("ID_ADD_SECOND_LANGUAGE_TEST_BUNDLE"))
         {
-        selectedIndustry = readability::industry_classification::sedondary_language_industry;
+        selectedIndustry = readability::industry_classification::secondary_language_industry;
         basedOnIndustry = true;
         }
     else if (event.GetId() == XRCID("ID_ADD_BROADCASTING_TEST_BUNDLE"))
@@ -760,10 +756,10 @@ void ProjectDocChildFrame::OnTestBundle(wxCommandEvent& event)
         }
 
     // Standard project
-    if (GetDocument() && GetDocument()->IsKindOf(wxCLASSINFO(ProjectDoc)))
+    if ((GetDocument() != nullptr) && GetDocument()->IsKindOf(wxCLASSINFO(ProjectDoc)))
         {
-        ProjectDoc* doc = dynamic_cast<ProjectDoc*>(GetDocument());
-        if (doc && doc->IsSafeToUpdate())
+        auto* doc = dynamic_cast<ProjectDoc*>(GetDocument());
+        if ((doc != nullptr) && doc->IsSafeToUpdate())
             {
             const bool hadDolchSightWords = doc->IsIncludingDolchSightWords();
             doc->ExcludeAllTests();
@@ -779,9 +775,8 @@ void ProjectDocChildFrame::OnTestBundle(wxCommandEvent& event)
                                rTest->get_test().has_language(doc->GetProjectLanguage()));
                 }
             // custom tests
-            for (CustomReadabilityTestCollection::const_iterator pos =
-                     doc->m_custom_word_tests.begin();
-                 pos != doc->m_custom_word_tests.end(); ++pos)
+            for (auto pos = ProjectDoc::m_custom_word_tests.begin();
+                 pos != ProjectDoc::m_custom_word_tests.end(); ++pos)
                 {
                 if ((basedOnIndustry && pos->has_industry_classification(selectedIndustry)) ||
                     pos->has_document_classification(selectedDocument))
@@ -796,7 +791,7 @@ void ProjectDocChildFrame::OnTestBundle(wxCommandEvent& event)
                       readability::industry_classification::childrens_publishing_industry) ||
                  (basedOnIndustry &&
                   selectedIndustry ==
-                      readability::industry_classification::sedondary_language_industry) ||
+                      readability::industry_classification::secondary_language_industry) ||
                  (!basedOnIndustry &&
                   selectedDocument ==
                       readability::document_classification::childrens_literature_document)) &&
@@ -815,10 +810,10 @@ void ProjectDocChildFrame::OnTestBundle(wxCommandEvent& event)
             }
         }
     // Batch project
-    if (GetDocument() && GetDocument()->IsKindOf(wxCLASSINFO(BatchProjectDoc)))
+    if ((GetDocument() != nullptr) && GetDocument()->IsKindOf(wxCLASSINFO(BatchProjectDoc)))
         {
-        BatchProjectDoc* doc = dynamic_cast<BatchProjectDoc*>(GetDocument());
-        if (doc && doc->IsSafeToUpdate())
+        auto* doc = dynamic_cast<BatchProjectDoc*>(GetDocument());
+        if ((doc != nullptr) && doc->IsSafeToUpdate())
             {
             doc->ExcludeAllTests();
             // standard tests
@@ -833,9 +828,8 @@ void ProjectDocChildFrame::OnTestBundle(wxCommandEvent& event)
                                rTest->get_test().has_language(doc->GetProjectLanguage()));
                 }
             // custom tests
-            for (CustomReadabilityTestCollection::const_iterator pos =
-                     doc->m_custom_word_tests.begin();
-                 pos != doc->m_custom_word_tests.end(); ++pos)
+            for (auto pos = BatchProjectDoc::m_custom_word_tests.begin();
+                 pos != BatchProjectDoc::m_custom_word_tests.end(); ++pos)
                 {
                 if ((basedOnIndustry && pos->has_industry_classification(selectedIndustry)) ||
                     pos->has_document_classification(selectedDocument))
@@ -850,7 +844,7 @@ void ProjectDocChildFrame::OnTestBundle(wxCommandEvent& event)
                       readability::industry_classification::childrens_publishing_industry) ||
                  (basedOnIndustry &&
                   selectedIndustry ==
-                      readability::industry_classification::sedondary_language_industry) ||
+                      readability::industry_classification::secondary_language_industry) ||
                  (!basedOnIndustry &&
                   selectedDocument ==
                       readability::document_classification::childrens_literature_document)) &&
@@ -874,7 +868,7 @@ void ProjectDocChildFrame::OnTestBundle(wxCommandEvent& event)
 //---------------------------------------------------
 void ProjectDocChildFrame::OnLongSentencesOptions(wxCommandEvent& event)
     {
-    BaseProjectDoc* doc = dynamic_cast<BaseProjectDoc*>(GetDocument());
+    auto* doc = dynamic_cast<BaseProjectDoc*>(GetDocument());
     if (event.GetId() == XRCID("ID_LS_LONGER_THAN"))
         {
         const long len = wxGetNumberFromUser(
@@ -898,7 +892,7 @@ void ProjectDocChildFrame::OnLongSentencesOptions(wxCommandEvent& event)
         (doc->GetLongSentenceMethod() == LongSentence::LongerThanSpecifiedLength) ?
             XRCID("ID_LS_LONGER_THAN") :
             XRCID("ID_LS_OUTLIER_RANGE"));
-    if (item)
+    if (item != nullptr)
         {
         item->Check(true);
         }
@@ -913,7 +907,7 @@ void ProjectDocChildFrame::OnEditGraphColor(wxCommandEvent& event)
     wxColourData data;
     wxGetApp().GetAppOptions()->CopyCustomColorsToColorData(data);
     data.SetChooseFull(true);
-    auto doc = dynamic_cast<BaseProjectDoc*>(GetDocument());
+    auto* doc = dynamic_cast<BaseProjectDoc*>(GetDocument());
     assert(doc && L"Invalid document when editing graph colors!");
     if (event.GetId() == XRCID("ID_EDIT_GRAPH_BKCOLOR"))
         {
@@ -988,9 +982,9 @@ void ProjectDocChildFrame::OnEditGraphColor(wxCommandEvent& event)
 //---------------------------------------------------
 void ProjectDocChildFrame::OnEditGraphColorScheme([[maybe_unused]] wxRibbonButtonBarEvent& event)
     {
-    auto baseDoc = dynamic_cast<BaseProjectDoc*>(GetDocument());
+    auto* baseDoc = dynamic_cast<BaseProjectDoc*>(GetDocument());
     assert(baseDoc && L"Failed to get document!");
-    if (!baseDoc)
+    if (baseDoc == nullptr)
         {
         return;
         }
@@ -1034,7 +1028,7 @@ void ProjectDocChildFrame::OnEditGraphColorScheme([[maybe_unused]] wxRibbonButto
 //---------------------------------------------------
 void ProjectDocChildFrame::OnEditStatsReportButton([[maybe_unused]] wxRibbonButtonBarEvent& event)
     {
-    BaseProjectDoc* theProject = dynamic_cast<BaseProjectDoc*>(GetDocument());
+    auto* theProject = dynamic_cast<BaseProjectDoc*>(GetDocument());
     ToolsOptionsDlg optionsDlg(this, theProject, ToolsOptionsDlg::Statistics);
     optionsDlg.SelectPage(ToolsOptionsDlg::ANALYSIS_STATISTICS_PAGE);
     if (optionsDlg.ShowModal() == wxID_OK)
@@ -1064,24 +1058,24 @@ void ProjectDocChildFrame::OnBarOrientationSelected(wxCommandEvent& event)
 //---------------------------------------------------
 void ProjectDocChildFrame::OnBarStyleSelected(wxCommandEvent& event)
     {
-    auto baseDoc{ dynamic_cast<BaseProjectDoc*>(GetDocument()) };
+    auto* baseDoc{ dynamic_cast<BaseProjectDoc*>(GetDocument()) };
     assert(baseDoc && "Invalid document!");
 
     if (event.GetId() == XRCID("ID_BAR_STYLE_SOLID"))
         {
-        baseDoc->SetGraphBarEffect(BoxEffect::Solid);
+        baseDoc->SetGraphBarEffect(Wisteria::BoxEffect::Solid);
         }
     else if (event.GetId() == XRCID("ID_BAR_STYLE_GLASS"))
         {
-        baseDoc->SetGraphBarEffect(BoxEffect::Glassy);
+        baseDoc->SetGraphBarEffect(Wisteria::BoxEffect::Glassy);
         }
     else if (event.GetId() == XRCID("ID_BAR_STYLE_BTOT"))
         {
-        baseDoc->SetGraphBarEffect(BoxEffect::FadeFromBottomToTop);
+        baseDoc->SetGraphBarEffect(Wisteria::BoxEffect::FadeFromBottomToTop);
         }
     else if (event.GetId() == XRCID("ID_BAR_STYLE_TTOB"))
         {
-        baseDoc->SetGraphBarEffect(BoxEffect::FadeFromTopToBottom);
+        baseDoc->SetGraphBarEffect(Wisteria::BoxEffect::FadeFromTopToBottom);
         }
     else if (event.GetId() == XRCID("ID_BAR_STYLE_STIPPLE_IMAGE"))
         {
@@ -1098,19 +1092,19 @@ void ProjectDocChildFrame::OnBarStyleSelected(wxCommandEvent& event)
             wxGetApp().GetAppOptions()->SetImagePath(wxFileName(fd.GetPath()).GetPath());
             baseDoc->SetStippleImagePath(fd.GetPath());
             }
-        baseDoc->SetGraphBarEffect(BoxEffect::StippleImage);
+        baseDoc->SetGraphBarEffect(Wisteria::BoxEffect::StippleImage);
         }
     else if (event.GetId() == XRCID("ID_BAR_STYLE_STIPPLE_SHAPE"))
         {
-        baseDoc->SetGraphBarEffect(BoxEffect::StippleShape);
+        baseDoc->SetGraphBarEffect(Wisteria::BoxEffect::StippleShape);
         }
     else if (event.GetId() == XRCID("ID_BAR_STYLE_WATERCOLOR"))
         {
-        baseDoc->SetGraphBarEffect(BoxEffect::WaterColor);
+        baseDoc->SetGraphBarEffect(Wisteria::BoxEffect::WaterColor);
         }
     else if (event.GetId() == XRCID("ID_BAR_STYLE_THICK_WATERCOLOR"))
         {
-        baseDoc->SetGraphBarEffect(BoxEffect::ThickWaterColor);
+        baseDoc->SetGraphBarEffect(Wisteria::BoxEffect::ThickWaterColor);
         }
     else if (event.GetId() == XRCID("ID_BAR_STYLE_COMMON_IMAGE"))
         {
@@ -1127,7 +1121,7 @@ void ProjectDocChildFrame::OnBarStyleSelected(wxCommandEvent& event)
             wxGetApp().GetAppOptions()->SetImagePath(wxFileName(fd.GetPath()).GetPath());
             baseDoc->SetGraphCommonImagePath(fd.GetPath());
             }
-        baseDoc->SetGraphBarEffect(BoxEffect::CommonImage);
+        baseDoc->SetGraphBarEffect(Wisteria::BoxEffect::CommonImage);
         }
     baseDoc->RefreshRequired(ProjectRefresh::Minimal);
     baseDoc->RefreshGraphs();
@@ -1136,28 +1130,28 @@ void ProjectDocChildFrame::OnBarStyleSelected(wxCommandEvent& event)
 //---------------------------------------------------
 void ProjectDocChildFrame::OnHistoBarStyleSelected(wxCommandEvent& event)
     {
-    auto baseDoc = dynamic_cast<BaseProjectDoc*>(GetDocument());
+    auto* baseDoc = dynamic_cast<BaseProjectDoc*>(GetDocument());
     assert(baseDoc && L"Failed to get document!");
-    if (!baseDoc)
+    if (baseDoc == nullptr)
         {
         return;
         }
 
     if (event.GetId() == XRCID("ID_HISTOGRAM_BAR_STYLE_SOLID"))
         {
-        baseDoc->SetHistogramBarEffect(BoxEffect::Solid);
+        baseDoc->SetHistogramBarEffect(Wisteria::BoxEffect::Solid);
         }
     else if (event.GetId() == XRCID("ID_HISTOGRAM_BAR_STYLE_GLASS"))
         {
-        baseDoc->SetHistogramBarEffect(BoxEffect::Glassy);
+        baseDoc->SetHistogramBarEffect(Wisteria::BoxEffect::Glassy);
         }
     else if (event.GetId() == XRCID("ID_HISTOGRAM_BAR_STYLE_BTOT"))
         {
-        baseDoc->SetHistogramBarEffect(BoxEffect::FadeFromBottomToTop);
+        baseDoc->SetHistogramBarEffect(Wisteria::BoxEffect::FadeFromBottomToTop);
         }
     else if (event.GetId() == XRCID("ID_HISTOGRAM_BAR_STYLE_TTOB"))
         {
-        baseDoc->SetHistogramBarEffect(BoxEffect::FadeFromTopToBottom);
+        baseDoc->SetHistogramBarEffect(Wisteria::BoxEffect::FadeFromTopToBottom);
         }
     else if (event.GetId() == XRCID("ID_HISTOGRAM_BAR_STYLE_STIPPLE_IMAGE"))
         {
@@ -1174,21 +1168,22 @@ void ProjectDocChildFrame::OnHistoBarStyleSelected(wxCommandEvent& event)
             wxGetApp().GetAppOptions()->SetImagePath(wxFileName(fd.GetPath()).GetPath());
             baseDoc->SetStippleImagePath(fd.GetPath());
             }
-        baseDoc->SetHistogramBarEffect(BoxEffect::StippleImage);
+        baseDoc->SetHistogramBarEffect(Wisteria::BoxEffect::StippleImage);
         }
     else if (event.GetId() == XRCID("ID_HISTOGRAM_BAR_STYLE_STIPPLE_SHAPE"))
         {
         dynamic_cast<BaseProjectDoc*>(GetDocument())
-            ->SetHistogramBarEffect(BoxEffect::StippleShape);
+            ->SetHistogramBarEffect(Wisteria::BoxEffect::StippleShape);
         }
     else if (event.GetId() == XRCID("ID_HISTOGRAM_BAR_STYLE_WATERCOLOR"))
         {
-        dynamic_cast<BaseProjectDoc*>(GetDocument())->SetHistogramBarEffect(BoxEffect::WaterColor);
+        dynamic_cast<BaseProjectDoc*>(GetDocument())
+            ->SetHistogramBarEffect(Wisteria::BoxEffect::WaterColor);
         }
     else if (event.GetId() == XRCID("ID_HISTOGRAM_BAR_STYLE_THICK_WATERCOLOR"))
         {
         dynamic_cast<BaseProjectDoc*>(GetDocument())
-            ->SetHistogramBarEffect(BoxEffect::ThickWaterColor);
+            ->SetHistogramBarEffect(Wisteria::BoxEffect::ThickWaterColor);
         }
     else if (event.GetId() == XRCID("ID_HISTOGRAM_BAR_STYLE_COMMON_IMAGE"))
         {
@@ -1205,7 +1200,8 @@ void ProjectDocChildFrame::OnHistoBarStyleSelected(wxCommandEvent& event)
             wxGetApp().GetAppOptions()->SetImagePath(wxFileName(fd.GetPath()).GetPath());
             baseDoc->SetGraphCommonImagePath(fd.GetPath());
             }
-        dynamic_cast<BaseProjectDoc*>(GetDocument())->SetHistogramBarEffect(BoxEffect::CommonImage);
+        dynamic_cast<BaseProjectDoc*>(GetDocument())
+            ->SetHistogramBarEffect(Wisteria::BoxEffect::CommonImage);
         }
     baseDoc->RefreshRequired(ProjectRefresh::Minimal);
     baseDoc->RefreshGraphs();
@@ -1214,9 +1210,9 @@ void ProjectDocChildFrame::OnHistoBarStyleSelected(wxCommandEvent& event)
 //---------------------------------------------------
 void ProjectDocChildFrame::OnHistoBarSelectStippleBrush([[maybe_unused]] wxCommandEvent& event)
     {
-    auto baseDoc = dynamic_cast<BaseProjectDoc*>(GetDocument());
+    auto* baseDoc = dynamic_cast<BaseProjectDoc*>(GetDocument());
     assert(baseDoc && L"Failed to get document!");
-    if (!baseDoc)
+    if (baseDoc == nullptr)
         {
         return;
         }
@@ -1231,7 +1227,7 @@ void ProjectDocChildFrame::OnHistoBarSelectStippleBrush([[maybe_unused]] wxComma
     wxGetApp().GetAppOptions()->SetImagePath(wxFileName(fd.GetPath()).GetPath());
     baseDoc->SetStippleImagePath(fd.GetPath());
 
-    baseDoc->SetHistogramBarEffect(BoxEffect::StippleImage);
+    baseDoc->SetHistogramBarEffect(Wisteria::BoxEffect::StippleImage);
 
     baseDoc->RefreshRequired(ProjectRefresh::Minimal);
     baseDoc->RefreshGraphs();
@@ -1240,9 +1236,9 @@ void ProjectDocChildFrame::OnHistoBarSelectStippleBrush([[maybe_unused]] wxComma
 //---------------------------------------------------
 void ProjectDocChildFrame::OnHistoBarSelectStippleShape([[maybe_unused]] wxCommandEvent& event)
     {
-    auto baseDoc = dynamic_cast<BaseProjectDoc*>(GetDocument());
+    auto* baseDoc = dynamic_cast<BaseProjectDoc*>(GetDocument());
     assert(baseDoc && L"Failed to get document!");
-    if (!baseDoc)
+    if (baseDoc == nullptr)
         {
         return;
         }
@@ -1268,7 +1264,7 @@ void ProjectDocChildFrame::OnHistoBarSelectStippleShape([[maybe_unused]] wxComma
         baseDoc->SetStippleShape(foundShape->second);
         }
 
-    baseDoc->SetHistogramBarEffect(BoxEffect::StippleShape);
+    baseDoc->SetHistogramBarEffect(Wisteria::BoxEffect::StippleShape);
 
     baseDoc->RefreshRequired(ProjectRefresh::Minimal);
     baseDoc->RefreshGraphs();
@@ -1277,9 +1273,9 @@ void ProjectDocChildFrame::OnHistoBarSelectStippleShape([[maybe_unused]] wxComma
 //---------------------------------------------------
 void ProjectDocChildFrame::OnBarSelectStippleShape([[maybe_unused]] wxCommandEvent& event)
     {
-    auto baseDoc = dynamic_cast<BaseProjectDoc*>(GetDocument());
+    auto* baseDoc = dynamic_cast<BaseProjectDoc*>(GetDocument());
     assert(baseDoc && L"Failed to get document!");
-    if (!baseDoc)
+    if (baseDoc == nullptr)
         {
         return;
         }
@@ -1305,7 +1301,7 @@ void ProjectDocChildFrame::OnBarSelectStippleShape([[maybe_unused]] wxCommandEve
         baseDoc->SetStippleShape(foundShape->second);
         }
 
-    baseDoc->SetGraphBarEffect(BoxEffect::StippleShape);
+    baseDoc->SetGraphBarEffect(Wisteria::BoxEffect::StippleShape);
 
     baseDoc->RefreshRequired(ProjectRefresh::Minimal);
     baseDoc->RefreshGraphs();
@@ -1314,9 +1310,9 @@ void ProjectDocChildFrame::OnBarSelectStippleShape([[maybe_unused]] wxCommandEve
 //---------------------------------------------------
 void ProjectDocChildFrame::OnBoxSelectStippleShape([[maybe_unused]] wxCommandEvent& event)
     {
-    auto baseDoc = dynamic_cast<BaseProjectDoc*>(GetDocument());
+    auto* baseDoc = dynamic_cast<BaseProjectDoc*>(GetDocument());
     assert(baseDoc && L"Failed to get document!");
-    if (!baseDoc)
+    if (baseDoc == nullptr)
         {
         return;
         }
@@ -1342,7 +1338,7 @@ void ProjectDocChildFrame::OnBoxSelectStippleShape([[maybe_unused]] wxCommandEve
         baseDoc->SetStippleShape(foundShape->second);
         }
 
-    baseDoc->SetGraphBoxEffect(BoxEffect::StippleShape);
+    baseDoc->SetGraphBoxEffect(Wisteria::BoxEffect::StippleShape);
 
     baseDoc->RefreshRequired(ProjectRefresh::Minimal);
     baseDoc->RefreshGraphs();
@@ -1351,9 +1347,9 @@ void ProjectDocChildFrame::OnBoxSelectStippleShape([[maybe_unused]] wxCommandEve
 //---------------------------------------------------
 void ProjectDocChildFrame::OnHistoBarSelectCommonImage([[maybe_unused]] wxCommandEvent& event)
     {
-    auto baseDoc = dynamic_cast<BaseProjectDoc*>(GetDocument());
+    auto* baseDoc = dynamic_cast<BaseProjectDoc*>(GetDocument());
     assert(baseDoc && L"Failed to get document!");
-    if (!baseDoc)
+    if (baseDoc == nullptr)
         {
         return;
         }
@@ -1368,7 +1364,7 @@ void ProjectDocChildFrame::OnHistoBarSelectCommonImage([[maybe_unused]] wxComman
     wxGetApp().GetAppOptions()->SetImagePath(wxFileName(fd.GetPath()).GetPath());
     baseDoc->SetGraphCommonImagePath(fd.GetPath());
 
-    baseDoc->SetHistogramBarEffect(BoxEffect::CommonImage);
+    baseDoc->SetHistogramBarEffect(Wisteria::BoxEffect::CommonImage);
 
     baseDoc->RefreshRequired(ProjectRefresh::Minimal);
     baseDoc->RefreshGraphs();
@@ -1377,9 +1373,9 @@ void ProjectDocChildFrame::OnHistoBarSelectCommonImage([[maybe_unused]] wxComman
 //---------------------------------------------------
 void ProjectDocChildFrame::OnBoxSelectCommonImage([[maybe_unused]] wxCommandEvent& event)
     {
-    auto baseDoc = dynamic_cast<BaseProjectDoc*>(GetDocument());
+    auto* baseDoc = dynamic_cast<BaseProjectDoc*>(GetDocument());
     assert(baseDoc && L"Failed to get document!");
-    if (!baseDoc)
+    if (baseDoc == nullptr)
         {
         return;
         }
@@ -1394,7 +1390,7 @@ void ProjectDocChildFrame::OnBoxSelectCommonImage([[maybe_unused]] wxCommandEven
     wxGetApp().GetAppOptions()->SetImagePath(wxFileName(fd.GetPath()).GetPath());
     baseDoc->SetGraphCommonImagePath(fd.GetPath());
 
-    baseDoc->SetGraphBoxEffect(BoxEffect::CommonImage);
+    baseDoc->SetGraphBoxEffect(Wisteria::BoxEffect::CommonImage);
 
     baseDoc->RefreshRequired(ProjectRefresh::Minimal);
     baseDoc->RefreshGraphs();
@@ -1403,9 +1399,9 @@ void ProjectDocChildFrame::OnBoxSelectCommonImage([[maybe_unused]] wxCommandEven
 //---------------------------------------------------
 void ProjectDocChildFrame::OnBoxSelectStippleBrush([[maybe_unused]] wxCommandEvent& event)
     {
-    auto baseDoc = dynamic_cast<BaseProjectDoc*>(GetDocument());
+    auto* baseDoc = dynamic_cast<BaseProjectDoc*>(GetDocument());
     assert(baseDoc && L"Failed to get document!");
-    if (!baseDoc)
+    if (baseDoc == nullptr)
         {
         return;
         }
@@ -1420,7 +1416,7 @@ void ProjectDocChildFrame::OnBoxSelectStippleBrush([[maybe_unused]] wxCommandEve
     wxGetApp().GetAppOptions()->SetImagePath(wxFileName(fd.GetPath()).GetPath());
     baseDoc->SetStippleImagePath(fd.GetPath());
 
-    baseDoc->SetGraphBoxEffect(BoxEffect::StippleImage);
+    baseDoc->SetGraphBoxEffect(Wisteria::BoxEffect::StippleImage);
 
     baseDoc->RefreshRequired(ProjectRefresh::Minimal);
     baseDoc->RefreshGraphs();
@@ -1429,9 +1425,9 @@ void ProjectDocChildFrame::OnBoxSelectStippleBrush([[maybe_unused]] wxCommandEve
 //---------------------------------------------------
 void ProjectDocChildFrame::OnBarSelectStippleBrush([[maybe_unused]] wxCommandEvent& event)
     {
-    auto baseDoc = dynamic_cast<BaseProjectDoc*>(GetDocument());
+    auto* baseDoc = dynamic_cast<BaseProjectDoc*>(GetDocument());
     assert(baseDoc && L"Failed to get document!");
-    if (!baseDoc)
+    if (baseDoc == nullptr)
         {
         return;
         }
@@ -1446,7 +1442,7 @@ void ProjectDocChildFrame::OnBarSelectStippleBrush([[maybe_unused]] wxCommandEve
     wxGetApp().GetAppOptions()->SetImagePath(wxFileName(fd.GetPath()).GetPath());
     baseDoc->SetStippleImagePath(fd.GetPath());
 
-    baseDoc->SetGraphBarEffect(BoxEffect::StippleImage);
+    baseDoc->SetGraphBarEffect(Wisteria::BoxEffect::StippleImage);
 
     baseDoc->RefreshRequired(ProjectRefresh::Minimal);
     baseDoc->RefreshGraphs();
@@ -1455,9 +1451,9 @@ void ProjectDocChildFrame::OnBarSelectStippleBrush([[maybe_unused]] wxCommandEve
 //---------------------------------------------------
 void ProjectDocChildFrame::OnBarSelectCommonImage([[maybe_unused]] wxCommandEvent& event)
     {
-    auto baseDoc = dynamic_cast<BaseProjectDoc*>(GetDocument());
+    auto* baseDoc = dynamic_cast<BaseProjectDoc*>(GetDocument());
     assert(baseDoc && L"Failed to get document!");
-    if (!baseDoc)
+    if (baseDoc == nullptr)
         {
         return;
         }
@@ -1472,7 +1468,7 @@ void ProjectDocChildFrame::OnBarSelectCommonImage([[maybe_unused]] wxCommandEven
     wxGetApp().GetAppOptions()->SetImagePath(wxFileName(fd.GetPath()).GetPath());
     baseDoc->SetGraphCommonImagePath(fd.GetPath());
 
-    baseDoc->SetGraphBarEffect(BoxEffect::CommonImage);
+    baseDoc->SetGraphBarEffect(Wisteria::BoxEffect::CommonImage);
 
     baseDoc->RefreshRequired(ProjectRefresh::Minimal);
     baseDoc->RefreshGraphs();
@@ -1481,23 +1477,23 @@ void ProjectDocChildFrame::OnBarSelectCommonImage([[maybe_unused]] wxCommandEven
 //---------------------------------------------------
 void ProjectDocChildFrame::OnBoxStyleSelected(wxCommandEvent& event)
     {
-    auto baseDoc{ dynamic_cast<BaseProjectDoc*>(GetDocument()) };
+    auto* baseDoc{ dynamic_cast<BaseProjectDoc*>(GetDocument()) };
     assert(baseDoc && "Invalid document!");
     if (event.GetId() == XRCID("ID_BOX_STYLE_SOLID"))
         {
-        baseDoc->SetGraphBoxEffect(BoxEffect::Solid);
+        baseDoc->SetGraphBoxEffect(Wisteria::BoxEffect::Solid);
         }
     else if (event.GetId() == XRCID("ID_BOX_STYLE_GLASS"))
         {
-        baseDoc->SetGraphBoxEffect(BoxEffect::Glassy);
+        baseDoc->SetGraphBoxEffect(Wisteria::BoxEffect::Glassy);
         }
     else if (event.GetId() == XRCID("ID_BOX_STYLE_LTOR"))
         {
-        baseDoc->SetGraphBoxEffect(BoxEffect::FadeFromLeftToRight);
+        baseDoc->SetGraphBoxEffect(Wisteria::BoxEffect::FadeFromLeftToRight);
         }
     else if (event.GetId() == XRCID("ID_BOX_STYLE_RTOL"))
         {
-        baseDoc->SetGraphBoxEffect(BoxEffect::FadeFromRightToLeft);
+        baseDoc->SetGraphBoxEffect(Wisteria::BoxEffect::FadeFromRightToLeft);
         }
     else if (event.GetId() == XRCID("ID_BOX_STYLE_STIPPLE_IMAGE"))
         {
@@ -1514,19 +1510,19 @@ void ProjectDocChildFrame::OnBoxStyleSelected(wxCommandEvent& event)
             wxGetApp().GetAppOptions()->SetImagePath(wxFileName(fd.GetPath()).GetPath());
             baseDoc->SetStippleImagePath(fd.GetPath());
             }
-        baseDoc->SetGraphBoxEffect(BoxEffect::StippleImage);
+        baseDoc->SetGraphBoxEffect(Wisteria::BoxEffect::StippleImage);
         }
     else if (event.GetId() == XRCID("ID_BOX_STYLE_STIPPLE_SHAPE"))
         {
-        baseDoc->SetGraphBoxEffect(BoxEffect::StippleShape);
+        baseDoc->SetGraphBoxEffect(Wisteria::BoxEffect::StippleShape);
         }
     else if (event.GetId() == XRCID("ID_BOX_STYLE_WATERCOLOR"))
         {
-        baseDoc->SetGraphBoxEffect(BoxEffect::WaterColor);
+        baseDoc->SetGraphBoxEffect(Wisteria::BoxEffect::WaterColor);
         }
     else if (event.GetId() == XRCID("ID_BOX_STYLE_THICK_WATERCOLOR"))
         {
-        baseDoc->SetGraphBoxEffect(BoxEffect::ThickWaterColor);
+        baseDoc->SetGraphBoxEffect(Wisteria::BoxEffect::ThickWaterColor);
         }
     else if (event.GetId() == XRCID("ID_BOX_STYLE_COMMON_IMAGE"))
         {
@@ -1543,7 +1539,7 @@ void ProjectDocChildFrame::OnBoxStyleSelected(wxCommandEvent& event)
             wxGetApp().GetAppOptions()->SetImagePath(wxFileName(fd.GetPath()).GetPath());
             baseDoc->SetGraphCommonImagePath(fd.GetPath());
             }
-        baseDoc->SetGraphBoxEffect(BoxEffect::CommonImage);
+        baseDoc->SetGraphBoxEffect(Wisteria::BoxEffect::CommonImage);
         }
     baseDoc->RefreshRequired(ProjectRefresh::Minimal);
     baseDoc->RefreshGraphs();
@@ -1573,9 +1569,9 @@ void ProjectDocChildFrame::OnBoxPlotShowLabelsButton([[maybe_unused]] wxRibbonBu
 //---------------------------------------------------
 void ProjectDocChildFrame::OnBarLabelsButton([[maybe_unused]] wxRibbonButtonBarEvent& event)
     {
-    auto doc = dynamic_cast<BaseProjectDoc*>(GetDocument());
+    auto* doc = dynamic_cast<BaseProjectDoc*>(GetDocument());
     assert(doc && L"Failed to get document!");
-    if (!doc)
+    if (doc == nullptr)
         {
         return;
         }
@@ -1599,9 +1595,9 @@ void ProjectDocChildFrame::OnFleschConnectLinesButton(
 //---------------------------------------------------
 void ProjectDocChildFrame::OnEnglishLabels([[maybe_unused]] wxRibbonButtonBarEvent& event)
     {
-    auto doc = dynamic_cast<BaseProjectDoc*>(GetDocument());
+    auto* doc = dynamic_cast<BaseProjectDoc*>(GetDocument());
     assert(doc && L"Failed to get document!");
-    if (!doc)
+    if (doc == nullptr)
         {
         return;
         }
@@ -1614,15 +1610,15 @@ void ProjectDocChildFrame::OnEnglishLabels([[maybe_unused]] wxRibbonButtonBarEve
 //---------------------------------------------------
 void ProjectDocChildFrame::OnGraphLogo([[maybe_unused]] wxRibbonButtonBarEvent& event)
     {
-    BaseProjectDoc* doc = dynamic_cast<BaseProjectDoc*>(GetDocument());
+    auto* doc = dynamic_cast<BaseProjectDoc*>(GetDocument());
     assert(doc && L"Failed to get document!");
-    if (!doc)
+    if (doc == nullptr)
         {
         return;
         }
 
     wxFileDialog fd(this, _(L"Select Logo Image"),
-                    doc->GetWatermarkLogoPath().length() ?
+                    !doc->GetWatermarkLogoPath().empty() ?
                         wxString{} :
                         wxGetApp().GetAppOptions()->GetImagePath(),
                     doc->GetWatermarkLogoPath(), Wisteria::GraphItems::Image::GetImageFileFilter(),
@@ -1666,9 +1662,9 @@ void ProjectDocChildFrame::OnDropShadow([[maybe_unused]] wxRibbonButtonBarEvent&
 //---------------------------------------------------
 void ProjectDocChildFrame::OnShowcaseKeyItems([[maybe_unused]] wxRibbonButtonBarEvent& event)
     {
-    BaseProjectDoc* doc = dynamic_cast<BaseProjectDoc*>(GetDocument());
+    auto* doc = dynamic_cast<BaseProjectDoc*>(GetDocument());
     assert(doc && L"Failed to get document!");
-    if (!doc)
+    if (doc == nullptr)
         {
         return;
         }
@@ -1716,7 +1712,7 @@ void ProjectDocChildFrame::OnGraphColorFade([[maybe_unused]] wxCommandEvent& eve
         ->SetGraphBackGroundLinearGradient(
             !dynamic_cast<BaseProjectDoc*>(GetDocument())->GetGraphBackGroundLinearGradient());
     wxMenuItem* fadeOption = m_graphBackgroundMenu.FindItem(XRCID("ID_GRAPH_BKCOLOR_FADE"));
-    if (fadeOption)
+    if (fadeOption != nullptr)
         {
         fadeOption->Check(
             dynamic_cast<BaseProjectDoc*>(GetDocument())->GetGraphBackGroundLinearGradient());
@@ -1728,15 +1724,15 @@ void ProjectDocChildFrame::OnGraphColorFade([[maybe_unused]] wxCommandEvent& eve
 //---------------------------------------------------
 void ProjectDocChildFrame::OnEditPlotBackgroundImageFit(wxCommandEvent& event)
     {
-    auto doc = dynamic_cast<BaseProjectDoc*>(GetDocument());
+    auto* doc = dynamic_cast<BaseProjectDoc*>(GetDocument());
     // uncheck all the options
-    if (auto tempMenuItem =
+    if (auto* tempMenuItem =
             m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_FIT_CROP_AND_CENTER"));
         tempMenuItem != nullptr)
         {
         tempMenuItem->Check(false);
         }
-    if (auto tempMenuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_FIT_SHRINK"));
+    if (auto* tempMenuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_FIT_SHRINK"));
         tempMenuItem != nullptr)
         {
         tempMenuItem->Check(false);
@@ -1744,16 +1740,16 @@ void ProjectDocChildFrame::OnEditPlotBackgroundImageFit(wxCommandEvent& event)
     wxMenuItem* menuItem{ nullptr };
     if (event.GetId() == XRCID("ID_PLOT_BKIMAGE_FIT_CROP_AND_CENTER"))
         {
-        doc->SetPlotBackGroundImageFit(ImageFit::CropAndCenter);
+        doc->SetPlotBackGroundImageFit(Wisteria::ImageFit::CropAndCenter);
         menuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_FIT_CROP_AND_CENTER"));
         }
     else if (event.GetId() == XRCID("ID_PLOT_BKIMAGE_FIT_SHRINK"))
         {
-        doc->SetPlotBackGroundImageFit(ImageFit::Shrink);
+        doc->SetPlotBackGroundImageFit(Wisteria::ImageFit::Shrink);
         menuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_FIT_SHRINK"));
         }
 
-    if (menuItem)
+    if (menuItem != nullptr)
         {
         menuItem->Check(true);
         }
@@ -1764,44 +1760,44 @@ void ProjectDocChildFrame::OnEditPlotBackgroundImageFit(wxCommandEvent& event)
 //---------------------------------------------------
 void ProjectDocChildFrame::OnEditPlotBackgroundImageEffect(wxCommandEvent& event)
     {
-    auto doc = dynamic_cast<BaseProjectDoc*>(GetDocument());
+    auto* doc = dynamic_cast<BaseProjectDoc*>(GetDocument());
     // uncheck all the options
-    if (auto tempMenuItem =
+    if (auto* tempMenuItem =
             m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_NO_EFFECT"));
         tempMenuItem != nullptr)
         {
         tempMenuItem->Check(false);
         }
-    if (auto tempMenuItem =
+    if (auto* tempMenuItem =
             m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_GRAYSCALE"));
         tempMenuItem != nullptr)
         {
         tempMenuItem->Check(false);
         }
-    if (auto tempMenuItem =
+    if (auto* tempMenuItem =
             m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_BLUR_HORIZONTALLY"));
         tempMenuItem != nullptr)
         {
         tempMenuItem->Check(false);
         }
-    if (auto tempMenuItem =
+    if (auto* tempMenuItem =
             m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_BLUR_VERTICALLY"));
         tempMenuItem != nullptr)
         {
         tempMenuItem->Check(false);
         }
-    if (auto tempMenuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_SEPIA"));
+    if (auto* tempMenuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_SEPIA"));
         tempMenuItem != nullptr)
         {
         tempMenuItem->Check(false);
         }
-    if (auto tempMenuItem =
+    if (auto* tempMenuItem =
             m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_FROSTED_GLASS"));
         tempMenuItem != nullptr)
         {
         tempMenuItem->Check(false);
         }
-    if (auto tempMenuItem =
+    if (auto* tempMenuItem =
             m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_OIL_PAINTING"));
         tempMenuItem != nullptr)
         {
@@ -1810,42 +1806,42 @@ void ProjectDocChildFrame::OnEditPlotBackgroundImageEffect(wxCommandEvent& event
     wxMenuItem* menuItem{ nullptr };
     if (event.GetId() == XRCID("ID_PLOT_BKIMAGE_EFFECT_NO_EFFECT"))
         {
-        doc->SetPlotBackGroundImageEffect(ImageEffect::NoEffect);
+        doc->SetPlotBackGroundImageEffect(Wisteria::ImageEffect::NoEffect);
         menuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_NO_EFFECT"));
         }
     else if (event.GetId() == XRCID("ID_PLOT_BKIMAGE_EFFECT_GRAYSCALE"))
         {
-        doc->SetPlotBackGroundImageEffect(ImageEffect::Grayscale);
+        doc->SetPlotBackGroundImageEffect(Wisteria::ImageEffect::Grayscale);
         menuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_GRAYSCALE"));
         }
     else if (event.GetId() == XRCID("ID_PLOT_BKIMAGE_EFFECT_BLUR_HORIZONTALLY"))
         {
-        doc->SetPlotBackGroundImageEffect(ImageEffect::BlurHorizontal);
+        doc->SetPlotBackGroundImageEffect(Wisteria::ImageEffect::BlurHorizontal);
         menuItem =
             m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_BLUR_HORIZONTALLY"));
         }
     else if (event.GetId() == XRCID("ID_PLOT_BKIMAGE_EFFECT_BLUR_VERTICALLY"))
         {
-        doc->SetPlotBackGroundImageEffect(ImageEffect::BlurVertical);
+        doc->SetPlotBackGroundImageEffect(Wisteria::ImageEffect::BlurVertical);
         menuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_BLUR_VERTICALLY"));
         }
     else if (event.GetId() == XRCID("ID_PLOT_BKIMAGE_EFFECT_SEPIA"))
         {
-        doc->SetPlotBackGroundImageEffect(ImageEffect::Sepia);
+        doc->SetPlotBackGroundImageEffect(Wisteria::ImageEffect::Sepia);
         menuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_SEPIA"));
         }
     else if (event.GetId() == XRCID("ID_PLOT_BKIMAGE_EFFECT_FROSTED_GLASS"))
         {
-        doc->SetPlotBackGroundImageEffect(ImageEffect::FrostedGlass);
+        doc->SetPlotBackGroundImageEffect(Wisteria::ImageEffect::FrostedGlass);
         menuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_FROSTED_GLASS"));
         }
     else if (event.GetId() == XRCID("ID_PLOT_BKIMAGE_EFFECT_OIL_PAINTING"))
         {
-        doc->SetPlotBackGroundImageEffect(ImageEffect::OilPainting);
+        doc->SetPlotBackGroundImageEffect(Wisteria::ImageEffect::OilPainting);
         menuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_OIL_PAINTING"));
         }
 
-    if (menuItem)
+    if (menuItem != nullptr)
         {
         menuItem->Check(true);
         }
@@ -1856,9 +1852,9 @@ void ProjectDocChildFrame::OnEditPlotBackgroundImageEffect(wxCommandEvent& event
 //---------------------------------------------------
 void ProjectDocChildFrame::OnMergePlotBackgroundImages([[maybe_unused]] wxCommandEvent& event)
     {
-    BaseProjectDoc* doc = dynamic_cast<BaseProjectDoc*>(GetDocument());
+    auto* doc = dynamic_cast<BaseProjectDoc*>(GetDocument());
     assert(doc && L"Failed to get document!");
-    if (!doc)
+    if (doc == nullptr)
         {
         return;
         }
@@ -1877,7 +1873,7 @@ void ProjectDocChildFrame::OnMergePlotBackgroundImages([[maybe_unused]] wxComman
         return;
         }
 
-    ImageMergeDlg imgDlg(this, imgPaths, wxHORIZONTAL);
+    Wisteria::UI::ImageMergeDlg imgDlg(this, imgPaths, wxHORIZONTAL);
     if (imgDlg.ShowModal() != wxID_OK)
         {
         return;
@@ -1892,16 +1888,16 @@ void ProjectDocChildFrame::OnMergePlotBackgroundImages([[maybe_unused]] wxComman
 //---------------------------------------------------
 void ProjectDocChildFrame::OnEditPlotBackgroundImage([[maybe_unused]] wxCommandEvent& event)
     {
-    BaseProjectDoc* doc = dynamic_cast<BaseProjectDoc*>(GetDocument());
+    auto* doc = dynamic_cast<BaseProjectDoc*>(GetDocument());
     assert(doc && L"Failed to get document!");
-    if (!doc)
+    if (doc == nullptr)
         {
         return;
         }
 
     wxFileDialog fd(
         this, _(L"Select Plot Background Image"),
-        doc->GetPlotBackGroundImagePath().length() ? wxString{} :
+        !doc->GetPlotBackGroundImagePath().empty() ? wxString{} :
                                                      wxGetApp().GetAppOptions()->GetImagePath(),
         doc->GetPlotBackGroundImagePath(), Wisteria::GraphItems::Image::GetImageFileFilter(),
         wxFD_OPEN | wxFD_FILE_MUST_EXIST | wxFD_PREVIEW);
@@ -1921,7 +1917,7 @@ void ProjectDocChildFrame::OnEditGraphOpacity(wxCommandEvent& event)
     wxBitmap bmp(wxGetApp().GetMainFrame()->FromDIP(wxSize{ 300, 300 }));
     uint8_t opacity = wxALPHA_OPAQUE;
 
-    const auto fillSquare = [](wxBitmap& theBmp, wxColour opacityColor)
+    const auto fillSquare = [](wxBitmap& theBmp, const wxColour& opacityColor)
     {
         wxMemoryDC memDC(theBmp);
         memDC.SetBrush(wxBrush{ opacityColor });
@@ -1931,9 +1927,9 @@ void ProjectDocChildFrame::OnEditGraphOpacity(wxCommandEvent& event)
         memDC.SelectObject(wxNullBitmap);
     };
 
-    BaseProjectDoc* doc = dynamic_cast<BaseProjectDoc*>(GetDocument());
+    auto* doc = dynamic_cast<BaseProjectDoc*>(GetDocument());
     assert(doc && L"Failed to get document!");
-    if (!doc)
+    if (doc == nullptr)
         {
         return;
         }
@@ -1944,7 +1940,7 @@ void ProjectDocChildFrame::OnEditGraphOpacity(wxCommandEvent& event)
         if (!img.IsOk())
             {
             wxFileDialog fd(this, _(L"Select Plot Background Image"),
-                            doc->GetPlotBackGroundImagePath().length() ?
+                            !doc->GetPlotBackGroundImagePath().empty() ?
                                 wxString{} :
                                 wxGetApp().GetAppOptions()->GetImagePath(),
                             doc->GetPlotBackGroundImagePath(),
@@ -1961,10 +1957,8 @@ void ProjectDocChildFrame::OnEditGraphOpacity(wxCommandEvent& event)
                 {
                 return;
                 }
-            else
-                {
-                bmp = img;
-                }
+
+            bmp = img;
             }
         else
             {
@@ -2031,9 +2025,9 @@ void ProjectDocChildFrame::OnHistoBarLabelSelected(wxCommandEvent& event)
     if (event.GetId() == XRCID("ID_HISTOBAR_LABELS_PERCENTAGE"))
         {
         dynamic_cast<BaseProjectDoc*>(GetDocument())
-            ->SetHistogramBinLabelDisplay(BinLabelDisplay::BinPercentage);
+            ->SetHistogramBinLabelDisplay(Wisteria::BinLabelDisplay::BinPercentage);
         wxMenuItem* item = m_histoBarLabelsMenu.FindItem(XRCID("ID_HISTOBAR_LABELS_PERCENTAGE"));
-        if (item)
+        if (item != nullptr)
             {
             item->Check(true);
             }
@@ -2041,9 +2035,9 @@ void ProjectDocChildFrame::OnHistoBarLabelSelected(wxCommandEvent& event)
     else if (event.GetId() == XRCID("ID_HISTOBAR_LABELS_COUNT"))
         {
         dynamic_cast<BaseProjectDoc*>(GetDocument())
-            ->SetHistogramBinLabelDisplay(BinLabelDisplay::BinValue);
+            ->SetHistogramBinLabelDisplay(Wisteria::BinLabelDisplay::BinValue);
         wxMenuItem* item = m_histoBarLabelsMenu.FindItem(XRCID("ID_HISTOBAR_LABELS_COUNT"));
-        if (item)
+        if (item != nullptr)
             {
             item->Check(true);
             }
@@ -2051,10 +2045,10 @@ void ProjectDocChildFrame::OnHistoBarLabelSelected(wxCommandEvent& event)
     else if (event.GetId() == XRCID("ID_HISTOBAR_LABELS_COUNT_AND_PERCENT"))
         {
         dynamic_cast<BaseProjectDoc*>(GetDocument())
-            ->SetHistogramBinLabelDisplay(BinLabelDisplay::BinValueAndPercentage);
+            ->SetHistogramBinLabelDisplay(Wisteria::BinLabelDisplay::BinValueAndPercentage);
         wxMenuItem* item =
             m_histoBarLabelsMenu.FindItem(XRCID("ID_HISTOBAR_LABELS_COUNT_AND_PERCENT"));
-        if (item)
+        if (item != nullptr)
             {
             item->Check(true);
             }
@@ -2062,9 +2056,9 @@ void ProjectDocChildFrame::OnHistoBarLabelSelected(wxCommandEvent& event)
     else if (event.GetId() == XRCID("ID_HISTOBAR_NO_LABELS"))
         {
         dynamic_cast<BaseProjectDoc*>(GetDocument())
-            ->SetHistogramBinLabelDisplay(BinLabelDisplay::NoDisplay);
+            ->SetHistogramBinLabelDisplay(Wisteria::BinLabelDisplay::NoDisplay);
         wxMenuItem* item = m_histoBarLabelsMenu.FindItem(XRCID("ID_HISTOBAR_NO_LABELS"));
-        if (item)
+        if (item != nullptr)
             {
             item->Check(true);
             }
@@ -2076,7 +2070,7 @@ void ProjectDocChildFrame::OnHistoBarLabelSelected(wxCommandEvent& event)
 //---------------------------------------------------
 void ProjectDocChildFrame::OnExcludeWordsList([[maybe_unused]] wxRibbonButtonBarEvent& event)
     {
-    BaseProjectDoc* doc = dynamic_cast<BaseProjectDoc*>(GetDocument());
+    auto* doc = dynamic_cast<BaseProjectDoc*>(GetDocument());
 
     EditWordListDlg editDlg(this, wxID_ANY, _(L"Edit Words/Phrases To Exclude"));
     editDlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(),
@@ -2096,7 +2090,7 @@ void ProjectDocChildFrame::OnExcludeWordsList([[maybe_unused]] wxRibbonButtonBar
 //---------------------------------------------------
 void ProjectDocChildFrame::OnIncompleteThreshold([[maybe_unused]] wxRibbonButtonBarEvent& event)
     {
-    BaseProjectDoc* doc = dynamic_cast<BaseProjectDoc*>(GetDocument());
+    auto* doc = dynamic_cast<BaseProjectDoc*>(GetDocument());
     const long len = wxGetNumberFromUser(_(L"Include incomplete sentences containing more than:"),
                                          wxString{}, _(L"Incomplete Sentence Threshold"),
                                          doc->GetIncludeIncompleteSentencesIfLongerThanValue(), 0,
@@ -2113,7 +2107,7 @@ void ProjectDocChildFrame::OnIncompleteThreshold([[maybe_unused]] wxRibbonButton
 //---------------------------------------------------
 void ProjectDocChildFrame::OnNumeralSyllabicationOptions(wxCommandEvent& event)
     {
-    BaseProjectDoc* doc = dynamic_cast<BaseProjectDoc*>(GetDocument());
+    auto* doc = dynamic_cast<BaseProjectDoc*>(GetDocument());
 
     doc->SetNumeralSyllabicationMethod((event.GetId() == XRCID("ID_NUMSYL_ONE")) ?
                                            NumeralSyllabize::WholeWordIsOneSyllable :
@@ -2127,7 +2121,7 @@ void ProjectDocChildFrame::OnNumeralSyllabicationOptions(wxCommandEvent& event)
         (doc->GetNumeralSyllabicationMethod() == NumeralSyllabize::WholeWordIsOneSyllable) ?
             XRCID("ID_NUMSYL_ONE") :
             XRCID("ID_NUMSYL_EACH_DIGIT"));
-    if (item)
+    if (item != nullptr)
         {
         item->Check(true);
         }
@@ -2139,7 +2133,7 @@ void ProjectDocChildFrame::OnNumeralSyllabicationOptions(wxCommandEvent& event)
 //---------------------------------------------------
 void ProjectDocChildFrame::OnTextExclusionOptions(wxCommandEvent& event)
     {
-    BaseProjectDoc* doc = dynamic_cast<BaseProjectDoc*>(GetDocument());
+    auto* doc = dynamic_cast<BaseProjectDoc*>(GetDocument());
     doc->SetInvalidSentenceMethod(
         (event.GetId() == XRCID("ID_TE_ALL_INCOMPLETE")) ? InvalidSentence::ExcludeFromAnalysis :
         (event.GetId() == XRCID("ID_TE_NO_EXCLUDE"))     ? InvalidSentence::IncludeAsFullSentences :
@@ -2155,7 +2149,7 @@ void ProjectDocChildFrame::OnTextExclusionOptions(wxCommandEvent& event)
         (doc->GetInvalidSentenceMethod() == InvalidSentence::IncludeAsFullSentences) ?
             XRCID("ID_TE_NO_EXCLUDE") :
             XRCID("ID_TE_ALL_INCOMPLETE_EXCEPT_HEADERS"));
-    if (item)
+    if (item != nullptr)
         {
         item->Check(true);
         }
@@ -2164,7 +2158,8 @@ void ProjectDocChildFrame::OnTextExclusionOptions(wxCommandEvent& event)
         {
         wxWindow* exclusionButtonBar =
             view->GetRibbon()->FindWindow(MainFrame::ID_TEXT_EXCLUSION_RIBBON_BUTTON_BAR);
-        if (exclusionButtonBar && exclusionButtonBar->IsKindOf(wxCLASSINFO(wxRibbonButtonBar)))
+        if ((exclusionButtonBar != nullptr) &&
+            exclusionButtonBar->IsKindOf(wxCLASSINFO(wxRibbonButtonBar)))
             {
             dynamic_cast<wxRibbonButtonBar*>(exclusionButtonBar)
                 ->EnableButton(
@@ -2197,7 +2192,8 @@ void ProjectDocChildFrame::OnTextExclusionOptions(wxCommandEvent& event)
             }
         wxWindow* numeralButtonBar =
             view->GetRibbon()->FindWindow(MainFrame::ID_NUMERALS_RIBBON_BUTTON_BAR);
-        if (numeralButtonBar && numeralButtonBar->IsKindOf(wxCLASSINFO(wxRibbonButtonBar)))
+        if ((numeralButtonBar != nullptr) &&
+            numeralButtonBar->IsKindOf(wxCLASSINFO(wxRibbonButtonBar)))
             {
             dynamic_cast<wxRibbonButtonBar*>(numeralButtonBar)
                 ->EnableButton(
@@ -2214,28 +2210,28 @@ void ProjectDocChildFrame::OnTextExclusionOptions(wxCommandEvent& event)
 //---------------------------------------------------
 void ProjectDocChildFrame::OnExclusionTagsOptions(wxCommandEvent& event)
     {
-    BaseProjectDoc* doc = dynamic_cast<BaseProjectDoc*>(GetDocument());
+    auto* doc = dynamic_cast<BaseProjectDoc*>(GetDocument());
 
     doc->GetExclusionBlockTags().clear();
     if (event.GetId() == XRCID("ID_EXCLUSION_TAGS_CAROTS"))
         {
-        doc->GetExclusionBlockTags().push_back(std::make_pair(L'^', L'^'));
+        doc->GetExclusionBlockTags().emplace_back(L'^', L'^');
         }
     else if (event.GetId() == XRCID("ID_EXCLUSION_TAGS_ANGLES"))
         {
-        doc->GetExclusionBlockTags().push_back(std::make_pair(L'<', L'>'));
+        doc->GetExclusionBlockTags().emplace_back(L'<', L'>');
         }
     else if (event.GetId() == XRCID("ID_EXCLUSION_TAGS_BRACES"))
         {
-        doc->GetExclusionBlockTags().push_back(std::make_pair(L'[', L']'));
+        doc->GetExclusionBlockTags().emplace_back(L'[', L']');
         }
     else if (event.GetId() == XRCID("ID_EXCLUSION_TAGS_CURLIES"))
         {
-        doc->GetExclusionBlockTags().push_back(std::make_pair(L'{', L'}'));
+        doc->GetExclusionBlockTags().emplace_back(L'{', L'}');
         }
     else if (event.GetId() == XRCID("ID_EXCLUSION_TAGS_PARANS"))
         {
-        doc->GetExclusionBlockTags().push_back(std::make_pair(L'(', L')'));
+        doc->GetExclusionBlockTags().emplace_back(L'(', L')');
         }
 
     for (size_t i = 0; i < m_exclusionTagsMenu.GetMenuItemCount(); ++i)
@@ -2255,7 +2251,7 @@ void ProjectDocChildFrame::OnExclusionTagsOptions(wxCommandEvent& event)
         (doc->GetExclusionBlockTags().at(0) == std::make_pair(L'(', L')')) ?
                                                  XRCID("ID_EXCLUSION_TAGS_PARANS") :
                                                  XRCID("ID_EXCLUSION_TAGS_NOT_ENABLED"));
-    if (item)
+    if (item != nullptr)
         {
         item->Check(true);
         }
@@ -2267,7 +2263,7 @@ void ProjectDocChildFrame::OnExclusionTagsOptions(wxCommandEvent& event)
 //---------------------------------------------------
 void ProjectDocChildFrame::OnLineEndOptions(wxCommandEvent& event)
     {
-    BaseProjectDoc* doc = dynamic_cast<BaseProjectDoc*>(GetDocument());
+    auto* doc = dynamic_cast<BaseProjectDoc*>(GetDocument());
     doc->SetParagraphsParsingMethod(
         (event.GetId() == XRCID("ID_LE_ONLY_AFTER_VALID_SENTENCE")) ?
             ParagraphParse::OnlySentenceTerminatedNewLinesAreParagraphs :
@@ -2282,7 +2278,7 @@ void ProjectDocChildFrame::OnLineEndOptions(wxCommandEvent& event)
                                  ParagraphParse::OnlySentenceTerminatedNewLinesAreParagraphs) ?
                                     XRCID("ID_LE_ONLY_AFTER_VALID_SENTENCE") :
                                     XRCID("ID_LE_ALWAYS_NEW_PARAGRAPH"));
-    if (item)
+    if (item != nullptr)
         {
         item->Check(true);
         }
@@ -2292,7 +2288,8 @@ void ProjectDocChildFrame::OnLineEndOptions(wxCommandEvent& event)
         {
         wxWindow* deductionButtonBar =
             view->GetRibbon()->FindWindow(MainFrame::ID_PARAGRAPH_DEDUCTION_RIBBON_BUTTON_BAR);
-        if (deductionButtonBar && deductionButtonBar->IsKindOf(wxCLASSINFO(wxRibbonButtonBar)))
+        if ((deductionButtonBar != nullptr) &&
+            deductionButtonBar->IsKindOf(wxCLASSINFO(wxRibbonButtonBar)))
             {
             dynamic_cast<wxRibbonButtonBar*>(deductionButtonBar)
                 ->EnableButton(XRCID("ID_IGNORE_BLANK_LINES"),
@@ -2311,7 +2308,7 @@ void ProjectDocChildFrame::OnLineEndOptions(wxCommandEvent& event)
 //---------------------------------------------------
 void ProjectDocChildFrame::OnIgnoreBlankLines([[maybe_unused]] wxRibbonButtonBarEvent& event)
     {
-    BaseProjectDoc* theProject = dynamic_cast<BaseProjectDoc*>(GetDocument());
+    auto* theProject = dynamic_cast<BaseProjectDoc*>(GetDocument());
     theProject->IgnoreBlankLinesForParagraphsParser(
         !theProject->IsIgnoringBlankLinesForParagraphsParser());
     theProject->RefreshRequired(ProjectRefresh::FullReindexing);
@@ -2319,9 +2316,9 @@ void ProjectDocChildFrame::OnIgnoreBlankLines([[maybe_unused]] wxRibbonButtonBar
     }
 
 //---------------------------------------------------
-void ProjectDocChildFrame::OnIgnoreIdenting([[maybe_unused]] wxRibbonButtonBarEvent& event)
+void ProjectDocChildFrame::OnIgnoreIndenting([[maybe_unused]] wxRibbonButtonBarEvent& event)
     {
-    BaseProjectDoc* theProject = dynamic_cast<BaseProjectDoc*>(GetDocument());
+    auto* theProject = dynamic_cast<BaseProjectDoc*>(GetDocument());
     theProject->IgnoreIndentingForParagraphsParser(
         !theProject->IsIgnoringIndentingForParagraphsParser());
     theProject->RefreshRequired(ProjectRefresh::FullReindexing);
@@ -2331,7 +2328,7 @@ void ProjectDocChildFrame::OnIgnoreIdenting([[maybe_unused]] wxRibbonButtonBarEv
 //---------------------------------------------------
 void ProjectDocChildFrame::OnStrictCapitalization([[maybe_unused]] wxRibbonButtonBarEvent& event)
     {
-    BaseProjectDoc* theProject = dynamic_cast<BaseProjectDoc*>(GetDocument());
+    auto* theProject = dynamic_cast<BaseProjectDoc*>(GetDocument());
     theProject->SetSentenceStartMustBeUppercased(!theProject->GetSentenceStartMustBeUppercased());
     theProject->RefreshRequired(ProjectRefresh::FullReindexing);
     theProject->RefreshProject();
@@ -2340,7 +2337,7 @@ void ProjectDocChildFrame::OnStrictCapitalization([[maybe_unused]] wxRibbonButto
 //---------------------------------------------------
 void ProjectDocChildFrame::OnAggressivelyExclude([[maybe_unused]] wxRibbonButtonBarEvent& event)
     {
-    BaseProjectDoc* theProject = dynamic_cast<BaseProjectDoc*>(GetDocument());
+    auto* theProject = dynamic_cast<BaseProjectDoc*>(GetDocument());
     theProject->AggressiveExclusion(!theProject->IsExcludingAggressively());
     theProject->RefreshRequired(ProjectRefresh::FullReindexing);
     theProject->RefreshProject();
@@ -2349,7 +2346,7 @@ void ProjectDocChildFrame::OnAggressivelyExclude([[maybe_unused]] wxRibbonButton
 //---------------------------------------------------
 void ProjectDocChildFrame::OnIgnoreCopyrights([[maybe_unused]] wxRibbonButtonBarEvent& event)
     {
-    BaseProjectDoc* theProject = dynamic_cast<BaseProjectDoc*>(GetDocument());
+    auto* theProject = dynamic_cast<BaseProjectDoc*>(GetDocument());
     theProject->ExcludeTrailingCopyrightNoticeParagraphs(
         !theProject->IsExcludingTrailingCopyrightNoticeParagraphs());
     theProject->RefreshRequired(ProjectRefresh::FullReindexing);
@@ -2359,7 +2356,7 @@ void ProjectDocChildFrame::OnIgnoreCopyrights([[maybe_unused]] wxRibbonButtonBar
 //---------------------------------------------------
 void ProjectDocChildFrame::OnIgnoreCitations([[maybe_unused]] wxRibbonButtonBarEvent& event)
     {
-    BaseProjectDoc* theProject = dynamic_cast<BaseProjectDoc*>(GetDocument());
+    auto* theProject = dynamic_cast<BaseProjectDoc*>(GetDocument());
     theProject->ExcludeTrailingCitations(!theProject->IsExcludingTrailingCitations());
     theProject->RefreshRequired(ProjectRefresh::FullReindexing);
     theProject->RefreshProject();
@@ -2368,7 +2365,7 @@ void ProjectDocChildFrame::OnIgnoreCitations([[maybe_unused]] wxRibbonButtonBarE
 //---------------------------------------------------
 void ProjectDocChildFrame::OnIgnoreFileAddresses([[maybe_unused]] wxRibbonButtonBarEvent& event)
     {
-    BaseProjectDoc* theProject = dynamic_cast<BaseProjectDoc*>(GetDocument());
+    auto* theProject = dynamic_cast<BaseProjectDoc*>(GetDocument());
     theProject->ExcludeFileAddresses(!theProject->IsExcludingFileAddresses());
     theProject->RefreshRequired(ProjectRefresh::FullReindexing);
     theProject->RefreshProject();
@@ -2377,7 +2374,7 @@ void ProjectDocChildFrame::OnIgnoreFileAddresses([[maybe_unused]] wxRibbonButton
 //---------------------------------------------------
 void ProjectDocChildFrame::OnIgnoreNumerals([[maybe_unused]] wxRibbonButtonBarEvent& event)
     {
-    BaseProjectDoc* theProject = dynamic_cast<BaseProjectDoc*>(GetDocument());
+    auto* theProject = dynamic_cast<BaseProjectDoc*>(GetDocument());
     theProject->ExcludeNumerals(!theProject->IsExcludingNumerals());
     auto* view = dynamic_cast<BaseProjectView*>(GetView());
     assert(view);
@@ -2385,7 +2382,8 @@ void ProjectDocChildFrame::OnIgnoreNumerals([[maybe_unused]] wxRibbonButtonBarEv
         {
         wxWindow* numeralButtonBar =
             view->GetRibbon()->FindWindow(MainFrame::ID_NUMERALS_RIBBON_BUTTON_BAR);
-        if (numeralButtonBar && numeralButtonBar->IsKindOf(wxCLASSINFO(wxRibbonButtonBar)))
+        if ((numeralButtonBar != nullptr) &&
+            numeralButtonBar->IsKindOf(wxCLASSINFO(wxRibbonButtonBar)))
             {
             dynamic_cast<wxRibbonButtonBar*>(numeralButtonBar)
                 ->EnableButton(XRCID("ID_NUMERAL_SYLLABICATION"),
@@ -2399,7 +2397,7 @@ void ProjectDocChildFrame::OnIgnoreNumerals([[maybe_unused]] wxRibbonButtonBarEv
 //---------------------------------------------------
 void ProjectDocChildFrame::OnIgnoreProperNouns([[maybe_unused]] wxRibbonButtonBarEvent& event)
     {
-    BaseProjectDoc* theProject = dynamic_cast<BaseProjectDoc*>(GetDocument());
+    auto* theProject = dynamic_cast<BaseProjectDoc*>(GetDocument());
     theProject->ExcludeProperNouns(!theProject->IsExcludingProperNouns());
     theProject->RefreshRequired(ProjectRefresh::FullReindexing);
     theProject->RefreshProject();
@@ -2420,7 +2418,7 @@ void ProjectDocChildFrame::OnEditEnglishDictionary([[maybe_unused]] wxCommandEve
 //---------------------------------------------------
 void ProjectDocChildFrame::OnEditDictionaryProjectSettings([[maybe_unused]] wxCommandEvent& event)
     {
-    BaseProjectDoc* theProject = dynamic_cast<BaseProjectDoc*>(GetDocument());
+    auto* theProject = dynamic_cast<BaseProjectDoc*>(GetDocument());
     ToolsOptionsDlg optionsDlg(this, theProject, ToolsOptionsDlg::Grammar);
     optionsDlg.SelectPage(ToolsOptionsDlg::GRAMMAR_PAGE);
     if (optionsDlg.ShowModal() == wxID_OK)
@@ -2451,7 +2449,7 @@ void ProjectDocChildFrame::OnRemoveCustomTestBundle(wxCommandEvent& event)
 void ProjectDocChildFrame::OnCustomTestBundle(wxCommandEvent& event)
     {
     const int menuId = event.GetId();
-    std::map<int, wxString>::const_iterator pos = MainFrame::GetTestBundleMenuIds().find(menuId);
+    auto pos = MainFrame::GetTestBundleMenuIds().find(menuId);
     if (pos == MainFrame::GetTestBundleMenuIds().end())
         {
         wxMessageBox(
@@ -2460,11 +2458,11 @@ void ProjectDocChildFrame::OnCustomTestBundle(wxCommandEvent& event)
         return;
         }
     // Add the tests & goals to the project
-    if (GetDocument())
+    if (GetDocument() != nullptr)
         {
-        auto doc = dynamic_cast<BaseProjectDoc*>(GetDocument());
+        auto* doc = dynamic_cast<BaseProjectDoc*>(GetDocument());
         assert(doc);
-        if (doc && doc->IsSafeToUpdate())
+        if ((doc != nullptr) && doc->IsSafeToUpdate())
             {
             const bool hadDolchSightWords = doc->IsIncludingDolchSightWords();
             doc->ApplyTestBundle(pos->second);
@@ -2585,7 +2583,7 @@ void ProjectDocChildFrame::OnEditCustomTest(wxCommandEvent& event)
 void ProjectDocChildFrame::OnCustomTest(wxCommandEvent& event)
     {
     const int menuId = event.GetId();
-    std::map<int, wxString>::const_iterator pos = MainFrame::GetCustomTestMenuIds().find(menuId);
+    auto pos = MainFrame::GetCustomTestMenuIds().find(menuId);
     if (pos == MainFrame::GetCustomTestMenuIds().end())
         {
         wxMessageBox(
@@ -2593,8 +2591,8 @@ void ProjectDocChildFrame::OnCustomTest(wxCommandEvent& event)
             _(L"Error"), wxOK | wxICON_ERROR);
         return;
         }
-    BaseProjectDoc* doc = dynamic_cast<BaseProjectDoc*>(GetDocument());
-    if (doc && doc->IsSafeToUpdate())
+    auto* doc = dynamic_cast<BaseProjectDoc*>(GetDocument());
+    if ((doc != nullptr) && doc->IsSafeToUpdate())
         {
         doc->AddCustomReadabilityTest(pos->second);
         // projects will need to do a full re-indexing
@@ -2619,7 +2617,7 @@ void ProjectDocChildFrame::OnFindNext([[maybe_unused]] wxCommandEvent& event)
     auto* view = dynamic_cast<BaseProjectView*>(GetView());
     if (view != nullptr && view->GetSearchPanel() != nullptr)
         {
-        wxCommandEvent cmd(wxEVT_NULL);
+        const wxCommandEvent cmd(wxEVT_NULL);
         view->GetSearchPanel()->OnSearch(cmd);
         }
     }
@@ -2633,9 +2631,9 @@ void ProjectDocChildFrame::OnAddCustomTestBundle(wxCommandEvent& event)
 //-------------------------------------------------------
 void ProjectDocChildFrame::OnProjectSettings([[maybe_unused]] wxRibbonButtonBarEvent& event)
     {
-    BaseProjectDoc* doc = dynamic_cast<BaseProjectDoc*>(GetDocument());
+    auto* doc = dynamic_cast<BaseProjectDoc*>(GetDocument());
     assert(doc);
-    if (!doc || !doc->IsSafeToUpdate())
+    if ((doc == nullptr) || !doc->IsSafeToUpdate())
         {
         return;
         }

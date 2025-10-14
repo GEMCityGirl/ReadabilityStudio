@@ -13,7 +13,12 @@
 
 #include "base_project.h"
 #include "../Wisteria-Dataviz/src/import/cpp_extract_text.h"
+#include "../Wisteria-Dataviz/src/import/docx_extract_text.h"
+#include "../Wisteria-Dataviz/src/import/hhc_hhk_extract_text.h"
 #include "../Wisteria-Dataviz/src/import/idl_extract_text.h"
+#include "../Wisteria-Dataviz/src/import/markdown_extract_text.h"
+#include "../Wisteria-Dataviz/src/import/odt_odp_extract_text.h"
+#include "../Wisteria-Dataviz/src/import/postscript_extract_text.h"
 #include "../Wisteria-Dataviz/src/import/pptx_extract_text.h"
 #include "../Wisteria-Dataviz/src/utfcpp/source/utf8.h"
 #include "../app/readability_app.h"
@@ -23,15 +28,16 @@
 #include "../results-format/word_collectiont_text_formatting.h"
 #include "base_project_doc.h"
 #include "base_project_view.h"
+#include <wx/richmsgdlg.h>
 
 wxDECLARE_APP(ReadabilityApp);
 
-grammar::phrase_collection BaseProject::english_wordy_phrases;
-grammar::phrase_collection BaseProject::spanish_wordy_phrases;
-grammar::phrase_collection BaseProject::german_wordy_phrases;
-grammar::phrase_collection BaseProject::copyright_notice_phrases;
-grammar::phrase_collection BaseProject::citation_phrases;
-word_list BaseProject::known_proper_nouns;
+grammar::phrase_collection BaseProject::m_englishWordyPhrases;
+grammar::phrase_collection BaseProject::m_spanishWordyPhrases;
+grammar::phrase_collection BaseProject::m_germanWordyPhrases;
+grammar::phrase_collection BaseProject::m_copyrightNoticePhrases;
+grammar::phrase_collection BaseProject::m_citationPhrases;
+word_list BaseProject::m_knownProperNouns;
 word_list BaseProject::known_personal_nouns;
 word_list BaseProject::known_english_spellings;
 word_list BaseProject::known_programming_spellings;
@@ -129,9 +135,9 @@ void BaseProject::UpdateDocumentSettings()
     GetWords()->ignore_indenting_when_determining_paragraph_split(
         IsIgnoringIndentingForParagraphsParser());
     GetWords()->sentence_start_must_be_uppercased(GetSentenceStartMustBeUppercased());
-    GetWords()->set_copyright_phrase_function(&copyright_notice_phrases);
-    GetWords()->set_citation_phrase_function(&citation_phrases);
-    GetWords()->set_known_proper_nouns(&known_proper_nouns);
+    GetWords()->set_copyright_phrase_function(&m_copyrightNoticePhrases);
+    GetWords()->set_citation_phrase_function(&m_citationPhrases);
+    GetWords()->set_known_proper_nouns(&m_knownProperNouns);
     GetWords()->set_known_personal_nouns(&known_personal_nouns);
     GetWords()->get_spell_checker().set_programmer_word_list(&known_programming_spellings);
     GetWords()->get_spell_checker().ignore_proper_nouns(SpellCheckIsIgnoringProperNouns());
@@ -159,7 +165,7 @@ void BaseProject::UpdateDocumentSettings()
         GetWords()->set_stemmer(&m_spanish_stem);
         GetWords()->set_stop_list(&GetStopList());
         GetWords()->set_conjunction_function(&m_spanish_conjunction);
-        GetWords()->set_known_phrase_function(&spanish_wordy_phrases);
+        GetWords()->set_known_phrase_function(&m_spanishWordyPhrases);
         GetWords()->get_spell_checker().set_word_list(&known_spanish_spellings);
         GetWords()->get_spell_checker().set_secondary_word_list(&known_custom_spanish_spellings);
         GetWords()->set_search_for_proper_nouns(true);
@@ -172,7 +178,7 @@ void BaseProject::UpdateDocumentSettings()
         GetWords()->set_stemmer(&m_german_stem);
         GetWords()->set_stop_list(&GetStopList());
         GetWords()->set_conjunction_function(&m_german_conjunction);
-        GetWords()->set_known_phrase_function(&german_wordy_phrases);
+        GetWords()->set_known_phrase_function(&m_germanWordyPhrases);
         GetWords()->get_spell_checker().set_word_list(&known_german_spellings);
         GetWords()->get_spell_checker().set_secondary_word_list(&known_custom_german_spellings);
         GetWords()->set_search_for_proper_nouns(false);
@@ -185,7 +191,7 @@ void BaseProject::UpdateDocumentSettings()
         GetWords()->set_stemmer(&m_english_stem);
         GetWords()->set_stop_list(&GetStopList());
         GetWords()->set_conjunction_function(&m_english_conjunction);
-        GetWords()->set_known_phrase_function(&english_wordy_phrases);
+        GetWords()->set_known_phrase_function(&m_englishWordyPhrases);
         GetWords()->get_spell_checker().set_word_list(&known_english_spellings);
         GetWords()->get_spell_checker().set_secondary_word_list(&known_custom_english_spellings);
         GetWords()->set_search_for_proper_nouns(true);
@@ -275,8 +281,8 @@ void BaseProject::FormatFilteredText(std::wstring& text, const bool romanizeText
     string_util::trim(text);
     text.insert(0, L"\t");
 
-    const text_transform::romanize Romanize;
-    text = Romanize(std::wstring_view{ text }, romanizeText, removeEllipses, removeBullets,
+    const text_transform::romanize romanize;
+    text = romanize(std::wstring_view{ text }, romanizeText, removeEllipses, removeBullets,
                     narrowFullWithText);
     }
 
@@ -904,7 +910,7 @@ void BaseProject::InitializeStandardReadabilityTests()
         test.add_industry_classification(
             readability::industry_classification::childrens_publishing_industry, true);
         test.add_industry_classification(
-            readability::industry_classification::sedondary_language_industry, true);
+            readability::industry_classification::secondary_language_industry, true);
         test.add_teaching_level(readability::test_teaching_level::primary_grade);
         test.add_teaching_level(readability::test_teaching_level::secondary_grade);
         test.add_teaching_level(readability::test_teaching_level::second_language);
@@ -1745,7 +1751,7 @@ void BaseProject::InitializeStandardReadabilityTests()
               "To lower a score, try using shorter sentences and longer, less colloquial words."),
             readability::readability_test_type::index_value, true, _DT(L"ROUND((W+T)/S)"));
         test.add_industry_classification(
-            readability::industry_classification::sedondary_language_industry, true);
+            readability::industry_classification::secondary_language_industry, true);
         test.add_teaching_level(readability::test_teaching_level::second_language);
         test.add_language(readability::test_language::english_test);
         test.add_factor(readability::test_factor::word_length_3_less);
@@ -2046,8 +2052,8 @@ void BaseProject::LoadHardWords()
         GetDaleChallHardWordData()->SetSize(m_word_frequency_map->get_data().size(), 3);
         }
 
-    readability::is_familiar_word<word_case_insensitive_no_stem, const word_list,
-                                  stemming::no_op_stem<word_case_insensitive_no_stem>>
+    const readability::is_familiar_word<word_case_insensitive_no_stem, const word_list,
+                                        stemming::no_op_stem<word_case_insensitive_no_stem>>
         isDCWord(IsIncludingStockerCatholicSupplement() ?
                      &m_dale_chall_plus_stocker_catholic_word_list :
                      &m_dale_chall_word_list,
@@ -2074,8 +2080,8 @@ void BaseProject::LoadHardWords()
         GetSpacheHardWordData()->SetSize(m_word_frequency_map->get_data().size(), 3);
         }
 
-    readability::is_familiar_word<word_case_insensitive_no_stem, const word_list,
-                                  stemming::no_op_stem<word_case_insensitive_no_stem>>
+    const readability::is_familiar_word<word_case_insensitive_no_stem, const word_list,
+                                        stemming::no_op_stem<word_case_insensitive_no_stem>>
         isSpacheWord(&m_spache_word_list,
                      readability::proper_noun_counting_method::all_proper_nouns_are_unfamiliar,
                      true);
@@ -2092,8 +2098,8 @@ void BaseProject::LoadHardWords()
     m_uniqueMonoSyllabicWords = 0;
 
     // hard words (Harris-Jacobson)
-    readability::is_familiar_word<word_case_insensitive_no_stem, const word_list,
-                                  stemming::no_op_stem<word_case_insensitive_no_stem>>
+    const readability::is_familiar_word<word_case_insensitive_no_stem, const word_list,
+                                        stemming::no_op_stem<word_case_insensitive_no_stem>>
         isHarrisJacobsonWord(
             &m_harris_jacobson_word_list,
             readability::proper_noun_counting_method::all_proper_nouns_are_unfamiliar, true);
@@ -2253,8 +2259,8 @@ void BaseProject::LoadHardWords()
     for (auto wordPos = GetWordsWithFrequencies()->get_data().begin();
          wordPos != GetWordsWithFrequencies()->get_data().end(); ++wordPos, ++i)
         {
-        // the values are the words are frequency count (first) and the number
-        // of those that are proper second)
+        // the values are frequency count (first) and the number
+        // of those that are proper (second)
         assert(wordPos->second.first >= wordPos->second.second);
         /* subtract number of times word is proper from total count of word
            to see if at least on instance is NOT proper. If they are equal, then
@@ -4095,7 +4101,7 @@ std::pair<bool, std::wstring> BaseProject::ExtractPowerPointRawText(std::string_
         }
     for (size_t i = 1; /*breaks when no more pages are found*/; ++i)
         {
-        if (archive.Find(wxString::Format(L"ppt/slides/slide%zu.xml", i)))
+        if (archive.Find(wxString::Format(L"ppt/slides/slide%zu.xml", i)) != nullptr)
             {
             const std::wstring pptxFileText =
                 archive.ReadTextFile(wxString::Format(L"ppt/slides/slide%zu.xml", i));
@@ -4609,7 +4615,7 @@ bool BaseProject::LoadExternalDocument()
         const size_t slash = worksheetName.find_last_of(L'#');
         if (slash != wxString::npos)
             {
-            wxString CellName = worksheetName.substr(slash + 1);
+            const wxString CellName = worksheetName.substr(slash + 1);
             worksheetName.Truncate(slash);
             lily_of_the_valley::xlsx_extract_text filter_xlsx{ false };
             Wisteria::ZipCatalog zc(poundFn.GetFullPath());
@@ -4708,7 +4714,7 @@ bool BaseProject::LoadDocumentAsSubProject(const wxString& path, const std::wstr
         document will be ignored.
         Note that we don't bother with this check with webpages because they normally
         contain lists for things like menus that we would indeed want to ignore.*/
-    FilePathResolver resolvePath(GetOriginalDocumentFilePath(), false);
+    const FilePathResolver resolvePath(GetOriginalDocumentFilePath(), false);
     if (GetWords()->get_sentence_count() > 0 && !resolvePath.IsWebFile())
         {
         /* if document is nothing but valid sentences then it is OK.*/
@@ -4718,10 +4724,10 @@ bool BaseProject::LoadDocumentAsSubProject(const wxString& path, const std::wstr
             }
         else
             {
-            const double numberOfInvalidSentencesPercentage = safe_divide<double>(
+            const auto numberOfInvalidSentencesPercentage = safe_divide<double>(
                 (GetWords()->get_sentence_count() - GetWords()->get_complete_sentence_count()),
                 GetWords()->get_sentence_count());
-            if (numberOfInvalidSentencesPercentage > 0.60f &&
+            if (numberOfInvalidSentencesPercentage > 0.60 &&
                 (GetInvalidSentenceMethod() == InvalidSentence::ExcludeFromAnalysis ||
                  GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings))
                 {

@@ -13,18 +13,25 @@
 
 #include "standard_project_doc.h"
 #include "../Wisteria-Dataviz/src/base/reportenumconvert.h"
+#include "../Wisteria-Dataviz/src/graphs/crawfordgraph.h"
+#include "../Wisteria-Dataviz/src/graphs/danielsonbryan2plot.h"
+#include "../Wisteria-Dataviz/src/graphs/fleschchart.h"
 #include "../Wisteria-Dataviz/src/graphs/heatmap.h"
+#include "../Wisteria-Dataviz/src/graphs/lixgauge.h"
+#include "../Wisteria-Dataviz/src/graphs/lixgaugegerman.h"
 #include "../Wisteria-Dataviz/src/graphs/piechart.h"
 #include "../Wisteria-Dataviz/src/graphs/wordcloud.h"
 #include "../Wisteria-Dataviz/src/import/html_encode.h"
 #include "../Wisteria-Dataviz/src/import/rtf_encode.h"
 #include "../Wisteria-Dataviz/src/ui/dialogs/listdlg.h"
+#include "../graphs/schwartzgraph.h"
 #include "../indexing/diacritics.h"
 #include "../readability/readability.h"
 #include "../results-format/project_report_format.h"
 #include "../results-format/word_collectiont_text_formatting.h"
 #include "../ui/dialogs/project_wizard_dlg.h"
 #include "standard_project_view.h"
+#include "wx/richmsgdlg.h"
 
 wxDECLARE_APP(ReadabilityApp);
 
@@ -878,14 +885,14 @@ bool ProjectDoc::RunProjectWizard(const wxString& path)
                 }
             }
         else if (wizard->GetSelectedIndustryType() ==
-                 readability::industry_classification::sedondary_language_industry)
+                 readability::industry_classification::secondary_language_industry)
             {
             for (auto rTest = GetReadabilityTests().get_tests().begin();
                  rTest != GetReadabilityTests().get_tests().end(); ++rTest)
                 {
                 rTest->include(
                     rTest->get_test().has_industry_classification(
-                        readability::industry_classification::sedondary_language_industry) &&
+                        readability::industry_classification::secondary_language_industry) &&
                     rTest->get_test().has_language(GetProjectLanguage()));
                 }
             IncludeDolchSightWords(
@@ -894,7 +901,7 @@ bool ProjectDoc::RunProjectWizard(const wxString& path)
                  pos != m_custom_word_tests.cend(); ++pos)
                 {
                 if (pos->has_industry_classification(
-                        readability::industry_classification::sedondary_language_industry))
+                        readability::industry_classification::secondary_language_industry))
                     {
                     AddCustomReadabilityTest(wxString(pos->get_name().c_str()));
                     }

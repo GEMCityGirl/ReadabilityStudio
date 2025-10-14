@@ -15,12 +15,9 @@
 #define BATCH_PROJECT_DOC_H
 
 #include "../Wisteria-Dataviz/src/data/dataset.h"
-#include "../Wisteria-Dataviz/src/graphs/boxplot.h"
-#include "../Wisteria-Dataviz/src/graphs/histogram.h"
 #include "base_project_doc.h"
 #include "base_project_view.h"
 #include <vector>
-#include <wx/docview.h>
 #include <wx/wx.h>
 
 class BatchProjectDoc final : public BaseProjectDoc
@@ -250,7 +247,7 @@ class BatchProjectDoc final : public BaseProjectDoc
     void DisplayHistograms();
     void DisplayHistogram(const wxString& name, const wxWindowID Id, const wxString& topLabel,
                           const wxString& bottomLabel,
-                          std::shared_ptr<const Wisteria::Data::Dataset> data,
+                          const std::shared_ptr<const Wisteria::Data::Dataset>& data,
                           const bool includeTest, const bool isTestGradeLevel,
                           const bool startAtOne);
     void DisplayBoxPlots();
@@ -309,7 +306,7 @@ class BatchProjectDoc final : public BaseProjectDoc
         @param multiSelectable @c true to make the list control multi-item selectable.*/
     void
     DisplayScoreStatisticsWindow(const wxString& windowName, const int windowId,
-                                 std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider> data,
+                                 const std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider>& data,
                                  const wxString& firstColumnName,
                                  const wxString& optionalSecondColumnName,
                                  const bool multiSelectable);

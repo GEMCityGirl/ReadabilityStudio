@@ -19,9 +19,8 @@
 #include "../Wisteria-Dataviz/src/graphs/histogram.h"
 #include "../Wisteria-Dataviz/src/ui/dialogs/htmltablepanel.h"
 #include "../Wisteria-Dataviz/src/ui/dialogs/listdlg.h"
-#include "../graphs/frasegraph.h"
+#include "../Wisteria-Dataviz/src/util/windowcontainer.h"
 #include "../graphs/frygraph.h"
-#include "../graphs/raygorgraph.h"
 #include "base_project_view.h"
 
 class BatchProjectView final : public BaseProjectView
@@ -385,10 +384,8 @@ class BatchProjectView final : public BaseProjectView
             begin.Trim(true).Trim(false);
             return begin;
             }
-        else
-            {
-            return testName;
-            }
+
+        return testName;
         }
 
     [[nodiscard]]
@@ -406,10 +403,8 @@ class BatchProjectView final : public BaseProjectView
             begin.Trim(true).Trim(false);
             return begin;
             }
-        else
-            {
-            return testName;
-            }
+
+        return testName;
         }
 
     [[nodiscard]]
@@ -427,10 +422,8 @@ class BatchProjectView final : public BaseProjectView
             begin.Trim(true).Trim(false);
             return begin;
             }
-        else
-            {
-            return testName;
-            }
+
+        return testName;
         }
 
     [[nodiscard]]
