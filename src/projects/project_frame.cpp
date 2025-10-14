@@ -1988,7 +1988,7 @@ void ProjectDocChildFrame::OnEditGraphOpacity(wxCommandEvent& event)
         }
 
     Wisteria::UI::OpacityDlg dlg(this, opacity, bmp);
-    if (dlg.ShowModal())
+    if (dlg.ShowModal() == wxID_OK)
         {
         if (event.GetId() == XRCID("ID_EDIT_PLOT_BKIMAGE_OPACITY"))
             {
