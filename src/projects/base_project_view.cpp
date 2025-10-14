@@ -74,7 +74,7 @@ ProjectDocChildFrame* BaseProjectView::CreateChildFrame(wxDocument* doc, wxView*
 
     // graph background menu
     // color submenu
-    auto* graphBackgroundColorSubMenu = new wxMenu{};
+    auto* graphBackgroundColorSubMenu{ new wxMenu{} };
     item =
         new wxMenuItem(graphBackgroundColorSubMenu, XRCID("ID_EDIT_GRAPH_BKCOLOR"), _(L"Color..."));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/color-wheel.svg"));
@@ -90,7 +90,7 @@ ProjectDocChildFrame* BaseProjectView::CreateChildFrame(wxDocument* doc, wxView*
     subframe->m_graphBackgroundMenu.AppendSeparator();
 
     // plot color submenu
-    auto* plotColorSubMenu = new wxMenu{};
+    auto* plotColorSubMenu{ new wxMenu{} };
     item = new wxMenuItem(plotColorSubMenu, XRCID("ID_EDIT_PLOT_BKCOLOR"), _(L"Color..."));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/color-wheel.svg"));
     plotColorSubMenu->Append(item);
@@ -103,7 +103,7 @@ ProjectDocChildFrame* BaseProjectView::CreateChildFrame(wxDocument* doc, wxView*
     subframe->m_graphBackgroundMenu.AppendSubMenu(plotColorSubMenu, _(L"Plot Color"));
 
     // image submenu
-    auto* graphBackgroundImageSubMenu = new wxMenu{};
+    auto* graphBackgroundImageSubMenu{ new wxMenu{} };
     item =
         new wxMenuItem(graphBackgroundImageSubMenu, XRCID("ID_EDIT_PLOT_BKIMAGE"), _(L"Image..."));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/image.svg"));
@@ -117,7 +117,7 @@ ProjectDocChildFrame* BaseProjectView::CreateChildFrame(wxDocument* doc, wxView*
     graphBackgroundImageSubMenu->Append(new wxMenuItem(
         graphBackgroundImageSubMenu, XRCID("ID_EDIT_PLOT_BKIMAGE_OPACITY"), _(L"Opacity...")));
 
-    auto* graphBackgroundImageEffectSubMenu = new wxMenu{};
+    auto* graphBackgroundImageEffectSubMenu{ new wxMenu{} };
 
     graphBackgroundImageEffectSubMenu->Append(
         new wxMenuItem(graphBackgroundImageEffectSubMenu, XRCID("ID_PLOT_BKIMAGE_EFFECT_NO_EFFECT"),
@@ -143,7 +143,7 @@ ProjectDocChildFrame* BaseProjectView::CreateChildFrame(wxDocument* doc, wxView*
 
     graphBackgroundImageSubMenu->AppendSubMenu(graphBackgroundImageEffectSubMenu, _(L"Effects"));
 
-    auto* graphBackgroundImageFitSubMenu = new wxMenu{};
+    auto* graphBackgroundImageFitSubMenu{ new wxMenu{} };
 
     graphBackgroundImageFitSubMenu->Append(
         new wxMenuItem(graphBackgroundImageFitSubMenu, XRCID("ID_PLOT_BKIMAGE_FIT_CROP_AND_CENTER"),
