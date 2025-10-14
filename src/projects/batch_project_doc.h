@@ -304,12 +304,11 @@ class BatchProjectDoc final : public BaseProjectDoc
             If empty, will not be used for the second column.\n
             This parameter only makes sense for adding a description next to a document.
         @param multiSelectable @c true to make the list control multi-item selectable.*/
-    void
-    DisplayScoreStatisticsWindow(const wxString& windowName, const int windowId,
-                                 const std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider>& data,
-                                 const wxString& firstColumnName,
-                                 const wxString& optionalSecondColumnName,
-                                 const bool multiSelectable);
+    void DisplayScoreStatisticsWindow(
+        const wxString& windowName, const int windowId,
+        const std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider>& data,
+        const wxString& firstColumnName, const wxString& optionalSecondColumnName,
+        const bool multiSelectable);
 
     /// @returns `true` if there is more than one document label, but not more than
     ///     the max number of groups for the legends.
