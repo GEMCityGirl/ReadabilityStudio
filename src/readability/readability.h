@@ -98,7 +98,7 @@ namespace readability
                 {
                 return true;
                 }
-            // ...else, if we are treating all proper as familiar then true if familiar;
+            // ...else, if we are treating all proper as familiar, then true if familiar;
             // otherwise return whether it is on the list
             else if (m_properNounMethod ==
                      proper_noun_counting_method::all_proper_nouns_are_familiar)

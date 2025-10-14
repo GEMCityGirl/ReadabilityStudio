@@ -11,8 +11,8 @@
  *   Blake Madden - initial implementation
  ********************************************************************************/
 
-#ifndef __READABILITY_PROJECT_TEST_H__
-#define __READABILITY_PROJECT_TEST_H__
+#ifndef READABILITY_PROJECT_TEST_H
+#define READABILITY_PROJECT_TEST_H
 
 #include "readability_test.h"
 #include <bitset>
@@ -154,4 +154,4 @@ namespace readability
         };
     } // namespace readability
 
-#endif // __READABILITY_PROJECT_TEST_H__
+#endif // READABILITY_PROJECT_TEST_H

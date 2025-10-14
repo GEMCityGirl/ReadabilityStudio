@@ -19,6 +19,7 @@
 #include "../projects/batch_project_view.h"
 #include "../projects/standard_project_doc.h"
 #include "../ui/dialogs/tools_options_dlg.h"
+#include <wx/dir.h>
 
 using namespace Wisteria;
 using namespace Wisteria::Graphs;

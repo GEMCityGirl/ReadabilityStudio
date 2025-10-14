@@ -45,7 +45,7 @@ namespace readability
         /// @brief The familiar word list type.
         using word_list_type = familiar_word_container<string_type>;
 
-        custom_test(const string_type& name, const string_type formula,
+        custom_test(const string_type& name, const string_type& formula,
                     const readability_test_type result_type, const string_type& file_path,
                     const stemming::stemming_type stem_type,
                     const bool inc_custom_familiar_word_list, const bool inc_dale_chall_list,
@@ -368,7 +368,7 @@ namespace readability
         /** Loads a block of words into the custom familiar word list.
             Also stems the word list and removes any duplicates,
             so set the stemmer prior to calling this.*/
-        void load_custom_familiar_words(const wchar_t* text)
+        void load_custom_familiar_words(const wchar_t* text) const
             {
             std::vector<string_type>& wordData = m_familiar_words_ref_counter->get_words();
             wordData.clear();
@@ -645,7 +645,7 @@ namespace readability
                 {
                 return false;
                 }
-            // if the word is on the standard word lists and we are not using a custom word list
+            // if the word is on the standard word lists, and we are not using a custom word list,
             // then it is on every list in use, so return true.
             if (!m_include_custom_familiar_word_list)
                 {

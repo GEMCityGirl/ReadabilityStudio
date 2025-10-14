@@ -15,9 +15,7 @@
 #define READABILITY_FORMULA_PARSER_H
 
 #include "../tinyexpr-plusplus/tinyexpr.h"
-#include <limits>
-#include <vector>
-#include <wx/wx.h>
+#include "wx/string.h"
 
 /// @private
 class BaseProject;

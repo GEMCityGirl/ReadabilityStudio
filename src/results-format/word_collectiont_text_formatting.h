@@ -16,11 +16,8 @@
 
 #include "../Wisteria-Dataviz/src/import/html_encode.h"
 #include "../Wisteria-Dataviz/src/import/rtf_encode.h"
-#include "../Wisteria-Dataviz/src/math/mathematics.h"
 #include "../app/optionenums.h"
 #include "../indexing/word_collection.h"
-#include <wx/string.h>
-#include <wx/wx.h>
 
 template<typename documentT, typename highlightDeterminantT>
 static size_t FormatWordCollectionHighlightedWords(

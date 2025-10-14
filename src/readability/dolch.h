@@ -136,7 +136,7 @@ namespace readability
                     continue;
                     }
 
-                sight_word_type sightWord = sight_word_type::noun;
+                sight_word_type sightWord{ sight_word_type::noun };
                 if (string_util::stricmp(rowStrings[1].c_str(), L"CONJUNCTION") == 0)
                     {
                     sightWord = sight_word_type::conjunction;

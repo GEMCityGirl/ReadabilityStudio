@@ -19,7 +19,6 @@
 #include "../readability/custom_readability_test.h"
 #include "../readability/dolch.h"
 #include "../readability/readability.h"
-#include <set>
 #include <wx/string.h>
 
 using CaseInSensitiveNonStemmingDocument = document<word_case_insensitive_no_stem>;

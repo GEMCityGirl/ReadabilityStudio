@@ -15,14 +15,11 @@
 #define READABILITY_MESSAGES_H
 
 #include "../Wisteria-Dataviz/src/util/donttranslate.h"
-#include "../Wisteria-Dataviz/src/util/formulaformat.h"
 #include "../Wisteria-Dataviz/src/util/numberformat.h"
-#include "../Wisteria-Dataviz/src/util/string_util.h"
 #include "../readability/english_readability.h"
 #include "../readability/german_readability.h"
 #include <cmath>
 #include <wx/string.h>
-#include <wx/tokenzr.h>
 #include <wx/wx.h>
 
 /// @brief Readability test name, description, and display management class.

@@ -13,6 +13,7 @@
 
 #include "webharvester.h"
 #include "filepathresolver.h"
+#include "wx/tokenzr.h"
 
 //----------------------------------
 bool wxStringLessWebPath::operator()(const wxString& first, const wxString& second) const
@@ -104,7 +105,7 @@ wxString WebHarvester::DownloadFile(wxString& Url, const wxString& fileExtension
         }
     downloadPath = downloadPath + StripIllegalFileCharacters(fileName);
 
-    /* Check the extension on the file we are downloading. It might not have one
+    /* Check the extension on the file we are downloading. It might not have one,
        or it might be a domain that wouldn't make sense for
        local file types. If so, append the file extension "hint" onto it
        (or determine it from the MIME type).*/
@@ -146,7 +147,7 @@ wxString WebHarvester::DownloadFile(wxString& Url, const wxString& fileExtension
 
     if (!m_replaceExistingFiles && wxFileName::FileExists(downloadPath))
         {
-        // if the file already exists and we aren't overwriting,
+        // if the file already exists, and we aren't overwriting,
         // then create a different name for it
         downloadPath = CreateNewFileName(downloadPath);
         if (downloadPath.empty())
@@ -808,7 +809,7 @@ void WebHarvester::CrawlLink(const wxString& currentLink,
     }
 
 //----------------------------------
-bool WebHarvester::VerifyUrlDomainCriteria(const wxString& url)
+bool WebHarvester::VerifyUrlDomainCriteria(const wxString& url) const
     {
     // the root url should always pass this test, even if its own domain is not
     // in the list of allowable domains
@@ -844,8 +845,7 @@ bool WebHarvester::VerifyUrlDomainCriteria(const wxString& url)
         }
     else if (m_domainRestriction == DomainRestriction::RestrictToSpecificDomains)
         {
-        if (m_allowableWebFolders.find(formatUrl.get_directory_path().c_str()) ==
-            m_allowableWebFolders.end())
+        if (!m_allowableWebFolders.contains(formatUrl.get_directory_path().c_str()))
             {
             return false;
             }

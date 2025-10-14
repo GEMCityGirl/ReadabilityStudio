@@ -31,7 +31,8 @@
 #include "../results-format/word_collectiont_text_formatting.h"
 #include "../ui/dialogs/project_wizard_dlg.h"
 #include "standard_project_view.h"
-#include "wx/richmsgdlg.h"
+#include <wx/richmsgdlg.h>
+#include <wx/wfstream.h>
 
 wxDECLARE_APP(ReadabilityApp);
 
@@ -286,7 +287,7 @@ void ProjectDoc::RefreshProject()
         /* NOTE: do not use a progress bar with APP_MODAL because that calls
            disable on the text view windows. On macOS, disabling/re-enabling
            text controls appears to reset their font color (which we are customizing
-           in DisplayHighlightedText().*/
+           in DisplayHighlightedText()).*/
         wxBusyInfo bi(wxBusyInfoFlags()
                           .Text(_(L"Reloading project..."))
                           .Parent(wxGetApp().GetParentingWindow()));
@@ -1311,7 +1312,7 @@ bool ProjectDoc::OnCreate(const wxString& path, long flags)
         // then bypass the wizard and just use the system defaults.
         // Also bypass the wizard if we are running a Lua script.
         // This is useful for scripting, where you need to create a new project from a filepath
-        // and add tests and whatnot afterwards. In this case, you don't want an interactive
+        // and add tests and whatnot afterward. In this case, you don't want an interactive
         // wizard appearing. Same for where you drag-n-drop a file into the interface.
         if (!resolvePath.IsInvalidFile() &&
             (wxFileName(path).GetPath().CmpNoCase(exampleFolder) != 0 ||
@@ -1522,7 +1523,7 @@ bool ProjectDoc::OnNewDocument()
             }
         }
 
-    // Check for sentences that got broken up by paragraph breaks and warn if there are lot of them,
+    // Check for sentences that got broken up by paragraph breaks and warn if there are a lot of them,
     // this indicates a messed up file.
     // We do this here so not to interrupt the creation of the project too much.
     size_t paragraphBrokenSentences{ 0 };
@@ -2068,7 +2069,7 @@ void ProjectDoc::DisplayWordsBreakdown()
             }
         }
 
-        // key words list
+        // keywords list
         {
         auto* listView =
             dynamic_cast<Wisteria::UI::ListCtrlEx*>(view->GetWordsBreakdownView().FindWindowById(
@@ -4054,7 +4055,7 @@ void ProjectDoc::DisplayStatistics()
                 this, GetStatisticsReportInfo(), wxSystemSettings::GetColour(wxSYS_COLOUR_HOTLIGHT),
                 view->GetSummaryStatisticsListData()) +
             ProjectReportFormat::FormatHtmlReportEnd();
-        // if document failed to be loaded and we are just showing the basic stats,
+        // if document failed to be loaded, and we are just showing the basic stats,
         // then remove the links to the various windows that won't be shown
         if (!LoadingOriginalTextSucceeded())
             {
@@ -5846,7 +5847,8 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                     &BaseProject::m_dale_chall_plus_stocker_catholic_word_list :
                     &BaseProject::m_dale_chall_word_list,
                 highlighterTagsThemed.HIGHLIGHT_BEGIN, highlighterTagsThemed.HIGHLIGHT_END,
-                readability::proper_noun_counting_method(GetDaleChallProperNounCountingMethod()));
+                static_cast<readability::proper_noun_counting_method>(
+                                  GetDaleChallProperNounCountingMethod()));
         IsNotFamiliarWordWithHighlighting<word_case_insensitive_no_stem, const word_list,
                                           stemming::no_op_stem<word_case_insensitive_no_stem>>
             isNotSpacheWordThemed(
@@ -5885,7 +5887,8 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                     &BaseProject::m_dale_chall_plus_stocker_catholic_word_list :
                     &BaseProject::m_dale_chall_word_list,
                 highlighterTagsPaperWhite.HIGHLIGHT_BEGIN, highlighterTagsPaperWhite.HIGHLIGHT_END,
-                readability::proper_noun_counting_method(GetDaleChallProperNounCountingMethod()));
+                static_cast<readability::proper_noun_counting_method>(
+                                      GetDaleChallProperNounCountingMethod()));
         IsNotFamiliarWordWithHighlighting<word_case_insensitive_no_stem, const word_list,
                                           stemming::no_op_stem<word_case_insensitive_no_stem>>
             isNotSpacheWordPaperWhite(
@@ -5913,7 +5916,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
             &m_dolch_word_list, highlighterTagsPaperWhite.HIGHLIGHT_BEGIN,
             highlighterTagsPaperWhite.HIGHLIGHT_END);
 
-        const bool useRtfEncoding =
+        constexpr bool useRtfEncoding =
 #ifdef __WXGTK__
             false;
 #else
@@ -6769,7 +6772,7 @@ bool ProjectDoc::OnSaveDocument(const wxString& filename)
 
     if (!m_File.IsOpened())
         {
-        // If the file is already there and it is in use then fail.
+        // If the file is already there, and it is in use, then fail.
         // otherwise, may be a new project needing to be created. Either way, we need to
         // truncate the file (and maybe create it), so open it for writing.
         if (!m_File.Open(filename, wxFile::write))
@@ -6871,13 +6874,13 @@ void ProjectDoc::DisplayOverlyLongSentences()
     // list the overly long sentences
     m_overlyLongSentenceData->DeleteAllItems();
     m_overlyLongSentenceData->SetSize(GetWords()->get_sentence_count(), 3);
-    size_t longSenteceCount = 0;
+    size_t longSentenceCount = 0;
     const grammar::sentence_length_greater_than sentenceGreater(GetDifficultSentenceLength());
     const grammar::complete_sentence_length_greater_than completeSentenceGreater(
         GetDifficultSentenceLength());
     wxString currentSentence;
     // punctuation markers
-    std::vector<punctuation::punctuation_mark>::const_iterator punctPos =
+    auto punctPos =
         GetWords()->get_punctuation().cbegin();
     for (std::vector<grammar::sentence_info>::const_iterator pos =
              GetWords()->get_sentences().begin();
@@ -6893,25 +6896,25 @@ void ProjectDoc::DisplayOverlyLongSentences()
             currentSentence = ProjectReportFormat::FormatSentence(
                 this, *pos, punctPos, GetWords()->get_punctuation().cend());
 
-            m_overlyLongSentenceData->SetItemText(longSenteceCount, 0, currentSentence);
+            m_overlyLongSentenceData->SetItemText(longSentenceCount, 0, currentSentence);
             if (GetInvalidSentenceMethod() == InvalidSentence::IncludeAsFullSentences)
                 {
-                m_overlyLongSentenceData->SetItemValue(longSenteceCount, 1, pos->get_word_count());
+                m_overlyLongSentenceData->SetItemValue(longSentenceCount, 1, pos->get_word_count());
                 }
             else
                 {
-                m_overlyLongSentenceData->SetItemValue(longSenteceCount, 1,
+                m_overlyLongSentenceData->SetItemValue(longSentenceCount, 1,
                                                        pos->get_valid_word_count());
                 }
             m_overlyLongSentenceData->SetItemValue(
-                longSenteceCount++, 2,
+                longSentenceCount++, 2,
                 // add 1 to make it one-indexed
                 (pos - GetWords()->get_sentences().begin()) + 1,
                 Wisteria::NumberFormatInfo(
                     Wisteria::NumberFormatInfo::NumberFormatType::StandardFormatting, 0, true));
             }
         }
-    m_overlyLongSentenceData->SetSize(longSenteceCount);
+    m_overlyLongSentenceData->SetSize(longSentenceCount);
 
     // long sentences
     auto* listView =

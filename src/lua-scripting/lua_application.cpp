@@ -23,6 +23,7 @@
 #include "../projects/base_project.h"
 #include "../projects/batch_project_doc.h"
 #include "../projects/standard_project_doc.h"
+#include <wx/dir.h>
 
 using namespace Wisteria;
 using namespace Wisteria::Graphs;
@@ -44,7 +45,7 @@ namespace LuaScripting
         {
         lily_of_the_valley::html_extract_text extract;
         // see if it's a weblink before anything else
-        wxString webPath(link, length);
+        const wxString webPath(link, length);
         FilePathResolver resolve(webPath, false);
         if (resolve.IsHTTPFile() || resolve.IsHTTPSFile())
             {
@@ -357,10 +358,9 @@ namespace LuaScripting
         wxStringTokenizer tkz(
             ExtractExtensionsFromFileFilter(wxString{ luaL_checkstring(L, 1), wxConvUTF8 }),
             L"*.;");
-        wxString nextFileExt;
         while (tkz.HasMoreTokens())
             {
-            nextFileExt = tkz.GetNextToken();
+            wxString nextFileExt = tkz.GetNextToken();
             if (!nextFileExt.empty())
                 {
                 wxGetApp().GetWebHarvester().AddAllowableFileType(nextFileExt);
@@ -830,8 +830,7 @@ namespace LuaScripting
                     {
                     wxString currentBookmark(currentLink + 1,
                                              hparse.get_current_hyperlink_length() - 1);
-                    if (BookmarksInCurrentPage.find(currentBookmark) ==
-                        BookmarksInCurrentPage.end())
+                    if (!BookmarksInCurrentPage.contains(currentBookmark))
                         {
                         badLinks.emplace(
                             wxFileName(files[i]).GetFullName(),
@@ -1003,7 +1002,7 @@ namespace LuaScripting
             }
         phraseList.remove_duplicates();
 
-        // load the word list being cross referenced against
+        // load the word list being cross-referenced against
         path = wxString{ luaL_checkstring(L, 2), wxConvUTF8 };
         if (!wxFile::Exists(path))
             {

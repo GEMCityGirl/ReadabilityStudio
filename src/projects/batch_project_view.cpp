@@ -29,7 +29,8 @@
 #include "../ui/dialogs/tools_options_dlg.h"
 #include "batch_project_doc.h"
 #include "standard_project_doc.h"
-#include "wx/richmsgdlg.h"
+#include <wx/dir.h>
+#include <wx/richmsgdlg.h>
 
 wxDECLARE_APP(ReadabilityApp);
 

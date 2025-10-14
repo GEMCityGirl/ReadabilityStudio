@@ -24,6 +24,8 @@
 #include "../ui/dialogs/project_wizard_dlg.h"
 #include "batch_project_view.h"
 #include <limits>
+#include <wx/dir.h>
+#include <wx/wfstream.h>
 
 wxDECLARE_APP(ReadabilityApp);
 
