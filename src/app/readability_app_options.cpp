@@ -1144,19 +1144,8 @@ bool ReadabilityAppOptions::LoadOptionsFile(wxString optionsFile,
             auto* realTimeRefresh = projectSettings->FirstChildElement(XML_REALTIME_UPDATE.data());
             if (realTimeRefresh != nullptr)
                 {
-                const char* realTimeChars =
-                    realTimeRefresh->ToElement()->Attribute(XML_VALUE.data());
-                if (realTimeChars != nullptr)
-                    {
-                    const auto realTimeStr = Wisteria::TextStream::CharStreamToUnicode(
-                        realTimeChars, std::strlen(realTimeChars));
-                    const wchar_t* convertedStr =
-                        filterHtml(realTimeStr.c_str(), realTimeStr.length(), true, false);
-                    if (convertedStr != nullptr)
-                        {
-                        UseRealTimeUpdate(convertedStr);
-                        }
-                    }
+                UseRealTimeUpdate(
+                    int_to_bool(realTimeRefresh->ToElement()->IntAttribute(XML_VALUE.data(), 1)));
                 }
             auto* appendedDocPath =
                 projectSettings->FirstChildElement(XML_APPENDED_DOC_PATH.data());
