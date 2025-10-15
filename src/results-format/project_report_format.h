@@ -14,7 +14,6 @@
 #ifndef PROJECT_REPORT_FORMAT_H
 #define PROJECT_REPORT_FORMAT_H
 
-#include "../Wisteria-Dataviz/src/import/html_encode.h"
 #include "../projects/base_project.h"
 
 /// @brief Class to format a project's information into reports.

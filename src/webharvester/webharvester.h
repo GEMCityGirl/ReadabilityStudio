@@ -19,23 +19,13 @@
 #include "../Wisteria-Dataviz/src/util/donttranslate.h"
 #include "../Wisteria-Dataviz/src/util/downloadfile.h"
 #include "../Wisteria-Dataviz/src/util/fileutil.h"
-#include "../Wisteria-Dataviz/src/util/textstream.h"
 #include <algorithm>
-#include <functional>
-#include <limits>
 #include <optional>
 #include <set>
 #include <string_view>
-#include <wx/dir.h>
-#include <wx/file.h>
 #include <wx/filename.h>
-#include <wx/filesys.h>
 #include <wx/progdlg.h>
-#include <wx/regex.h>
-#include <wx/stream.h>
-#include <wx/url.h>
 #include <wx/utils.h>
-#include <wx/wfstream.h>
 #include <wx/wx.h>
 
 /// @private
@@ -159,7 +149,7 @@ class WebHarvester
         RestrictToDomain,          /*!< Restrict harvesting to the base URL's domain.*/
         RestrictToSubDomain,       /*!< Restrict harvesting to the base URL's subdomain.*/
         RestrictToSpecificDomains, /*!< Restrict harvesting to a list of user-defined domains.*/
-        RestrictToExternalLinks,   /*!< Restrict harvesting to links outside of the base URL's
+        RestrictToExternalLinks,   /*!< Restrict harvesting to links outside the base URL's
                                         domain.*/
         RestrictToFolder           /*!< Restrict harvesting to links within the base URL's folder.*/
         };
@@ -201,7 +191,7 @@ class WebHarvester
         }
 
     /** @brief Reads the content of a webpage into a buffer.
-        @param[in,out] url The webpage (may be altered if redirected).
+        @param[in,out] url The webpage (might be altered if redirected).
         @param[out] webPageContent The content of the page.
         @param[out] contentType The MIME type (and possibly charset) of the page.
         @param[out] statusText Any possible information from the server
@@ -227,7 +217,7 @@ class WebHarvester
         }
 
     /** @brief Gets the content type of a webpage.
-        @param[in,out] url The webpage (may be altered if redirected).
+        @param[in,out] url The webpage (might be altered if redirected).
         @param[out] responseCode The response code when connecting to the page.
         @returns The MIME type (and possibly charset) of the page's content type.*/
     wxString GetContentType(wxString& url, int& responseCode);
@@ -237,7 +227,7 @@ class WebHarvester
     static wxString GetFileTypeFromContentType(const wxString& contentType);
 
     /** @returns @c true if a link is pointing to an HTML page.
-        @param[in,out] url The link to test (may be redirected).
+        @param[in,out] url The link to test (might be redirected).
         @param[out] contentType The MIME type read from the page.
         @param[out] responseCode The response code from the page.*/
     [[nodiscard]]
@@ -257,7 +247,7 @@ class WebHarvester
     /// @brief Adds a file type to harvest and download (based on extension).
     /// @param fileExtension The file extension to download.
     /// @note You can pass in the extension,
-    ///     or a full filepath and it will get the extension from that.
+    ///     or a full filepath, and it will get the extension from that.
     void AddAllowableFileType(const wxString& fileExtension)
         {
         if (fileExtension.find(L'.') == std::wstring::npos)
@@ -597,7 +587,7 @@ class WebHarvester
     /// @brief Shows the file names while crawling.
     /// @param show @c true to show the names; @c false to just show dots.
     /// @details By default, the names will be shown on the progress bar, which may cause the
-    ///     the dialog to constantly resize itself. Setting this to @c false will show a
+    ///     dialog to constantly resize itself. Setting this to @c false will show a
     ///     simpler "Downloading..." label that may be less jarring.
     void ShowFileNames(const bool show) { m_hideFileNamesWhileDownloading = !show; }
 
@@ -617,7 +607,7 @@ class WebHarvester
         }
 
     [[nodiscard]]
-    bool VerifyUrlDomainCriteria(const wxString& url);
+    bool VerifyUrlDomainCriteria(const wxString& url) const;
     /** @brief If @c url meets all the criteria, adds it to the list of links
             that we are gathering for the client.\n
             If downloading while crawling, will also download the file.
@@ -627,7 +617,7 @@ class WebHarvester
         @returns @c true if the provided URL will be included in the harvested results
             (and downloaded, if applicable).
         @warning File extension criteria must be handled by the caller because
-            if the harvester is include all HTML pages then it will need to determine
+            if the harvester is including all HTML pages then it will need to determine
             if an URL is HTML before passing it to this function.*/
     bool HarvestLink(wxString& url, const wxString& fileExtension);
     //----------------------------------
@@ -704,10 +694,11 @@ class WebHarvester
     // UI functionality
     wxProgressDialog* m_progressDlg{ nullptr };
 
-    inline static const std::wstring_view HTML_CONTENT_TYPE{ _DT(L"text/html") };
-    inline static const std::wstring_view JAVASCRIPT_CONTENT_TYPE{ _DT(
+    inline constexpr static std::wstring_view HTML_CONTENT_TYPE{ _DT(L"text/html") };
+    inline constexpr static std::wstring_view JAVASCRIPT_CONTENT_TYPE{ _DT(
         L"application/x-javascript") };
-    inline static const std::wstring_view VBSCRIPT_CONTENT_TYPE{ _DT(L"application/x-vbscript") };
+    inline constexpr static std::wstring_view VBSCRIPT_CONTENT_TYPE{ _DT(
+        L"application/x-vbscript") };
     };
 
 #endif // WEBHARVESTER_H

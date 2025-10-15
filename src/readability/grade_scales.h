@@ -104,7 +104,7 @@ namespace readability
             - Key stage 1: Ages 5-7 (Years 1-2)
             - Key stage 2: Ages 7-11 (Years 3-6)
             - Key stage 3: Ages 11-14 (Years 7-9)
-            - Key stage 4: Ages 14-16 (Years 10-11
+            - Key stage 4: Ages 14-16 (Years 10-11)
             - Sixth Form (2 years)
             - Standard college after that.*/
         key_stages_england_wales

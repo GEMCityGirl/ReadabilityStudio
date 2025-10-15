@@ -17,21 +17,14 @@
 #include <wx/aui/aui.h>
 #include <wx/colordlg.h>
 #include <wx/docmdi.h>
-#include <wx/fdrepdlg.h>
 #include <wx/filename.h>
 #include <wx/html/htmlcell.h>
 #include <wx/html/htmlwin.h>
 #include <wx/mimetype.h>
-#include <wx/numdlg.h>
 #include <wx/ribbon/bar.h>
 #include <wx/ribbon/buttonbar.h>
-#include <wx/ribbon/gallery.h>
-#include <wx/ribbon/toolbar.h>
-#include <wx/richmsgdlg.h>
 #include <wx/splitter.h>
 #include <wx/string.h>
-#include <wx/taskbarbutton.h>
-#include <wx/toolbar.h>
 #include <wx/wx.h>
 
 class BaseProjectView;
@@ -218,7 +211,7 @@ class ProjectDocChildFrame : public wxDocChildFrame
 
     void OnIgnoreBlankLines([[maybe_unused]] wxRibbonButtonBarEvent& event);
 
-    void OnIgnoreIdenting([[maybe_unused]] wxRibbonButtonBarEvent& event);
+    void OnIgnoreIndenting([[maybe_unused]] wxRibbonButtonBarEvent& event);
 
     void OnStrictCapitalization([[maybe_unused]] wxRibbonButtonBarEvent& event);
 

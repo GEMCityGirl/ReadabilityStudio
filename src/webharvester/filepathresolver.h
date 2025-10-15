@@ -15,18 +15,7 @@
 #define FILEPATH_RESOLVER
 
 #include "../Wisteria-Dataviz/src/util/fileutil.h"
-#include "webharvester.h"
-#include <memory>
-#include <string>
-#include <wx/arrstr.h>
-#include <wx/dir.h>
-#include <wx/file.h>
-#include <wx/filefn.h>
-#include <wx/filename.h>
-#include <wx/progdlg.h>
-#include <wx/regex.h>
 #include <wx/string.h>
-#include <wx/tokenzr.h>
 #include <wx/wx.h>
 
 /** @brief Class to determine which sort of filepath a string may resemble.

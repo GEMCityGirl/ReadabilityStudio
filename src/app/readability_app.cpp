@@ -13,12 +13,16 @@
 
 #include "readability_app.h"
 #include "../Wisteria-Dataviz/src/CRCpp/inc/CRC.h"
+#include "../Wisteria-Dataviz/src/graphs/danielsonbryan2plot.h"
+#include "../Wisteria-Dataviz/src/graphs/lixgauge.h"
+#include "../Wisteria-Dataviz/src/graphs/lixgaugegerman.h"
 #include "../Wisteria-Dataviz/src/ui/dialogs/filelistdlg.h"
 #include "../Wisteria-Dataviz/src/ui/dialogs/getdirdlg.h"
 #include "../Wisteria-Dataviz/src/ui/dialogs/graphdlg.h"
 #include "../Wisteria-Dataviz/src/ui/dialogs/radioboxdlg.h"
 #include "../Wisteria-Dataviz/src/ui/ribbon/artmetro.h"
 #include "../document-helpers/chapter_split.h"
+#include "../graphs/schwartzgraph.h"
 #include "../projects/batch_project_doc.h"
 #include "../projects/batch_project_view.h"
 #include "../projects/standard_project_doc.h"
@@ -29,6 +33,10 @@
 #include "../ui/dialogs/project_wizard_dlg.h"
 #include "../ui/dialogs/test_bundle_dlg.h"
 #include "../ui/dialogs/tools_options_dlg.h"
+#include <algorithm>
+#include <utility>
+#include <wx/dir.h>
+#include <wx/richmsgdlg.h>
 
 // ===========================================================================
 // implementation
@@ -327,7 +335,7 @@ bool ReadabilityApp::OnInit()
     // if English, then just don't bother loading any translations
     if (m_preInitOptions.m_uiLanguage != UiLanguage::English)
         {
-        wxTranslations* const translations{ new wxTranslations{} };
+        auto* const translations{ new wxTranslations{} };
         if (m_preInitOptions.m_uiLanguage == UiLanguage::Spanish)
             {
             translations->SetLanguage(wxLANGUAGE_SPANISH);
@@ -635,9 +643,7 @@ bool ReadabilityApp::OnInit()
                           _DT(L"rsbp"), _DT(L"rsbp Doc"), _DT(L"View"),
                           wxCLASSINFO(BatchProjectDoc), wxCLASSINFO(BatchProjectView));
 
-    wxArrayString extensions;
-    extensions.Add(GetAppFileExtension());
-    extensions.Add(_DT(L"rsbp"));
+    const wxArrayString extensions{ GetAppFileExtension(), wxString{ _DT(L"rsbp") } };
     GetMainFrame()->SetDefaultFileExtensions(extensions);
 
     // printer options
@@ -908,11 +914,11 @@ bool ReadabilityApp::LoadWordLists(const wxString& AppSettingFolderPath)
     // read in the Dolch words
     const std::wstring dolchFileText = cat.ReadTextFile(_DT(L"word-lists/dolch.txt"));
 
-    BaseProject::english_wordy_phrases.load_phrases(englishWordyPhraseFileText.c_str(), false,
+    BaseProject::m_englishWordyPhrases.load_phrases(englishWordyPhraseFileText.c_str(), false,
                                                     false);
-    BaseProject::spanish_wordy_phrases.load_phrases(spanishWordyPhraseFileText.c_str(), false,
+    BaseProject::m_spanishWordyPhrases.load_phrases(spanishWordyPhraseFileText.c_str(), false,
                                                     false);
-    BaseProject::german_wordy_phrases.load_phrases(germanWordyPhraseFileText.c_str(), false, false);
+    BaseProject::m_germanWordyPhrases.load_phrases(germanWordyPhraseFileText.c_str(), false, false);
 
     BaseProject::dale_chall_replacement_list.load_words(dcReplacementFileText.c_str(), false);
     BaseProject::spache_replacement_list.load_words(spacheReplacementFileText.c_str(), false);
@@ -921,7 +927,7 @@ bool ReadabilityApp::LoadWordLists(const wxString& AppSettingFolderPath)
     BaseProject::difficult_word_replacement_list.load_words(
         difficultWordReplacementFileText.c_str(), false);
 
-    BaseProject::known_proper_nouns.load_words(properNounsFileText.c_str(), false, false);
+    BaseProject::m_knownProperNouns.load_words(properNounsFileText.c_str(), false, false);
     BaseProject::known_personal_nouns.load_words(personalNounsFileText.c_str(), false, false);
     BaseProject::english_stoplist.load_words(englishStopList.c_str(), false, false);
     BaseProject::spanish_stoplist.load_words(spanishStopList.c_str(), false, false);
@@ -985,9 +991,9 @@ bool ReadabilityApp::LoadWordLists(const wxString& AppSettingFolderPath)
         }
 
     // clang-format off
-    BaseProject::copyright_notice_phrases.load_phrases(
+    BaseProject::m_copyrightNoticePhrases.load_phrases(
         copyRightNoticePhraseFileText.c_str(), false, false);
-    BaseProject::citation_phrases.load_phrases(
+    BaseProject::m_citationPhrases.load_phrases(
         citationPhraseFileText.c_str(), false, false);
     grammar::is_non_proper_word::get_word_list().load_words(
         properNounStopList.c_str(), true, false);
@@ -1081,7 +1087,7 @@ bool ReadabilityApp::VerifyWordLists()
         }
 
     // Proper nouns list
-    if (!BaseProject::known_proper_nouns.is_sorted())
+    if (!BaseProject::m_knownProperNouns.is_sorted())
         {
         wxLogError(_DT(L"Proper nouns are not sorted."));
         retVal = false;
@@ -1143,7 +1149,7 @@ bool ReadabilityApp::VerifyWordLists()
         }
 
     // the phrases
-    if (!BaseProject::english_wordy_phrases.is_sorted())
+    if (!BaseProject::m_englishWordyPhrases.is_sorted())
         {
         wxLogError(_DT(L"English phrases are not sorted."));
         retVal = false;
@@ -1153,7 +1159,7 @@ bool ReadabilityApp::VerifyWordLists()
         wxLogMessage(_DT(L"English phrases are sorted properly."));
         }
 
-    if (!BaseProject::spanish_wordy_phrases.is_sorted())
+    if (!BaseProject::m_spanishWordyPhrases.is_sorted())
         {
         wxLogError(_DT(L"Spanish phrases are not sorted."));
         retVal = false;
@@ -1163,7 +1169,7 @@ bool ReadabilityApp::VerifyWordLists()
         wxLogMessage(_DT(L"Spanish phrases are sorted properly."));
         }
 
-    if (!BaseProject::german_wordy_phrases.is_sorted())
+    if (!BaseProject::m_germanWordyPhrases.is_sorted())
         {
         wxLogError(_DT(L"German phrases are not sorted."));
         retVal = false;
@@ -1173,7 +1179,7 @@ bool ReadabilityApp::VerifyWordLists()
         wxLogMessage(_DT(L"German phrases are sorted properly."));
         }
 
-    if (!BaseProject::copyright_notice_phrases.is_sorted())
+    if (!BaseProject::m_copyrightNoticePhrases.is_sorted())
         {
         wxLogError(_DT(L"Copyright notices are not sorted."));
         retVal = false;
@@ -1183,7 +1189,7 @@ bool ReadabilityApp::VerifyWordLists()
         wxLogMessage(_DT(L"Copyright notices are sorted properly."));
         }
 
-    if (!BaseProject::citation_phrases.is_sorted())
+    if (!BaseProject::m_citationPhrases.is_sorted())
         {
         wxLogError(_DT(L"Citations are not sorted."));
         retVal = false;
@@ -1365,7 +1371,7 @@ void ReadabilityApp::EditCustomTest(CustomReadabilityTest& selectedTest)
     dlg.SetAdultPublishingSelected(selectedTest.has_industry_classification(
         readability::industry_classification::adult_publishing_industry));
     dlg.SetSecondaryLanguageSelected(selectedTest.has_industry_classification(
-        readability::industry_classification::sedondary_language_industry));
+        readability::industry_classification::secondary_language_industry));
     dlg.SetBroadcastingSelected(selectedTest.has_industry_classification(
         readability::industry_classification::broadcasting_industry));
     dlg.SetChildrensHealthCareTestSelected(selectedTest.has_industry_classification(
@@ -1429,7 +1435,7 @@ void ReadabilityApp::EditCustomTest(CustomReadabilityTest& selectedTest)
             readability::industry_classification::adult_publishing_industry,
             dlg.IsAdultPublishingSelected());
         selectedTest.add_industry_classification(
-            readability::industry_classification::sedondary_language_industry,
+            readability::industry_classification::secondary_language_industry,
             dlg.IsSecondaryLanguageSelected());
         selectedTest.add_industry_classification(
             readability::industry_classification::broadcasting_industry,
@@ -2962,7 +2968,7 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
     }
 
 //---------------------------------------------------
-void ReadabilityApp::UpdateRibbonTheme(wxRibbonBar* ribbon)
+void ReadabilityApp::UpdateRibbonTheme(const wxRibbonBar* ribbon)
     {
     wxASSERT_MSG(ribbon != nullptr, L"Attempting to theme a null ribbon!");
     if (ribbon != nullptr)
@@ -3005,14 +3011,15 @@ void ReadabilityApp::UpdateRibbonTheme() { UpdateRibbonTheme(GetMainFrameEx()->G
 //---------------------------------------------------
 void ReadabilityApp::RemoveAllCustomTestBundles()
     {
-    std::for_each(BaseProject::m_testBundles.cbegin(), BaseProject::m_testBundles.cend(),
-                  [this](const TestBundle& bundle)
-                  {
-                      if (!bundle.IsLocked())
+    std::ranges::for_each(BaseProject::m_testBundles,
+                          [this](const TestBundle& bundle)
                           {
-                          GetMainFrameEx()->RemoveTestBundleFromMenus(bundle.GetName().c_str());
-                          }
-                  });
+                              if (!bundle.IsLocked())
+                                  {
+                                  GetMainFrameEx()->RemoveTestBundleFromMenus(
+                                      bundle.GetName().c_str());
+                                  }
+                          });
 
     for (auto bundle = BaseProject::m_testBundles.begin();
          bundle != BaseProject::m_testBundles.end();
@@ -3344,7 +3351,7 @@ void MainFrame::OnTestsOverview([[maybe_unused]] wxRibbonButtonBarEvent& event)
     }
 
 //-------------------------------------------------------
-void MainFrame::OnBlankGraph(wxCommandEvent& event)
+void MainFrame::OnBlankGraph(const wxCommandEvent& event)
     {
     BaseProject project;
     if (event.GetId() == XRCID("ID_BLANK_FRASE_GRAPH"))
@@ -3843,7 +3850,7 @@ void ReadabilityApp::UpdateDocumentThemes()
     const auto& docs = GetDocManager()->GetDocuments();
     for (size_t i = 0; i < docs.GetCount(); ++i)
         {
-        BaseProjectDoc* doc = dynamic_cast<BaseProjectDoc*>(docs.Item(i)->GetData());
+        const auto* doc = dynamic_cast<BaseProjectDoc*>(docs.Item(i)->GetData());
         if (doc != nullptr)
             {
             auto* view = dynamic_cast<BaseProjectView*>(doc->GetFirstView());
@@ -3862,7 +3869,7 @@ void ReadabilityApp::UpdateDocumentThemes()
     }
 
 //---------------------------------------------------
-void MainFrame::OnStartPageClick(wxCommandEvent& event)
+void MainFrame::OnStartPageClick(const wxCommandEvent& event)
     {
     if (GetStartPage()->IsCustomButtonId(event.GetId()))
         {
@@ -4005,7 +4012,7 @@ void MainFrame::OnEditDictionarySettings([[maybe_unused]] wxCommandEvent& event)
     }
 
 //-------------------------------------------------------
-void MainFrame::OnOpenExample(wxCommandEvent& event)
+void MainFrame::OnOpenExample(const wxCommandEvent& event)
     {
     const auto pos = GetExamplesMenuIds().find(event.GetId());
     if (pos == GetExamplesMenuIds().cend())
@@ -4087,7 +4094,7 @@ void MainFrame::OnOpenExample(wxCommandEvent& event)
     }
 
 //-------------------------------------------------------
-void MainFrame::OnWordListByPage(wxCommandEvent& event)
+void MainFrame::OnWordListByPage(const wxCommandEvent& event)
     {
     WordListDlg wordListsDlg(wxGetApp().GetParentingWindow());
     // New Dale-Chall Words
@@ -4430,7 +4437,7 @@ void MainFrame::FillMenuWithTestBundles(wxMenu* testBundleMenu, const BaseProjec
     if (testBundleMenu != nullptr)
         {
         // clear the menu
-        while (testBundleMenu->GetMenuItemCount())
+        while (testBundleMenu->GetMenuItemCount() != 0U)
             {
             testBundleMenu->Destroy(testBundleMenu->FindItemByPosition(0));
             }
@@ -4666,7 +4673,7 @@ void MainFrame::OnRemoveCustomTest([[maybe_unused]] wxCommandEvent& event)
         }
     const auto selectedTestIndex = dlg.GetSelection();
     if (selectedTestIndex < 0 ||
-        selectedTestIndex >= static_cast<int>(BaseProject::m_custom_word_tests.size()))
+        std::cmp_greater_equal(selectedTestIndex, BaseProject::m_custom_word_tests.size()))
         {
         return;
         }
@@ -4758,7 +4765,7 @@ void MainFrame::OnRemoveCustomTestBundle([[maybe_unused]] wxCommandEvent& event)
     }
 
 //-------------------------------------------------------
-void MainFrame::OnAddCustomTest(wxCommandEvent& event)
+void MainFrame::OnAddCustomTest(const wxCommandEvent& event)
     {
     // make sure there aren't any projects getting updated before we start changing these tests
     const auto& docs = wxGetApp().GetDocManager()->GetDocuments();
@@ -4952,7 +4959,7 @@ void MainFrame::OnEditCustomTest([[maybe_unused]] wxCommandEvent& event)
         }
     const auto selectedTestIndex = selDlg.GetSelection();
     if (selectedTestIndex < 0 ||
-        selectedTestIndex >= static_cast<int>(BaseProject::m_custom_word_tests.size()))
+        std::cmp_greater_equal(selectedTestIndex, BaseProject::m_custom_word_tests.size()))
         {
         return;
         }

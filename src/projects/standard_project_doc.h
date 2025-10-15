@@ -31,7 +31,7 @@ class ProjectDoc final : public BaseProjectDoc
     ProjectDoc& operator=(const ProjectDoc&) = delete;
 
     /// @private
-    ~ProjectDoc() { DeleteExcludedPhrases(); }
+    ~ProjectDoc() override { DeleteExcludedPhrases(); }
 
     /// @private
     bool OnOpenDocument(const wxString& filename) final;
@@ -263,8 +263,9 @@ class ProjectDoc final : public BaseProjectDoc
                            [[maybe_unused]] const HighlighterColors& highlighterColors,
                            const wxFont& textViewFont);
 
-    void SetFormattedTextAndRestoreInsertionPoint(Wisteria::UI::FormattedTextCtrl* textWindow,
-                                                  const wchar_t* formattedText)
+    static void
+    SetFormattedTextAndRestoreInsertionPoint(Wisteria::UI::FormattedTextCtrl* textWindow,
+                                             const wchar_t* formattedText)
         {
         const auto cursorPos = textWindow->GetInsertionPoint();
         textWindow->SetFormattedText(formattedText);
@@ -333,15 +334,15 @@ class ProjectDoc final : public BaseProjectDoc
     constexpr static int REALTIME_UPDATE_INTERVAL{ 5000 }; // in milliseconds
     wxTimer m_realTimeTimer;
 
-    wxString GetSentenceWordCountsColumnName() const { return _DT(L"SENTENCE_WORD_COUNTS"); }
+    static wxString GetSentenceWordCountsColumnName() { return _DT(L"SENTENCE_WORD_COUNTS"); }
 
-    wxString GetSentenceIndicesColumnName() const { return _DT(L"SENTENCE_INDICES"); }
+    static wxString GetSentenceIndicesColumnName() { return _DT(L"SENTENCE_INDICES"); }
 
-    wxString GetSyllableCountsColumnName() const { return _DT(L"SYLLABLE_COUNTS"); }
+    static wxString GetSyllableCountsColumnName() { return _DT(L"SYLLABLE_COUNTS"); }
 
-    wxString GetWordTypeGroupColumnName() const { return _DT(L"WORD_TYPE"); }
+    static wxString GetWordTypeGroupColumnName() { return _DT(L"WORD_TYPE"); }
 
-    wxString GetGroupColumnName() const { return _DT(L"GROUP"); }
+    static wxString GetGroupColumnName() { return _DT(L"GROUP"); }
 
     std::shared_ptr<Wisteria::Data::Dataset> m_sentenceWordLengths{
         std::make_shared<Wisteria::Data::Dataset>()

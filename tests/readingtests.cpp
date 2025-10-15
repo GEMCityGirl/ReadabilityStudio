@@ -317,7 +317,7 @@ TEST_CASE("Base test tests", "[base-test][readability-tests]")
         CHECK(ts.has_industry_classification(readability::industry_classification::childrens_healthcare_industry) == false);
         CHECK(ts.has_industry_classification(readability::industry_classification::adult_healthcare_industry) == false);
         CHECK(ts.has_industry_classification(readability::industry_classification::military_government_industry) == false);
-        CHECK(ts.has_industry_classification(readability::industry_classification::sedondary_language_industry) == false);
+        CHECK(ts.has_industry_classification(readability::industry_classification::secondary_language_industry) == false);
 
         ts.add_industry_classification(readability::industry_classification::childrens_publishing_industry, true);
         CHECK(ts.has_industry_classification(readability::industry_classification::childrens_publishing_industry));
@@ -325,7 +325,7 @@ TEST_CASE("Base test tests", "[base-test][readability-tests]")
         CHECK(ts.has_industry_classification(readability::industry_classification::childrens_healthcare_industry) == false);
         CHECK(ts.has_industry_classification(readability::industry_classification::adult_healthcare_industry) == false);
         CHECK(ts.has_industry_classification(readability::industry_classification::military_government_industry) == false);
-        CHECK(ts.has_industry_classification(readability::industry_classification::sedondary_language_industry) == false);
+        CHECK(ts.has_industry_classification(readability::industry_classification::secondary_language_industry) == false);
 
         ts.add_industry_classification(readability::industry_classification::adult_publishing_industry, true);
         CHECK(ts.has_industry_classification(readability::industry_classification::childrens_publishing_industry));
@@ -333,7 +333,7 @@ TEST_CASE("Base test tests", "[base-test][readability-tests]")
         CHECK(ts.has_industry_classification(readability::industry_classification::childrens_healthcare_industry) == false);
         CHECK(ts.has_industry_classification(readability::industry_classification::adult_healthcare_industry) == false);
         CHECK(ts.has_industry_classification(readability::industry_classification::military_government_industry) == false);
-        CHECK(ts.has_industry_classification(readability::industry_classification::sedondary_language_industry) == false);
+        CHECK(ts.has_industry_classification(readability::industry_classification::secondary_language_industry) == false);
 
         ts.add_industry_classification(readability::industry_classification::childrens_healthcare_industry, true);
         CHECK(ts.has_industry_classification(readability::industry_classification::childrens_publishing_industry));
@@ -341,7 +341,7 @@ TEST_CASE("Base test tests", "[base-test][readability-tests]")
         CHECK(ts.has_industry_classification(readability::industry_classification::childrens_healthcare_industry));
         CHECK(ts.has_industry_classification(readability::industry_classification::adult_healthcare_industry) == false);
         CHECK(ts.has_industry_classification(readability::industry_classification::military_government_industry) == false);
-        CHECK(ts.has_industry_classification(readability::industry_classification::sedondary_language_industry) == false);
+        CHECK(ts.has_industry_classification(readability::industry_classification::secondary_language_industry) == false);
 
         ts.add_industry_classification(readability::industry_classification::adult_healthcare_industry, true);
         CHECK(ts.has_industry_classification(readability::industry_classification::childrens_publishing_industry));
@@ -349,7 +349,7 @@ TEST_CASE("Base test tests", "[base-test][readability-tests]")
         CHECK(ts.has_industry_classification(readability::industry_classification::childrens_healthcare_industry));
         CHECK(ts.has_industry_classification(readability::industry_classification::adult_healthcare_industry));
         CHECK(ts.has_industry_classification(readability::industry_classification::military_government_industry) == false);
-        CHECK(ts.has_industry_classification(readability::industry_classification::sedondary_language_industry) == false);
+        CHECK(ts.has_industry_classification(readability::industry_classification::secondary_language_industry) == false);
 
         ts.add_industry_classification(readability::industry_classification::military_government_industry, true);
         CHECK(ts.has_industry_classification(readability::industry_classification::childrens_publishing_industry));
@@ -357,18 +357,18 @@ TEST_CASE("Base test tests", "[base-test][readability-tests]")
         CHECK(ts.has_industry_classification(readability::industry_classification::childrens_healthcare_industry));
         CHECK(ts.has_industry_classification(readability::industry_classification::adult_healthcare_industry));
         CHECK(ts.has_industry_classification(readability::industry_classification::military_government_industry));
-        CHECK(ts.has_industry_classification(readability::industry_classification::sedondary_language_industry) == false);
+        CHECK(ts.has_industry_classification(readability::industry_classification::secondary_language_industry) == false);
 
-        ts.add_industry_classification(readability::industry_classification::sedondary_language_industry, true);
+        ts.add_industry_classification(readability::industry_classification::secondary_language_industry, true);
         CHECK(ts.has_industry_classification(readability::industry_classification::childrens_publishing_industry));
         CHECK(ts.has_industry_classification(readability::industry_classification::adult_publishing_industry));
         CHECK(ts.has_industry_classification(readability::industry_classification::childrens_healthcare_industry));
         CHECK(ts.has_industry_classification(readability::industry_classification::adult_healthcare_industry));
         CHECK(ts.has_industry_classification(readability::industry_classification::military_government_industry));
-        CHECK(ts.has_industry_classification(readability::industry_classification::sedondary_language_industry));
+        CHECK(ts.has_industry_classification(readability::industry_classification::secondary_language_industry));
 
-        ts.add_industry_classification(readability::industry_classification::sedondary_language_industry, false);
-        CHECK(ts.has_industry_classification(readability::industry_classification::sedondary_language_industry) == false);
+        ts.add_industry_classification(readability::industry_classification::secondary_language_industry, false);
+        CHECK(ts.has_industry_classification(readability::industry_classification::secondary_language_industry) == false);
         }
     }
 

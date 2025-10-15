@@ -1830,7 +1830,7 @@ class ReadabilityAppOptions
         return m_histogramBarColor;
         }
 
-    void SetHistogramBarColor(const wxColour color)
+    void SetHistogramBarColor(const wxColour& color)
         {
         if (color.IsOk())
             {
@@ -1864,7 +1864,7 @@ class ReadabilityAppOptions
         return m_barChartBarColor;
         }
 
-    void SetBarChartBarColor(const wxColour color)
+    void SetBarChartBarColor(const wxColour& color)
         {
         if (color.IsOk())
             {
@@ -2481,8 +2481,8 @@ class ReadabilityAppOptions
 
     void CopyCustomColorsToColorData(wxColourData& colorData)
         {
-        GetCustomColors().resize(m_maxCustomColors);
-        for (size_t i = 0; i < m_maxCustomColors; ++i)
+        GetCustomColors().resize(MAX_CUSTOM_COLORS);
+        for (size_t i = 0; i < MAX_CUSTOM_COLORS; ++i)
             {
             colorData.SetCustomColour(i, GetCustomColors().at(i));
             }
@@ -2491,7 +2491,7 @@ class ReadabilityAppOptions
     void CopyColorDataToCustomColors(const wxColourData& colorData)
         {
         GetCustomColors().clear();
-        for (size_t i = 0; i < m_maxCustomColors; ++i)
+        for (size_t i = 0; i < MAX_CUSTOM_COLORS; ++i)
             {
             GetCustomColors().push_back(colorData.GetCustomColour(i));
             }
@@ -2804,7 +2804,7 @@ class ReadabilityAppOptions
             std::vector<wxBitmapBundle>{ wxBitmapBundle{} })
     };
 
-    constexpr static int m_maxCustomColors{ 16 };
+    constexpr static int MAX_CUSTOM_COLORS{ 16 };
 
   public:
     inline constexpr static std::string_view XML_EDITOR{ _DT("editor") };

@@ -15,10 +15,7 @@
 #define BASE_PROJECT_DOC_H
 
 #include "../Wisteria-Dataviz/src/ui/controls/formattedtextctrl.h"
-#include "../graphs/frygraph.h"
 #include "../graphs/raygorgraph.h"
-#include "../graphs/schwartzgraph.h"
-#include "../results-format/readability_messages.h"
 #include "../ui/controls/explanation_listctrl.h"
 #include "base_project.h"
 
@@ -1118,10 +1115,8 @@ class BaseProjectDoc : public BaseProject, public wxDocument
                          wxOK | wxICON_EXCLAMATION);
             return false;
             }
-        else
-            {
-            return true;
-            }
+
+        return true;
         }
 
     /// @returns The path part of the project file location.

@@ -12,6 +12,7 @@
  ********************************************************************************/
 
 #include "project_wizard_dlg.h"
+#include <wx/dir.h>
 
 wxDECLARE_APP(ReadabilityApp);
 
@@ -24,8 +25,8 @@ class Banner : public wxWindow
         : wxWindow(parent, id, wxDefaultPosition, wxSize{ 300, 50 }, wxFULL_REPAINT_ON_RESIZE),
           m_logo(logo), m_label(label)
         {
-        SetMinSize(FromDIP(wxSize{ 300, 50 }));
-        SetBackgroundStyle(wxBG_STYLE_CUSTOM);
+        wxWindow::SetMinSize(FromDIP(wxSize{ 300, 50 }));
+        wxWindow::SetBackgroundStyle(wxBG_STYLE_CUSTOM);
         Bind(wxEVT_PAINT, &Banner::OnPaint, this);
         }
 
@@ -82,7 +83,7 @@ ProjectWizardDlg::ProjectWizardDlg(wxWindow* parent, const ProjectType projectTy
     m_selectedLang(static_cast<int>(wxGetApp().GetAppOptions()->GetProjectLanguage())),
     m_fileListTruncationMode(fileTruncMode)
     {
-    SetExtraStyle(GetExtraStyle() | wxWS_EX_VALIDATE_RECURSIVELY | wxWS_EX_CONTEXTHELP);
+    wxWindow::SetExtraStyle(GetExtraStyle() | wxWS_EX_VALIDATE_RECURSIVELY | wxWS_EX_CONTEXTHELP);
     wxDialog::Create(parent, id, caption, pos, size, style);
     // determine whether a file path or raw text was passed in
     if (path.length())

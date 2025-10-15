@@ -15,25 +15,10 @@
 #define BASE_PROJECT_H
 
 #include "../Wisteria-Dataviz/src/data/dataset.h"
-#include "../Wisteria-Dataviz/src/graphs/barchart.h"
-#include "../Wisteria-Dataviz/src/graphs/crawfordgraph.h"
-#include "../Wisteria-Dataviz/src/graphs/danielsonbryan2plot.h"
-#include "../Wisteria-Dataviz/src/graphs/fleschchart.h"
-#include "../Wisteria-Dataviz/src/graphs/histogram.h"
-#include "../Wisteria-Dataviz/src/graphs/lixgauge.h"
-#include "../Wisteria-Dataviz/src/graphs/lixgaugegerman.h"
 #include "../Wisteria-Dataviz/src/import/doc_extract_text.h"
-#include "../Wisteria-Dataviz/src/import/docx_extract_text.h"
-#include "../Wisteria-Dataviz/src/import/hhc_hhk_extract_text.h"
-#include "../Wisteria-Dataviz/src/import/html_extract_text.h"
-#include "../Wisteria-Dataviz/src/import/markdown_extract_text.h"
-#include "../Wisteria-Dataviz/src/import/odt_odp_extract_text.h"
-#include "../Wisteria-Dataviz/src/import/postscript_extract_text.h"
 #include "../Wisteria-Dataviz/src/import/rtf_extract_text.h"
-#include "../Wisteria-Dataviz/src/import/text_matrix.h"
 #include "../Wisteria-Dataviz/src/import/xlsx_extract_text.h"
 #include "../Wisteria-Dataviz/src/math/mathematics.h"
-#include "../Wisteria-Dataviz/src/math/statistics.h"
 #include "../Wisteria-Dataviz/src/ui/controls/listctrlex.h"
 #include "../Wisteria-Dataviz/src/util/formulaformat.h"
 #include "../Wisteria-Dataviz/src/util/frequencymap.h"
@@ -43,15 +28,12 @@
 #include "../Wisteria-Dataviz/src/util/zipcatalog.h"
 #include "../app/readability_app_options.h"
 #include "../graphs/frasegraph.h"
-#include "../graphs/schwartzgraph.h"
 #include "../indexing/german_syllabize.h"
 #include "../indexing/phrase.h"
 #include "../indexing/spanish_syllabize.h"
 #include "../indexing/word_collection.h"
 #include "../readability/custom_readability_test.h"
 #include "../readability/dolch.h"
-#include "../readability/english_readability.h"
-#include "../readability/german_readability.h"
 #include "../readability/readability_project_test.h"
 #include "../readability/readability_test.h"
 #include "../readability/spanish_readability.h"
@@ -70,20 +52,12 @@
 #include <set>
 #include <unordered_map>
 #include <vector>
-#include <wx/busyinfo.h>
 #include <wx/docview.h>
 #include <wx/ffile.h>
 #include <wx/file.h>
-#include <wx/mstream.h>
-#include <wx/richmsgdlg.h>
-#include <wx/sstream.h>
 #include <wx/string.h>
-#include <wx/txtstrm.h>
-#include <wx/valgen.h>
-#include <wx/wfstream.h>
 #include <wx/wizard.h>
 #include <wx/wx.h>
-#include <wx/zipstrm.h>
 #include <wx/zstream.h>
 
 /** Using a set would be ideal so that we would be forced only have unique custom tests in here
@@ -2259,12 +2233,12 @@ class BaseProject : public ProjectRefresh
                                                                                    english_stoplist;
         }
 
-    static grammar::phrase_collection english_wordy_phrases;
-    static grammar::phrase_collection spanish_wordy_phrases;
-    static grammar::phrase_collection german_wordy_phrases;
-    static grammar::phrase_collection copyright_notice_phrases;
-    static grammar::phrase_collection citation_phrases;
-    static word_list known_proper_nouns;
+    static grammar::phrase_collection m_englishWordyPhrases;
+    static grammar::phrase_collection m_spanishWordyPhrases;
+    static grammar::phrase_collection m_germanWordyPhrases;
+    static grammar::phrase_collection m_copyrightNoticePhrases;
+    static grammar::phrase_collection m_citationPhrases;
+    static word_list m_knownProperNouns;
     static word_list known_personal_nouns;
     static word_list known_english_spellings;
     static word_list known_programming_spellings;

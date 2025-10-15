@@ -18,18 +18,12 @@
 #include "batch_project_doc.h"
 #include "standard_project_doc.h"
 #include "standard_project_view.h"
-#include <wx/choicdlg.h>
 
 wxDECLARE_APP(ReadabilityApp);
 
 wxIMPLEMENT_DYNAMIC_CLASS(BaseProjectView, wxView)
 
     IdRange BaseProjectView::m_customTestSidebarIdRange(SIDEBAR_CUSTOM_TESTS_START_ID, 1000);
-
-using namespace Wisteria;
-using namespace Wisteria::Graphs;
-using namespace Wisteria::GraphItems;
-using namespace Wisteria::UI;
 
 //-------------------------------------------------------
 ProjectDocChildFrame* BaseProjectView::CreateChildFrame(wxDocument* doc, wxView* view)
@@ -39,12 +33,11 @@ ProjectDocChildFrame* BaseProjectView::CreateChildFrame(wxDocument* doc, wxView*
                             std::max(wxGetApp().GetMainFrame()->GetClientSize().GetHeight(),
                                      wxGetApp().GetMainFrame()->FromDIP(600)));
 
-    wxFileName fn(doc->GetFilename());
-    wxString title =
-        fn.GetName().length() ? fn.GetName() : wxFileName::StripExtension(doc->GetTitle());
-    ProjectDocChildFrame* subframe =
-        new ProjectDocChildFrame(doc, view, wxGetApp().GetMainFrame(), wxID_ANY, title,
-                                 wxDefaultPosition, windowSize, wxDEFAULT_FRAME_STYLE);
+    const wxFileName fn(doc->GetFilename());
+    const wxString title =
+        !fn.GetName().empty() ? fn.GetName() : wxFileName::StripExtension(doc->GetTitle());
+    auto* subframe = new ProjectDocChildFrame(doc, view, wxGetApp().GetMainFrame(), wxID_ANY, title,
+                                              wxDefaultPosition, windowSize, wxDEFAULT_FRAME_STYLE);
     subframe->Show(false);
     if (wxGetApp().GetMainFrame()->IsMaximized())
         {
@@ -69,8 +62,8 @@ ProjectDocChildFrame* BaseProjectView::CreateChildFrame(wxDocument* doc, wxView*
     subframe->m_copyMenu.Append(XRCID("ID_COPY_ALL"), _(L"Copy All"));
 
     // bar chart sorting menu
-    wxMenuItem* item = new wxMenuItem(&subframe->m_graphSortMenu, XRCID("ID_SORT_ASCENDING"),
-                                      _(L"Sort Ascending"));
+    auto* item = new wxMenuItem(&subframe->m_graphSortMenu, XRCID("ID_SORT_ASCENDING"),
+                                _(L"Sort Ascending"));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-sort-ascending.svg"));
     subframe->m_graphSortMenu.Append(item);
 
@@ -81,7 +74,7 @@ ProjectDocChildFrame* BaseProjectView::CreateChildFrame(wxDocument* doc, wxView*
 
     // graph background menu
     // color submenu
-    auto graphBackgroundColorSubMenu = new wxMenu{};
+    auto* graphBackgroundColorSubMenu{ new wxMenu{} };
     item =
         new wxMenuItem(graphBackgroundColorSubMenu, XRCID("ID_EDIT_GRAPH_BKCOLOR"), _(L"Color..."));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/color-wheel.svg"));
@@ -97,7 +90,7 @@ ProjectDocChildFrame* BaseProjectView::CreateChildFrame(wxDocument* doc, wxView*
     subframe->m_graphBackgroundMenu.AppendSeparator();
 
     // plot color submenu
-    auto plotColorSubMenu = new wxMenu{};
+    auto* plotColorSubMenu{ new wxMenu{} };
     item = new wxMenuItem(plotColorSubMenu, XRCID("ID_EDIT_PLOT_BKCOLOR"), _(L"Color..."));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/color-wheel.svg"));
     plotColorSubMenu->Append(item);
@@ -110,7 +103,7 @@ ProjectDocChildFrame* BaseProjectView::CreateChildFrame(wxDocument* doc, wxView*
     subframe->m_graphBackgroundMenu.AppendSubMenu(plotColorSubMenu, _(L"Plot Color"));
 
     // image submenu
-    auto graphBackgroundImageSubMenu = new wxMenu{};
+    auto* graphBackgroundImageSubMenu{ new wxMenu{} };
     item =
         new wxMenuItem(graphBackgroundImageSubMenu, XRCID("ID_EDIT_PLOT_BKIMAGE"), _(L"Image..."));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/image.svg"));
@@ -124,7 +117,7 @@ ProjectDocChildFrame* BaseProjectView::CreateChildFrame(wxDocument* doc, wxView*
     graphBackgroundImageSubMenu->Append(new wxMenuItem(
         graphBackgroundImageSubMenu, XRCID("ID_EDIT_PLOT_BKIMAGE_OPACITY"), _(L"Opacity...")));
 
-    auto graphBackgroundImageEffectSubMenu = new wxMenu{};
+    auto* graphBackgroundImageEffectSubMenu{ new wxMenu{} };
 
     graphBackgroundImageEffectSubMenu->Append(
         new wxMenuItem(graphBackgroundImageEffectSubMenu, XRCID("ID_PLOT_BKIMAGE_EFFECT_NO_EFFECT"),
@@ -150,7 +143,7 @@ ProjectDocChildFrame* BaseProjectView::CreateChildFrame(wxDocument* doc, wxView*
 
     graphBackgroundImageSubMenu->AppendSubMenu(graphBackgroundImageEffectSubMenu, _(L"Effects"));
 
-    auto graphBackgroundImageFitSubMenu = new wxMenu{};
+    auto* graphBackgroundImageFitSubMenu{ new wxMenu{} };
 
     graphBackgroundImageFitSubMenu->Append(
         new wxMenuItem(graphBackgroundImageFitSubMenu, XRCID("ID_PLOT_BKIMAGE_FIT_CROP_AND_CENTER"),
@@ -160,8 +153,8 @@ ProjectDocChildFrame* BaseProjectView::CreateChildFrame(wxDocument* doc, wxView*
                        _(L"Shrink to Fit"), wxString{}, wxITEM_CHECK));
 
     graphBackgroundImageSubMenu->AppendSubMenu(graphBackgroundImageFitSubMenu,
-                                               // TRANSLATORS: How an image is adjust to fit
-                                               // inside of an area
+                                               // TRANSLATORS: How an image is adjusted to fit
+                                               // inside an area
                                                _(L"Fit"));
 
     item = new wxMenuItem(graphBackgroundImageSubMenu, XRCID("ID_EDIT_PLOT_BKIMAGE_REMOVE"),
@@ -566,7 +559,7 @@ void BaseProjectView::Present()
         m_frame->SetMenuBar(GetMenuBar());
         }
 #endif
-    if (m_frame->GetMenuBar())
+    if (m_frame->GetMenuBar() != nullptr)
         {
         wxGetApp().GetDocManager()->FileHistoryUseMenu(m_frame->GetMenuBar()->GetMenu(0));
         if (m_frame->GetMenuBar()->GetMenu(0)->FindItem(wxID_FILE1) == nullptr)
@@ -576,10 +569,10 @@ void BaseProjectView::Present()
             }
         }
 
-    BaseProjectDoc* doc = dynamic_cast<BaseProjectDoc*>(GetDocument());
+    auto* doc = dynamic_cast<BaseProjectDoc*>(GetDocument());
 
     // update menus that might change due to the project's language being changed
-    if (GetMenuBar())
+    if (GetMenuBar() != nullptr)
         {
         int readMenuIndex = GetMenuBar()->FindMenu(_(L"Readability"));
         // add menu if needed, although this shouldn't happen
@@ -589,7 +582,7 @@ void BaseProjectView::Present()
             readMenuIndex = static_cast<int>(GetMenuBar()->GetMenuCount() - 1);
             }
         wxMenu* readMenu = GetMenuBar()->GetMenu(readMenuIndex);
-        if (readMenu)
+        if (readMenu != nullptr)
             {
             // remove all the submenus
             wxMenuItemList menuItems = readMenu->GetMenuItems();
@@ -598,10 +591,10 @@ void BaseProjectView::Present()
                 readMenu->Destroy(*iter);
                 }
             // add all the submenus for the different groupings
-            wxMenu* primaryMenu = new wxMenu;
-            wxMenu* secondaryMenu = new wxMenu;
-            wxMenu* adultMenu = new wxMenu;
-            wxMenu* secondLanguageMenu = new wxMenu;
+            auto* primaryMenu = new wxMenu;
+            auto* secondaryMenu = new wxMenu;
+            auto* adultMenu = new wxMenu;
+            auto* secondLanguageMenu = new wxMenu;
             GetDocFrame()->m_customTestsRegularMenu = new wxMenu;
             GetDocFrame()->m_testsBundleRegularMenu = new wxMenu;
             readMenu->AppendSubMenu(primaryMenu, _(L"Primary-age Reading (5-12 years old)"));
@@ -624,8 +617,8 @@ void BaseProjectView::Present()
             menuItems = readMenu->GetMenuItems();
             for (wxMenuItemList::iterator iter = menuItems.begin(); iter != menuItems.end(); ++iter)
                 {
-                if ((*iter)->IsSubMenu() &&
-                    (!(*iter)->GetSubMenu() || (*iter)->GetSubMenu()->GetMenuItemCount() == 0))
+                if ((*iter)->IsSubMenu() && (((*iter)->GetSubMenu() == nullptr) ||
+                                             (*iter)->GetSubMenu()->GetMenuItemCount() == 0))
                     {
                     readMenu->Destroy(*iter);
                     }
@@ -638,8 +631,8 @@ void BaseProjectView::Present()
         &GetDocFrame()->m_adultTestsMenu, &GetDocFrame()->m_secondLanguageTestsMenu, doc);
     MainFrame::FillMenuWithCustomTests(&GetDocFrame()->m_customTestsMenu, doc, true);
     MainFrame::FillMenuWithTestBundles(&GetDocFrame()->m_testsBundleMenu, doc, true);
-    wxGetApp().FillWordListsMenu(GetDocFrame()->m_wordListMenu);
-    wxGetApp().FillGradeScalesMenu(GetDocFrame()->m_gradeScaleMenu);
+    ReadabilityApp::FillWordListsMenu(GetDocFrame()->m_wordListMenu);
+    ReadabilityApp::FillGradeScalesMenu(GetDocFrame()->m_gradeScaleMenu);
     const readability::grade_scale gs = doc->GetReadabilityMessageCatalog().GetGradeScale();
     if (gs == readability::grade_scale::k12_plus_united_states)
         {
@@ -698,8 +691,8 @@ void BaseProjectView::Present()
         GetDocFrame()->m_gradeScaleMenu.Check(XRCID("ID_ENGLAND"), true);
         }
 
-    wxGetApp().FillBlankGraphsMenu(GetDocFrame()->m_blankGraphMenu);
-    if (GetMenuBar())
+    ReadabilityApp::FillBlankGraphsMenu(GetDocFrame()->m_blankGraphMenu);
+    if (GetMenuBar() != nullptr)
         {
         const wxMenuItem* exampleMenuItem = GetMenuBar()->FindItem(XRCID("ID_EXAMPLES"));
         if (exampleMenuItem != nullptr && exampleMenuItem->GetSubMenu() != nullptr)
@@ -725,65 +718,70 @@ void BaseProjectView::Present()
     // other menu items with checkmarks that need to be checked here
     wxMenuItem* fadeOption =
         GetDocFrame()->m_graphBackgroundMenu.FindItem(XRCID("ID_GRAPH_BKCOLOR_FADE"));
-    if (fadeOption)
+    if (fadeOption != nullptr)
         {
         fadeOption->Check(doc->GetGraphBackGroundLinearGradient());
         }
 
-    if (auto tempMenuItem = GetDocFrame()->m_graphBackgroundMenu.FindItem(
+    if (auto* tempMenuItem = GetDocFrame()->m_graphBackgroundMenu.FindItem(
             XRCID("ID_PLOT_BKIMAGE_EFFECT_NO_EFFECT"));
         tempMenuItem != nullptr)
         {
-        tempMenuItem->Check(doc->GetPlotBackGroundImageEffect() == ImageEffect::NoEffect);
+        tempMenuItem->Check(doc->GetPlotBackGroundImageEffect() == Wisteria::ImageEffect::NoEffect);
         }
-    if (auto tempMenuItem = GetDocFrame()->m_graphBackgroundMenu.FindItem(
+    if (auto* tempMenuItem = GetDocFrame()->m_graphBackgroundMenu.FindItem(
             XRCID("ID_PLOT_BKIMAGE_EFFECT_GRAYSCALE"));
         tempMenuItem != nullptr)
         {
-        tempMenuItem->Check(doc->GetPlotBackGroundImageEffect() == ImageEffect::Grayscale);
+        tempMenuItem->Check(doc->GetPlotBackGroundImageEffect() ==
+                            Wisteria::ImageEffect::Grayscale);
         }
-    if (auto tempMenuItem = GetDocFrame()->m_graphBackgroundMenu.FindItem(
+    if (auto* tempMenuItem = GetDocFrame()->m_graphBackgroundMenu.FindItem(
             XRCID("ID_PLOT_BKIMAGE_EFFECT_BLUR_HORIZONTALLY"));
         tempMenuItem != nullptr)
         {
-        tempMenuItem->Check(doc->GetPlotBackGroundImageEffect() == ImageEffect::BlurHorizontal);
+        tempMenuItem->Check(doc->GetPlotBackGroundImageEffect() ==
+                            Wisteria::ImageEffect::BlurHorizontal);
         }
-    if (auto tempMenuItem = GetDocFrame()->m_graphBackgroundMenu.FindItem(
+    if (auto* tempMenuItem = GetDocFrame()->m_graphBackgroundMenu.FindItem(
             XRCID("ID_PLOT_BKIMAGE_EFFECT_BLUR_VERTICALLY"));
         tempMenuItem != nullptr)
         {
-        tempMenuItem->Check(doc->GetPlotBackGroundImageEffect() == ImageEffect::BlurVertical);
+        tempMenuItem->Check(doc->GetPlotBackGroundImageEffect() ==
+                            Wisteria::ImageEffect::BlurVertical);
         }
-    if (auto tempMenuItem =
+    if (auto* tempMenuItem =
             GetDocFrame()->m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_SEPIA"));
         tempMenuItem != nullptr)
         {
-        tempMenuItem->Check(doc->GetPlotBackGroundImageEffect() == ImageEffect::Sepia);
+        tempMenuItem->Check(doc->GetPlotBackGroundImageEffect() == Wisteria::ImageEffect::Sepia);
         }
-    if (auto tempMenuItem = GetDocFrame()->m_graphBackgroundMenu.FindItem(
+    if (auto* tempMenuItem = GetDocFrame()->m_graphBackgroundMenu.FindItem(
             XRCID("ID_PLOT_BKIMAGE_EFFECT_FROSTED_GLASS"));
         tempMenuItem != nullptr)
         {
-        tempMenuItem->Check(doc->GetPlotBackGroundImageEffect() == ImageEffect::FrostedGlass);
+        tempMenuItem->Check(doc->GetPlotBackGroundImageEffect() ==
+                            Wisteria::ImageEffect::FrostedGlass);
         }
-    if (auto tempMenuItem = GetDocFrame()->m_graphBackgroundMenu.FindItem(
+    if (auto* tempMenuItem = GetDocFrame()->m_graphBackgroundMenu.FindItem(
             XRCID("ID_PLOT_BKIMAGE_EFFECT_OIL_PAINTING"));
         tempMenuItem != nullptr)
         {
-        tempMenuItem->Check(doc->GetPlotBackGroundImageEffect() == ImageEffect::OilPainting);
+        tempMenuItem->Check(doc->GetPlotBackGroundImageEffect() ==
+                            Wisteria::ImageEffect::OilPainting);
         }
 
-    if (auto tempMenuItem = GetDocFrame()->m_graphBackgroundMenu.FindItem(
+    if (auto* tempMenuItem = GetDocFrame()->m_graphBackgroundMenu.FindItem(
             XRCID("ID_PLOT_BKIMAGE_FIT_CROP_AND_CENTER"));
         tempMenuItem != nullptr)
         {
-        tempMenuItem->Check(doc->GetPlotBackGroundImageFit() == ImageFit::CropAndCenter);
+        tempMenuItem->Check(doc->GetPlotBackGroundImageFit() == Wisteria::ImageFit::CropAndCenter);
         }
-    if (auto tempMenuItem =
+    if (auto* tempMenuItem =
             GetDocFrame()->m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_FIT_SHRINK"));
         tempMenuItem != nullptr)
         {
-        tempMenuItem->Check(doc->GetPlotBackGroundImageFit() == ImageFit::Shrink);
+        tempMenuItem->Check(doc->GetPlotBackGroundImageFit() == Wisteria::ImageFit::Shrink);
         }
 
         // histogram bin labels
@@ -793,14 +791,15 @@ void BaseProjectView::Present()
             GetDocFrame()->m_histoBarLabelsMenu.FindItemByPosition(i)->Check(false);
             }
         wxMenuItem* item = GetDocFrame()->m_histoBarLabelsMenu.FindItem(
-            (doc->GetHistogramBinLabelDisplay() == BinLabelDisplay::BinPercentage) ?
+            (doc->GetHistogramBinLabelDisplay() == Wisteria::BinLabelDisplay::BinPercentage) ?
                 XRCID("ID_HISTOBAR_LABELS_PERCENTAGE") :
-            (doc->GetHistogramBinLabelDisplay() == BinLabelDisplay::BinValue) ?
+            (doc->GetHistogramBinLabelDisplay() == Wisteria::BinLabelDisplay::BinValue) ?
                 XRCID("ID_HISTOBAR_LABELS_COUNT") :
-            (doc->GetHistogramBinLabelDisplay() == BinLabelDisplay::BinValueAndPercentage) ?
+            (doc->GetHistogramBinLabelDisplay() ==
+             Wisteria::BinLabelDisplay::BinValueAndPercentage) ?
                 XRCID("ID_HISTOBAR_LABELS_COUNT_AND_PERCENT") :
                 XRCID("ID_HISTOBAR_NO_LABELS"));
-        if (item)
+        if (item != nullptr)
             {
             item->Check(true);
             }
@@ -815,7 +814,7 @@ void BaseProjectView::Present()
             (doc->GetLongSentenceMethod() == LongSentence::LongerThanSpecifiedLength) ?
                 XRCID("ID_LS_LONGER_THAN") :
                 XRCID("ID_LS_OUTLIER_RANGE"));
-        if (item)
+        if (item != nullptr)
             {
             item->Check(true);
             }
@@ -831,7 +830,7 @@ void BaseProjectView::Present()
              ParagraphParse::OnlySentenceTerminatedNewLinesAreParagraphs) ?
                 XRCID("ID_LE_ONLY_AFTER_VALID_SENTENCE") :
                 XRCID("ID_LE_ALWAYS_NEW_PARAGRAPH"));
-        if (item)
+        if (item != nullptr)
             {
             item->Check(true);
             }
@@ -848,7 +847,7 @@ void BaseProjectView::Present()
             (doc->GetInvalidSentenceMethod() == InvalidSentence::IncludeAsFullSentences) ?
                 XRCID("ID_TE_NO_EXCLUDE") :
                 XRCID("ID_TE_ALL_INCOMPLETE_EXCEPT_HEADERS"));
-        if (item)
+        if (item != nullptr)
             {
             item->Check(true);
             }
@@ -872,7 +871,7 @@ void BaseProjectView::Present()
             (doc->GetExclusionBlockTags().at(0) == std::make_pair(L'(', L')')) ?
                                                      XRCID("ID_EXCLUSION_TAGS_PARANS") :
                                                      XRCID("ID_EXCLUSION_TAGS_NOT_ENABLED"));
-        if (item)
+        if (item != nullptr)
             {
             item->Check(true);
             }
@@ -887,17 +886,18 @@ void BaseProjectView::Present()
             (doc->GetNumeralSyllabicationMethod() == NumeralSyllabize::WholeWordIsOneSyllable) ?
                 XRCID("ID_NUMSYL_ONE") :
                 XRCID("ID_NUMSYL_EACH_DIGIT"));
-        if (item)
+        if (item != nullptr)
             {
             item->Check(true);
             }
         }
 
-    if (GetRibbon())
+    if (GetRibbon() != nullptr)
         {
         wxWindow* deductionButtonBar =
             GetRibbon()->FindWindow(MainFrame::ID_PARAGRAPH_DEDUCTION_RIBBON_BUTTON_BAR);
-        if (deductionButtonBar && deductionButtonBar->IsKindOf(wxCLASSINFO(wxRibbonButtonBar)))
+        if ((deductionButtonBar != nullptr) &&
+            deductionButtonBar->IsKindOf(wxCLASSINFO(wxRibbonButtonBar)))
             {
             dynamic_cast<wxRibbonButtonBar*>(deductionButtonBar)
                 ->ToggleButton(XRCID("ID_IGNORE_BLANK_LINES"),
@@ -919,7 +919,8 @@ void BaseProjectView::Present()
             }
         wxWindow* exclusionButtonBar =
             GetRibbon()->FindWindow(MainFrame::ID_TEXT_EXCLUSION_RIBBON_BUTTON_BAR);
-        if (exclusionButtonBar && exclusionButtonBar->IsKindOf(wxCLASSINFO(wxRibbonButtonBar)))
+        if ((exclusionButtonBar != nullptr) &&
+            exclusionButtonBar->IsKindOf(wxCLASSINFO(wxRibbonButtonBar)))
             {
             dynamic_cast<wxRibbonButtonBar*>(exclusionButtonBar)
                 ->ToggleButton(XRCID("ID_EXCLUDE_AGGRESSIVELY"), doc->IsExcludingAggressively());
@@ -971,7 +972,8 @@ void BaseProjectView::Present()
             }
         wxWindow* numeralButtonBar =
             GetRibbon()->FindWindow(MainFrame::ID_NUMERALS_RIBBON_BUTTON_BAR);
-        if (numeralButtonBar && numeralButtonBar->IsKindOf(wxCLASSINFO(wxRibbonButtonBar)))
+        if ((numeralButtonBar != nullptr) &&
+            numeralButtonBar->IsKindOf(wxCLASSINFO(wxRibbonButtonBar)))
             {
             dynamic_cast<wxRibbonButtonBar*>(numeralButtonBar)
                 ->EnableButton(
@@ -1031,7 +1033,7 @@ void BaseProjectView::ShowInfoMessage(const WarningMessage& message)
 void BaseProjectView::OnCloseInfoBar([[maybe_unused]] wxCommandEvent& event)
     {
     GetInfoBar()->Dismiss();
-    if (m_lastShownMessageId.length())
+    if (!m_lastShownMessageId.empty())
         {
         auto warningIter = WarningManager::GetWarning(m_lastShownMessageId);
         if (warningIter != WarningManager::GetWarnings().end())
@@ -1050,7 +1052,7 @@ void BaseProjectView::OnCloseInfoBar([[maybe_unused]] wxCommandEvent& event)
             }
         m_lastShownMessageId.clear();
         }
-    if (GetQueuedMessages().size())
+    if (!GetQueuedMessages().empty())
         {
         auto nextMessage = m_queuedMessages.begin();
         ShowInfoMessage(*nextMessage);
@@ -1061,7 +1063,7 @@ void BaseProjectView::OnCloseInfoBar([[maybe_unused]] wxCommandEvent& event)
 //-------------------------------------------------------
 void BaseProjectView::ShowSideBar(const bool show /*= true*/)
     {
-    wxWindowUpdateLocker noUpdates(GetDocFrame());
+    const wxWindowUpdateLocker noUpdates(GetDocFrame());
     m_sidebarShown = show;
     if (show)
         {
@@ -1078,11 +1080,12 @@ void BaseProjectView::ShowSideBar(const bool show /*= true*/)
     // update the ribbon bar
     wxWindow* projectButtonBarWindow =
         GetRibbon()->FindWindow(MainFrame::ID_PROJECT_RIBBON_BUTTON_BAR);
-    if (projectButtonBarWindow && projectButtonBarWindow->IsKindOf(wxCLASSINFO(wxRibbonButtonBar)))
+    if ((projectButtonBarWindow != nullptr) &&
+        projectButtonBarWindow->IsKindOf(wxCLASSINFO(wxRibbonButtonBar)))
         {
-        const auto projectButtonBar = dynamic_cast<wxRibbonButtonBar*>(projectButtonBarWindow);
+        auto* const projectButtonBar = dynamic_cast<wxRibbonButtonBar*>(projectButtonBarWindow);
         assert(projectButtonBar && L"Error casting project ribbon bar!");
-        if (projectButtonBar)
+        if (projectButtonBar != nullptr)
             {
             projectButtonBar->ToggleButton(XRCID("ID_SHOW_SIDEBAR"), m_sidebarShown);
             }
@@ -1118,12 +1121,12 @@ bool BaseProjectView::OnCreate(wxDocument* doc, [[maybe_unused]] long flags)
     // main sidebar (left side of splitter)
     m_sideBar = wxGetApp().CreateSideBar(m_splitter, BaseProjectView::LEFT_PANE);
 
-    wxBoxSizer* mainSizer = new wxBoxSizer(wxVERTICAL);
+    auto* mainSizer = new wxBoxSizer(wxVERTICAL);
 
-    wxBoxSizer* quickAccessToolbarSizer = new wxBoxSizer(wxHORIZONTAL);
+    auto* quickAccessToolbarSizer = new wxBoxSizer(wxHORIZONTAL);
     // quick access toolbar
     m_quickToolbar = new wxAuiToolBar(m_frame, wxID_ANY);
-    auto toolbarArt = new Wisteria::UI::ThemedAuiToolbarArt();
+    auto* toolbarArt = new Wisteria::UI::ThemedAuiToolbarArt();
     toolbarArt->SetThemeColor(wxGetApp().GetAppOptions()->GetRibbonInactiveTabColor());
     GetQuickToolbar()->SetArtProvider(toolbarArt);
     quickAccessToolbarSizer->Add(GetQuickToolbar(), wxSizerFlags{ 1 }.Expand());
@@ -1138,7 +1141,7 @@ bool BaseProjectView::OnCreate(wxDocument* doc, [[maybe_unused]] long flags)
                                wxArtProvider::GetBitmapBundle(wxART_PRINT, wxART_BUTTON));
     GetQuickToolbar()->Realize();
 
-    m_searchCtrl = new SearchPanel(m_frame, wxID_ANY);
+    m_searchCtrl = new Wisteria::UI::SearchPanel(m_frame, wxID_ANY);
     GetSearchPanel()->SetBackgroundColour(wxGetApp().GetAppOptions()->GetRibbonInactiveTabColor());
     quickAccessToolbarSizer->Add(GetSearchPanel());
     mainSizer->Add(quickAccessToolbarSizer, wxSizerFlags{}.Expand());
@@ -1206,19 +1209,19 @@ bool BaseProjectView::OnCreate(wxDocument* doc, [[maybe_unused]] long flags)
 //-------------------------------------------------------
 BaseProjectView::~BaseProjectView()
     {
-    if (GetMenuBar())
+    if (GetMenuBar() != nullptr)
         {
         wxGetApp().GetDocManager()->FileHistoryRemoveMenu(GetMenuBar()->GetMenu(0));
         }
     wxGetApp().GetDocManager()->FileHistoryRemoveMenu(&m_frame->m_fileOpenMenu);
-    /* In case the document failed to load and we didn't set these to the parent,
+    /* In case the document failed to load, and we didn't set these to the parent,
        then clean them up ourselves*/
     if (!m_presentedSuccessfully)
         {
         wxLogWarning(L"Project was not fully loaded; Project UI being destroyed manually.");
         m_frame->Destroy();
         m_frame = nullptr;
-        if (GetMenuBar())
+        if (GetMenuBar() != nullptr)
             {
             m_menuBar->Destroy();
             m_menuBar = nullptr;
@@ -1244,11 +1247,11 @@ BaseProjectView::~BaseProjectView()
 void BaseProjectView::OnActivateView(bool activate, wxView*, wxView*)
     {
     // if the frame (and its views) are ready for showing then show it
-    if (activate && m_presentedSuccessfully && GetDocFrame())
+    if (activate && m_presentedSuccessfully && (GetDocFrame() != nullptr))
         {
         GetDocFrame()->Show(true);
         GetSplitter()->Show(true);
-        if (GetSplitter()->GetWindow2())
+        if (GetSplitter()->GetWindow2() != nullptr)
             {
             GetSplitter()->GetWindow2()->Show(true);
             }

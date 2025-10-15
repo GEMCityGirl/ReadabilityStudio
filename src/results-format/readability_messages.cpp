@@ -12,6 +12,8 @@
  ********************************************************************************/
 
 #include "readability_messages.h"
+#include "wx/numformatter.h"
+#include "wx/tokenzr.h"
 
 //-----------------------------------------------
 wxString ReadabilityMessages::GetGradeScaleLongLabel(size_t grade) const
@@ -189,7 +191,7 @@ wxString ReadabilityMessages::GetMonthLabel(size_t month)
         break;
         }
 
-    return wxString{};
+    return {};
     }
 
 //-----------------------------------------------------

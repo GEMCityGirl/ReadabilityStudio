@@ -2311,7 +2311,7 @@ namespace readability
     /** Simple Measure of Gobbledygook (McLaughlin), which returns the U.S. grade level.
         It is generally appropriate for secondary age readers, and commonly used with patient forms
         in the health care industry.
-        Historically, this test is done on a 3 random samples of 10 sentences,
+        Historically, this test is done on 3 random samples of 10 sentences,
         but can be used against the entire body of a corpus.
         SMOG tests for 100% comprehension, whereas most other formulae test for around
         50%-75% comprehension.
@@ -2336,9 +2336,9 @@ namespace readability
             (within one grade level) scores.
         @param number_of_big_words Number of 3+ syllable words from the sample.
         @param number_of_sentences Number of sentences in the sample.
-        @param truncate_score_to_range Whether or not score should be boxed into
+        @param truncate_score_to_range Whether score should be boxed into
             the 0-19 range. The SOL formula can calculate high (e.g., 25) scores
-            with Spanish (that have to been be converted to the English scale),
+            with Spanish (that have to be converted to the English scale),
             so pass in false for situations like that.
         @return U.S. K-12 grade scale value of the document.*/
     [[nodiscard]]
@@ -2363,7 +2363,7 @@ namespace readability
             which differs from the recommendation for other tests.
         @param number_of_hard_words Number of difficult words, which are words not found on the
             HJ familiar word list. Proper nouns are considered familiar also.
-            Numbers are simply ignored (neither familiar or unfamiliar) because they are pulled
+            Numbers are simply ignored (neither familiar nor unfamiliar) because they are pulled
             from the overall word count.
         @param number_of_sentences Number of sentences from the document
             (excluding tables and lists).
@@ -2546,7 +2546,7 @@ namespace readability
         which is generally used for technical documents.
         This was devised for assessing US army technical manuals.
         This test is only appropriate for quizzes, applications, entry forms, etc.
-        The results represents a U.S. grade level value.
+        The results represent a U.S. grade level value.
         Algorithm was originally designed for passages of 150 words, so the
         number of monosyllabic words has to be normalized internally.
         @param number_of_words The number of words.

@@ -13,16 +13,19 @@
 
 #include "tools_options_dlg.h"
 #include "../../Wisteria-Dataviz/src/base/colorbrewer.h"
+#include "../../Wisteria-Dataviz/src/graphs/danielsonbryan2plot.h"
+#include "../../Wisteria-Dataviz/src/graphs/lixgauge.h"
+#include "../../Wisteria-Dataviz/src/graphs/lixgaugegerman.h"
 #include "../../Wisteria-Dataviz/src/ui/dialogs/warningmessagesdlg.h"
 #include "../../app/readability_app.h"
 #include "../../app/readability_app_options.h"
+#include "../../graphs/schwartzgraph.h"
 #include "../../projects/batch_project_doc.h"
 #include "../../projects/standard_project_doc.h"
 #include "../controls/word_list_property.h"
 #include "doc_group_select_dlg.h"
 #include "edit_word_list_dlg.h"
 #include <wx/bannerwindow.h>
-#include <wx/cmndata.h>
 #include <wx/colordlg.h>
 #include <wx/wx.h>
 

@@ -17,10 +17,8 @@
 #include "../Wisteria-Dataviz/src/math/mathematics.h"
 #include "english_readability.h"
 #include "grade_scales.h"
-#include "readability_enums.h"
 #include <algorithm>
 #include <cmath>
-#include <functional>
 #include <stdexcept>
 
 namespace readability

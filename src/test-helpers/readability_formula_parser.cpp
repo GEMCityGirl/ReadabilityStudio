@@ -420,6 +420,7 @@ static double ProperNounCount(const te_expr* context)
 
 /// @returns The total number of words from the document.
 /// @param context The TinyEpr++ expression object.
+/// @param wordType The type of word to count.
 [[nodiscard]]
 static double WordCount(const te_expr* context, const double wordType)
     {
@@ -449,6 +450,7 @@ static double WordCount(const te_expr* context, const double wordType)
 
 /// @returns The total number of words consisting of three or more syllables from the document.
 /// @param context The TinyEpr++ expression object.
+/// @param wordType The type of word to count.
 [[nodiscard]]
 static double ThreeSyllablePlusWordCount(const te_expr* context, const double wordType)
     {
@@ -470,6 +472,7 @@ static double ThreeSyllablePlusWordCount(const te_expr* context, const double wo
 
 /// @returns The number of unique words consisting of three or more syllables from the document.
 /// @param context The TinyEpr++ expression object.
+/// @param wordType The type of word to count.
 [[nodiscard]]
 static double UniqueThreeSyllablePlusWordCount(const te_expr* context, const double wordType)
     {
@@ -491,6 +494,7 @@ static double UniqueThreeSyllablePlusWordCount(const te_expr* context, const dou
 
 /// @returns The total number of syllables from the document.
 /// @param context The TinyEpr++ expression object.
+/// @param wordType The type of word to count.
 [[nodiscard]]
 static double SyllableCount(const te_expr* context, const double wordType)
     {
@@ -516,6 +520,7 @@ static double SyllableCount(const te_expr* context, const double wordType)
 
 /// @returns The total number of characters (i.e., letters and numbers) from the document.
 /// @param context The TinyEpr++ expression object.
+/// @param wordType The type of word to count.
 [[nodiscard]]
 static double CharacterCount(const te_expr* context, const double wordType)
     {
@@ -545,6 +550,7 @@ static double CharacterCount(const te_expr* context, const double wordType)
 
 /// @returns The total number of sentences from the document.
 /// @param context The TinyEpr++ expression object.
+/// @param wordType The type of word to count.
 [[nodiscard]]
 static double SentenceCount(const te_expr* context, const double wordType)
     {

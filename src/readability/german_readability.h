@@ -633,7 +633,7 @@ namespace readability
         @details Ranges from 0-100 (the higher the score, the easier to read).\n
             Average document should be within the range of 60-70.
         @note The dissertation mentions using a 100-word sample,
-            but that doesn't effect the equation.
+            but that doesn't affect the equation.
         @code
         I = 180 - (W/S) - (58.5*(SY/W))
         @endcode
