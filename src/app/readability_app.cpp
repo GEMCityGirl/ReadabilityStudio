@@ -2959,7 +2959,7 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
     LoadRibbonToolsPage(ribbon, rtype);
     LoadRibbonHelpPage(ribbon);
 
-    ribbon->SetArtProvider(new Wisteria::UI::RibbonMetroArtProvider);
+    ribbon->SetArtProvider(new wxRibbonMSWArtProvider);
     UpdateRibbonTheme(ribbon);
 
     ribbon->Realize();
