@@ -17,15 +17,10 @@
 #include "../../Wisteria-Dataviz/src/ui/controls/codeeditor.h"
 #include "../../Wisteria-Dataviz/src/ui/dialogs/functionbrowserdlg.h"
 #include <wx/aui/aui.h>
-#include <wx/dialog.h>
 #include <wx/fdrepdlg.h>
 #include <wx/html/helpwnd.h>
 #include <wx/renderer.h>
-#include <wx/ribbon/art.h>
-#include <wx/ribbon/bar.h>
 #include <wx/ribbon/buttonbar.h>
-#include <wx/ribbon/gallery.h>
-#include <wx/ribbon/toolbar.h>
 #include <wx/splitter.h>
 #include <wx/srchctrl.h>
 
@@ -93,7 +88,8 @@ class LuaEditorDlg final : public wxFrame
         // close any call tip and auto-completion windows
         if (m_notebook != nullptr && m_notebook->GetPageCount() > 0)
             {
-            auto codeEditor = dynamic_cast<Wisteria::UI::CodeEditor*>(m_notebook->GetCurrentPage());
+            auto* codeEditor =
+                dynamic_cast<Wisteria::UI::CodeEditor*>(m_notebook->GetCurrentPage());
             if (codeEditor != nullptr)
                 {
                 if (codeEditor->CallTipActive())
