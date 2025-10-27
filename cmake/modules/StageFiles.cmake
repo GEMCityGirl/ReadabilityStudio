@@ -41,28 +41,116 @@
 #            APPIMAGE_STAGING_DIR   – path to the AppImage packaging root
 #            WINDOWS_STAGING_DIR    – path to the Windows packaging root
 # ==========================================================================================
+# Requires: CMake's FindGettext module (built-in)
+# Will set GETTEXT_MSGFMT_EXECUTABLE if found.
+find_package(Gettext QUIET)
+
 function(copy_translations LANG)
-    # Project's translations
-    if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/locale/${LANG}.mo")
-        add_custom_command(TARGET ${PROJECT_NAME}
-                        POST_BUILD
-                        COMMAND ${CMAKE_COMMAND} -E echo "Copying ${LANG} translations to build and installer folders."
-                        COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_CURRENT_SOURCE_DIR}/locale/${LANG}.mo" "$<TARGET_FILE_DIR:${PROJECT_NAME}>${RESOURCE_FOLDER}/${LANG}/readstudio.mo"
-                        COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_CURRENT_SOURCE_DIR}/locale/${LANG}.mo" "${APPIMAGE_STAGING_DIR}/${LANG}/readstudio.mo"
-                        COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_CURRENT_SOURCE_DIR}/locale/${LANG}.mo" "${WINDOWS_STAGING_DIR}/resources/${LANG}/readstudio.mo")
+    # ---- Project translation (readstudio.mo) ----
+    set(_SRC_MO "${CMAKE_CURRENT_SOURCE_DIR}/locale/${LANG}.mo")
+    set(_SRC_PO "${CMAKE_CURRENT_SOURCE_DIR}/locale/${LANG}.po")
+    set(_BIN_DIR "${CMAKE_CURRENT_BINARY_DIR}/locale")
+    set(_BIN_MO  "${_BIN_DIR}/${LANG}.mo")  # if we need to compile from .po
+
+    # Determine the source .mo we'll copy (build from .po if needed/possible)
+    set(_USE_MO "")
+    set(_WILL_BUILD_MO FALSE)
+
+    if(EXISTS "${_SRC_MO}")
+        # Use prebuilt .mo from source tree
+        set(_USE_MO "${_SRC_MO}")
+    elseif(EXISTS "${_SRC_PO}" AND GETTEXT_MSGFMT_EXECUTABLE)
+        # Build .mo from .po into the build tree
+        set(_USE_MO "${_BIN_MO}")
+        set(_WILL_BUILD_MO TRUE)
     else()
-        message(WARNING "Compiled ${PROJECT_NAME} '${LANG}' translations not found.\n(Expected it in '${CMAKE_CURRENT_SOURCE_DIR}/locale/${LANG}.mo')\nTranslations will not be available.")
+        # Neither .mo present nor can we build from .po
+        if(NOT EXISTS "${_SRC_PO}")
+            message(WARNING
+                "Translations for '${LANG}' not found.\n"
+                "Expected either '${_SRC_MO}' or '${_SRC_PO}'.\n"
+                "Project translations will not be available.")
+        else()
+            message(WARNING
+                "gettext(msgfmt) not found; cannot compile '${_SRC_PO}'.\n"
+                "Install gettext or provide a precompiled '${_SRC_MO}'.")
+        endif()
     endif()
-    # wxWidgets stock translations
-    if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/locale/${LANG}/wxstd.mo")
+
+    if(_USE_MO)
         add_custom_command(TARGET ${PROJECT_NAME}
-                        POST_BUILD
-                        COMMAND ${CMAKE_COMMAND} -E echo "Copying wxWidgets ${LANG} translations to build and installer folders."
-                        COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_CURRENT_SOURCE_DIR}/locale/${LANG}/wxstd.mo" "$<TARGET_FILE_DIR:${PROJECT_NAME}>${RESOURCE_FOLDER}/${LANG}/wxstd.mo"
-                        COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_CURRENT_SOURCE_DIR}/locale/${LANG}/wxstd.mo" "${APPIMAGE_STAGING_DIR}/${LANG}/wxstd.mo"
-                        COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_CURRENT_SOURCE_DIR}/locale/${LANG}/wxstd.mo" "${WINDOWS_STAGING_DIR}/resources/${LANG}/wxstd.mo")
+            POST_BUILD
+
+            # If compiling from .po, do it first
+            $<$<BOOL:${_WILL_BUILD_MO}>:
+                ${CMAKE_COMMAND} -E echo "Compiling ${LANG}.po → ${_BIN_MO}"
+            >
+            $<$<BOOL:${_WILL_BUILD_MO}>:
+                ${CMAKE_COMMAND} -E make_directory "${_BIN_DIR}"
+            >
+            $<$<BOOL:${_WILL_BUILD_MO}>:
+                "${GETTEXT_MSGFMT_EXECUTABLE}" -o "${_BIN_MO}" "${_SRC_PO}"
+            >
+
+            # Copy to destinations
+            COMMAND ${CMAKE_COMMAND} -E echo "Copying ${LANG} translations to build and installer folders."
+            COMMAND ${CMAKE_COMMAND} -E copy "${_USE_MO}"
+                "$<TARGET_FILE_DIR:${PROJECT_NAME}>${RESOURCE_FOLDER}/${LANG}/readstudio.mo"
+            COMMAND ${CMAKE_COMMAND} -E copy "${_USE_MO}"
+                "${APPIMAGE_STAGING_DIR}/${LANG}/readstudio.mo"
+            COMMAND ${CMAKE_COMMAND} -E copy "${_USE_MO}"
+                "${WINDOWS_STAGING_DIR}/resources/${LANG}/readstudio.mo"
+        )
+    endif()
+
+    # ---- wxWidgets stock translation (wxstd.mo) ----
+    set(_WX_SRC_MO "${CMAKE_CURRENT_SOURCE_DIR}/locale/${LANG}/wxstd.mo")
+    set(_WX_SRC_PO "${CMAKE_CURRENT_SOURCE_DIR}/locale/${LANG}/wxstd.po")
+    set(_WX_BIN_DIR "${CMAKE_CURRENT_BINARY_DIR}/locale/${LANG}")
+    set(_WX_BIN_MO  "${_WX_BIN_DIR}/wxstd.mo")
+
+    set(_WX_USE_MO "")
+    set(_WX_WILL_BUILD_MO FALSE)
+
+    if(EXISTS "${_WX_SRC_MO}")
+        set(_WX_USE_MO "${_WX_SRC_MO}")
+    elseif(EXISTS "${_WX_SRC_PO}" AND GETTEXT_MSGFMT_EXECUTABLE)
+        set(_WX_USE_MO "${_WX_BIN_MO}")
+        set(_WX_WILL_BUILD_MO TRUE)
     else()
-        message(WARNING "Compiled wxWidgets '${LANG}' translations not found.\n(Expected it in '${CMAKE_CURRENT_SOURCE_DIR}/locale/${LANG}/wxstd.mo'.)\nTranslations will not be available.")
+        if(NOT EXISTS "${_WX_SRC_PO}")
+            message(WARNING
+                "wxWidgets '${LANG}' translations not found.\n"
+                "Expected either '${_WX_SRC_MO}' or '${_WX_SRC_PO}'.\n"
+                "wxWidgets translations will not be available.")
+        else()
+            message(WARNING
+                "gettext(msgfmt) not found; cannot compile '${_WX_SRC_PO}'.\n"
+                "Install gettext or provide a precompiled '${_WX_SRC_MO}'.")
+        endif()
+    endif()
+
+    if(_WX_USE_MO)
+        add_custom_command(TARGET ${PROJECT_NAME}
+            POST_BUILD
+
+            $<$<BOOL:${_WX_WILL_BUILD_MO}>:
+                ${CMAKE_COMMAND} -E echo "Compiling wxstd ${LANG}.po → ${_WX_BIN_MO}"
+            >
+            $<$<BOOL:${_WX_WILL_BUILD_MO}>:
+                ${CMAKE_COMMAND} -E make_directory "${_WX_BIN_DIR}"
+            >
+            $<$<BOOL:${_WX_WILL_BUILD_MO}>:
+                "${GETTEXT_MSGFMT_EXECUTABLE}" -o "${_WX_BIN_MO}" "${_WX_SRC_PO}"
+            >
+
+            COMMAND ${CMAKE_COMMAND} -E echo "Copying wxWidgets ${LANG} translations to build and installer folders."
+            COMMAND ${CMAKE_COMMAND} -E copy "${_WX_USE_MO}"
+                "$<TARGET_FILE_DIR:${PROJECT_NAME}>${RESOURCE_FOLDER}/${LANG}/wxstd.mo"
+            COMMAND ${CMAKE_COMMAND} -E copy "${_WX_USE_MO}"
+                "${APPIMAGE_STAGING_DIR}/${LANG}/wxstd.mo"
+            COMMAND ${CMAKE_COMMAND} -E copy "${_WX_USE_MO}"
+                "${WINDOWS_STAGING_DIR}/resources/${LANG}/wxstd.mo")
     endif()
 endfunction()
 
