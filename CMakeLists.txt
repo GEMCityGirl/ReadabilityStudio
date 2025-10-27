@@ -345,9 +345,9 @@ endif()
 
 add_custom_target(doxygen-docs
             ${DOXYGEN_ALL_OPTION_MAYBE_UNAVAILABLE}
+            COMMAND ${CMAKE_COMMAND} -E echo "Generating API documentation with Doxygen."
             COMMAND ${DOXYGEN_EXECUTABLE} "${CMAKE_SOURCE_DIR}/docs/doxygen/Doxyfile"
             WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}/docs/doxygen"
-            COMMENT "Generating API documentation with Doxygen"
             VERBATIM)
 
 add_compile_options("$<$<C_COMPILER_ID:MSVC>:/utf-8>")
@@ -484,50 +484,7 @@ endif()
 ##############################################################
 message(STATUS "Copying application resources...")
 
-# make help directories if missing to avoid a build error
-if(NOT EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/docs/readability-studio-manual/docs-manual/")
-    add_custom_command(TARGET ${PROJECT_NAME}
-                   POST_BUILD
-                   COMMAND ${CMAKE_COMMAND} -E make_directory
-                   "${CMAKE_CURRENT_SOURCE_DIR}/docs/readability-studio-manual/docs-manual/")
-endif()
-if(NOT EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/docs/readability-studio-manual/docs-online/")
-    add_custom_command(TARGET ${PROJECT_NAME}
-                   POST_BUILD
-                   COMMAND ${CMAKE_COMMAND} -E make_directory
-                   "${CMAKE_CURRENT_SOURCE_DIR}/docs/readability-studio-manual/docs-online/")
-endif()
-if(NOT EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/docs/readability-test-reference/docs/")
-    add_custom_command(TARGET ${PROJECT_NAME}
-                   POST_BUILD
-                   COMMAND ${CMAKE_COMMAND} -E make_directory
-                   "${CMAKE_CURRENT_SOURCE_DIR}/docs/readability-test-reference/docs/")
-endif()
-if(NOT EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/docs/shortcuts-cheatsheet/docs/")
-    add_custom_command(TARGET ${PROJECT_NAME}
-                   POST_BUILD
-                   COMMAND ${CMAKE_COMMAND} -E make_directory
-                   "${CMAKE_CURRENT_SOURCE_DIR}/docs/shortcuts-cheatsheet/docs/")
-endif()
-if(NOT EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/docs/release-notes/docs/")
-    add_custom_command(TARGET ${PROJECT_NAME}
-                   POST_BUILD
-                   COMMAND ${CMAKE_COMMAND} -E make_directory
-                   "${CMAKE_CURRENT_SOURCE_DIR}/docs/release-notes/docs/")
-endif()
-if(NOT EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/docs/readability-studio-api/docs/")
-    add_custom_command(TARGET ${PROJECT_NAME}
-                   POST_BUILD
-                   COMMAND ${CMAKE_COMMAND} -E make_directory
-                   "${CMAKE_CURRENT_SOURCE_DIR}/docs/readability-studio-api/docs/")
-endif()
-if(NOT EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/docs/sysadmin/docs/")
-    add_custom_command(TARGET ${PROJECT_NAME}
-                   POST_BUILD
-                   COMMAND ${CMAKE_COMMAND} -E make_directory
-                   "${CMAKE_CURRENT_SOURCE_DIR}/docs/sysadmin/docs/")
-endif()
-
+# make staging area directories if missing to avoid a build error
 if(WIN32 AND NOT EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/installers/windows/release/")
     add_custom_command(TARGET ${PROJECT_NAME}
                    POST_BUILD
@@ -555,126 +512,25 @@ endif()
 set(APPIMAGE_STAGING_DIR "${CMAKE_CURRENT_SOURCE_DIR}/installers/unix/AppDir/usr/bin")
 set(WINDOWS_STAGING_DIR "${CMAKE_CURRENT_SOURCE_DIR}/installers/windows")
 
-add_custom_command(TARGET ${PROJECT_NAME}
-                   POST_BUILD
-                   COMMAND ${CMAKE_COMMAND} -E copy_directory
-                       "${CMAKE_CURRENT_SOURCE_DIR}/docs/readability-studio-manual/docs-manual" "$<TARGET_FILE_DIR:${PROJECT_NAME}>${RESOURCE_FOLDER}/readability-studio-manual"
-                   COMMAND ${CMAKE_COMMAND} -E copy_directory
-                       "${CMAKE_CURRENT_SOURCE_DIR}/docs/readability-studio-manual/docs-manual" "${APPIMAGE_STAGING_DIR}/readability-studio-manual"
-                   COMMAND ${CMAKE_COMMAND} -E copy_directory
-                       "${CMAKE_CURRENT_SOURCE_DIR}/docs/readability-studio-manual/docs-manual" "${WINDOWS_STAGING_DIR}/resources/readability-studio-manual")
-add_custom_command(TARGET ${PROJECT_NAME}
-                   POST_BUILD
-                   COMMAND ${CMAKE_COMMAND} -E copy_directory
-                       "${CMAKE_CURRENT_SOURCE_DIR}/docs/readability-studio-manual/docs-online" "$<TARGET_FILE_DIR:${PROJECT_NAME}>${RESOURCE_FOLDER}/readability-studio-manual/online"
-                   COMMAND ${CMAKE_COMMAND} -E copy_directory
-                       "${CMAKE_CURRENT_SOURCE_DIR}/docs/readability-studio-manual/docs-online" "${APPIMAGE_STAGING_DIR}/readability-studio-manual/online"
-                   COMMAND ${CMAKE_COMMAND} -E copy_directory
-                       "${CMAKE_CURRENT_SOURCE_DIR}/docs/readability-studio-manual/docs-online" "${WINDOWS_STAGING_DIR}/resources/readability-studio-manual/online")
-add_custom_command(TARGET ${PROJECT_NAME}
-                   POST_BUILD
-                   COMMAND ${CMAKE_COMMAND} -E copy_directory
-                       "${CMAKE_CURRENT_SOURCE_DIR}/docs/shortcuts-cheatsheet/docs" "$<TARGET_FILE_DIR:${PROJECT_NAME}>${RESOURCE_FOLDER}/readability-studio-manual"
-                   COMMAND ${CMAKE_COMMAND} -E copy_directory
-                       "${CMAKE_CURRENT_SOURCE_DIR}/docs/shortcuts-cheatsheet/docs" "${APPIMAGE_STAGING_DIR}/readability-studio-manual"
-                   COMMAND ${CMAKE_COMMAND} -E copy_directory
-                       "${CMAKE_CURRENT_SOURCE_DIR}/docs/shortcuts-cheatsheet/docs" "${WINDOWS_STAGING_DIR}/resources/readability-studio-manual")
-add_custom_command(TARGET ${PROJECT_NAME}
-                   POST_BUILD
-                   COMMAND ${CMAKE_COMMAND} -E copy_directory
-                       "${CMAKE_CURRENT_SOURCE_DIR}/docs/readability-test-reference/docs" "$<TARGET_FILE_DIR:${PROJECT_NAME}>${RESOURCE_FOLDER}/readability-studio-manual"
-                   COMMAND ${CMAKE_COMMAND} -E copy_directory
-                       "${CMAKE_CURRENT_SOURCE_DIR}/docs/readability-test-reference/docs" "${APPIMAGE_STAGING_DIR}/readability-studio-manual"
-                   COMMAND ${CMAKE_COMMAND} -E copy_directory
-                       "${CMAKE_CURRENT_SOURCE_DIR}/docs/readability-test-reference/docs" "${WINDOWS_STAGING_DIR}/resources/readability-studio-manual")
-add_custom_command(TARGET ${PROJECT_NAME}
-                   POST_BUILD
-                   COMMAND ${CMAKE_COMMAND} -E copy_directory
-                       "${CMAKE_CURRENT_SOURCE_DIR}/docs/release-notes/docs" "$<TARGET_FILE_DIR:${PROJECT_NAME}>${RESOURCE_FOLDER}/readability-studio-manual"
-                   COMMAND ${CMAKE_COMMAND} -E copy_directory
-                       "${CMAKE_CURRENT_SOURCE_DIR}/docs/release-notes/docs" "${APPIMAGE_STAGING_DIR}/readability-studio-manual"
-                   COMMAND ${CMAKE_COMMAND} -E copy_directory
-                       "${CMAKE_CURRENT_SOURCE_DIR}/docs/release-notes/docs" "${WINDOWS_STAGING_DIR}/resources/readability-studio-manual")
-add_custom_command(TARGET ${PROJECT_NAME}
-                   POST_BUILD
-                   COMMAND ${CMAKE_COMMAND} -E copy_directory
-                       "${CMAKE_CURRENT_SOURCE_DIR}/docs/sysadmin/docs" "$<TARGET_FILE_DIR:${PROJECT_NAME}>${RESOURCE_FOLDER}/readability-studio-manual"
-                   COMMAND ${CMAKE_COMMAND} -E copy_directory
-                       "${CMAKE_CURRENT_SOURCE_DIR}/docs/sysadmin/docs" "${APPIMAGE_STAGING_DIR}/readability-studio-manual"
-                   COMMAND ${CMAKE_COMMAND} -E copy_directory
-                       "${CMAKE_CURRENT_SOURCE_DIR}/docs/sysadmin/docs" "${WINDOWS_STAGING_DIR}/resources/readability-studio-manual")
-add_custom_command(TARGET ${PROJECT_NAME}
-                   POST_BUILD
-                   COMMAND ${CMAKE_COMMAND} -E copy_directory
-                       "${CMAKE_CURRENT_SOURCE_DIR}/docs/readability-studio-api/docs" "$<TARGET_FILE_DIR:${PROJECT_NAME}>${RESOURCE_FOLDER}/readability-studio-manual"
-                   COMMAND ${CMAKE_COMMAND} -E copy_directory
-                       "${CMAKE_CURRENT_SOURCE_DIR}/docs/readability-studio-api/docs" "${APPIMAGE_STAGING_DIR}/readability-studio-manual"
-                   COMMAND ${CMAKE_COMMAND} -E copy_directory
-                       "${CMAKE_CURRENT_SOURCE_DIR}/docs/readability-studio-api/docs" "${WINDOWS_STAGING_DIR}/resources/readability-studio-manual")
-add_custom_command(TARGET ${PROJECT_NAME}
-                   POST_BUILD
-                   COMMAND ${CMAKE_COMMAND} -E copy_directory
-                       "${CMAKE_CURRENT_SOURCE_DIR}/docs/lua-5.4/doc" "$<TARGET_FILE_DIR:${PROJECT_NAME}>${RESOURCE_FOLDER}/readability-studio-manual/lua-5.4/doc"
-                   COMMAND ${CMAKE_COMMAND} -E copy_directory
-                       "${CMAKE_CURRENT_SOURCE_DIR}/docs/lua-5.4/doc" "${APPIMAGE_STAGING_DIR}/readability-studio-manual/lua-5.4/doc"
-                   COMMAND ${CMAKE_COMMAND} -E copy_directory
-                       "${CMAKE_CURRENT_SOURCE_DIR}/docs/lua-5.4/doc" "${WINDOWS_STAGING_DIR}/resources/readability-studio-manual/lua-5.4/doc")
+include(cmake/modules/StageFiles.cmake)
 
-add_custom_command(TARGET ${PROJECT_NAME}
-                   POST_BUILD
-                   COMMAND ${CMAKE_COMMAND} -E copy_directory
-                       "${CMAKE_CURRENT_SOURCE_DIR}/resources/scripting" "$<TARGET_FILE_DIR:${PROJECT_NAME}>${RESOURCE_FOLDER}"
-                   COMMAND ${CMAKE_COMMAND} -E copy_directory
-                       "${CMAKE_CURRENT_SOURCE_DIR}/resources/scripting" "${APPIMAGE_STAGING_DIR}/"
-                   COMMAND ${CMAKE_COMMAND} -E copy_directory
-                       "${CMAKE_CURRENT_SOURCE_DIR}/resources/scripting" "${WINDOWS_STAGING_DIR}/resources/")
-
-add_custom_command(TARGET ${PROJECT_NAME}
-                   POST_BUILD
-                   COMMAND ${CMAKE_COMMAND} -E copy_directory
-                       "${CMAKE_CURRENT_SOURCE_DIR}/resources/report-themes" "$<TARGET_FILE_DIR:${PROJECT_NAME}>${RESOURCE_FOLDER}/report-themes"
-                   COMMAND ${CMAKE_COMMAND} -E copy_directory
-                       "${CMAKE_CURRENT_SOURCE_DIR}/resources/report-themes" "${APPIMAGE_STAGING_DIR}/report-themes"
-                   COMMAND ${CMAKE_COMMAND} -E copy_directory
-                       "${CMAKE_CURRENT_SOURCE_DIR}/resources/report-themes" "${WINDOWS_STAGING_DIR}/resources/report-themes")
-
-add_custom_command(TARGET ${PROJECT_NAME}
-                   POST_BUILD
-                   COMMAND ${CMAKE_COMMAND} -E copy_directory
-                       "${CMAKE_CURRENT_SOURCE_DIR}/examples" "$<TARGET_FILE_DIR:${PROJECT_NAME}>${RESOURCE_FOLDER}/examples"
-                   COMMAND ${CMAKE_COMMAND} -E copy_directory
-                       "${CMAKE_CURRENT_SOURCE_DIR}/examples" "${APPIMAGE_STAGING_DIR}/examples"
-                   COMMAND ${CMAKE_COMMAND} -E copy_directory
-                       "${CMAKE_CURRENT_SOURCE_DIR}/examples" "${WINDOWS_STAGING_DIR}/resources/examples")
+# Copy resource and doc folders to staging areas for build and installers
+copy_dir_to_staging("docs/readability-studio-manual/docs-manual" "readability-studio-manual")
+copy_dir_to_staging("docs/readability-studio-manual/docs-online" "readability-studio-manual/online")
+copy_dir_to_staging("docs/shortcuts-cheatsheet/docs" "readability-studio-manual")
+copy_dir_to_staging("docs/readability-test-reference/docs" "readability-studio-manual")
+copy_dir_to_staging("docs/release-notes/docs" "readability-studio-manual")
+copy_dir_to_staging("docs/sysadmin/docs" "readability-studio-manual")
+copy_dir_to_staging("docs/readability-studio-api/docs" "readability-studio-manual")
+copy_dir_to_staging("docs/lua-5.4/doc" "readability-studio-manual/lua-5.4/doc")
+copy_dir_to_staging("resources/scripting" "")
+copy_dir_to_staging("resources/report-themes" "report-themes")
+copy_dir_to_staging("examples" "examples")
 
 # Translations
-function(copy_translations LANG)
-    # Project's translations
-    if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/locale/${LANG}.mo")
-        add_custom_command(TARGET ${PROJECT_NAME}
-                        POST_BUILD
-                        COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_CURRENT_SOURCE_DIR}/locale/${LANG}.mo" "$<TARGET_FILE_DIR:${PROJECT_NAME}>${RESOURCE_FOLDER}/${LANG}/readstudio.mo"
-                        COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_CURRENT_SOURCE_DIR}/locale/${LANG}.mo" "${APPIMAGE_STAGING_DIR}/${LANG}/readstudio.mo"
-                        COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_CURRENT_SOURCE_DIR}/locale/${LANG}.mo" "${WINDOWS_STAGING_DIR}/resources/${LANG}/readstudio.mo"
-                        COMMENT "Copying Spanish translations to build and installer folders.")
-    else()
-        message(WARNING "Compiled ${PROJECT_NAME} '${LANG}' translations not found.\n(Expected it in '${CMAKE_CURRENT_SOURCE_DIR}/locale/${LANG}.mo')\nTranslations will not be available.")
-    endif()
-    # wxWidgets stock translations
-    if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/locale/${LANG}/wxstd.mo")
-        add_custom_command(TARGET ${PROJECT_NAME}
-                        POST_BUILD
-                        COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_CURRENT_SOURCE_DIR}/locale/${LANG}/wxstd.mo" "$<TARGET_FILE_DIR:${PROJECT_NAME}>${RESOURCE_FOLDER}/${LANG}/wxstd.mo"
-                        COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_CURRENT_SOURCE_DIR}/locale/${LANG}/wxstd.mo" "${APPIMAGE_STAGING_DIR}/${LANG}/wxstd.mo"
-                        COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_CURRENT_SOURCE_DIR}/locale/${LANG}/wxstd.mo" "${WINDOWS_STAGING_DIR}/resources/${LANG}/wxstd.mo"
-                        COMMENT "Copying Spanish translations to build and installer folders.")
-    else()
-        message(WARNING "Compiled wxWidgets '${LANG}' translations not found.\n(Expected it in '${CMAKE_CURRENT_SOURCE_DIR}/locale/${LANG}/wxstd.mo'.)\nTranslations will not be available.")
-    endif()
-endfunction()
-
 copy_translations("es")
 
+# Icons
 if(UNIX AND NOT APPLE)
     # Icon used for Linux
     add_custom_command(TARGET ${PROJECT_NAME}
@@ -687,6 +543,7 @@ if(UNIX AND NOT APPLE)
                        COMMAND ${CMAKE_COMMAND} -E copy
                            "${CMAKE_CURRENT_SOURCE_DIR}/docs/readability-studio-manual/images/frygraph.png" "${CMAKE_CURRENT_SOURCE_DIR}/installers/unix/AppDir/frygraph.png")
 endif()
+
 # License file
 add_custom_command(TARGET ${PROJECT_NAME}
                    POST_BUILD
@@ -696,47 +553,29 @@ add_custom_command(TARGET ${PROJECT_NAME}
                        "${CMAKE_CURRENT_SOURCE_DIR}/LICENSE" "${APPIMAGE_STAGING_DIR}/LICENSE"
                    COMMAND ${CMAKE_COMMAND} -E copy
                        "${CMAKE_CURRENT_SOURCE_DIR}/LICENSE" "${WINDOWS_STAGING_DIR}/resources/LICENSE")
+
 # Citation files
-add_custom_command(TARGET ${PROJECT_NAME}
-                   POST_BUILD
-                   COMMAND ${CMAKE_COMMAND} -E copy
-                       "${CMAKE_CURRENT_SOURCE_DIR}/citations.bib" "$<TARGET_FILE_DIR:${PROJECT_NAME}>${RESOURCE_FOLDER}/citations.bib"
-                   COMMAND ${CMAKE_COMMAND} -E copy
-                       "${CMAKE_CURRENT_SOURCE_DIR}/citations.bib" "${APPIMAGE_STAGING_DIR}/citations.bib"
-                   COMMAND ${CMAKE_COMMAND} -E copy
-                       "${CMAKE_CURRENT_SOURCE_DIR}/citations.bib" "${WINDOWS_STAGING_DIR}/resources/citations.bib")
-add_custom_command(TARGET ${PROJECT_NAME}
-                   POST_BUILD
-                   COMMAND ${CMAKE_COMMAND} -E copy
-                       "${CMAKE_CURRENT_SOURCE_DIR}/citations.mla" "$<TARGET_FILE_DIR:${PROJECT_NAME}>${RESOURCE_FOLDER}/citations.mla"
-                   COMMAND ${CMAKE_COMMAND} -E copy
-                       "${CMAKE_CURRENT_SOURCE_DIR}/citations.mla" "${APPIMAGE_STAGING_DIR}/citations.mla"
-                   COMMAND ${CMAKE_COMMAND} -E copy
-                       "${CMAKE_CURRENT_SOURCE_DIR}/citations.mla" "${WINDOWS_STAGING_DIR}/resources/citations.mla")
-add_custom_command(TARGET ${PROJECT_NAME}
-                   POST_BUILD
-                   COMMAND ${CMAKE_COMMAND} -E copy
-                       "${CMAKE_CURRENT_SOURCE_DIR}/citations.apa" "$<TARGET_FILE_DIR:${PROJECT_NAME}>${RESOURCE_FOLDER}/citations.apa"
-                   COMMAND ${CMAKE_COMMAND} -E copy
-                       "${CMAKE_CURRENT_SOURCE_DIR}/citations.apa" "${APPIMAGE_STAGING_DIR}/citations.apa"
-                   COMMAND ${CMAKE_COMMAND} -E copy
-                       "${CMAKE_CURRENT_SOURCE_DIR}/citations.apa" "${WINDOWS_STAGING_DIR}/resources/citations.apa")
+copy_citation_file("citations.bib")
+copy_citation_file("citations.mla")
+copy_citation_file("citations.apa")
+
 # Zip up images and menu resources
 file(MAKE_DIRECTORY "${WINDOWS_STAGING_DIR}/resources/")
 add_custom_command(TARGET ${PROJECT_NAME}
                    POST_BUILD
+                   COMMAND ${CMAKE_COMMAND} -E echo "Building resource bundle and copying to build and installer folders."
                    COMMAND ${CMAKE_COMMAND} -E tar "cvf" "$<TARGET_FILE_DIR:${PROJECT_NAME}>${RESOURCE_FOLDER}/res.wad" --format=zip --files-from="${CMAKE_CURRENT_SOURCE_DIR}/cmake/includes/images.cmake"
                    COMMAND ${CMAKE_COMMAND} -E copy "$<TARGET_FILE_DIR:${PROJECT_NAME}>${RESOURCE_FOLDER}/res.wad" "${APPIMAGE_STAGING_DIR}/res.wad"
                    COMMAND ${CMAKE_COMMAND} -E copy "$<TARGET_FILE_DIR:${PROJECT_NAME}>${RESOURCE_FOLDER}/res.wad" "${WINDOWS_STAGING_DIR}/resources/res.wad"
-                   COMMENT "Building resource bundle and copying to build and installer folders."
                    WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/resources/images")
+
 # Word lists
 add_custom_command(TARGET ${PROJECT_NAME}
                    POST_BUILD
+                   COMMAND ${CMAKE_COMMAND} -E echo "Building word lists and copying to build and installer folders."
                    COMMAND ${CMAKE_COMMAND} -E tar "cvf" "$<TARGET_FILE_DIR:${PROJECT_NAME}>${RESOURCE_FOLDER}/words.wad" --format=zip --files-from="${CMAKE_CURRENT_SOURCE_DIR}/cmake/includes/words.cmake"
                    COMMAND ${CMAKE_COMMAND} -E copy "$<TARGET_FILE_DIR:${PROJECT_NAME}>${RESOURCE_FOLDER}/words.wad" "${APPIMAGE_STAGING_DIR}/words.wad"
                    COMMAND ${CMAKE_COMMAND} -E copy "$<TARGET_FILE_DIR:${PROJECT_NAME}>${RESOURCE_FOLDER}/words.wad" "${WINDOWS_STAGING_DIR}/resources/words.wad"
-                   COMMENT "Building word lists and copying to build and installer folders."
                    WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/resources/words")
 
 if(UNIX)
@@ -761,17 +600,17 @@ if(${CMAKE_BUILD_TYPE} STREQUAL "Release")
     if(WIN32)
         add_custom_command(TARGET ${PROJECT_NAME}
                            POST_BUILD
-                           COMMAND ${CMAKE_COMMAND} -E copy "$<TARGET_FILE:${PROJECT_NAME}>" "${WINDOWS_STAGING_DIR}/release/"
-                           COMMENT "Copying binary to installer folder.")
+                           COMMAND ${CMAKE_COMMAND} -E echo "Copying binary to installer folder."
+                           COMMAND ${CMAKE_COMMAND} -E copy "$<TARGET_FILE:${PROJECT_NAME}>" "${WINDOWS_STAGING_DIR}/release/")
     elseif(UNIX AND NOT APPLE)
         add_custom_command(TARGET ${PROJECT_NAME}
                            POST_BUILD
-                           COMMAND ${CMAKE_COMMAND} -E copy "$<TARGET_FILE:${PROJECT_NAME}>" "${APPIMAGE_STAGING_DIR}/${PROJECT_NAME}"
-                           COMMENT "Copying binary AppImage staging folder.")
+                           COMMAND ${CMAKE_COMMAND} -E echo "Copying binary AppImage staging folder."
+                           COMMAND ${CMAKE_COMMAND} -E copy "$<TARGET_FILE:${PROJECT_NAME}>" "${APPIMAGE_STAGING_DIR}/${PROJECT_NAME}")
     elseif(APPLE)
         add_custom_command(TARGET ${PROJECT_NAME}
                            POST_BUILD
-                           COMMAND ${CMAKE_COMMAND} -E copy_directory "$<TARGET_FILE_DIR:${PROJECT_NAME}>" "${CMAKE_CURRENT_SOURCE_DIR}/installers/macos/release/"
-                           COMMENT "Copying files to DMG staging folder.")
+                           COMMAND ${CMAKE_COMMAND} -E echo "Copying files to DMG staging folder."
+                           COMMAND ${CMAKE_COMMAND} -E copy_directory "$<TARGET_FILE_DIR:${PROJECT_NAME}>" "${CMAKE_CURRENT_SOURCE_DIR}/installers/macos/release/")
     endif()
 endif()
