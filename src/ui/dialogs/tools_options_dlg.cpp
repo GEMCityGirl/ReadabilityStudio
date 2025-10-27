@@ -334,7 +334,7 @@ void ToolsOptionsDlg::OnExcludedPhrasesFileEditButtonClick([[maybe_unused]] wxCo
     editDlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(),
                          L"online/program-options.html");
     editDlg.SetPhraseFileMode(true);
-    editDlg.SetFilePath(m_excludedPhrasesPath);
+    editDlg.SetFilePath(m_excludedPhrasesPath.get_value());
     if (editDlg.ShowModal() != wxID_OK)
         {
         return;
@@ -383,7 +383,7 @@ void ToolsOptionsDlg::OnAdditionalDocumentFileBrowseButtonClick(
     [[maybe_unused]] wxCommandEvent& event)
     {
     TransferDataFromWindow();
-    const wxFileName fn(m_appendedDocumentFilePath);
+    const wxFileName fn(m_appendedDocumentFilePath.get_value());
     wxFileDialog dialog(this, _(L"Select Document to Append"), fn.GetPath(), fn.GetFullName(),
                         ReadabilityAppOptions::GetDocumentFilter(),
                         wxFD_OPEN | wxFD_FILE_MUST_EXIST | wxFD_PREVIEW);
@@ -401,7 +401,7 @@ void ToolsOptionsDlg::OnAdditionalDocumentFileBrowseButtonClick(
 void ToolsOptionsDlg::OnFileBrowseButtonClick([[maybe_unused]] wxCommandEvent& event)
     {
     TransferDataFromWindow();
-    const wxFileName fn(m_filePath);
+    const wxFileName fn(m_filePath.get_value());
     wxFileDialog dialog(this, _(L"Select Document to Analyze"), fn.GetPath(), fn.GetFullName(),
                         ReadabilityAppOptions::GetDocumentFilter(),
                         wxFD_OPEN | wxFD_FILE_MUST_EXIST | wxFD_PREVIEW);
@@ -422,32 +422,32 @@ void ToolsOptionsDlg::OnFontSelect(wxCommandEvent& event)
     switch (event.GetId())
         {
     case ID_FONT_BUTTON:
-        data.SetInitialFont(m_font);
-        data.SetColour(m_fontColor);
+        data.SetInitialFont(m_font.get_value());
+        data.SetColour(m_fontColor.get_value());
         break;
     case ID_X_AXIS_FONT_BUTTON:
-        data.SetInitialFont(m_xAxisFont);
-        data.SetColour(m_xAxisFontColor);
+        data.SetInitialFont(m_xAxisFont.get_value());
+        data.SetColour(m_xAxisFontColor.get_value());
         break;
     case ID_Y_AXIS_FONT_BUTTON:
-        data.SetInitialFont(m_yAxisFont);
-        data.SetColour(m_yAxisFontColor);
+        data.SetInitialFont(m_yAxisFont.get_value());
+        data.SetColour(m_yAxisFontColor.get_value());
         break;
     case ID_GRAPH_TOP_TITLE_FONT_BUTTON:
-        data.SetInitialFont(m_topTitleFont);
-        data.SetColour(m_topTitleFontColor);
+        data.SetInitialFont(m_topTitleFont.get_value());
+        data.SetColour(m_topTitleFontColor.get_value());
         break;
     case ID_GRAPH_BOTTOM_TITLE_FONT_BUTTON:
-        data.SetInitialFont(m_bottomTitleFont);
-        data.SetColour(m_bottomTitleFontColor);
+        data.SetInitialFont(m_bottomTitleFont.get_value());
+        data.SetColour(m_bottomTitleFontColor.get_value());
         break;
     case ID_GRAPH_LEFT_TITLE_FONT_BUTTON:
-        data.SetInitialFont(m_leftTitleFont);
-        data.SetColour(m_leftTitleFontColor);
+        data.SetInitialFont(m_leftTitleFont.get_value());
+        data.SetColour(m_leftTitleFontColor.get_value());
         break;
     case ID_GRAPH_RIGHT_TITLE_FONT_BUTTON:
-        data.SetInitialFont(m_rightTitleFont);
-        data.SetColour(m_rightTitleFontColor);
+        data.SetInitialFont(m_rightTitleFont.get_value());
+        data.SetColour(m_rightTitleFontColor.get_value());
         break;
         };
     wxFontDialog dialog(this, data);
@@ -497,14 +497,14 @@ void ToolsOptionsDlg::OnHighlightColorSelect([[maybe_unused]] wxCommandEvent& ev
     wxColourData data;
     wxGetApp().GetAppOptions()->CopyCustomColorsToColorData(data);
     data.SetChooseFull(true);
-    data.SetColour(m_highlightedColor);
+    data.SetColour(m_highlightedColor.get_value());
 
     wxColourDialog dialog(this, &data);
     if (dialog.ShowModal() == wxID_OK)
         {
         m_highlightedColor = dialog.GetColourData().GetColour();
         m_highlightColorButton->SetBitmapLabel(
-            ResourceManager::CreateColorIcon(m_highlightedColor));
+            ResourceManager::CreateColorIcon(m_highlightedColor.get_value()));
         wxGetApp().GetAppOptions()->CopyColorDataToCustomColors(dialog.GetColourData());
         }
     }
@@ -519,14 +519,14 @@ void ToolsOptionsDlg::OnExcludedHighlightColorSelect([[maybe_unused]] wxCommandE
     wxColourData data;
     wxGetApp().GetAppOptions()->CopyCustomColorsToColorData(data);
     data.SetChooseFull(true);
-    data.SetColour(m_excludedTextHighlightColor);
+    data.SetColour(m_excludedTextHighlightColor.get_value());
 
     wxColourDialog dialog(this, &data);
     if (dialog.ShowModal() == wxID_OK)
         {
         m_excludedTextHighlightColor = dialog.GetColourData().GetColour();
         m_excludedHighlightColorButton->SetBitmapLabel(
-            ResourceManager::CreateColorIcon(m_excludedTextHighlightColor));
+            ResourceManager::CreateColorIcon(m_excludedTextHighlightColor.get_value()));
         wxGetApp().GetAppOptions()->CopyColorDataToCustomColors(dialog.GetColourData());
         }
     }
@@ -541,14 +541,14 @@ void ToolsOptionsDlg::OnDupWordHighlightColorSelect([[maybe_unused]] wxCommandEv
     wxColourData data;
     wxGetApp().GetAppOptions()->CopyCustomColorsToColorData(data);
     data.SetChooseFull(true);
-    data.SetColour(m_duplicateWordHighlightColor);
+    data.SetColour(m_duplicateWordHighlightColor.get_value());
 
     wxColourDialog dialog(this, &data);
     if (dialog.ShowModal() == wxID_OK)
         {
         m_duplicateWordHighlightColor = dialog.GetColourData().GetColour();
         m_duplicateWordHighlightColorButton->SetBitmapLabel(
-            ResourceManager::CreateColorIcon(m_duplicateWordHighlightColor));
+            ResourceManager::CreateColorIcon(m_duplicateWordHighlightColor.get_value()));
         wxGetApp().GetAppOptions()->CopyColorDataToCustomColors(dialog.GetColourData());
         }
     }
@@ -563,14 +563,14 @@ void ToolsOptionsDlg::OnWordyPhraseHighlightColorSelect([[maybe_unused]] wxComma
     wxColourData data;
     wxGetApp().GetAppOptions()->CopyCustomColorsToColorData(data);
     data.SetChooseFull(true);
-    data.SetColour(m_wordyPhraseHighlightColor);
+    data.SetColour(m_wordyPhraseHighlightColor.get_value());
 
     wxColourDialog dialog(this, &data);
     if (dialog.ShowModal() == wxID_OK)
         {
         m_wordyPhraseHighlightColor = dialog.GetColourData().GetColour();
         m_wordyPhraseHighlightColorButton->SetBitmapLabel(
-            ResourceManager::CreateColorIcon(m_wordyPhraseHighlightColor));
+            ResourceManager::CreateColorIcon(m_wordyPhraseHighlightColor.get_value()));
         wxGetApp().GetAppOptions()->CopyColorDataToCustomColors(dialog.GetColourData());
         }
     }
@@ -586,14 +586,14 @@ void ToolsOptionsDlg::OnDolchConjunctionsHighlightColorSelect(
     wxColourData data;
     wxGetApp().GetAppOptions()->CopyCustomColorsToColorData(data);
     data.SetChooseFull(true);
-    data.SetColour(m_dolchConjunctionsColor);
+    data.SetColour(m_dolchConjunctionsColor.get_value());
 
     wxColourDialog dialog(this, &data);
     if (dialog.ShowModal() == wxID_OK)
         {
         m_dolchConjunctionsColor = dialog.GetColourData().GetColour();
         m_DolchConjunctionsColorButton->SetBitmapLabel(
-            ResourceManager::CreateColorIcon(m_dolchConjunctionsColor));
+            ResourceManager::CreateColorIcon(m_dolchConjunctionsColor.get_value()));
         wxGetApp().GetAppOptions()->CopyColorDataToCustomColors(dialog.GetColourData());
         }
     }
@@ -609,14 +609,14 @@ void ToolsOptionsDlg::OnDolchPrepositionsHighlightColorSelect(
     wxColourData data;
     wxGetApp().GetAppOptions()->CopyCustomColorsToColorData(data);
     data.SetChooseFull(true);
-    data.SetColour(m_dolchPrepositionsColor);
+    data.SetColour(m_dolchPrepositionsColor.get_value());
 
     wxColourDialog dialog(this, &data);
     if (dialog.ShowModal() == wxID_OK)
         {
         m_dolchPrepositionsColor = dialog.GetColourData().GetColour();
         m_DolchPrepositionsColorButton->SetBitmapLabel(
-            ResourceManager::CreateColorIcon(m_dolchPrepositionsColor));
+            ResourceManager::CreateColorIcon(m_dolchPrepositionsColor.get_value()));
         wxGetApp().GetAppOptions()->CopyColorDataToCustomColors(dialog.GetColourData());
         }
     }
@@ -631,14 +631,14 @@ void ToolsOptionsDlg::OnDolchPronounsHighlightColorSelect([[maybe_unused]] wxCom
     wxColourData data;
     wxGetApp().GetAppOptions()->CopyCustomColorsToColorData(data);
     data.SetChooseFull(true);
-    data.SetColour(m_dolchPronounsColor);
+    data.SetColour(m_dolchPronounsColor.get_value());
 
     wxColourDialog dialog(this, &data);
     if (dialog.ShowModal() == wxID_OK)
         {
         m_dolchPronounsColor = dialog.GetColourData().GetColour();
         m_DolchPronounsColorButton->SetBitmapLabel(
-            ResourceManager::CreateColorIcon(m_dolchPronounsColor));
+            ResourceManager::CreateColorIcon(m_dolchPronounsColor.get_value()));
         wxGetApp().GetAppOptions()->CopyColorDataToCustomColors(dialog.GetColourData());
         }
     }
@@ -653,14 +653,14 @@ void ToolsOptionsDlg::OnDolchAdverbsHighlightColorSelect([[maybe_unused]] wxComm
     wxColourData data;
     wxGetApp().GetAppOptions()->CopyCustomColorsToColorData(data);
     data.SetChooseFull(true);
-    data.SetColour(m_dolchAdverbsColor);
+    data.SetColour(m_dolchAdverbsColor.get_value());
 
     wxColourDialog dialog(this, &data);
     if (dialog.ShowModal() == wxID_OK)
         {
         m_dolchAdverbsColor = dialog.GetColourData().GetColour();
         m_DolchAdverbsColorButton->SetBitmapLabel(
-            ResourceManager::CreateColorIcon(m_dolchAdverbsColor));
+            ResourceManager::CreateColorIcon(m_dolchAdverbsColor.get_value()));
         wxGetApp().GetAppOptions()->CopyColorDataToCustomColors(dialog.GetColourData());
         }
     }
@@ -673,14 +673,14 @@ void ToolsOptionsDlg::OnDolchHighlightColorSelect(wxCommandEvent& event)
         wxColourData data;
         wxGetApp().GetAppOptions()->CopyCustomColorsToColorData(data);
         data.SetChooseFull(true);
-        data.SetColour(m_dolchAdjectivesColor);
+        data.SetColour(m_dolchAdjectivesColor.get_value());
 
         wxColourDialog dialog(this, &data);
         if (dialog.ShowModal() == wxID_OK)
             {
             m_dolchAdjectivesColor = dialog.GetColourData().GetColour();
             m_DolchAdjectivesColorButton->SetBitmapLabel(
-                ResourceManager::CreateColorIcon(m_dolchAdjectivesColor));
+                ResourceManager::CreateColorIcon(m_dolchAdjectivesColor.get_value()));
             wxGetApp().GetAppOptions()->CopyColorDataToCustomColors(dialog.GetColourData());
             }
         }
@@ -689,14 +689,14 @@ void ToolsOptionsDlg::OnDolchHighlightColorSelect(wxCommandEvent& event)
         wxColourData data;
         wxGetApp().GetAppOptions()->CopyCustomColorsToColorData(data);
         data.SetChooseFull(true);
-        data.SetColour(m_dolchVerbsColor);
+        data.SetColour(m_dolchVerbsColor.get_value());
 
         wxColourDialog dialog(this, &data);
         if (dialog.ShowModal() == wxID_OK)
             {
             m_dolchVerbsColor = dialog.GetColourData().GetColour();
             m_DolchVerbsColorButton->SetBitmapLabel(
-                ResourceManager::CreateColorIcon(m_dolchVerbsColor));
+                ResourceManager::CreateColorIcon(m_dolchVerbsColor.get_value()));
             wxGetApp().GetAppOptions()->CopyColorDataToCustomColors(dialog.GetColourData());
             }
         }
@@ -712,14 +712,14 @@ void ToolsOptionsDlg::OnDolchNounHighlightColorSelect([[maybe_unused]] wxCommand
     wxColourData data;
     wxGetApp().GetAppOptions()->CopyCustomColorsToColorData(data);
     data.SetChooseFull(true);
-    data.SetColour(m_dolchNounsColor);
+    data.SetColour(m_dolchNounsColor.get_value());
 
     wxColourDialog dialog(this, &data);
     if (dialog.ShowModal() == wxID_OK)
         {
         m_dolchNounsColor = dialog.GetColourData().GetColour();
         m_DolchNounsColorButton->SetBitmapLabel(
-            ResourceManager::CreateColorIcon(m_dolchNounsColor));
+            ResourceManager::CreateColorIcon(m_dolchNounsColor.get_value()));
         wxGetApp().GetAppOptions()->CopyColorDataToCustomColors(dialog.GetColourData());
         }
     }
@@ -954,7 +954,7 @@ ToolsOptionsDlg::ToolsOptionsDlg(wxWindow* parent, BaseProjectDoc* project /*= n
                wxCommandEvent& event)
         {
             TransferDataFromWindow();
-            m_persistCookiesCheck->Enable(m_useJsCookies);
+            m_persistCookiesCheck->Enable(m_useJsCookies.get_value());
         },
         ID_JS_COOKIES_CHECKBOX);
 
@@ -1822,8 +1822,8 @@ void ToolsOptionsDlg::SaveOptions()
         m_readabilityProjectDoc->SetLongSentenceMethod(m_longSentencesNumberOfWords ?
                                                            LongSentence::LongerThanSpecifiedLength :
                                                            LongSentence::OutlierLength);
-        m_readabilityProjectDoc->SetDifficultSentenceLength(m_sentenceLength);
-        m_readabilityProjectDoc->SetMinDocWordCountForBatch(m_minDocWordCountForBatch);
+        m_readabilityProjectDoc->SetDifficultSentenceLength(m_sentenceLength.get_value());
+        m_readabilityProjectDoc->SetMinDocWordCountForBatch(m_minDocWordCountForBatch.get_value());
         if (IsPropertyAvailable(m_sentencesBreakdownPropertyGrid,
                                 BaseProjectView::GetLongSentencesLabel()))
             {
@@ -2041,23 +2041,24 @@ void ToolsOptionsDlg::SaveOptions()
         m_readabilityProjectDoc->SetParagraphsParsingMethod(
             static_cast<ParagraphParse>(m_paragraphParsingMethod.get_value()));
         m_readabilityProjectDoc->IgnoreBlankLinesForParagraphsParser(
-            m_ignoreBlankLinesForParagraphsParser);
+            m_ignoreBlankLinesForParagraphsParser.get_value());
         m_readabilityProjectDoc->IgnoreIndentingForParagraphsParser(
-            m_ignoreIndentingForParagraphsParser);
-        m_readabilityProjectDoc->SetSentenceStartMustBeUppercased(m_sentenceStartMustBeUppercased);
-        m_readabilityProjectDoc->AggressiveExclusion(m_aggressiveExclusion);
+            m_ignoreIndentingForParagraphsParser.get_value());
+        m_readabilityProjectDoc->SetSentenceStartMustBeUppercased(
+            m_sentenceStartMustBeUppercased.get_value());
+        m_readabilityProjectDoc->AggressiveExclusion(m_aggressiveExclusion.get_value());
         m_readabilityProjectDoc->ExcludeTrailingCopyrightNoticeParagraphs(
-            m_excludeTrailingCopyrightNoticeParagraphs);
-        m_readabilityProjectDoc->ExcludeTrailingCitations(m_excludeTrailingCitations);
-        m_readabilityProjectDoc->ExcludeFileAddresses(m_excludeFileAddresses);
-        m_readabilityProjectDoc->ExcludeNumerals(m_excludeNumerals);
-        m_readabilityProjectDoc->ExcludeProperNouns(m_excludeProperNouns);
-        m_readabilityProjectDoc->SetExcludedPhrasesPath(m_excludedPhrasesPath);
+            m_excludeTrailingCopyrightNoticeParagraphs.get_value());
+        m_readabilityProjectDoc->ExcludeTrailingCitations(m_excludeTrailingCitations.get_value());
+        m_readabilityProjectDoc->ExcludeFileAddresses(m_excludeFileAddresses.get_value());
+        m_readabilityProjectDoc->ExcludeNumerals(m_excludeNumerals.get_value());
+        m_readabilityProjectDoc->ExcludeProperNouns(m_excludeProperNouns.get_value());
+        m_readabilityProjectDoc->SetExcludedPhrasesPath(m_excludedPhrasesPath.get_value());
         m_readabilityProjectDoc->IncludeExcludedPhraseFirstOccurrence(
-            m_includeExcludedPhraseFirstOccurrence);
-        m_readabilityProjectDoc->SetExclusionBlockTags(m_exclusionBlockTags);
+            m_includeExcludedPhraseFirstOccurrence.get_value());
+        m_readabilityProjectDoc->SetExclusionBlockTags(m_exclusionBlockTags.get_value());
         m_readabilityProjectDoc->SetIncludeIncompleteSentencesIfLongerThanValue(
-            m_includeIncompleteSentencesIfLongerThan);
+            m_includeIncompleteSentencesIfLongerThan.get_value());
         m_readabilityProjectDoc->SetInvalidSentenceMethod(static_cast<InvalidSentence>(
             (m_textExclusionMethod == static_cast<int>(InvalidSentence::ExcludeFromAnalysis)) ?
                 static_cast<int>(InvalidSentence::ExcludeFromAnalysis) :
@@ -2075,7 +2076,7 @@ void ToolsOptionsDlg::SaveOptions()
             static_cast<TextStorage>(m_documentStorageMethod.get_value()));
         if (IsStandardProjectSettings())
             {
-            m_readabilityProjectDoc->SetOriginalDocumentFilePath(m_filePath);
+            m_readabilityProjectDoc->SetOriginalDocumentFilePath(m_filePath.get_value());
             m_readabilityProjectDoc->GetSourceFilesInfo().at(0).second = m_description.get_value();
             }
 
@@ -2138,26 +2139,32 @@ void ToolsOptionsDlg::SaveOptions()
         {
         wxGetApp().GetAppOptions()->SetTextHighlightMethod(
             static_cast<TextHighlight>(m_textHighlightMethod.get_value()));
-        wxGetApp().GetAppOptions()->SetTextHighlightColor(m_highlightedColor);
-        wxGetApp().GetAppOptions()->SetExcludedTextHighlightColor(m_excludedTextHighlightColor);
-        wxGetApp().GetAppOptions()->SetDuplicateWordHighlightColor(m_duplicateWordHighlightColor);
-        wxGetApp().GetAppOptions()->SetWordyPhraseHighlightColor(m_wordyPhraseHighlightColor);
-        wxGetApp().GetAppOptions()->SetTextViewFont(m_font);
-        wxGetApp().GetAppOptions()->SetTextFontColor(m_fontColor);
-        wxGetApp().GetAppOptions()->SetDolchConjunctionsColor(m_dolchConjunctionsColor);
-        wxGetApp().GetAppOptions()->SetDolchPrepositionsColor(m_dolchPrepositionsColor);
-        wxGetApp().GetAppOptions()->SetDolchPronounsColor(m_dolchPronounsColor);
-        wxGetApp().GetAppOptions()->SetDolchAdverbsColor(m_dolchAdverbsColor);
-        wxGetApp().GetAppOptions()->SetDolchAdjectivesColor(m_dolchAdjectivesColor);
-        wxGetApp().GetAppOptions()->SetDolchVerbsColor(m_dolchVerbsColor);
-        wxGetApp().GetAppOptions()->SetDolchNounsColor(m_dolchNounsColor);
-        wxGetApp().GetAppOptions()->HighlightDolchConjunctions(m_highlightDolchConjunctions);
-        wxGetApp().GetAppOptions()->HighlightDolchPrepositions(m_highlightDolchPrepositions);
-        wxGetApp().GetAppOptions()->HighlightDolchPronouns(m_highlightDolchPronouns);
-        wxGetApp().GetAppOptions()->HighlightDolchAdverbs(m_highlightDolchAdverbs);
-        wxGetApp().GetAppOptions()->HighlightDolchAdjectives(m_highlightDolchAdjectives);
-        wxGetApp().GetAppOptions()->HighlightDolchVerbs(m_highlightDolchVerbs);
-        wxGetApp().GetAppOptions()->HighlightDolchNouns(m_highlightDolchNouns);
+        wxGetApp().GetAppOptions()->SetTextHighlightColor(m_highlightedColor.get_value());
+        wxGetApp().GetAppOptions()->SetExcludedTextHighlightColor(
+            m_excludedTextHighlightColor.get_value());
+        wxGetApp().GetAppOptions()->SetDuplicateWordHighlightColor(
+            m_duplicateWordHighlightColor.get_value());
+        wxGetApp().GetAppOptions()->SetWordyPhraseHighlightColor(
+            m_wordyPhraseHighlightColor.get_value());
+        wxGetApp().GetAppOptions()->SetTextViewFont(m_font.get_value());
+        wxGetApp().GetAppOptions()->SetTextFontColor(m_fontColor.get_value());
+        wxGetApp().GetAppOptions()->SetDolchConjunctionsColor(m_dolchConjunctionsColor.get_value());
+        wxGetApp().GetAppOptions()->SetDolchPrepositionsColor(m_dolchPrepositionsColor.get_value());
+        wxGetApp().GetAppOptions()->SetDolchPronounsColor(m_dolchPronounsColor.get_value());
+        wxGetApp().GetAppOptions()->SetDolchAdverbsColor(m_dolchAdverbsColor.get_value());
+        wxGetApp().GetAppOptions()->SetDolchAdjectivesColor(m_dolchAdjectivesColor.get_value());
+        wxGetApp().GetAppOptions()->SetDolchVerbsColor(m_dolchVerbsColor.get_value());
+        wxGetApp().GetAppOptions()->SetDolchNounsColor(m_dolchNounsColor.get_value());
+        wxGetApp().GetAppOptions()->HighlightDolchConjunctions(
+            m_highlightDolchConjunctions.get_value());
+        wxGetApp().GetAppOptions()->HighlightDolchPrepositions(
+            m_highlightDolchPrepositions.get_value());
+        wxGetApp().GetAppOptions()->HighlightDolchPronouns(m_highlightDolchPronouns.get_value());
+        wxGetApp().GetAppOptions()->HighlightDolchAdverbs(m_highlightDolchAdverbs.get_value());
+        wxGetApp().GetAppOptions()->HighlightDolchAdjectives(
+            m_highlightDolchAdjectives.get_value());
+        wxGetApp().GetAppOptions()->HighlightDolchVerbs(m_highlightDolchVerbs.get_value());
+        wxGetApp().GetAppOptions()->HighlightDolchNouns(m_highlightDolchNouns.get_value());
         if (IsPropertyAvailable(m_gradeLevelPropertyGrid, GetCalculationLabel()))
             {
             wxGetApp().GetAppOptions()->GetReadabilityMessageCatalog().SetReadingAgeDisplay(
@@ -2246,8 +2253,9 @@ void ToolsOptionsDlg::SaveOptions()
         wxGetApp().GetAppOptions()->SetLongSentenceMethod(
             m_longSentencesNumberOfWords ? LongSentence::LongerThanSpecifiedLength :
                                            LongSentence::OutlierLength);
-        wxGetApp().GetAppOptions()->SetDifficultSentenceLength(m_sentenceLength);
-        wxGetApp().GetAppOptions()->SetMinDocWordCountForBatch(m_minDocWordCountForBatch);
+        wxGetApp().GetAppOptions()->SetDifficultSentenceLength(m_sentenceLength.get_value());
+        wxGetApp().GetAppOptions()->SetMinDocWordCountForBatch(
+            m_minDocWordCountForBatch.get_value());
         if (IsPropertyAvailable(m_grammarPropertyGrid, GetIgnoreProperNounsLabel()))
             {
             wxGetApp().GetAppOptions()->SpellCheckIgnoreProperNouns(
@@ -2465,24 +2473,25 @@ void ToolsOptionsDlg::SaveOptions()
         wxGetApp().GetAppOptions()->SetParagraphsParsingMethod(
             static_cast<ParagraphParse>(m_paragraphParsingMethod.get_value()));
         wxGetApp().GetAppOptions()->IgnoreBlankLinesForParagraphsParser(
-            m_ignoreBlankLinesForParagraphsParser);
+            m_ignoreBlankLinesForParagraphsParser.get_value());
         wxGetApp().GetAppOptions()->IgnoreIndentingForParagraphsParser(
-            m_ignoreIndentingForParagraphsParser);
+            m_ignoreIndentingForParagraphsParser.get_value());
         wxGetApp().GetAppOptions()->SetSentenceStartMustBeUppercased(
-            m_sentenceStartMustBeUppercased);
-        wxGetApp().GetAppOptions()->AggressiveExclusion(m_aggressiveExclusion);
+            m_sentenceStartMustBeUppercased.get_value());
+        wxGetApp().GetAppOptions()->AggressiveExclusion(m_aggressiveExclusion.get_value());
         wxGetApp().GetAppOptions()->ExcludeTrailingCopyrightNoticeParagraphs(
-            m_excludeTrailingCopyrightNoticeParagraphs);
-        wxGetApp().GetAppOptions()->ExcludeTrailingCitations(m_excludeTrailingCitations);
-        wxGetApp().GetAppOptions()->ExcludeFileAddresses(m_excludeFileAddresses);
-        wxGetApp().GetAppOptions()->ExcludeNumerals(m_excludeNumerals);
-        wxGetApp().GetAppOptions()->ExcludeProperNouns(m_excludeProperNouns);
+            m_excludeTrailingCopyrightNoticeParagraphs.get_value());
+        wxGetApp().GetAppOptions()->ExcludeTrailingCitations(
+            m_excludeTrailingCitations.get_value());
+        wxGetApp().GetAppOptions()->ExcludeFileAddresses(m_excludeFileAddresses.get_value());
+        wxGetApp().GetAppOptions()->ExcludeNumerals(m_excludeNumerals.get_value());
+        wxGetApp().GetAppOptions()->ExcludeProperNouns(m_excludeProperNouns.get_value());
         wxGetApp().GetAppOptions()->IncludeExcludedPhraseFirstOccurrence(
-            m_includeExcludedPhraseFirstOccurrence);
-        wxGetApp().GetAppOptions()->SetExcludedPhrasesPath(m_excludedPhrasesPath);
-        wxGetApp().GetAppOptions()->SetExclusionBlockTags(m_exclusionBlockTags);
+            m_includeExcludedPhraseFirstOccurrence.get_value());
+        wxGetApp().GetAppOptions()->SetExcludedPhrasesPath(m_excludedPhrasesPath.get_value());
+        wxGetApp().GetAppOptions()->SetExclusionBlockTags(m_exclusionBlockTags.get_value());
         wxGetApp().GetAppOptions()->SetIncludeIncompleteSentencesIfLongerThanValue(
-            m_includeIncompleteSentencesIfLongerThan);
+            m_includeIncompleteSentencesIfLongerThan.get_value());
         wxGetApp().GetAppOptions()->SetInvalidSentenceMethod(static_cast<InvalidSentence>(
             (m_textExclusionMethod == static_cast<int>(InvalidSentence::ExcludeFromAnalysis)) ?
                 static_cast<int>(InvalidSentence::ExcludeFromAnalysis) :
@@ -2747,18 +2756,19 @@ void ToolsOptionsDlg::SaveOptions()
                 m_boxPlotsPropertyGrid->GetPropertyValueAsBool(GetShowAllDataPointsLabel()));
             }
 
-        wxGetApp().GetAppOptions()->SetXAxisFont(m_xAxisFont);
-        wxGetApp().GetAppOptions()->SetXAxisFontColor(m_xAxisFontColor);
-        wxGetApp().GetAppOptions()->SetYAxisFont(m_yAxisFont);
-        wxGetApp().GetAppOptions()->SetYAxisFontColor(m_yAxisFontColor);
-        wxGetApp().GetAppOptions()->SetGraphTopTitleFont(m_topTitleFont);
-        wxGetApp().GetAppOptions()->SetGraphTopTitleFontColor(m_topTitleFontColor);
-        wxGetApp().GetAppOptions()->SetGraphBottomTitleFont(m_bottomTitleFont);
-        wxGetApp().GetAppOptions()->SetGraphBottomTitleFontColor(m_bottomTitleFontColor);
-        wxGetApp().GetAppOptions()->SetGraphLeftTitleFont(m_leftTitleFont);
-        wxGetApp().GetAppOptions()->SetGraphLeftTitleFontColor(m_leftTitleFontColor);
-        wxGetApp().GetAppOptions()->SetGraphRightTitleFont(m_rightTitleFont);
-        wxGetApp().GetAppOptions()->SetGraphRightTitleFontColor(m_rightTitleFontColor);
+        wxGetApp().GetAppOptions()->SetXAxisFont(m_xAxisFont.get_value());
+        wxGetApp().GetAppOptions()->SetXAxisFontColor(m_xAxisFontColor.get_value());
+        wxGetApp().GetAppOptions()->SetYAxisFont(m_yAxisFont.get_value());
+        wxGetApp().GetAppOptions()->SetYAxisFontColor(m_yAxisFontColor.get_value());
+        wxGetApp().GetAppOptions()->SetGraphTopTitleFont(m_topTitleFont.get_value());
+        wxGetApp().GetAppOptions()->SetGraphTopTitleFontColor(m_topTitleFontColor.get_value());
+        wxGetApp().GetAppOptions()->SetGraphBottomTitleFont(m_bottomTitleFont.get_value());
+        wxGetApp().GetAppOptions()->SetGraphBottomTitleFontColor(
+            m_bottomTitleFontColor.get_value());
+        wxGetApp().GetAppOptions()->SetGraphLeftTitleFont(m_leftTitleFont.get_value());
+        wxGetApp().GetAppOptions()->SetGraphLeftTitleFontColor(m_leftTitleFontColor.get_value());
+        wxGetApp().GetAppOptions()->SetGraphRightTitleFont(m_rightTitleFont.get_value());
+        wxGetApp().GetAppOptions()->SetGraphRightTitleFontColor(m_rightTitleFontColor.get_value());
         if (IsPropertyAvailable(m_readabilityGraphPropertyGrid, GetInvalidRegionsColorLabel()))
             {
             wxGetApp().GetAppOptions()->SetInvalidAreaColor(
@@ -2874,26 +2884,31 @@ void ToolsOptionsDlg::SaveTextWindowOptions()
         {
         m_readabilityProjectDoc->SetTextHighlightMethod(
             static_cast<TextHighlight>(m_textHighlightMethod.get_value()));
-        m_readabilityProjectDoc->SetTextHighlightColor(m_highlightedColor);
-        m_readabilityProjectDoc->SetExcludedTextHighlightColor(m_excludedTextHighlightColor);
-        m_readabilityProjectDoc->SetDuplicateWordHighlightColor(m_duplicateWordHighlightColor);
-        m_readabilityProjectDoc->SetWordyPhraseHighlightColor(m_wordyPhraseHighlightColor);
-        m_readabilityProjectDoc->SetTextViewFont(m_font);
-        m_readabilityProjectDoc->SetTextFontColor(m_fontColor);
-        m_readabilityProjectDoc->SetDolchConjunctionsColor(m_dolchConjunctionsColor);
-        m_readabilityProjectDoc->SetDolchPrepositionsColor(m_dolchPrepositionsColor);
-        m_readabilityProjectDoc->SetDolchPronounsColor(m_dolchPronounsColor);
-        m_readabilityProjectDoc->SetDolchAdverbsColor(m_dolchAdverbsColor);
-        m_readabilityProjectDoc->SetDolchAdjectivesColor(m_dolchAdjectivesColor);
-        m_readabilityProjectDoc->SetDolchVerbsColor(m_dolchVerbsColor);
-        m_readabilityProjectDoc->SetDolchNounColor(m_dolchNounsColor);
-        m_readabilityProjectDoc->HighlightDolchConjunctions(m_highlightDolchConjunctions);
-        m_readabilityProjectDoc->HighlightDolchPrepositions(m_highlightDolchPrepositions);
-        m_readabilityProjectDoc->HighlightDolchPronouns(m_highlightDolchPronouns);
-        m_readabilityProjectDoc->HighlightDolchAdverbs(m_highlightDolchAdverbs);
-        m_readabilityProjectDoc->HighlightDolchAdjectives(m_highlightDolchAdjectives);
-        m_readabilityProjectDoc->HighlightDolchVerbs(m_highlightDolchVerbs);
-        m_readabilityProjectDoc->HighlightDolchNouns(m_highlightDolchNouns);
+        m_readabilityProjectDoc->SetTextHighlightColor(m_highlightedColor.get_value());
+        m_readabilityProjectDoc->SetExcludedTextHighlightColor(
+            m_excludedTextHighlightColor.get_value());
+        m_readabilityProjectDoc->SetDuplicateWordHighlightColor(
+            m_duplicateWordHighlightColor.get_value());
+        m_readabilityProjectDoc->SetWordyPhraseHighlightColor(
+            m_wordyPhraseHighlightColor.get_value());
+        m_readabilityProjectDoc->SetTextViewFont(m_font.get_value());
+        m_readabilityProjectDoc->SetTextFontColor(m_fontColor.get_value());
+        m_readabilityProjectDoc->SetDolchConjunctionsColor(m_dolchConjunctionsColor.get_value());
+        m_readabilityProjectDoc->SetDolchPrepositionsColor(m_dolchPrepositionsColor.get_value());
+        m_readabilityProjectDoc->SetDolchPronounsColor(m_dolchPronounsColor.get_value());
+        m_readabilityProjectDoc->SetDolchAdverbsColor(m_dolchAdverbsColor.get_value());
+        m_readabilityProjectDoc->SetDolchAdjectivesColor(m_dolchAdjectivesColor.get_value());
+        m_readabilityProjectDoc->SetDolchVerbsColor(m_dolchVerbsColor.get_value());
+        m_readabilityProjectDoc->SetDolchNounColor(m_dolchNounsColor.get_value());
+        m_readabilityProjectDoc->HighlightDolchConjunctions(
+            m_highlightDolchConjunctions.get_value());
+        m_readabilityProjectDoc->HighlightDolchPrepositions(
+            m_highlightDolchPrepositions.get_value());
+        m_readabilityProjectDoc->HighlightDolchPronouns(m_highlightDolchPronouns.get_value());
+        m_readabilityProjectDoc->HighlightDolchAdverbs(m_highlightDolchAdverbs.get_value());
+        m_readabilityProjectDoc->HighlightDolchAdjectives(m_highlightDolchAdjectives.get_value());
+        m_readabilityProjectDoc->HighlightDolchVerbs(m_highlightDolchVerbs.get_value());
+        m_readabilityProjectDoc->HighlightDolchNouns(m_highlightDolchNouns.get_value());
 
         m_readabilityProjectDoc->RefreshRequired(ProjectRefresh::TextSection);
         }
@@ -3104,18 +3119,18 @@ void ToolsOptionsDlg::SaveProjectGraphOptions()
                 m_boxPlotsPropertyGrid->GetPropertyValueAsBool(GetShowAllDataPointsLabel()));
             }
 
-        m_readabilityProjectDoc->SetXAxisFont(m_xAxisFont);
-        m_readabilityProjectDoc->SetXAxisFontColor(m_xAxisFontColor);
-        m_readabilityProjectDoc->SetYAxisFont(m_yAxisFont);
-        m_readabilityProjectDoc->SetYAxisFontColor(m_yAxisFontColor);
-        m_readabilityProjectDoc->SetGraphTopTitleFont(m_topTitleFont);
-        m_readabilityProjectDoc->SetGraphTopTitleFontColor(m_topTitleFontColor);
-        m_readabilityProjectDoc->SetGraphBottomTitleFont(m_bottomTitleFont);
-        m_readabilityProjectDoc->SetGraphBottomTitleFontColor(m_bottomTitleFontColor);
-        m_readabilityProjectDoc->SetGraphLeftTitleFont(m_leftTitleFont);
-        m_readabilityProjectDoc->SetGraphLeftTitleFontColor(m_leftTitleFontColor);
-        m_readabilityProjectDoc->SetGraphRightTitleFont(m_rightTitleFont);
-        m_readabilityProjectDoc->SetGraphRightTitleFontColor(m_rightTitleFontColor);
+        m_readabilityProjectDoc->SetXAxisFont(m_xAxisFont.get_value());
+        m_readabilityProjectDoc->SetXAxisFontColor(m_xAxisFontColor.get_value());
+        m_readabilityProjectDoc->SetYAxisFont(m_yAxisFont.get_value());
+        m_readabilityProjectDoc->SetYAxisFontColor(m_yAxisFontColor.get_value());
+        m_readabilityProjectDoc->SetGraphTopTitleFont(m_topTitleFont.get_value());
+        m_readabilityProjectDoc->SetGraphTopTitleFontColor(m_topTitleFontColor.get_value());
+        m_readabilityProjectDoc->SetGraphBottomTitleFont(m_bottomTitleFont.get_value());
+        m_readabilityProjectDoc->SetGraphBottomTitleFontColor(m_bottomTitleFontColor.get_value());
+        m_readabilityProjectDoc->SetGraphLeftTitleFont(m_leftTitleFont.get_value());
+        m_readabilityProjectDoc->SetGraphLeftTitleFontColor(m_leftTitleFontColor.get_value());
+        m_readabilityProjectDoc->SetGraphRightTitleFont(m_rightTitleFont.get_value());
+        m_readabilityProjectDoc->SetGraphRightTitleFontColor(m_rightTitleFontColor.get_value());
         if (IsPropertyAvailable(m_readabilityGraphPropertyGrid, GetInvalidRegionsColorLabel()))
             {
             m_readabilityProjectDoc->SetInvalidAreaColor(
@@ -3287,7 +3302,7 @@ void ToolsOptionsDlg::CreateControls()
             auto* uiLangCombo =
                 new wxComboBox(generalSettingsPage, wxID_ANY, wxString{}, wxDefaultPosition,
                                wxDefaultSize, choiceStrings, wxCB_DROPDOWN | wxCB_READONLY);
-            uiLangCombo->SetValidator(wxGenericValidator(&m_uiLanguage));
+            uiLangCombo->SetValidator(wxGenericValidator(&m_uiLanguage.get_value()));
             optionsSizer->Add(uiLangCombo, wxSizerFlags{}.Expand().Border());
 
             CreateLabelHeader(generalSettingsPage, docPanelSizer, _(L"Settings:"), true);
@@ -3320,27 +3335,29 @@ void ToolsOptionsDlg::CreateControls()
             userAgentSizer->Add(
                 new wxStaticText(generalSettingsPage, wxID_STATIC, _(L"User agent:")),
                 wxSizerFlags{}.CenterVertical());
-            auto* userAgentEdit =
-                new wxTextCtrl(generalSettingsPage, wxID_ANY, wxString{}, wxDefaultPosition,
-                               wxDefaultSize, wxBORDER_THEME, wxGenericValidator(&m_userAgent));
+            auto* userAgentEdit = new wxTextCtrl(generalSettingsPage, wxID_ANY, wxString{},
+                                                 wxDefaultPosition, wxDefaultSize, wxBORDER_THEME,
+                                                 wxGenericValidator(&m_userAgent.get_value()));
             userAgentSizer->Add(userAgentEdit, wxSizerFlags{ 1 }.Expand().Border(wxLEFT | wxRIGHT));
 
             optionsSizer->Add(new wxCheckBox(generalSettingsPage, wxID_ANY,
                                              _(L"Disable SSL certificate verification"),
                                              wxDefaultPosition, wxDefaultSize, 0,
-                                             wxGenericValidator(&m_disablePeerVerify)),
+                                             wxGenericValidator(&m_disablePeerVerify.get_value())),
                               wxSizerFlags{}.Expand().Border(wxTOP));
 
             optionsSizer->Add(new wxCheckBox(generalSettingsPage, ID_JS_COOKIES_CHECKBOX,
                                              _(L"Use JavaScript cookies"), wxDefaultPosition,
-                                             wxDefaultSize, 0, wxGenericValidator(&m_useJsCookies)),
+                                             wxDefaultSize, 0,
+                                             wxGenericValidator(&m_useJsCookies.get_value())),
                               wxSizerFlags{}.Expand().Border(wxTOP));
 
             m_persistCookiesCheck = new wxCheckBox(
                 generalSettingsPage, wxID_ANY, _(L"Persist cookies during each harvest"),
-                wxDefaultPosition, wxDefaultSize, 0, wxGenericValidator(&m_persistJsCookies));
+                wxDefaultPosition, wxDefaultSize, 0,
+                wxGenericValidator(&m_persistJsCookies.get_value()));
             optionsSizer->Add(m_persistCookiesCheck, wxSizerFlags{}.Expand().Border(wxTOP));
-            m_persistCookiesCheck->Enable(m_useJsCookies);
+            m_persistCookiesCheck->Enable(m_useJsCookies.get_value());
 
             optionsSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
 
@@ -3362,12 +3379,12 @@ void ToolsOptionsDlg::CreateControls()
 
             optionsSizer->Add(new wxCheckBox(generalSettingsPage, wxID_ANY, _(L"Verbose logging"),
                                              wxDefaultPosition, wxDefaultSize, 0,
-                                             wxGenericValidator(&m_logVerbose)),
+                                             wxGenericValidator(&m_logVerbose.get_value())),
                               wxSizerFlags{}.Expand().Border(wxTOP));
 
             optionsSizer->Add(new wxCheckBox(generalSettingsPage, wxID_ANY, _(L"Append daily log"),
                                              wxDefaultPosition, wxDefaultSize, 0,
-                                             wxGenericValidator(&m_logAppendDailyLog)),
+                                             wxGenericValidator(&m_logAppendDailyLog.get_value())),
                               wxSizerFlags{}.Expand().Border(wxTOP));
             }
         }
@@ -3389,9 +3406,9 @@ void ToolsOptionsDlg::CreateControls()
         projectExtraInfoSizer->Add(
             new wxStaticText(projectSettingsPage, wxID_STATIC, _(L"Reviewer:")),
             wxSizerFlags{}.CenterVertical());
-        auto* reviewerEdit =
-            new wxTextCtrl(projectSettingsPage, wxID_ANY, wxEmptyString, wxDefaultPosition,
-                           wxDefaultSize, wxBORDER_THEME, wxGenericValidator(&m_reviewer));
+        auto* reviewerEdit = new wxTextCtrl(projectSettingsPage, wxID_ANY, wxEmptyString,
+                                            wxDefaultPosition, wxDefaultSize, wxBORDER_THEME,
+                                            wxGenericValidator(&m_reviewer.get_value()));
         projectExtraInfoSizer->Add(reviewerEdit, wxSizerFlags{ 1 }.Expand());
 
         if (!IsGeneralSettings())
@@ -3399,9 +3416,9 @@ void ToolsOptionsDlg::CreateControls()
             projectExtraInfoSizer->Add(
                 new wxStaticText(projectSettingsPage, wxID_STATIC, _(L"Status:")),
                 wxSizerFlags{}.CenterVertical());
-            auto* statusEdit =
-                new wxTextCtrl(projectSettingsPage, wxID_ANY, wxEmptyString, wxDefaultPosition,
-                               wxDefaultSize, wxBORDER_THEME, wxGenericValidator(&m_status));
+            auto* statusEdit = new wxTextCtrl(projectSettingsPage, wxID_ANY, wxEmptyString,
+                                              wxDefaultPosition, wxDefaultSize, wxBORDER_THEME,
+                                              wxGenericValidator(&m_status.get_value()));
             projectExtraInfoSizer->Add(statusEdit, wxSizerFlags{ 1 }.Expand());
             }
 
@@ -3431,7 +3448,7 @@ void ToolsOptionsDlg::CreateControls()
                 std::to_wstring(m_minDocWordCountForBatch.get_value()), wxDefaultPosition,
                 wxDefaultSize, wxSP_ARROW_KEYS, 1, std::numeric_limits<int>::max(), 0);
             minDocWordCountForBatchSpinCtrl->SetValidator(
-                wxGenericValidator(&m_minDocWordCountForBatch));
+                wxGenericValidator(&m_minDocWordCountForBatch.get_value()));
             minDocSizeBoxSizer->Add(minDocWordCountForBatchSpinCtrl,
                                     wxSizerFlags{}.CenterVertical());
 
@@ -3444,9 +3461,9 @@ void ToolsOptionsDlg::CreateControls()
             truncModes.Add(_(L"Partially truncate the file path"));
             truncModes.Add(_(L"Show only the file name"));
             truncModes.Add(_(L"Show the full file path"));
-            auto* fileTruncCombo = new wxChoice(batchOptionsBox->GetStaticBox(), wxID_ANY,
-                                                wxDefaultPosition, wxDefaultSize, truncModes, 0,
-                                                wxGenericValidator(&m_filePathTruncationMode));
+            auto* fileTruncCombo = new wxChoice(
+                batchOptionsBox->GetStaticBox(), wxID_ANY, wxDefaultPosition, wxDefaultSize,
+                truncModes, 0, wxGenericValidator(&m_filePathTruncationMode.get_value()));
             fileTruncSizer->Add(fileTruncCombo, wxSizerFlags{}.Border(wxRIGHT).CenterVertical());
             batchOptionsBox->AddSpacer(wxSizerFlags::GetDefaultBorder());
             batchOptionsBox->Add(fileTruncSizer, wxSizerFlags{}.Expand().Border(wxLEFT));
@@ -3471,7 +3488,7 @@ void ToolsOptionsDlg::CreateControls()
             langSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
             langSizer->Add(new wxChoice(projectSettingsPage, wxID_ANY, wxDefaultPosition,
                                         wxDefaultSize, languages, 0,
-                                        wxGenericValidator(&m_projectLanguage)));
+                                        wxGenericValidator(&m_projectLanguage.get_value())));
             panelSizer->Add(langSizer, wxSizerFlags{}.Expand().Border(wxLEFT, optionIndentSize));
             panelSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
             }
@@ -3485,7 +3502,7 @@ void ToolsOptionsDlg::CreateControls()
             m_docStorageRadioBox = new wxRadioBox(
                 projectSettingsPage, ID_DOCUMENT_STORAGE_RADIO_BOX, _(L"Linking and embedding"),
                 wxDefaultPosition, wxDefaultSize, docLinking, 0, wxRA_SPECIFY_ROWS,
-                wxGenericValidator(&m_documentStorageMethod));
+                wxGenericValidator(&m_documentStorageMethod.get_value()));
             panelSizer->Add(m_docStorageRadioBox, wxSizerFlags{}.Border(wxLEFT, optionIndentSize));
 
             // not relevant with batch projects
@@ -3493,9 +3510,10 @@ void ToolsOptionsDlg::CreateControls()
                 {
                 panelSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
 
-                m_realTimeUpdateCheckBox = new wxCheckBox(
-                    projectSettingsPage, ID_REALTIME_UPDATE_BUTTON, _(L"Real-time update"),
-                    wxDefaultPosition, wxDefaultSize, 0, wxGenericValidator(&m_realTimeUpdate));
+                m_realTimeUpdateCheckBox =
+                    new wxCheckBox(projectSettingsPage, ID_REALTIME_UPDATE_BUTTON,
+                                   _(L"Real-time update"), wxDefaultPosition, wxDefaultSize, 0,
+                                   wxGenericValidator(&m_realTimeUpdate.get_value()));
                 m_realTimeUpdateCheckBox->Enable(
                     static_cast<TextStorage>(m_documentStorageMethod.get_value()) ==
                     TextStorage::NoEmbedText);
@@ -3512,9 +3530,9 @@ void ToolsOptionsDlg::CreateControls()
             panelSizer->Add(fileBrowseBoxSizer,
                             wxSizerFlags{}.Expand().Border(wxLEFT, optionIndentSize));
 
-            m_filePathEdit = new wxTextCtrl(projectSettingsPage, ID_DOCUMENT_PATH_FIELD,
-                                            wxEmptyString, wxDefaultPosition, wxDefaultSize,
-                                            wxBORDER_THEME, wxGenericValidator(&m_filePath));
+            m_filePathEdit = new wxTextCtrl(
+                projectSettingsPage, ID_DOCUMENT_PATH_FIELD, wxEmptyString, wxDefaultPosition,
+                wxDefaultSize, wxBORDER_THEME, wxGenericValidator(&m_filePath.get_value()));
             m_filePathEdit->AutoCompleteFileNames();
             fileBrowseBoxSizer->Add(m_filePathEdit, wxSizerFlags{ 1 }.Expand());
 
@@ -3539,7 +3557,7 @@ void ToolsOptionsDlg::CreateControls()
             auto* descriptionEdit =
                 new wxTextCtrl(projectSettingsPage, ID_DOCUMENT_DESCRIPTION_FIELD, wxEmptyString,
                                wxDefaultPosition, wxDefaultSize, wxBORDER_THEME,
-                               wxGenericValidator(&m_description));
+                               wxGenericValidator(&m_description.get_value()));
             docDescriptionSizer->Add(descriptionEdit, wxSizerFlags{ 1 }.Expand().Border(wxLEFT));
             }
         else if (IsBatchProjectSettings())
@@ -3614,9 +3632,10 @@ void ToolsOptionsDlg::CreateControls()
             panelSizer->Add(fileBrowseBoxSizer,
                             wxSizerFlags{}.Expand().Border(wxLEFT, optionIndentSize));
 
-            auto* filePathEdit = new wxTextCtrl(
-                projectSettingsPage, ID_ADDITIONAL_FILE_FIELD, wxEmptyString, wxDefaultPosition,
-                wxDefaultSize, wxBORDER_THEME, wxGenericValidator(&m_appendedDocumentFilePath));
+            auto* filePathEdit =
+                new wxTextCtrl(projectSettingsPage, ID_ADDITIONAL_FILE_FIELD, wxEmptyString,
+                               wxDefaultPosition, wxDefaultSize, wxBORDER_THEME,
+                               wxGenericValidator(&m_appendedDocumentFilePath.get_value()));
             filePathEdit->AutoCompleteFileNames();
             fileBrowseBoxSizer->Add(filePathEdit, wxSizerFlags{ 1 }.Expand());
 
@@ -3653,14 +3672,15 @@ void ToolsOptionsDlg::CreateControls()
         radioButton =
             new wxRadioButton(analysisIndexingPage, ID_SENTENCE_LONGER_THAN_BUTTON,
                               _(L"&Longer than"), wxDefaultPosition, wxDefaultSize, wxRB_GROUP,
-                              wxGenericValidator(&m_longSentencesNumberOfWords));
+                              wxGenericValidator(&m_longSentencesNumberOfWords.get_value()));
         longerThanWordSizer->Add(radioButton, wxSizerFlags{}.CenterVertical());
         // the spin control for the number of words
         auto* wordsPerLongSentenceSpinCtrl =
             new wxSpinCtrl(analysisIndexingPage, wxID_ANY,
                            std::to_wstring(m_sentenceLength.get_value()), wxDefaultPosition,
                            wxDefaultSize, wxSP_ARROW_KEYS, 0, std::numeric_limits<int>::max(), 0);
-        wordsPerLongSentenceSpinCtrl->SetValidator(wxGenericValidator(&m_sentenceLength));
+        wordsPerLongSentenceSpinCtrl->SetValidator(
+            wxGenericValidator(&m_sentenceLength.get_value()));
         longerThanWordSizer->Add(wordsPerLongSentenceSpinCtrl,
                                  wxSizerFlags{}.CenterVertical().Border());
         // "words" after it
@@ -3669,10 +3689,10 @@ void ToolsOptionsDlg::CreateControls()
         longerThanWordSizer->Add(wordsLabel,
                                  wxSizerFlags{}.CenterVertical().Border(wxLEFT | wxRIGHT));
 
-        radioButton =
-            new wxRadioButton(analysisIndexingPage, ID_SENTENCE_OUTLIER_LENGTH_BUTTON,
-                              _(L"Out&side sentence-length outlier range"), wxDefaultPosition,
-                              wxDefaultSize, 0, wxGenericValidator(&m_longSentencesOutliers));
+        radioButton = new wxRadioButton(analysisIndexingPage, ID_SENTENCE_OUTLIER_LENGTH_BUTTON,
+                                        _(L"Out&side sentence-length outlier range"),
+                                        wxDefaultPosition, wxDefaultSize, 0,
+                                        wxGenericValidator(&m_longSentencesOutliers.get_value()));
         optionsIndentSizer->Add(radioButton, wxSizerFlags{}.Expand().Border(wxBOTTOM));
         panelSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
 
@@ -3690,16 +3710,16 @@ void ToolsOptionsDlg::CreateControls()
         wxArrayString paragraphParseOptions;
         paragraphParseOptions.Add(_(L"only begin a new paragraph if following a valid sentence"));
         paragraphParseOptions.Add(_(L"always begin a new paragraph"));
-        auto* paragraphParseCombo =
-            new wxChoice(analysisIndexingPage, ID_PARAGRAPH_PARSE, wxDefaultPosition, wxDefaultSize,
-                         paragraphParseOptions, 0, wxGenericValidator(&m_paragraphParsingMethod));
+        auto* paragraphParseCombo = new wxChoice(
+            analysisIndexingPage, ID_PARAGRAPH_PARSE, wxDefaultPosition, wxDefaultSize,
+            paragraphParseOptions, 0, wxGenericValidator(&m_paragraphParsingMethod.get_value()));
         lineEndsSizer->Add(paragraphParseCombo, wxSizerFlags{}.CenterVertical().Border(wxRIGHT));
         optionsIndentSizer->Add(lineEndsSizer, wxSizerFlags{}.Expand().Border(wxBOTTOM));
 
         m_ignoreBlankLinesCheckBox =
             new wxCheckBox(analysisIndexingPage, ID_IGNORE_BLANK_LINES_BUTTON,
                            _(L"Ignore &blank lines"), wxDefaultPosition, wxDefaultSize, 0,
-                           wxGenericValidator(&m_ignoreBlankLinesForParagraphsParser));
+                           wxGenericValidator(&m_ignoreBlankLinesForParagraphsParser.get_value()));
         m_ignoreBlankLinesCheckBox->Enable(
             static_cast<ParagraphParse>(m_paragraphParsingMethod.get_value()) ==
             ParagraphParse::OnlySentenceTerminatedNewLinesAreParagraphs);
@@ -3709,17 +3729,17 @@ void ToolsOptionsDlg::CreateControls()
         m_ignoreIndentingCheckBox =
             new wxCheckBox(analysisIndexingPage, ID_IGNORE_INDENTING_BUTTON,
                            _(L"&Ignore indenting"), wxDefaultPosition, wxDefaultSize, 0,
-                           wxGenericValidator(&m_ignoreIndentingForParagraphsParser));
+                           wxGenericValidator(&m_ignoreIndentingForParagraphsParser.get_value()));
         m_ignoreIndentingCheckBox->Enable(
             static_cast<ParagraphParse>(m_paragraphParsingMethod.get_value()) ==
             ParagraphParse::OnlySentenceTerminatedNewLinesAreParagraphs);
         optionsIndentSizer->Add(m_ignoreIndentingCheckBox,
                                 wxSizerFlags{}.Expand().Border(wxBOTTOM));
 
-        auto* sentenceStartMustBeUppercasedCheckBox =
-            new wxCheckBox(analysisIndexingPage, ID_SENTENCES_MUST_BE_CAP_BUTTON,
-                           _(L"Sentences must begin with capitalized words"), wxDefaultPosition,
-                           wxDefaultSize, 0, wxGenericValidator(&m_sentenceStartMustBeUppercased));
+        auto* sentenceStartMustBeUppercasedCheckBox = new wxCheckBox(
+            analysisIndexingPage, ID_SENTENCES_MUST_BE_CAP_BUTTON,
+            _(L"Sentences must begin with capitalized words"), wxDefaultPosition, wxDefaultSize, 0,
+            wxGenericValidator(&m_sentenceStartMustBeUppercased.get_value()));
         optionsIndentSizer->Add(sentenceStartMustBeUppercasedCheckBox,
                                 wxSizerFlags{}.Expand().Border(wxBOTTOM));
         panelSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
@@ -3740,7 +3760,7 @@ void ToolsOptionsDlg::CreateControls()
         exclusionOptions.Add(_(L"Exclude all incomplete sentences, except headings"));
         auto* exclusionCombo = new wxChoice(analysisIndexingPage, ID_TEXT_EXCLUDE_METHOD,
                                             wxDefaultPosition, wxDefaultSize, exclusionOptions, 0,
-                                            wxGenericValidator(&m_textExclusionMethod));
+                                            wxGenericValidator(&m_textExclusionMethod.get_value()));
         exclusionSizer->Add(exclusionCombo, wxSizerFlags{}.CenterVertical().Border(wxRIGHT));
         optionsIndentSizer->Add(exclusionSizer, wxSizerFlags{}.Expand().Border(wxBOTTOM));
 
@@ -3759,7 +3779,7 @@ void ToolsOptionsDlg::CreateControls()
                            wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0,
                            std::numeric_limits<int>::max(), 0);
         includeIncompleteSentencesIfLongerThanSpinCtrl->SetValidator(
-            wxGenericValidator(&m_includeIncompleteSentencesIfLongerThan));
+            wxGenericValidator(&m_includeIncompleteSentencesIfLongerThan.get_value()));
         includeIncompleteSentSizeSizer->Add(includeIncompleteSentencesIfLongerThanSpinCtrl,
                                             wxSizerFlags{}.Border(wxLEFT | wxRIGHT));
         // "words" after it
@@ -3773,35 +3793,37 @@ void ToolsOptionsDlg::CreateControls()
             2, wxSize(wxSizerFlags::GetDefaultBorder(), wxSizerFlags::GetDefaultBorder()));
         optionsIndentSizer->Add(ignoreOptionsGrid, wxSizerFlags{}.Expand().Border(wxBOTTOM));
 
-        m_aggressiveExclusionCheckBox = new wxCheckBox(
-            analysisIndexingPage, ID_AGGRESSIVE_LIST_DEDUCTION_CHECKBOX, _(L"Aggressive exclusion"),
-            wxDefaultPosition, wxDefaultSize, 0, wxGenericValidator(&m_aggressiveExclusion));
+        m_aggressiveExclusionCheckBox =
+            new wxCheckBox(analysisIndexingPage, ID_AGGRESSIVE_LIST_DEDUCTION_CHECKBOX,
+                           _(L"Aggressive exclusion"), wxDefaultPosition, wxDefaultSize, 0,
+                           wxGenericValidator(&m_aggressiveExclusion.get_value()));
         m_aggressiveExclusionCheckBox->Enable(
             (m_textExclusionMethod == static_cast<int>(InvalidSentence::ExcludeFromAnalysis)) ||
             (m_textExclusionMethod == static_cast<int>(InvalidSentence::ExcludeExceptForHeadings)));
         ignoreOptionsGrid->Add(m_aggressiveExclusionCheckBox);
 
-        m_ignoreFileAddressesCheckBox =
-            new wxCheckBox(analysisIndexingPage, ID_EXCLUDE_FILE_ADDRESS_CHECKBOX,
-                           _(L"Also exclude Internet and file addresses"), wxDefaultPosition,
-                           wxDefaultSize, 0, wxGenericValidator(&m_excludeFileAddresses));
+        m_ignoreFileAddressesCheckBox = new wxCheckBox(
+            analysisIndexingPage, ID_EXCLUDE_FILE_ADDRESS_CHECKBOX,
+            _(L"Also exclude Internet and file addresses"), wxDefaultPosition, wxDefaultSize, 0,
+            wxGenericValidator(&m_excludeFileAddresses.get_value()));
         m_ignoreFileAddressesCheckBox->Enable(
             (m_textExclusionMethod == static_cast<int>(InvalidSentence::ExcludeFromAnalysis)) ||
             (m_textExclusionMethod == static_cast<int>(InvalidSentence::ExcludeExceptForHeadings)));
         ignoreOptionsGrid->Add(m_ignoreFileAddressesCheckBox);
 
-        m_ignoreCopyrightsCheckBox =
-            new wxCheckBox(analysisIndexingPage, ID_EXCLUDE_COPYRIGHT_CHECKBOX,
-                           _(L"Also exclude &copyright notices"), wxDefaultPosition, wxDefaultSize,
-                           0, wxGenericValidator(&m_excludeTrailingCopyrightNoticeParagraphs));
+        m_ignoreCopyrightsCheckBox = new wxCheckBox(
+            analysisIndexingPage, ID_EXCLUDE_COPYRIGHT_CHECKBOX,
+            _(L"Also exclude &copyright notices"), wxDefaultPosition, wxDefaultSize, 0,
+            wxGenericValidator(&m_excludeTrailingCopyrightNoticeParagraphs.get_value()));
         m_ignoreCopyrightsCheckBox->Enable(
             (m_textExclusionMethod == static_cast<int>(InvalidSentence::ExcludeFromAnalysis)) ||
             (m_textExclusionMethod == static_cast<int>(InvalidSentence::ExcludeExceptForHeadings)));
         ignoreOptionsGrid->Add(m_ignoreCopyrightsCheckBox);
 
-        m_ignoreNumeralsCheckBox = new wxCheckBox(
-            analysisIndexingPage, ID_EXCLUDE_NUMERALS_CHECKBOX, _(L"Also exclude numerals"),
-            wxDefaultPosition, wxDefaultSize, 0, wxGenericValidator(&m_excludeNumerals));
+        m_ignoreNumeralsCheckBox =
+            new wxCheckBox(analysisIndexingPage, ID_EXCLUDE_NUMERALS_CHECKBOX,
+                           _(L"Also exclude numerals"), wxDefaultPosition, wxDefaultSize, 0,
+                           wxGenericValidator(&m_excludeNumerals.get_value()));
         m_ignoreNumeralsCheckBox->Enable(
             (m_textExclusionMethod == static_cast<int>(InvalidSentence::ExcludeFromAnalysis)) ||
             (m_textExclusionMethod == static_cast<int>(InvalidSentence::ExcludeExceptForHeadings)));
@@ -3810,15 +3832,16 @@ void ToolsOptionsDlg::CreateControls()
         m_ignoreCitationsCheckBox =
             new wxCheckBox(analysisIndexingPage, ID_EXCLUDE_CITATIONS_CHECKBOX,
                            _(L"Also exclude trailing citations"), wxDefaultPosition, wxDefaultSize,
-                           0, wxGenericValidator(&m_excludeTrailingCitations));
+                           0, wxGenericValidator(&m_excludeTrailingCitations.get_value()));
         m_ignoreCitationsCheckBox->Enable(
             (m_textExclusionMethod == static_cast<int>(InvalidSentence::ExcludeFromAnalysis)) ||
             (m_textExclusionMethod == static_cast<int>(InvalidSentence::ExcludeExceptForHeadings)));
         ignoreOptionsGrid->Add(m_ignoreCitationsCheckBox);
 
-        m_ignoreProperNounsCheckBox = new wxCheckBox(
-            analysisIndexingPage, ID_EXCLUDE_PROPER_NOUNS_CHECKBOX, _(L"Also exclude proper nouns"),
-            wxDefaultPosition, wxDefaultSize, 0, wxGenericValidator(&m_excludeProperNouns));
+        m_ignoreProperNounsCheckBox =
+            new wxCheckBox(analysisIndexingPage, ID_EXCLUDE_PROPER_NOUNS_CHECKBOX,
+                           _(L"Also exclude proper nouns"), wxDefaultPosition, wxDefaultSize, 0,
+                           wxGenericValidator(&m_excludeProperNouns.get_value()));
         m_ignoreProperNounsCheckBox->Enable(
             (m_textExclusionMethod == static_cast<int>(InvalidSentence::ExcludeFromAnalysis)) ||
             (m_textExclusionMethod == static_cast<int>(InvalidSentence::ExcludeExceptForHeadings)));
@@ -3834,7 +3857,7 @@ void ToolsOptionsDlg::CreateControls()
         m_excludedPhrasesPathFilePathEdit =
             new wxTextCtrl(excludedPhrasesFileBrowseBoxSizer->GetStaticBox(), wxID_ANY,
                            wxEmptyString, wxDefaultPosition, wxDefaultSize, wxBORDER_THEME,
-                           wxGenericValidator(&m_excludedPhrasesPath));
+                           wxGenericValidator(&m_excludedPhrasesPath.get_value()));
         m_excludedPhrasesPathFilePathEdit->AutoCompleteFileNames();
         excludePathSizer->Add(m_excludedPhrasesPathFilePathEdit, wxSizerFlags{ 1 }.Expand());
 
@@ -3847,7 +3870,7 @@ void ToolsOptionsDlg::CreateControls()
             new wxCheckBox(excludedPhrasesFileBrowseBoxSizer->GetStaticBox(),
                            ID_INCLUDE_FIRST_OCCURRENCE_EXCLUDE_CHECKBOX,
                            _(L"Include first occurrence"), wxDefaultPosition, wxDefaultSize, 0,
-                           wxGenericValidator(&m_includeExcludedPhraseFirstOccurrence));
+                           wxGenericValidator(&m_includeExcludedPhraseFirstOccurrence.get_value()));
         excludedPhrasesFileBrowseBoxSizer->Add(m_includeExcludedPhraseFirstOccurrenceCheckBox,
                                                wxSizerFlags{}.Expand().Border(wxTOP));
 
@@ -3933,7 +3956,7 @@ void ToolsOptionsDlg::CreateControls()
         syllableOptions.Add(_(L"Sound out each digit"));
         m_syllableCombo = new wxChoice(analysisIndexingPage, ID_NUMBER_SYLLABIZE_METHOD,
                                        wxDefaultPosition, wxDefaultSize, syllableOptions, 0,
-                                       wxGenericValidator(&m_syllabicationMethod));
+                                       wxGenericValidator(&m_syllabicationMethod.get_value()));
         m_syllableCombo->Enable(
             (m_textExclusionMethod == static_cast<int>(InvalidSentence::IncludeAsFullSentences)) ||
             !m_excludeNumerals);
@@ -4968,7 +4991,7 @@ void ToolsOptionsDlg::CreateControls()
             m_excludedHighlightColorButton =
                 new wxButton(panel, ID_EXCLUDED_HIGHLIGHT_COLOR_BUTTON, _(L"Excluded text color"));
             m_excludedHighlightColorButton->SetBitmap(
-                ResourceManager::CreateColorIcon(m_excludedTextHighlightColor));
+                ResourceManager::CreateColorIcon(m_excludedTextHighlightColor.get_value()));
             optionsIndentSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
             optionsIndentSizer->Add(m_excludedHighlightColorButton, wxSizerFlags{}.Expand());
             }
@@ -4977,7 +5000,8 @@ void ToolsOptionsDlg::CreateControls()
             {
             m_highlightColorButton = new wxButton(panel, ID_HIGHLIGHT_COLOR_BUTTON,
                                                   _(L"Difficult words and sentences color"));
-            m_highlightColorButton->SetBitmap(ResourceManager::CreateColorIcon(m_highlightedColor));
+            m_highlightColorButton->SetBitmap(
+                ResourceManager::CreateColorIcon(m_highlightedColor.get_value()));
             optionsIndentSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
             optionsIndentSizer->Add(m_highlightColorButton, wxSizerFlags{}.Expand());
             }
@@ -4987,7 +5011,7 @@ void ToolsOptionsDlg::CreateControls()
             m_duplicateWordHighlightColorButton =
                 new wxButton(panel, ID_DUP_WORD_COLOR_BUTTON, _(L"Grammar errors color"));
             m_duplicateWordHighlightColorButton->SetBitmap(
-                ResourceManager::CreateColorIcon(m_duplicateWordHighlightColor));
+                ResourceManager::CreateColorIcon(m_duplicateWordHighlightColor.get_value()));
             optionsIndentSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
             optionsIndentSizer->Add(m_duplicateWordHighlightColorButton, wxSizerFlags{}.Expand());
             }
@@ -4997,7 +5021,7 @@ void ToolsOptionsDlg::CreateControls()
             m_wordyPhraseHighlightColorButton =
                 new wxButton(panel, ID_WORDY_PHRASE_COLOR_BUTTON, _(L"Wordy items color"));
             m_wordyPhraseHighlightColorButton->SetBitmap(
-                ResourceManager::CreateColorIcon(m_wordyPhraseHighlightColor));
+                ResourceManager::CreateColorIcon(m_wordyPhraseHighlightColor.get_value()));
             optionsIndentSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
             optionsIndentSizer->Add(m_wordyPhraseHighlightColorButton, wxSizerFlags{}.Expand());
             }
@@ -5010,9 +5034,9 @@ void ToolsOptionsDlg::CreateControls()
         wxArrayString highlightOptions;
         highlightOptions.Add(_(L"Background color"));
         highlightOptions.Add(_(L"Font color"));
-        auto* highlightCombo =
-            new wxChoice(panel, ID_PARAGRAPH_PARSE, wxDefaultPosition, wxDefaultSize,
-                         highlightOptions, 0, wxGenericValidator(&m_textHighlightMethod));
+        auto* highlightCombo = new wxChoice(panel, ID_PARAGRAPH_PARSE, wxDefaultPosition,
+                                            wxDefaultSize, highlightOptions, 0,
+                                            wxGenericValidator(&m_textHighlightMethod.get_value()));
         highlightSizer->Add(highlightCombo, wxSizerFlags{}.Border(wxRIGHT).CenterVertical());
         panelSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
         panelSizer->Add(highlightSizer, wxSizerFlags{}.Border(wxLEFT, optionIndentSize));
@@ -5041,14 +5065,15 @@ void ToolsOptionsDlg::CreateControls()
                 optionsIndentSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
                 optionsIndentSizer->Add(rowSizer, wxSizerFlags{}.Expand());
 
-                m_DolchConjunctionsColorButton =
-                    new wxBitmapButton(panel, ID_DOLCH_CONJUNCTIONS_COLOR_BUTTON,
-                                       ResourceManager::CreateColorIcon(m_dolchConjunctionsColor));
+                m_DolchConjunctionsColorButton = new wxBitmapButton(
+                    panel, ID_DOLCH_CONJUNCTIONS_COLOR_BUTTON,
+                    ResourceManager::CreateColorIcon(m_dolchConjunctionsColor.get_value()));
                 // add them to the sizer
-                rowSizer->Add(new wxCheckBox(panel, wxID_ANY, _(L"Dolch conjunctions color:"),
-                                             wxDefaultPosition, wxDefaultSize, 0,
-                                             wxGenericValidator(&m_highlightDolchConjunctions)),
-                              wxSizerFlags{ 1 }.CenterVertical());
+                rowSizer->Add(
+                    new wxCheckBox(panel, wxID_ANY, _(L"Dolch conjunctions color:"),
+                                   wxDefaultPosition, wxDefaultSize, 0,
+                                   wxGenericValidator(&m_highlightDolchConjunctions.get_value())),
+                    wxSizerFlags{ 1 }.CenterVertical());
                 rowSizer->Add(m_DolchConjunctionsColorButton,
                               wxSizerFlags{}.Align(wxRight).Border(wxLEFT));
                 }
@@ -5058,14 +5083,15 @@ void ToolsOptionsDlg::CreateControls()
                 optionsIndentSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
                 optionsIndentSizer->Add(rowSizer, wxSizerFlags{}.Expand());
 
-                m_DolchPrepositionsColorButton =
-                    new wxBitmapButton(panel, ID_DOLCH_PREPOSITIONS_COLOR_BUTTON,
-                                       ResourceManager::CreateColorIcon(m_dolchPrepositionsColor));
+                m_DolchPrepositionsColorButton = new wxBitmapButton(
+                    panel, ID_DOLCH_PREPOSITIONS_COLOR_BUTTON,
+                    ResourceManager::CreateColorIcon(m_dolchPrepositionsColor.get_value()));
                 // add them to the sizer
-                rowSizer->Add(new wxCheckBox(panel, wxID_ANY, _(L"Dolch prepositions color:"),
-                                             wxDefaultPosition, wxDefaultSize, 0,
-                                             wxGenericValidator(&m_highlightDolchPrepositions)),
-                              wxSizerFlags{ 1 }.CenterVertical());
+                rowSizer->Add(
+                    new wxCheckBox(panel, wxID_ANY, _(L"Dolch prepositions color:"),
+                                   wxDefaultPosition, wxDefaultSize, 0,
+                                   wxGenericValidator(&m_highlightDolchPrepositions.get_value())),
+                    wxSizerFlags{ 1 }.CenterVertical());
                 rowSizer->Add(m_DolchPrepositionsColorButton,
                               wxSizerFlags{}.Align(wxRight).Border(wxLEFT));
                 }
@@ -5075,14 +5101,15 @@ void ToolsOptionsDlg::CreateControls()
                 optionsIndentSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
                 optionsIndentSizer->Add(rowSizer, wxSizerFlags{}.Expand());
 
-                m_DolchPronounsColorButton =
-                    new wxBitmapButton(panel, ID_DOLCH_PRONOUNS_COLOR_BUTTON,
-                                       ResourceManager::CreateColorIcon(m_dolchPronounsColor));
+                m_DolchPronounsColorButton = new wxBitmapButton(
+                    panel, ID_DOLCH_PRONOUNS_COLOR_BUTTON,
+                    ResourceManager::CreateColorIcon(m_dolchPronounsColor.get_value()));
                 // add them to the sizer
-                rowSizer->Add(new wxCheckBox(panel, wxID_ANY, _(L"Dolch pronouns color:"),
-                                             wxDefaultPosition, wxDefaultSize, 0,
-                                             wxGenericValidator(&m_highlightDolchPronouns)),
-                              wxSizerFlags{ 1 }.CenterVertical());
+                rowSizer->Add(
+                    new wxCheckBox(panel, wxID_ANY, _(L"Dolch pronouns color:"), wxDefaultPosition,
+                                   wxDefaultSize, 0,
+                                   wxGenericValidator(&m_highlightDolchPronouns.get_value())),
+                    wxSizerFlags{ 1 }.CenterVertical());
                 rowSizer->Add(m_DolchPronounsColorButton,
                               wxSizerFlags{}.Align(wxRight).Border(wxLEFT));
                 }
@@ -5092,14 +5119,15 @@ void ToolsOptionsDlg::CreateControls()
                 optionsIndentSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
                 optionsIndentSizer->Add(rowSizer, wxSizerFlags{}.Expand());
 
-                m_DolchAdverbsColorButton =
-                    new wxBitmapButton(panel, ID_DOLCH_ADVERBS_COLOR_BUTTON,
-                                       ResourceManager::CreateColorIcon(m_dolchAdverbsColor));
+                m_DolchAdverbsColorButton = new wxBitmapButton(
+                    panel, ID_DOLCH_ADVERBS_COLOR_BUTTON,
+                    ResourceManager::CreateColorIcon(m_dolchAdverbsColor.get_value()));
                 // add them to the sizer
-                rowSizer->Add(new wxCheckBox(panel, wxID_ANY, _(L"Dolch adverbs color:"),
-                                             wxDefaultPosition, wxDefaultSize, 0,
-                                             wxGenericValidator(&m_highlightDolchAdverbs)),
-                              wxSizerFlags{ 1 }.CenterVertical());
+                rowSizer->Add(
+                    new wxCheckBox(panel, wxID_ANY, _(L"Dolch adverbs color:"), wxDefaultPosition,
+                                   wxDefaultSize, 0,
+                                   wxGenericValidator(&m_highlightDolchAdverbs.get_value())),
+                    wxSizerFlags{ 1 }.CenterVertical());
                 rowSizer->Add(m_DolchAdverbsColorButton,
                               wxSizerFlags{}.Align(wxRight).Border(wxLEFT));
                 }
@@ -5109,14 +5137,15 @@ void ToolsOptionsDlg::CreateControls()
                 optionsIndentSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
                 optionsIndentSizer->Add(rowSizer, wxSizerFlags{}.Expand());
 
-                m_DolchAdjectivesColorButton =
-                    new wxBitmapButton(panel, ID_DOLCH_ADJECTIVES_COLOR_BUTTON,
-                                       ResourceManager::CreateColorIcon(m_dolchAdjectivesColor));
+                m_DolchAdjectivesColorButton = new wxBitmapButton(
+                    panel, ID_DOLCH_ADJECTIVES_COLOR_BUTTON,
+                    ResourceManager::CreateColorIcon(m_dolchAdjectivesColor.get_value()));
                 // add them to the sizer
-                rowSizer->Add(new wxCheckBox(panel, wxID_ANY, _(L"Dolch adjectives color:"),
-                                             wxDefaultPosition, wxDefaultSize, 0,
-                                             wxGenericValidator(&m_highlightDolchAdjectives)),
-                              wxSizerFlags{ 1 }.CenterVertical());
+                rowSizer->Add(
+                    new wxCheckBox(panel, wxID_ANY, _(L"Dolch adjectives color:"),
+                                   wxDefaultPosition, wxDefaultSize, 0,
+                                   wxGenericValidator(&m_highlightDolchAdjectives.get_value())),
+                    wxSizerFlags{ 1 }.CenterVertical());
                 rowSizer->Add(m_DolchAdjectivesColorButton,
                               wxSizerFlags{}.Align(wxRight).Border(wxLEFT));
                 }
@@ -5126,14 +5155,15 @@ void ToolsOptionsDlg::CreateControls()
                 optionsIndentSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
                 optionsIndentSizer->Add(rowSizer, wxSizerFlags{}.Expand());
 
-                m_DolchVerbsColorButton =
-                    new wxBitmapButton(panel, ID_DOLCH_VERBS_COLOR_BUTTON,
-                                       ResourceManager::CreateColorIcon(m_dolchVerbsColor));
+                m_DolchVerbsColorButton = new wxBitmapButton(
+                    panel, ID_DOLCH_VERBS_COLOR_BUTTON,
+                    ResourceManager::CreateColorIcon(m_dolchVerbsColor.get_value()));
                 // add them to the sizer
-                rowSizer->Add(new wxCheckBox(panel, wxID_ANY, _(L"Dolch verbs color:"),
-                                             wxDefaultPosition, wxDefaultSize, 0,
-                                             wxGenericValidator(&m_highlightDolchVerbs)),
-                              wxSizerFlags{ 1 }.CenterVertical());
+                rowSizer->Add(
+                    new wxCheckBox(panel, wxID_ANY, _(L"Dolch verbs color:"), wxDefaultPosition,
+                                   wxDefaultSize, 0,
+                                   wxGenericValidator(&m_highlightDolchVerbs.get_value())),
+                    wxSizerFlags{ 1 }.CenterVertical());
                 rowSizer->Add(m_DolchVerbsColorButton,
                               wxSizerFlags{}.Align(wxRight).Border(wxLEFT));
                 }
@@ -5143,14 +5173,15 @@ void ToolsOptionsDlg::CreateControls()
                 optionsIndentSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
                 optionsIndentSizer->Add(rowSizer, wxSizerFlags{}.Expand());
 
-                m_DolchNounsColorButton =
-                    new wxBitmapButton(panel, ID_DOLCH_NOUN_COLOR_BUTTON,
-                                       ResourceManager::CreateColorIcon(m_dolchNounsColor));
+                m_DolchNounsColorButton = new wxBitmapButton(
+                    panel, ID_DOLCH_NOUN_COLOR_BUTTON,
+                    ResourceManager::CreateColorIcon(m_dolchNounsColor.get_value()));
                 // add them to the sizer
-                rowSizer->Add(new wxCheckBox(panel, wxID_ANY, _(L"Dolch nouns color:"),
-                                             wxDefaultPosition, wxDefaultSize, 0,
-                                             wxGenericValidator(&m_highlightDolchNouns)),
-                              wxSizerFlags{ 1 }.CenterVertical());
+                rowSizer->Add(
+                    new wxCheckBox(panel, wxID_ANY, _(L"Dolch nouns color:"), wxDefaultPosition,
+                                   wxDefaultSize, 0,
+                                   wxGenericValidator(&m_highlightDolchNouns.get_value())),
+                    wxSizerFlags{ 1 }.CenterVertical());
                 rowSizer->Add(m_DolchNounsColorButton,
                               wxSizerFlags{}.Align(wxRight).Border(wxLEFT));
                 }
