@@ -119,14 +119,16 @@ elseif(CMAKE_CXX_COMPILER_ID STREQUAL "APPLECLANG" AND CMAKE_CXX_COMPILER_VERSIO
 endif()
 message(STATUS "Compiler: ${CMAKE_CXX_COMPILER_ID} ${CMAKE_CXX_COMPILER_VERSION}")
 
-include(cmake/modules/CheckASAN.cmake)
-include(cmake/modules/EnableSanitizers.cmake)
-# Expose the human-readable list to the code
-string(REPLACE "\n" "\\n" ENABLED_SANITIZERS_STR_ESCAPED "${ENABLED_SANITIZERS_STR}")
-string(REPLACE "\"" "\\\"" ENABLED_SANITIZERS_STR_ESCAPED "${ENABLED_SANITIZERS_STR_ESCAPED}")
+if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+    include(cmake/modules/CheckASAN.cmake)
+    include(cmake/modules/EnableSanitizers.cmake)
+    # Expose the human-readable list to the code
+    string(REPLACE "\n" "\\n" ENABLED_SANITIZERS_STR_ESCAPED "${ENABLED_SANITIZERS_STR}")
+    string(REPLACE "\"" "\\\"" ENABLED_SANITIZERS_STR_ESCAPED "${ENABLED_SANITIZERS_STR_ESCAPED}")
 
-string(REPLACE "\n" "\\n" SANITIZER_ENV_HINTS_STR_ESCAPED "${SANITIZER_ENV_HINTS_STR}")
-string(REPLACE "\"" "\\\"" SANITIZER_ENV_HINTS_STR_ESCAPED "${SANITIZER_ENV_HINTS_STR_ESCAPED}")
+    string(REPLACE "\n" "\\n" SANITIZER_ENV_HINTS_STR_ESCAPED "${SANITIZER_ENV_HINTS_STR}")
+    string(REPLACE "\"" "\\\"" SANITIZER_ENV_HINTS_STR_ESCAPED "${SANITIZER_ENV_HINTS_STR_ESCAPED}")
+endif()
 
 # interproceduarl optimization
 if(${CMAKE_BUILD_TYPE} STREQUAL "Release")
@@ -135,7 +137,7 @@ if(${CMAKE_BUILD_TYPE} STREQUAL "Release")
     if(${ipo_supported})
       message(STATUS "Interproceduarl compiler optimization: enabled")
       set(CMAKE_INTERPROCEDURAL_OPTIMIZATION ${ipo_supported})
-    elseif()
+    else()
       message(STATUS "Interprocedural compiler optimization: not enabled")
     endif()
 endif()
@@ -240,6 +242,9 @@ if(CMAKE_BUILD_TYPE STREQUAL "Release")
     set(wxBUILD_STRIPPED_RELEASE ON CACHE BOOL "Strip symbols from wxWidgets Release builds" FORCE)
 endif()
 find_directory("wxWidgets" wxWidgets_BASEDIR)
+if(NOT EXISTS "${wxWidgets_BASEDIR}")
+    message(FATAL_ERROR "wxWidgets base directory not found: ${wxWidgets_BASEDIR}")
+endif()
 message(STATUS "wxWidgets found in: ${wxWidgets_BASEDIR}")
 add_subdirectory(${wxWidgets_BASEDIR} ${CMAKE_CURRENT_SOURCE_DIR}/wxWidgets_lib)
 set(wxWidgets_LIBRARIES wx::core wx::base wx::xrc wx::propgrid wx::xml wx::aui wx::ribbon wx::qa wx::stc wx::net wx::richtext)
@@ -383,7 +388,7 @@ if(MSVC)
         $<$<CONFIG:Debug>:__WXDEBUG__ ENABLE_PROFILING ${SANITIZER_DEFS}>
         $<$<CONFIG:Release>:NDEBUG>)
     target_compile_options(${PROJECT_NAME} PUBLIC
-        /Zc:__cplusplus /MP /W3 /WX /wd6211 /openmp
+        /Zc:__cplusplus /MP /W3 /WX /wd6211 /openmp /permissive- /sdl
         $<$<CONFIG:Debug>:/Od ${SANITIZER_FLAGS}>
         $<$<CONFIG:Release>:/O2>)
 
@@ -394,6 +399,8 @@ elseif(MINGW OR MSYS)
         $<$<CONFIG:Release>:NDEBUG>)
     target_compile_options(${PROJECT_NAME} PUBLIC
         -Wall -Wextra -Wpedantic -Wshadow -Werror
+        $<$<OR:$<CXX_COMPILER_ID:GNU>,$<CXX_COMPILER_ID:Clang>>:-fstack-protector-strong>
+        $<$<OR:$<CXX_COMPILER_ID:GNU>,$<CXX_COMPILER_ID:Clang>>:-D_FORTIFY_SOURCE=2>
         $<$<CONFIG:Debug>:-Og -g3 ${SANITIZER_FLAGS} ${SANITIZER_EXTRA_FLAGS}>
         $<$<CONFIG:Release>:-O2>)
     target_link_options(${PROJECT_NAME} PUBLIC
@@ -407,6 +414,8 @@ elseif(APPLE)
     # TODO: don't include -Werror for now, but eventually add it
     target_compile_options(${PROJECT_NAME} PUBLIC
         -Wall -Wextra -Wpedantic -Wshadow
+        $<$<OR:$<CXX_COMPILER_ID:GNU>,$<CXX_COMPILER_ID:Clang>>:-fstack-protector-strong>
+        $<$<OR:$<CXX_COMPILER_ID:GNU>,$<CXX_COMPILER_ID:Clang>>:-D_FORTIFY_SOURCE=2>
         $<$<CONFIG:Debug>:-Og -g3 ${SANITIZER_FLAGS} ${SANITIZER_EXTRA_FLAGS}>
         $<$<CONFIG:Release>:-O2>)
     target_link_options(${PROJECT_NAME} PUBLIC
@@ -423,9 +432,12 @@ elseif(UNIX)
     # TODO: don't include -Werror for now, but eventually add it
     target_compile_options(${PROJECT_NAME} PUBLIC
         -Wall -Wextra -Wpedantic -Wshadow -fopenmp
+        $<$<OR:$<CXX_COMPILER_ID:GNU>,$<CXX_COMPILER_ID:Clang>>:-fstack-protector-strong>
+        $<$<OR:$<CXX_COMPILER_ID:GNU>,$<CXX_COMPILER_ID:Clang>>:-D_FORTIFY_SOURCE=2>
         $<$<CONFIG:Debug>:-Og -g3 ${SANITIZER_FLAGS} ${SANITIZER_EXTRA_FLAGS}>
         $<$<CONFIG:Release>:-O2>)
     target_link_options(${PROJECT_NAME} PUBLIC
+        $<$<OR:$<CXX_COMPILER_ID:GNU>,$<CXX_COMPILER_ID:Clang>>:-Wl,-z,relro,-z,now>
         $<$<CONFIG:Debug>:${SANITIZER_LINK_FLAGS}>)
 endif()
 
