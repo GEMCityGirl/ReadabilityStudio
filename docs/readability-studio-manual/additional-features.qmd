@@ -7,11 +7,13 @@ source('R/appdown.r')
 
 # Additional Features {#sec-additional-features}
 
-This chapter discusses additional features not directly related to readability. This includes features such crawling and downloading documents from a website, as well as logging and command line options.
+This chapter discusses additional features not directly related to readability.
+This includes features such crawling and downloading documents from a website, as well as logging and command line options.
 
 ## Web Harvester {#sec-web-harvester}
 
-The **Web Harvester** dialog enables you to gather (and optionally download) links from a website. To access this dialog, select the **Tools** tab on the ribbon and click the `r keys('Web Harvest')` button under **Tools & Settings**.
+The **Web Harvester** dialog enables you to gather (and optionally download) links from a website.
+To access this dialog, select the **Tools** tab on the ribbon and click the `r keys('Web Harvest')` button under **Tools & Settings**.
 
 #### Harvesting {-}
 
@@ -23,7 +25,8 @@ A level of 0 will only download the base webpage(s), not crawling it or gatherin
 
 **File types to include**: Select from this list the types of documents to include from the website.
 
-**User agent**: Enter into this field your user agent. The user agent is the name of the client program that is sent to websites when you try to read and download pages from them.
+**User agent**: Enter into this field your user agent.
+The user agent is the name of the client program that is sent to websites when you try to read and download pages from them.
 
 **Disable SSL certificate verification**: Check this option to disable SSL certificate verification when reading and downloading webpages.
 This can be used to connect to self-signed servers or other invalid SSL connections.
@@ -68,7 +71,9 @@ Select from this list the domain restriction that you want to use.
 
 **Subdomain restricted**: Select this option to only harvest links with the same subdomain as the base webpage (e.g., *sales.company.com*).
 
-**Restricted to user-defined domain(s)**: Select this option to only harvest links from a provided list of domains. If folders are included in a specified domain, then the harvesting will be restricted to that folder. For example, if *www.news.mybusiness.com/articles* is specified, then only files from the folder *articles* in the subdomain *www.news.mybusiness.com* will be harvested.
+**Restricted to user-defined domain(s)**: Select this option to only harvest links from a provided list of domains.
+If folders are included in a specified domain, then the harvesting will be restricted to that folder.
+For example, if *www.news.mybusiness.com/articles* is specified, then only files from the folder *articles* in the subdomain *www.news.mybusiness.com* will be harvested.
 
 **Restricted to external domains**: Select this option to only harvest links from domains other than the webpage that you specify.
 
@@ -84,9 +89,12 @@ These options enable you to download the files from the website prior to analyzi
 Rather than analyzing the files directly from the website, the application will analyze the local files.
 If [file linking](#sec-project-settings) is enabled, then the project will link to these local files instead of the website.
 
-This option is recommended if you need to make edits to the files before analyzing them. It may also be recommended to improve performance, as analyzing local files will be faster than reading them from a website.
+This option is recommended if you need to make edits to the files before analyzing them.
+It may also be recommended to improve performance, as analyzing local files will be faster than reading them from a website.
 
-If you intend to review a website and need to always analyze its latest changes, then it is not recommended to download the website. Rather, you should analyze the website directly and enable file linking. To directly analyze the website, uncheck the option **Download files locally**.
+If you intend to review a website and need to always analyze its latest changes, then it is not recommended to download the website.
+Rather, you should analyze the website directly and enable file linking.
+To directly analyze the website, uncheck the option **Download files locally**.
 
 **Download files locally**: Select this option to download the files from the website locally.
 
@@ -99,8 +107,7 @@ Deselecting this option will download the files into a flat folder structure.
 
 ::: {.warningsection data-latex=""}
 If you deselect this option, then it is recommended that you also deselect **Replace existing files**.
-Downloading all files into the same folder will risk having conflicting file names; deselecting **Replace existing files** will help with not overwriting
-these files.
+Downloading all files into the same folder will risk having conflicting file names; deselecting **Replace existing files** will help with not overwriting these files.
 :::
 
 **Replace existing files**: Select this option to overwrite existing files as they are downloaded.
@@ -131,7 +138,8 @@ Note that logging can also be customized from the **General** page of the **Opti
 
 ## Log Report {#sec-log-report}
 
-While it is running, *{{< var PROGRAM_NAME >}}* logs various diagnostic information. This information can provide details such as:
+While it is running, *{{< var PROGRAM_NAME >}}* logs various diagnostic information.
+This information can provide details such as:
 
 - The location of where the program is loading its license and settings files
 - Parsing errors encountered while reading documents (e.g., malformed HTML files)
@@ -155,16 +163,22 @@ This information can be useful if you are experiencing issues with loading a doc
 
 ### Select Labeling {-}
 
-When adding documents to a batch project, you will be prompted about how to label them. Labeling is a useful way of either grouping your documents or applying a description to them.
+When adding documents to a batch project, you will be prompted about how to label them.
+Labeling is a useful way of either grouping your documents or applying a description to them.
 
-After selecting a group of documents, you will be presented with this dialog to specify how labeling should be done. On this dialog, you can select whether to use your documents' descriptions as their labels, or to use a single label to group them by.
+After selecting a group of documents, you will be presented with this dialog to specify how labeling should be done.
+On this dialog, you can select whether to use your documents' descriptions as their labels, or to use a single label to group them by.
 
 ::: {.optionssection data-latex=""}
-**Use documents' descriptions (will be loaded during import)**: Select this to use each document's own description as its label. This is useful when document names may not be descriptive enough; this will show the document's description next to its name.
+**Use documents' descriptions (will be loaded during import)**: Select this to use each document's own description as its label.
+This is useful when document names may not be descriptive enough; this will show the document's description next to its name.
 
-**Use a grouping label**: Select this to use your provided label as a grouping label for the selected documents. This is useful when you want to cluster the documents in you batch into subgroups. (These subgroups are visualized on various graphs, such as Fry\index{Fry} and the histograms.)
+**Use a grouping label**: Select this to use your provided label as a grouping label for the selected documents.
+This is useful when you want to cluster the documents in you batch into subgroups.
+(These subgroups are visualized on various graphs, such as Fry\index{Fry} and the histograms.)
 
-**Use the last common folder between files**: Select this to group documents by folder. The paths between each pair of files will be compared, and the last folder that they have in common will be their group. 
+**Use the last common folder between files**: Select this to group documents by folder.
+The paths between each pair of files will be compared, and the last folder that they have in common will be their group. 
 :::
 
 Refer to @sec-adding-labels-to-batch and @sec-grouping-docs-in-batch for examples of this feature.
@@ -185,11 +199,13 @@ This dialog enables you to select an archive file (e.g., a compressed \*.zip fil
 
 **Folder path**: Enter the path to the archive file that you want to include.
 
-**File types to include**: Select from this list the types of documents to include from the archive. All files in the archive matching these document types will be included in the analysis.
+**File types to include**: Select from this list the types of documents to include from the archive.
+All files in the archive matching these document types will be included in the analysis.
 
 ### Worksheet Preview {-}
 
-When importing a spreadsheet into a batch, this dialog enables you to specify which worksheets and cells to import. Note that only text cells can be imported as documents, so numeric cells will be blank here.
+When importing a spreadsheet into a batch, this dialog enables you to specify which worksheets and cells to import.
+Note that only text cells can be imported as documents, so numeric cells will be blank here.
 
 **Import**:
 
@@ -197,6 +213,8 @@ When importing a spreadsheet into a batch, this dialog enables you to specify wh
 
 **Only highlighted cells**: Select this option to only import the selected cells (which will be highlighted blue).
 A block of cells can be selected by holding down the left mouse button and dragging the cursor around the block.
-Individual cells can be selected by holding down the `r keys("Ctrl")` (`r os_logo('windows')`, `r os_logo('linux')`) or `r keys("\\cmd")` (`r os_logo('apple')`) button on the keyboard and clicking the cells. Also, entire columns and rows can be selected by clicking the column header or row label, respectively.
+Individual cells can be selected by holding down the `r keys("Ctrl")` (`r os_logo('windows')`, `r os_logo('linux')`) or `r keys("\\cmd")` (`r os_logo('apple')`) button on the keyboard and clicking the cells.
+Also, entire columns and rows can be selected by clicking the column header or row label, respectively.
 
-Note that selections can also be discontiguous. For example, if you hold down the `r keys("Ctrl")` (`r os_logo('windows')`, `r os_logo('linux')`) or `r keys("\\cmd")` (`r os_logo('apple')`) button and click the column headers *A* and then *D*, then these two columns will be imported.
+Note that selections can also be discontiguous.
+For example, if you hold down the `r keys("Ctrl")` (`r os_logo('windows')`, `r os_logo('linux')`) or `r keys("\\cmd")` (`r os_logo('apple')`) button and click the column headers *A* and then *D*, then these two columns will be imported.

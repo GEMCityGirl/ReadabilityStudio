@@ -79,7 +79,8 @@ The GNU Compiler Collection includes front ends for C, C++, Objective-C, Fortran
 GCC was originally written as the compiler for the GNU operating system.
 The GNU system was developed to be 100% free software, free in the sense that it respects the user's freedom.  
 
-R is a free software environment for statistical computing and graphics. It compiles and runs on a wide variety of UNIX platforms, Windows and MacOS.
+R is a free software environment for statistical computing and graphics.
+It compiles and runs on a wide variety of UNIX platforms, Windows and MacOS.
 
 [https://www.gnu.org/](https://www.gnu.org/)
 
@@ -105,7 +106,8 @@ The Free & Open Source Image Editor.
 [https://www.gimp.org/](https://www.gimp.org/)
 
 #### *Inkscape* {-}
-Inkscape is a professional vector graphics editor for Linux, Windows and macOS. It's free and open source.
+Inkscape is a professional vector graphics editor for Linux, Windows and macOS.
+It's free and open source.
 
 [https://inkscape.org/](https://inkscape.org/)
 
@@ -113,7 +115,8 @@ Inkscape is a professional vector graphics editor for Linux, Windows and macOS. 
 ***
 
 #### *R* {-}
-R is a free software environment for statistical computing and graphics. It compiles and runs on a wide variety of UNIX platforms, Windows and MacOS.
+R is a free software environment for statistical computing and graphics.
+It compiles and runs on a wide variety of UNIX platforms, Windows and MacOS.
 
 [https://www.r-project.org/](https://www.r-project.org/)
 

@@ -80,7 +80,8 @@ source('../R/appdown.r')
 
 ### General Enhancements {-}
 
-- Added real-time updating to standard projects. This enables the project to update itself while you edit the original document in another program.
+- Added real-time updating to standard projects.
+  This enables the project to update itself while you edit the original document in another program.
   (Refer to [@sec-external-editing]{.content-visible when-profile="online"}["Editing from Other Programs"]{.content-hidden when-profile="online"} for an example.)
 - Greatly enhanced editing documents that are embedded within standard projects.
   (Refer to [@sec-rs-as-an-editor]{.content-visible when-profile="online"}["Editing within {{< var PROGRAM_NAME >}}"]{.content-hidden when-profile="online"} for an example.)
@@ -142,19 +143,24 @@ source('../R/appdown.r')
 - Added an option to merge multiple images into a new background image.
 - Added an option to draw a shared image underneath all bars and boxes within bar charts and box plots.
 - Sentence heatmaps now show the sentences' word counts.
-- Added multiple layout styles for Raygor to choose from. This includes showing the graph as it appeared in its original version, as well as the Baldwin-Kaufman variation.
+- Added multiple layout styles for Raygor to choose from.
+  This includes showing the graph as it appeared in its original version, as well as the Baldwin-Kaufman variation.
 - Added brackets explaining the factors that influence word categories to the **Word Counts** barchart.
-- Improved binning in the **Lengths (Distribution)** histogram (**Sentences Breakdown** section). Sentence-length bin sizes will now usually be 5, 10, or 20.
+- Improved binning in the **Lengths (Distribution)** histogram (**Sentences Breakdown** section).
+  Sentence-length bin sizes will now usually be 5, 10, or 20.
 - Added brackets to the **Syllable Counts** histogram to group the simple- and complex-word bars.
-- Added an option to the **Syllable Counts** histogram to draw attention to the complex-word bars. This is done by lowering the opacity of the 1- and 2-syllable word bars.
+- Added an option to the **Syllable Counts** histogram to draw attention to the complex-word bars.
+  This is done by lowering the opacity of the 1- and 2-syllable word bars.
 - Grade-level histograms in batch projects:
   - Now always show one bar for each grade level, regardless of the binning method selected.
   - Start their bar axis at **0** (i.e., Kindergarten).
   - Include brackets to organize the grade levels into groups such as "Elementary School."
-- Box plots now use the Tukey hinges method for calculating quartiles. (This matches what *R* does.)
+- Box plots now use the Tukey hinges method for calculating quartiles.
+  (This matches what *R* does.)
 - Removed box plot IQR coefficient option; blox plot now just use quartiles.
 - Added grouping support to box plots in batch projects.
-- Graph background images are now drawn in the plot area, instead of the entire background. This makes reading the axes and titles easier.
+- Graph background images are now drawn in the plot area, instead of the entire background.
+  This makes reading the axes and titles easier.
   - Added an option to control how this image is sized to fit within the plot area.
 - Added numerous color schemes to choose from for grouped histograms (in batch projects).
 - Sorting horizontal bars now works more intuitively.
@@ -259,7 +265,8 @@ source('../R/appdown.r')
   - Improved error reporting when unable to connect to the root webpage.
   - When downloading webpages without file extensions, the program will now append an extension based on its MIME type.
   - Added **Restricted to same folder** domain-restriction option.
-  - Removed the **Verify pages' mimetypes before harvesting** option. Program will now determine whether checking MIME types is necessary.
+  - Removed the **Verify pages' mimetypes before harvesting** option.
+    Program will now determine whether checking MIME types is necessary.
 - Added **Function** column to log report.
 - Added sort button to log report.
 - Improved **About** dialog.
@@ -274,7 +281,8 @@ source('../R/appdown.r')
 - Added a graph to visualize Lix index scores.
 - Added a graph to visualize German Lix index scores.
 - Added a graph to visualize Danielson-Bryan 2 scores.
-- Added new *Patient Consent Forms* test bundle. This includes tests and goals recommended for consent forms.
+- Added new *Patient Consent Forms* test bundle.
+  This includes tests and goals recommended for consent forms.
 - Rix now uses sentence units\index{sentences!units} in its calculation to better match the test's recommendations.
 - Expanded the difficulty-level descriptions for the German Lix tests.
 - Redesigned Flesch chart to look more like the version from *The Art of Readable Writing*.
@@ -282,7 +290,8 @@ source('../R/appdown.r')
 - Added custom test features:
   - Added feature to create custom tests based on any existing regression-based test.
     (Refer to [@sec-creating-custom-flesch-test]{.content-visible when-profile="online"}["Creating a Modified Flesch Test"]{.content-hidden when-profile="online"} for an example.)
-  - Added `GunningFog` option to `SentenceCount()` function. This will return the sentence count using the system's [Gunning Fog method](#sec-readability-test-options).
+  - Added `GunningFog` option to `SentenceCount()` function.
+    This will return the sentence count using the system's [Gunning Fog method](#sec-readability-test-options).
   - Added `MiniWordCount()` function.
   - Added `HardFogWordCount()` function.
 - [Farr-Jenkins-Paterson](#sec-farr-jenkins-paterson) now includes floating-point precision in its results.
@@ -326,7 +335,8 @@ source('../R/appdown.r')
   - All columns are now included on one page, instead of long columns being on a separate page.
   - Lists are now split to fit more on the page, reducing the number of printed pages.
 - Added **Image options** for graphs when selecting **Export All** for a project.
-- Added **Include lists** and **Include text reports** options to **Export All** for projects. This is useful for preventing large lists and highlighted text from being included in reports.
+- Added **Include lists** and **Include text reports** options to **Export All** for projects.
+  This is useful for preventing large lists and highlighted text from being included in reports.
 - Improved the appearance of output report when exporting a project as a single HTML file:
   - Lists are now split horizontally to fit more on printed pages.
   - Sections are now paginated when printed.
@@ -340,7 +350,8 @@ source('../R/appdown.r')
 - Improvements to RTF importer (improved Unicode and footnote support).
 - Improvements to C^++^ source file importer (improved handling of escaped quotes).
 - Added **Narrow full-width characters** option to [document filtering](#sec-additional-filtering-options).
-- When exporting filtered documents from a batch project, the folder structure of the original documents will be recreated in the output folder. This will prevent files with the same name overwriting each other.
+- When exporting filtered documents from a batch project, the folder structure of the original documents will be recreated in the output folder.
+  This will prevent files with the same name overwriting each other.
 
 ### Graph Enhancements {-}
 
@@ -350,7 +361,8 @@ source('../R/appdown.r')
 - Custom brush now maintains the aspect ratio of its image.
 - Added option to not include labels on histograms.
 - Added option to not include labels on barcharts.
-- Graph [watermarks](#sec-options-graphs) now support the tags `&[DATETIME]`, `&[DATE]`, and `&[TIME]`. These are expanded to their literal values at the time of rendering the graph.
+- Graph [watermarks](#sec-options-graphs) now support the tags `&[DATETIME]`, `&[DATE]`, and `&[TIME]`.
+  These are expanded to their literal values at the time of rendering the graph.
 - Color fades are now included when exporting as SVG.
 
 ### Documentation Enhancements {-}
@@ -398,8 +410,12 @@ source('../R/appdown.r')
 
 - Added option to append an [additional document](#sec-project-settings) to any document that you analyze.
 - Rearranged grammar results in order of importance.
-- Added new [Sentences Breakdown](#sec-reviewing-sentences-breakdown) section to standard and batch projects. The sentence-length box plot formerly shown in the **Summary Statistics** section is now available here in standard projects. Overly-long sentence lists formerly shown in the **Grammar** section for both types of projects are now in here.
-- Highlighted-word reports are now under the new **Words Breakdown** section. Each word report is included underneath its respective word list. For example, the **3+ syllable** highlighted report will appear beneath the **3+ syllable** tabular list.
+- Added new [Sentences Breakdown](#sec-reviewing-sentences-breakdown) section to standard and batch projects.
+  The sentence-length box plot formerly shown in the **Summary Statistics** section is now available here in standard projects.
+  Overly-long sentence lists formerly shown in the **Grammar** section for both types of projects are now in here.
+- Highlighted-word reports are now under the new **Words Breakdown** section.
+  Each word report is included underneath its respective word list.
+  For example, the **3+ syllable** highlighted report will appear beneath the **3+ syllable** tabular list.
 - Added new **All Words** list to batch projects.
 - Added new [Overused Words (x Sentence)](#sec-reviewing-standard-grammar) list to standard and batch projects.
 - Added new [All Words (Condensed)](#sec-reviewing-word-breakdowns) list to standard and batch projects.
@@ -413,7 +429,8 @@ source('../R/appdown.r')
 - [Reviewer](#sec-project-settings) and **Status** information can now be added to projects.
 - Warning messages that are being suppressed will now not be included in the [Warning](#sec-reviewing-batch-warnings) section of a batch.
 - While a project is open, the search bar will autocomplete items that you have already searched for.
-- [**Log Report**](#sec-log-report) button is now always available. (This option was not available unless verbose logging was enabled in previous releases.)
+- [**Log Report**](#sec-log-report) button is now always available.
+  (This option was not available unless verbose logging was enabled in previous releases.)
 - Added **Timestamp** and **Source** columns to **Log Report** window.
 - Most test warning messages are now shown in the infobar (instead of message boxes), making them less intrusive.
 - Improved program display when running under higher screen resolutions.
@@ -428,9 +445,11 @@ source('../R/appdown.r')
 - Improvements to bullet point detection.
 - Improvements to proper noun detection.
 - Improvements to abbreviation detection for abbreviated month names.
-- Improved proper noun detection. Words in headers and at the start of sentences are marked as proper if the number of mid-sentence occurrences of the same word are capitalized is more than the occurrences that aren't.
+- Improved proper noun detection.
+  Words in headers and at the start of sentences are marked as proper if the number of mid-sentence occurrences of the same word are capitalized is more than the occurrences that aren't.
 - Lines of text that appear to be equations will be marked as incomplete sentences.
-- The option **Aggressively deduce lists** is now **Aggressively exclude**. Enabling this will now make citation-section exclusion more aggressive.
+- The option **Aggressively deduce lists** is now **Aggressively exclude**.
+  Enabling this will now make citation-section exclusion more aggressive.
 - Updated Portuguese stemmer to latest standard.
 - Two single quotes after a word are now seen as a double quote.
 - Expanded spell-checker to include medical terminology.
@@ -620,7 +639,8 @@ source('../R/appdown.r')
 
 ### Analysis/Test Enhancements {-}
 
-- Added ability to display different grade scales. Currently, U.S., Canadian, and U.K. grade scales are available. This affects:
+- Added ability to display different grade scales.
+  Currently, U.S., Canadian, and U.K. grade scales are available. This affects:
     - score lists (standard project)
     - raw and aggregated scores lists (batch project)
     - explanations for each test
@@ -659,7 +679,8 @@ source('../R/appdown.r')
 - Consolidated **end of paragraph** and **sentence deduction** options into one section.
 - Reworded **incomplete sentences** section in the options to **text exclusion**.
 - Added new text exclusion method for including headers and sub-headers (as full sentences), but excluding all other incomplete sentences.
-- **Independent clause count** statistic now included in the statistics report. An independent clause is a section of text which ends with a period, exclamation mark, question mark, [interrobang](#sec-glossary)\index{interrobangs}, colon, semicolon, or dash.
+- **Independent clause count** statistic now included in the statistics report.
+  An independent clause is a section of text which ends with a period, exclamation mark, question mark, [interrobang](#sec-glossary)\index{interrobangs}, colon, semicolon, or dash.
 - Mode now included in Standard projects' test score statistics.
 - Batch project now includes valid n, range, standard error, skewness, and kurtosis in the aggregated statistics.
 - \+ is now added to maximum level test scores.
@@ -670,7 +691,8 @@ source('../R/appdown.r')
 - **All Words** list now includes syllable and character count columns.
 - Added **unique words count** to the **Statistics** window.
 - Summary statistics now available in tabular format.
-- When printing lists, the table is now split into smaller tables with page breaks between them. In addition, the header row appears on each page. Tables are also split into separate pages if there are too many columns to fit on one page.
+- When printing lists, the table is now split into smaller tables with page breaks between them.
+  In addition, the header row appears on each page. Tables are also split into separate pages if there are too many columns to fit on one page.
 - When exporting lists as HTML, the aforementioned page break feature can optionally be included.
 - Borders for lists, statistics window, and test window are now ½ inch (instead of a full inch) when printing.
 - Optimized list HTML output (output files are 10–15% smaller).

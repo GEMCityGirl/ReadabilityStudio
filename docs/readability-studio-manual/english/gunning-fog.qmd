@@ -10,7 +10,9 @@ Complex words are words that contain three or more syllables, with the exception
 [*{{< var PROGRAM_NAME >}}* considers hyphenated words to be compound words (e.g., *horse-power* or *and/or*).]{.content-hidden when-profile="reference"}
 (Note that forward slashes (*/*) are treated like hyphens in this context.)
 
-This test can optionally count independent clauses as separate sentences, as *The Technique of Clear Writing* instructs. It should be noted, however, that this can cause misleadingly low scores for documents that contain run-on sentences. Consider the follow:
+This test can optionally count independent clauses as separate sentences, as *The Technique of Clear Writing* instructs.
+It should be noted, however, that this can cause misleadingly low scores for documents that contain run-on sentences.
+Consider the follow:
 
 ::: {.fancyquotes data-latex=''}
 The Meldorf^®^ statistical library is available in C^++^ source code–a low-level programming language–and in the form of a COM library–a Microsoft^®^ technology for inter-program communication; the COM library can be called from numerous languages, such as: Visual Basic, C#, and Delphi.

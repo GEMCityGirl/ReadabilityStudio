@@ -9,38 +9,63 @@ source('R/appdown.r')
 
 ## Test Scores {#sec-reviewing-test-scores}
 
-After opening a project, click on the **Readability Scores** icon on the project sidebar, and then click on **Scores** beneath that. Here you can view all the test scores, as well as their respective explanations and recommendations.
+After opening a project, click on the **Readability Scores** icon on the project sidebar, and then click on **Scores** beneath that.
+Here you can view all the test scores, as well as their respective explanations and recommendations.
 
 The top area of the **Scores** window is the score grid. In here there are four columns:
 
 - **Test**: the name of the readability test.
 - **Grade Level**: the minimum grade level that the test determined the document is suitable for.
-- **Reader Age**: the minimum reader age that the test determined the document is suitable for. The reader age is determined from the test's score. It can be shown as either a [range](#sec-readability-test-options) for the entire grade, or be rounded to the semester that the grade score falls into.
+- **Reader Age**: the minimum reader age that the test determined the document is suitable for.
+  The reader age is determined from the test's score.
+  It can be shown as either a [range](#sec-readability-test-options) for the entire grade, or be rounded to the semester that the grade score falls into.
 - **Scale Value**: the index value for tests that use special scales.
-- [**Predicted Cloze Score**](#sec-cloze)\index{cloze}: the estimated score if the document were to be used for a cloze test. Note that cloze scores will be displayed in percentage format (i.e., 0–100) instead of floating-point format (i.e., .0–1.0) for easier reading.
+- [**Predicted Cloze Score**](#sec-cloze)\index{cloze}: the estimated score if the document were to be used for a cloze test.
+  Note that cloze scores will be displayed in percentage format (i.e., 0–100) instead of floating-point format (i.e., .0–1.0) for easier reading.
 
-Note that most tests have just one type of result (e.g., grade level), so non-applicable columns are left blank. For example, a [Gunning Fog](#sec-gunning-fog-test) result may be a grade level of 8.3. This translates to an eighth grade level reader (in his or her third month of class). Because this test only returns a grade level and age, the **Scale Value** and **Predicted Cloze Score** columns are empty. Another example is a result for the [Flesch Reading Ease](#sec-flesch-test) test, which could be a scale value of 79. This test has its own scale (instead of a grade level) so its age, grade level, and cloze columns are empty.
+Note that most tests have just one type of result (e.g., grade level), so non-applicable columns are left blank.
+For example, a [Gunning Fog](#sec-gunning-fog-test) result may be a grade level of 8.3.
+This translates to an eighth grade level reader (in his or her third month of class).
+Because this test only returns a grade level and age, the **Scale Value** and **Predicted Cloze Score** columns are empty.
+Another example is a result for the [Flesch Reading Ease](#sec-flesch-test) test, which could be a scale value of 79.
+This test has its own scale (instead of a grade level) so its age, grade level, and cloze columns are empty.
 
-When a grade-level test scores a document at its maximum value, a *+* will be appended to the score. Although most grade-level tests can score up to 19, some tests which are designed for primary and secondary education materials will have lower maximum scores. For example, [Wheeler-Smith](#sec-wheeler-smith)\index{Wheeler-Smith} is designed for primary-age materials and its maximum score is the fourth-grade level. If a document's Wheeler-Smith score is 4, then it will be displayed as *4+*.
+When a grade-level test scores a document at its maximum value, a *+* will be appended to the score.
+Although most grade-level tests can score up to 19, some tests which are designed for primary and secondary education materials will have lower maximum scores.
+For example, [Wheeler-Smith](#sec-wheeler-smith)\index{Wheeler-Smith} is designed for primary-age materials and its maximum score is the fourth-grade level.
+If a document's Wheeler-Smith score is 4, then it will be displayed as *4+*.
 
 Select any test in the results grid to display an explanation of its score in the window below.
 
 ![](images/scores.png)
 
-Along with an explanation of the test's results, the factors that it uses to determine difficulty are also shown. For example, if **Sentence Length** and **Word Length** have an *X* next to them, then these variables are used in the test's equation. To lower the score for a given test, try to improve its factors (e.g., lower the document's average sentence length).
+Along with an explanation of the test's results, the factors that it uses to determine difficulty are also shown.
+For example, if **Sentence Length** and **Word Length** have an *X* next to them, then these variables are used in the test's equation.
+To lower the score for a given test, try to improve its factors (e.g., lower the document's average sentence length).
 
-Finally, the averages (means)\index{mean} of your test scores and ages are displayed at the bottom of the results window. Their respective [modes](#sec-stat-terms)\index{mode}, [medians](#sec-stat-terms)\index{median}, and [standard deviations](#sec-stat-terms)\index{standard deviation} are also included if [**Extended Information**](#sec-options-statistics) is enabled. Note that scores are truncated when searching for the grade-level mode. For example, *6.7* and *6.2* will both be treated as *6*. Mode generally requires discrete data to produce meaningful results; therefore, grade-level scores are converted to their base grades for this statistic.
+Finally, the averages (means)\index{mean} of your test scores and ages are displayed at the bottom of the results window.
+Their respective [modes](#sec-stat-terms)\index{mode}, [medians](#sec-stat-terms)\index{median}, and [standard deviations](#sec-stat-terms)\index{standard deviation} are also included if [**Extended Information**](#sec-options-statistics) is enabled.
+Note that scores are truncated when searching for the grade-level mode.
+For example, *6.7* and *6.2* will both be treated as *6*.
+Mode generally requires discrete data to produce meaningful results; therefore, grade-level scores are converted to their base grades for this statistic.
 
-When calculating these statistics, failed test scores are treated as missing observations and not included. For example, let us say that you included 5 tests, but one of them could not be calculated. In this case, the valid 4 scores will be added and divided by 4 (not 5) to acquire the means. Also, grade range scores–such as *5–6* from [New Dale-Chall](#sec-dale-chall-test)\index{New Dale-Chall!grade-range averaging}–will be converted to its own average (e.g., *5–6* will be 5.5).
+When calculating these statistics, failed test scores are treated as missing observations and not included.
+For example, let us say that you included 5 tests, but one of them could not be calculated.
+In this case, the valid 4 scores will be added and divided by 4 (not 5) to acquire the means.
+Also, grade range scores–such as *5–6* from [New Dale-Chall](#sec-dale-chall-test)\index{New Dale-Chall!grade-range averaging}–will be converted to its own average (e.g., *5–6* will be 5.5).
 
-To remove any test from this list, select it and press `r keys(c('Ctrl', 'Del'))` (`r os_logo('windows')`, `r os_logo('linux')`) or `r keys(c('\\cmd', '\\backdel'))` (`r os_logo('apple')`) on your keyboard. To edit a [custom test](#sec-creating-custom-test), double click on it in this list. To view the help for a standard test, double click on it in this list.
+To remove any test from this list, select it and press `r keys(c('Ctrl', 'Del'))` (`r os_logo('windows')`, `r os_logo('linux')`) or `r keys(c('\\cmd', '\\backdel'))` (`r os_logo('apple')`) on your keyboard.
+To edit a [custom test](#sec-creating-custom-test), double click on it in this list.
+To view the help for a standard test, double click on it in this list.
 
 There will also be readability graphs in this section if you included their respective tests.
 Refer to @sec-reviewing-readability-graphs for further information.
 
 ## Readability Graphs {#sec-reviewing-readability-graphs}
 
-There are numerous readability tests that are graphically plotted, including [Fry](#sec-fry-test), [Raygor](#sec-raygor-test), [Flesch](#sec-flesch-test), [Lix](#sec-lix-test), [Gilliam-Peña-Mountain](#sec-gilliam-pena-mountain-fry-graph)\index{Gilliam-Peña-Mountain}, [FRASE](#sec-frase)\index{FRASE}, [Crawford](#sec-crawford), and [Schwartz](#sec-schwartz). These graphs consist of either grade-level or reading-level regions that a document may fall within. They also include indicators for the most influential factor for the document's reported level (i.e., word difficulty vs. sentence difficulty).
+There are numerous readability tests that are graphically plotted, including [Fry](#sec-fry-test), [Raygor](#sec-raygor-test), [Flesch](#sec-flesch-test), [Lix](#sec-lix-test), [Gilliam-Peña-Mountain](#sec-gilliam-pena-mountain-fry-graph)\index{Gilliam-Peña-Mountain}, [FRASE](#sec-frase)\index{FRASE}, [Crawford](#sec-crawford), and [Schwartz](#sec-schwartz).
+These graphs consist of either grade-level or reading-level regions that a document may fall within.
+They also include indicators for the most influential factor for the document's reported level (i.e., word difficulty vs. sentence difficulty).
 
 To view these graphs, click on the **Graphs** icon in a [standard project](#sec-creating-standard-project) or the **Readability Graphs** icon in a [batch project](#sec-creating-batch-project).
 
@@ -48,43 +73,71 @@ Let us first review a Fry\index{Fry} graph:
 
 ![Fry graph](images/frygraph.png){width=75% fig-align="center"}
 
-To read this graph, search for the red data point–this value represents the document's score. Note that there are numbers 1 through 17+ on this chart, each partitioned into small slices. The band that the data point falls into is the grade level of this document. In the example above, the data point is inside of the 8^th^ grade slice (notice that the 8 is marked in blue).
+To read this graph, search for the red data point–this value represents the document's score.
+Note that there are numbers 1 through 17+ on this chart, each partitioned into small slices.
+The band that the data point falls into is the grade level of this document.
+In the example above, the data point is inside of the 8^th^ grade slice (notice that the 8 is marked in blue).
 
-Running through each slice is a gray line, which is a separator to help show the most predominate cause of the document's difficulty. If the data point is above the gray line, then the strongest influence on the document's difficulty is high-syllable words. If it is below the line, then the strongest influence is long sentences. In the above example, it is above the line, implying that it is slightly more influenced by high-syllable words. However, because it is fairly close to the line, this document is well balanced between difficult words and difficult sentences.
+Running through each slice is a gray line, which is a separator to help show the most predominate cause of the document's difficulty.
+If the data point is above the gray line, then the strongest influence on the document's difficulty is high-syllable words.
+If it is below the line, then the strongest influence is long sentences.
+In the above example, it is above the line, implying that it is slightly more influenced by high-syllable words.
+However, because it is fairly close to the line, this document is well balanced between difficult words and difficult sentences.
 
-If the data point does not fall inside of a slice then the test will fail. For example, the Raygor\index{Raygor Estimate} graph below indicates that the document's overly-long words caused the test to fail:
+If the data point does not fall inside of a slice then the test will fail.
+For example, the Raygor\index{Raygor Estimate} graph below indicates that the document's overly-long words caused the test to fail:
 
 ![Raygor Estimate graph](images/raygorbadgrade.png){width=75% fig-align="center"}
 
-The document was almost classified as 12^th^ grade level material, but its long words make it too difficult to be assigned to any grade. At this point, you would want to review the document's lengthy sentences (select [**Highlighted Report**](#sec-reviewing-standard-grammar) under the **Grammar** sidebar item) and try to shorten some of them.
+The document was almost classified as 12^th^ grade level material, but its long words make it too difficult to be assigned to any grade.
+At this point, you would want to review the document's lengthy sentences (select [**Highlighted Report**](#sec-reviewing-standard-grammar) under the **Grammar** sidebar item) and try to shorten some of them.
 
-The Gilliam-Peña-Mountain\index{Gilliam-Peña-Mountain} graph is a variation of Fry designed for Spanish text. It is identical to Fry, except that its X axis begins at 175 (instead of 108). This enables this graph to plot Spanish text, which usually has a much higher syllable count than its English counterpart. Below is an example of a Gilliam-Peña-Mountain graph:
+The Gilliam-Peña-Mountain\index{Gilliam-Peña-Mountain} graph is a variation of Fry designed for Spanish text.
+It is identical to Fry, except that its X axis begins at 175 (instead of 108).
+This enables this graph to plot Spanish text, which usually has a much higher syllable count than its English counterpart. Below is an example of a Gilliam-Peña-Mountain graph:
 
 ![Gilliam-Peña-Mountain graph](images/gpm-fry.png){width=75% fig-align="center"}
 
-The Schwartz\index{Schwartz German Readability Graph} graph is another Fry-like graph, which is designed for German (primary and secondary-reader) text. Although similar in appearance to Fry, this graph uses its own reading-level regions mapped to the German materials it was trained on. This approach differs from Gilliam-Peña-Mountain, which uses the original Fry template and adjusts its axis ranges to accommodate Spanish text. Below is an example of a Schwartz graph:
+The Schwartz\index{Schwartz German Readability Graph} graph is another Fry-like graph, which is designed for German (primary and secondary-reader) text.
+Although similar in appearance to Fry, this graph uses its own reading-level regions mapped to the German materials it was trained on.
+This approach differs from Gilliam-Peña-Mountain, which uses the original Fry template and adjusts its axis ranges to accommodate Spanish text.
+Below is an example of a Schwartz graph:
 
 ![Schwartz graph](images/schwartz.png){width=75% fig-align="center"}
 
-The Fry\index{Fry!compared to Raygor} and Raygor\index{Raygor Estimate!compared to Fry} graphs are very similar and are both interpreted in the same manner; however, there are a few differences between them. The Fry graph classifies documents within the 1^st^ grade to doctorate level. In contrast, Raygor concentrates on the range of 3^rd^ grade to the sophomore collegiate level. It is recommended to only use Raygor graphs for secondary-age materials.
+The Fry\index{Fry!compared to Raygor} and Raygor\index{Raygor Estimate!compared to Fry} graphs are very similar and are both interpreted in the same manner; however, there are a few differences between them.
+The Fry graph classifies documents within the 1^st^ grade to doctorate level. In contrast, Raygor concentrates on the range of 3^rd^ grade to the sophomore collegiate level.
+It is recommended to only use Raygor graphs for secondary-age materials.
 
-Another difference is that the Fry graph is influenced by high-syllable words, while the Raygor graph is influenced by long words. Long sentences remain a key factor for both of these graphs, though.
+Another difference is that the Fry graph is influenced by high-syllable words, while the Raygor graph is influenced by long words.
+Long sentences remain a key factor for both of these graphs, though.
 
-The other difference between the two graphs is that they are inverted from one another. In a Fry graph, the long-sentence region is in the bottom left-hand corner (going downward), whereas in a Raygor graph the long-sentence region is in the top left-hand corner (going upward). However, the same rules apply for how to interpret the grade level and influence of difficult words vs. difficult sentences.
+The other difference between the two graphs is that they are inverted from one another.
+In a Fry graph, the long-sentence region is in the bottom left-hand corner (going downward), whereas in a Raygor graph the long-sentence region is in the top left-hand corner (going upward).
+However, the same rules apply for how to interpret the grade level and influence of difficult words vs. difficult sentences.
 
-The FRASE\index{FRASE} graph is similar to Fry in terms of factors used and axis orientation. Its most influential factor (i.e., word vs. sentence difficulty) is determined in the same manner, and its Y (sentence) axis is descending. Below is an example of a FRASE graph:
+The FRASE\index{FRASE} graph is similar to Fry in terms of factors used and axis orientation.
+Its most influential factor (i.e., word vs. sentence difficulty) is determined in the same manner, and its Y (sentence) axis is descending.
+Below is an example of a FRASE graph:
 
 ![FRASE graph](images/frase-graph.png){width=75% fig-align="center"}
 
-A key difference with FRASE\index{FRASE!reading levels} is its use of reading levels (rather than grade levels). In the above example, we can see that the document has been scored at the *Intermediate* level. The other difference is that it is designed for Spanish text—note how its X (syllable-count) axis begins at 182, not 108.
+A key difference with FRASE\index{FRASE!reading levels} is its use of reading levels (rather than grade levels).
+In the above example, we can see that the document has been scored at the *Intermediate* level.
+The other difference is that it is designed for Spanish text—note how its X (syllable-count) axis begins at 182, not 108.
 
-The Crawford\index{Crawford!compared to Fry} graph is also similar to Fry in terms of factors used. However, it differs from most other graphs in that it uses the interior of the plot to find its sentence-count factor (instead of an axis). Below is an example of a Crawford graph:
+The Crawford\index{Crawford!compared to Fry} graph is also similar to Fry in terms of factors used.
+However, it differs from most other graphs in that it uses the interior of the plot to find its sentence-count factor (instead of an axis).
+Below is an example of a Crawford graph:
 
 ![Crawford graph](images/crawford-graph.png){width=75% fig-align="center"}
 
-In the above graph, we can see that the intersection of the factors is 175 and 7. The number of syllables is 175 (Y axis). The number of sentences is approximately 7 (between 8.4 and 5.9 on the plot [corresponding to 175 on the Y axis]). From this intersection, the point's X axis value is 3.7. Hence, 3.7 is the grade-level score for this graph.
+In the above graph, we can see that the intersection of the factors is 175 and 7.
+The number of syllables is 175 (Y axis). The number of sentences is approximately 7 (between 8.4 and 5.9 on the plot [corresponding to 175 on the Y axis]).
+From this intersection, the point's X axis value is 3.7. Hence, 3.7 is the grade-level score for this graph.
 
-The Flesch\index{Flesch Reading Ease!chart} chart plots a document's factors onto a pair of “rulers” and then connects them to determine the Flesch score. This score ranges from 0 (“very difficult”) to 100 (“very easy”). Below is an example of a Flesch chart:
+The Flesch\index{Flesch Reading Ease!chart} chart plots a document's factors onto a pair of “rulers” and then connects them to determine the Flesch score.
+This score ranges from 0 (“very difficult”) to 100 (“very easy”). Below is an example of a Flesch chart:
 
 ![Flesch chart](images/flesch-chart.png){width=75% fig-align="center"}
 
@@ -102,7 +155,8 @@ There is also a variation of the Lix gauge\index{Lix!gauge plot (German)} that i
 
 ![German Lix gauge](images/german-lix-gauge.png){width=75% fig-align="center"}
 
-This version adjusts the scaling of the score, assuming that German text is inherently more difficult than other languages. It also includes additional levels of difficulty (e.g., “children and young adult”).
+This version adjusts the scaling of the score, assuming that German text is inherently more difficult than other languages.
+It also includes additional levels of difficulty (e.g., “children and young adult”).
 
 Note that if you plot any of these graphs, its score can also be viewed in the [**Readability Scores**](#sec-reviewing-test-scores) area.
 
@@ -110,9 +164,14 @@ As a final note, [batch projects](#sec-creating-batch-project) include multi-doc
 
 ![Multiple documents on a Fry graph](images/multiple-fry.png){width=75% fig-align="center"}
 
-Here, we can see that an entire collection of documents are plotted onto a single Fry graph. This is useful for visualizing the grade-level layout of a group of documents. In the above example, we can see that the documents are clustering in the high-school region. We can also interpret that complex words are heavily influencing the documents' difficulty.
+Here, we can see that an entire collection of documents are plotted onto a single Fry graph.
+This is useful for visualizing the grade-level layout of a group of documents.
+In the above example, we can see that the documents are clustering in the high-school region.
+We can also interpret that complex words are heavily influencing the documents' difficulty.
 
-You can also print or save a blank copy of any of these graphs. This is useful for printing handouts for instructors or students to use. To print a blank graph, go to the **Readability** tab on the ribbon, click the `r keys("Blank Graphs")` button, and select the graph that you wish to save.
+You can also print or save a blank copy of any of these graphs.
+This is useful for printing handouts for instructors or students to use.
+To print a blank graph, go to the **Readability** tab on the ribbon, click the `r keys("Blank Graphs")` button, and select the graph that you wish to save.
 
 \newpage
 
@@ -142,7 +201,8 @@ After opening a project, click on the **Summary Statistics** icon on the project
 
 ![](images/featuresstats.png)
 
-The **Report** and **Tabular Report** windows display the document's statistics in two formats: a formatted report and a tabular report, respectively. Both of these reports contain the following statistics:
+The **Report** and **Tabular Report** windows display the document's statistics in two formats: a formatted report and a tabular report, respectively.
+Both of these reports contain the following statistics:
 
 - number of paragraphs and average number of sentences per paragraph
 - number of sentences and average number of words per sentence
@@ -158,19 +218,25 @@ The **Report** and **Tabular Report** windows display the document's statistics 
 - number and percentage of proper nouns\index{proper nouns} (not available for German projects)
 - number and percentage of total (and unique) monosyllabic words
 - number and percentage of total (and unique) 3+ syllable words
-- number and percentage of total (and unique) hard [SMOG](#sec-smog-test)\index{SMOG!word statistics} words. This statistic is only available if SMOG is included in the project
-- number and percentage of total (and unique) hard [Fog](#sec-gunning-fog-test)\index{Gunning Fog!word statistics} words. This statistic is only available if Fog is included in the project
+- number and percentage of total (and unique) hard [SMOG](#sec-smog-test)\index{SMOG!word statistics} words.
+  This statistic is only available if SMOG is included in the project
+- number and percentage of total (and unique) hard [Fog](#sec-gunning-fog-test)\index{Gunning Fog!word statistics} words.
+  This statistic is only available if Fog is included in the project
 - number and percentage of total (and unique) 6+ letter words
-- number and percentage of total (and unique) unfamiliar words (This includes word lists such as [New Dale-Chall](#sec-dale-chall-test)\index{New Dale-Chall!word statistics} and [Spache](#sec-spache-test)\index{Spache Revised!word statistics}. These statistics are only available if the respective tests are included in the project.)
+- number and percentage of total (and unique) unfamiliar words (This includes word lists such as [New Dale-Chall](#sec-dale-chall-test)\index{New Dale-Chall!word statistics} and [Spache](#sec-spache-test)\index{Spache Revised!word statistics}.
+  These statistics are only available if the respective tests are included in the project.)
 - number of grammar errors
-- text size (the size of the text in a document, not the actual file size) (This statistic is only available if [**Extended Information**](#sec-options-statistics) is enabled.)
+- text size (the size of the text in a document, not the actual file size).
+  (This statistic is only available if [**Extended Information**](#sec-options-statistics) is enabled.)
 
 Statistics for any custom familiar-word tests will also be included in this window.
 
-A **Notes** section may be included at the bottom of the formatted report if there are any items of interest detected (e.g., a high sentence-length average). If your document requires improvement, then this section is usually a good place to begin.
+A **Notes** section may be included at the bottom of the formatted report if there are any items of interest detected (e.g., a high sentence-length average).
+If your document requires improvement, then this section is usually a good place to begin.
 
 ::: {.notesection data-latex=""}
-3+ syllable words and [Fog](#sec-gunning-fog-test) and [SMOG](#sec-smog-test) hard words are all the same except for how numerals (e.g., phone numbers and dates) are handled. SMOG always sounds out each digit of a numeric word, whereas Fog ignores numeric words. You can control how numeric words are handled from the [**Document Indexing**](#sec-document-analysis) section of the [**Options**](#sec-options-overview) dialog (available on the **Tools** tab).
+3+ syllable words and [Fog](#sec-gunning-fog-test) and [SMOG](#sec-smog-test) hard words are all the same except for how numerals (e.g., phone numbers and dates) are handled.
+SMOG always sounds out each digit of a numeric word, whereas Fog ignores numeric words. You can control how numeric words are handled from the [**Document Indexing**](#sec-document-analysis) section of the [**Options**](#sec-options-overview) dialog (available on the **Tools** tab).
 :::
 
 \newpage
@@ -185,34 +251,58 @@ After opening a project, click on the **Words Breakdown** icon on the project si
 
 The types of word lists that may be shown are:
 
-**3+ Syllables**: This list displays all the document's words that are three or more syllables\index{syllables!reviewing in the results}. It also displays how many syllables each word contains and their respective frequency counts. This window is only available if the document contains 3+ syllable words.
+**3+ Syllables**: This list displays all the document's words that are three or more syllables\index{syllables!reviewing in the results}.
+It also displays how many syllables each word contains and their respective frequency counts.
+This window is only available if the document contains 3+ syllable words.
 
-**6+ Characters**: This list displays all the document's words that are six or more characters. It also displays how many characters each word contains and their respective frequency counts. This window is only available if the document contains 6+ character words.
+**6+ Characters**: This list displays all the document's words that are six or more characters.
+It also displays how many characters each word contains and their respective frequency counts.
+This window is only available if the document contains 6+ character words.
 
-**Dale-Chall (Unfamiliar)**: This list displays all the document's words that are not in the [New Dale-Chall](#sec-dale-chall-test) familiar words list and their respective frequency counts. The New Dale-Chall\index{New Dale-Chall!reviewing unfamiliar words} word list is a collection of words that are considered to be familiar to most fourth grade readers. Words in the document that are not found on this list may be less familiar to younger readers and hence more difficult. This window is only available if a Dale-Chall related test is included in the project.
+**Dale-Chall (Unfamiliar)**: This list displays all the document's words that are not in the [New Dale-Chall](#sec-dale-chall-test) familiar words list and their respective frequency counts.
+The New Dale-Chall\index{New Dale-Chall!reviewing unfamiliar words} word list is a collection of words that are considered to be familiar to most fourth grade readers.
+Words in the document that are not found on this list may be less familiar to younger readers and hence more difficult.
+This window is only available if a Dale-Chall related test is included in the project.
 
-**Spache (Unfamiliar)**: This list displays all the document's words that are not in the Spache\index{Spache Revised!reviewing unfamiliar words} familiar words list and their respective frequency counts. The [Spache](#sec-spache-test) word list is a collection of words that are considered to be familiar to most primary-age readers. Words in the document that are not found on this list may be less familiar to younger readers and hence more difficult. This window is only available if the Spache test is included in the project.
+**Spache (Unfamiliar)**: This list displays all the document's words that are not in the Spache\index{Spache Revised!reviewing unfamiliar words} familiar words list and their respective frequency counts.
+The [Spache](#sec-spache-test) word list is a collection of words that are considered to be familiar to most primary-age readers.
+Words in the document that are not found on this list may be less familiar to younger readers and hence more difficult.
+This window is only available if the Spache test is included in the project.
 
-**Harris-Jacobson (Unfamiliar)**: This list displays all the document's words that are not in the Harris-Jacobson\index{Harris-Jacobson Wide Range!reviewing unfamiliar words} familiar words list and their respective frequency counts. The [Harris-Jacobson](#sec-harris-jacobson) word list is a collection of words that are considered to be familiar to most second-grade readers. Words in the document that are not found on this list may be less familiar to younger readers and hence more difficult. This window is only available if the Harris-Jacobson test is included in the project.
+**Harris-Jacobson (Unfamiliar)**: This list displays all the document's words that are not in the Harris-Jacobson\index{Harris-Jacobson Wide Range!reviewing unfamiliar words} familiar words list and their respective frequency counts.
+The [Harris-Jacobson](#sec-harris-jacobson) word list is a collection of words that are considered to be familiar to most second-grade readers.
+Words in the document that are not found on this list may be less familiar to younger readers and hence more difficult.
+This window is only available if the Harris-Jacobson test is included in the project.
 
 **All Words**: This list displays all the words from the document and their respective frequency counts.
 
-**Key Words**: This list is the same as **All Words**, except that it excludes filenames, numeric words, and common words, and then combines the remaining words. In regards to combining words, words with the same root will be merged into a single row. For example, *report*, *reports*, and *reporting* will be combined into one row, with the frequency counts for all three words also combined. As for excluding words, common words (e.g., *the*), numerals, and filenames are not included in this list. (If no words can be combined and there are no common words to ignore, then this list will not be shown.)
+**Key Words**: This list is the same as **All Words**, except that it excludes filenames, numeric words, and common words, and then combines the remaining words.
+In regards to combining words, words with the same root will be merged into a single row. For example, *report*, *reports*, and *reporting* will be combined into one row, with the frequency counts for all three words also combined.
+As for excluding words, common words (e.g., *the*), numerals, and filenames are not included in this list.
+(If no words can be combined and there are no common words to ignore, then this list will not be shown.)
 
 ::: {.notesection data-latex=""}
-If you are ignoring incomplete sentences, then these lists will only include the words from complete sentences. If you need to review all the words from the document, then select the option [**Do not exclude any text**](#sec-options-text-exclusion).
+If you are ignoring incomplete sentences, then these lists will only include the words from complete sentences.
+If you need to review all the words from the document, then select the option [**Do not exclude any text**](#sec-options-text-exclusion).
 Refer to @sec-how-text-is-excluded to learn more about how *{{< var PROGRAM_NAME >}}* handles incomplete sentences.
 :::
 
-To find the most complex words, sort the **Syllable Count** column of the **3+ Syllables** list. You can sort any of the columns by clicking on the column header. To change the sorting order to either ascending or descending, click the column header a second time. As you can see below, the words with the most syllables are now shown at the top of the list.
+To find the most complex words, sort the **Syllable Count** column of the **3+ Syllables** list.
+You can sort any of the columns by clicking on the column header.
+To change the sorting order to either ascending or descending, click the column header a second time.
+As you can see below, the words with the most syllables are now shown at the top of the list.
 
 ![](images/difficultwords.png)
 
-If your test scores indicate that the document is too difficult for your audience, then you should review overly complex or long words. You may consider seeing if any shorter synonyms could be used in their place. The same type of review can also be performed with the **6+ Characters** list by sorting the **Character Count** column.
+If your test scores indicate that the document is too difficult for your audience, then you should review overly complex or long words.
+You may consider seeing if any shorter synonyms could be used in their place.
+The same type of review can also be performed with the **6+ Characters** list by sorting the **Character Count** column.
 
-To help find the most difficult words for the New Dale-Chall list, select the **Dale-Chall (Unfamiliar)** subitem and sort the **Frequency** column. The most frequently occurring words are the ones that should be replaced with more familiar synonyms that most readers would recognize.
+To help find the most difficult words for the New Dale-Chall list, select the **Dale-Chall (Unfamiliar)** subitem and sort the **Frequency** column.
+The most frequently occurring words are the ones that should be replaced with more familiar synonyms that most readers would recognize.
 
-To find a specific word in a list, type the word into the **Search** bar at the top of program and hit the `r keys("Enter")` (`r os_logo('windows')`, `r os_logo('linux')`) or `r keys("\\enter")` (`r os_logo('apple')`)  button on your keyboard. You can also select the list and begin typing the word. If the word is in the list, then the selection will move to it.
+To find a specific word in a list, type the word into the **Search** bar at the top of program and hit the `r keys("Enter")` (`r os_logo('windows')`, `r os_logo('linux')`) or `r keys("\\enter")` (`r os_logo('apple')`)  button on your keyboard.
+You can also select the list and begin typing the word. If the word is in the list, then the selection will move to it.
 
 Double-click on any word in these lists to display the respective highlighted text report with the first instance of that word selected.
 
@@ -220,29 +310,43 @@ Double-click on any word in these lists to display the respective highlighted te
 
 The different types of text reports that may be shown are:
 
-**3+ Syllables**: This text report contains the document with all the words that are three or more syllables highlighted. This window is only available if the document contains 3+ syllable words.
+**3+ Syllables**: This text report contains the document with all the words that are three or more syllables highlighted.
+This window is only available if the document contains 3+ syllable words.
 
-**6+ Characters**: This text report contains the document with all the words that are six or more characters long highlighted. This window is only available if the document contains 6+ character words.
+**6+ Characters**: This text report contains the document with all the words that are six or more characters long highlighted.
+This window is only available if the document contains 6+ character words.
 
-**Dale-Chall (Unfamiliar)**: This text report contains the document with all the [New Dale-Chall](#sec-dale-chall-test) unfamiliar words highlighted. The New Dale-Chall\index{New Dale-Chall!reviewing unfamiliar words} word list is a collection of words that are considered to be familiar to most fourth grade readers. Words in the document that are not found on this list may be less familiar to younger readers and hence more difficult. This window is only available if a Dale-Chall related test is included in the project.
+**Dale-Chall (Unfamiliar)**: This text report contains the document with all the [New Dale-Chall](#sec-dale-chall-test) unfamiliar words highlighted.
+The New Dale-Chall\index{New Dale-Chall!reviewing unfamiliar words} word list is a collection of words that are considered to be familiar to most fourth grade readers.
+Words in the document that are not found on this list may be less familiar to younger readers and hence more difficult.
+This window is only available if a Dale-Chall related test is included in the project.
 
-**Spache (Unfamiliar)**: This text report contains the document with all the [Spache](#sec-spache-test) unfamiliar words highlighted. The Spache\index{Spache Revised!reviewing unfamiliar words} word list is a collection of words that are considered to be familiar to most primary-age readers. Words in the document that are not found on this list may be less familiar to younger readers and hence more difficult. This window is only available if the Spache test is included in the project.
+**Spache (Unfamiliar)**: This text report contains the document with all the [Spache](#sec-spache-test) unfamiliar words highlighted.
+The Spache\index{Spache Revised!reviewing unfamiliar words} word list is a collection of words that are considered to be familiar to most primary-age readers.
+Words in the document that are not found on this list may be less familiar to younger readers and hence more difficult.
+This window is only available if the Spache test is included in the project.
 
-**Harris-Jacobson (Unfamiliar)**: This text report contains the document with all the [Harris-Jacobson](#sec-harris-jacobson)\index{Harris-Jacobson Wide Range!reviewing unfamiliar words} unfamiliar words highlighted. The Harris-Jacobson word list is a collection of words that are considered to be familiar to most primary-age readers. Words in the document that are not found on this list may be less familiar to younger readers and hence more difficult. This window is only available if the Harris-Jacobson test is included in the project.
+**Harris-Jacobson (Unfamiliar)**: This text report contains the document with all the [Harris-Jacobson](#sec-harris-jacobson)\index{Harris-Jacobson Wide Range!reviewing unfamiliar words} unfamiliar words highlighted.
+The Harris-Jacobson word list is a collection of words that are considered to be familiar to most primary-age readers.
+Words in the document that are not found on this list may be less familiar to younger readers and hence more difficult.
+This window is only available if the Harris-Jacobson test is included in the project.
 
 You can change both the font and highlighting color by opening the [**Project Properties**](#sec-options-overview) dialog and selecting [**Highlighted Reports**](#sec-options-highlighted-reports).
-Note that changing these options from the **Project Properties** dialog will only affect the current project. If you want to make changes to any future projects, then go to the **Options** dialog from the **Tools** tab instead.
+Note that changing these options from the **Project Properties** dialog will only affect the current project.
+If you want to make changes to any future projects, then go to the **Options** dialog from the **Tools** tab instead.
 
 ### Reviewing Word-based Graphs {-}
 
 The different types of graphs that may be shown are:
 
 ::: {.minipage data-latex="{\textwidth}"}
-**Word Counts** [bar chart](#sec-options-graphs): This graph shows the total counts of each type of word (e.g., 3+ syllable words) and how each category compares to one another. This bar chart will appear like this:
+**Word Counts** [bar chart](#sec-options-graphs): This graph shows the total counts of each type of word (e.g., 3+ syllable words) and how each category compares to one another.
+This bar chart will appear like this:
 
 ![](images/barchart.png){width=75% fig-align="center"}
 
-In the above example, we can see that there are 70 unfamiliar New Dale-Chall words, but only 42 three+ syllable words. From this, we could infer that we should first concentrate on replacing these unfamiliar words.
+In the above example, we can see that there are 70 unfamiliar New Dale-Chall words, but only 42 three+ syllable words.
+From this, we could infer that we should first concentrate on replacing these unfamiliar words.
 Lists of these words can be found by clicking on the [**Difficult Words**](#sec-reviewing-word-breakdowns) icon on the project sidebar.
 :::
 
@@ -251,7 +355,8 @@ Lists of these words can be found by clicking on the [**Difficult Words**](#sec-
 
 ![](images/syllable-count-histogram.png){width=75% fig-align="center"}
 
-In the above histogram, we see that most of the words are either 1 or 2 syllables. There are only 25 three-syllable words and 17 four-syllable words in the document.
+In the above histogram, we see that most of the words are either 1 or 2 syllables.
+There are only 25 three-syllable words and 17 four-syllable words in the document.
 (Note that selecting a bar will display the first 25 words within that syllable group.)
 Combined, there are 42 complex words, as shown by the cumulative group bar above the **3** and **4** bars.
 
@@ -266,7 +371,8 @@ Most tests use the total word count variable, although there are some that use u
 
 ::: {.minipage data-latex="{\textwidth}"}
 **Syllable Counts**: This is a donut chart of the words, grouped by syllable count (along the inner ring).
-Additionally, an outer ring categorizes these subgroups into simple and complex words. (One- and two-syllable words are considered simple, while three [and higher] syllable words are complex.)
+Additionally, an outer ring categorizes these subgroups into simple and complex words.
+(One- and two-syllable words are considered simple, while three [and higher] syllable words are complex.)
 
 ![](images/syllables-pie-chart.png){width=75% fig-align="center"}
 
@@ -281,7 +387,8 @@ Also, looking at the inner ring, we can see that ~two-thirds of the words are on
 
 ![](images/non-generated/key-word-cloud.png){width=75% fig-align="center"}
 
-A word cloud shows words from a document in a random layout with randomly assigned colors. The size of each word is based on its relative frequency within the document.
+A word cloud shows words from a document in a random layout with randomly assigned colors.
+The size of each word is based on its relative frequency within the document.
 In other words, the larger the word, the more often it is used compared to other words. \
 
 This particular word cloud displays the ~100 most frequently occurring key words appearing in the document.
@@ -299,7 +406,8 @@ In a batch project, this word cloud will show the key words across all documents
 
 ## Sentences Breakdown\index{sentences!reviewing in the results|(idxit} {#sec-reviewing-sentences-breakdown}
 
-After opening a project, click on the **Sentences Breakdown** icon on the project sidebar to view a breakdown of the document's sentences. This includes the following:
+After opening a project, click on the **Sentences Breakdown** icon on the project sidebar to view a breakdown of the document's sentences.
+This includes the following:
 
 A list of overly-long sentences:
 
@@ -326,13 +434,21 @@ A box plot\index{box plots!sentence length} of the sentence lengths (measured by
 
 ![]"images/sentences-boxplot.png"){width=75% fig-align="center"}
 
-The first item to review is the box, which measures the percentiles range. Above, we see that this range is 4.5–19.5, meaning that half of the sentences are between 4.5–19.5 words.
+The first item to review is the box, which measures the percentiles range.
+Above, we see that this range is 4.5–19.5, meaning that half of the sentences are between 4.5–19.5 words.
 
-Next, note the line drawn across the box—this represents the [median](#sec-stat-terms). In this case, the median is 12.5, which means that the middle sentence is 12.5 words. This median line is almost equidistant, which implies that the sentence lengths in this range are evenly distributed.
+Next, note the line drawn across the box—this represents the [median](#sec-stat-terms).
+In this case, the median is 12.5, which means that the middle sentence is 12.5 words.
+This median line is almost equidistant, which implies that the sentence lengths in this range are evenly distributed.
 
-The last items to review are the whiskers, which represent the non-outlier range. The datapoints in this range are outside of the middle half the data, but still within a reasonable limit. Above, we can see that the remaining sentences are skewed towards having longer sentences, with the largest being 33 words. Although 33 words is reasonable (compared to the box's range), you may want to review some of these longer sentences.
+The last items to review are the whiskers, which represent the non-outlier range.
+The datapoints in this range are outside of the middle half the data, but still within a reasonable limit.
+Above, we can see that the remaining sentences are skewed towards having longer sentences, with the largest being 33 words.
+Although 33 words is reasonable (compared to the box's range), you may want to review some of these longer sentences.
 
-Finally, any sentence lengths outside of the non-outlier range will be displayed as red dots. These points represent sentences which are significantly longer (or shorter) than the others. Clicking on an outlier will display the sentence's number, along with a preview of it.
+Finally, any sentence lengths outside of the non-outlier range will be displayed as red dots.
+These points represent sentences which are significantly longer (or shorter) than the others.
+Clicking on an outlier will display the sentence's number, along with a preview of it.
 
 A histogram is also available to visualize how the sentence lengths are distributed:
 
@@ -344,13 +460,25 @@ A heatmap of these sentence lengths is also included:
 
 ![](images/sentences-heatmap.png){width=75% fig-align="center"}
 
-This graph displays the document's sentence, going from left-to-right, top-to-bottom. Each square represents a sentence, and the square's color represents its word count. The darker a square, the higher the sentence's word count (relative to the document). Likewise, lighter squares represent the shorter sentences in the document. This is useful for visualizing the trend and density of a document's longer sentences. For example, if sections of the grid are darker than others, then the sentences are longer in these spots and should be reviewed. The example below demonstrates this:
+This graph displays the document's sentence, going from left-to-right, top-to-bottom.
+Each square represents a sentence, and the square's color represents its word count.
+The darker a square, the higher the sentence's word count (relative to the document).
+Likewise, lighter squares represent the shorter sentences in the document.
+This is useful for visualizing the trend and density of a document's longer sentences.
+For example, if sections of the grid are darker than others, then the sentences are longer in these spots and should be reviewed.
+The example below demonstrates this:
 
-In the above graph, note how the first couple of sentences are the longest. After that, the middle section has relatively shorter sentences. Finally, the last section contains a significant block of the document's longer sentences.
+In the above graph, note how the first couple of sentences are the longest.
+After that, the middle section has relatively shorter sentences.
+Finally, the last section contains a significant block of the document's longer sentences.
 
-Although black squares refer to the longer sentences, this may not imply that these sentences are overly long. It only means that they are the longest, relative to the rest of the document. With this in mind, this heatmap is useful for locating overly-dense sections of longer sentences. In other words, clusters of black squares indicate problematic areas where lengthy sentences are running together.
+Although black squares refer to the longer sentences, this may not imply that these sentences are overly long.
+It only means that they are the longest, relative to the rest of the document.
+With this in mind, this heatmap is useful for locating overly-dense sections of longer sentences.
+In other words, clusters of black squares indicate problematic areas where lengthy sentences are running together.
 
-To find the location of a sentence, click on the square and its sentence number will be shown. Also, if the sentence's length is an outlier (compared to the other sentences), then a preview of it will also be shown.
+To find the location of a sentence, click on the square and its sentence number will be shown.
+Also, if the sentence's length is an outlier (compared to the other sentences), then a preview of it will also be shown.
 
 Refer to example @sec-finding-difficult-sections for a more detailed tutorial on sentence heatmaps.
 
@@ -360,39 +488,51 @@ Refer to example @sec-finding-difficult-sections for a more detailed tutorial on
 
 ## Grammar {#sec-reviewing-standard-grammar}
 
-After opening a project, click on the **Grammar** icon on the project sidebar and select the **Highlighted report** subitem. This text report will display the document with its difficult sentences and wordy items highlighted.
+After opening a project, click on the **Grammar** icon on the project sidebar and select the **Highlighted report** subitem.
+This text report will display the document with its difficult sentences and wordy items highlighted.
 
 ![](images/featuressentences.png)
 
 Note that each sentence is followed by its respective word count (in parentheses).
 
-You can change both the font and highlighting color by opening the [**Project Properties**](#sec-options-overview) dialog and selecting [**Highlighted Reports**](#sec-options-highlighted-reports). Note that changing these options from the **Project Properties** dialog will only affect the current project. If you want to make configuration changes for future projects, then go to the **Options** dialog from the **Tools** tab instead.
+You can change both the font and highlighting color by opening the [**Project Properties**](#sec-options-overview) dialog and selecting [**Highlighted Reports**](#sec-options-highlighted-reports).
+Note that changing these options from the **Project Properties** dialog will only affect the current project.
+If you want to make configuration changes for future projects, then go to the **Options** dialog from the **Tools** tab instead.
 
-For documents with numerous sentences over twenty words, it is recommended to use outlier searching. Open the **Project Properties** dialog, select [**Document Indexing**](#sec-document-analysis), and select the option **Outside sentence-length outlier range**. This will make it so that only the extremely long sentences (compared to the other sentences in the document) are highlighted. This helps pinpoint the most troublesome sentences that need to be shortened.
+For documents with numerous sentences over twenty words, it is recommended to use outlier searching.
+Open the **Project Properties** dialog, select [**Document Indexing**](#sec-document-analysis), and select the option **Outside sentence-length outlier range**.
+This will make it so that only the extremely long sentences (compared to the other sentences in the document) are highlighted.
+This helps pinpoint the most troublesome sentences that need to be shortened.
 
 ### Reviewing Lowercased Sentences\index{sentences!lowercased} {-}
 
-After opening a project, click on the **Grammar** icon on the project sidebar and select the **Lowercased Sentences** subitem. This window will display a list of all sentences that begin with lowercased words (which is usually a typo).
+After opening a project, click on the **Grammar** icon on the project sidebar and select the **Lowercased Sentences** subitem.
+This window will display a list of all sentences that begin with lowercased words (which is usually a typo).
 
 ![](images/lowercasedsent.png)
 
 Lowercased sentence searching is applied to all sentences. [Incomplete sentences](#sec-how-text-is-excluded) will be reviewed for this, even if they are excluded from the analysis.
 
-Also note that if the option [**Sentences must begin with capitalized words**](#sec-document-analysis) is enabled, then this feature will be limited to sentences that begin new paragraphs. If you want to search for any possible sentences that begin with lowercased words, then you should leave this option unchecked.
+Also note that if the option [**Sentences must begin with capitalized words**](#sec-document-analysis) is enabled, then this feature will be limited to sentences that begin new paragraphs.
+If you want to search for any possible sentences that begin with lowercased words, then you should leave this option unchecked.
 
-To view any sentence in its original context, double-click on it. This will take you to the [**Highlighted Report**](#sec-reviewing-standard-grammar) page with that sentence selected.
+To view any sentence in its original context, double-click on it.
+This will take you to the [**Highlighted Report**](#sec-reviewing-standard-grammar) page with that sentence selected.
 
 Note that if there are no lowercased sentences in your document, then this window will not be included.
 
 ### Reviewing Conjunction-starting Sentences {-}
 
-After opening a project, click on the **Grammar** icon on the project sidebar and select the **Conjunction-starting Sentences** subitem. This window will display a list of all sentences which begin with coordinating conjunctions.
+After opening a project, click on the **Grammar** icon on the project sidebar and select the **Conjunction-starting Sentences** subitem.
+This window will display a list of all sentences which begin with coordinating conjunctions.
 
 ![](images/conjunctionsent.png)
 
-Beginning sentences with conjunctions is not an issue for most writing, but should be avoided with professional publications. This feature is provided to grammatically improve professional documents.
+Beginning sentences with conjunctions is not an issue for most writing, but should be avoided with professional publications.
+This feature is provided to grammatically improve professional documents.
 
-The conjunctions that *{{< var PROGRAM_NAME >}}* searches for are the most common coordinating conjunctions. These are:
+The conjunctions that *{{< var PROGRAM_NAME >}}* searches for are the most common coordinating conjunctions.
+These are:
 
 ::: {.minipage data-latex="{\textwidth}"}
 - and
@@ -403,17 +543,22 @@ The conjunctions that *{{< var PROGRAM_NAME >}}* searches for are the most commo
 - so
 :::
 
-Generally for technical writing, only separate clauses should begin with these words, not sentences. Any sentence that begins with these words should be combined with the previous sentence. Another option would be to replace the conjunction. For example, *and* could be replaced with *In addition*.
+Generally for technical writing, only separate clauses should begin with these words, not sentences.
+Any sentence that begins with these words should be combined with the previous sentence.
+Another option would be to replace the conjunction. For example, *and* could be replaced with *In addition*.
 
-This search is applied to all sentences. [Incomplete sentences](#sec-how-text-is-excluded) will be reviewed for this, even if they are excluded from the analysis.
+This search is applied to all sentences.
+[Incomplete sentences](#sec-how-text-is-excluded) will be reviewed for this, even if they are excluded from the analysis.
 
-To view any sentence in its original context, double-click on it. This will take you to the **Highlighted Report** page with that sentence selected.
+To view any sentence in its original context, double-click on it.
+This will take you to the **Highlighted Report** page with that sentence selected.
 
 Note that if there are no conjunction-starting sentences in your document, then this window will not be included.
 
 ### Reviewing Repeated Words {-}
 
-After opening a project, click on the **Grammar** icon on the project sidebar and select the **Repeated Words** subitem. This window will display a list of all repeated words from the document.
+After opening a project, click on the **Grammar** icon on the project sidebar and select the **Repeated Words** subitem.
+This window will display a list of all repeated words from the document.
 
 ![](images/repeatedwords.png)
 
@@ -427,7 +572,8 @@ In this case, the word *to* was accidentally typed twice.
 *{{< var PROGRAM_NAME >}}* will consider this a repeated word and include it in this list.
 
 Repeated words are bound to the sentence level.
-If the same word ends one sentence and begins the next, then it will not be considered a repeated word. For example, *Blake* would not be considered a repeated word here:
+If the same word ends one sentence and begins the next, then it will not be considered a repeated word.
+For example, *Blake* would not be considered a repeated word here:
 
 ::: {.fancyquotes data-latex=''}
 Gabi gave her sales report to *Blake. Blake* really appreciated Gabi's promptness.
@@ -458,7 +604,8 @@ For example, the following articles would be marked as mismatching:
 This search is applied to all sentences.
 [Incomplete sentences](#sec-how-text-is-excluded) will be reviewed for this, even if they are excluded from the analysis.
 
-To view any item in its original context, double-click on it. This will take you to the **Highlighted Report** page with that item selected.
+To view any item in its original context, double-click on it.
+This will take you to the **Highlighted Report** page with that item selected.
 
 Note that if there are no article mismatches in your document, then this window will not be included.
 
@@ -482,11 +629,14 @@ Also, *ensurance* is a misspelling of *insurance* (which will be the suggested r
 Finally, *French benefits* is not the correct expression and *fringe benefits* will be offered as a suggested replacement.
 All of these will be considered wording errors and shown in this list.
 
-Wording errors are bound to the sentence level. If part of a phrase ends one sentence and begins the next, then it will not be considered an error.
+Wording errors are bound to the sentence level.
+If part of a phrase ends one sentence and begins the next, then it will not be considered an error.
 
-This search is applied to all sentences. [Incomplete sentences](#sec-how-text-is-excluded) will be reviewed for this, even if they are excluded from the analysis.
+This search is applied to all sentences.
+[Incomplete sentences](#sec-how-text-is-excluded) will be reviewed for this, even if they are excluded from the analysis.
 
-To view any wording error in its original context, double-click on it. This will take you to the [**Highlighted Report**](#sec-reviewing-standard-grammar) page with that phrase selected.
+To view any wording error in its original context, double-click on it.
+This will take you to the [**Highlighted Report**](#sec-reviewing-standard-grammar) page with that phrase selected.
 
 Note that if there are no errors in your document, then this window will not be included.
 
@@ -499,13 +649,18 @@ This window will display a list of all possible misspellings from the document.
 
 Options for controlling how misspellings are searched for are available in the [**Grammar**](#sec-options-grammar) options.
 
-Misspelling searching is applied to all sentences. [Incomplete sentences](#sec-how-text-is-excluded) will be reviewed for this, even if they are excluded from the analysis.
+Misspelling searching is applied to all sentences.
+[Incomplete sentences](#sec-how-text-is-excluded) will be reviewed for this, even if they are excluded from the analysis.
 
-To view any misspelling in its original context, double-click on it. This will take you to the [**Highlighted Report**](#sec-reviewing-standard-grammar) page with that word selected.
+To view any misspelling in its original context, double-click on it.
+This will take you to the [**Highlighted Report**](#sec-reviewing-standard-grammar) page with that word selected.
 
-To add words to your dictionary, first select them in this list. Then, click on the **Document** tab, and click the arrow next to the `r keys("Spell Checker")` button. Then, select **Add Selected Words** and the selected words in this list will no longer be reported as misspellings.
+To add words to your dictionary, first select them in this list.
+Then, click on the **Document** tab, and click the arrow next to the `r keys("Spell Checker")` button.
+Then, select **Add Selected Words** and the selected words in this list will no longer be reported as misspellings.
 
-To edit your custom dictionary, click on the arrow next to the `r keys("Spell Checker")` button and select **Edit...** to show the **Edit Custom Dictionary** dialog. From here, you can add, remove, or edit the words in your custom dictionary.
+To edit your custom dictionary, click on the arrow next to the `r keys("Spell Checker")` button and select **Edit...** to show the **Edit Custom Dictionary** dialog.
+From here, you can add, remove, or edit the words in your custom dictionary.
 
 To change your spell-checking options, click on the arrow next to the `r keys("Spell Checker")` button and select **Settings...** to edit your [grammar](#sec-options-grammar) settings.
 
@@ -513,39 +668,48 @@ Note that if there are no misspellings in your document, then this window will n
 
 ### Reviewing Redundant Phrases {-}
 
-After opening a project, click on the **Grammar** icon on the project sidebar and select the **Redundant Phrases** subitem. This window will display a list of redundant phrases (and suggested replacements) from the document.
+After opening a project, click on the **Grammar** icon on the project sidebar and select the **Redundant Phrases** subitem.
+This window will display a list of redundant phrases (and suggested replacements) from the document.
 
 ![](images/redundantphrases.png)
 
-A redundant phrase is when a modifier expresses something that is already implied by the noun it is modifying. For example:
+A redundant phrase is when a modifier expresses something that is already implied by the noun it is modifying.
+For example:
 
 ::: {.fancyquotes data-latex=''}
 Gabi and Blake *collaborated together* on the report. They should have a *brief summary* ready later today.
 :::
 
 In this case, *collaborated together* and *brief summary* are redundant. Collaboration already implies two or more people working together.
-The *together* in this phrase adds nothing and just makes this sentence wordy. As for *brief summary*, summaries are always brief; hence, the redundancy in that phrase.
+The *together* in this phrase adds nothing and just makes this sentence wordy.
+As for *brief summary*, summaries are always brief; hence, the redundancy in that phrase.
 *{{< var PROGRAM_NAME >}}* will consider these as redundant phrases and include them in this list.
 
-Redundant phrases are bound to the sentence level. If part of a phrase ends one sentence and begins the next, then it will not be considered a redundant phrase. For example, *brief. Summaries* would not be considered a redundant phrase here because the words are in different sentences:
+Redundant phrases are bound to the sentence level.
+If part of a phrase ends one sentence and begins the next, then it will not be considered a redundant phrase.
+For example, *brief. Summaries* would not be considered a redundant phrase here because the words are in different sentences:
 
 ::: {.fancyquotes data-latex=''}
 Gabi and Blake need to be **brief. Summaries** are very important before presenting a report.
 :::
 
-Redundant phrase searching is applied to all sentences. [Incomplete sentences](#sec-how-text-is-excluded) will be reviewed for this, even if they are excluded from the analysis.
+Redundant phrase searching is applied to all sentences.
+[Incomplete sentences](#sec-how-text-is-excluded) will be reviewed for this, even if they are excluded from the analysis.
 
-To view any redundant phrase in its original context, double-click on it. This will take you to the [**Highlighted Report**](#sec-reviewing-standard-grammar) page with that phrase selected.
+To view any redundant phrase in its original context, double-click on it.
+This will take you to the [**Highlighted Report**](#sec-reviewing-standard-grammar) page with that phrase selected.
 
 Note that if there are no redundant phrases in your document, then this window will not be included.
 
 ### Reviewing Wordy Items {-}
 
-After opening a project, click on the **Grammar** icon on the project sidebar and select the **Wordy Items** subitem. This window will display a list of wordy phrases and difficult words (and their suggested replacements) from the document.
+After opening a project, click on the **Grammar** icon on the project sidebar and select the **Wordy Items** subitem.
+This window will display a list of wordy phrases and difficult words (and their suggested replacements) from the document.
 
 ![](images/wordylist.png)
 
-A phrase is wordy if it contains too many words or contains complex words that could be replaced by simpler ones. For example:
+A phrase is wordy if it contains too many words or contains complex words that could be replaced by simpler ones.
+For example:
 
 ::: {.fancyquotes data-latex=''}
 *Over the course of* the presentation, Blake amazed the Provost with his data visualizations.
@@ -554,21 +718,26 @@ A phrase is wordy if it contains too many words or contains complex words that c
 In this case, *Over the course of* is wordy.
 *{{< var PROGRAM_NAME >}}* will consider this a wordy phrase and offer *during* or *throughout* as replacements.
 
-Wordy phrases are bound to the sentence level. If part of a phrase ends one sentence and begins the next, then it will not be considered a wordy phrase. For example, *a host of* would not be considered a wordy phrase here because its words are in two different sentences:
+Wordy phrases are bound to the sentence level.
+If part of a phrase ends one sentence and begins the next, then it will not be considered a wordy phrase.
+For example, *a host of* would not be considered a wordy phrase here because its words are in two different sentences:
 
 ::: {.fancyquotes data-latex=''}
 For the party, we need **a host. Of** course he should be very funny.
 :::
 
-Wordy-item searching does not affect readability calculations, so this analysis is applied to all sentences. [Incomplete sentences](#sec-how-text-is-excluded) will be reviewed for this, even if they are excluded from the analysis.
+Wordy-item searching does not affect readability calculations, so this analysis is applied to all sentences.
+[Incomplete sentences](#sec-how-text-is-excluded) will be reviewed for this, even if they are excluded from the analysis.
 
-To view any wordy item in its original context, double-click on it. This will take you to the [**Highlighted Report**](#sec-reviewing-standard-grammar) page with that item selected.
+To view any wordy item in its original context, double-click on it.
+This will take you to the [**Highlighted Report**](#sec-reviewing-standard-grammar) page with that item selected.
 
 Note that if there are no wordy items in your document, then this window will not be included.
 
 ### Reviewing Passive Voice {-}
 
-After opening a project, click on the **Grammar** icon on the project sidebar and select the **Passive Voice** subitem. This window will display a list of passive phrases.
+After opening a project, click on the **Grammar** icon on the project sidebar and select the **Passive Voice** subitem.
+This window will display a list of passive phrases.
 
 ![](images/passivevoice.png)
 
@@ -578,37 +747,50 @@ For example, the following would be marked as passive:
 The show had been given many awards by the academy.
 :::
 
-Although not a grammatical error, passive voice can cause confusion as to who is doing what to whom. In the above example, the ordering of words makes it difficult for early readers to understand who was giving the awards. The following would be direct and clear:
+Although not a grammatical error, passive voice can cause confusion as to who is doing what to whom.
+In the above example, the ordering of words makes it difficult for early readers to understand who was giving the awards.
+The following would be direct and clear:
 
 ::: {.fancyquotes data-latex=''}
 The academy gave the show many awards.
 :::
 
-This search is applied to all sentences. [Incomplete sentences](#sec-how-text-is-excluded) will be reviewed for this, even if they are excluded from the analysis.
+This search is applied to all sentences.
+[Incomplete sentences](#sec-how-text-is-excluded) will be reviewed for this, even if they are excluded from the analysis.
 
-To view any item in its original context, double-click on it. This will take you to the **Highlighted Report** page with that item selected.
+To view any item in its original context, double-click on it.
+This will take you to the **Highlighted Report** page with that item selected.
 
 Note that if there are no passive phrases in your document, then this window will not be included.
 
 ### Reviewing Clichés {-}
 
-After opening a project, click on the **Grammar** icon on the project sidebar and select the **Clichés** subitem. This window will display a list of clichés (and their suggested replacements) from the document.
+After opening a project, click on the **Grammar** icon on the project sidebar and select the **Clichés** subitem.
+This window will display a list of clichés (and their suggested replacements) from the document.
 
 ![](images/clichelist.png)
 
-A cliché is an overused phrase that should be avoided if you are writing professional documents. In the context of readability, clichés can be unfamiliar to early (young or ESL) readers. For example:
+A cliché is an overused phrase that should be avoided if you are writing professional documents.
+In the context of readability, clichés can be unfamiliar to early (young or ESL) readers.
+For example:
 
 ::: {.fancyquotes data-latex=''}
 He is acting very *off the wall*.
 :::
 
-In this case, *off the wall* is a cliché and will be listed with *unusual* being offered as a replacement. A phrase such as this is considered *tired* and would not appear professional in a business report or technical document. Also, those new to English may not understand what this expression means. If you are targeting early readers, then you should avoid clichés for clarity.
+In this case, *off the wall* is a cliché and will be listed with *unusual* being offered as a replacement.
+A phrase such as this is considered *tired* and would not appear professional in a business report or technical document.
+Also, those new to English may not understand what this expression means.
+If you are targeting early readers, then you should avoid clichés for clarity.
 
-Clichés are bound to the sentence level. If part of a phrase ends one sentence and begins the next, then it will not be considered a cliché.
+Clichés are bound to the sentence level.
+If part of a phrase ends one sentence and begins the next, then it will not be considered a cliché.
 
-Cliché-searching is applied to all sentences. [Incomplete sentences](#sec-how-text-is-excluded) will be reviewed for this, even if they are excluded from the analysis.
+Cliché-searching is applied to all sentences.
+[Incomplete sentences](#sec-how-text-is-excluded) will be reviewed for this, even if they are excluded from the analysis.
 
-To view any clichés in its original context, double-click on it. This will take you to the **Highlighted Report** page with that cliché selected.
+To view any clichés in its original context, double-click on it.
+This will take you to the **Highlighted Report** page with that cliché selected.
 
 Note that if there are no clichés in your document, then this window will not be included.
 
@@ -620,12 +802,13 @@ When reviewing these, it is recommended to change some of the repeated words to 
 
 ![](images/overusedwordsbysentence.png)
 
-This check is applied to all sentences. [Incomplete sentences](#sec-how-text-is-excluded) will be reviewed for this, even if they are excluded from the analysis.
+This check is applied to all sentences.
+[Incomplete sentences](#sec-how-text-is-excluded) will be reviewed for this, even if they are excluded from the analysis.
 
 Numeric words, proper nouns, words containing less than three letters, and common words (e.g., *the*) are excluded from this review.
 
-Also, a sentence with a pair of repeated words that
-may be part of the same phrase are ignored. For example:
+Also, a sentence with a pair of repeated words that may be part of the same phrase are ignored.
+For example:
 
 ::: {.fancyquotes data-latex=''}
 When they asked Blake if he would be willing to work over the weekend, he just *laughed* and *laughed*.
@@ -637,20 +820,28 @@ If the sentence is 10 words, however, it will be counted.
 
 Note that if there are no sentences with overused words in your document, then this window will not be included.
 
-To view any sentence in its original context, double-click on it. This will take you to the [**Highlighted Report**](#sec-reviewing-standard-grammar) page with that sentence selected.
+To view any sentence in its original context, double-click on it.
+This will take you to the [**Highlighted Report**](#sec-reviewing-standard-grammar) page with that sentence selected.
 
 \newpage
 
 ## Dolch Sight Words {#sec-reviewing-dolch}
 
-The Dolch Sight Words [-@{dolch}456–60] represent the most frequently occurring service words[^DolchPronounsFootnote] in most text, especially children's literature. Early readers need to learn and recognize these words to attain reading fluency. Many of these words cannot be sounded out or represented by pictures; therefore, they must be learned by sight[^DolchNounsListFootnote].
+The Dolch Sight Words [-@{dolch}456–60] represent the most frequently occurring service words[^DolchPronounsFootnote] in most text, especially children's literature.
+Early readers need to learn and recognize these words to attain reading fluency.
+Many of these words cannot be sounded out or represented by pictures; therefore, they must be learned by sight[^DolchNounsListFootnote].
 
-If you are writing educational materials for early readers, then use as many of these words as possible to help readers practice them. Also, keep the percentage of non-Dolch words low so that readers can better focus on the sight words.
+If you are writing educational materials for early readers, then use as many of these words as possible to help readers practice them.
+Also, keep the percentage of non-Dolch words low so that readers can better focus on the sight words.
 
-*{{< var PROGRAM_NAME >}}* offers a suite of Dolch statistics and graphs as a tool for educators and writers targeting early readers. If you are creating material intended to help early readers practice Dolch words, then it is recommended to include this in your project. To add Dolch statistics to your project, go to the **Readability** tab and select either **Primary-age Reading** or **Second Language Reading** and select **Dolch Sight Words**. A **Dolch Sight Words** icon will appear at the bottom of the project sidebar—clicking on that will display all the Dolch information.
+*{{< var PROGRAM_NAME >}}* offers a suite of Dolch statistics and graphs as a tool for educators and writers targeting early readers.
+If you are creating material intended to help early readers practice Dolch words, then it is recommended to include this in your project.
+To add Dolch statistics to your project, go to the **Readability** tab and select either **Primary-age Reading** or **Second Language Reading** and select **Dolch Sight Words**.
+A **Dolch Sight Words** icon will appear at the bottom of the project sidebar—clicking on that will display all the Dolch information.
 
 [^DolchPronounsFootnote]: Pronouns, adjectives, adverbs, prepositions, conjunctions, and verbs.
-[^DolchNounsListFootnote]: A separate list of nouns commonly found in children's literature is also included with the Dolch collection. However, the sight words are generally the focus of most Dolch activities.
+[^DolchNounsListFootnote]: A separate list of nouns commonly found in children's literature is also included with the Dolch collection.
+However, the sight words are generally the focus of most Dolch activities.
 
 ### Reviewing the Dolch Statistics {-}
 
@@ -660,19 +851,37 @@ After opening a project, click on the **Dolch Sight Words** icon on the project 
 
 There are two types of statistics included: Dolch coverage and raw Dolch word counts.
 
-The **Dolch Word Coverage** section displays how much of each category is used in the document. For example, if six of the conjunction Dolch words are used in the document, then 6 will be displayed next to **Conjunctions used**. The percentage will also be included in parentheses after these counts. In this case, it will be 100% because there are six words on the Dolch conjunction list.
+The **Dolch Word Coverage** section displays how much of each category is used in the document.
+For example, if six of the conjunction Dolch words are used in the document, then 6 will be displayed next to **Conjunctions used**.
+The percentage will also be included in parentheses after these counts.
+In this case, it will be 100% because there are six words on the Dolch conjunction list.
 
-Notes will be shown at the bottom of the **Dolch Word Coverage** section to indicate which (if any) categories are being used well by your document. This is the best way to see whether or not your document is useful as a Dolch practice tool.
+Notes will be shown at the bottom of the **Dolch Word Coverage** section to indicate which (if any) categories are being used well by your document.
+This is the best way to see whether or not your document is useful as a Dolch practice tool.
 
-If a document does not provide good coverage for any of the categories and/or contains numerous non-Dolch words, then it will not be an appropriate Dolch training document. This does not necessarily mean that it is not an appropriate document for younger readers. It simply means that the document does not use enough of the Dolch words to help readers learn these words. For example, *The Tale of Peter Rabbit* has decent coverage of the Dolch conjunctions and prepositions, but it also contains a large percentage of non-Dolch words. This book's readability levels indicate that it is proper for young readers. However, its high non-Dolch words percentage will make it inappropriate for readers to use it for practicing Dolch words.
+If a document does not provide good coverage for any of the categories and/or contains numerous non-Dolch words, then it will not be an appropriate Dolch training document.
+This does not necessarily mean that it is not an appropriate document for younger readers.
+It simply means that the document does not use enough of the Dolch words to help readers learn these words.
+For example, *The Tale of Peter Rabbit* has decent coverage of the Dolch conjunctions and prepositions, but it also contains a large percentage of non-Dolch words.
+This book's readability levels indicate that it is proper for young readers.
+However, its high non-Dolch words percentage will make it inappropriate for readers to use it for practicing Dolch words.
 
-To graphically view the Dolch coverage, click on the [**Coverage Chart**](#sec-reviewing-dolch) icon. This will display a bar chart of these statistics, listed by category.
+To graphically view the Dolch coverage, click on the [**Coverage Chart**](#sec-reviewing-dolch) icon.
+This will display a bar chart of these statistics, listed by category.
 
-Below this is the **Dolch Words** section, which lists all the raw Dolch word counts, broken down by category. Each category includes its total and unique counts of words found in the document. For example, let us say that four unique words from the pronoun list are found in the document, each appearing twice. In this case, **Number of Pronoun Dolch words** will be eight (four words each appearing twice) and **Number of unique Pronoun Dolch words** will be four.
+Below this is the **Dolch Words** section, which lists all the raw Dolch word counts, broken down by category.
+Each category includes its total and unique counts of words found in the document.
+For example, let us say that four unique words from the pronoun list are found in the document, each appearing twice.
+In this case, **Number of Pronoun Dolch words** will be eight (four words each appearing twice) and **Number of unique Pronoun Dolch words** will be four.
 
-Note that there may be a slight discrepancy between a category's coverage value and its unique word count. This will happen if your document contains variations of certain words, such as *ask* and *asked*. The program will treat morphological variations of a word the same as its root word when calculating coverage statistics. However, when calculating unique word statistics, different forms of words will be counted separately. For example, the words *asked* and *asking* will be counted as separate unique words; however, they both will be seen as “ask” when calculating the verb-list coverage.
+Note that there may be a slight discrepancy between a category's coverage value and its unique word count.
+This will happen if your document contains variations of certain words, such as *ask* and *asked*.
+The program will treat morphological variations of a word the same as its root word when calculating coverage statistics.
+However, when calculating unique word statistics, different forms of words will be counted separately.
+For example, the words *asked* and *asking* will be counted as separate unique words; however, they both will be seen as “ask” when calculating the verb-list coverage.
 
-To graphically view the Dolch words breakdown, click on the [**Word Counts**](#sec-reviewing-dolch) subitem. This will display a bar chart of these statistics, listed by category.
+To graphically view the Dolch words breakdown, click on the [**Word Counts**](#sec-reviewing-dolch) subitem.
+This will display a bar chart of these statistics, listed by category.
 
 ### Reviewing the Dolch Graphs {-}
 
@@ -729,7 +938,8 @@ The **Dolch Words** subitem will display a list of the Dolch words from the docu
 
 ![](images/dolchwordslist.png)
 
-Next to each word will be two columns. The first column is **Frequency**, which will represent the number of times the word appears in the file.
+Next to each word will be two columns.
+The first column is **Frequency**, which will represent the number of times the word appears in the file.
 The second column is **Category**, which represents the Dolch category to which the word belongs.
 
 Double-click on any word in this list to display the [**Dolch Words**](#sec-reviewing-dolch) text report with the first instance of that word selected.

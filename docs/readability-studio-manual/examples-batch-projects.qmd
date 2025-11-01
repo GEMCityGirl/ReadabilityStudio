@@ -127,15 +127,17 @@ In this example, we will show how to include descriptive labels next to our docu
 ![](images/group-label-descselected.png){width=48%}
 :::
 
-On the **Home** tab of the ribbon, click the `r keys('New')` button. When prompted for which type of project to create, select **Batch Project**.
+On the **Home** tab of the ribbon, click the `r keys('New')` button.
+When prompted for which type of project to create, select **Batch Project**.
 Once the **New Project Wizard** appears, click the `r keys('Add folder...')` button.
 On the **Select Directory** dialog, enter the folder path containing your documents and then click `r keys('OK')`.
 Now we will be shown the **Select Labeling** dialog.
 
-On this dialog, we can either specify a single label for all documents or use the documents’ metadata to create unique descriptions for each one.
-For this example, we are wanting to include unique, descriptive labels for each document, so leave **Use documents’ descriptions** selected and click `r keys('OK')`.
+On this dialog, we can either specify a single label for all documents or use the documents' metadata to create unique descriptions for each one.
+For this example, we are wanting to include unique, descriptive labels for each document, so leave **Use documents' descriptions** selected and click `r keys('OK')`.
 
-Now, the program will load the files from the folder that we had selected. For example, below is a list of files where each one has the same name:
+Now, the program will load the files from the folder that we had selected.
+For example, below is a list of files where each one has the same name:
 
 ![](images/wizardbatchselectfilessamenames.png)
 
@@ -162,8 +164,8 @@ When the **New Project Wizard** appears, click the `r keys('Add folder...')` but
 On the **Select Directory** dialog, enter the folder path containing your documents and then click `r keys('OK')`.
 Now we will be shown the **Select Labeling** dialog.
 
-On this dialog, we can either specify a single label for all documents or use the documents’ metadata to create unique descriptions for each one.
-For this example, we are wanting to group this folders’ documents together, so select **Use a grouping label**, enter a label (e.g., *Notes*) and click `r keys('OK')`.
+On this dialog, we can either specify a single label for all documents or use the documents' metadata to create unique descriptions for each one.
+For this example, we are wanting to group this folders' documents together, so select **Use a grouping label**, enter a label (e.g., *Notes*) and click `r keys('OK')`.
 
 ![](images/group-label-notes.png){width=50% fig-align="center"}
 
@@ -182,10 +184,12 @@ Here we can see a list of documents, along with their group labels next to them:
 
 ![](images/batch-group-labels-scores.png){width=75% fig-align="center"}
 
-Here, we can sort by group or scores and see how the groups compare. In the above example, we can see that the *Tests* group is scoring poorly.
+Here, we can sort by group or scores and see how the groups compare.
+In the above example, we can see that the *Tests* group is scoring poorly.
 
-Grouping is also shown in the readability graphs. For example, if we included a Fry graph, then it may appear as such:
+Grouping is also shown in the readability graphs.
+For example, if we included a Fry graph, then it may appear as such:
 
 ![](images/fry-grouped.png){width=75% fig-align="center"}
 
-Here, we can see the *Tests* group again scoring rather high, as much of this group’s documents are clustering in the higher grade ranges.
+Here, we can see the *Tests* group again scoring rather high, as much of this group's documents are clustering in the higher grade ranges.

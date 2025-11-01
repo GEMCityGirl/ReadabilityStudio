@@ -38,6 +38,7 @@ docs:ExportGraph(SideBarSection.ReadabilityScores, GraphType.GpmFry,
     Application.GetUserFolder(UserPath.Desktop) .. "GPM.png")
 docs:Close()
 ```
-1. Calls to [`LoadFolder()`](#loadfolder) and [`LoadFiles()`](#loadfiles) append documents to the batch. Any documents currently in the batch will still be included.
+1. Calls to [`LoadFolder()`](#loadfolder) and [`LoadFiles()`](#loadfiles) append documents to the batch.
+Any documents currently in the batch will still be included.
 
 {{< pagebreak >}}

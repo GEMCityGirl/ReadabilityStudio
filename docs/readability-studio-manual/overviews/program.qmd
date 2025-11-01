@@ -117,7 +117,8 @@ If you are reviewing Dolch Sight Words, then breakdown charts of your category u
 
 Multiple-document graphs are also available.
 Here, [histograms](#sec-reviewing-batch-histograms) and [box plots](#sec-reviewing-batch-box-plots) show the distribution of a document collection's test scores.
-This is useful for summarizing the general reading level of a batch of documents. It is also useful for finding problematic documents in a batch (i.e., outliers).
+This is useful for summarizing the general reading level of a batch of documents.
+It is also useful for finding problematic documents in a batch (i.e., outliers).
 
 #### Detailed statistics {-}
 
@@ -127,17 +128,24 @@ The type of statistics included is also [customizable](#sec-options-statistics).
 
 #### Lists of difficult words and sentences {-}
 
-Lists of difficult words and sentences are broken down by category and can easily be searched, sorted, printed, and exported. A separate list for each type of difficult word (e.g., 3+ syllables) is included, as well as a list of overly-long sentences. These lists provide detailed information about each difficult word, such as its syllable count and frequency. This enables you to search for either the most difficult words or the difficult words that occur most frequently.
+Lists of difficult words and sentences are broken down by category and can easily be searched, sorted, printed, and exported.
+A separate list for each type of difficult word (e.g., 3+ syllables) is included, as well as a list of overly-long sentences.
+These lists provide detailed information about each difficult word, such as its syllable count and frequency.
+This enables you to search for either the most difficult words or the difficult words that occur most frequently.
 
-These lists are also interactive. You can double-click on a word (or sentence) in a list, and the program will switch to the document display with the first occurrence of that word selected. This is useful for quickly finding a difficult word or sentence in its original context.
+These lists are also interactive.
+You can double-click on a word (or sentence) in a list, and the program will switch to the document display with the first occurrence of that word selected.
+This is useful for quickly finding a difficult word or sentence in its original context.
 
 #### Document highlighting {-}
 
-Difficult words and sentences are also shown highlighted in their original context. This is useful in finding trouble spots in your document.
+Difficult words and sentences are also shown highlighted in their original context.
+This is useful in finding trouble spots in your document.
 
 #### Grammar tools {-}
 
-Along with readability analysis, *{{< var PROGRAM_NAME >}}* also offers basic grammar checking. The program can detect the following problems:
+Along with readability analysis, *{{< var PROGRAM_NAME >}}* also offers basic grammar checking.
+The program can detect the following problems:
 
 - [wording errors and known misspellings (English only)](#sec-reviewing-standard-grammar)
 - [possible misspellings (English only)](#sec-reviewing-standard-grammar)
@@ -191,7 +199,7 @@ This enables you to easily share and publish your results.
 - Test results, statistics, and difficult word lists can all be exported as HTML, text, or {{< latex >}}.
 - Statistics summary report can be exported as HTML.
 - Highlighted document views can be exported as RTF or HTML.
-- Graphs can be exported as TIFF, JPG, BMP, PNG, SVG, GIF, or TARGA.
+- Graphs can be exported as TIFF, JPG, BMP, PNG, SVG, GIF, or TARGA, WebP.
 
 #### Flexibility {-}
 

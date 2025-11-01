@@ -58,22 +58,26 @@ If you plan to edit this output, then **RTF** is recommended. (Most word process
 
 ## Image Export Options {#sec-image-export}
 
-When [exporting](#sec-exporting)\index{exporting!graphs} a graph\index{graphs!exporting|(}, you will first be prompted for an image format to export as. The following formats\index{graphs!exporting!formats} are available to choose from:
+When [exporting](#sec-exporting)\index{exporting!graphs} a graph\index{graphs!exporting|(}, you will first be prompted for an image format to export as.
+The following formats\index{graphs!exporting!formats} are available to choose from:
 
 ::: {.optionssection data-latex=""}
-**PNG**: A lossless-compressed image format. The image can be compressed to a smaller size without any loss of quality.
+**PNG**: A lossless-compressed image format.
+The image can be compressed to a smaller size without any loss of quality.
 
 **JPG**: A lossy-compressed image format. Some image quality may be lost, compared to other formats such as PNG.
 
 **BMP**: An uncompressed raster (i.e., pixel based) image format.
 
-**TIFF**: This format can either be compressed or uncompressed and offers both lossy and lossless compression. This format is generally preferred for desktop publishing.
+**TIFF**: This format can either be compressed or uncompressed and offers both lossy and lossless compression.
+This format is generally preferred for desktop publishing.
 
 **TARGA**: A raster (i.e., pixel based) image format.
 
 **GIF**: A raster (i.e., pixel based) image format. Note that this image format is limited to 256 colors.
 
-**SVG**: A format that uses vector (rather than raster) drawing. Vector-based images can be scaled to much larger sizes, without the loss of quality that raster images would experience.
+**SVG**: A format that uses vector (rather than raster) drawing.
+Vector-based images can be scaled to much larger sizes, without the loss of quality that raster images would experience.
 :::
 
 After selecting the image format, these additional options will be provided:
@@ -164,7 +168,8 @@ Select **Export All**\index{exporting!projects} from the `r keys("Save")` button
 
 This dialog provides options for [exporting](#sec-exporting) an entire project into a single report or folder of separate files.
 
-**Folder to export to**: Enter the folder path where you want to export the project to into this field. (Only applies if you are exporting as separate files.)
+**Folder to export to**: Enter the folder path where you want to export the project to into this field.
+(Only applies if you are exporting as separate files.)
 
 ### Sections to export {-}
 
@@ -172,7 +177,8 @@ This dialog provides options for [exporting](#sec-exporting) an entire project i
 
 **Summary statistics**: Select this option to export all the windows from the [**Summary Statistics**](#sec-reviewing-statistics) section.
 
-**Histograms/box plots**: Select this option to export all [histograms](#sec-reviewing-batch-histograms) and [box plots](#sec-reviewing-batch-box-plots). This option only applies to batch projects.
+**Histograms/box plots**: Select this option to export all [histograms](#sec-reviewing-batch-histograms) and [box plots](#sec-reviewing-batch-box-plots).
+This option only applies to batch projects.
 
 **Words breakdown**: Select this option to export all the windows from the [**Words Breakdown**](#sec-reviewing-word-breakdowns) section.
 
@@ -180,27 +186,36 @@ This dialog provides options for [exporting](#sec-exporting) an entire project i
 
 **Grammar section**: Select this option to export all the windows from the **Grammar** section.
 
-**Dolch sight words section**: Select this option to export all the windows from the [**Dolch Sight Words**](#sec-reviewing-dolch) section. This option only applies if **Dolch Sight Words** is included in the project.
+**Dolch sight words section**: Select this option to export all the windows from the [**Dolch Sight Words**](#sec-reviewing-dolch) section.
+This option only applies if **Dolch Sight Words** is included in the project.
 
-**Warnings section**: Select this option to export all the project's [warnings](#sec-reviewing-batch-warnings). This option only applies to batch projects.
+**Warnings section**: Select this option to export all the project's [warnings](#sec-reviewing-batch-warnings).
+This option only applies to batch projects.
 
 ### Export file types {-}
 
-**Export lists as**: Select the file type that you want to save list windows as from this list. This option only applies when exporting as separate files.
+**Export lists as**: Select the file type that you want to save list windows as from this list.
+This option only applies when exporting as separate files.
 
-**Export text reports as**: Select the file type that you want to save text reports as from this list. This option only applies to standard projects, and when exporting as separate files.
+**Export text reports as**: Select the file type that you want to save text reports as from this list.
+This option only applies to standard projects, and when exporting as separate files.
 
 **Export graphs as**: Select the image type that you want to save graphs as from this list.
 
-**Image Options**: Click this button to further customize how to save the graphs as images. This includes options such as color mode and image size. Note that the options available on this dialog will depend on which image type is selected.
+**Image Options**: Click this button to further customize how to save the graphs as images.
+This includes options such as color mode and image size. Note that the options available on this dialog will depend on which image type is selected.
 
-**Include lists**: Select this option to include lists in the output. It is recommended to unselect this option for larger documents. This option only applies to standard projects.
+**Include lists**: Select this option to include lists in the output.
+It is recommended to unselect this option for larger documents. This option only applies to standard projects.
 
-**Include text reports**: Select this option to include highlighted text reports in the output. It is recommended to unselect this option for larger documents. This option only applies to standard projects.
+**Include text reports**: Select this option to include highlighted text reports in the output.
+It is recommended to unselect this option for larger documents.
+This option only applies to standard projects.
 
 ## Exporting Filtered Documents {#sec-filtering-export}
 
-Document filtering (or "cleaning") is the removal or conversion of items from a document to assist a textual analysis. This includes items that are not meant to be analyzed, such as:
+Document filtering (or "cleaning") is the removal or conversion of items from a document to assist a textual analysis.
+This includes items that are not meant to be analyzed, such as:
 
 - Headers
 - Footers
@@ -217,21 +232,29 @@ Also, the romanization of items that may cause issues with legacy programs:
 
 The first set of items are normally excluded from analysis because they a.) are not part of the narrative text and b.) skew the average sentence length.
 
-By default, *{{< var PROGRAM_NAME >}}* will automatically ignore these items, rather than requiring you to manually remove them from your document. This is helpful by saving time and by not having to maintain two copies of your document: the original and the “cleansed” version used for analysis.
+By default, *{{< var PROGRAM_NAME >}}* will automatically ignore these items, rather than requiring you to manually remove them from your document.
+This is helpful by saving time and by not having to maintain two copies of your document: the original and the “cleansed” version used for analysis.
 
-The second set of items do not cause issue with *{{< var PROGRAM_NAME >}}*. It can recognize extended characters (e.g., *é*, *—*, etc.) and can properly deduce sentence endings. For these reasons, document cleaning is generally not necessary within *{{< var PROGRAM_NAME >}}*.
+The second set of items do not cause issue with *{{< var PROGRAM_NAME >}}*.
+It can recognize extended characters (e.g., *é*, *—*, etc.) and can properly deduce sentence endings.
+For these reasons, document cleaning is generally not necessary within *{{< var PROGRAM_NAME >}}*.
 
 Refer to @sec-how-text-is-excluded to learn how *{{< var PROGRAM_NAME >}}* automatically filters documents.
 
 ### Exporting Filtered Documents {-}
 
-There may be times when you would need a filtered copy of your document. For example, you might need to process your document through another program which does not have auto-filtering. In this situation, you can export a copy of your document with these aforementioned items removed. Then you can analyze your document with other software without needing to manually filter it.
+There may be times when you would need a filtered copy of your document.
+For example, you might need to process your document through another program which does not have auto-filtering.
+In this situation, you can export a copy of your document with these aforementioned items removed.
+Then you can analyze your document with other software without needing to manually filter it.
 
 To do this, click on the **Home** tab of the ribbon, click on the arrow below the `r keys("Save")` button, and select **Export Filtered Document**.
 
 `r menu(c('Home','Save','Export Filtered Document'))`
 
-After excluding incomplete sentences from your document, you will be presented with additional options (see below). Once you have specified your filtering options, the **Preview Filtered Document** dialog (shown on the right) will be displayed. This dialog will show a preview of the filtered document, along with listing the filtering options being used.
+After excluding incomplete sentences from your document, you will be presented with additional options (see below).
+Once you have specified your filtering options, the **Preview Filtered Document** dialog (shown on the right) will be displayed.
+This dialog will show a preview of the filtered document, along with listing the filtering options being used.
 
 ![](images/filter-text-preview.png){width=50% fig-align="center"}
 
@@ -243,9 +266,14 @@ Which incomplete-sentence removal method used is controlled by your project's [t
 
 ### Additional Filtering Options {#sec-additional-filtering-options}
 
-When exporting a filtered version of your document, the program will first remove incomplete sentences (if applicable). This removal will be based on your project's [text exclusion](#sec-options-text-exclusion) settings. After this text exclusion is applied, additional conversion options will be available from the **Additional Filtering Options** dialog. From this dialog, you can apply the following filters to the exported copy of your document.
+When exporting a filtered version of your document, the program will first remove incomplete sentences (if applicable).
+This removal will be based on your project's [text exclusion](#sec-options-text-exclusion) settings.
+After this text exclusion is applied, additional conversion options will be available from the **Additional Filtering Options** dialog.
+From this dialog, you can apply the following filters to the exported copy of your document.
 
-**Romanize (replace special characters)**: Check this option to replace accented and extended characters with their ASCII equivalents. This option is required if you are needing the filtered document to be in ASCII (7-bit) format. The following Romanization replacements are used:
+**Romanize (replace special characters)**: Check this option to replace accented and extended characters with their ASCII equivalents.
+This option is required if you are needing the filtered document to be in ASCII (7-bit) format.
+The following Romanization replacements are used:
 
 ```{r, echo=F}
 library(tidyverse)
@@ -293,7 +321,8 @@ Any extended ASCII character not listed above will be removed from the document.
 
 **Remove Internet and file addresses**: Check this option to remove Internet URLs and file paths.
 
-**Remove trailing periods from abbreviations and acronyms**: Check this option to remove the last period from abbreviations and acronyms. For example:
+**Remove trailing periods from abbreviations and acronyms**: Check this option to remove the last period from abbreviations and acronyms.
+For example:
 
 ::: {.fancyquotes data-latex=''}
 Dr. Jones has requested a copy of the S.W.O.T. report.
@@ -307,7 +336,8 @@ Dr Jones has requested a copy of the S.W.O.T report.
 
 This option is recommended for other programs that may have difficulty deducing sentences properly because of these periods.
 
-**Narrow full-width characters**: Check this option to convert full-width characters to their narrow counterparts. For example:
+**Narrow full-width characters**: Check this option to convert full-width characters to their narrow counterparts.
+For example:
 
 > *Ｈｅｌｌｏ*
 
@@ -325,7 +355,8 @@ To print\index{printing} any window, go to the **Home** tab and click the `r key
 ![](images/printerheadersfooters.png){width=48%}
 :::
 
-Clicking the arrow beneath the `r keys("Print")` button will open a menu containing additional printing options. For example, to change the paper size or orientation of your printouts, select **Page Setup** from this menu.
+Clicking the arrow beneath the `r keys("Print")` button will open a menu containing additional printing options.
+For example, to change the paper size or orientation of your printouts, select **Page Setup** from this menu.
 
 To add headers or footers to your printouts, select **Headers & Footers** from this menu.
 

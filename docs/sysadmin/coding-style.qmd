@@ -49,8 +49,8 @@ Run *clang-format* after editing any source file, and run *clang-tidy* when feas
 
 ## Bitmask Enumerations {-}
 
-Bitmask enums should use left-shifting to initialize their values,
-as this is easier to read and maintain. For example:
+Bitmask enums should use left-shifting to initialize their values, as this is easier to read and maintain.
+For example:
 
 ```{.cpp}
 enum DebugSettings

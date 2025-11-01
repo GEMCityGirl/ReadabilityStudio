@@ -47,12 +47,16 @@ Also, all these files are meant for all languages, unless otherwise noted.
 
 Please refer to the following file & folder breakdown for reference:
 
-- "base-english-dictionary.txt": main English dictionary. All forms of a given word (e.g., plural, possessive) should go in here. Note that proper nouns should not go in here
+- "base-english-dictionary.txt": main English dictionary.
+  All forms of a given word (e.g., plural, possessive) should go in here.
+  Note that proper nouns should not go in here
 - "base-non-personal.txt": places (e.g., cities, countries), company names, species names, etc. should go in here
 - "base-personal.txt": person names should go in there
 - `r file_path(c("abbreviations"))`:
-  - "abbreviations.txt": list of abbreviations that the program uses to determine abbreviations. (Words in here must include their periods.)
-  - "non-abbreviations.txt": list of words that should never been seen as abbreviations. This will be long words that contain no vowels, but are still an actual word.
+  - "abbreviations.txt": list of abbreviations that the program uses to determine abbreviations.
+    (Words in here must include their periods.)
+  - "non-abbreviations.txt": list of words that should never been seen as abbreviations.
+    This will be long words that contain no vowels, but are still an actual word.
 - `r file_path(c("articles"))`:
   - "a-exceptions.txt": these are words that are correct to follow an **a** that the program word otherwise misclassify
   - "an-exceptions.txt": these are words that are correct to follow an **an** that the program word otherwise misclassify
@@ -72,7 +76,8 @@ Please refer to the following file & folder breakdown for reference:
 - `r file_path(c("stop-words"))`:
   - "english.txt": common English words that should be excluded from the list of key words
   - "german.txt": common German words that should be excluded from the list of key words
-  - "proper-nouns-stoplist.txt": common words that would never be proper. This is used to prevent uppercased words from being seen as proper when they really aren't.\
+  - "proper-nouns-stoplist.txt": common words that would never be proper.
+    This is used to prevent uppercased words from being seen as proper when they really aren't.\
     (This should include stop words from all languages.)
   - "spanish.txt": common Spanish words that should be excluded from the list of key words
 - `r file_path(c("word-lists"))`:

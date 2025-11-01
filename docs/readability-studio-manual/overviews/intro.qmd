@@ -12,13 +12,17 @@ They help determine the minimum age group that can quickly process reading mater
 This approach uses factors such as sentence length, word difficulty, and word familiarity.
 
 Most readability scores represent the grade level of the youngest reader that can understand a document.
-They can also determine how easily a more broad audience can process it. For example, most magazine and newspaper articles should aim for scores around the 14–16 age range.
-This is not because most readers of newspapers are in this age group. It is because this type of material should be easy to read for most age groups.
-If an article has numerous complex and uncommon words, then it will take much longer to read and understand. (It will also make it less enjoyable to read.)
+They can also determine how easily a more broad audience can process it.
+For example, most magazine and newspaper articles should aim for scores around the 14–16 age range.
+This is not because most readers of newspapers are in this age group.
+It is because this type of material should be easy to read for most age groups.
+If an article has numerous complex and uncommon words, then it will take much longer to read and understand.
+(It will also make it less enjoyable to read.)
 These are not qualities appropriate for something meant to be read quickly by most readers.
 
 Note that these tests only determine the reading level of material based on how easy it is to process.
-They do not consider the content or themes of a given work. The age level reported by a test score only reflects the age group that can comprehend a document.
+They do not consider the content or themes of a given work.
+The age level reported by a test score only reflects the age group that can comprehend a document.
 It does not reflect whether the topics covered in the material are meant for that age group.
 If you are classifying books into age groups, you should first review them for any mature topics.
 Then you should use readability tests to determine their comprehension levels.
@@ -31,7 +35,8 @@ All readability formulas rely on factors such as sentence length, syllable count
 Which factors are used vary from test to test, but most tests use between one to three of these factors to gauge a document's difficulty.
 
 ::: {.minipage data-latex="{\textwidth}"}
-Where readability tests may differ is how they are calculated. Most tests are performed using the following methods:
+Where readability tests may differ is how they are calculated.
+Most tests are performed using the following methods:
 
 - linear regression equations
 - lookup tables
@@ -44,7 +49,8 @@ In the case of readability tests, the dependent is human-judged grade levels for
 A multiple regression is performed to determine the strongest predictors (usually the top two), and the prediction equation created by the analysis will be the new readability formula.
 
 Another method is lookup tables, where the intersection of factors (e.g., number of sentences and number of syllables) are found in a table.
-When located, the position in the table will indicate the grade level. Examples of table-based tests include Wheeler-Smith and New Dale-Chall.
+When located, the position in the table will indicate the grade level.
+Examples of table-based tests include Wheeler-Smith and New Dale-Chall.
 (Refer to @tbl-wheeler-smith-conversion-table for an example.)
 
 The final method also relies on finding the intersection of factors, but on a graph instead of a table.
@@ -84,7 +90,8 @@ In contract, tests which use regression equations do not have upper limits.
 In theory, a document with extreme factors (e.g., abnormally long sentences) could yield scores above grade 19 (i.e., PhD level).
 To keep results sensical, such scores should be clamped to 19 and be displayed as 19+. This is done for a number of reasons.
 
-First, scores such as 27^th^ grade do not reflect reality. To describe a document as only being understandable by a PhD is relatable.
+First, scores such as 27^th^ grade do not reflect reality.
+To describe a document as only being understandable by a PhD is relatable.
 To say that a document can only be processed by someone in the 27^th^ grade, however, makes little sense.
 Another way to view this is that 19+ implies a document's failure to be readable—similar to an *F* on a test.
 
@@ -109,7 +116,9 @@ For example, with table-based tests, documents with long sentences and/or numero
 Likewise, plugging a document's statistics into a regression-based test will also produce a result without issue (although extreme results may need to be clamped, see @sec-grade-level-clamping).
 
 It is possible, however, for certain graphical tests to not return a meaningful result.
-Tests such as Fry and Schwartz use plots that are divided into bands (i.e., polygonal strips) which represent different grade levels. To produce a result, these tests find the intersection of a document's statistics along the plot's axes. Once the intersection is found, the band that the point falls within will indicate the grade level of the document.
+Tests such as Fry and Schwartz use plots that are divided into bands (i.e., polygonal strips) which represent different grade levels.
+To produce a result, these tests find the intersection of a document's statistics along the plot's axes.
+Once the intersection is found, the band that the point falls within will indicate the grade level of the document.
 
 ![](../images/schwartz.png){width=75% fig-align="center" fig.cap='Example of a graph with grade-level bands' fig.scap='Graph with grade-level bands'}
 

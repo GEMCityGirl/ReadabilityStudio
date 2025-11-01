@@ -9,7 +9,8 @@ source('R/appdown.r')
 
 ## Creating a Custom Test {#sec-creating-custom-test}
 
-Along with offering standard tests, such as [New Dale-Chall](#sec-dale-chall-test)\index{New Dale-Chall!custom test} and [Spache Revised](#sec-spache-test)\index{Spache Revised!custom test}, *{{< var PROGRAM_NAME >}}* also includes the ability to create your own tests. Many customizable features are offered for new tests, such as being able to select your own familiar-word list and which formula to use.
+Along with offering standard tests, such as [New Dale-Chall](#sec-dale-chall-test)\index{New Dale-Chall!custom test} and [Spache Revised](#sec-spache-test)\index{Spache Revised!custom test}, *{{< var PROGRAM_NAME >}}* also includes the ability to create your own tests.
+Many customizable features are offered for new tests, such as being able to select your own familiar-word list and which formula to use.
 
 To create a custom test, go to the **Readability** tab, click the arrow beneath the `r keys("Custom Tests")` button and select **Add Test...** from the menu. At this point, the **Add Custom Test** dialog will be displayed:
 
@@ -51,9 +52,13 @@ The following types of tests are available:
 - [Predicted cloze score](#sec-cloze)\index{cloze!custom tests}
 :::
 
-If your test is using any of the predefined familiar-word formulas (`CustomNewDaleChall()`, `CustomSpache()`, `CustomHarrisJacobson()`) or using the functions `UnfamiliarWordCount()` or `UniqueUnfamiliarWordCount()`, then you will need to define how familiar words are detected. Expand **Familiar Words** to view two sections: [**Word Lists**](#sec-custom-word-list) and [**Proper Nouns & Numerals**](#sec-custom-proper-numerals).
+If your test is using any of the predefined familiar-word formulas (`CustomNewDaleChall()`, `CustomSpache()`, `CustomHarrisJacobson()`) or using the functions `UnfamiliarWordCount()` or `UniqueUnfamiliarWordCount()`, then you will need to define how familiar words are detected.
+Expand **Familiar Words** to view two sections: [**Word Lists**](#sec-custom-word-list) and [**Proper Nouns & Numerals**](#sec-custom-proper-numerals).
 
-If you want to include a list of your own familiar words, then check the option **Include custom familiar word list**. Next, enter the path to the familiar-word file in the **File containing familiar words** field. This file must be a text file and each word must be separated by a space, tab, comma, semicolon, or new line. An example file would look like this:
+If you want to include a list of your own familiar words, then check the option **Include custom familiar word list**.
+Next, enter the path to the familiar-word file in the **File containing familiar words** field.
+This file must be a text file and each word must be separated by a space, tab, comma, semicolon, or new line.
+An example file would look like this:
 
 > `apple orange pear`
 
@@ -84,17 +89,21 @@ This behavior can be toggled with the options shown below:
 
 ![](images/custom-test-include-lists.png)
 
-Standard familiar-word tests normally consider numbers and proper nouns as familiar. This is the default behavior for a custom test as well, but these can be toggled on the **Proper Nouns** and **Numbers** sections (shown below):
+Standard familiar-word tests normally consider numbers and proper nouns as familiar.
+This is the default behavior for a custom test as well, but these can be toggled on the **Proper Nouns** and **Numbers** sections (shown below):
 
 ![](images/custom-test-treat.png)
 
-Finally, you can specify how this test interacts with the [**New Project**](#sec-creating-standard-project) wizard by associating it with document types and industries. Click the **Classification** icon to display these options. Then select all the documents and industries that this test should relate to.
+Finally, you can specify how this test interacts with the [**New Project**](#sec-creating-standard-project) wizard by associating it with document types and industries.
+Click the **Classification** icon to display these options.
+Then select all the documents and industries that this test should relate to.
 
 For example, select the **Children's literature** and **Children's healthcare** check boxes (as shown below) and click `r keys("OK")`.
 
 ![](images/custom-test-wizard-settings.png)
 
-Now create a new project and select **Children's healthcare** as the industry type. Once the program loads the document, your custom test will be automatically included in the results.
+Now create a new project and select **Children's healthcare** as the industry type.
+Once the program loads the document, your custom test will be automatically included in the results.
 
 ## Custom Test Functions {#sec-custom-test-functions}
 
@@ -316,12 +325,15 @@ IF(// Review the % of buzz words in the document.
 
 ### General Settings {#sec-custom-test-general-settings}
 
-From the **Readability** tab, click the `r keys("Custom Test")` button and then select **Add Test...** to display the **Add Custom Test** dialog. This dialog is used to edit or create a [custom test](#sec-creating-custom-test).
+From the **Readability** tab, click the `r keys("Custom Test")` button and then select **Add Test...** to display the **Add Custom Test** dialog.
+This dialog is used to edit or create a [custom test](#sec-creating-custom-test).
 
 **Test name**: If creating a new test, enter its name into this field.
 
 ::: {.minipage data-latex="{\textwidth}"}
-**Test type**: Select from this list the type of result this test returns. This will determine which column the test's score will appear in the [**Readability Scores**](#sec-reviewing-test-scores) window. The following types of tests are available:
+**Test type**: Select from this list the type of result this test returns.
+This will determine which column the test's score will appear in the [**Readability Scores**](#sec-reviewing-test-scores) window.
+The following types of tests are available:
 
 - Grade level
 - Index value
@@ -334,9 +346,13 @@ From the **Readability** tab, click the `r keys("Custom Test")` button and then 
 In this dialog, you can browse the available functions and insert them into your formula.
 Refer to @sec-custom-test-functions for a list of available functions.
 
-`r keys(checkmark())`  Click this button to validate the formula. You will be alerted if your formula contains any syntax errors.
+`r keys(checkmark())`  Click this button to validate the formula.
+You will be alerted if your formula contains any syntax errors.
 
-**Formula**: Enter the test's formula into this field. As you type, a list of available functions will appear beneath the cursor. To select a function from this list, first use the arrow keys on your keyboard to navigate through the list. Once you have selected the desired function, hit the `r keys("Spacebar")` on your keyboard to insert it into your formula. You can also insert functions from the **Function Browser**.
+**Formula**: Enter the test's formula into this field. As you type, a list of available functions will appear beneath the cursor.
+To select a function from this list, first use the arrow keys on your keyboard to navigate through the list.
+Once you have selected the desired function, hit the `r keys("Spacebar")` on your keyboard to insert it into your formula.
+You can also insert functions from the **Function Browser**.
 
 ### Word Lists {-}
 
@@ -344,7 +360,9 @@ Refer to @sec-custom-test-functions for a list of available functions.
 
 **Include custom familiar word list**: Check this option to use your own word list to determine if a word is familiar.
 
-**File containing familiar words**: Enter the path to the familiar-word list into this field. This list must be a text file where each word is separated by a space, tab, comma, semicolon, or new line. An example file would look like this:
+**File containing familiar words**: Enter the path to the familiar-word list into this field.
+This list must be a text file where each word is separated by a space, tab, comma, semicolon, or new line.
+An example file would look like this:
 
 > `computer install program videogame`
 
@@ -361,7 +379,9 @@ or like this:
 
 **Use stemming to search for similar words**: Select from this list the stemming method (if any) to use when comparing your familiar words with the words in a document.
 
-Stemming compares words based on their root. This is useful for finding words that appear in different forms from how they are entered in your word list. For example, let us say that you enter the word *installation* in your familiar word file. If you select English as your stemming type, then occurrences of the words *installation*, *install*, *installed*, *installs*, etc. found in your document will be considered familiar. This is because each of these words shares the same root, *install*. The benefit of this is that you do not need to enter every form of every word into your familiar word file.
+Stemming compares words based on their root.
+This is useful for finding words that appear in different forms from how they are entered in your word list.
+For example, let us say that you enter the word *installation* in your familiar word file. If you select English as your stemming type, then occurrences of the words *installation*, *install*, *installed*, *installs*, etc. found in your document will be considered familiar. This is because each of these words shares the same root, *install*. The benefit of this is that you do not need to enter every form of every word into your familiar word file.
 
 If you are not stemming, then it is recommended to enter each inflected form of your words (e.g., possessive, plural) in your word list.
 
@@ -409,17 +429,23 @@ Familiarity
 
 ### Classification {-}
 
-**Associate with document type**: Select the document types that you want this test to be associated with when creating a [new project](#sec-creating-standard-project). This will only take effect if the project wizard selects tests for you based on document type.
+**Associate with document type**: Select the document types that you want this test to be associated with when creating a [new project](#sec-creating-standard-project).
+This will only take effect if the project wizard selects tests for you based on document type.
 
-**Associate with industry**: Select the industries that you want this test to be associated with when creating a new project. This will only take effect if the project wizard selects tests for you based on industry or field.
+**Associate with industry**: Select the industries that you want this test to be associated with when creating a new project.
+This will only take effect if the project wizard selects tests for you based on industry or field.
 
 ## Adding a Custom-word Test {#sec-add-custom-word-test}
 
-From the **Readability** tab, click the `r keys("Custom Test")` button and then select **Add Custom [Test]...** to display the **Add Custom [Test]** dialog. The following tests available are: New Dale-Chall\index{New Dale-Chall!custom test}, Spache Revised\index{Spache Revised!custom test}, and Harris-Jacobson\index{Harris-Jacobson Wide Range!custom test}. This dialog is used to create a [custom word test](#sec-creating-custom-test) and is a simplified version of the standard [**Custom Test**](#sec-creating-custom-test) dialog.
+From the **Readability** tab, click the `r keys("Custom Test")` button and then select **Add Custom [Test]...** to display the **Add Custom [Test]** dialog.
+The following tests available are: New Dale-Chall\index{New Dale-Chall!custom test}, Spache Revised\index{Spache Revised!custom test}, and Harris-Jacobson\index{Harris-Jacobson Wide Range!custom test}.
+This dialog is used to create a [custom word test](#sec-creating-custom-test) and is a simplified version of the standard [**Custom Test**](#sec-creating-custom-test) dialog.
 
 **Test name**: Enter the name of the new test (e.g., "Harris-Jacobson (Social Studies)") into this field.
 
-**File containing familiar words**: Enter the path to the familiar-word list into this field. This list must be a text file where each word is separated by a space, tab, comma, semicolon, or new line. An example file would look like this:
+**File containing familiar words**: Enter the path to the familiar-word list into this field.
+This list must be a text file where each word is separated by a space, tab, comma, semicolon, or new line.
+An example file would look like this:
 
 > `computer install program videogame`
 
@@ -436,12 +462,16 @@ or like this:
 
 ## Test Bundles {#sec-test-bundles}
 
-Test bundles enable you to organize tests into collections that you can quickly add to a project. Rather than selecting numerous tests from the menus one-by-one, you can simply select a test bundle from the menu. From there, all tests within the bundle will be added to the project.
+Test bundles enable you to organize tests into collections that you can quickly add to a project.
+Rather than selecting numerous tests from the menus one-by-one, you can simply select a test bundle from the menu.
+From there, all tests within the bundle will be added to the project.
 
-To access the test bundles, select the **Readability** tab and click the `r keys("Bundles")` button. A menu will appear which contains all the available bundles, as well as options to add, edit, and remove them.
+To access the test bundles, select the **Readability** tab and click the `r keys("Bundles")` button.
+A menu will appear which contains all the available bundles, as well as options to add, edit, and remove them.
 
 ::: {.minipage data-latex="{\textwidth}"}
-By default, the industry and document-type bundles used in the [**New Project**](#sec-creating-standard-project) wizard will be available. This includes:
+By default, the industry and document-type bundles used in the [**New Project**](#sec-creating-standard-project) wizard will be available.
+This includes:
 
 - General document
 - Technical document
@@ -457,15 +487,21 @@ By default, the industry and document-type bundles used in the [**New Project**]
 - Broadcasting
 :::
 
-More specific bundles based on research articles are also included, such as *Patient Consent Forms* [@{grundner}9-10] and *Kincaid's Tests for Navy-Personnel Materials*. (Some of these bundles may include goals, if recommended in the original article.)
+More specific bundles based on research articles are also included, such as *Patient Consent Forms* [@{grundner}9-10] and *Kincaid's Tests for Navy-Personnel Materials*.
+(Some of these bundles may include goals, if recommended in the original article.)
 
-Select any of these bundles from the menu and all the tests within it will be added to the active project. Note that when you add a bundle to a project, all other tests currently in the project will be removed. This ensures that only the tests relevant to the bundle will be in the project after it is applied.
+Select any of these bundles from the menu and all the tests within it will be added to the active project.
+Note that when you add a bundle to a project, all other tests currently in the project will be removed.
+This ensures that only the tests relevant to the bundle will be in the project after it is applied.
 
 You can also create your own bundles. To do this, select **Add...** from the **Bundles** menu to open the **Add Test Bundle** dialog:
 
 ![](images/test-bundle.png)
 
-On the **General** page of this dialog, you will first enter a name for the bundle. (This name is how it will appear in the **Bundles** menu.) Next, you will select all the tests that you wish to include in this bundle. (Tests are available on the **Standard Tests**, **Custom Tests**, and **Vocabulary Tools** pages.)
+On the **General** page of this dialog, you will first enter a name for the bundle.
+(This name is how it will appear in the **Bundles** menu.)
+Next, you will select all the tests that you wish to include in this bundle.
+(Tests are available on the **Standard Tests**, **Custom Tests**, and **Vocabulary Tools** pages.)
 
 Along with selecting tests, you can also specify the range of values that a document should score within for any given test.
 First, on the **Goals** page, click the add button to include a new goal.
@@ -473,7 +509,8 @@ Next, double click in the **Test** column to select the test.
 Finally, click in either the **Recommended minimum score** or **Recommended maximum score** column and enter the acceptable score range.
 Now, when this bundle is applied to a project, the document’s pass/fail status will be displayed in the [**Goals**](#sec-reviewing-goals) section.
 
-Beneath the test goals grid is another grid for creating statistics goals as well. For example, you can add a goal such as specifying the maximum average sentence length for the document.
+Beneath the test goals grid is another grid for creating statistics goals as well.
+For example, you can add a goal such as specifying the maximum average sentence length for the document.
 
 Once you are done, click the `r keys("OK")` button to add the bundle to the menu.
 

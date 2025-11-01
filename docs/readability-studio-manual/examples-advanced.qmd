@@ -14,18 +14,28 @@ After that, we will continue with showing how to create test bundles.
 
 ## Preserving Hard Returns
 
-In this example, we will import a document which contains short lines of text that are separated by hard returns. These lines of text are not separated by blank lines, and are neither indented nor start with bullet points (the way list items often appear). The default for the program is to chain text lines such as this into a single sentence. In the case of this document, however, we will want to treat each line as a separate paragraph.
+In this example, we will import a document which contains short lines of text that are separated by hard returns.
+These lines of text are not separated by blank lines, and are neither indented nor start with bullet points (the way list items often appear).
+The default for the program is to chain text lines such as this into a single sentence.
+In the case of this document, however, we will want to treat each line as a separate paragraph.
 
-First, let us view the document. From the **Help** tab on the ribbon, click the `r keys('Example Documents')` button, and select "Job Posting." Next, you will be prompted to either create a new project or view the document; select **View document**. Once the document is opened, note the text in the upper left corner. Here we have short descriptions about a job posting that we will want to preserve as separate lines when we import:
+First, let us view the document.
+From the **Help** tab on the ribbon, click the `r keys('Example Documents')` button, and select "Job Posting."
+Next, you will be prompted to either create a new project or view the document; select **View document**.
+Once the document is opened, note the text in the upper left corner.
+Here we have short descriptions about a job posting that we will want to preserve as separate lines when we import:
 
 ![](images/non-generated/JostPostingViewDocument.png){width=75% fig-align="center"}
 
-Close this document and return to *{{< var PROGRAM_NAME >}}*. Click the `r keys('Example Documents')` button and again select "Job Posting." Next, select **Create a new project**. When the **New Project Wizard** appears, select the **Document Structure** page and check **Line ends (i.e., hard returns) mark the start of a new paragraph**:
+Close this document and return to *{{< var PROGRAM_NAME >}}*.
+Click the `r keys('Example Documents')` button and again select "Job Posting." Next, select **Create a new project**.
+When the **New Project Wizard** appears, select the **Document Structure** page and check **Line ends (i.e., hard returns) mark the start of a new paragraph**:
 
 ![](images/wizarddocstructurehardreturns.png)
 
-Finally, click the `r keys('Finish')` button to create the project. When the project appears, select **Grammar** on the sidebar and select **Highlighted Report**. Note how the job descriptors at the top have been preserved as separate lines:
-
+Finally, click the `r keys('Finish')` button to create the project.
+When the project appears, select **Grammar** on the sidebar and select **Highlighted Report**.
+Note how the job descriptors at the top have been preserved as separate lines:
 
 ![](images/job-posting-highlighted-text.png){width=75% fig-align="center"}
 
@@ -37,25 +47,35 @@ At this point, we can add tests and begin reviewing this (rather dubious) job po
 
 ## Sentences Broken by Blank Lines {#sec-chain-sentences-example}
 
-In this example, we will import a picture book which has unusual sentence formatting. In the document we will be looking at, some of the sentences are broken apart by hard returns and blank lines so that they can wrap around images.
+In this example, we will import a picture book which has unusual sentence formatting.
+In the document we will be looking at, some of the sentences are broken apart by hard returns and blank lines so that they can wrap around images.
 
-From the **Help** tab, click the `r keys("Example Documents")` button and then select *The Tale of Peter Rabbit*. When prompted about what to do with the file, select **View document**. As shown below, we can see a sentence that is partially on top of an image, and the rest of it is split across multiple lines to fit next to the image.
+From the **Help** tab, click the `r keys("Example Documents")` button and then select *The Tale of Peter Rabbit*.
+When prompted about what to do with the file, select **View document**.
+As shown below, we can see a sentence that is partially on top of an image, and the rest of it is split across multiple lines to fit next to the image.
 
 ![](images/non-generated/peter-rabbit-browser.png){width=75% fig-align="center"}
 
-Close this document and return the **Help** tab. Click the `r keys("Example Documents")` button and again select *The Tale of Peter Rabbit*. This time, select **Create a new project**. From the [project wizard](#sec-creating-standard-project), select the **Document Structure** page and note the option **Sentences are split**. Selecting this will instruct the program to ignore hard returns and blank lines and combine these fragments into full sentences:
+Close this document and return the **Help** tab. Click the `r keys("Example Documents")` button and again select *The Tale of Peter Rabbit*.
+This time, select **Create a new project**.
+From the [project wizard](#sec-creating-standard-project), select the **Document Structure** page and note the option **Sentences are split**.
+Selecting this will instruct the program to ignore hard returns and blank lines and combine these fragments into full sentences:
 
 ![](images/wizarddocstructuresentencessplit.png)
 
-For this example, though, let’s leave this unchecked to see what happens. Next, select the **Test Selection** page and select **Children's literature**. Click `r keys("Finish")` to create the project.
+For this example, though, let's leave this unchecked to see what happens.
+Next, select the **Test Selection** page and select **Children's literature**. Click `r keys("Finish")` to create the project.
 
-When the project appears, click on the **Words Breakdown** icon on the project sidebar and select **3+ Syllable Report**. Note how some sentences have been split into incomplete fragments (as it appeared in the book):
+When the project appears, click on the **Words Breakdown** icon on the project sidebar and select **3+ Syllable Report**.
+Note how some sentences have been split into incomplete fragments (as it appeared in the book):
 
 ![](images/peter-rabbit-split-sentences.png)
 
-To correct this, we will change how sentences are deduced for this project. Click the `r keys("Properties")` button on the **Home** tab and then select **Document Indexing**.
+To correct this, we will change how sentences are deduced for this project.
+Click the `r keys("Properties")` button on the **Home** tab and then select **Document Indexing**.
 First, ensure that **Line ends** is set to **only begin a new paragraph if following a valid sentence** (this should be the default).
-Then check the options **Ignore blank lines** and **Ignore indenting** and click `r keys("OK")` to accept. (Note that we also selected **Ignore indenting** because this file contains some indented text.)
+Then check the options **Ignore blank lines** and **Ignore indenting** and click `r keys("OK")` to accept.
+(Note that we also selected **Ignore indenting** because this file contains some indented text.)
 
 ![](images/ignore-blank-lines.png){width=75% fig-align="center"}
 
@@ -70,33 +90,48 @@ At this point, the project will be reanalyzed and these sentence fragments will 
 When reviewing a document, it is usually preferable to ignore certain items, such as headers and citations (refer to @sec-how-text-is-excluded for more information).
 In this example, we will discuss the various methods for excluding these items.
 
-The first step is to open the example file "Danielson-Bryan." From the **Help** tab, click the `r keys("Example Documents")` button and then select "Danielson-Bryan" from the menu.
-(When prompted about how to open the document, select **Create a new project**.) When the **New Project** wizard appears, leave the defaults and click `r keys("Finish")`.
+The first step is to open the example file "Danielson-Bryan."
+From the **Help** tab, click the `r keys("Example Documents")` button and then select "Danielson-Bryan" from the menu.
+(When prompted about how to open the document, select **Create a new project**.)
+When the **New Project** wizard appears, leave the defaults and click `r keys("Finish")`.
 A warning about an incomplete sentence being included because of its length will appear.
 
 For now click `r keys("Close")`; we will review this sentence later in this example.
 
-Once the project is loaded, on the **Home** tab click the `r keys("Properties")` button under the **Project** section. On the **Properties** dialog, click **Analysis** on the sidebar and select **Document Indexing**. Uncheck all the options shown below and click `r keys("OK")`:
+Once the project is loaded, on the **Home** tab click the `r keys("Properties")` button under the **Project** section.
+On the **Properties** dialog, click **Analysis** on the sidebar and select **Document Indexing**.
+Uncheck all the options shown below and click `r keys("OK")`:
 
 ![](images/exclusion-example-all-excluded.png){width=75% fig-align="center"}
 
-Next, click **Grammar** on the project's sidebar and then click **Highlighted Report**. In this window, any text that is being excluded will be highlighted gray. For example, note that the header *Danielson-Bryan 1 Test* is excluded, as shown below:
+Next, click **Grammar** on the project's sidebar and then click **Highlighted Report**.
+In this window, any text that is being excluded will be highlighted gray.
+For example, note that the header *Danielson-Bryan 1 Test* is excluded, as shown below:
 
 ![](images/exclusion-example-header-excluded.png){width=75% fig-align="center"}
 
-Scroll midway down the document and note how another header, an equation, and a table are also excluded. However, a couple of items in this block are being included that shouldn't be:
+Scroll midway down the document and note how another header, an equation, and a table are also excluded.
+However, a couple of items in this block are being included that shouldn't be:
 
 ![](images/exclusion-example-partial-excluded.png){width=75% fig-align="center"}
 
-The first is the sentence *Where:.* Sentences that end with a semicolon and are followed by a list will normally be considered valid. In this case though, we will want to exclude this sentence too. Open the **Properties** dialog again, click **Analysis** and select **Document Indexing**. Check the option **Aggressively deduce lists**, as shown below:
+The first is the sentence *Where:.* Sentences that end with a semicolon and are followed by a list will normally be considered valid.
+In this case though, we will want to exclude this sentence too.
+Open the **Properties** dialog again, click **Analysis** and select **Document Indexing**.
+Check the option **Aggressively deduce lists**, as shown below:
 
 ![](images/exclusion-example-aggressive-list.png){width=75% fig-align="center"}
 
-Checking this option will exclude\index{sentences!aggressively excluding} any valid sentence (containing less than 10 words) that is inside of a block of incomplete sentences. Click `r keys("OK")` and note how *Where:* is now excluded:
+Checking this option will exclude\index{sentences!aggressively excluding} any valid sentence (containing less than 10 words) that is inside of a block of incomplete sentences.
+Click `r keys("OK")` and note how *Where:* is now excluded:
 
 ![](images/exclusion-example-where-excluded.png){width=75% fig-align="center"}
 
-The next item to note is the sentence *Number of characters\.\.\.*. This is really an item in a table that is missing a period, so we should be excluding it. However, currently it is being included because it contains more than 15 words. To adjust this, go back to the **Document Indexing** options for this project. Change the value for **Include incomplete sentences containing more than [15] words** to a higher value (e.g., 20) and click `r keys("OK")`:
+The next item to note is the sentence *Number of characters\.\.\.*.
+This is really an item in a table that is missing a period, so we should be excluding it.
+However, currently it is being included because it contains more than 15 words.
+To adjust this, go back to the **Document Indexing** options for this project.
+Change the value for **Include incomplete sentences containing more than [15] words** to a higher value (e.g., 20) and click `r keys("OK")`:
 
 ![](images/exclusion-example-incomp-length-value.png){width=75% fig-align="center"}
 
@@ -116,7 +151,9 @@ Now this copyright notice will be excluded from the analysis:
 
 ![](images/exclusion-example-copyright-excluded-now.png){width=75% fig-align="center"}
 
-Along with incomplete sentences, specific types of words can also be excluded. For example, at the bottom of this window note the hyperlink *http://www.jstor.org/*. To exclude this, go to the **Document Indexing** options, check **Also exclude Internet and file addresses**, and click `r keys("OK")`:
+Along with incomplete sentences, specific types of words can also be excluded.
+For example, at the bottom of this window note the hyperlink *http://www.jstor.org/*.
+To exclude this, go to the **Document Indexing** options, check **Also exclude Internet and file addresses**, and click `r keys("OK")`:
 
 ![](images/exclusion-example-url-excluded.png){width=75% fig-align="center"}
 
@@ -124,7 +161,9 @@ Note how *http://www.jstor.org/* is now excluded:
 
 ![](images/exclusion-example-url-excluded-now.png){width=75% fig-align="center"}
 
-Other items, such as proper nouns\index{proper nouns!excluding} and numbers\index{numerals!excluding} can also be excluded. Go to the **Document Indexing** options, check **Also exclude numerals** and **Also exclude proper nouns**, and click `r keys("OK")`. Then scroll to the top of the report window. First note how numbers, such as the page citation and computer series, are now excluded:
+Other items, such as proper nouns\index{proper nouns!excluding} and numbers\index{numerals!excluding} can also be excluded.
+Go to the **Document Indexing** options, check **Also exclude numerals** and **Also exclude proper nouns**, and click `r keys("OK")`.
+Then scroll to the top of the report window. First note how numbers, such as the page citation and computer series, are now excluded:
 
 ![](images/exclusion-example-numbers-excluded-now.png){width=75% fig-align="center"}
 
@@ -132,11 +171,13 @@ Also note how proper nouns, such as *Danielson-Bryan* and *UNIVAC*, are now excl
 
 ![](images/exclusion-example-proper-excluded-now.png){width=75% fig-align="center"}
 
-You can also exclude specific words and phrases. From the **Document Indexing** options, click the edit button in the **Words & phrases to exclude** section:
+You can also exclude specific words and phrases.
+From the **Document Indexing** options, click the edit button in the **Words & phrases to exclude** section:
 
 ![](images/exclusion-example-edit-list-button.png){width=75% fig-align="center"}
 
-In the **Edit Phrase List** dialog, either double click the grid or click the add item button to begin adding words or phrases to exclude. In one line enter *punctuation*, and in another line enter *sentence length*:
+In the **Edit Phrase List** dialog, either double click the grid or click the add item button to begin adding words or phrases to exclude.
+In one line enter *punctuation*, and in another line enter *sentence length*:
 
 ![](images/exclusion-example-custom-words.png){width=50% fig-align="center"}
 
@@ -183,7 +224,8 @@ From the **Help** tab, click the `r keys("Example Documents")` button and then s
 When the **New Project** wizard appears, leave the defaults and click `r keys("Finish")`.
 
 Once the project is loaded, click **Grammar** on the project's sidebar and then click **Highlighted Report**.
-In this window, any text that is being excluded will be highlighted gray. For example, an indented list is being excluded, as shown below:
+In this window, any text that is being excluded will be highlighted gray.
+For example, an indented list is being excluded, as shown below:
 
 ![](images/exclusion-tags-example-list-excluded.png){width=75% fig-align="center"}
 
@@ -192,7 +234,11 @@ However, note that are a few placeholders in this file, such as *\<Product\>*:
 ![](images/exclusion-tags-example-not-excluding.png){width=75% fig-align="center"}
 
 We will want to exclude these items because they will not be in the final draft.
-However, because these are valid words and sentences (i.e., they are not headers, list items, etc.), then the [standard exclusion features](#sec-options-text-exclusion) will not remove them. Also, using a list of exclusion words may be too aggressive. For example, adding *product* to an exclusion list will remove the *\<Product\>*, but it will also exclude any other instance of *product*. Also, the last paragraph is valid, but because it is just a comment we will want to exclude this also. For these situations, will we need to use tagged-block exclusion.
+However, because these are valid words and sentences (i.e., they are not headers, list items, etc.), then the [standard exclusion features](#sec-options-text-exclusion) will not remove them.
+Also, using a list of exclusion words may be too aggressive.
+For example, adding *product* to an exclusion list will remove the *\<Product\>*, but it will also exclude any other instance of *product*.
+Also, the last paragraph is valid, but because it is just a comment we will want to exclude this also.
+For these situations, will we need to use tagged-block exclusion.
 
 Open the **Properties** dialog and select **Document Indexing** (`r menu(c("Home", "Properties", "Document Indexing"))`).
 Set the option **Exclude text between** to **\< and \>**, as shown below:
@@ -214,29 +260,36 @@ All the options discussed here are also offered on the **Document** tab of the r
 
 Continuing from the "Reviewing a Flyer" (@sec-reviewing-a-flyer) and "High-level Review of a Disclaimer" (@sec-high-level-review-of-disclaimer) examples, our fictitious private equity firm now plans to append a disclaimer to the flyer.
 
-Along with policy changes to the program, they have redesigned the program's flyer to appear more professional. Let's first take a look at the updated flyer.
+Along with policy changes to the program, they have redesigned the program's flyer to appear more professional.
+Let's first take a look at the updated flyer.
 From the **Help** tab on the ribbon, click the `r keys('Example Documents')` button, and select "YA Enterprise Software Symposium."
 Next, you will be prompted to either create a new project or view the document; select **View document**.
 Once the document is opened, note how the flyer’s short text boxes have been replaced by full sentences:
 
 ![](images/non-generated/ya-enterprise-software-symposium.png){width=75% fig-align="center"}
 
-This means that when we import this document, we will specify that it is a narrative document and apply text exclusion. (This is in contrast to the earlier flyer, where we specified it as non-narrative, fragmented text.)
+This means that when we import this document, we will specify that it is a narrative document and apply text exclusion.
+(This is in contrast to the earlier flyer, where we specified it as non-narrative, fragmented text.)
 
-Close this document and return to *{{< var PROGRAM_NAME >}}*. Click the `r keys('Example Documents')` button and again select "YA Enterprise Software Symposium."
-Next, select **Create a new project**. When the **New Project Wizard** appears, select the **Document Structure** page and select **Narrative text**:
+Close this document and return to *{{< var PROGRAM_NAME >}}*.
+Click the `r keys('Example Documents')` button and again select "YA Enterprise Software Symposium."
+Next, select **Create a new project**.
+When the **New Project Wizard** appears, select the **Document Structure** page and select **Narrative text**:
 
 ![](images/wizarddocstructurenarrativeselected.png)
 
-Next, select the **Test Selection** page and select **Manually select tests**. In the grid below, check **Flesch Reading Ease**:
+Next, select the **Test Selection** page and select **Manually select tests**.
+In the grid below, check **Flesch Reading Ease**:
 
 ![](images/addendum-wizard-manual-tests.png)
 
-Finally, click the `r keys('Finish')` button to create the project. When the project appears, select **Flesch Reading Ease** under the **Scores** section in the sidebar.
+Finally, click the `r keys('Finish')` button to create the project.
+When the project appears, select **Flesch Reading Ease** under the **Scores** section in the sidebar.
 
 ![](images/addendum-flesch1.png){width=75% fig-align="center"}
 
-Note that this new flyer is difficult, so let’s review it. Click **Words Breakdown** on the sidebar and then select **3+ Syllables Report**. As we scroll through this window, note the highlighted difficult words:
+Note that this new flyer is difficult, so let’s review it. Click **Words Breakdown** on the sidebar and then select **3+ Syllables Report**.
+As we scroll through this window, note the highlighted difficult words:
 
 ::: {layout-ncol=2}
 ![](images/addendum-highlighted-text1.png)
@@ -244,10 +297,13 @@ Note that this new flyer is difficult, so let’s review it. Click **Words Break
 ![](images/addendum-highlighted-text2.png)
 :::
 
-As we can see, this document could use some improving. Before we can do that, though, the new owners of our software company have also requested that a disclaimer be appended to all sign-up forms such as this.
+As we can see, this document could use some improving.
+Before we can do that, though, the new owners of our software company have also requested that a disclaimer be appended to all sign-up forms such as this.
 Rather than running a separate analysis on this disclaimer, we would like to append this document to our flyer and analyze them together.
-To do this, go to the **Home** tab of the ribbon and select **Properties**. On the **Properties** dialog, select **Project Settings** on the sidebar.
-Next, under the **Append Additional Document** section, click the folder button and navigate to the *examples* folder from where *{{< var PROGRAM_NAME >}}* is installed. Select the file "Instructional Disclaimer.odt":
+To do this, go to the **Home** tab of the ribbon and select **Properties**.
+On the **Properties** dialog, select **Project Settings** on the sidebar.
+Next, under the **Append Additional Document** section, click the folder button and navigate to the *examples* folder from where *{{< var PROGRAM_NAME >}}* is installed.
+Select the file "Instructional Disclaimer.odt":
 
 ![](images/addendum-properties.png){width=75% fig-align="center"}
 
@@ -259,21 +315,27 @@ Click `r keys('OK')` to accept. When the project finishes reloading, select **Fl
 
 ![](images/addendum-flesch2.png){width=75% fig-align="center"}
 
-Note how the document is now very difficult. Click **Words Breakdown** on the sidebar and then select **3+ Syllables Report**. As we scroll to where our disclaimer was appended, note the numerous difficult words:
+Note how the document is now very difficult. Click **Words Breakdown** on the sidebar and then select **3+ Syllables Report**.
+As we scroll to where our disclaimer was appended, note the numerous difficult words:
 
 ![](images/addendum-highlighted-text3.png){width=75% fig-align="center"}
 
-Next, click **Grammar** on the sidebar and then select **Highlighted Report**. Scrolling to the disclaimer portion of the document, note the numerous, meandering sentences:
+Next, click **Grammar** on the sidebar and then select **Highlighted Report**.
+Scrolling to the disclaimer portion of the document, note the numerous, meandering sentences:
 
 ![](images/addendum-highlighted-text4.png){width=75% fig-align="center"}
 
-At this point, we will have quite of a bit of improvements to make to both the flyer and disclaimer. (And parents may want to start looking for a different summer camp.)
+At this point, we will have quite of a bit of improvements to make to both the flyer and disclaimer.
+(And parents may want to start looking for a different summer camp.)
 
 \newpage
 
 ## Creating a Test Bundle
 
-[Test bundles](#sec-test-bundles) are a convenient way to add multiple tests to a project at once. In this example, we will create a test bundle named "4F" which includes the [Fry](#sec-fry-test), [FORCAST](#sec-forcast-test), [Fog](#sec-gunning-fog-test), and [Flesch-Kincaid](#sec-flesch-kincaid-test) tests. The first step is to select the **Readability** tab, click the `r keys("Bundles")` button, and select **Add...** from the menu. This will open the **Add Test Bundle** dialog:
+[Test bundles](#sec-test-bundles) are a convenient way to add multiple tests to a project at once.
+In this example, we will create a test bundle named "4F" which includes the [Fry](#sec-fry-test), [FORCAST](#sec-forcast-test), [Fog](#sec-gunning-fog-test), and [Flesch-Kincaid](#sec-flesch-kincaid-test) tests.
+The first step is to select the **Readability** tab, click the `r keys("Bundles")` button, and select **Add...** from the menu.
+This will open the **Add Test Bundle** dialog:
 
 ![](images/test-bundle.png)
 
@@ -283,4 +345,5 @@ Enter the name "4F" into the **Bundle Name** text field. Next, select the **Stan
 
 Click the `r keys("OK")` button to accept.
 
-To use the bundle, first open any project. Next, select the **Readability** tab, click the `r keys("Bundles")` button, and select **4F** from the menu. Now the program will replace all tests within the project with the tests from the "4F" bundle.
+To use the bundle, first open any project. Next, select the **Readability** tab, click the `r keys("Bundles")` button, and select **4F** from the menu.
+Now the program will replace all tests within the project with the tests from the "4F" bundle.

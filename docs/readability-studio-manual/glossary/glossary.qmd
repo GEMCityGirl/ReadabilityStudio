@@ -62,7 +62,10 @@ For example, *ﬀ* is a ligature combining two *f* letters.
 polysyllabic\index{polysyllabic}
 :::
 ::: {.glsdef data-latex=''}
-Technically speaking, this means any word containing more than 1 syllable. In the case of some tests (e.g., Wheeler-Smith\index{Wheeler-Smith!polysyllabic words}), this term is used in this context. Other tests’ sources, however, tend to use this term to describe words of 3 or more syllables. Because of this inconsistency, it is recommended to avoid using this term and instead state explicitly the intention of a given test.
+Technically speaking, this means any word containing more than 1 syllable.
+In the case of some tests (e.g., Wheeler-Smith\index{Wheeler-Smith!polysyllabic words}), this term is used in this context.
+Other tests' sources, however, tend to use this term to describe words of 3 or more syllables.
+Because of this inconsistency, it is recommended to avoid using this term and instead state explicitly the intention of a given test.
 :::
 ::::
 
@@ -284,7 +287,9 @@ The average value of a range of data. This is calculated by adding all the value
 median\index{median}
 :::
 ::: {.glsdef data-latex=''}
-The middle point separating the lower and upper halves of a range of data. This is calculated by sorting the values and taking the value in middle if the number of values is odd. If the number of values is even, then the means of the two middle points is taken.
+The middle point separating the lower and upper halves of a range of data.
+This is calculated by sorting the values and taking the value in middle if the number of values is odd.
+If the number of values is even, then the means of the two middle points is taken.
 :::
 ::::
 
@@ -302,7 +307,8 @@ The lowest value in a range of data.
 mode\index{mode}
 :::
 ::: {.glsdef data-latex=''}
-The most frequently occurring value in a range of data. Note that a range can have multiple modes if two or more unique values appear the same number of times.
+The most frequently occurring value in a range of data.
+Note that a range can have multiple modes if two or more unique values appear the same number of times.
 :::
 ::::
 
@@ -313,7 +319,9 @@ normalization\index{normalization}
 ::: {.glsdef data-latex=''}
 The adjustment of values from different scales into a common scale.
 
-For example, say that a test requires a 100-word sample, but your document is 200 words and contains 22 sentences. Rather than taking a 100-word sample, the full document's measurements can be normalized and used instead. In this case, we need to normalize 200 words to be 100 words, which we can do by multiplying it by 0.5.
+For example, say that a test requires a 100-word sample, but your document is 200 words and contains 22 sentences.
+Rather than taking a 100-word sample, the full document's measurements can be normalized and used instead.
+In this case, we need to normalize 200 words to be 100 words, which we can do by multiplying it by 0.5.
 
 $$
 200 * 0.5 = 100
@@ -439,7 +447,8 @@ A positive skew indicates that the right side of the distribution is longer and 
 standard deviation\index{standard deviation}
 :::
 ::: {.glsdef data-latex=''}
-The variability (or spread) of the values. A low standard deviation indicates that most values are close to the data's mean. In contrast, a high standard deviation indicates values that stray far from the mean.
+The variability (or spread) of the values. A low standard deviation indicates that most values are close to the data's mean.
+In contrast, a high standard deviation indicates values that stray far from the mean.
 :::
 ::::
 
@@ -448,7 +457,8 @@ The variability (or spread) of the values. A low standard deviation indicates th
 upper quartile
 :::
 ::: {.glsdef data-latex=''}
-The value at the 75% percentile. This is the value separating the upper quarter of the values from the rest of the values.
+The value at the 75% percentile.
+This is the value separating the upper quarter of the values from the rest of the values.
 :::
 ::::
 

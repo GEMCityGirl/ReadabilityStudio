@@ -1,6 +1,7 @@
 # `Application`
 
-Provides access to the program's functionality. This includes features such as:
+Provides access to the program's functionality.
+This includes features such as:
 
 - General settings
 - [Active projects](#getactivestandardproject)

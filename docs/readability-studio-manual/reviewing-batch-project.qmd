@@ -56,20 +56,28 @@ By default, the following statistics for each test are included:
 - [Minimum](#sec-stat-terms): the lowest test score.
 - [Maximum](#sec-stat-terms): the highest test score.
 - [Range](#sec-stat-terms): the distance between the lowest and highest test scores.
-- [Mode(s)](#sec-stat-terms)\index{mode}: the most frequently occurring score. In the case of a tie, all modes will be listed. Note that grade scores are rounded down when searching for the mode.
-- [Means](#sec-stat-terms)\index{mean}: the average test score. This is calculated by adding all the scores and dividing the total by the number of scores.
+- [Mode(s)](#sec-stat-terms)\index{mode}: the most frequently occurring score.
+  In the case of a tie, all modes will be listed. Note that grade scores are rounded down when searching for the mode.
+- [Means](#sec-stat-terms)\index{mean}: the average test score.
+  This is calculated by adding all the scores and dividing the total by the number of scores.
 :::
 
 ::: {.minipage data-latex="{\textwidth}"}
 If [**Extended Information**](#sec-options-statistics) is enabled, then these additional statistics will be included:
 
-- [Median](#sec-stat-terms)\index{median}: the middle test score. This represents the middle point separating the lower and upper halves of the scores. This is calculated by sorting the scores and taking the score in middle if the number of scores is odd. If the number of scores is even, then the means of the two middle points is taken.
+- [Median](#sec-stat-terms)\index{median}: the middle test score.
+  This represents the middle point separating the lower and upper halves of the scores.
+  This is calculated by sorting the scores and taking the score in middle if the number of scores is odd.
+  If the number of scores is even, then the means of the two middle points is taken.
 - [Skewness](#sec-stat-terms)\index{skewness}: the asymmetry of the scores' distribution.
 - [Kurtosis](#sec-stat-terms)\index{kurtosis}: the peakedness of the scores' distribution.
-- [Standard Deviation](#sec-stat-terms)\index{standard deviation}: the variability (or spread) of the scores. Note that sample std. dev. is used here because it is assumed that the batch contains a sampling of a larger document collection.
+- [Standard Deviation](#sec-stat-terms)\index{standard deviation}: the variability (or spread) of the scores.
+  Note that sample std. dev. is used here because it is assumed that the batch contains a sampling of a larger document collection.
 - [Variance](#sec-stat-terms)\index{variance}: another measurement of the scores' variability, which is std. dev. squared.
-- [Lower quartile](#sec-stat-terms): the test score at the 25% percentile. This is the score separating the lower quarter of the scores from the rest of the scores.
-- [Upper quartile](#sec-stat-terms): the test score at the 75% percentile. This is the score separating the upper quarter of the scores from the rest of the scores.
+- [Lower quartile](#sec-stat-terms): the test score at the 25% percentile.
+  This is the score separating the lower quarter of the scores from the rest of the scores.
+- [Upper quartile](#sec-stat-terms): the test score at the 75% percentile.
+  This is the score separating the upper quarter of the scores from the rest of the scores.
 :::
 
 Note that when calculating these statistics, failed test scores are treated as missing observations and not included.

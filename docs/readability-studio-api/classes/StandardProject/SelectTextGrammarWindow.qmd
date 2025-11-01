@@ -1,7 +1,8 @@
 ::: {.minipage data-latex="{\textwidth}"}
 ## `SelectTextGrammarWindow`
 
-Selects the highlighted text window in the **Grammar** section. (Can also optionally find and select a string in it.)
+Selects the highlighted text window in the **Grammar** section.
+(Can also optionally find and select a string in it.)
 
 ### Syntax {-}
 

@@ -16,11 +16,15 @@ In this chapter, we will step through examples showing how to create these types
 
 ## Creating a Modified Flesch\index{Flesch Reading Ease!custom test!example|(} Test {#sec-creating-custom-flesch-test}
 
-In this example, we will create a custom test. Custom tests are useful for either creating an entirely new formula or a new one based on an existing formula.
+In this example, we will create a custom test.
+Custom tests are useful for either creating an entirely new formula or a new one based on an existing formula.
 
-For this example, we will use the [Flesch](#sec-flesch-test) formula for our basis. We will take the standard Flesch formula and substitute its sentence count factor with independent clause count. This will effectively create a formula which does not penalize documents for containing numerous compound sentences.
+For this example, we will use the [Flesch](#sec-flesch-test) formula for our basis.
+We will take the standard Flesch formula and substitute its sentence count factor with independent clause count.
+This will effectively create a formula which does not penalize documents for containing numerous compound sentences.
 
-The first step to creating a new test is to click the `r keys("Custom Tests")` button on the **Readability** tab and select **Add Test Based on...** from the menu. This will present a dialog containing formula-based tests; select **Flesch Reading Ease** and click `r keys("OK")`.
+The first step to creating a new test is to click the `r keys("Custom Tests")` button on the **Readability** tab and select **Add Test Based on...** from the menu.
+This will present a dialog containing formula-based tests; select **Flesch Reading Ease** and click `r keys("OK")`.
 
 Because this test will use independent clauses, change the name to "Flesch (IC)":
 
@@ -110,33 +114,44 @@ If you wish to override this, however, you can create a copy of a test and not s
 In this example, we will create a custom Flesch-Kincaid test and leave its formula unrestricted, allowing for scores such as 27 (i.e., 27^th^ grade).
 
 First, select the **Readability** tab of the ribbon. Next, click the `r keys('Custom')` button and select **Add Custom Test Based on...**.
-Select **Flesch-Kincaid** from the list, which will create a custom test based on Flesch-Kincaid. When the **Edit Custom Test** dialog appears, enter the name "Flesch-Kincaid (unclamped)":
+Select **Flesch-Kincaid** from the list, which will create a custom test based on Flesch-Kincaid.
+When the **Edit Custom Test** dialog appears, enter the name "Flesch-Kincaid (unclamped)":
 
 ![](images/custom-testfk-unclamped.png)
 
 We will leave the formula as-is, so click `r keys('OK')` to accept.
 
-From here, we can add this test via the **New Project Wizard** by selecting **Manually select tests** and selecting it in the **Custom tests** group box. We can also add it to an existing project from the `r keys('Custom')` button on the **Readability** tab.
+From here, we can add this test via the **New Project Wizard** by selecting **Manually select tests** and selecting it in the **Custom tests** group box.
+We can also add it to an existing project from the `r keys('Custom')` button on the **Readability** tab.
 
 When adding this test to documents with extreme sentence lengths or difficult-word counts, we may see Flesch-Kincaid (unclamped) scores going beyond 19.
 
 ::: {.tipsection data-latex=""}
-If you do want to clamp a test to a given range, wrap it in a `CLAMP` function call. For example, `CLAMP(formula, 0, 4)` will clamp the result of *formula* within 0–4 (i.e., Kindergarten to 4^th^ grade).
+If you do want to clamp a test to a given range, wrap it in a `CLAMP` function call.
+For example, `CLAMP(formula, 0, 4)` will clamp the result of *formula* within 0–4 (i.e., Kindergarten to 4^th^ grade).
 :::
 
 \newpage
 
 ## Creating a Custom New Dale-Chall\index{New Dale-Chall!custom test!example|(} Test
 
-In this example, we will create a custom [New Dale-Chall](#sec-dale-chall-test) test specifically designed for recipes for a group of young students. Although the standard New Dale-Chall list is quite extensive, we may wish to append some words that we know are familiar to our kitchen-savvy students.
+In this example, we will create a custom [New Dale-Chall](#sec-dale-chall-test) test specifically designed for recipes for a group of young students.
+Although the standard New Dale-Chall list is quite extensive, we may wish to append some words that we know are familiar to our kitchen-savvy students.
 
-The first step is to create a list of baking-specific words that our readers are familiar with that are not already on the standard New Dale-Chall list. This can be any text file where the words are separated by spaces, tabs, commas, or semicolons. For this example, we will use this list:
+The first step is to create a list of baking-specific words that our readers are familiar with that are not already on the standard New Dale-Chall list.
+This can be any text file where the words are separated by spaces, tabs, commas, or semicolons.
+For this example, we will use this list:
 
 `beaten, custard, eclair, éclair, flaky, glaze, glace, glossy, grate, meringue, pastry, pinch, platter, prepare, recipe, saucepan, sift, skewer, teaspoon, teaspoonful, thicken, tumbler, unbeaten, vanilla, whisk, scrape, tablespoon, tablespoonful`
 
-The next step is to create a custom test and connect our word list to it. For a custom New Dale-Chall, the simplest way is to click the `r keys("Custom Tests")` button on the **Readability** tab and select **Add Custom "New Dale-Chall"...** from the menu. This will present the [Add Custom Word Test](#sec-add-custom-word-test) dialog. From this dialog, we would enter the name of the new test (e.g., "New Dale-Chall (Baking)") and file path to our word list, and then the program would add this test. However, for this example we will use the more advanced **Add Custom Test** dialog.
+The next step is to create a custom test and connect our word list to it.
+For a custom New Dale-Chall, the simplest way is to click the `r keys("Custom Tests")` button on the **Readability** tab and select **Add Custom "New Dale-Chall"...** from the menu.
+This will present the [Add Custom Word Test](#sec-add-custom-word-test) dialog.
+From this dialog, we would enter the name of the new test (e.g., "New Dale-Chall (Baking)") and file path to our word list, and then the program would add this test.
+However, for this example we will use the more advanced **Add Custom Test** dialog.
 
-Click the `r keys("Custom Tests")` button on the **Readability** tab and select **Add...** from the menu. This will present the [**Add Custom Test**](#sec-custom-test-general-settings) dialog, as shown below:
+Click the `r keys("Custom Tests")` button on the **Readability** tab and select **Add...** from the menu.
+This will present the [**Add Custom Test**](#sec-custom-test-general-settings) dialog, as shown below:
 
 ![](images/add-custom-test.png)
 
@@ -162,27 +177,44 @@ Once finished, the dialog will look like this:
 
 Now we will need to define what a familiar word is, so click the **Familiar Words** icon.
 Because we will be appending our own words to the test, check the option **Include custom familiar word list**.
-Next, enter the file path to the custom-word file in the **File containing familiar words** field. You can also click the button next to this field to select and edit your word list file:
+Next, enter the file path to the custom-word file in the **File containing familiar words** field.
+You can also click the button next to this field to select and edit your word list file:
 
 ![](images/custom-test-example2-words-loaded.png)
 
 Once the file has been selected, the words from that file will be loaded.
 
-There are two ways that our custom words can be compared to words in the recipe that we will be analyzing. The first is to simply compare words between our list and the recipe exactly as they appear. This is accomplished by setting **Use stemming to search for similar words** to **Do not use stemming**. The advantage of this is that we will have precise control over which variations of our words will be counted as familiar. For example, we could add *glaze* and *glazes* to our list and only these variations of *glaze* would be counted as familiar. This way, other variations (e.g., *glazy*) will remain unfamiliar. The disadvantage of this method is that we must explicitly add every variation of *glaze* to our list that we want to be familiar. For larger lists, this can be tedious and error prone.
+There are two ways that our custom words can be compared to words in the recipe that we will be analyzing.
+The first is to simply compare words between our list and the recipe exactly as they appear.
+This is accomplished by setting **Use stemming to search for similar words** to **Do not use stemming**.
+The advantage of this is that we will have precise control over which variations of our words will be counted as familiar.
+For example, we could add *glaze* and *glazes* to our list and only these variations of *glaze* would be counted as familiar.
+This way, other variations (e.g., *glazy*) will remain unfamiliar.
+The disadvantage of this method is that we must explicitly add every variation of *glaze* to our list that we want to be familiar.
+For larger lists, this can be tedious and error prone.
 
-The other option is to use stemming. Stemming will compare the roots of the words between our list and our recipe, rather than the words themselves. For example, say that we have **English** stemming selected and the word *glaze* is on our list. In this case, *glaze* will be stemmed to *glaze*. As our recipe file is analyzed, words such as *glazed*, *glazes*, and *glazing* will also be stemmed to *glaze*. Because these words all share the same root as a word from our list, they will all be counted as familiar. The advantage of this approach is that we do not need to add every possible variation of every word on our list. The disadvantage is that we will lose precise control over which word variations should be familiar or not.
+The other option is to use stemming.
+Stemming will compare the roots of the words between our list and our recipe, rather than the words themselves.
+For example, say that we have **English** stemming selected and the word *glaze* is on our list. In this case, *glaze* will be stemmed to *glaze*.
+As our recipe file is analyzed, words such as *glazed*, *glazes*, and *glazing* will also be stemmed to *glaze*.
+Because these words all share the same root as a word from our list, they will all be counted as familiar.
+The advantage of this approach is that we do not need to add every possible variation of every word on our list.
+The disadvantage is that we will lose precise control over which word variations should be familiar or not.
 
 To keep our word list simple, we will use English stemming. Select **English** as the stemmer.
 
-Next, we will define which other word lists will be included in our test. Because this is a New Dale-Chall test, check the option **Include New Dale-Chall word list**:
+Next, we will define which other word lists will be included in our test.
+Because this is a New Dale-Chall test, check the option **Include New Dale-Chall word list**:
 
 ![](images/custom-test-example2-word-settings-finished.png)
 
-The remaining logic that we must define is how to count proper\index{proper nouns!custom tests} nouns and numerals\index{numerals!custom tests}. Select the **Proper Nouns & Numerals** page:
+The remaining logic that we must define is how to count proper\index{proper nouns!custom tests} nouns and numerals\index{numerals!custom tests}.
+Select the **Proper Nouns & Numerals** page:
 
 ![](images/custom-test-treat.png)
 
-For this example, we will treat all proper nouns and numerals as familiar. This is the default, so leave these options unchanged.
+For this example, we will treat all proper nouns and numerals as familiar.
+This is the default, so leave these options unchanged.
 
 Click the `r keys("OK")` button and our new test will be added to the system.
 At this point, the formula and all our settings will be validated.
@@ -190,32 +222,45 @@ Because our [proper-noun options](#sec-readability-test-options) differ from the
 We are intending to treat all proper nouns as familiar and do not wish to use the same settings as New Dale-Chall, so click **Do not adjust**.
 Our new test, New Dale-Chall (Baking), has been added to the program.
 
-To add this test to any project, first select the **Readability** tab. Next, click the `r keys("Custom Tests")` button and then select **New Dale-Chall (Baking)**. Select the **Readability Scores** icon on the project pane and note that New Dale-Chall (Baking) has been added to the project's results:
+To add this test to any project, first select the **Readability** tab.
+Next, click the `r keys("Custom Tests")` button and then select **New Dale-Chall (Baking)**.
+Select the **Readability Scores** icon on the project pane and note that New Dale-Chall (Baking) has been added to the project's results:
 
 ![](images/custom-test-example2-score.png)
 
-Note how the result for our custom test is lower than the standard New Dale-Chall test. This is because our test is using an expanded list of known words and will consider fewer words unfamiliar than the New Dale-Chall test will.
+Note how the result for our custom test is lower than the standard New Dale-Chall test.
+This is because our test is using an expanded list of known words and will consider fewer words unfamiliar than the New Dale-Chall test will.
 
-Now that the test has been added, we can review some of its output. Click on the **Words Breakdown** icon on the project pane. As shown below, there are numerous unfamiliar New Dale-Chall words in this recipe:
+Now that the test has been added, we can review some of its output.
+Click on the **Words Breakdown** icon on the project pane.
+As shown below, there are numerous unfamiliar New Dale-Chall words in this recipe:
 
 ![](images/custom-test-example2-dc-word-list.png)
 
-However, because our custom test is including some extra words not on the New Dale-Chall list, our test will have less unfamiliar words. Select the **New Dale-Chall (Baking)** subitem to review the unfamiliar words from the recipe relative to our custom test:
+However, because our custom test is including some extra words not on the New Dale-Chall list, our test will have less unfamiliar words.
+Select the **New Dale-Chall (Baking)** subitem to review the unfamiliar words from the recipe relative to our custom test:
 
 ![](images/custom-test-example2-custom-word-list.png)
 
 Note how there are far fewer unfamiliar New Dale-Chall (Baking) words when compared to the standard New Dale-Chall output.
 
-We can also review these words in their original context. Click on the **Highlighted Reports** icon on the project pane, and then select the **New Dale-Chall (Baking)** page. Here we can see exactly where all the unfamiliar New Dale-Chall (Baking) words are in our recipe.
+We can also review these words in their original context.
+Click on the **Highlighted Reports** icon on the project pane, and then select the **New Dale-Chall (Baking)** page.
+Here we can see exactly where all the unfamiliar New Dale-Chall (Baking) words are in our recipe.
 
 ![](images/custom-test-example2-custom-text.png)
 
-At this point, we have a couple of options. The first is to replace some of these unfamiliar words so that our students can better understand the recipe. If the reading level of this recipe was higher, this would be recommended. However, because this recipe already has a low reading level and contains few unfamiliar words, this may not be necessary.
+At this point, we have a couple of options.
+The first is to replace some of these unfamiliar words so that our students can better understand the recipe.
+If the reading level of this recipe was higher, this would be recommended.
+However, because this recipe already has a low reading level and contains few unfamiliar words, this may not be necessary.
 
-The other option is to export these unfamiliar words and use that output to review these new words with our students. Not only will this ease the students' comprehension of the recipe, but it will serve as a helpful [vocabulary-building exercise](#sec-vocab-builder-example).
+The other option is to export these unfamiliar words and use that output to review these new words with our students.
+Not only will this ease the students' comprehension of the recipe, but it will serve as a helpful [vocabulary-building exercise](#sec-vocab-builder-example).
 
 ::: {.tipsection data-latex=""}
-The recipe used in this example is available from the **Example Documents** menu. From the **Help** tab, click the `r keys("Example Documents")` button, and then select "Chocolate Eclairs." When prompted about how to open the document, select **Create a new project**.
+The recipe used in this example is available from the **Example Documents** menu. From the **Help** tab, click the `r keys("Example Documents")` button, and then select "Chocolate Eclairs."
+When prompted about how to open the document, select **Create a new project**.
 :::
 
 \index{New Dale-Chall!custom test!example|)}
@@ -224,13 +269,17 @@ The recipe used in this example is available from the **Example Documents** menu
 
 ## Creating a Custom Index Test
 
-In this example, we will create a test designed for classifying a document within a custom scale. We will make a list of "buzzwords" that are commonly overused in marketing documents, then create a test to see how much a given document uses them. Also, rather than calculating the conventional grade-level or predicted [cloze](#sec-cloze) score, our test will return a value using our own scale.
+In this example, we will create a test designed for classifying a document within a custom scale.
+We will make a list of "buzzwords" that are commonly overused in marketing documents, then create a test to see how much a given document uses them.
+Also, rather than calculating the conventional grade-level or predicted [cloze](#sec-cloze) score, our test will return a value using our own scale.
 
-The first step is to create a list of "buzzwords." This can be any text file where the words are separated by spaces, tabs, commas, or semicolons. For this example, we will use this list:
+The first step is to create a list of "buzzwords." This can be any text file where the words are separated by spaces, tabs, commas, or semicolons.
+For this example, we will use this list:
 
 `agile, collaborate, cross-platform, disrupt, empower, enterprise, framework, game-change, groundbreaking, holistic, impact, infrastructure, innovate, integrate, lean, leverage, marketplace, next-generation, nimble, paradigm, platform, powerful, proactive, revolution, ROI, seamless, solution, startup, strategy, streamline, suite, sustainable, synergy, technology, utilize, value-add, visibility, workflow`
 
-The next step is to create a custom test and connect our word list to it. Click the `r keys("Custom Tests")` button on the **Readability** tab and select **Add...** from the menu. This will present the [**Add Custom Test**](#sec-custom-test-general-settings) dialog, as shown below:
+The next step is to create a custom test and connect our word list to it. Click the `r keys("Custom Tests")` button on the **Readability** tab and select **Add...** from the menu.
+This will present the [**Add Custom Test**](#sec-custom-test-general-settings) dialog, as shown below:
 
 ![](images/add-custom-test.png)
 
@@ -283,9 +332,21 @@ You can also click the button next to this field to select and edit your word li
 
 Once the file has been selected, the words from that file will be loaded.
 
-There are two ways that our custom words can be compared to words in the press release that we will be analyzing. The first is to simply compare words between our list and the recipe exactly as they appear. This is accomplished by setting **Use stemming to search for similar words** to **Do not use stemming**. The advantage of this is that we will have precise control over which variations of our words will be counted as familiar. For example, we could add *glaze* and *glazes* to our list and only these variations of *glaze* would be counted as familiar. This way, other variations (e.g., *innovates*) will remain unfamiliar. The disadvantage of this method is that we must explicitly add every variation of *innovate* to our list that we want to be familiar. For larger lists, this can be tedious and error prone.
+There are two ways that our custom words can be compared to words in the press release that we will be analyzing.
+The first is to simply compare words between our list and the recipe exactly as they appear.
+This is accomplished by setting **Use stemming to search for similar words** to **Do not use stemming**.
+The advantage of this is that we will have precise control over which variations of our words will be counted as familiar.
+For example, we could add *glaze* and *glazes* to our list and only these variations of *glaze* would be counted as familiar.
+This way, other variations (e.g., *innovates*) will remain unfamiliar.
+The disadvantage of this method is that we must explicitly add every variation of *innovate* to our list that we want to be familiar.
+For larger lists, this can be tedious and error prone.
 
-The other option is to use stemming. Stemming will compare the roots of the words between our list and our recipe, rather than the words themselves. For example, say that we have **English** stemming selected and the word *innovate* is on our list. In this case, *innovate* will be stemmed to *innovate*. As our file is analyzed, words such as *innovates*, *innovated*, and *innovating* will also be stemmed to *innovate*. Because these words all share the same root as a word from our list, they will all be counted as familiar. The advantage of this approach is that we do not need to add every possible variation of every word on our list. The disadvantage is that we will lose precise control over which word variations should be familiar or not.
+The other option is to use stemming. Stemming will compare the roots of the words between our list and our recipe, rather than the words themselves.
+For example, say that we have **English** stemming selected and the word *innovate* is on our list.
+In this case, *innovate* will be stemmed to *innovate*. As our file is analyzed, words such as *innovates*, *innovated*, and *innovating* will also be stemmed to *innovate*.
+Because these words all share the same root as a word from our list, they will all be counted as familiar.
+The advantage of this approach is that we do not need to add every possible variation of every word on our list.
+The disadvantage is that we will lose precise control over which word variations should be familiar or not.
 
 To keep our word list simple, we will use English stemming. Select **English** as the stemmer:
 
@@ -293,7 +354,8 @@ To keep our word list simple, we will use English stemming. Select **English** a
 
 We will not be using any other words for our test, so leave the other word lists unchecked.
 
-The remaining logic that we must define is how to handle proper nouns\index{proper nouns!custom tests} and numerals. Select the **Proper Nouns & Numerals** page:
+The remaining logic that we must define is how to handle proper nouns\index{proper nouns!custom tests} and numerals.
+Select the **Proper Nouns & Numerals** page:
 
 ![](images/custom-test-treat.png)
 
@@ -314,10 +376,14 @@ Choose the defaults in the standard [**New Project**](#sec-creating-standard-pro
 Once the file is processed, click the **Highlighted Reports** icon on the sidebar to view the document.
 After doing a quick reading of this press release, there may be some concern about the author's enthusiasm for marketing speak.
 To confirm this, select the **Readability** tab on the ribbon, click **Custom Tests** and select **Buzz Index**.
-Next, click the **Readability Scores** icon on the sidebar and select **Scores** underneath that. As we had feared, the document is scoring at the unacceptable level of 3:
+Next, click the **Readability Scores** icon on the sidebar and select **Scores** underneath that.
+As we had feared, the document is scoring at the unacceptable level of 3:
 
 ![](images/custom-index-test-example-score.png)
 
 At this point, we will ask the author to revise this document until the score is at a more acceptable level.
 Because we are using a familiar-word test's logic in reverse for this test, we are actually interested in lowering the number of familiar (not unfamiliar) words from the document.
-To show which familiar (i.e., buzzwords) are being used, select the **Highlighted Reports** icon on the sidebar and select **Buzz Index (unfamiliar)** beneath that. The words that are *not* highlighted are the buzzwords that the author will need to limit. To export this window, click the **Home** tab of the ribbon, click the `r keys("Save")` button, and select **Export Highlighted Buzz Index (unfamiliar)**. The author can then use this output to see which sections need revising in this press release.
+To show which familiar (i.e., buzzwords) are being used, select the **Highlighted Reports** icon on the sidebar and select **Buzz Index (unfamiliar)** beneath that.
+The words that are *not* highlighted are the buzzwords that the author will need to limit.
+To export this window, click the **Home** tab of the ribbon, click the `r keys("Save")` button, and select **Export Highlighted Buzz Index (unfamiliar)**.
+The author can then use this output to see which sections need revising in this press release.

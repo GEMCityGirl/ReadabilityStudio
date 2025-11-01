@@ -83,8 +83,8 @@ For options specific to a graph that needs to be added to the ribbon:
   `r file_path(c("src", "projects", "standard_project_view.cpp"))`
 - If not already present, add a function to\
   `r file_path(c("src", "projects", "project_frame.cpp"))`\
-  to handle the new ribbon button being clicked. Refer to\
-  `ProjectDocChildFrame::OnShowcaseKeyItems()` as an example
+  to handle the new ribbon button being clicked.\
+  Refer to `ProjectDocChildFrame::OnShowcaseKeyItems()` as an example
 
 ## Adding a New Test {-#add-a-new-test}
 
@@ -142,7 +142,8 @@ This applies to full words lists (e.g., Dale-Chall), not supplements such as Sto
 - Add `GetXXX()/SetXXX()` functions in `BaseProject` for these fields
 - Zero out these values in `BaseProject`’s constructor and initializers
 - Zero out these values in `BaseProject::LoadHardWords()`
-- In `BaseProject::LoadHardWords()`, create an `is_familiar_word` object connected up to the word list. (An example is the `isDCWord` object.)
+- In `BaseProject::LoadHardWords()`, create an `is_familiar_word` object connected up to the word list.
+  (An example is the `isDCWord` object.)
   - Use it in this function to tabulate the number of total and unique unfamiliar words. 
 - Format and display these values in `BaseProject::FormatStatisticsInfo()`
 - Load these values in `ProjectDoc::LoadMetaFile()`
@@ -157,8 +158,9 @@ This applies to full words lists (e.g., Dale-Chall), not supplements such as Sto
 - Initialize the data provider in `BaseProject`’s constructor
 - Delete the data provider in `BaseProject`’s destructor
 - In `BaseProject::LoadHardWords()`, delete all the items in the data provider, and then resize it to the size of the word map
-- In the aforementioned unfamiliar word handler in `BaseProject::LoadHardWords()` (e.g., `isDCWord`) , fill the data provider with the unfamiliar words
-- In `ProjectDoc::DisplayWordsBreakdown()`, add logic to add a page for the data provider and show it in a list control. (Should involved showing or hiding these windows if the test is included.)
+- In the aforementioned unfamiliar word handler in `BaseProject::LoadHardWords()` (e.g., `isDCWord`), fill the data provider with the unfamiliar words
+- In `ProjectDoc::DisplayWordsBreakdown()`, add logic to add a page for the data provider and show it in a list control.
+  (Should involved showing or hiding these windows if the test is included.)
 - Add `EVT_LIST_ITEM_ACTIVATED` message mapping for list ID to `ProjectView::OnListDblClick()`
 - Add handler for ID to jump to the respective highlighted text window in `ProjectView::OnListDblClick()` (see following instructions for highlighted test window)
 
@@ -266,7 +268,8 @@ When a new stipple shape is added to the `r file_path("Wisteria-Dataviz")` submo
 - Add a mapping of the displayable name and internal *Wisteria* key in `m_shapeMap` in\
   `r file_path(c("src", "app", "readability_app.cpp"))`
 - In the API manual (`r file_path("readability-studio-api")`, add the new shape to the\
-  "SetStippleShape.qmd" topics. (This will need to be the internal keys, not the displayable name.)
+  "SetStippleShape.qmd" topics.
+  (This will need to be the internal keys, not the displayable name.)
 
 ## Adding a New Color Scheme {-}
 

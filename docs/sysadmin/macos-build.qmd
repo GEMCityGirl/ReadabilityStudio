@@ -47,7 +47,8 @@ xcrun notarytool store-credentials --apple-id ${APPLE_ID}
 ```
 
 When prompted, set the keychain profile to a meaningful name and enter your 10-digit organization ID as the team ID.
-Then enter your app-specific password. (You can get that from Apple's developer website.)
+Then enter your app-specific password.
+(You can get that from Apple's developer website.)
 
 {{< pagebreak >}}
 
@@ -68,9 +69,8 @@ Follow the instructions in `r menu(c('wxpatch', 'macOS', 'Instructions.txt'))` t
 ```
 
 ::: {.tipsection data-latex=""}
-To create a debug build, pass `-DCMAKE_BUILD_TYPE=Debug` during the configuration stage,
-and `--config Debug` during the build stage. Additionally, pass `-DUSE_ADDRESS_SANITIZE=TRUE`
-to enable AddressSanitizer for debug builds.
+To create a debug build, pass `-DCMAKE_BUILD_TYPE=Debug` during the configuration stage, and `--config Debug` during the build stage.
+Additionally, pass `-DENABLE_SANITIZERS=TRUE` to enable AddressSanitizer for debug builds.
 :::
 
 If code signing locally, do the following:
