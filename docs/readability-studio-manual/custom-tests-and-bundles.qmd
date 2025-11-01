@@ -125,13 +125,13 @@ The following functions and operators are available for use in [custom test](#se
 | % | Modulus: Divides two values and returns the remainder. |
 | + | Addition. |
 | \- | Subtraction. |
-| ^ | Exponentiation. The number in front of ^ is the base, the number after it is the power to raise it to. |
-| ** | Exponentiation. (This is an alias for ^) |
+| ^ | Exponentiation; the number in front of ^ is the base, the number after it is the power to raise it to. |
+| ** | Exponentiation (this is an alias for ^) |
 | \= | Equals. |
 | < | Less than. |
 | \> | Greater than. |
 | <> | Not equal to. |
-| \!= | Not equal to. (This is an alias for <>) |
+| \!= | Not equal to (this is an alias for <>) |
 | \>= | Greater than or equal to. |
 | <= | Less than or equal to. |
 | & | Logical conjunction (AND). |
@@ -158,7 +158,8 @@ $$
 5+5+5/2
 $$
 
-Will yield `12.5`. `5/2` is executed first, then added to the other fives. However, by using parentheses:
+Will yield `12.5`. `5/2` is executed first, then added to the other fives.
+However, by using parentheses:
 
 $$
 (5+5+5)/2
@@ -170,7 +171,7 @@ You can override it so that the additions happen first (resulting in `15`), foll
 | Function | Description |
 | :-- | :-- |
 | AND(Value1, Value2, ...) | Returns true if all conditions are true. |
-| IFS(Condition1, Value1, Condition2, Value2, ...) | Checks up to twelve conditions, returning the value corresponding to the first met condition.<br>\linebreak This is shorthand for multiple nested `IF` commands, providing better readability. Will accept 1–12 condition/value pairs.<br>\linebreak NaN will be returned if all conditions are false. |
+| IFS(Condition1, Value1, Condition2, Value2, ...) | Checks up to twelve conditions, returning the value corresponding to the first met condition.<br>\linebreak This is shorthand for multiple nested `IF` commands, providing better readability.<br>\linebreak Will accept 1–12 condition/value pairs.<br>\linebreak NaN will be returned if all conditions are false. |
 | IF(Condition, ValueIfTrue, ValueIfFalse) | If *Condition* is true (non-zero), then *ValueIfTrue* is returned; otherwise, *ValueIfFalse* is returned. |
 | NOT(Value) | Returns the logical negation of *Value.* |
 | OR(Value1, Value2, ...) | Returns true if any condition is true. |
@@ -192,8 +193,8 @@ You can override it so that the additions happen first (resulting in `15`), foll
 | LOG10(Number) | Common logarithm of *Number* (base 10). |
 | MIN(Value1, Value2, ...) | Returns the lowest value from a specified range of values. |
 | MAX(Value1, Value2, ...) | Returns the highest value from a specified range of values. |
-| MOD(Number, Divisor) | Returns the remainder after *Number* is divided by *Divisor*. The result has the same sign as divisor. |
-| POW(Base, Exponent) | Raises *Base* to any power. For fractional exponents, *Base* must be greater than 0. |
+| MOD(Number, Divisor) | Returns the remainder after *Number* is divided by *Divisor*.<br>\linebreak The result has the same sign as divisor. |
+| POW(Base, Exponent) | Raises *Base* to any power.<br>\linebreak For fractional exponents, *Base* must be greater than 0. |
 | POWER(Base, Exponent) | Alias for `POW()`. |
 | RAND() | Generates a random floating point number within the range of 0 and 1. |
 | ROUND(Number, NumDigits) | *Number* rounded to *NumDigits* decimal places.<br>\linebreak If *NumDigits* is negative, then *Number* is rounded to the left of the decimal point.<br>\linebreak(*NumDigits* is optional and defaults to zero.)<br>\linebreak `ROUND(-11.6, 0)` = 12<br>\linebreak `ROUND(-11.6)` = 12<br>\linebreak `ROUND(1.5, 0)` = 2<br>\linebreak `ROUND(1.55, 1)` = 1.6<br>\linebreak `ROUND(3.1415, 3)` = 3.142<br>\linebreak `ROUND(-50.55, -2)` = -100 |
@@ -216,8 +217,8 @@ You can override it so that the additions happen first (resulting in `15`), foll
 ::: {.minipage data-latex="{\textwidth}"}
 | Function | Description |
 | :-- | :-- |
-| CustomHarrisJacobson()\index{CustomHarrisJacobson()@\texttt{CustomHarrisJacobson()}} | Performs a Harris-Jacobson test with a custom familiar word list. Note that this test will use the same text exclusion rules as Harris-Jacobson (overriding your system defaults). |
-| CustomNewDaleChall()\index{CustomNewDaleChall()@\texttt{CustomNewDaleChall()}} | Performs a New Dale-Chall test with a custom familiar word list. Note that this test will use the same text exclusion rules as New Dale-Chall (overriding your system defaults). |
+| CustomHarrisJacobson()\index{CustomHarrisJacobson()@\texttt{CustomHarrisJacobson()}} | Performs a Harris-Jacobson test with a custom familiar word list.<br>\linebreak Note that this test will use the same text exclusion rules as Harris-Jacobson (overriding your system defaults). |
+| CustomNewDaleChall()\index{CustomNewDaleChall()@\texttt{CustomNewDaleChall()}} | Performs a New Dale-Chall test with a custom familiar word list.<br>\linebreak Note that this test will use the same text exclusion rules as New Dale-Chall (overriding your system defaults). |
 | CustomSpache()\index{CustomSpache()@\texttt{CustomSpache()}} | Performs a Spache Revised test with a custom familiar word list. |
 
 : Custom Familiar Word Tests Functions {#tbl-formula-fam-words}
@@ -234,11 +235,11 @@ Also, can't use kable here because we have index tags embedded in the text.
 
 | Function | Description |
 | :-- | :-- |
-| CharacterCount() | Returns the number of characters (i.e., letters and numbers). This function takes an argument specifying which text exclusion method to use: `Default`, `DaleChall`^a^, or `HarrisJacobson`^b^. | 
-| CharacterPlusPunctuationCount() | Returns the number of characters (i.e., letters and numbers) and punctuation. Note that sentence-ending punctuation is not included in this count. |
-| IndependentClauseCount() | Returns the number of units/independent clauses\index{sentences!units}. A unit is a section of text ending with a period, exclamation, question mark, interrobang\index{interrobangs}, colon, semicolon, or dash. |
-| SentenceCount()\index{sentences!in custom tests} | Returns the number of sentences. This function takes an argument specifying which text exclusion or sentence-counting method to use: `Default`, `DaleChall`, `HarrisJacobson`, or `GunningFog`^c^. |
-| SyllableCount()\index{syllables!in custom tests} | Returns the number of syllables. This function takes an argument specifying which numeral syllabizing method to use: `Default`, `NumeralsFullySyllabized`, or `NumeralsAreOneSyllable`. |
+| CharacterCount() | Returns the number of characters (i.e., letters and numbers).<br>\linebreak This function takes an argument specifying which text exclusion method to use: `Default`, `DaleChall`^a^, or `HarrisJacobson`^b^. | 
+| CharacterPlusPunctuationCount() | Returns the number of characters (i.e., letters and numbers) and punctuation.<br>\linebreak Note that sentence-ending punctuation is not included in this count. |
+| IndependentClauseCount() | Returns the number of units/independent clauses\index{sentences!units}.<br>\linebreak A unit is a section of text ending with a period, exclamation, question mark, interrobang\index{interrobangs}, colon, semicolon, or dash. |
+| SentenceCount()\index{sentences!in custom tests} | Returns the number of sentences.<br>\linebreak This function takes an argument specifying which text exclusion or sentence-counting method to use: `Default`, `DaleChall`, `HarrisJacobson`, or `GunningFog`^c^. |
+| SyllableCount()\index{syllables!in custom tests} | Returns the number of syllables.<br>\linebreak This function takes an argument specifying which numeral syllabizing method to use: `Default`, `NumeralsFullySyllabized`, or `NumeralsAreOneSyllable`. |
 
 : Document Statistics Functions {#tbl-formula-doc-stats}
 
@@ -261,7 +262,7 @@ This will be either traditional sentence counting or unit counting.
 | ProperNounCount() | Returns the number of proper nouns.\index{proper nouns} |
 | SevenCharacterPlusWordCount() | Returns the number of words consisting of seven or more characters. |
 | SixCharacterPlusWordCount() | Returns the number of words consisting of six or more characters. |
-| ThreeSyllablePlusWordCount() | Returns the number of words consisting of three or more syllables. This function takes an argument specifying which numeral syllabizing method to use: `Default` or `NumeralsFullySyllabized`. |
+| ThreeSyllablePlusWordCount() | Returns the number of words consisting of three or more syllables.<br>\linebreak This function takes an argument specifying which numeral syllabizing method to use: `Default` or `NumeralsFullySyllabized`. |
 | UnfamiliarDaleChallWordCount() | Returns the number of unfamiliar New Dale-Chall words. |
 | UnfamiliarHarrisJacobsonWordCount() | Returns the number of unfamiliar Harris-Jacobson words. |
 | UnfamiliarSpacheWordCount() | Returns the number of unfamiliar Spache words. |
@@ -272,9 +273,9 @@ This will be either traditional sentence counting or unit counting.
 | UniqueUnfamiliarHarrisJacobsonWordCount() | Returns the number of unique unfamiliar Harris-Jacobson words. |
 | UniqueUnfamiliarSpacheWordCount() | Returns the number of unique unfamiliar Spache words. |
 | UniqueUnfamiliarWordCount() | Returns the number of unique unfamiliar words (from a custom list). |
-| UniqueThreeSyllablePlusWordCount() | Returns the number of unique words consisting of three or more syllables. This function takes an argument specifying which numeral syllabizing method to use: `Default` or `NumeralsFullySyllabized`. |
+| UniqueThreeSyllablePlusWordCount() | Returns the number of unique words consisting of three or more syllables.<br>\linebreak This function takes an argument specifying which numeral syllabizing method to use: `Default` or `NumeralsFullySyllabized`. |
 | UniqueWordCount() | Returns the number of unique words. |
-| WordCount() | Returns the number of words. This function takes an argument specifying which text exclusion method to use: `Default`, `DaleChall`, or `HarrisJacobson`. |
+| WordCount() | Returns the number of words.<br>\linebreak This function takes an argument specifying which text exclusion method to use: `Default`, `DaleChall`, or `HarrisJacobson`. |
 
 : Word Statistics Functions {#tbl-formula-word-stats}
 
@@ -391,7 +392,9 @@ or like this:
 Stemming compares words based on their root.
 This is useful for finding words that appear in different forms from how they are entered in your word list.
 For example, let us say that you enter the word *installation* in your familiar word file.
-If you select English as your stemming type, then occurrences of the words *installation*, *install*, *installed*, *installs*, etc. found in your document will be considered familiar. This is because each of these words shares the same root, *install*. The benefit of this is that you do not need to enter every form of every word into your familiar word file.
+If you select English as your stemming type, then occurrences of the words *installation*, *install*, *installed*, *installs*, etc. found in your document will be considered familiar.
+This is because each of these words shares the same root, *install*.
+The benefit of this is that you do not need to enter every form of every word into your familiar word file.
 
 If you are not stemming, then it is recommended to enter each inflected form of your words (e.g., possessive, plural) in your word list.
 

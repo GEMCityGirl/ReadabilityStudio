@@ -1,10 +1,14 @@
 ## New Dale-Chall\index{New Dale-Chall|(idxit} {#sec-dale-chall-test}
 
-The New Dale-Chall\index{Dale-Chall!zzzzz@\igobble|seealso{New Dale-Chall}} readability test [@{chall-dale:manual:1995}1-7] calculates the grade level of a document based on sentence length and number of unfamiliar words. Words are unfamiliar if they do not appear on a list of 3,000 common words that are known to most 4^th^ grade students. The following are also considered familiar:
+The New Dale-Chall\index{Dale-Chall!zzzzz@\igobble|seealso{New Dale-Chall}} readability test [@{chall-dale:manual:1995}1-7] calculates the grade level of a document based on sentence length and number of unfamiliar words.
+Words are unfamiliar if they do not appear on a list of 3,000 common words that are known to most 4^th^ grade students.
+The following are also considered familiar:
 
 - Regular plural and possessive forms of common words (i.e., *s*, *es*, and *ies* endings). Irregular forms (e.g., *oxen*) are not familiar.
 - Adjectival and verb forms of common words with the following endings: *d*, *ed*, *ied*, *ing*, *s*, *es*, *ies*, *r*, *er*, *est*, *ier*, *iest*.
-- Compound and hyphenated words if both parts of the word are common words. For example, *long-haired* and *and/or* would be familiar. Note that forward slashes (*/*) are also treated as compound-word punctuation.
+- Compound and hyphenated words if both parts of the word are common words.
+  For example, *long-haired* and *and/or* would be familiar.
+  Note that forward slashes (*/*) are also treated as compound-word punctuation.
 - The [first instance of any proper noun](#sec-readability-test-options)—all subsequent occurrences are considered familiar.
 - All numerals.\index{numerals!New Dale-Chall}
 

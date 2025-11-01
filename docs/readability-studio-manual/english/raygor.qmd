@@ -24,12 +24,14 @@ Below is an example of a Raygor graph:
 ::: {.minipage data-latex="{\textwidth}"}
 The Raygor Estimate instructions are:
 
-- Extract a 100-word passage from the selection. If the material is long, take subsamples from the beginning, middle, and end.
+- Extract a 100-word passage from the selection.
+  If the material is long, take subsamples from the beginning, middle, and end.
   Numerals\index{numerals!Raygor Estimate} should be skipped.
 - Count the number of sentences, estimated to the nearest tenth.
 - Count the number of words that are six or more letters.
 - Find the point on the chart.
-- If the sample's character or sentence count is too low or high for it to be plotted, then adjust that factor so that it can fit onto the chart. For example, if a sample has 30 sentences per 100 words, then this will need to be adjusted to 28.
+- If the sample's character or sentence count is too low or high for it to be plotted, then adjust that factor so that it can fit onto the chart.
+  For example, if a sample has 30 sentences per 100 words, then this will need to be adjusted to 28.
 - Repeat this process for each sample, and then average the samples.
 :::
 

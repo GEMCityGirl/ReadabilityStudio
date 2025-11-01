@@ -386,7 +386,8 @@ The second option is to consider sentences overly long if they are comparatively
 From the **Home** tab, click the `r keys("Properties")` button and then select **Analysis**.
 Select the option **Outside sentence-length outlier range** and click the `r keys("OK")` button.
 At this point, the boundary for overly-long sentences will be calculated based on the outlier range of the sentence lengths.
-After reanalyzing the file, note how there are only two highlighted sentences. One sentence contains 45 words and the other 48 words.
+After reanalyzing the file, note how there are only two highlighted sentences.
+One sentence contains 45 words and the other 48 words.
 These are the two "worst offenders" and should be either reworded or split into small sentences.
 
 ![](images/featuressentencesoutliers.png){width=75% fig-align="center"}
@@ -421,7 +422,8 @@ To construct a heatmap, the following is performed:
 - A square for each data point is drawn in a rectangular grid.
   These data point squares are drawn in the same order as they appear in the data, going from left-to-right and top-to-bottom.
 - Each square is filled with the color from the gradient where the value falls.
-  For example, if a gradient goes from white (lowest value) to black (highest value) and a data point is the highest value, then its square will be black. Likewise, mid-value points will be displayed as gray.
+  For example, if a gradient goes from white (lowest value) to black (highest value) and a data point is the highest value, then its square will be black.
+  Likewise, mid-value points will be displayed as gray.
 - Optionally, categorized data can split into separate heatmaps, where each line represents a different group.
   (All groups still use a common color gradient scale.)
 
@@ -434,7 +436,8 @@ On the following prompt, tell the program to create a new project.
 When the **New Project Wizard** appears, select the **Document Structure** page.
 This example document contains lines of programming of code separated by hard returns.
 Because of this, we will want to force each of these lines to be a new paragraph.
-(Doing so will help with excluding them.) Check the option **Line ends** and click `r keys('Finish')`:
+(Doing so will help with excluding them.)
+Check the option **Line ends** and click `r keys('Finish')`:
 
 ![](images/wizarddocstructurehardreturns.png)
 
@@ -462,7 +465,8 @@ In the above graph, we can see that most paragraphs begin with a short intro sen
 (Some sentences being as high as 40 words.)
 Also of interest is a paragraph containing ten sentences—which will be difficult to read through.
 
-Finally, let's view a novel. Close this project and return to the **Help** tab of the ribbon.
+Finally, let's view a novel.
+Close this project and return to the **Help** tab of the ribbon.
 Click the `r keys('Example Documents')` button again and select *A Christmas Carol*.
 Create a new project with the defaults and select the heatmap when the project opens.
 
@@ -486,7 +490,8 @@ Almost all readability formulas use sentence length as a factor.
 Because of this, short text blocks like these are traditionally excluded and only the full sentences are analyzed.
 For this document, however, we prefer to analyze everything since so much of its content are disjointed text boxes.
 
-First, let's view the document. From the **Help** tab on the ribbon, click the `r keys('Example Documents')` button, and select "Summer Code Camp."
+First, let's view the document.
+From the **Help** tab on the ribbon, click the `r keys('Example Documents')` button, and select "Summer Code Camp."
 Next, you will be prompted to either create a new project or view the document; select **View document**.
 Once the flyer is opened, note how it mostly contains simple text boxes:
 
@@ -495,7 +500,10 @@ Once the flyer is opened, note how it mostly contains simple text boxes:
 Rather than excluding these and only analyzing the few remaining sentences, we will analyze everything.
 Also, we will only use a test that is designed to not rely on sentence lengths.
 
-Close this document and return to *{{< var PROGRAM_NAME >}}*. Click the `r keys('Example Documents')` button and again select "Summer Code Camp." Next, select **Create a new project**. When the **New Project Wizard** appears, select the **Document Structure** page and select **Non-narrative, fragmented text**:
+Close this document and return to *{{< var PROGRAM_NAME >}}*.
+Click the `r keys('Example Documents')` button and again select "Summer Code Camp."
+Next, select **Create a new project**.
+When the **New Project Wizard** appears, select the **Document Structure** page and select **Non-narrative, fragmented text**:
 
 ![](images/wizarddocstructurenonnarrative.png)
 

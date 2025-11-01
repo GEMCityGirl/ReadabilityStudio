@@ -8,7 +8,9 @@ The researchers selected 2+ syllable words because primary readers will have mor
 Although not explicitly stated in the article, the authors' definition of "polysyllabic" as being 2+ syllable can be inferred from the example[^River] that they provided:
 
 ::: {.fancyquotes data-latex=''}
-The Woodsman saw the seven sisters come into their bedroom. He saw them put on the shoes in which they danced. He saw them put on their party dresses.  
+The Woodsman saw the seven sisters come into their bedroom.
+He saw them put on the shoes in which they danced.
+He saw them put on their party dresses.  
 When they were all dressed, the oldest sister opened a door in the floor near her bed.  
 “Sisters, we are ready,” she said.  
 They walked down the secret steps.  
@@ -16,7 +18,8 @@ The Woodsman put on his magic cap and followed them down the steps.
 Thanks to his magic cap, no one was able to see him.  
 Soon they came to a wonderful wood.  
 Some of the trees had blue leaves.  
-Some had glass leaves. Others had leaves of gold.
+Some had glass leaves.
+Others had leaves of gold.
 :::
 
 The authors reported 20 polysyllabic words in the above sample.

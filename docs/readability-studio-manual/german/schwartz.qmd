@@ -1,6 +1,7 @@
 ## Schwartz German Readability Graph {#sec-schwartz}
 
-The Schwartz German Readability Graph\index{Schwartz German Readability Graph|(idxit} [-@{schwartz}1–21] is a derivative of [Fry’s](#sec-fry-test) readability graph and is designed for instructional textbooks for primary and secondary students. Like Fry, it relies on sentence length and word complexity (i.e., syllable counts) to determine a document’s difficulty.
+The Schwartz German Readability Graph\index{Schwartz German Readability Graph|(idxit} [-@{schwartz}1–21] is a derivative of [Fry’s](#sec-fry-test) readability graph and is designed for instructional textbooks for primary and secondary students.
+Like Fry, it relies on sentence length and word complexity (i.e., syllable counts) to determine a document’s difficulty.
 
 As an elementary teacher, Schwartz\index{Fry!derivatives!Schwartz} was familiar with English tests and had found them "extremely helpful in classifying texts according to levels and fitting a student with proper reading material" [-@{schwartz}3].
 Later, as a high school German teacher, she was often asked if there were any German readability tests.
@@ -88,9 +89,11 @@ Grades 5/6:
 ::: {.minipage data-latex="{\textwidth}"}
 Grades 7/8:
 
+<!--quneiform-suppress-begin!-->
 - *Bayerisches Lesebuch für das seibte und achte Schuljahr*
 - *Lesebuch für die Volksschulen, Vierter Band. 7. und 8. Schuljahr*
 - *Lesebuch. C 8 (8. Schuljahr)*
+<!--quneiform-suppress-end!-->
 :::
 
 ::: {.minipage data-latex="{\textwidth}"}
@@ -125,7 +128,8 @@ The band that the point falls in will represent the grade-level score of the sam
 ::: {.notesection data-latex=""}
 An item of interest when interpreting this graph is the x axis.
 Although the labels read *25*, *26*, etc., they actually represent *125*, *126*, etc.
-The *100+* with the arrow underneath it (to the left) indicates that the axis labels should have 100 added to them. This is done to make the labels more compact.
+The *100+* with the arrow underneath it (to the left) indicates that the axis labels should have 100 added to them.
+This is done to make the labels more compact.
 
 Although this is an unusual display, this is how the graph is drawn in the original article.
 Therefore, to preserve fidelity with the source material, it is recommended to use this same style.

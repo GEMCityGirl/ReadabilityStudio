@@ -583,9 +583,11 @@ Repeated words are bound to the sentence level.
 If the same word ends one sentence and begins the next, then it will not be considered a repeated word.
 For example, *Blake* would not be considered a repeated word here:
 
+<!--quneiform-suppress-begin!-->
 ::: {.fancyquotes data-latex=''}
 Gabi gave her sales report to *Blake. Blake* really appreciated Gabi's promptness.
 :::
+<!--quneiform-suppress-end!-->
 
 Repeated word searching is applied to all sentences.
 [Incomplete sentences](#sec-how-text-is-excluded) will be reviewed for this, even if they are excluded from the analysis.
@@ -684,9 +686,11 @@ This window will display a list of redundant phrases (and suggested replacements
 A redundant phrase is when a modifier expresses something that is already implied by the noun it is modifying.
 For example:
 
+<!--quneiform-suppress-begin!-->
 ::: {.fancyquotes data-latex=''}
 Gabi and Blake *collaborated together* on the report. They should have a *brief summary* ready later today.
 :::
+<!--quneiform-suppress-end!-->
 
 In this case, *collaborated together* and *brief summary* are redundant.
 Collaboration already implies two or more people working together.
@@ -694,6 +698,7 @@ The *together* in this phrase adds nothing and just makes this sentence wordy.
 As for *brief summary*, summaries are always brief; hence, the redundancy in that phrase.
 *{{< var PROGRAM_NAME >}}* will consider these as redundant phrases and include them in this list.
 
+<!--quneiform-suppress-begin!-->
 Redundant phrases are bound to the sentence level.
 If part of a phrase ends one sentence and begins the next, then it will not be considered a redundant phrase.
 For example, *brief. Summaries* would not be considered a redundant phrase here because the words are in different sentences:
@@ -701,6 +706,7 @@ For example, *brief. Summaries* would not be considered a redundant phrase here 
 ::: {.fancyquotes data-latex=''}
 Gabi and Blake need to be **brief. Summaries** are very important before presenting a report.
 :::
+<!--quneiform-suppress-end!-->
 
 Redundant phrase searching is applied to all sentences.
 [Incomplete sentences](#sec-how-text-is-excluded) will be reviewed for this, even if they are excluded from the analysis.
@@ -731,9 +737,11 @@ Wordy phrases are bound to the sentence level.
 If part of a phrase ends one sentence and begins the next, then it will not be considered a wordy phrase.
 For example, *a host of* would not be considered a wordy phrase here because its words are in two different sentences:
 
+<!--quneiform-suppress-begin!-->
 ::: {.fancyquotes data-latex=''}
 For the party, we need **a host. Of** course he should be very funny.
 :::
+<!--quneiform-suppress-end!-->
 
 Wordy-item searching does not affect readability calculations, so this analysis is applied to all sentences.
 [Incomplete sentences](#sec-how-text-is-excluded) will be reviewed for this, even if they are excluded from the analysis.

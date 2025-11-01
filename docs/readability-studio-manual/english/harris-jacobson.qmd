@@ -6,13 +6,19 @@ The following are also considered familiar:
 
 - Regular verb forms of any common word (i.e., *ing*, *es*, *s*, *ed*, and *ies* endings). Irregular forms are not familiar.
 - Regular plural and possessive forms of any common word (i.e., *s*, *es*, and *ies* endings). Irregular forms are not familiar.
-- Adjectival or adverbial forms of common words. This includes forms with endings such as *ly*, *est*, *er*, and *ily*.
-- Hyphenated words if both parts of the word are common words. For example, *apple-tree* and *and/or* would be familiar. (Note that forward slashes (*/*) are treated like hyphens in this context.) Although this rule is not explicitly stated in *Basic Reading Vocabularies*, it is recommended because both [Spache](#sec-spache-test) and [New Dale-Chall](#sec-dale-chall-test) apply it.
+- Adjectival or adverbial forms of common words.
+  This includes forms with endings such as *ly*, *est*, *er*, and *ily*.
+- Hyphenated words if both parts of the word are common words.
+  For example, *apple-tree* and *and/or* would be familiar.
+  (Note that forward slashes (*/*) are treated like hyphens in this context.)
+  Although this rule is not explicitly stated in *Basic Reading Vocabularies*, it is recommended because both [Spache](#sec-spache-test) and [New Dale-Chall](#sec-dale-chall-test) apply it.
 - All proper nouns.\index{proper nouns!Harris-Jacobson}
 
 Note that numerals\index{numerals!Harris-Jacobson} are entirely excluded from this test and are considered neither familiar nor unfamiliar.
 
-The Wide Range Readability Formula is based on previous Harris-Jacobson formulas designed for preprimer through eighth-grade reader-level materials. The Wide Range variation was trained on a new series of basal readers [@{harris-jacobson}30]. This series included:
+The Wide Range Readability Formula is based on previous Harris-Jacobson formulas designed for preprimer through eighth-grade reader-level materials.
+The Wide Range variation was trained on a new series of basal readers [@{harris-jacobson}30].
+This series included:
 
 ```{r, echo=F}
 library(kableExtra)
@@ -32,10 +38,13 @@ kableExtra::kbl(list(primaryTable, secondaryTable),
             kableExtra::kable_classic(full_width=F)
 ```
 
-Using these new basal readers as the test's criterion, a new regression equation and expanded word list were built for the Wide Range formula. This new formula could significantly correlate samples from these books to their reported reading levels. Further, to predict readability scores for materials beyond the eighth-grade level, the look-up table used by the test (see below) was extrapolated to include secondary and adult-level materials.
+Using these new basal readers as the test's criterion, a new regression equation and expanded word list were built for the Wide Range formula.
+This new formula could significantly correlate samples from these books to their reported reading levels.
+Further, to predict readability scores for materials beyond the eighth-grade level, the look-up table used by the test (see below) was extrapolated to include secondary and adult-level materials.
 
 ::: {.notesection data-latex=""}
-This test treats headers and subheaders as full sentences, but excludes lists and tables. The default [text exclusion](#sec-options-text-exclusion) method\index{text exclusion!Harris-Jacobson Wide Range} will be overridden for this specific test.
+This test treats headers and subheaders as full sentences, but excludes lists and tables.
+The default [text exclusion](#sec-options-text-exclusion) method\index{text exclusion!Harris-Jacobson Wide Range} will be overridden for this specific test.
 :::
 
 ::: {.minipage data-latex="{\textwidth}"}

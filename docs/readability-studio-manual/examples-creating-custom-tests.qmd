@@ -161,7 +161,8 @@ Because this will be a New Dale-Chall test meant for baking, we will enter the n
 
 ![](images/custom-test-example2-name.png)
 
-Next, we will enter the formula. The formula for a custom New Dale-Chall test\index{CustomNewDaleChall()@\texttt{CustomNewDaleChall()}!example} is:
+Next, we will enter the formula.
+The formula for a custom New Dale-Chall test\index{CustomNewDaleChall()@\texttt{CustomNewDaleChall()}!example} is:
 
 ```{.r}
 CustomNewDaleChall()
@@ -204,7 +205,8 @@ Because these words all share the same root as a word from our list, they will a
 The advantage of this approach is that we do not need to add every possible variation of every word on our list.
 The disadvantage is that we will lose precise control over which word variations should be familiar or not.
 
-To keep our word list simple, we will use English stemming. Select **English** as the stemmer.
+To keep our word list simple, we will use English stemming.
+Select **English** as the stemmer.
 
 Next, we will define which other word lists will be included in our test.
 Because this is a New Dale-Chall test, check the option **Include New Dale-Chall word list**:
@@ -262,7 +264,8 @@ The other option is to export these unfamiliar words and use that output to revi
 Not only will this ease the students' comprehension of the recipe, but it will serve as a helpful [vocabulary-building exercise](#sec-vocab-builder-example).
 
 ::: {.tipsection data-latex=""}
-The recipe used in this example is available from the **Example Documents** menu. From the **Help** tab, click the `r keys("Example Documents")` button, and then select "Chocolate Eclairs."
+The recipe used in this example is available from the **Example Documents** menu.
+From the **Help** tab, click the `r keys("Example Documents")` button, and then select "Chocolate Eclairs."
 When prompted about how to open the document, select **Create a new project**.
 :::
 
@@ -276,12 +279,14 @@ In this example, we will create a test designed for classifying a document withi
 We will make a list of "buzzwords" that are commonly overused in marketing documents, then create a test to see how much a given document uses them.
 Also, rather than calculating the conventional grade-level or predicted [cloze](#sec-cloze) score, our test will return a value using our own scale.
 
-The first step is to create a list of "buzzwords." This can be any text file where the words are separated by spaces, tabs, commas, or semicolons.
+The first step is to create a list of "buzzwords."
+This can be any text file where the words are separated by spaces, tabs, commas, or semicolons.
 For this example, we will use this list:
 
 `agile, collaborate, cross-platform, disrupt, empower, enterprise, framework, game-change, groundbreaking, holistic, impact, infrastructure, innovate, integrate, lean, leverage, marketplace, next-generation, nimble, paradigm, platform, powerful, proactive, revolution, ROI, seamless, solution, startup, strategy, streamline, suite, sustainable, synergy, technology, utilize, value-add, visibility, workflow`
 
-The next step is to create a custom test and connect our word list to it. Click the `r keys("Custom Tests")` button on the **Readability** tab and select **Add...** from the menu.
+The next step is to create a custom test and connect our word list to it.
+Click the `r keys("Custom Tests")` button on the **Readability** tab and select **Add...** from the menu.
 This will present the [**Add Custom Test**](#sec-custom-test-general-settings) dialog, as shown below:
 
 ![](images/add-custom-test.png)
@@ -345,14 +350,16 @@ This way, other variations (e.g., *innovates*) will remain unfamiliar.
 The disadvantage of this method is that we must explicitly add every variation of *innovate* to our list that we want to be familiar.
 For larger lists, this can be tedious and error prone.
 
-The other option is to use stemming. Stemming will compare the roots of the words between our list and our recipe, rather than the words themselves.
+The other option is to use stemming.
+Stemming will compare the roots of the words between our list and our recipe, rather than the words themselves.
 For example, say that we have **English** stemming selected and the word *innovate* is on our list.
 In this case, *innovate* will be stemmed to *innovate*. As our file is analyzed, words such as *innovates*, *innovated*, and *innovating* will also be stemmed to *innovate*.
 Because these words all share the same root as a word from our list, they will all be counted as familiar.
 The advantage of this approach is that we do not need to add every possible variation of every word on our list.
 The disadvantage is that we will lose precise control over which word variations should be familiar or not.
 
-To keep our word list simple, we will use English stemming. Select **English** as the stemmer:
+To keep our word list simple, we will use English stemming.
+Select **English** as the stemmer:
 
 ![](images/custom-index-test-example-word-settings-finished.png)
 
@@ -371,7 +378,8 @@ Set **Proper Nouns/Familiarity** to **Count as unfamiliar** and uncheck **Treat 
 
 Click the `r keys("OK")` button and our new test will be added to the system.
 
-To add this test to any project, first select the **Readability** tab. Next, click the `r keys("Custom Tests")` button and then select **Buzz Index**.
+To add this test to any project, first select the **Readability** tab.
+Next, click the `r keys("Custom Tests")` button and then select **Buzz Index**.
 Select the **Readability Scores** icon on the project pane and note that Buzz Index has been added to the project's results:
 
 To demonstrate this, click the **Help** tab of the ribbon.

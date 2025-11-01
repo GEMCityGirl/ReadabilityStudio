@@ -375,7 +375,8 @@ This is useful for when a references section is in the middle of a document, fol
 :::
 
 **Also exclude Internet and file addresses**: Select this option to ignore URLs (i.e., Internet addresses) and filepaths.
-Note that this applies to words inside of complete sentences, not just incomplete. For example:
+Note that this applies to words inside of complete sentences, not just incomplete.
+For example:
 
 ::: {.fancyquotes data-latex=''}
 {{< var PROGRAM_NAME >}} is available from *www.readabilitystudio.com*.
@@ -475,7 +476,8 @@ After selecting your list file, its words/phrases will be displayed in the grid 
 In this grid, you can edit your list with the following keyboard commands:
 
 - `r keys('Del')` (`r os_logo('windows')`, `r os_logo('linux')`) or `r keys('\\backdel')` (`r os_logo('apple')`)—removes the selected item(s) from the list.
-- `r keys("Ins")`—edits the selected item in the list. Double-clicking an item with the mouse will also edit it.
+- `r keys("Ins")`—edits the selected item in the list.
+  Double-clicking an item with the mouse will also edit it.
 - `r keys(c('Ctrl','Ins'))` (`r os_logo('windows')`, `r os_logo('linux')`) or `r keys(c('\\cmd','Ins'))` (`r os_logo('apple')`)—adds a new item to the list.
 
 Buttons to add, edit, and remove items are also available above the grid.
