@@ -53,6 +53,8 @@ source('../R/appdown.r')
 - Printing text windows now supports more paper sizes.
 - Saving and loading settings files now supports Unicode file paths.
 - Unchecking random sample option on project wizard is now remembered.
+- Unchecking realtime update option on the **Options** dialog is now remembered.
+- Images with transparency now look sharper when displayed on graphs (Windows).
 
 \newpage
 
