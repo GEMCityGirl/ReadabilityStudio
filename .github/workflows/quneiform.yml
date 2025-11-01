@@ -31,8 +31,11 @@ jobs:
              --ignore=Wisteria-Dataviz/demo/demo.cpp,Wisteria-Dataviz/src/base/version.h,Wisteria-Dataviz/src/math,Wisteria-Dataviz/src/debug,Wisteria-Dataviz/src/util/logfile.cpp,Wisteria-Dataviz/src/import/,Wisteria-Dataviz/tests,lua,Wisteria-Dataviz/src/base/colors.cpp,Wisteria-Dataviz/locale/es.po,readability,Catch2,OleanderStemmingLibrary,tinyexpr-plusplus,tinyxml2,Wisteria-Dataviz/src/utfcpp,Wisteria-Dataviz/src/easyexif,Wisteria-Dataviz/src/CRCpp,Wisteria-Dataviz/src/wxSimpleJSON \
              --enable=allI18N,allCodeFormatting --disable=suspectL10NUsage,unencodedExtASCII \
              --untranslatables="Fry,Degrees of Reading Power,Bormuth Grade Placement,Bormuth Cloze Mean,Automated Readability Index,Gunning Fog,SMOG,PSK Gunning Fog,Rate Index,New Dale-Chall,Flesch,New Fog Count,Modified SMOG,New Automated Readability Index,Flesch Reading Ease,Jakarta,Eclipse Foundation,Eclipse" \
-             -o i18nresults.txt
-             cat i18nresults.txt
+             -o i18nresultsSrcFolder.txt
+
+             ./quneiform/bin/quneiform ./docs -q --enable=allI18N --ignore=readability-studio-manual/acknowledgements/libraries.qmd -o i18nresultsDocsFolder.txt
+
+             cat i18nresultsSrcFolder.txt i18nresultsDocsFolder.txt > i18nresults.txt
              
       - name: print output
         run: |
