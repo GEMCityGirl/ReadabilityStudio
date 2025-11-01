@@ -4,15 +4,20 @@ Refer to @sec-lix-test.
 
 ## Lix\index{Lix!variations!German children's literature} (German children's literature) {#sec-lix-german-childrens-literature}
 
-This test is a German variation of [Läsbarhetsindex (Lix)](#sec-lix-test) designed for children's literature. It uses the same index-score formula as Lix, but uses different scales for assigning the difficulty and grade-level scores. This adjustment was developed by Renström [-@{renstrom}152–153] and Bamberger & Vanecek [-@{bamberger-vanecek}64, 187] for use with German literature ranging from 1^st^ to 8^th^ grade. (Renström developed the adjusted difficulty gauge; Bamberger & Vanecek developed the grade-level conversion.)
+This test is a German variation of [Läsbarhetsindex (Lix)](#sec-lix-test) designed for children's literature.
+It uses the same index-score formula as Lix, but uses different scales for assigning the difficulty and grade-level scores.
+This adjustment was developed by Renström [-@{renstrom}152–153] and Bamberger & Vanecek [-@{bamberger-vanecek}64, 187] for use with German literature ranging from 1^st^ to 8^th^ grade.
+(Renström developed the adjusted difficulty gauge; Bamberger & Vanecek developed the grade-level conversion.)
 
-Note that this test differs from the original Lix approach of using the same scoring for any document, regardless of language. Instead, this test is designed specifically for German materials, adjusting the grade-level score and classification of the index value.
+Note that this test differs from the original Lix approach of using the same scoring for any document, regardless of language.
+Instead, this test is designed specifically for German materials, adjusting the grade-level score and classification of the index value.
 
 Regarding the index score, the following variation of the Lix gauge is used classify the difficulty [@{renstrom}153; @{bamberger-vanecek}65; @{schulz}53]:
 
 ![German Lix gauge (children's literature)](images/german-lix-gauge.png){width=75% fig-align="center"}
 
-This version adjusts the scaling of the score, assuming that German text is inherently more difficult than other languages. It also includes additional levels of difficulty (e.g., "children and young adult").
+This version adjusts the scaling of the score, assuming that German text is inherently more difficult than other languages.
+It also includes additional levels of difficulty (e.g., "children and young adult").
 
 ::: {.minipage data-latex="{\textwidth}"}
 To convert the Lix index score to a grade, this test uses the following table:
@@ -30,15 +35,20 @@ kableExtra::kbl(dplyr::as_tibble(read_delim("data/LixGermanLixChildrensLit.txt",
 
 ## Lix\index{Lix!variations!German technical literature} (German technical literature) {#sec-lix-german-technical}
 
-This test is a German variation of [Läsbarhetsindex (Lix)](#sec-lix-test) designed for technical literature. It uses the same index-score formula as Lix, but uses different scales for assigning the difficulty and grade-level scores. This adjustment was developed by Renström [-@{renstrom}152–153] and Bamberger & Vanecek [-@{bamberger-vanecek}64, 187] for use with German literature ranging from 3^rd^ to 15^th^ grade. (Renström developed the adjusted difficulty gauge; Bamberger & Vanecek developed the grade-level conversion.)
+This test is a German variation of [Läsbarhetsindex (Lix)](#sec-lix-test) designed for technical literature.
+It uses the same index-score formula as Lix, but uses different scales for assigning the difficulty and grade-level scores.
+This adjustment was developed by Renström [-@{renstrom}152–153] and Bamberger & Vanecek [-@{bamberger-vanecek}64, 187] for use with German literature ranging from 3^rd^ to 15^th^ grade.
+(Renström developed the adjusted difficulty gauge; Bamberger & Vanecek developed the grade-level conversion.)
 
-Note that this test differs from the original Lix approach of using the same scoring for any document, regardless of language. Instead, this test is designed specifically for German materials, adjusting the grade-level score and classification of the index value.
+Note that this test differs from the original Lix approach of using the same scoring for any document, regardless of language.
+Instead, this test is designed specifically for German materials, adjusting the grade-level score and classification of the index value.
 
 Regarding the index score, the following variation of the Lix gauge is used classify the difficulty [@{renstrom}153; @{bamberger-vanecek}65; @{schulz}53]:
 
 ![German Lix gauge (technical literature)](images/german-lix-gauge.png){width=75% fig-align="center"}
 
-This version adjusts the scaling of the score, assuming that German text is inherently more difficult than other languages. It also includes additional levels of difficulty (e.g., “children and young adult”).
+This version adjusts the scaling of the score, assuming that German text is inherently more difficult than other languages.
+It also includes additional levels of difficulty (e.g., “children and young adult”).
 
 ::: {.minipage data-latex="{\textwidth}"}
 To convert the Lix index score to a grade, this test uses the following table:

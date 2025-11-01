@@ -11,8 +11,12 @@ source('R/appdown.r')
 
 Most experts recommend ignoring items such as chapter titles, list items, and table of contents when calculating reading levels.
 One reason that these items should be ignored is because they falsely lower the average sentence length (ASL).
-For example, chapter titles are usually just a couple of words. If you treat every section and chapter title as a regular sentence, then these short “sentences” will dramatically lower the ASL.
-In turn, this will falsely lower most of your test scores. The other reason to ignore these items is because they are not usually part of the main content, but rather dividers or sectional markers. These items are read, but it is the narrative content that readers may struggle with. Therefore, it is the content that should be our main focus, and titles and list items should just be considered “noise.”
+For example, chapter titles are usually just a couple of words.
+If you treat every section and chapter title as a regular sentence, then these short “sentences” will dramatically lower the ASL.
+In turn, this will falsely lower most of your test scores.
+The other reason to ignore these items is because they are not usually part of the main content, but rather dividers or sectional markers.
+These items are read, but it is the narrative content that readers may struggle with.
+Therefore, it is the content that should be our main focus, and titles and list items should just be considered “noise.”
 
 These items, by default, are ignored for all newly created projects.
 That is, any word inside an incomplete sentence is not factored into any of the statistics or tests.
@@ -25,7 +29,8 @@ Here you can select either **Do not exclude any text**, **Exclude all incomplete
 ![](images/excludeincompletesentences.png){width=75% fig-align="center"}
 
 If you are excluding incomplete sentences\index{sentences!excluding incomplete sentences}, note that any non-terminated sentence longer than 15 words will still be counted as a regular sentence.
-If a sentence is longer than a certain length and is missing its terminating punctuation, then the missing period is likely just a mistake. To accommodate for these errors, the program will consider these sentences valid.
+If a sentence is longer than a certain length and is missing its terminating punctuation, then the missing period is likely just a mistake.
+To accommodate for these errors, the program will consider these sentences valid.
 To customize this behavior, enter a different minimum sentence length in the **Include incomplete sentences containing more than [15] words** option (pictured above).
 
 Note that these options are also available on the [**Options**](#sec-options-overview) dialog (on the **Tools** tab) to change this behavior for all future projects.
@@ -73,7 +78,8 @@ For example, the following is seen as two sentences:
 Because *he* is lowercase, the *!* will not be considered the end of the sentence and *he said* will be part of the proceeding sentence.
 However, if *He* is capitalized, then the *!* will be seen as the end of a sentence and the above will be counted as three sentences.
 
-There is also a special rule for ellipses. If ellipses are followed by a capitalized word, then it will be considered the end of the sentence.
+There is also a special rule for ellipses.
+If ellipses are followed by a capitalized word, then it will be considered the end of the sentence.
 Otherwise, it is simply seen as punctuation and does not terminate the sentence.
 The ellipses symbol (*…*) and dot sequences (*\.\.\.*) are both recognized.
 
@@ -325,7 +331,8 @@ To account for this, *{{< var PROGRAM_NAME >}}* ignores certain repeated words, 
 Words separated by punctuation are also ignored when deducing repeated words. For example:
 
 ::: {.fancyquotes data-latex=''}
-I need a list of new features. Each new *feature, feature* by feature, is required to be documented.
+I need a list of new features.
+Each new *feature, feature* by feature, is required to be documented.
 :::
 
 These will not be seen as repeated words because of the comma.
@@ -388,7 +395,8 @@ The other way is to select **non-narrative form** when specifying the document t
 ## Joining Hyphenated Words
 
 Some published documents format each line of text to a specific width to fit on the page.
-In doing so, longer words at the end of some lines may be split and hyphenated. For example:
+In doing so, longer words at the end of some lines may be split and hyphenated.
+For example:
 
 :::: {.fancyquotes data-latex=''}
 ::: {.FlushLeft data-latex=''}
@@ -407,7 +415,8 @@ When *{{< var PROGRAM_NAME >}}* encounters a hyphenated word at the end of a lin
 
 ::: {.minipage data-latex="{\textwidth}"}
 - Both parts of the word will be joined.
-- The hyphen(s) will be removed and if what remains is a known word, then that will be used. Otherwise,...
+- The hyphen(s) will be removed and if what remains is a known word, then that will be used.
+  Otherwise,...
 - The hyphen(s) will be kept as part of the word.
 :::
 
@@ -510,7 +519,8 @@ Our Corporate Mission\
 `r paste0(indentation(), colorize('Elevate world consciousness', '#0000EE'))`
 :::
 
-Note that the link list must also start from a new line. In other words, consecutive links that are proceeded by content on the same line will remain part of the text.
+Note that the link list must also start from a new line.
+In other words, consecutive links that are proceeded by content on the same line will remain part of the text.
 For example:
 
 ::: {.fancyquotes data-latex=''}
@@ -525,7 +535,8 @@ When changing the options of a project (either from the ribbon or **Project Prop
 For example, changing graph options or adding a test will process immediately, without the program needing to refresh the rest of the results.
 This is helpful when working with large documents or batch projects that may take some time to process.
 
-There are some options that when changed will require a project to reload. These are listed below:
+There are some options that when changed will require a project to reload.
+These are listed below:
 
 - Any changes made from the **Document** tab of the ribbon.
 This includes all options related to document analysis, spell checking, and editing the source document(s) (if documents or text are embedded in the project).

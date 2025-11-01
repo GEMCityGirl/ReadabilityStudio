@@ -1,8 +1,18 @@
 ## Lix\index{Lix|(idxit} {#sec-lix-test}
 
-The Läsbarhetsindex (Lix)\index{Lix!zzzzz@\igobble|seealso{Rix}} readability formula [@{bjornsson:1983}480–97] was designed for documents of any Western European language. It calculates a document's index score based on sentence length and number of long words (i.e., words containing seven or more characters). Viewing long words as those with seven or more characters is what differentiates it from similar tests (which use six or more characters). This difference is what allows it to be a more balanced "yardstick" that can be applied to numerous languages.
+The Läsbarhetsindex (Lix)\index{Lix!zzzzz@\igobble|seealso{Rix}} readability formula [@{bjornsson:1983}480–97] was designed for documents of any Western European language.
+It calculates a document's index score based on sentence length and number of long words (i.e., words containing seven or more characters).
+Viewing long words as those with seven or more characters is what differentiates it from similar tests (which use six or more characters).
+This difference is what allows it to be a more balanced "yardstick" that can be applied to numerous languages.
 
-The philosophy behind using one formula for multiple languages is that, at their core, most languages are similar in difficulty. This approach argues that a language having various idiosyncrasies and longer words is not why it scores at more difficult levels. The reason languages score higher is because of how they are used (i.e., word choice, writing style) and presented (e.g., longer paragraphs and sentences, less images). This differs from the reasoning behind other tests based on adjusted English formulas. Those tests are designed under the assumption that non-English languages are inherently more difficult (because of comparatively longer words). For example, [Gilliam-Peña-Mountain](#sec-gilliam-pena-mountain-fry-graph)\index{Gilliam-Peña-Mountain} and the [German reinterpretation of Lix](#sec-lix-german-technical) follow this logic of adjusting English formulas for non-English text. Lix, however, chooses to use the same formula to gauge multiple languages. It views documents that score higher to be a result of writing style and presentation, not the language itself.
+The philosophy behind using one formula for multiple languages is that, at their core, most languages are similar in difficulty.
+This approach argues that a language having various idiosyncrasies and longer words is not why it scores at more difficult levels.
+The reason languages score higher is because of how they are used (i.e., word choice, writing style) and presented (e.g., longer paragraphs and sentences, less images).
+This differs from the reasoning behind other tests based on adjusted English formulas.
+Those tests are designed under the assumption that non-English languages are inherently more difficult (because of comparatively longer words).
+For example, [Gilliam-Peña-Mountain](#sec-gilliam-pena-mountain-fry-graph)\index{Gilliam-Peña-Mountain} and the [German reinterpretation of Lix](#sec-lix-german-technical) follow this logic of adjusting English formulas for non-English text.
+Lix, however, chooses to use the same formula to gauge multiple languages.
+It views documents that score higher to be a result of writing style and presentation, not the language itself.
 
 This test was originally designed for Danish, English, French, German, and Finnish and trained on "thousands of books and reading passages" [@{bjornsson:1983}481] during 1968, 1969, 1974, 1975, and 1979. During the 1974 English study, the formula was tested with:
 
@@ -11,7 +21,10 @@ This test was originally designed for Danish, English, French, German, and Finni
 - 30 non-fiction books
 - 20 technical books
 
-Other language studies were conducted later using newspaper articles as their training material. These languages included Danish, English, Finnish, French, German, Italian, Norwegian, Portuguese, Russian, Spanish, and Swedish. (Anderson conducted a separate study with Greek material in 1981.) The researchers' findings noted the following average scores across the languages:
+Other language studies were conducted later using newspaper articles as their training material.
+These languages included Danish, English, Finnish, French, German, Italian, Norwegian, Portuguese, Russian, Spanish, and Swedish.
+(Anderson conducted a separate study with Greek material in 1981.)
+The researchers' findings noted the following average scores across the languages:
 
 - Swedish (47), Norwegian (48), and Danish (51) were the lowest scoring (i.e., easiest to read)
 - ...followed by English (52), French (55), and German (59)

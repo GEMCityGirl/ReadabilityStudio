@@ -182,7 +182,8 @@ To print a blank graph, go to the **Readability** tab on the ribbon, click the `
 
 Goals are recommended score ranges that a document should fall within.
 
-If a project contains goals, then a **Goals** section will be available to show whether they were met. For example:
+If a project contains goals, then a **Goals** section will be available to show whether they were met.
+For example:
 
 ![](images/standard-project-goals.png){width=75% fig-align="center"}
 
@@ -281,7 +282,8 @@ This window is only available if the Harris-Jacobson test is included in the pro
 **All Words**: This list displays all the words from the document and their respective frequency counts.
 
 **Key Words**: This list is the same as **All Words**, except that it excludes filenames, numeric words, and common words, and then combines the remaining words.
-In regards to combining words, words with the same root will be merged into a single row. For example, *report*, *reports*, and *reporting* will be combined into one row, with the frequency counts for all three words also combined.
+In regards to combining words, words with the same root will be merged into a single row.
+For example, *report*, *reports*, and *reporting* will be combined into one row, with the frequency counts for all three words also combined.
 As for excluding words, common words (e.g., *the*), numerals, and filenames are not included in this list.
 (If no words can be combined and there are no common words to ignore, then this list will not be shown.)
 
@@ -306,7 +308,8 @@ To help find the most difficult words for the New Dale-Chall list, select the **
 The most frequently occurring words are the ones that should be replaced with more familiar synonyms that most readers would recognize.
 
 To find a specific word in a list, type the word into the **Search** bar at the top of program and hit the `r keys("Enter")` (`r os_logo('windows')`, `r os_logo('linux')`) or `r keys("\\enter")` (`r os_logo('apple')`)  button on your keyboard.
-You can also select the list and begin typing the word. If the word is in the list, then the selection will move to it.
+You can also select the list and begin typing the word.
+If the word is in the list, then the selection will move to it.
 
 Double-click on any word in these lists to display the respective highlighted text report with the first instance of that word selected.
 

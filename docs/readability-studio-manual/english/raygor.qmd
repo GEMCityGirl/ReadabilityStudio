@@ -1,19 +1,31 @@
 ## Raygor Estimate Graph\index{Raygor Estimate|(idxit} {#sec-raygor-test}
 
-The Raygor Estimate graph\index{Fry!derivatives!Raygor Estimate} [-@{raygor}259–63] is a graphical test for English documents. It calculates a document's grade level from its average number of sentences and long (6+ character) words per hundred words. These averages are plotted onto a chart where their intersection determines the reading level of the content.
+The Raygor Estimate graph\index{Fry!derivatives!Raygor Estimate} [-@{raygor}259–63] is a graphical test for English documents.
+It calculates a document's grade level from its average number of sentences and long (6+ character) words per hundred words.
+These averages are plotted onto a chart where their intersection determines the reading level of the content.
 
-Note that this graph is very similar to the [Fry](#sec-fry-test) graph. The intent of this test was to provide a quicker and simpler way to plot a readability level, assuming that counting characters is easier than syllables. To confirm this, a secondary study [@{baldwin-kaufman}148-53] conducted an experiment involving 155 students from the University of Tulsa. The students performed Fry and ELF tests on 6 100-word passages. Afterwards, an independent *t* test was performed to gauge the difference in time spent manually performing the two readability tests. What the researches found was a significant difference, where Raygor took an average of 250.26 seconds to complete versus 323.45 seconds for Fry.
+Note that this graph is very similar to the [Fry](#sec-fry-test) graph.
+The intent of this test was to provide a quicker and simpler way to plot a readability level, assuming that counting characters is easier than syllables.
+To confirm this, a secondary study [@{baldwin-kaufman}148-53] conducted an experiment involving 155 students from the University of Tulsa.
+The students performed Fry and ELF tests on 6 100-word passages.
+Afterwards, an independent *t* test was performed to gauge the difference in time spent manually performing the two readability tests.
+What the researches found was a significant difference, where Raygor took an average of 250.26 seconds to complete versus 323.45 seconds for Fry.
 
-In another experiment, Baldwin and Kaufman compared the correlations between Fry\index{Fry!compared to Raygor} and Raygor scores. They collected three 100-word samples from 100 books from the Learning Resource Center at The University of Tulsa. With these books, the "Levels of difficulty in the sample ranged from upper elementary to professional (beyond the college level)" [-@{baldwin-kaufman}149]. The researchers found a significant Kendall rank order correlation of 0.875 between scores from the two tests.
+In another experiment, Baldwin and Kaufman compared the correlations between Fry\index{Fry!compared to Raygor} and Raygor scores.
+They collected three 100-word samples from 100 books from the Learning Resource Center at The University of Tulsa.
+With these books, the "Levels of difficulty in the sample ranged from upper elementary to professional (beyond the college level)" [-@{baldwin-kaufman}149].
+The researchers found a significant Kendall rank order correlation of 0.875 between scores from the two tests.
 
-This graph is primarily used in secondary education to help classify teaching materials and books into their appropriate reading groups. Below is an example of a Raygor graph:
+This graph is primarily used in secondary education to help classify teaching materials and books into their appropriate reading groups.
+Below is an example of a Raygor graph:
 
 ![Raygor Estimate graph](images/raygorgraph.png){width=75% fig-align="center"}
 
 ::: {.minipage data-latex="{\textwidth}"}
 The Raygor Estimate instructions are:
 
-- Extract a 100-word passage from the selection. If the material is long, take subsamples from the beginning, middle, and end. Numerals\index{numerals!Raygor Estimate} should be skipped.
+- Extract a 100-word passage from the selection. If the material is long, take subsamples from the beginning, middle, and end.
+  Numerals\index{numerals!Raygor Estimate} should be skipped.
 - Count the number of sentences, estimated to the nearest tenth.
 - Count the number of words that are six or more letters.
 - Find the point on the chart.
@@ -21,7 +33,8 @@ The Raygor Estimate instructions are:
 - Repeat this process for each sample, and then average the samples.
 :::
 
-This test is designed for three 100-word samples, with three samples being recommended for best results. ([Normalization](#sec-glossary) can also be used to analyze larger samples or entire documents.)
+This test is designed for three 100-word samples, with three samples being recommended for best results.
+([Normalization](#sec-glossary) can also be used to analyze larger samples or entire documents.)
 
 \index{Raygor Estimate|)}
 

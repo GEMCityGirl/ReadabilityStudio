@@ -77,7 +77,8 @@ This can be a great way to prepare them for future readings, as well as helping 
 Continuing from the [previous example](#sec-book-example) (see @sec-book-example), select the top item in the hard word list.
 Now scroll down to the last word that has five syllables, hold down the `r keys("Shift")` (`r os_logo('windows')`, `r os_logo('linux')`) or `r keys("\\shift")` (`r os_logo('apple')`) key, and select this word.
 Now you will have all the words with five or more syllables selected.
-If there are any words that you want to add or remove from your selection, hold down the `r keys("Ctrl")` (`r os_logo('windows')`, `r os_logo('linux')`) or `r keys("\\cmd")` (`r os_logo('apple')`) key and click on them. Your word list will look like this:
+If there are any words that you want to add or remove from your selection, hold down the `r keys("Ctrl")` (`r os_logo('windows')`, `r os_logo('linux')`) or `r keys("\\cmd")` (`r os_logo('apple')`) key and click on them.
+Your word list will look like this:
 
 ![](images/difficultwords2.png)
 
@@ -85,7 +86,8 @@ Now that you have selected the words that you want to save, click the `r keys("S
 From the menu that appears, select **Export 3+ Syllables List\.\.\.**.
 
 First, you will be prompted to save as either HTML or text (refer to @sec-export-list for a discussion of these formats).
-After specifying the format, the **Save As** dialog will appear. Select where you want to save the file and click `r keys("Save")`.
+After specifying the format, the **Save As** dialog will appear.
+Select where you want to save the file and click `r keys("Save")`.
 
 \newpage
 
@@ -118,7 +120,8 @@ Click the button next to the file path field to browse for it:
 
 ![](images/exampleselectfile.png)
 
-This will open the **Select Document to Analyze** dialog. Choose the file that you want to analyze and click the `r keys("Open")` button to accept.
+This will open the **Select Document to Analyze** dialog.
+Choose the file that you want to analyze and click the `r keys("Open")` button to accept.
 
 ::: {.notesection data-latex=""}
 The original and revised versions of this recipe are available from the **Example Documents** menu.
@@ -126,7 +129,8 @@ From the **Help** tab, click the `r keys("Example Documents")` button and then s
 When prompted about how to open the document, select **Create a new project**.
 :::
 
-You will then return to the **Document** page. Click the `r keys("Forward >")` button to proceed to the **Document Structure** page, as shown below:
+You will then return to the **Document** page.
+Click the `r keys("Forward >")` button to proceed to the **Document Structure** page, as shown below:
 
 ![](images/wizarddocstructure.png)
 
@@ -179,26 +183,31 @@ The program will switch to the [**Highlighted Report**](#sec-reviewing-standard-
 
 Now that we have found the difficult sentences, let's split them up so that they are easier to read.
 From the **Document** tab, click the `r keys("Edit Document")` button to open the recipes file for editing.
-Find one of the long sentences and review it. For example, consider this sentence:
+Find one of the long sentences and review it.
+For example, consider this sentence:
 
 ![](images/non-generated/sentencetoimprove.png)
 
-Not only is it long, but it is a little confusing. It is unclear what was mixed with the cold milk because there are so many steps in this sentence.
+Not only is it long, but it is a little confusing.
+It is unclear what was mixed with the cold milk because there are so many steps in this sentence.
 To make it easier to follow, split this sentence into two and reword it:
 
 ![](images/non-generated/improvedsentence.png)
 
-Continue this process for as many of the long sentences as you can. Sentences in the 20-word range are normally acceptable, but sentences over 30 words should be revised.
+Continue this process for as many of the long sentences as you can.
+Sentences in the 20-word range are normally acceptable, but sentences over 30 words should be revised.
 
 Other useful tools for shortening sentences in *{{< var PROGRAM_NAME >}}* are the other pages in the **Grammar** section.
-Click on the **Grammar** icon on the project sidebar. Click on the [**Repeated Words**](#sec-reviewing-standard-grammar) page and note how the phrase *and and* is in the file (obviously a typo).
+Click on the **Grammar** icon on the project sidebar.
+Click on the [**Repeated Words**](#sec-reviewing-standard-grammar) page and note how the phrase *and and* is in the file (obviously a typo).
 Next, click on the [**Redundant Phrases**](#sec-reviewing-standard-grammar) page.
 Note how the phrase *mixed together* is redundant and the program is suggesting that it be replaced with *mixed*.
 A [**Wordy Items**](#sec-reviewing-standard-grammar) and [**Clichés**](#sec-reviewing-standard-grammar) page may also appear, but there do not seem to be any of these in this file.
 By fixing these items, we can shorten sentences and improve the overall document.
 
 Although there are not many difficult words in this file, it may be worthwhile to at least review them.
-Click on the **Words Breakdown** icon on the project sidebar. This will display various lists of difficult words.
+Click on the **Words Breakdown** icon on the project sidebar.
+This will display various lists of difficult words.
 Select the **3+ syllable words** page and click on the **Syllable Count** column header twice to [sort](#sec-column-sorting) the words into descending order.
 As illustrated below, there are a few words containing four syllables, which can be difficult for most readers.
 
@@ -211,7 +220,8 @@ The program will switch to the **3+ syllable words** page, as illustrated below:
 
 You can click on any of the other pages to view other difficult words in their original context, such as 6+ character words or unfamiliar [New Dale-Chall](#sec-dale-chall-test) words.
 
-To continue simplifying this recipe, we will replace some of these difficult words. Words such as *incorporate*, *consequently*, and *gradually* could also be replaced with shorter, simpler synonyms.
+To continue simplifying this recipe, we will replace some of these difficult words.
+Words such as *incorporate*, *consequently*, and *gradually* could also be replaced with shorter, simpler synonyms.
 As illustrated below, we have replaced a few words, such as substituting *incorporate* with *add* and *gradually* with *slowly*.
 
 ![](images/non-generated/improvedwords.png)
@@ -290,7 +300,8 @@ Note that this option is also available on the [**Options**](#sec-options-overvi
 One last item to discuss about loading a webpage is whether you want to reanalyze it later as it changes.
 By default, the project will directly link to the webpage, although you can change this to embed a snapshot of the page into the project.
 To toggle this behavior, click the `r keys("Properties")` button on the **Home** tab to display the **Project Properties** dialog.
-Then click the **Project Settings** icon. Here, we can see that **Reload the source document when opening project** is selected.
+Then click the **Project Settings** icon.
+Here, we can see that **Reload the source document when opening project** is selected.
 
 ![](images/reloadwebpage.png){width=75% fig-align="center"}
 
@@ -309,7 +320,8 @@ In this example, we will review a document for overly-long sentences.
 This example will demonstrate the available methods for defining an overly-long sentence.
 In addition, it will also demonstrate how to search for and review these sentences.
 
-The first step is to open the example file "Features." From the **Help** tab, click the `r keys("Example Documents")` button and then select "Features" from the menu.
+The first step is to open the example file "Features."
+From the **Help** tab, click the `r keys("Example Documents")` button and then select "Features" from the menu.
 Next, when prompted about how to open the document, select **Create a new project**.
 
 You will then be presented with the **New Project** wizard dialog, as shown below:
@@ -330,7 +342,8 @@ If you are excluding [incomplete sentences](#sec-how-text-is-excluded) (the defa
 Because this file contains numerous incomplete sentences, the program will ask you if excluding them is what you truly intend.
 In this case, these sentences are just list items that we should ignore, so click **Continue excluding incomplete sentences**.
 
-Once the project is loaded, the readability scores will be presented. As we can see below, this document scores high within the collegiate range.
+Once the project is loaded, the readability scores will be presented.
+As we can see below, this document scores high within the collegiate range.
 
 ![](images/featuresscores.png)
 
@@ -474,7 +487,8 @@ Because of this, short text blocks like these are traditionally excluded and onl
 For this document, however, we prefer to analyze everything since so much of its content are disjointed text boxes.
 
 First, let's view the document. From the **Help** tab on the ribbon, click the `r keys('Example Documents')` button, and select "Summer Code Camp."
-Next, you will be prompted to either create a new project or view the document; select **View document**. Once the flyer is opened, note how it mostly contains simple text boxes:
+Next, you will be prompted to either create a new project or view the document; select **View document**.
+Once the flyer is opened, note how it mostly contains simple text boxes:
 
 ![](images/non-generated/summer-code-camp-flyer.png){width=75% fig-align="center"}
 
@@ -534,7 +548,8 @@ For now, however, we will first create summary graphs to give us an idea of what
 From the **Help** tab on the ribbon, click the `r keys('Example Documents')` button, and select "Instructional Disclaimer."
 Next, select **Create a new project**. When the **New Project Wizard** appears, leave the defaults and click `r keys('Finish')`.
 
-First, let's review the concepts of this document to get a broad idea of what it is about. Click **Words Breakdown** on the sidebar and then select **Key Word Cloud**.
+First, let's review the concepts of this document to get a broad idea of what it is about.
+Click **Words Breakdown** on the sidebar and then select **Key Word Cloud**.
 This word cloud shows the document's words, after they have been combined (via stemming) and common words (e.g., articles) have been removed.
 The size of the words are relative to their frequencies.
 As an example, the words "Company" and "Customer" appear much more frequently than any other word:
@@ -567,7 +582,8 @@ We can further see a breakdown of these complex words in the inner ring, where a
 
 Note that because we previously pressed `r keys('Showcase')`, the simple-word slices are translucent and their labels are hidden.
 
-Next, let's review a visual layout of the sentence lengths. Click **Sentences Breakdown** on the sidebar and then select **Lengths (Density)**.
+Next, let's review a visual layout of the sentence lengths.
+Click **Sentences Breakdown** on the sidebar and then select **Lengths (Density)**.
 Going from top-to-bottom, this graphic displays a row for each paragraph.
 Across each row is a box for each sentence in the respective paragraph.
 For each box, its length is shown as number at its center.
@@ -584,8 +600,8 @@ Click on the **Readability Scores** icon on the project sidebar and select **Fry
 
 ![](images/example-difficult-fry-showcased.png){width=75% fig-align="center"}
 
-Here, we can see that the document is scoring at *17+*. Long words are the main contributing factor
-for this, as the score point is pulled to the far right.
+Here, we can see that the document is scoring at *17+*.
+Long words are the main contributing factor for this, as the score point is pulled to the far right.
 Long sentences, however, have a much lesser effect given the vertical position of the point.
 
 Something to note is that because we enabled showcasing earlier, the section with the score will be more prominent.

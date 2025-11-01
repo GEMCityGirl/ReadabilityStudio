@@ -30,7 +30,8 @@ Because this test will use independent clauses, change the name to "Flesch (IC)"
 
 ![](images/custom-test-example1-test-name.png)
 
-Next, we will change the formula. The formula for Flesch is defined as:
+Next, we will change the formula.
+The formula for Flesch is defined as:
 
 $$
 I = 206.835 - (84.6*(B/W)) - (1.015*(W/S))
@@ -113,7 +114,8 @@ If you wish to override this, however, you can create a copy of a test and not s
 
 In this example, we will create a custom Flesch-Kincaid test and leave its formula unrestricted, allowing for scores such as 27 (i.e., 27^th^ grade).
 
-First, select the **Readability** tab of the ribbon. Next, click the `r keys('Custom')` button and select **Add Custom Test Based on...**.
+First, select the **Readability** tab of the ribbon.
+Next, click the `r keys('Custom')` button and select **Add Custom Test Based on...**.
 Select **Flesch-Kincaid** from the list, which will create a custom test based on Flesch-Kincaid.
 When the **Edit Custom Test** dialog appears, enter the name "Flesch-Kincaid (unclamped)":
 
@@ -195,7 +197,8 @@ For larger lists, this can be tedious and error prone.
 
 The other option is to use stemming.
 Stemming will compare the roots of the words between our list and our recipe, rather than the words themselves.
-For example, say that we have **English** stemming selected and the word *glaze* is on our list. In this case, *glaze* will be stemmed to *glaze*.
+For example, say that we have **English** stemming selected and the word *glaze* is on our list.
+In this case, *glaze* will be stemmed to *glaze*.
 As our recipe file is analyzed, words such as *glazed*, *glazes*, and *glazing* will also be stemmed to *glaze*.
 Because these words all share the same root as a word from our list, they will all be counted as familiar.
 The advantage of this approach is that we do not need to add every possible variation of every word on our list.
@@ -291,7 +294,8 @@ Because this test will use our own special type of scoring, set **Test result ty
 
 ![](images/custom-index-test-example-test-type.png)
 
-Next, we will enter the formula. Enter the following into the **Formula** field:
+Next, we will enter the formula.
+Enter the following into the **Formula** field:
 
 ```{.r}
 IF((FamiliarWordCount()/WordCount())*100 > 15, 3,  

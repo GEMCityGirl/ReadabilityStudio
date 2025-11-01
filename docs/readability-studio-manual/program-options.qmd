@@ -124,7 +124,8 @@ This dialog enables you to display or suppress various warnings and prompts, inc
   When opening a project which embeds the document's text, then an error message will be shown if the embedded text is not found within the project.
 - **Check if ClearType is turned on.**
   If ClearType is turned off, then the program will ask you about enabling it.
-  ClearType makes fonts smoother and easier to read. This applies to the Windows^®^ edition of *{{< var PROGRAM_NAME >}}* only.
+  ClearType makes fonts smoother and easier to read.
+  This applies to the Windows^®^ edition of *{{< var PROGRAM_NAME >}}* only.
 - **Prompt about whether to set the application's word exclusion list from a project.**
   When adding a word exclusion list from the ribbon for the first time, you will be prompted about setting this list to be included in all future projects. 
 
@@ -249,12 +250,14 @@ The following options control how line ends affect how paragraphs are counted.
 **only begin a new paragraph if following a valid sentence**: Select this option to only consider a line feed as the end of the current sentence and paragraph if it follows a valid sentence.
 This option is recommended for text that is formatted to a specific width (e.g., scanned documents).
 
-Two exceptions are made here. The first exception is for consecutive line feeds–these will be considered the start of a new paragraph.
+Two exceptions are made here.
+The first exception is for consecutive line feeds–these will be considered the start of a new paragraph.
 Consecutive line feeds normally indicate a title or chapter header that should be separated from the following paragraph.
 
 The second exception is if the line following a line feed is tabbed or bulleted–this will also indicate the start of a new paragraph.
 In narrative text, the first sentence of a paragraph is usually tabbed or spaced over.
-Also, items in a list are usually tabbed or bulleted. In both cases, the program will recognize these as new paragraphs.
+Also, items in a list are usually tabbed or bulleted.
+In both cases, the program will recognize these as new paragraphs.
 
 Both of these exceptions can be overridden by the options [**Ignore blank lines**](#sec-document-analysis) and **Ignore indenting**.
 
@@ -308,7 +311,8 @@ To override this, enter into this field the maximum words that an incomplete sen
 Any sentence containing more than this number of words will be considered complete, even if its terminating punctuation is absent.
 
 ::: {.notesection data-latex=""}
-Lines of text that resemble equations will continue to be marked as incomplete. Also, if **Aggressively exclude** is enabled, then list items with more words than this threshold will also continue to be excluded.
+Lines of text that resemble equations will continue to be marked as incomplete.
+Also, if **Aggressively exclude** is enabled, then list items with more words than this threshold will also continue to be excluded.
 :::
 
 Note that if you are not excluding any text, this option will still take effect for tests which explicitly exclude headers (e.g., Harris-Jacobson\index{Harris-Jacobson Wide Range!customizing!header exclusion}).
@@ -401,7 +405,8 @@ Rather than penalizing the document for containing these complex product names (
 
 **Words & phrases to exclude**: Enter the path to a text file containing words and phrases to ignore into this field.
 Any words or phrases from this file will be excluded from all calculations.
-The format for this text file is a single column, where each line is a separate word or phrase. For example:
+The format for this text file is a single column, where each line is a separate word or phrase.
+For example:
 
 > `ex nihilo`\
 > `quantum fluctuations`\
@@ -451,7 +456,8 @@ The following options control how numeric words are syllabized\index{syllables!n
 
 **Numerals are one syllable**: Select this option to have the program consider numeric words (e.g., numbers, dates, phone numbers) as monosyllabic.
 
-**Sound out each digit**: Select this option to have the program sound out each digit when counting the syllables of numeric words. For example, the word *555-4778* will be considered nine syllables–read as *five-five-five-four-sev-en-sev-en-eight*. As another example, *$52* will be considered four syllables (read as *five-two-doll-ars*).
+**Sound out each digit**: Select this option to have the program sound out each digit when counting the syllables of numeric words.
+For example, the word *555-4778* will be considered nine syllables–read as *five-five-five-four-sev-en-sev-en-eight*. As another example, *$52* will be considered four syllables (read as *five-two-doll-ars*).
 ::::
 
 ::: {.notesection data-latex=""}
@@ -465,7 +471,8 @@ This dialog can edit either a word or phrase list.
 **File containing list**: Enter the path to the list into this field.
 
 ::: {.minipage data-latex="{\textwidth}"}
-After selecting your list file, its words/phrases will be displayed in the grid below the file-path field. In this grid, you can edit your list with the following keyboard commands:
+After selecting your list file, its words/phrases will be displayed in the grid below the file-path field.
+In this grid, you can edit your list with the following keyboard commands:
 
 - `r keys('Del')` (`r os_logo('windows')`, `r os_logo('linux')`) or `r keys('\\backdel')` (`r os_logo('apple')`)—removes the selected item(s) from the list.
 - `r keys("Ins")`—edits the selected item in the list. Double-clicking an item with the mouse will also edit it.
@@ -779,7 +786,8 @@ Numerals are words that consist of 50% (or more) numbers.
 **Ignore Internet and file addresses**: Check this to not spell check file paths and website addresses.
 
 **Ignore programmer code**: Check this to not spell check words with mixed upper and lower case words.
-This is useful for excluding programming syntax which may appear in computer-related documents. For example:
+This is useful for excluding programming syntax which may appear in computer-related documents.
+For example:
 
 :::: {.fancyquotes data-latex=''}
 ::: {.FlushLeft data-latex=''}
@@ -796,7 +804,8 @@ Checking this option will instruct the program to not spell check words such as 
 **Allow colloquialisms**: Check this to allow colloquialisms, such as *ing* at the end of a word being replaced with *in'*. For example:
 
 ::: {.fancyquotes data-latex=''}
-He's been takin' that test for five hours. He ain't never goin' to finish.
+He's been takin' that test for five hours.
+He ain't never goin' to finish.
 :::
 
 Checking this option will instruct the program to not consider words such as *takin’* and *goin’* as misspellings.
@@ -1012,7 +1021,8 @@ The options on this page customize various readability graph settings.
 Raygor style
 :::
 
-Selects the layout style of the Raygor graph. These options include:
+Selects the layout style of the Raygor graph.
+These options include:
 
 **Original**: As the graph appeared in the original presentation [@{raygor}261].
 This will show grade labels being closer together, abbreviated, and with a san-serif font.
@@ -1077,7 +1087,8 @@ This will appear as if bars are warped and look like they were filled in with wa
 **Common image**: Select this option to draw an image under the graph, with it only showing through were the bars are at.
 ::::
 
-**Opacity**: Sets the transparency of the bars. A value of 255 will set the bars to be fully opaque, whereas 0 will set the bars to be transparent.
+**Opacity**: Sets the transparency of the bars.
+A value of 255 will set the bars to be fully opaque, whereas 0 will set the bars to be transparent.
 
 :::: {.optionssection data-latex=""}
 ::: {.optionssectiontitle data-latex=""}
@@ -1243,7 +1254,8 @@ Effect
 
 **Color fade, right to left**: Select this option to apply a color fade across your boxes (starting from the right).
 
-**Stipple image**: Select this option to draw a stack of images across your boxes. The image for this brush is specified on the [**General**](#sec-options-graphs) page.
+**Stipple image**: Select this option to draw a stack of images across your boxes.
+The image for this brush is specified on the [**General**](#sec-options-graphs) page.
 
 **Stipple shape**: Select this option to draw a shape across your boxes.
 The shape for this brush is specified on the [**General**](#sec-options-graphs) page.
@@ -1254,15 +1266,18 @@ This will appear as if boxes are warped and look like they were filled in with w
 **Common image**: Select this option to draw an image under the graph, with it only showing through were the boxes are at.
 ::::
 
-**Opacity**: Sets the transparency of the box. A value of 255 will set the box to be fully opaque, whereas 0 will set the box to be transparent.
+**Opacity**: Sets the transparency of the box.
+A value of 255 will set the box to be fully opaque, whereas 0 will set the box to be transparent.
 
 #### Box Options: {-}
 
 **Display box & whisker labels**: Check this to display labels on the middle points, upper/lower control limits, and whiskers.
 
-**Connect middle points**: Check this to display a line connecting the middle points of each box. This only applies to plots with multiple boxes.
+**Connect middle points**: Check this to display a line connecting the middle points of each box.
+This only applies to plots with multiple boxes.
 
-**Show all data points**: Check this to display all data points on the box and whiskers. If this is unchecked, then only outliers will be shown.
+**Show all data points**: Check this to display all data points on the box and whiskers.
+If this is unchecked, then only outliers will be shown.
 
 **Box coefficient**: Enter the coefficient here to specify the percentiles range used for the upper and lower control limits.
 For example, a coefficient of 25 will use the 25^th^ and 75^th^ percentiles range (i.e., the quartiles range).

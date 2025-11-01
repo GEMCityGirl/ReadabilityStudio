@@ -1,8 +1,11 @@
 ## Flesch-Kincaid\index{Flesch-Kincaid|(idxit} {#sec-flesch-kincaid-test}
 
-The Flesch-Kincaid readability formula is Kincaid et al.'s modified version of [Flesch Reading Ease](#sec-flesch-test) [-@{kincaid-fishburne-rogers-chissom:1975}14] that was recalculated "to be more suitable for Navy use" [-@{kincaid-fishburne-rogers-chissom:1975}11]; hence, it is designed for technical documents and manuals. In addition to being a recalculation, this variation of Flesch returns a grade-level result, rather than an index score. This test calculates the grade level of a document based on sentence length and syllable count.
+The Flesch-Kincaid readability formula is Kincaid et al.'s modified version of [Flesch Reading Ease](#sec-flesch-test) [-@{kincaid-fishburne-rogers-chissom:1975}14] that was recalculated "to be more suitable for Navy use" [-@{kincaid-fishburne-rogers-chissom:1975}11]; hence, it is designed for technical documents and manuals.
+In addition to being a recalculation, this variation of Flesch returns a grade-level result, rather than an index score.
+This test calculates the grade level of a document based on sentence length and syllable count.
 
-This test was trained against reading-test results from 531 U.S. Navy personnel from four Naval technical training schools. Using these results, the following multiple regression equation was derived:
+This test was trained against reading-test results from 531 U.S. Navy personnel from four Naval technical training schools.
+Using these results, the following multiple regression equation was derived:
 
 ::: {.callout-note icon=false}
 ## Flesch-Kincaid formula
@@ -39,7 +42,9 @@ For example, "1918" will be counted as four syllables ("one"-"nine"-"one"-"eight
 [This behavior can be adjusted from the [**Options**](#sec-readability-test-options) dialog if you prefer a different numeral syllabizing method.]{.content-hidden when-profile="reference"}
 
 ::: {.notesection data-latex=""}
-The simplified version of this formula uses a lower precision calculation. It was originally offered for making a manual calculation of this test easier. With the modern availability of computers, it is recommended to use the higher-precision formula.
+The simplified version of this formula uses a lower precision calculation.
+It was originally offered for making a manual calculation of this test easier.
+With the modern availability of computers, it is recommended to use the higher-precision formula.
 :::
 
 \index{Flesch-Kincaid|)}
