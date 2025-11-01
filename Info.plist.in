@@ -14,43 +14,73 @@
 	<key>CFBundleIconFile</key>
 	<string>app-logo.icns</string>
 
-  <key>CFBundleDocumentTypes</key>
+   <key>CFBundleDocumentTypes</key>
+   <array>
+     <dict>
+       <key>CFBundleTypeName</key>
+       <string>${readstudio_DESCRIPTION} Project</string>
+       <key>LSItemContentTypes</key>
+       <array>
+         <string>${PROGRAM_RDNS_IDENTIFIER}.rsp</string>
+       </array>
+       <key>CFBundleTypeIconFile</key>
+       <string>app-logo.icns</string>
+       <key>CFBundleTypeRole</key>
+       <string>Editor</string>
+     </dict>
+
+     <dict>
+       <key>CFBundleTypeName</key>
+       <string>${readstudio_DESCRIPTION} Batch Project</string>
+       <key>LSItemContentTypes</key>
+       <array>
+         <string>${PROGRAM_RDNS_IDENTIFIER}.rsbp</string>
+       </array>
+       <key>CFBundleTypeIconFile</key>
+       <string>app-logo.icns</string>
+       <key>CFBundleTypeRole</key>
+       <string>Editor</string>
+     </dict>
+   </array>
+
+  <key>UTExportedTypeDeclarations</key>
   <array>
     <dict>
-      <key>CFBundleTypeExtensions</key>
+      <key>UTTypeIdentifier</key>
+      <string>${PROGRAM_RDNS_IDENTIFIER}.rsp</string>
+      <key>UTTypeDescription</key>
+      <string>${readstudio_DESCRIPTION} Project</string>
+      <key>UTTypeConformsTo</key>
       <array>
-        <string>rsp</string>
+        <string>com.pkware.zip-archive</string>
+        <string>public.data</string>
       </array>
-      <key>CFBundleTypeIconFile</key>
-      <string>app-logo.icns</string>
-      <key>CFBundleTypeMIMETypes</key>
-      <array>
-        <string>application/zip</string>
-      </array>
-      <key>CFBundleTypeName</key>
-      <string>{readstudio_DESCRIPTION} Project</string>
-      <key>CFBundleTypeRole</key>
-      <string>Editor</string>
-      <key>LSTypeIsPackage</key>
-      <true/>
+      <key>UTTypeTagSpecification</key>
+      <dict>
+        <key>public.filename-extension</key>
+        <array><string>rsp</string></array>
+        <key>public.mime-type</key>
+        <array><string>application/zip</string></array>
+      </dict>
     </dict>
+
     <dict>
-      <key>CFBundleTypeExtensions</key>
+      <key>UTTypeIdentifier</key>
+      <string>${PROGRAM_RDNS_IDENTIFIER}.rsbp</string>
+      <key>UTTypeDescription</key>
+      <string>${readstudio_DESCRIPTION} Batch Project</string>
+      <key>UTTypeConformsTo</key>
       <array>
-        <string>rsbp</string>
+        <string>com.pkware.zip-archive</string>
+        <string>public.data</string>
       </array>
-      <key>CFBundleTypeIconFile</key>
-      <string>app-logo.icns</string>
-      <key>CFBundleTypeMIMETypes</key>
-      <array>
-        <string>application/zip</string>
-      </array>
-      <key>CFBundleTypeName</key>
-      <string>{readstudio_DESCRIPTION} Batch Project</string>
-      <key>CFBundleTypeRole</key>
-      <string>Editor</string>
-      <key>LSTypeIsPackage</key>
-      <true/>
+      <key>UTTypeTagSpecification</key>
+      <dict>
+        <key>public.filename-extension</key>
+        <array><string>rsbp</string></array>
+        <key>public.mime-type</key>
+        <array><string>application/zip</string></array>
+      </dict>
     </dict>
   </array>
 
