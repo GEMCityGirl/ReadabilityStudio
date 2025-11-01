@@ -370,7 +370,8 @@ Click the `r keys("OK")` button and our new test will be added to the system.
 To add this test to any project, first select the **Readability** tab. Next, click the `r keys("Custom Tests")` button and then select **Buzz Index**.
 Select the **Readability Scores** icon on the project pane and note that Buzz Index has been added to the project's results:
 
-To demonstrate this, click the **Help** tab of the ribbon. Then, click the `r keys("Examples")` button and select **Press Release** from the menu.
+To demonstrate this, click the **Help** tab of the ribbon.
+Then, click the `r keys("Examples")` button and select **Press Release** from the menu.
 Choose the defaults in the standard [**New Project**](#sec-creating-standard-project) wizard to create a new project from this document.
 
 Once the file is processed, click the **Highlighted Reports** icon on the sidebar to view the document.

@@ -144,7 +144,10 @@ By default, the program will only chain lines together if all the following crit
 
 In the above example, the program will detect the blank line between the header and the first sentence and not chain them together.
 Instead, the header will be seen as an [incomplete sentence](#sec-how-text-is-excluded).
-The program will also detect how the list items are tabbed over and not chain them together. Instead, each list item will be seen as an incomplete sentence. Any line that begins with a tab or two (or more) spaces will be considered as a tabbed line. Lines that begin with hyphens, dashes, or numbers followed by a period will be considered bulleted and will also not be chained to the proceeding sentence.
+The program will also detect how the list items are tabbed over and not chain them together.
+Instead, each list item will be seen as an incomplete sentence.
+Any line that begins with a tab or two (or more) spaces will be considered as a tabbed line.
+Lines that begin with hyphens, dashes, or numbers followed by a period will be considered bulleted and will also not be chained to the proceeding sentence.
 
 As we can see, the program helps avoid incorrect line chaining.
 Just as important, it will chain lines correctly when it is actually necessary.
@@ -237,7 +240,9 @@ Refer to @sec-chain-sentences-example for an example.
 ## How Syllables are Counted\index{syllables!counting}
 
 Most software that counts syllables employs one of two methods.
-The first is a dictionary-based system that includes a list of common words and their respective syllable counts. As the software counts a document's syllables, each word is looked up in a dictionary to retrieve its syllable count. The disadvantage of this method is that if a word is not found, then the program must prompt you to enter the syllable count.
+The first is a dictionary-based system that includes a list of common words and their respective syllable counts.
+As the software counts a document's syllables, each word is looked up in a dictionary to retrieve its syllable count.
+The disadvantage of this method is that if a word is not found, then the program must prompt you to enter the syllable count.
 
 The second syllable-counting method is to use an algorithm.
 These algorithms generally consist of counting vowel blocks[^silentEFootnote] in a word to determine the syllable count.
@@ -345,7 +350,8 @@ For example:
 *A SDLC* meeting should be held after the product is launched.
 :::
 
-The program will sound out the letters in *SDLC* because it has no vowels, resulting in *es dee el see*. Because of the *es* sound, the article *an* is required.
+The program will sound out the letters in *SDLC* because it has no vowels, resulting in *es dee el see*.
+Because of the *es* sound, the article *an* is required.
 Therefore, the program will mark this as an article mismatch.
 
 Note that if an acronym contains a vowel, then the program will assume that it is pronounced as a regular word. For example:

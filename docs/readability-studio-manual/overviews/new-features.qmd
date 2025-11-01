@@ -13,7 +13,8 @@ source('../R/appdown.r')
 ### General Enhancements {-}
 
 - Program's interface is now available in Spanish.
-- Added Lua scripting. This allows for programming your own scripts to automate various tasks.
+- Added Lua scripting.
+  This allows for programming your own scripts to automate various tasks.
 - Added document's last modified time to the summary statistics (standard projects).
 - **Web Harvester** improvements:
   - Previous download folder is now saved.
@@ -86,13 +87,15 @@ source('../R/appdown.r')
 - Greatly enhanced editing documents that are embedded within standard projects.
   (Refer to [@sec-rs-as-an-editor]{.content-visible when-profile="online"}["Editing within {{< var PROGRAM_NAME >}}"]{.content-hidden when-profile="online"} for an example.)
   - Added a save button to the editor that will cause the project to analyze your changes immediately.
-  - The project window can now be selected while the editor is open. This allows for changing options, adding tests, and viewing different results while the editor is active.
+  - The project window can now be selected while the editor is open.
+    This allows for changing options, adding tests, and viewing different results while the editor is active.
   - Added find &amp; replace, undo/redo, and clipboard operations to the editor.
   - Added the ability to change the font, indenting, and text alignment in the editor.
 - Added a [Summary Statistics](#sec-reviewing-batch-summary-stats) list to batch projects.
 - Printer [headers and footers](#sec-printing) are now more customizable.
 - Sidebar improvements:
-  - Clicking an expanded folder will collapse it. (Double clicking it is no longer necessary.)
+  - Clicking an expanded folder will collapse it.
+    (Double clicking it is no longer necessary.)
   - Can now be shown/hidden with the `r keys('F2')` key or from the ribbon.
 - **Custom Test Editor** improvements:
   - The function browser is now embedded in this dialog (rather than being a separate window).
@@ -112,7 +115,8 @@ source('../R/appdown.r')
   - Added a **Minimum file size to download** option to the **Web Harvester** dialog.
   - Added **Replace existing files** option to the **Web Harvester** dialog.
     This allows for renaming files as they are downloaded to avoid overwriting existing ones.
-  - A depth level of 0 can now be entered. This allows for only downloading the base webpage(s) and nothing else.
+  - A depth level of 0 can now be entered.
+    This allows for only downloading the base webpage(s) and nothing else.
   - Performance improvements; less requests are now sent to servers while crawling them.
   - **Restricted to same folder** domain restriction will now include links from sub-directories of the specified folder.
 - Improved dark mode appearance (Windows)
@@ -124,7 +128,8 @@ source('../R/appdown.r')
 - The **Readability Graphs** page on the **Options** dialog has been moved to be under the **Graphs** section.
 - **Ignore social media hashtags** feature of spell checker now recognizes handles, such as *\@AskLibreOffice*.
 - Projects that were created from manually entered text can now be changed to link to external documents.
-- Improved the view item dialog for list controls. It is now easier to select and copy individual cells.
+- Improved the view item dialog for list controls.
+  It is now easier to select and copy individual cells.
 - Added button to the batch project wizard that applies a group label to the selected documents.
 - Added margins to all text windows.
 - Added keyboard shortcuts for editing word and file lists.
@@ -195,7 +200,8 @@ source('../R/appdown.r')
 
 ### Importing/Exporting Enhancements {-}
 
-- Added Markdown importer. Standard Markdown, *RMarkdown*, and *Quarto* documents are supported.
+- Added Markdown importer.
+  Standard Markdown, *RMarkdown*, and *Quarto* documents are supported.
 - Lists can now be exported as {{< latex >}} (in `longtable{}` environments).
 - HTML importer:
   - Improved detection of link lists.
@@ -317,7 +323,8 @@ source('../R/appdown.r')
 - Lix and Rix are now available in the **Adult** readability tests menu.
 - Added **Ignore social media hashtags** option to spell-checker.
 - Expanded spell-checker to include government, economics, business, accounting, chemistry, biology, and psychology terminology.
-- New formula-parsing engine used for custom tests. This includes the following changes:
+- New formula-parsing engine used for custom tests.
+  This includes the following changes:
   - `AVG` function has been renamed `AVERAGE`.
   - `COTAN` function has been renamed `COT`.
   - `RANDOM` function has been renamed `RAND` and always returns a value between 0 and 1 (same as Excel).
@@ -459,7 +466,8 @@ source('../R/appdown.r')
 - Added support for OpenDocument Presentation files.
 - Added support for HTTPS website links (password-protected pages not supported).
 - Improvements to OpenDocument Text importer.
-- Added SVG exporting for graphs. (Bar and box color fade is not currently supported.)
+- Added SVG exporting for graphs.
+  (Bar and box color fade is not currently supported.)
 - Improvements to workaround bad formatting when importing HTML documents.
 - Improved Symbol font correction in HTML files.
 - Added log messages for importing/formatting issues encountered while loading documents.
@@ -506,7 +514,8 @@ source('../R/appdown.r')
 - Added ability to choose which sections of statistics appear in the summary reports.
 - **Total Words** column added to the **Words Breakdown** list in batch projects.
 - Excluded text is now shown as stricken out in the text reports.
-- New, improved project wizard. All pages are now integrated into a single dialog.
+- New, improved project wizard.
+  All pages are now integrated into a single dialog.
 - Tooltips are now shown on the ribbon.
 - Help button and toggle button added to the ribbon.
 - Added hide/show button to project sidebar.
@@ -620,7 +629,8 @@ source('../R/appdown.r')
 ### Graph Enhancements {-}
 
 - Graph zooming added.
-- Improved appearance of graphs on larger displays. Graph fonts and lines will now scale as graphs are resized.
+- Improved appearance of graphs on larger displays.
+  Graph fonts and lines will now scale as graphs are resized.
 - Blank templates of readability graphs can now be saved, copied, and printed.
 - The color and opacity of graph plot areas can now be customized.
 - A box plot showing the document's sentence lengths added to standard projects.
@@ -640,14 +650,16 @@ source('../R/appdown.r')
 ### Analysis/Test Enhancements {-}
 
 - Added ability to display different grade scales.
-  Currently, U.S., Canadian, and U.K. grade scales are available. This affects:
+  Currently, U.S., Canadian, and U.K. grade scales are available.
+  This affects:
     - score lists (standard project)
     - raw and aggregated scores lists (batch project)
     - explanations for each test
     - tooltips in Fry and Raygor graphs
     - bin labels with grade histograms
     - y axis of box plots
-- Added Spanish document analysis features. This includes specialized Spanish syllabizer and tests:
+- Added Spanish document analysis features.
+  This includes specialized Spanish syllabizer and tests:
     - Added [Gilliam-Peña-Mountain Fry Graph](#sec-gilliam-pena-mountain-fry-graph).
     - Added [Crawford](#sec-crawford) test.
     - Added [FRASE](#sec-frase) graph.
@@ -692,7 +704,8 @@ source('../R/appdown.r')
 - Added **unique words count** to the **Statistics** window.
 - Summary statistics now available in tabular format.
 - When printing lists, the table is now split into smaller tables with page breaks between them.
-  In addition, the header row appears on each page. Tables are also split into separate pages if there are too many columns to fit on one page.
+  In addition, the header row appears on each page.
+  Tables are also split into separate pages if there are too many columns to fit on one page.
 - When exporting lists as HTML, the aforementioned page break feature can optionally be included.
 - Borders for lists, statistics window, and test window are now ½ inch (instead of a full inch) when printing.
 - Optimized list HTML output (output files are 10–15% smaller).

@@ -72,4 +72,4 @@ Available command line options include:
 | `/LOG="filename"` | Same as `/LOG`, but writes to the provided filename. |
 | `/NORESTART` | Do not reboot after installation, even if necessary. |
 | `/CLOSEAPPLICATIONS` | (Updater only) Close *{{< var PROGRAM_NAME >}}* if open during the update. |
-| `/DIR="c:\foldername"` | (Installer and updater only) Where to install (or update) the program. (This will override the default installation path.) |
+| `/DIR="c:\foldername"` | (Installer and updater only) Where to install (or update) the program.<br>\linebreak (This will override the default installation path.) |

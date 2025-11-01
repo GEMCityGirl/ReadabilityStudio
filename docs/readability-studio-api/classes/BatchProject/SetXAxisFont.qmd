@@ -16,8 +16,8 @@ SetXAxisFont(string fontName,
 
 **Parameter** | **Description**
 | :-- | :-- |
-| `string` fontName | The name of the font. (The values `"CURSIVE"` and `"MONOSPACE"` can also be used.) | 
-| `number` pointSize | (Optional) The point size of the font. (Enter -1 to keep the current font size.) | 
+| `string` fontName | The name of the font.<br>\linebreak (The values `"CURSIVE"` and `"MONOSPACE"` can also be used.) | 
+| `number` pointSize | (Optional) The point size of the font.<br>\linebreak (Enter -1 to keep the current font size.) | 
 | [`FontWeight`](#fontweight) weight | (Optional) The weight of the font. | 
 | `string` color | (Optional) The name of the color. |
 :::

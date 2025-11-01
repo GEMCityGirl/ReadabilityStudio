@@ -57,7 +57,8 @@ By default, the following statistics for each test are included:
 - [Maximum](#sec-stat-terms): the highest test score.
 - [Range](#sec-stat-terms): the distance between the lowest and highest test scores.
 - [Mode(s)](#sec-stat-terms)\index{mode}: the most frequently occurring score.
-  In the case of a tie, all modes will be listed. Note that grade scores are rounded down when searching for the mode.
+  In the case of a tie, all modes will be listed.
+Note that grade scores are rounded down when searching for the mode.
 - [Means](#sec-stat-terms)\index{mean}: the average test score.
   This is calculated by adding all the scores and dividing the total by the number of scores.
 :::
@@ -115,13 +116,15 @@ Both of these tabs will include the same statistics as the **Score Summary** pag
 
 After opening a project, click on the **Histograms** icon on the project sidebar to view your documents' test scores graphically plotted as histograms.
 
-A histogram will be created for each test. For grade level tests, the bins (i.e., bars) will represent either a grade or range of grades.
+A histogram will be created for each test.
+For grade level tests, the bins (i.e., bars) will represent either a grade or range of grades.
 The height of each bar will reflect the number of documents that scored within the bar's range.
 In the histogram below, we can see that 15 documents scored within the 10^th^ grade range for the [Flesch-Kincaid](#sec-flesch-kincaid-test) test:
 
 ![](images/histogrades.png){width=75% fig-align="center"}
 
-We interpret this first by looking at the highest bar. The label above it displays *15*, which is the number of documents in that category.
+We interpret this first by looking at the highest bar.
+The label above it displays *15*, which is the number of documents in that category.
 Now, to see the category, we look at the x-axis labels below the bar.
 The *10* on the middle of the bar indicates the bar's range (in this case, the 10^th^ grade).
 Because we are [rounding](#sec-options-graphs) our scores down (the default), scores such as 9.7 will be rounded down and fall into the previous bin (i.e., bar).
@@ -237,7 +240,8 @@ As we can see below, the longest sentence is now shown at the top of the list.
 If the test scores indicate that the documents are too difficult for your audience, then review the overly-long sentences.
 You should consider splitting these sentences into smaller ones and revising any [wordy items](#sec-reviewing-batch-grammar).
 
-To view a specific document's longest sentence, double-click on its row in this list. A vertical display of that document's longest sentence will be shown:
+To view a specific document's longest sentence, double-click on its row in this list.
+A vertical display of that document's longest sentence will be shown:
 
 ![](images/batchlongestsentenceviewitem.png)
 
@@ -302,7 +306,8 @@ For example, if *the the* occurs two separate times in a given document, then th
 
 ![](images/batchrepeatedmultiple.png){width=75% fig-align="center"}
 
-To view a specific document's repeated words, double-click on its row in this list. A vertical display of that document's repeated words will be shown:
+To view a specific document's repeated words, double-click on its row in this list.
+A vertical display of that document's repeated words will be shown:
 
 ![](images/batchrepeatedviewitem.png){width=75% fig-align="center"}
 

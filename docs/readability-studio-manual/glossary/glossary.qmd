@@ -83,7 +83,8 @@ The blending of word sounds together often found in poetry.
 unit\index{sentences!units}
 :::
 ::: {.glsdef data-latex=''}
-A section of text ending with a period, exclamation mark, question mark, interrobang, colon, semicolon, or dash. Lengthy, complex sentences generally contain more than one unit.
+A section of text ending with a period, exclamation mark, question mark, interrobang, colon, semicolon, or dash.
+Lengthy, complex sentences generally contain more than one unit.
 :::
 ::::
 
@@ -239,7 +240,8 @@ plot(ggplot_box_legend())
 IRQ
 :::
 ::: {.glsdef data-latex=''}
-Interquartile range. Refer to @fig-boxplot.
+Interquartile range.
+Refer to @fig-boxplot.
 :::
 ::::
 
@@ -260,7 +262,8 @@ Zero indicates a normal distribution, a negative value indicates a flat distribu
 lower quartile
 :::
 ::: {.glsdef data-latex=''}
-The value at the 25% percentile. This is the value separating the lower quarter of the values from the rest of the values.
+The value at the 25% percentile.
+This is the value separating the lower quarter of the values from the rest of the values.
 :::
 ::::
 
@@ -278,7 +281,8 @@ The highest value in a range of data.
 mean\index{mean}
 :::
 ::: {.glsdef data-latex=''}
-The average value of a range of data. This is calculated by adding all the values and dividing the total by N.
+The average value of a range of data.
+This is calculated by adding all the values and dividing the total by N.
 :::
 ::::
 
@@ -434,7 +438,8 @@ The distance between the lowest and highest values in a range of data.
 skewness\index{skewness}
 :::
 ::: {.glsdef data-latex=''}
-The asymmetry of the probability distribution. A zero skew indicates a symmetrical balance in the distribution.
+The asymmetry of the probability distribution.
+A zero skew indicates a symmetrical balance in the distribution.
 A negative skew indicates that the left side of the distribution is longer and most of the values are concentrated on the right.
 A positive skew indicates that the right side of the distribution is longer and most of the values are concentrated on the left.  
 
@@ -447,7 +452,8 @@ A positive skew indicates that the right side of the distribution is longer and 
 standard deviation\index{standard deviation}
 :::
 ::: {.glsdef data-latex=''}
-The variability (or spread) of the values. A low standard deviation indicates that most values are close to the data's mean.
+The variability (or spread) of the values.
+A low standard deviation indicates that most values are close to the data's mean.
 In contrast, a high standard deviation indicates values that stray far from the mean.
 :::
 ::::

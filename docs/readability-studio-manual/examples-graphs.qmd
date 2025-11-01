@@ -21,7 +21,8 @@ A bar chart showing a breakdown of word categories will be displayed:
 
 ![](images/example-graph-default.png){width=75% fig-align="center"}
 
-Now we will customize the appearance of this graph. One change that we can make is to reorder the columns in this bar chart.
+Now we will customize the appearance of this graph.
+One change that we can make is to reorder the columns in this bar chart.
 On the **Home** tab, click the `r keys("Sort")` button under the **Edit** section.
 Select **Sort Descending** from the menu and note that the bars are now shown from largest to smallest from the origin:
 
@@ -32,7 +33,8 @@ When changing the order of the bars, any axis brackets surrounding them will be 
 :::
 
 Next, we can change the direction of the bars.
-Click the `r keys("Orientation")` button in the **Edit** section. Select **Vertical** from the menu.
+Click the `r keys("Orientation")` button in the **Edit** section.
+Select **Vertical** from the menu.
 
 Now the bars will be arranged vertically:
 
@@ -88,7 +90,8 @@ Click the `r keys("Background")` button and select `r menu(c('Plot Image', 'Effe
 
 ## Adding Watermarks and Logos {#sec-graph-watermark-example}
 
-Next, let's put a [watermark](#sec-options-graphs) across our graph. Click the `r keys("Watermark")` button in the **Edit** section.
+Next, let's put a [watermark](#sec-options-graphs) across our graph.
+Click the `r keys("Watermark")` button in the **Edit** section.
 Enter the following into the **Watermark** dialog and click `r keys("OK")`:
 
 > INTERNAL USE ONLY
@@ -104,7 +107,8 @@ Entering `@DATE@` in the watermark field will show the current date when the gra
 Refer to @sec-options-graphs for other watermark options.
 :::
 
-Now let's put a company logo on our graph. Click the `r keys("Logo")` button in the **Edit** section.
+Now let's put a company logo on our graph.
+Click the `r keys("Logo")` button in the **Edit** section.
 Select an image and click `r keys("OK")`.
 
 ::: {.minipage data-latex="{\textwidth}"}
@@ -136,7 +140,8 @@ After selecting an image, the bars will be drawn as a repeating pattern of this 
 Enabling the **Shadows** option on the ribbon will draw a shadow under each image.
 :::
 
-Note that images of any size can be used. If the image is larger than the bars' width, then it will be scaled downed to fit.
+Note that images of any size can be used.
+If the image is larger than the bars' width, then it will be scaled downed to fit.
 Images that are smaller will remain their original size (rather than being upscaled) to preserve their quality.
 
 Along with images, a set of predefined shapes are also available to choose from.
@@ -164,9 +169,11 @@ When the **New Project** wizard appears, leave the defaults and click `r keys("F
 
 Once the project has finished loading, select **Words Breakdown** on the sidebar, then click **Word Counts** beneath that.
 A bar chart showing a breakdown of word categories will be displayed.
-First, let's remove the labels to simplify the graph. On the **Home** tab of the ribbon, click the `r keys("Labels")` button so that is it unpressed.
+First, let's remove the labels to simplify the graph.
+On the **Home** tab of the ribbon, click the `r keys("Labels")` button so that is it unpressed.
 
-Next, we will use an image to be displayed across all the bars. On the **Home** tab, click `r menu(c('Bar Style', 'Common Image'))`.
+Next, we will use an image to be displayed across all the bars.
+On the **Home** tab, click `r menu(c('Bar Style', 'Common Image'))`.
 When the image selection dialog appears, select an image and click `r keys("OK")`.
 Now, the bars will be filled with the image:
 
@@ -209,9 +216,11 @@ From the **Help** tab on the ribbon, click the `r keys("Example Documents")` but
 When the **New Project** wizard appears, leave the defaults and click `r keys("Finish")`.
 
 Once the project has finished loading, select **Words Breakdown** on the sidebar, then click **Word Counts** beneath that.
-First, let's remove the labels to simplify the graph. On the **Home** tab of the ribbon, click the `r keys("Labels")` button so that is it unpressed.
+First, let's remove the labels to simplify the graph.
+On the **Home** tab of the ribbon, click the `r keys("Labels")` button so that is it unpressed.
 
-Next, we will remove any visual effect from the bars. On the **Home** tab, click `r menu(c('Bar Style', 'Solid'))`.
+Next, we will remove any visual effect from the bars.
+On the **Home** tab, click `r menu(c('Bar Style', 'Solid'))`.
 Then, click `r menu(c('Bar Style', 'Color...'))` and select a light gray.
 
 Next, click the `r keys("Font")` button and select `r menu(c('X Axis...'))`.

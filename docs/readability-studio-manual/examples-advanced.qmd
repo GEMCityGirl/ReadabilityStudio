@@ -28,7 +28,8 @@ Here we have short descriptions about a job posting that we will want to preserv
 ![](images/non-generated/JostPostingViewDocument.png){width=75% fig-align="center"}
 
 Close this document and return to *{{< var PROGRAM_NAME >}}*.
-Click the `r keys('Example Documents')` button and again select "Job Posting." Next, select **Create a new project**.
+Click the `r keys('Example Documents')` button and again select "Job Posting."
+Next, select **Create a new project**.
 When the **New Project Wizard** appears, select the **Document Structure** page and check **Line ends (i.e., hard returns) mark the start of a new paragraph**:
 
 ![](images/wizarddocstructurehardreturns.png)
@@ -56,7 +57,8 @@ As shown below, we can see a sentence that is partially on top of an image, and 
 
 ![](images/non-generated/peter-rabbit-browser.png){width=75% fig-align="center"}
 
-Close this document and return the **Help** tab. Click the `r keys("Example Documents")` button and again select *The Tale of Peter Rabbit*.
+Close this document and return the **Help** tab.
+Click the `r keys("Example Documents")` button and again select *The Tale of Peter Rabbit*.
 This time, select **Create a new project**.
 From the [project wizard](#sec-creating-standard-project), select the **Document Structure** page and note the option **Sentences are split**.
 Selecting this will instruct the program to ignore hard returns and blank lines and combine these fragments into full sentences:
@@ -163,7 +165,8 @@ Note how *http://www.jstor.org/* is now excluded:
 
 Other items, such as proper nouns\index{proper nouns!excluding} and numbers\index{numerals!excluding} can also be excluded.
 Go to the **Document Indexing** options, check **Also exclude numerals** and **Also exclude proper nouns**, and click `r keys("OK")`.
-Then scroll to the top of the report window. First note how numbers, such as the page citation and computer series, are now excluded:
+Then scroll to the top of the report window.
+First note how numbers, such as the page citation and computer series, are now excluded:
 
 ![](images/exclusion-example-numbers-excluded-now.png){width=75% fig-align="center"}
 
@@ -288,7 +291,8 @@ When the project appears, select **Flesch Reading Ease** under the **Scores** se
 
 ![](images/addendum-flesch1.png){width=75% fig-align="center"}
 
-Note that this new flyer is difficult, so let’s review it. Click **Words Breakdown** on the sidebar and then select **3+ Syllables Report**.
+Note that this new flyer is difficult, so let’s review it.
+Click **Words Breakdown** on the sidebar and then select **3+ Syllables Report**.
 As we scroll through this window, note the highlighted difficult words:
 
 ::: {layout-ncol=2}
@@ -311,11 +315,13 @@ Select the file "Instructional Disclaimer.odt":
 You can also enter *@[EXAMPLESDIR]/Instructional Disclaimer.odt* into the **Append Additional Document** field and the program will find the file in the examples folder for you.
 :::
 
-Click `r keys('OK')` to accept. When the project finishes reloading, select **Flesch Reading Ease** under the **Scores** section again.
+Click `r keys('OK')` to accept.
+When the project finishes reloading, select **Flesch Reading Ease** under the **Scores** section again.
 
 ![](images/addendum-flesch2.png){width=75% fig-align="center"}
 
-Note how the document is now very difficult. Click **Words Breakdown** on the sidebar and then select **3+ Syllables Report**.
+Note how the document is now very difficult.
+Click **Words Breakdown** on the sidebar and then select **3+ Syllables Report**.
 As we scroll to where our disclaimer was appended, note the numerous difficult words:
 
 ![](images/addendum-highlighted-text3.png){width=75% fig-align="center"}
@@ -339,11 +345,13 @@ This will open the **Add Test Bundle** dialog:
 
 ![](images/test-bundle.png)
 
-Enter the name "4F" into the **Bundle Name** text field. Next, select the **Standard Tests** page and check the Fry, FORCAST, Fog, and Flesch-Kincaid tests, as shown below:
+Enter the name "4F" into the **Bundle Name** text field.
+Next, select the **Standard Tests** page and check the Fry, FORCAST, Fog, and Flesch-Kincaid tests, as shown below:
 
 ![](images/test-bundle-4f.png)
 
 Click the `r keys("OK")` button to accept.
 
-To use the bundle, first open any project. Next, select the **Readability** tab, click the `r keys("Bundles")` button, and select **4F** from the menu.
+To use the bundle, first open any project.
+Next, select the **Readability** tab, click the `r keys("Bundles")` button, and select **4F** from the menu.
 Now the program will replace all tests within the project with the tests from the "4F" bundle.

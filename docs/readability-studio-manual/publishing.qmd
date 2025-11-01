@@ -49,11 +49,13 @@ When exporting\index{exporting!text reports} a text report\index{text reports!ex
 
 **RTF**: A format that can be displayed in most word-processing programs.
 
-**Pango**: A format that can be rendered within libraries such as Cairo or FreeType. (This option is only available on Linux.)
+**Pango**: A format that can be rendered within libraries such as Cairo or FreeType.
+(This option is only available on Linux.)
 :::
 
 ::: {.tipsection data-latex=""}
-If you plan to edit this output, then **RTF** is recommended. (Most word processors support editing this format.)
+If you plan to edit this output, then **RTF** is recommended.
+(Most word processors support editing this format.)
 :::
 
 ## Image Export Options {#sec-image-export}
@@ -65,7 +67,8 @@ The following formats\index{graphs!exporting!formats} are available to choose fr
 **PNG**: A lossless-compressed image format.
 The image can be compressed to a smaller size without any loss of quality.
 
-**JPG**: A lossy-compressed image format. Some image quality may be lost, compared to other formats such as PNG.
+**JPG**: A lossy-compressed image format.
+Some image quality may be lost, compared to other formats such as PNG.
 
 **BMP**: An uncompressed raster (i.e., pixel based) image format.
 
@@ -74,7 +77,8 @@ This format is generally preferred for desktop publishing.
 
 **TARGA**: A raster (i.e., pixel based) image format.
 
-**GIF**: A raster (i.e., pixel based) image format. Note that this image format is limited to 256 colors.
+**GIF**: A raster (i.e., pixel based) image format.
+Note that this image format is limited to 256 colors.
 
 **SVG**: A format that uses vector (rather than raster) drawing.
 Vector-based images can be scaled to much larger sizes, without the loss of quality that raster images would experience.
@@ -115,7 +119,8 @@ This option specifies the compression level of the TIFF file and includes the fo
 
 **Lempel-Ziv & Welch**: lossless compression, but may generate larger images than other compression methods.
 
-**JPEG**: lossy compression method. Suitable for high-color images, but some quality may be lost.
+**JPEG**: lossy compression method.
+Suitable for high-color images, but some quality may be lost.
 
 **Deflate**: lossless, high-compression method.\index{graphs!exporting|)}
 ::::
@@ -129,8 +134,7 @@ When [exporting](#sec-exporting)\index{exporting!lists} a list\index{lists!expor
 
 **TXT**: A tab-delimited file with no formatting (i.e., colors will be lost).
 
-**LaTeX**: A {{< latex >}} file with the list formatted into a `longtable{}` environment that can be
-included in a larger {{< latex >}} document.
+**LaTeX**: A {{< latex >}} file with the list formatted into a `longtable{}` environment that can be included in a larger {{< latex >}} document.
 :::
 
 After selecting the file format, these additional options will be provided.
@@ -203,10 +207,12 @@ This option only applies to standard projects, and when exporting as separate fi
 **Export graphs as**: Select the image type that you want to save graphs as from this list.
 
 **Image Options**: Click this button to further customize how to save the graphs as images.
-This includes options such as color mode and image size. Note that the options available on this dialog will depend on which image type is selected.
+This includes options such as color mode and image size.
+Note that the options available on this dialog will depend on which image type is selected.
 
 **Include lists**: Select this option to include lists in the output.
-It is recommended to unselect this option for larger documents. This option only applies to standard projects.
+It is recommended to unselect this option for larger documents.
+This option only applies to standard projects.
 
 **Include text reports**: Select this option to include highlighted text reports in the output.
 It is recommended to unselect this option for larger documents.
@@ -361,7 +367,8 @@ For example, to change the paper size or orientation of your printouts, select *
 To add headers or footers to your printouts, select **Headers & Footers** from this menu.
 
 Headers and footers support placeholder tags for items such as page, date, and time information.
-These tags are expanded dynamically when printing takes place. These tags are:
+These tags are expanded dynamically when printing takes place.
+These tags are:
 
 - `@TITLE@`: The title of the printed document.
 - `@DATE@`: The date when it was printed.

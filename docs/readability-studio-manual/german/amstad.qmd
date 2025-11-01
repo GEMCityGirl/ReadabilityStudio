@@ -1,10 +1,13 @@
 ## Amstad\index{Amstad|idxit} {#sec-amstad}
 
-The Amstad test is a recalculation of [Flesch Reading Ease](#sec-flesch-test)\index{Flesch Reading Ease!variations!Amstad} for German text [-@{amstad}78-81, 50]. Its formula is adjusted from the original Flesch to take into account German's comparatively longer words. It also uses a lower weighting for the sentence-length factor, placing most of the influence on word length.
+The Amstad test is a recalculation of [Flesch Reading Ease](#sec-flesch-test)\index{Flesch Reading Ease!variations!Amstad} for German text [-@{amstad}78-81, 50].
+Its formula is adjusted from the original Flesch to take into account German's comparatively longer words.
+It also uses a lower weighting for the sentence-length factor, placing most of the influence on word length.
 
 The factors used for this test are syllables per word ("*Silben pro Wort*") and words per sentence ("*Wörter pro Satz*") [-@{amstad}81]. (The same factors used for Flesch Reading Ease).
 
-Amstad is best suited for school textbooks and technical manuals. Scores range from 0–100 (the higher the score, the easier to read) and average documents should be within the range of 60–70.
+Amstad is best suited for school textbooks and technical manuals.
+Scores range from 0–100 (the higher the score, the easier to read) and average documents should be within the range of 60–70.
 
 ::: {.callout-note icon=false}
 ## Amstad formula
@@ -35,7 +38,8 @@ kableExtra::kbl(read_delim("data/AmstadConversionTable.txt", "\t", escape_double
 ```
 
 ::: {.notesection data-latex=""}
-Like Flesch Reading Ease, this test treats numerals\index{numerals!Amstad} as monosyllabic words by default. This behavior can be changed from the [**Options**](#sec-readability-test-options) dialog.
+Like Flesch Reading Ease, this test treats numerals\index{numerals!Amstad} as monosyllabic words by default.
+This behavior can be changed from the [**Options**](#sec-readability-test-options) dialog.
 :::
 
 \newpage

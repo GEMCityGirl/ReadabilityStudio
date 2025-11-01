@@ -81,7 +81,8 @@ For example, if *www.news.mybusiness.com/articles* is specified, then only files
 For example, if your base webpage is *www.mybusiness.com/history/aboutus.html*, then links will only be harvested from *www.mybusiness.com/history/* (and any of its sub-directories).
 ::::
 
-**User-defined Domain(s)**: Enter all user-defined domains in this list. This option is only applicable if domain restriction is set to user-defined domains.
+**User-defined Domain(s)**: Enter all user-defined domains in this list.
+This option is only applicable if domain restriction is set to user-defined domains.
 
 #### Download {-}
 
@@ -125,7 +126,7 @@ The following command line options are available (`r os_logo('windows')`, `r os_
 The following example would open the document *PatientAgreement.rsp*:
 
 ::: {.darkmode data-latex=''}
-`readstudio "C:\users\kdaly\Documents\PatientAgreement.rsp"
+`readstudio "C:\\users\\kdaly\\Documents\\PatientAgreement.rsp"`
 :::
 
 This example would tell the program to not log any information while running:

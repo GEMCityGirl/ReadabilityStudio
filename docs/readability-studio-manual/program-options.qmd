@@ -698,11 +698,14 @@ The options on this page customize which results are included in the [**Words Br
 
 **6+ Characters**: Check this to include the 6+ character words in the results.
 
-**Dale-Chall**: Check this to include the New Dale-Chall\index{New Dale-Chall!reviewing unfamiliar words} unfamiliar words list in the results. (If a Dale-Chall-based test is included in the project).
+**Dale-Chall**: Check this to include the New Dale-Chall\index{New Dale-Chall!reviewing unfamiliar words} unfamiliar words list in the results.
+(If a Dale-Chall-based test is included in the project).
 
-**Spache**: Check this to include the Spache\index{Spache Revised!reviewing unfamiliar words} unfamiliar words list in the results. (If Spache is included in the project).
+**Spache**: Check this to include the Spache\index{Spache Revised!reviewing unfamiliar words} unfamiliar words list in the results.
+(If Spache is included in the project).
 
-**Harris-Jacobson**: Check this to include the Harris-Jacobson\index{Harris-Jacobson Wide Range!reviewing unfamiliar words} unfamiliar words list in the results. (If Harris-Jacobson\index{Harris-Jacobson Wide Range} is included in the project).
+**Harris-Jacobson**: Check this to include the Harris-Jacobson\index{Harris-Jacobson Wide Range!reviewing unfamiliar words} unfamiliar words list in the results.
+(If Harris-Jacobson\index{Harris-Jacobson Wide Range} is included in the project).
 
 **Custom Tests**: Check this to include any custom tests' unfamiliar words lists in the results.
 
@@ -1029,7 +1032,8 @@ The axis labels and titles are also more descriptive.
 **Display grouped documents on syllable ruler**: Check this to display document names grouped along the syllable ruler.
 
 This will display brackets along the right-most ruler, divided into ranges of twenty.
-Next to these brackets, the documents that fall into them (based on syllables per hundred words) will be shown. The documents in the upper brackets will be easier, the lower ones more difficult.
+Next to these brackets, the documents that fall into them (based on syllables per hundred words) will be shown.
+The documents in the upper brackets will be easier, the lower ones more difficult.
 
 This option only applies to batch projects, and only for batches containing fifty or less documents.
 Also, this feature will remove the legend (if grouping is in use).
@@ -1139,7 +1143,8 @@ If you have floating-point grade scores and are not rounding your values, then a
 If you select this option, then it is recommended to set the rounding option to **Round down**.
 
 **Sort by interval**: Select this option to have the program select the best bin sizes based on the range of your data.
-Rather than having a bin for each unique value, bins will be created for ranges of values. For example, you may have a bin representing values for grades 2–4, rather than having separate bins for 2, 3, and 4.
+Rather than having a bin for each unique value, bins will be created for ranges of values.
+For example, you may have a bin representing values for grades 2–4, rather than having separate bins for 2, 3, and 4.
 
 **Sort by neat interval**: Select this option to have the program select the best integral bin sizes based on the range of your data.
 This option is the same as **Sort by interval**, except that it will force the bin ranges and bin sizes to be integer values.
@@ -1205,7 +1210,8 @@ This option is recommended if using neat intervals because it may be easier to i
 Labels
 :::
 
-**Counts**: Select this option to display the number of items in the bin as its label. This label will appear at the top of each bar.
+**Counts**: Select this option to display the number of items in the bin as its label.
+This label will appear at the top of each bar.
 
 **Percentages**: Select this option to display the percentage of items that fall into the bin as its label.
 This label will appear at the top of each bar.
@@ -1239,9 +1245,11 @@ Effect
 
 **Stipple image**: Select this option to draw a stack of images across your boxes. The image for this brush is specified on the [**General**](#sec-options-graphs) page.
 
-**Stipple shape**: Select this option to draw a shape across your boxes. The shape for this brush is specified on the [**General**](#sec-options-graphs) page.
+**Stipple shape**: Select this option to draw a shape across your boxes.
+The shape for this brush is specified on the [**General**](#sec-options-graphs) page.
 
-**Watercolor**: Select this option to draw a watercolor-like effect across the boxes. This will appear as if boxes are warped and look like they were filled in with watercolor paint (or a marker).
+**Watercolor**: Select this option to draw a watercolor-like effect across the boxes.
+This will appear as if boxes are warped and look like they were filled in with watercolor paint (or a marker).
 
 **Common image**: Select this option to draw an image under the graph, with it only showing through were the boxes are at.
 ::::

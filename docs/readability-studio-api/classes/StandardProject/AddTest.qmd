@@ -15,7 +15,7 @@ boolean AddTest(string testName)
 
 **Parameter** | **Description**
 | :-- | :-- |
-| [`Test`](#test)/`string` testID | The test to add. (For a custom test, use the name of the test.) |
+| [`Test`](#test)/`string` testID | The test to add.<br>\linebreak (For a custom test, use the name of the test.) |
 
 ### Return value {-}
 

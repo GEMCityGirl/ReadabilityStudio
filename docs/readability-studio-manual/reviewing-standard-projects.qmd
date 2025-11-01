@@ -12,7 +12,8 @@ source('R/appdown.r')
 After opening a project, click on the **Readability Scores** icon on the project sidebar, and then click on **Scores** beneath that.
 Here you can view all the test scores, as well as their respective explanations and recommendations.
 
-The top area of the **Scores** window is the score grid. In here there are four columns:
+The top area of the **Scores** window is the score grid.
+In here there are four columns:
 
 - **Test**: the name of the readability test.
 - **Grade Level**: the minimum grade level that the test determined the document is suitable for.
@@ -94,7 +95,8 @@ At this point, you would want to review the document's lengthy sentences (select
 
 The Gilliam-Peña-Mountain\index{Gilliam-Peña-Mountain} graph is a variation of Fry designed for Spanish text.
 It is identical to Fry, except that its X axis begins at 175 (instead of 108).
-This enables this graph to plot Spanish text, which usually has a much higher syllable count than its English counterpart. Below is an example of a Gilliam-Peña-Mountain graph:
+This enables this graph to plot Spanish text, which usually has a much higher syllable count than its English counterpart.
+Below is an example of a Gilliam-Peña-Mountain graph:
 
 ![Gilliam-Peña-Mountain graph](images/gpm-fry.png){width=75% fig-align="center"}
 
@@ -106,7 +108,8 @@ Below is an example of a Schwartz graph:
 ![Schwartz graph](images/schwartz.png){width=75% fig-align="center"}
 
 The Fry\index{Fry!compared to Raygor} and Raygor\index{Raygor Estimate!compared to Fry} graphs are very similar and are both interpreted in the same manner; however, there are a few differences between them.
-The Fry graph classifies documents within the 1^st^ grade to doctorate level. In contrast, Raygor concentrates on the range of 3^rd^ grade to the sophomore collegiate level.
+The Fry graph classifies documents within the 1^st^ grade to doctorate level.
+In contrast, Raygor concentrates on the range of 3^rd^ grade to the sophomore collegiate level.
 It is recommended to only use Raygor graphs for secondary-age materials.
 
 Another difference is that the Fry graph is influenced by high-syllable words, while the Raygor graph is influenced by long words.
@@ -236,7 +239,8 @@ If your document requires improvement, then this section is usually a good place
 
 ::: {.notesection data-latex=""}
 3+ syllable words and [Fog](#sec-gunning-fog-test) and [SMOG](#sec-smog-test) hard words are all the same except for how numerals (e.g., phone numbers and dates) are handled.
-SMOG always sounds out each digit of a numeric word, whereas Fog ignores numeric words. You can control how numeric words are handled from the [**Document Indexing**](#sec-document-analysis) section of the [**Options**](#sec-options-overview) dialog (available on the **Tools** tab).
+SMOG always sounds out each digit of a numeric word, whereas Fog ignores numeric words.
+You can control how numeric words are handled from the [**Document Indexing**](#sec-document-analysis) section of the [**Options**](#sec-options-overview) dialog (available on the **Tools** tab).
 :::
 
 \newpage
@@ -545,7 +549,8 @@ These are:
 
 Generally for technical writing, only separate clauses should begin with these words, not sentences.
 Any sentence that begins with these words should be combined with the previous sentence.
-Another option would be to replace the conjunction. For example, *and* could be replaced with *In addition*.
+Another option would be to replace the conjunction.
+For example, *and* could be replaced with *In addition*.
 
 This search is applied to all sentences.
 [Incomplete sentences](#sec-how-text-is-excluded) will be reviewed for this, even if they are excluded from the analysis.
@@ -680,7 +685,8 @@ For example:
 Gabi and Blake *collaborated together* on the report. They should have a *brief summary* ready later today.
 :::
 
-In this case, *collaborated together* and *brief summary* are redundant. Collaboration already implies two or more people working together.
+In this case, *collaborated together* and *brief summary* are redundant.
+Collaboration already implies two or more people working together.
 The *together* in this phrase adds nothing and just makes this sentence wordy.
 As for *brief summary*, summaries are always brief; hence, the redundancy in that phrase.
 *{{< var PROGRAM_NAME >}}* will consider these as redundant phrases and include them in this list.
@@ -797,7 +803,8 @@ Note that if there are no clichés in your document, then this window will not b
 ### Reviewing Overused Words (x Sentence) {-}
 
 After opening a project, click on the **Grammar** icon on the project sidebar and select the **Overused Words (x Sentence)** subitem.
-This window will display a list of all sentences that use the same word multiple times. (These are more of style suggestions, rather than grammar issues.)
+This window will display a list of all sentences that use the same word multiple times.
+(These are more of style suggestions, rather than grammar issues.)
 When reviewing these, it is recommended to change some of the repeated words to add more variety to your content.
 
 ![](images/overusedwordsbysentence.png)
