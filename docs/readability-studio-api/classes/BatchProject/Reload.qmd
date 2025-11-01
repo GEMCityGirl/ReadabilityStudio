@@ -1,4 +1,5 @@
 {{< pagebreak >}}
+
 ## `Reload` {#batch-reload}
 
 Reanalyzes the project's documents.

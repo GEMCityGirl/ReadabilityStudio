@@ -1,4 +1,5 @@
 {{< pagebreak >}}
+
 ## `EnableVerboseLogging`
 
 Toggles whether verbose\index{log report!settings} logging is enabled.

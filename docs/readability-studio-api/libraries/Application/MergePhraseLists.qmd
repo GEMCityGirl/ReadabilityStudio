@@ -1,4 +1,5 @@
 {{< pagebreak >}}
+
 ## `MergePhraseLists`
 
 Merges multiple phrase lists\index{word lists!merging} into a new file.

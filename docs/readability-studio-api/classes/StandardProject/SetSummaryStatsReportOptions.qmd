@@ -1,4 +1,5 @@
 {{< pagebreak >}}
+
 ## `SetSummaryStatsReportOptions`
 
 Sets which results in the summary statistics reports should be included.

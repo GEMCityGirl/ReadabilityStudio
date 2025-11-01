@@ -1,4 +1,5 @@
 {{< pagebreak >}}
+
 ## `SetGraphColorScheme`
 
 Sets the graph color scheme.

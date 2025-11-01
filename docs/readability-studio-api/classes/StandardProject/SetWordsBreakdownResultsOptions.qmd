@@ -1,4 +1,5 @@
 {{< pagebreak >}}
+
 ## `SetWordsBreakdownResultsOptions`
 
 Sets which results in the words breakdown section should be included.

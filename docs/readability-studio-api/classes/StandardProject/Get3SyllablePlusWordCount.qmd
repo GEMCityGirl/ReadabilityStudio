@@ -1,4 +1,5 @@
 {{< pagebreak >}}
+
 ## `Get3SyllablePlusWordCount` {#standard-get3syllablepluswordcount}
 
 Returns the number of words consisting of three or more syllables from the document.

@@ -1,4 +1,5 @@
 {{< pagebreak >}}
+
 ## `ExcludeProperNouns` {#standard-excludepropernouns}
 
 Specifies whether to exclude\index{text exclusion} proper nouns.

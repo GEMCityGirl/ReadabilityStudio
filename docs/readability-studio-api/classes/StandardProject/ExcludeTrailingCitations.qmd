@@ -1,4 +1,5 @@
 {{< pagebreak >}}
+
 ## `ExcludeTrailingCitations` {#standard-excludetrailingcitations}
 
 Specifies whether to exclude\index{text exclusion} trailing citations.

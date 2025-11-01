@@ -1,4 +1,5 @@
 {{< pagebreak >}}
+
 ## `LoadFolder`
 
 Analyses all supported documents from the provided folder.

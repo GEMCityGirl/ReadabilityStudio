@@ -1,4 +1,5 @@
 {{< pagebreak >}}
+
 ## `MergeWordLists`
 
 Merges multiple word lists\index{word lists!merging} into a new file.

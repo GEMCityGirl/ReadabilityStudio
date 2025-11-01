@@ -1,4 +1,5 @@
 {{< pagebreak >}}
+
 ## `Print`
 
 Prints\index{debugger!printing message to} a message to the script editor's debug window.

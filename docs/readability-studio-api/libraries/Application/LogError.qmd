@@ -1,4 +1,5 @@
 {{< pagebreak >}}
+
 ## `LogError`
 
 Sends an error message\index{log report!sending messages to} to program's logging system.

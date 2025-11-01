@@ -1,4 +1,5 @@
 {{< pagebreak >}}
+
 ## `EnableWarning`
 
 Enables\index{warnings!enabling} the specified warning.

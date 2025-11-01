@@ -1,4 +1,5 @@
 {{< pagebreak >}}
+
 ## `MergeImages`
 
 Combines\index{images!editing} a list of images vertically or horizontally.

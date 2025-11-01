@@ -1,4 +1,5 @@
 {{< pagebreak >}}
+
 ## `SetGrammarResultsOptions`
 
 Sets which grammar results should be included for new projects.

@@ -1,4 +1,5 @@
 {{< pagebreak >}}
+
 ## `ExportLogReport`
 
 Saves\index{log report!exporting} the program's log report to a tab-delimited text file.

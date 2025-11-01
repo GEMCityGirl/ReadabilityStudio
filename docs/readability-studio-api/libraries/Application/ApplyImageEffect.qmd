@@ -1,4 +1,5 @@
 {{< pagebreak >}}
+
 ## `ApplyImageEffect`
 
 Applies\index{images!editing} an effect to an image and saves the result to another image file.

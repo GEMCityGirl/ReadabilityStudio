@@ -1,4 +1,5 @@
 {{< pagebreak >}}
+
 ## `ExportFilteredText` {#standard-exportfilteredtext}
 
 Saves a copy of the project's document with excluded text (and other optional items) filtered out.

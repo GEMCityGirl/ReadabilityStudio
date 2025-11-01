@@ -1,4 +1,5 @@
 {{< pagebreak >}}
+
 ## `ExportHighlightedWords`
 
 Saves\index{highlighted reports!exporting} the specified highlighted words as an RTF or HTML report.

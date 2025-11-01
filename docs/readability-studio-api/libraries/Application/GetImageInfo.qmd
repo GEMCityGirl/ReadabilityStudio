@@ -1,4 +1,5 @@
 {{< pagebreak >}}
+
 ## `GetImageInfo`
 
 Returns\index{images!getting information about} the details of a given file.

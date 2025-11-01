@@ -1,4 +1,5 @@
 {{< pagebreak >}}
+
 ## `GetWordCount`
 
 Returns the total number of words from the document.

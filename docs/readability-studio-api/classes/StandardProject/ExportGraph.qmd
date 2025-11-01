@@ -1,4 +1,5 @@
 {{< pagebreak >}}
+
 ## `ExportGraph` {#standard-exportgraph}
 
 Saves\index{graphs!exporting} the specified graph as an image\index{images!saving graphs as}.
