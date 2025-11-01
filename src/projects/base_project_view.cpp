@@ -12,7 +12,6 @@
  ********************************************************************************/
 
 #include "base_project_view.h"
-#include "../Wisteria-Dataviz/src/ui/ribbon/artmetro.h"
 #include "../app/readability_app.h"
 #include "../ui/dialogs/test_bundle_dlg.h"
 #include "batch_project_doc.h"
@@ -1126,9 +1125,6 @@ bool BaseProjectView::OnCreate(wxDocument* doc, [[maybe_unused]] long flags)
     auto* quickAccessToolbarSizer = new wxBoxSizer(wxHORIZONTAL);
     // quick access toolbar
     m_quickToolbar = new wxAuiToolBar(m_frame, wxID_ANY);
-    auto* toolbarArt = new Wisteria::UI::ThemedAuiToolbarArt();
-    toolbarArt->SetThemeColor(wxGetApp().GetAppOptions()->GetRibbonInactiveTabColor());
-    GetQuickToolbar()->SetArtProvider(toolbarArt);
     quickAccessToolbarSizer->Add(GetQuickToolbar(), wxSizerFlags{ 1 }.Expand());
     // save
     GetQuickToolbar()->AddTool(wxID_SAVE, _(L"Save the project"),

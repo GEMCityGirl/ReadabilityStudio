@@ -13,7 +13,6 @@
 
 #include "word_list_dlg.h"
 #include "../../Wisteria-Dataviz/src/ui/controls/searchpanel.h"
-#include "../../Wisteria-Dataviz/src/ui/ribbon/artmetro.h"
 #include "../../Wisteria-Dataviz/src/util/parentblocker.h"
 #include "../../app/readability_app.h"
 #include "../../projects/base_project.h"
@@ -214,7 +213,7 @@ void WordListDlg::CreateControls()
                     .ConvertToImage(),
                 _(L"Sort the list."));
             }
-        ribbon->SetArtProvider(new Wisteria::UI::RibbonMetroArtProvider);
+        ribbon->SetArtProvider(new wxRibbonMSWArtProvider);
         wxGetApp().UpdateRibbonTheme(ribbon);
 
         mainSizer->Add(ribbon, wxSizerFlags{}.Expand().Border());

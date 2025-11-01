@@ -141,7 +141,6 @@ SET(APP_SRC_FILES
     src/Wisteria-Dataviz/src/ui/dialogs/radioboxdlg.cpp
     src/Wisteria-Dataviz/src/ui/dialogs/warningmessagesdlg.cpp
     src/Wisteria-Dataviz/src/ui/mainframe.cpp
-    src/Wisteria-Dataviz/src/ui/ribbon/artmetro.cpp
     src/Wisteria-Dataviz/src/util/downloadfile.cpp
     src/Wisteria-Dataviz/src/util/fileutil.cpp
     src/Wisteria-Dataviz/src/util/formulaformat.cpp

@@ -20,7 +20,6 @@
 #include "../Wisteria-Dataviz/src/ui/dialogs/getdirdlg.h"
 #include "../Wisteria-Dataviz/src/ui/dialogs/graphdlg.h"
 #include "../Wisteria-Dataviz/src/ui/dialogs/radioboxdlg.h"
-#include "../Wisteria-Dataviz/src/ui/ribbon/artmetro.h"
 #include "../document-helpers/chapter_split.h"
 #include "../graphs/schwartzgraph.h"
 #include "../projects/batch_project_doc.h"

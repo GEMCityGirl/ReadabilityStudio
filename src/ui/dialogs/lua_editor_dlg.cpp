@@ -14,7 +14,6 @@
 #include "lua_editor_dlg.h"
 #include "../../Wisteria-Dataviz/src/base/colorbrewer.h"
 #include "../../Wisteria-Dataviz/src/import/html_extract_text.h"
-#include "../../Wisteria-Dataviz/src/ui/ribbon/artmetro.h"
 #include "../../app/readability_app.h"
 #include <utility>
 
@@ -577,10 +576,6 @@ void LuaEditorDlg::SetThemeColor(const wxColour& color)
         }
 
     m_mgr.GetArtProvider()->SetColour(wxAUI_DOCKART_BACKGROUND_COLOUR, color);
-
-    auto* toolbarArt = new Wisteria::UI::ThemedAuiToolbarArt;
-    toolbarArt->SetThemeColor(color);
-    m_toolbar->SetArtProvider(toolbarArt);
 
     // notebook (and its children edit windows)
     auto* notebookArt = new wxAuiDefaultTabArt;

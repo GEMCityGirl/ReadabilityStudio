@@ -299,7 +299,7 @@ void EditTextDlg::CreateControls()
                                _(L"Display space after hard returns"), wxString{}, wxITEM_CHECK));
             }
 
-        m_ribbon->SetArtProvider(new Wisteria::UI::RibbonMetroArtProvider);
+        m_ribbon->SetArtProvider(new wxRibbonMSWArtProvider);
         wxGetApp().UpdateRibbonTheme(m_ribbon);
 
         mainSizer->Add(m_ribbon, wxSizerFlags{}.Expand().Border());
