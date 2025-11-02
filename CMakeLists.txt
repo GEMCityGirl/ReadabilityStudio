@@ -12,6 +12,7 @@
 # readstudio: builds the main application (included with ALL)
 # doxygen-docs: builds the API documentation (included with ALL)
 # manuals: builds the manuals and HTML help
+# g11n-dashboard: builds the globalization dashboard, showing the current translation statuses.
 
 # Options:
 # ENABLE_SANITIZERS to use ASAN & UBSAN (ignored in release build)
@@ -217,6 +218,8 @@ if(APPLE)
 else()
     message(STATUS "Architecture: ${CMAKE_SYSTEM_PROCESSOR}" )
 endif()
+
+include(cmake/G11NDashboard.cmake)
 
 # Build source and resource file lists to include
 include(cmake/list-files.cmake)

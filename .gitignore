@@ -1,14 +1,5 @@
 # Output files, intermediate build, or generated files
 /build
-/docs/doxygen/html
-/docs/coding-bible/docs
-/docs/readability-studio-api/docs
-/docs/readability-test-reference/docs
-/docs/shortcuts-cheatsheet/docs
-/docs/release-notes/docs
-/docs/readability-studio-manual/docs
-/docs/readability-studio-manual/docs-manual
-/docs/readability-studio-manual/docs-online
 /tests/bin/
 /tests/.vs/
 /tests/out/
@@ -22,6 +13,7 @@
 /tests/gui-tests/.vs
 /tests/gui-tests/Bin
 /tests/gui-tests/out
+/project-management/g11n/badges/.stamp
 *.log
 /Catch2
 /CMakeFiles
@@ -87,6 +79,15 @@
 /docs/sysadmin/build-commands.txt
 /docs/sysadmin/sysadmin-manual.tex
 /docs/sysadmin/windows-silent.txt
+/docs/doxygen/html
+/docs/coding-bible/docs
+/docs/readability-studio-api/docs
+/docs/readability-test-reference/docs
+/docs/shortcuts-cheatsheet/docs
+/docs/release-notes/docs
+/docs/readability-studio-manual/docs
+/docs/readability-studio-manual/docs-manual
+/docs/readability-studio-manual/docs-online
 /wxWidgets_lib
 
 # Configuration files

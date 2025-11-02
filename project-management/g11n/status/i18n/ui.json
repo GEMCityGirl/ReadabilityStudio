@@ -1,0 +1,4 @@
+{
+  "value": 75,
+  "comment": "Application UI;1: UI strings externalized;1: Plural forms covered;0: Needs RTL layout audit and bidi mirroring testing;0: Date/time formatting needs review;0: List sorting needs to be locale aware;0: Formula radix separators need additional testing on all platforms"
+}

@@ -1,0 +1,4 @@
+{
+  "value": 60,
+  "comment": "Documentation;1: UTF-8 throughout;1: Locale-aware date/number use;1: Screenshot variants per locale;0: Build system to apply translations to Quarto files;0: LaTeX translations for content headers in use; 0: File structure for translated content"
+}
