@@ -324,6 +324,8 @@ foreach(PATH IN LISTS SUBMODULES)
     string(APPEND SUBMODULE_HASHES "\n")
 endforeach()
 
+string(REGEX REPLACE "[ \t\r\n]+$" "" SUBMODULE_HASHES "${SUBMODULE_HASHES}")
+
 configure_file(
     "${CMAKE_SOURCE_DIR}/src/sbom.h.in"
     "${CMAKE_SOURCE_DIR}/src/app/sbom.h"
