@@ -1,4 +1,6 @@
 {
-  "value": 85,
-  "comment": "Windows Installer;1: Inno Setup files UTF-8 encoded;1: Inno Setup project Unicode enabled;0: Needs RTL wizard layout check"
+  "value": 65,
+  "title": "Windows Installer",
+  "must": "Baseline Requirements;1: All .isl and .iss files encoded in UTF-8;1: Inno Setup project built with Unicode version;1: Installer strings externalized to .isl files per language;0: Language section defines CodePage=65001 (UTF-8);0: RTL wizard layout verified for RTL locales;0: EF license text correctly included for each language;0: Locale-aware number/date formatting in custom pages;0: Font selection verified for CJK/RTL scripts;0: Command-line and log output handle Unicode filenames;0: Product version, publisher, and description translated in version info;1: Setup localization tested on non-English Windows locales",
+  "recommended": "Recommended Enhancements;1: Implement automatic language detection based on Windows user locale;0: Provide manual language selection UI with safe defaults;0: Verify Unicode behavior for registry keys and paths;0: Localized start menu entries and shortcuts;0: Translate Uninstall display name and publisher;0: Support bidirectional text alignment in wizard messages;0: Localized digital signature metadata (EF signing policy compliance);0: Continuous integration builds for all locales;1: Ensure fallback to English if target locale unavailable;1: Localized installer icon and bitmap resources where appropriate"
 }
