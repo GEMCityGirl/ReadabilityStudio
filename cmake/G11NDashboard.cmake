@@ -11,7 +11,7 @@ set(G11N_OUT_MD     ${CMAKE_SOURCE_DIR}/project-management/g11n/DASHBOARD.md)
 set(G11N_OUT_BADGES ${CMAKE_SOURCE_DIR}/project-management/g11n/badges)
 
 # Roll-up weights
-set(G11N_WEIGHTS ui=8,docs=4,installer=1,art=1,license=1)
+set(G11N_WEIGHTS ui=10,docs=5,installer=1,art=1,license=1)
 
 # Inputs that trigger regeneration (l10n + i18n + script)
 set(G11N_INPUTS

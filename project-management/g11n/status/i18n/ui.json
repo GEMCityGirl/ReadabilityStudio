@@ -1,4 +1,6 @@
 {
   "value": 75,
-  "comment": "Application UI;1: UI strings externalized;1: Plural forms covered;0: Needs RTL layout audit and bidi mirroring testing;0: Date/time formatting needs review;0: List sorting needs to be locale aware;0: Formula radix separators need additional testing on all platforms"
+  "title": "Application UI",
+  "must": "Baseline Requirements;1: UI strings externalized;1: Plural forms covered (wxGetTranslation plural);1: Use wxTranslations catalogs;1: Replace wxLocale with wxUILocale;1: Date/time via wxDateTime::Format* with locale;1: Numbers via wxNumberFormatter;0: Locale-aware sort via wxUILocale::CompareStrings;0: Positional params in re-orderable strings (%1$s);1: Dynamic layouts (sizers), handle 30–50% expansion;0: RTL audit + bidi mirroring;1: Unicode-safe text ops (grapheme-aware);0: IME works in custom editors;0: Localizable shortcuts;1: Unicode-safe paths;1: UTF-8 logs/crash reports;1: Pseudolocale runs",
+  "recommended": "Recommended Enhancements;1: Translator comments/context where ambiguous;1: CJK full-width metrics don’t clip;0: Locale-aware search/case (Turkish I);0: Measurement units + formatting;1: Clipboard/drag/drop round-trips Unicode;0: Language switch reloads resources or prompts restart;1: CI checks: missing/unused keys, bad % placeholders"
 }
