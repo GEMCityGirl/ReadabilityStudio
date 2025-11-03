@@ -33,10 +33,10 @@ LuaEditorDlg::LuaEditorDlg(
     m_mgr.SetManagedWindow(this);
 
     wxIcon ico;
-    ico.CopyFromBitmap(wxGetApp()
-                           .GetResourceManager()
-                           .GetSVG(L"ribbon/lua.svg")
-                           .GetBitmap(FromDIP(wxSize{ 32, 32 })));
+    ico.CopyFromBitmap(wxGetApp().ReadSvgIcon(wxSystemSettings::GetAppearance().IsDark() ?
+                                                  L"ribbon/lua-dark-mode.svg" :
+                                                  L"ribbon/lua.svg",
+                                              wxSize{ 32, 32 }));
     SetIcon(ico);
 
     CreateControls();
@@ -120,7 +120,7 @@ LuaEditorDlg::LuaEditorDlg(
 
                     const int widthAnn =
                         editor->TextWidth(Wisteria::UI::CodeEditor::ERROR_ANNOTATION_STYLE,
-                                          errorMessage + wxString(indent, L' '));
+                                          errorMessage + wxString{ indent, L' ' });
 
                     if (widthAnn > width)
                         {
@@ -167,8 +167,11 @@ LuaEditorDlg::LuaEditorDlg(
         [this]([[maybe_unused]] wxCommandEvent&)
         {
             m_notebook->Freeze();
-            m_notebook->AddPage(CreateLuaScript(m_notebook), _(L"(unnamed)"), true,
-                                wxGetApp().GetResourceManager().GetSVG(L"ribbon/lua.svg"));
+            m_notebook->AddPage(
+                CreateLuaScript(m_notebook), _(L"(unnamed)"), true,
+                wxGetApp().GetResourceManager().GetSVG(wxSystemSettings::GetAppearance().IsDark() ?
+                                                           L"ribbon/lua-dark-mode.svg" :
+                                                           L"ribbon/lua.svg"));
             m_notebook->Thaw();
         },
         XRCID("ID_NEW"));
@@ -206,7 +209,10 @@ LuaEditorDlg::LuaEditorDlg(
                 scriptCtrl->SetScriptFilePath(filePath);
 
                 m_notebook->AddPage(scriptCtrl, wxFileName(filePath).GetName(), true,
-                                    wxGetApp().GetResourceManager().GetSVG(L"ribbon/lua.svg"));
+                                    wxGetApp().GetResourceManager().GetSVG(
+                                        wxSystemSettings::GetAppearance().IsDark() ?
+                                            L"ribbon/lua-dark-mode.svg" :
+                                            L"ribbon/lua.svg"));
                 scriptCtrl->SetFocus();
                 }
         },
@@ -725,8 +731,11 @@ void LuaEditorDlg::CreateControls()
                                        wxAUI_NB_MIDDLE_CLICK_CLOSE | wxAUI_NB_TAB_EXTERNAL_MOVE |
                                        wxNO_BORDER);
 
-    m_notebook->AddPage(CreateLuaScript(m_notebook), _(L"(unnamed)"), true,
-                        wxGetApp().GetResourceManager().GetSVG(L"ribbon/lua.svg"));
+    m_notebook->AddPage(
+        CreateLuaScript(m_notebook), _(L"(unnamed)"), true,
+        wxGetApp().GetResourceManager().GetSVG(wxSystemSettings::GetAppearance().IsDark() ?
+                                                   L"ribbon/lua-dark-mode.svg" :
+                                                   L"ribbon/lua.svg"));
 
     m_mgr.AddPane(m_notebook, wxAuiPaneInfo().Name(L"auinotebook").CenterPane().PaneBorder(false));
 

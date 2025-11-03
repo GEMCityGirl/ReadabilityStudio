@@ -81,6 +81,7 @@ ribbon/help.svg
 ribbon/highlightedwords.svg
 ribbon/highlighting.svg
 ribbon/histogram.svg
+ribbon/home-dark-mode.svg
 ribbon/home.svg
 ribbon/ignore-copyright.svg
 ribbon/ignore-numerals.svg
@@ -97,6 +98,7 @@ ribbon/list.svg
 ribbon/log-book.svg
 ribbon/logo.svg
 ribbon/long-sentence.svg
+ribbon/lua-dark-mode.svg
 ribbon/lua.svg
 ribbon/misspellings.svg
 ribbon/notepad.svg
