@@ -83,6 +83,7 @@ set(INNOSETUP_GUID "{FBFBEAB6-622A-4E16-893D-216C25FF6A69}")
 set(PROGRAM_LICENSE "Eclipse Public License 2.0")
 
 include(cmake/modules/FindGit.cmake)
+include(cmake/modules/GetGitInfo.cmake)
 if(Git_FOUND)
   execute_process(
     COMMAND ${GIT_EXECUTABLE} --no-pager log -n 1 HEAD --pretty=format:%H
@@ -267,6 +268,66 @@ if(UNIX AND NOT APPLE)
     include_directories(${GTK3_INCLUDE_DIRS})
     link_directories(${GTK3_LIBRARY_DIRS})
 endif()
+
+# List of submodules (relative paths)
+set(SUBMODULES
+    src/Catch2
+    src/lua
+    src/OleanderStemmingLibrary
+    src/tinyexpr-plusplus
+    src/tinyxml2
+    src/Wisteria-Dataviz
+    src/Wisteria-Dataviz/src/CRCpp
+    src/Wisteria-Dataviz/src/easyexif
+    src/Wisteria-Dataviz/src/utfcpp
+    src/Wisteria-Dataviz/src/wxSimpleJSON
+    src/Wisteria-Dataviz/src/wxStartPage
+    ${wxWidgets_BASEDIR}
+    ${wxWidgets_BASEDIR}/src/expat
+    ${wxWidgets_BASEDIR}/src/jpeg
+    ${wxWidgets_BASEDIR}/src/png
+    ${wxWidgets_BASEDIR}/src/tiff
+    ${wxWidgets_BASEDIR}/src/zlib
+    ${wxWidgets_BASEDIR}/src/zlib
+    ${wxWidgets_BASEDIR}/src/stc/lexilla
+    ${wxWidgets_BASEDIR}/src/stc/scintilla
+    ${wxWidgets_BASEDIR}/3rdparty/libwebp
+    ${wxWidgets_BASEDIR}/3rdparty/nanosvg
+    ${wxWidgets_BASEDIR}/3rdparty/pcre)
+
+set(SUBMODULE_HASHES "")
+
+foreach(PATH IN LISTS SUBMODULES)
+    get_filename_component(NAME "${PATH}" NAME)
+    string(REGEX REPLACE "[^A-Za-z0-9_]" "_" SAFE_NAME "${NAME}")
+    string(TOUPPER "${SAFE_NAME}" VAR_NAME)
+
+    get_git_submodule_hash("${PATH}" HASH)
+    get_git_submodule_origin("${PATH}" ORIGIN)
+
+    # Attempt to get version tag/description
+    set(DESCRIPTION "")
+    get_git_submodule_description("${PATH}" DESCRIPTION)
+
+    # Always define HASH and ORIGIN
+    string(APPEND SUBMODULE_HASHES
+        "#define ${VAR_NAME}_HASH \"${HASH}\"\n"
+        "#define ${VAR_NAME}_ORIGIN \"${ORIGIN}\"\n")
+
+    # Only define VERSION_TAG if DESCRIPTION is not empty
+    if(DESCRIPTION)
+        string(APPEND SUBMODULE_HASHES
+            "#define ${VAR_NAME}_VERSION_TAG \"${DESCRIPTION}\"\n")
+    endif()
+
+    # Separate entries
+    string(APPEND SUBMODULE_HASHES "\n")
+endforeach()
+
+configure_file(
+    "${CMAKE_SOURCE_DIR}/src/sbom.h.in"
+    "${CMAKE_SOURCE_DIR}/src/app/sbom.h"
+    @ONLY)
 
 # Run ALL unit-test suites for this program and its submodules
 ##############################################################
