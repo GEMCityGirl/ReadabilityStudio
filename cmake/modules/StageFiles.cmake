@@ -1,5 +1,5 @@
 #############################################################################
-# Name:        CMakeLists.txt
+# Name:        StageFiles.txt
 # Purpose:     Build script for Readability Studio
 # Author:      Blake Madden
 # Created:     2025-10-26
