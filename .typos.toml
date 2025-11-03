@@ -24,7 +24,7 @@ FO = "FO"
 FOF = "FOF"
 ture = "ture"
 headerr = "headerr"
-# non-English words or odd spellings
+# non-English words or odd spellings or false positives from code variables
 recommande = "recommande"
 Persan = "Persan"
 ist = "ist"
@@ -63,6 +63,7 @@ tro = "tro"
 valu = "valu"
 wher = "wher"
 nin = "nin"
+DOUT = "DOUT"
 # misspelled on purpose in examples
 specifiy = "specifiy"
 Curso = "Curso"
