@@ -16,6 +16,7 @@
 
 # Options:
 # ENABLE_SANITIZERS to use ASAN & UBSAN (ignored in release build)
+# ALLOW_DIRTY_SUBMODULES to allow building even if submodules have local changes
 
 # Requirements
 cmake_minimum_required(VERSION 3.26)
@@ -26,6 +27,8 @@ set(MIN_APPLECLANG_REQUIRED "15.3")
 set(MIN_MSVC_TOOLSET_REQUIRED "19.30") # VS 2022 (1930 is the build number, which is what _MSC_VER will be set to)
 set(MIN_MSVC_REQUIRED "Visual Studio 2022") # Just used in the help
 Set(MIN_WXWIDGETS_REQUIRED "3.3.1")
+
+option(ALLOW_DIRTY_SUBMODULES "Allow building even if submodules have local changes" OFF)
 
 # https://blog.kitware.com/cmake-and-the-default-build-type/
 if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
@@ -250,8 +253,9 @@ if(NOT EXISTS "${wxWidgets_BASEDIR}")
     message(FATAL_ERROR "wxWidgets base directory not found: ${wxWidgets_BASEDIR}")
 endif()
 message(STATUS "wxWidgets found in: ${wxWidgets_BASEDIR}")
-add_subdirectory(${wxWidgets_BASEDIR} ${CMAKE_CURRENT_SOURCE_DIR}/wxWidgets_lib)
-set(wxWidgets_LIBRARIES wx::core wx::base wx::xrc wx::propgrid wx::xml wx::aui wx::ribbon wx::qa wx::stc wx::net wx::richtext)
+add_subdirectory(${wxWidgets_BASEDIR} ${CMAKE_CURRENT_SOURCE_DIR}/wxWidgets_lib EXCLUDE_FROM_ALL)
+set(wxWidgets_LIBRARIES wx::core wx::base wx::xrc wx::propgrid wx::xml
+                        wx::aui wx::ribbon wx::qa wx::stc wx::net wx::richtext)
 message(STATUS "Adding wxWidgets libraries: ${wxWidgets_LIBRARIES}")
 
 if(wxVERSION VERSION_LESS ${MIN_WXWIDGETS_REQUIRED})
