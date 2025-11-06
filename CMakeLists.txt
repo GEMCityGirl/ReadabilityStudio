@@ -171,6 +171,8 @@ message(STATUS "Published by: ${PUBLISHER}")
 message(STATUS "Homepage: ${readstudio_HOMEPAGE_URL}")
 message(STATUS "Output binary: ${CMAKE_PROJECT_NAME}")
 message(STATUS "Writing program info to build peripheral files")
+configure_file("${CMAKE_CURRENT_SOURCE_DIR}/current-version.txt.in"
+               "${CMAKE_CURRENT_SOURCE_DIR}/current-version.txt")
 configure_file("${CMAKE_CURRENT_SOURCE_DIR}/src/version.h.in"
                "${CMAKE_CURRENT_SOURCE_DIR}/src/app/version.h")
 configure_file("${CMAKE_CURRENT_SOURCE_DIR}/citations.bib.in"

@@ -5134,28 +5134,8 @@ void MainFrame::OnHelpCheckForUpdates([[maybe_unused]] wxRibbonButtonBarEvent& e
     {
     wxString updateFileContent, contentType, statusText;
     // clang-format off
-#ifdef __WXOSX__
     wxString updatedFilePath =
-        _DT(L"https://readabilitystudio.com/downloads/readabilitystudio/CurrentMacVersionReadabilityStudio.txt");
-    int responseCode{ 404 };
-    if (!wxGetApp().GetWebHarvester().ReadWebPage(updatedFilePath, updateFileContent, contentType,
-                                                  statusText, responseCode, false))
-        {
-        updatedFilePath =
-            _DT(L"https://readabilitystudio.com/downloads/readabilitystudio/CurrentVersionReadabilityStudio.txt");
-        if (!wxGetApp().GetWebHarvester().ReadWebPage(updatedFilePath, updateFileContent,
-                                                      contentType, statusText, responseCode, false))
-            {
-            wxMessageBox(wxString::Format(
-                             _(L"An error occurred while trying to connect to the website:\t%s"),
-                             QueueDownload::GetResponseMessage(responseCode)),
-                         _(L"Connection Error"), wxOK | wxICON_EXCLAMATION);
-            return;
-            }
-        }
-#else
-    wxString updatedFilePath =
-        _DT(L"https://readabilitystudio.com/downloads/readabilitystudio/CurrentVersionReadabilityStudio.txt");
+        _DT(L"https://github.com/eclipse-ers/ReadabilityStudio/current-version.txt");
     // clang-format on
     int responseCode{ 404 };
     if (!wxGetApp().GetWebHarvester().ReadWebPage(updatedFilePath, updateFileContent, contentType,
@@ -5167,7 +5147,6 @@ void MainFrame::OnHelpCheckForUpdates([[maybe_unused]] wxRibbonButtonBarEvent& e
             _(L"Connection Error"), wxOK | wxICON_EXCLAMATION);
         return;
         }
-#endif
 
     updateFileContent.Trim(false).Trim(true); // will just be a version string
 
