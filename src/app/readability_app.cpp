@@ -5156,8 +5156,7 @@ void MainFrame::OnHelpCheckForUpdates([[maybe_unused]] wxRibbonButtonBarEvent& e
                                           wxGetApp().GetAppName()),
                          wxGetApp().GetAppName(), wxYES_NO | wxICON_QUESTION) == wxYES)
             {
-            if (!::wxLaunchDefaultBrowser(
-                    _DT(L"https://readabilitystudio.com/readabilitystudioupdate.html")))
+            if (!::wxLaunchDefaultBrowser(_READSTUDIO_DOWNLOAD_PAGE))
                 {
                 wxMessageBox(_(L"Unable to open default browser. Please make sure that you have an "
                                "Internet browser installed and are connected to the Internet."),
