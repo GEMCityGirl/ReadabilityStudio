@@ -104,7 +104,7 @@ Overall documentation coverage for translatable docs (User Manual, Admin Guide, 
 This is a **developer-facing** reference generated from source comments. It is not localized, but we still track coverage and quality of documentation.
 
 | Metric | Progress | Status |
-|---|:--:|
+|---|:--:|:--:|
 | Overall documentation coverage | `███████░░░` **70%** | 🟡 |
 
 #### Doxygen Coverage & Quality

@@ -189,8 +189,7 @@ string(APPEND MD "\n---\n\n")
 string(APPEND MD "### 4) 📦 Doxygen API Reference (English Only)\n\n")
 string(APPEND MD
   "This is a **developer-facing** reference generated from source comments. It is not localized, "
-  "but we still track coverage and quality of documentation.\n\n"
-)
+  "but we still track coverage and quality of documentation.\n\n")
 
 set(_doxy_val "${DOC_DOXYGEN_VALUE}")
 if(_doxy_val STREQUAL "")
@@ -200,7 +199,7 @@ _bar10(_doxy_bar "${_doxy_val}")
 _emoji_for(_doxy_emj "${_doxy_val}")
 
 string(APPEND MD
-  "| Metric | Progress | Status |\n|---|:--:|\n"
+  "| Metric | Progress | Status |\n|---|:--:|:--:|\n"
   "| Overall documentation coverage | `${_doxy_bar}` **${_doxy_val}%** | ${_doxy_emj} |\n\n")
 
 # Optional title and checklists from the Doxygen JSON
