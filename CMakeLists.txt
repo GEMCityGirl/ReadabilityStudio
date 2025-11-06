@@ -15,6 +15,7 @@
 # g11n-dashboard: builds the globalization dashboard, showing the current translation statuses (included with ALL)
 # docs-dashboard: builds the documentation dashboard, showing the current documentation statuses
 #     (e.g., coverage, translation completion, etc.) (included with ALL)
+# tests-dashboard: builds the tests and quality dashboard (included with ALL) 
 
 # Options:
 # ENABLE_SANITIZERS to use ASAN & UBSAN (ignored in release build)
@@ -234,6 +235,7 @@ include(cmake/modules/CheckTranslations.cmake)
 check_all_translations()
 include(cmake/G11NDashboard.cmake)
 include(cmake/DocsDashboard.cmake)
+include(cmake/TestsDashboard.cmake)
 
 # Build source and resource file lists to include
 include(cmake/ListFiles.cmake)

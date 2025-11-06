@@ -1,0 +1,128 @@
+# 🧪 Testing & Quality Dashboard
+
+> **Project:** Readability Studio · **Last updated:** 2025-11-06
+
+---
+
+## Readability Studio
+
+| Platform Builds  | Result |
+| ------------- | ------------- |
+| Linux    | [![Linux Build](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/unix%20build.yml/badge.svg)](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/unix%20build.yml) |
+| Windows  | [![Windows Build](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/windows-build.yml/badge.svg)](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/windows-build.yml) |
+| macOS    | [![macOS Build](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/mac-build.yml/badge.svg)](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/mac-build.yml) |
+
+| Unit Tests  | Result |
+| ------------- | ------------- |
+| Linux   | [![Linux Unit Tests](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/unit-tests.yml/badge.svg)](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/unit-tests.yml) |
+| macOS   | [![macOS Unit Tests](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/mac-unit-tests.yml/badge.svg)](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/mac-unit-tests.yml) |
+| Windows | [![Windows Unit Tests](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/windows-unit-tests.yml/badge.svg)](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/windows-unit-tests.yml) |
+
+| Code Analyses  | Result |
+| ------------- | ------------- |
+| cppcheck   | [![cppcheck](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/cppcheck.yml/badge.svg)](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/cppcheck.yml) |
+| MS PREfast | [![Microsoft C++ Code Analysis](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/msvc.yml/badge.svg)](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/msvc.yml) |
+| Quneiform  | [![Quneiform](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/quneiform.yml/badge.svg)](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/quneiform.yml) |
+| clang-tidy | [![clang-tidy](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/clang-tidy.yml/badge.svg)](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/clang-tidy.yml) |
+| CodeQL     | [![CodeQL](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/github-code-scanning/codeql) |
+
+| Documentation & Formatting | Result |
+| ------------- | ------------- |
+| Doxygen         | [![doxygen](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/doxygen.yml/badge.svg)](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/doxygen.yml) |
+| Spellcheck      | [![Spell Check](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/spell-check.yml/badge.svg)](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/spell-check.yml) |
+| Profanity Check | [![Profanity Check](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/profanity-check.yml/badge.svg)](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/profanity-check.yml) |
+| clang-format    | [![clang-format](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/clang-format-check.yml/badge.svg)](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/clang-format-check.yml) |
+
+---
+
+<img src="../../src/Wisteria-Dataviz/wisteria-dv.svg" width="64"/>
+
+## Wisteria Dataviz (graphics engine)
+
+| Platforms     | Result        |
+| ------------- | ------------- |
+| Linux  | [![Linux Build & Unit Tests](https://github.com/Blake-Madden/Wisteria-Dataviz/actions/workflows/unix%20build.yml/badge.svg)](https://github.com/Blake-Madden/Wisteria-Dataviz/actions/workflows/unix%20build.yml) |
+| macOS  | [![macOS Build & Unit Tests](https://github.com/Blake-Madden/Wisteria-Dataviz/actions/workflows/macos-build.yml/badge.svg)](https://github.com/Blake-Madden/Wisteria-Dataviz/actions/workflows/macos-build.yml) |
+| Windows  | [![Windows Build & Unit Tests](https://github.com/Blake-Madden/Wisteria-Dataviz/actions/workflows/msbuild.yml/badge.svg)](https://github.com/Blake-Madden/Wisteria-Dataviz/actions/workflows/msbuild.yml ) |
+
+| Code Analyses | Result        |
+| ------------- | ------------- |
+| cppcheck | [![cppcheck](https://github.com/Blake-Madden/Wisteria-Dataviz/actions/workflows/cppcheck.yml/badge.svg)](https://github.com/Blake-Madden/Wisteria-Dataviz/actions/workflows/cppcheck.yml) |
+| clang-tidy | [![clang-tidy](https://github.com/Blake-Madden/Wisteria-Dataviz/actions/workflows/clang-tidy.yml/badge.svg)](https://github.com/Blake-Madden/Wisteria-Dataviz/actions/workflows/clang-tidy.yml) |
+| MS PREfast | [![Microsoft C++ Code Analysis](https://github.com/Blake-Madden/Wisteria-Dataviz/actions/workflows/msvc.yml/badge.svg)](https://github.com/Blake-Madden/Wisteria-Dataviz/actions/workflows/msvc.yml) |
+| Quneiform | [![Quneiform](https://github.com/Blake-Madden/Wisteria-Dataviz/actions/workflows/i18n-check.yml/badge.svg)](https://github.com/Blake-Madden/Wisteria-Dataviz/actions/workflows/i18n-check.yml) |
+
+| Documentation & Formatting | Result        |
+| --------------------  | ------------- |
+| Doxygen | [![doxygen](https://github.com/Blake-Madden/Wisteria-Dataviz/actions/workflows/doxygen.yml/badge.svg)](https://github.com/Blake-Madden/Wisteria-Dataviz/actions/workflows/doxygen.yml) |
+| Spellcheck | [![Spell Check](https://github.com/Blake-Madden/Wisteria-Dataviz/actions/workflows/spell-check.yml/badge.svg)](https://github.com/Blake-Madden/Wisteria-Dataviz/actions/workflows/spell-check.yml) |
+| Profanity Check | [![Profanity Check](https://github.com/Blake-Madden/Wisteria-Dataviz/actions/workflows/profanity-check.yml/badge.svg)](https://github.com/Blake-Madden/Wisteria-Dataviz/actions/workflows/profanity-check.yml) |
+| clang-format | [![clang-format](https://github.com/Blake-Madden/Wisteria-Dataviz/actions/workflows/clang-format-check.yml/badge.svg)](https://github.com/Blake-Madden/Wisteria-Dataviz/actions/workflows/clang-format-check.yml) |
+| UNIX Newlines | [![Check LF line endings](https://github.com/Blake-Madden/Wisteria-Dataviz/actions/workflows/newlines-check.yml/badge.svg)](https://github.com/Blake-Madden/Wisteria-Dataviz/actions/workflows/newlines-check.yml) |
+
+
+---
+
+<img src="../../src/tinyexpr-plusplus/docs/tinyexpr_logo.png" width="64"/>
+
+## TinyExpr++ (formula-parsing engine)
+
+| Platforms  | Result |
+| ------------- | ------------- |
+| Linux  | [![unit-tests](https://github.com/Blake-Madden/tinyexpr-plusplus/actions/workflows/unit-tests.yml/badge.svg)](https://github.com/Blake-Madden/tinyexpr-plusplus/actions/workflows/unit-tests.yml)  |
+| macOS  | [![macOS Build & Unit Tests](https://github.com/Blake-Madden/tinyexpr-plusplus/actions/workflows/macos-unit-tests.yml/badge.svg)](https://github.com/Blake-Madden/tinyexpr-plusplus/actions/workflows/macos-unit-tests.yml)  |
+| Windows | [![Windows Build & Unit Tests](https://github.com/Blake-Madden/tinyexpr-plusplus/actions/workflows/msw-unit-tests.yml/badge.svg)](https://github.com/Blake-Madden/tinyexpr-plusplus/actions/workflows/msw-unit-tests.yml) |
+
+
+| Code Analyses  | Result |
+| ------------- | ------------- |
+| cppcheck | [![cppcheck](https://github.com/Blake-Madden/tinyexpr-plusplus/actions/workflows/cppcheck.yml/badge.svg)](https://github.com/Blake-Madden/tinyexpr-plusplus/actions/workflows/cppcheck.yml) |
+| MS PREfast | [![Microsoft C++ Code Analysis](https://github.com/Blake-Madden/tinyexpr-plusplus/actions/workflows/msvc.yml/badge.svg)](https://github.com/Blake-Madden/tinyexpr-plusplus/actions/workflows/msvc.yml) |
+| CodeQL | [![CodeQL](https://github.com/Blake-Madden/tinyexpr-plusplus/actions/workflows/codeql.yml/badge.svg)](https://github.com/Blake-Madden/tinyexpr-plusplus/actions/workflows/codeql.yml) |
+| Quneiform | [![i18n-check](https://github.com/Blake-Madden/tinyexpr-plusplus/actions/workflows/i18n-check.yml/badge.svg)](https://github.com/Blake-Madden/tinyexpr-plusplus/actions/workflows/i18n-check.yml) |
+
+
+| Documentation Checks  | Result |
+| ------------- | ------------- |
+| Doxygen | [![doxygen](https://github.com/Blake-Madden/tinyexpr-plusplus/actions/workflows/doxygen.yml/badge.svg)](https://github.com/Blake-Madden/tinyexpr-plusplus/actions/workflows/doxygen.yml) |
+| Spellcheck | [![Spell Check](https://github.com/Blake-Madden/i18n-check/actions/workflows/spell-check.yml/badge.svg)](https://github.com/Blake-Madden/i18n-check/actions/workflows/spell-check.yml) |
+| clang-format | [![clang-format](https://github.com/Blake-Madden/tinyexpr-plusplus/actions/workflows/clang-format.yml/badge.svg)](https://github.com/Blake-Madden/tinyexpr-plusplus/actions/workflows/clang-format.yml) |
+
+---
+
+<img src="../../src/OleanderStemmingLibrary/stemming.png" width="64"/>
+
+## Oleander Stemming Library (word-stemming engine)
+
+| Platforms  | Result |
+| ------------- | ------------- |
+| Linux  | [![Linux Build & Unit Tests](https://github.com/Blake-Madden/OleanderStemmingLibrary/actions/workflows/unit-tests.yml/badge.svg)](https://github.com/Blake-Madden/OleanderStemmingLibrary/actions/workflows/unit-tests.yml)  |
+| macOS  | [![macOS Build & Unit Tests](https://github.com/Blake-Madden/OleanderStemmingLibrary/actions/workflows/mac-unit-tests.yml/badge.svg)](https://github.com/Blake-Madden/OleanderStemmingLibrary/actions/workflows/mac-unit-tests.yml)  |
+| Windows | [![Windows Build & Unit Tests](https://github.com/Blake-Madden/OleanderStemmingLibrary/actions/workflows/windows-unit-tests.yml/badge.svg)](https://github.com/Blake-Madden/OleanderStemmingLibrary/actions/workflows/windows-unit-tests.yml)  |
+
+| Code Analyses  | Result |
+| ------------- | ------------- |
+| cppcheck | [![cppcheck](https://github.com/Blake-Madden/OleanderStemmingLibrary/actions/workflows/cppcheck.yml/badge.svg)](https://github.com/Blake-Madden/OleanderStemmingLibrary/actions/workflows/cppcheck.yml) |
+| CodeQL | [![CodeQL](https://github.com/Blake-Madden/OleanderStemmingLibrary/actions/workflows/codeql.yml/badge.svg)](https://github.com/Blake-Madden/OleanderStemmingLibrary/actions/workflows/codeql.yml) |
+| MS PREfast | [![Microsoft C++ Code Analysis](https://github.com/Blake-Madden/OleanderStemmingLibrary/actions/workflows/msvc.yml/badge.svg)](https://github.com/Blake-Madden/OleanderStemmingLibrary/actions/workflows/msvc.yml) |
+| Quneiform | [![Quneiform](https://github.com/Blake-Madden/OleanderStemmingLibrary/actions/workflows/quneiform.yml/badge.svg)](https://github.com/Blake-Madden/OleanderStemmingLibrary/actions/workflows/quneiform.yml) |
+
+| Documentation | Result |
+| ------------- | ------------- |
+| Doxygen | [![doxygen](https://github.com/Blake-Madden/OleanderStemmingLibrary/actions/workflows/doxygen.yml/badge.svg)](https://github.com/Blake-Madden/OleanderStemmingLibrary/actions/workflows/doxygen.yml) |
+
+---
+
+## wxStartPage (landing-page control)
+
+| Platforms  | Result |
+| ------------- | ------------- |
+| Linux  | [![Linux Build](https://github.com/Blake-Madden/wxStartPage/actions/workflows/unix%20build.yml/badge.svg)](https://github.com/Blake-Madden/wxStartPage/actions/workflows/unix%20build.yml) |
+| macOS  | [![macOS Build](https://github.com/Blake-Madden/wxStartPage/actions/workflows/macos-build.yml/badge.svg)](https://github.com/Blake-Madden/wxStartPage/actions/workflows/macos-build.yml) |
+
+| Code Analyses  | Result |
+| ------------- | ------------- |
+| cppcheck | [![cppcheck](https://github.com/Blake-Madden/wxStartPage/actions/workflows/cppcheck.yml/badge.svg)](https://github.com/Blake-Madden/wxStartPage/actions/workflows/cppcheck.yml) |
+| Doxygen | [![doxygen](https://github.com/Blake-Madden/wxStartPage/actions/workflows/doxygen.yml/badge.svg)](https://github.com/Blake-Madden/wxStartPage/actions/workflows/doxygen.yml) | |
+| Quneiform | [![quneiform](https://github.com/Blake-Madden/wxStartPage/actions/workflows/i18n-check.yml/badge.svg)](https://github.com/Blake-Madden/wxStartPage/actions/workflows/i18n-check.yml)
+

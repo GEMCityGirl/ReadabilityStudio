@@ -1,3 +1,12 @@
+#############################################################################
+# Name:        G11NDashboard.txt
+# Purpose:     Build script for Readability Studio
+# Author:      Blake Madden
+# Created:     2025-11-06
+# Copyright:   (c) 2025 Blake Madden
+# License:     Eclipse Public License 2.0
+#############################################################################
+
 # Generate the Globalization dashboard + local badges 
 
 # L10n status inputs
