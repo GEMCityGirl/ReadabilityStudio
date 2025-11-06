@@ -1,6 +1,6 @@
 # 🌐 Globalization Dashboard
 
-> **Project:** Readability Studio · **Last updated:** 2025-11-02
+> **Project:** Readability Studio · **Last updated:** 2025-11-05
 
 ## Legend
 
@@ -19,23 +19,23 @@ _Shipping the product in multiple languages. This section tracks per-language tr
 
 ### 📈 Roll-up Status (All Components)
 
-> Overall = weighted average of **UI (8)**, **Docs (4)**, **Installer (1)**, **Art (1)**, **License (1)**.
+> Overall = weighted average of **UI (10)**, **Docs (5)**, **Installer (1)**, **Art (1)**, **License (1)**.
 
-| Language | Code | Overall | Progress |
-|---|:--:|:--:|:--:|
-| de | `de` | `█░░░░░░░░░` **13%** | 🟡 |
-| en | `en` | `██████████` **100%** | 🟢 |
-| es | `es` | `███████░░░` **66%** | 🟡 |
-| fr | `fr` | `█░░░░░░░░░` **13%** | 🟡 |
-| ja | `ja` | `█░░░░░░░░░` **13%** | 🟡 |
-| pt | `pt` | `█░░░░░░░░░` **13%** | 🟡 |
-| ru | `ru` | `█░░░░░░░░░` **13%** | 🟡 |
+| Language | Progress | Overall |
+|---|:--:|:--:|
+| German (`de`) | `█░░░░░░░░░` **11%** | 🟡 |
+| English (`en`) | `██████████` **100%** | 🟢 |
+| Spanish (`es`) | `███████░░░` **66%** | 🟡 |
+| French (`fr`) | `█░░░░░░░░░` **11%** | 🟡 |
+| Japanese (`ja`) | `█░░░░░░░░░` **11%** | 🟡 |
+| Portuguese (`pt`) | `█░░░░░░░░░` **11%** | 🟡 |
+| Russian (`ru`) | `█░░░░░░░░░` **11%** | 🟡 |
 
 ---
 
 ### 1) 🧩 Application UI
 
-**Policy**: All visible strings must be externalized into gettext `.po` files under `locale/<lang>/LC_MESSAGES/`. Avoid hard-coded text in source files. Add translator comments when context isn’t obvious.
+**Policy**: All visible strings must be externalized into gettext `.po` files under `locale/`. Add translator comments when context isn’t obvious.
 
 **Scope**: Menus, dialogs, errors, tooltips, status messages.  
 **Source**: `src/`  
@@ -46,22 +46,15 @@ _Shipping the product in multiple languages. This section tracks per-language tr
 
 **Status**
 
-| Lang | % | Badge | Notes |
-|:---:|:--:|:--:|---|
-| `de` | **0** | ![ui de](badges/ui-de.svg) |  |
-| `en` | **100** | ![ui en](badges/ui-en.svg) |  |
-| `es` | **100** | ![ui es](badges/ui-es.svg) |  |
-| `fr` | **0** | ![ui fr](badges/ui-fr.svg) |  |
-| `ja` | **0** | ![ui ja](badges/ui-ja.svg) |  |
-| `pt` | **0** | ![ui pt](badges/ui-pt.svg) |  |
-| `ru` | **0** | ![ui ru](badges/ui-ru.svg) |  |
-
-Spanish complete; German in progress.
-
-**Assets**: localized UI screenshots under `docs/screenshots/ui/<lang>/`.
-
----
-
+| Language | Code | Progress | Overall |
+|:---:|:--:|:--:|:--:|
+| German | `de` | `░░░░░░░░░░` | 🔴 **0%** |
+| English | `en` | `██████████` | 🟢 **100%** |
+| Spanish | `es` | `██████████` | 🟢 **100%** |
+| French | `fr` | `░░░░░░░░░░` | 🔴 **0%** |
+| Japanese | `ja` | `░░░░░░░░░░` | 🔴 **0%** |
+| Portuguese | `pt` | `░░░░░░░░░░` | 🔴 **0%** |
+| Russian | `ru` | `░░░░░░░░░░` | 🔴 **0%** |
 ### 2) 📦 Installer
 
 **Policy**: All installer message catalogs must be Unicode-safe and localized by platform.
@@ -74,22 +67,15 @@ Spanish complete; German in progress.
 
 **Status**
 
-| Lang | % | Badge | Notes |
-|:---:|:--:|:--:|---|
-| `de` | **100** | ![installer de](badges/installer-de.svg) |  |
-| `en` | **100** | ![installer en](badges/installer-en.svg) |  |
-| `es` | **100** | ![installer es](badges/installer-es.svg) |  |
-| `fr` | **100** | ![installer fr](badges/installer-fr.svg) |  |
-| `ja` | **100** | ![installer ja](badges/installer-ja.svg) |  |
-| `pt` | **100** | ![installer pt](badges/installer-pt.svg) |  |
-| `ru` | **100** | ![installer ru](badges/installer-ru.svg) |  |
-
-> Future subsections: Linux installer, macOS DMG assets. Each will fold into roll-up weight **Installer = 1**.
-
-**Assets**: installer icons under `installers/assets/icons/`.
-
----
-
+| Language | Code | Progress | Overall |
+|:---:|:--:|:--:|:--:|
+| German | `de` | `██████████` | 🟢 **100%** |
+| English | `en` | `██████████` | 🟢 **100%** |
+| Spanish | `es` | `██████████` | 🟢 **100%** |
+| French | `fr` | `██████████` | 🟢 **100%** |
+| Japanese | `ja` | `██████████` | 🟢 **100%** |
+| Portuguese | `pt` | `██████████` | 🟢 **100%** |
+| Russian | `ru` | `██████████` | 🟢 **100%** |
 ### 3) 📚 Documentation (User Manuals)
 
 **Policy**: Documentation follows the same translation review cycle as UI. Source text is English Quarto/Markdown; translations tracked via `.po` in `locale/docs/`.
@@ -108,20 +94,15 @@ msgfmt locale/docs/<lang>.po -o locale/docs/<lang>.mo
 
 **Status**
 
-| Lang | % | Badge | Path |
-|:---:|:--:|:--:|---|
-| `de` | **0** | ![docs de](badges/docs-de.svg) | `docs/<lang>/` or `locale/docs/<lang>.po` |
-| `en` | **100** | ![docs en](badges/docs-en.svg) | `docs/<lang>/` or `locale/docs/<lang>.po` |
-| `es` | **0** | ![docs es](badges/docs-es.svg) | `docs/<lang>/` or `locale/docs/<lang>.po` |
-| `fr` | **0** | ![docs fr](badges/docs-fr.svg) | `docs/<lang>/` or `locale/docs/<lang>.po` |
-| `ja` | **0** | ![docs ja](badges/docs-ja.svg) | `docs/<lang>/` or `locale/docs/<lang>.po` |
-| `pt` | **0** | ![docs pt](badges/docs-pt.svg) | `docs/<lang>/` or `locale/docs/<lang>.po` |
-| `ru` | **0** | ![docs ru](badges/docs-ru.svg) | `docs/<lang>/` or `locale/docs/<lang>.po` |
-
-**Assets**: diagrams/screenshots in `docs/assets/`; translated captions in `.po` entries.
-
----
-
+| Language | Code | Progress | Overall |
+|:---:|:--:|:--:|:--:|
+| German | `de` | `░░░░░░░░░░` | 🔴 **0%** |
+| English | `en` | `██████████` | 🟢 **100%** |
+| Spanish | `es` | `░░░░░░░░░░` | 🔴 **0%** |
+| French | `fr` | `░░░░░░░░░░` | 🔴 **0%** |
+| Japanese | `ja` | `░░░░░░░░░░` | 🔴 **0%** |
+| Portuguese | `pt` | `░░░░░░░░░░` | 🔴 **0%** |
+| Russian | `ru` | `░░░░░░░░░░` | 🔴 **0%** |
 ### 4) 🎨 Art & Screenshots
 
 **Policy**: Core art assets remain language-neutral. Textual variants are generated at runtime from scriptable sources.
@@ -131,35 +112,33 @@ msgfmt locale/docs/<lang>.po -o locale/docs/<lang>.mo
 
 **Status**
 
-| Lang | % | Badge | Notes |
-|:---:|:--:|:--:|---|
-| `de` | **100** | ![art de](badges/art-de.svg) | Programmatic generation |
-| `en` | **100** | ![art en](badges/art-en.svg) | Programmatic generation |
-| `es` | **100** | ![art es](badges/art-es.svg) | Programmatic generation |
-| `fr` | **100** | ![art fr](badges/art-fr.svg) | Programmatic generation |
-| `ja` | **100** | ![art ja](badges/art-ja.svg) | Programmatic generation |
-| `pt` | **100** | ![art pt](badges/art-pt.svg) | Programmatic generation |
-| `ru` | **100** | ![art ru](badges/art-ru.svg) | Programmatic generation |
+| Language | Code | Progress | Overall |
+|:---:|:--:|:--:|:--:|
+| German | `de` | `██████████` | 🟢 **100%** |
+| English | `en` | `██████████` | 🟢 **100%** |
+| Spanish | `es` | `██████████` | 🟢 **100%** |
+| French | `fr` | `██████████` | 🟢 **100%** |
+| Japanese | `ja` | `██████████` | 🟢 **100%** |
+| Portuguese | `pt` | `██████████` | 🟢 **100%** |
+| Russian | `ru` | `██████████` | 🟢 **100%** |
 
 ---
 
 ### 5) 📜 Licenses
 
-**Policy**: Each platform and language must include legally reviewed translations. Use UTF-8 plain text. Keep English master in sync with translated versions.
-
-**Suggested paths**: `licenses/` (project-wide) or platform-specific under `installers/*/LICENSE*`.
+**Policy**: Use **only** the Eclipse Foundation license text and the **approved EF-provided translations**. Do not ship custom or modified licenses. Keep copies in UTF-8 as distributed by EF.
 
 **Status**
 
-| Lang | % | Badge | Notes |
-|:---:|:--:|:--:|---|
-| `de` | **0** | ![license de](badges/license-de.svg) |  |
-| `en` | **100** | ![license en](badges/license-en.svg) |  |
-| `es` | **0** | ![license es](badges/license-es.svg) |  |
-| `fr` | **0** | ![license fr](badges/license-fr.svg) |  |
-| `ja` | **0** | ![license ja](badges/license-ja.svg) |  |
-| `pt` | **0** | ![license pt](badges/license-pt.svg) |  |
-| `ru` | **0** | ![license ru](badges/license-ru.svg) |  |
+| Lang | Code | Progress | Overall |
+|:---:|:--:|:--:|:--:|
+| German | `de` | `░░░░░░░░░░` | 🔴 **0%** |
+| English | `en` | `██████████` | 🟢 **100%** |
+| Spanish | `es` | `░░░░░░░░░░` | 🔴 **0%** |
+| French | `fr` | `░░░░░░░░░░` | 🔴 **0%** |
+| Japanese | `ja` | `░░░░░░░░░░` | 🔴 **0%** |
+| Portuguese | `pt` | `░░░░░░░░░░` | 🔴 **0%** |
+| Russian | `ru` | `░░░░░░░░░░` | 🔴 **0%** |
 
 ---
 
@@ -167,45 +146,104 @@ msgfmt locale/docs/<lang>.po -o locale/docs/<lang>.mo
 
 _Making the product world-ready (Unicode, plural rules, RTL, locale-sensitive formats, input methods). Each area shows a single readiness score plus a short note._
 
-| Area | % | Badge |
+| Area | Progress | Overall |
 |---|:--:|:--:|
-| 🧩 UI | **75%** | ![i18n ui](badges/i18n-ui.svg) |
-| 📦 Installer | **85%** | ![i18n installer](badges/i18n-installer.svg) |
-| 📚 Docs | **60%** | ![i18n docs](badges/i18n-docs.svg) |
-| 🎨 Art | **75%** | ![i18n art](badges/i18n-art.svg) |
-| 📜 License | **0%** | ![i18n license](badges/i18n-license.svg) |
-
+| 🧩 UI | `████████░░` | 🟡 **75%** |
+| 📦 Installer | `███████░░░` | 🟡 **65%** |
+| 📚 Docs | `███████░░░` | 🟡 **70%** |
+| 🎨 Art | `████████░░` | 🟡 **75%** |
+| 📜 License | `░░░░░░░░░░` | 🔴 **0%** |
 
 #### Application UI
+
+#### Baseline Requirements
 - [x] UI strings externalized
-- [x] Plural forms covered
-- [ ] Needs RTL layout audit and bidi mirroring testing
-- [ ] Date/time formatting needs review
-- [ ] List sorting needs to be locale aware
-- [ ] Formula radix separators need additional testing on all platforms
+- [x] Plural forms covered (wxGetTranslation plural)
+- [x] Use wxTranslations catalogs
+- [x] Replace wxLocale with wxUILocale
+- [x] Date/time via wxDateTime::Format* with locale
+- [x] Numbers via wxNumberFormatter
+- [ ] Locale-aware sort via wxUILocale::CompareStrings
+- [ ] Positional params in re-orderable strings (%1$s)
+- [x] Dynamic layouts (sizers), handle 30–50% expansion
+- [ ] RTL audit + bidi mirroring
+- [x] Unicode-safe text ops (grapheme-aware)
+- [ ] IME works in custom editors
+- [ ] Localizable shortcuts
+- [x] Unicode-safe paths
+- [x] UTF-8 logs/crash reports
+- [x] Pseudolocale runs
 
-
-#### Windows Installer
-- [x] Inno Setup files UTF-8 encoded
-- [x] Inno Setup project Unicode enabled
-- [ ] Needs RTL wizard layout check
-
+#### Recommended Enhancements
+- [x] Translator comments/context where ambiguous
+- [x] CJK full-width metrics don’t clip
+- [ ] Locale-aware search/case (Turkish I)
+- [ ] Measurement units + formatting
+- [x] Clipboard/drag/drop round-trips Unicode
+- [ ] Language switch reloads resources or prompts restart
+- [x] CI checks: missing/unused keys, bad % placeholders
 
 #### Documentation
-- [x] UTF-8 throughout
-- [x] Locale-aware date/number use
-- [x] Screenshot variants per locale
-- [ ] Build system to apply translations to Quarto files
-- [ ] LaTeX translations for content headers in use
-- [ ] File structure for translated content
 
+#### Baseline Requirements
+- [x] Source and output files use UTF-8 throughout
+- [ ] Locale-aware date/time/number rendering verified
+- [ ] Screenshot variants generated per locale
+- [ ] Build system applies PO/MO translations correctly
+- [ ] LaTeX translations verified for document headers, captions, and figure labels
+- [ ] File structure for translated content mirrors English master
+- [ ] Front-matter fields localizable (title, description, author)
+- [ ] Inline code and computed outputs honor locale (numbers, units, currency)
+- [ ] Table of contents and navigation labels translated
+- [ ] Non-ASCII file names handled safely across OSes
+- [ ] Spellcheck and grammar checks disabled or localized per language build
 
-#### Art Assets
-- [ ] All text rendered at runtime
-- [ ] Fonts with full Unicode ranges in use
+#### Recommended Enhancements
+- [ ] Support for RTL document layouts
+- [ ] Localized figure/table cross-references and numbering
+- [ ] Localized index generation and keyword lists
+- [ ] Language-specific hyphenation and line breaking in PDF output
+- [ ] Include locale metadata in HTML head (lang attributes, hreflang links)
+- [ ] Automated link validation for localized docs (no broken internal links)
+- [ ] Language-specific glossaries or terminology sections
+- [ ] Automated translation coverage report in CI
+- [ ] Per-language preview builds for QA (e.g., GitHub Actions matrix)
+- [ ] Scripts to sync untranslated sections from English (msgmerge equivalent for docs)
+- [ ] Fallback text for missing translations rendered clearly in output (e.g., “⚠ Untranslated”)
+- [ ] Localization of diagrams or embedded SVG text layers
 
+#### Windows Installer
+
+#### Baseline Requirements
+- [x] All .isl and .iss files encoded in UTF-8
+- [x] Inno Setup project built with Unicode version
+- [x] Installer strings externalized to .isl files per language
+- [ ] Language section defines CodePage=65001 (UTF-8)
+- [ ] RTL wizard layout verified for RTL locales
+- [ ] EF license text correctly included for each language
+- [ ] Locale-aware number/date formatting in custom pages
+- [ ] Font selection verified for CJK/RTL scripts
+- [ ] Command-line and log output handle Unicode filenames
+- [ ] Product version, publisher, and description translated in version info
+- [x] Setup localization tested on non-English Windows locales
+
+#### Recommended Enhancements
+- [x] Implement automatic language detection based on Windows user locale
+- [ ] Provide manual language selection UI with safe defaults
+- [ ] Verify Unicode behavior for registry keys and paths
+- [ ] Localized start menu entries and shortcuts
+- [ ] Translate Uninstall display name and publisher
+- [ ] Support bidirectional text alignment in wizard messages
+- [ ] Localized digital signature metadata (EF signing policy compliance)
+- [ ] Continuous integration builds for all locales
+- [x] Ensure fallback to English if target locale unavailable
+- [x] Localized installer icon and bitmap resources where appropriate
 
 #### Licenses
 - [ ] Include translated versions of Eclipse License in program
 - [ ] Include translated versions of Eclipse License in Windows installer
+
+#### Art Assets
+- [x] All text rendered at runtime
+- [x] Fonts with full Unicode ranges in use
 

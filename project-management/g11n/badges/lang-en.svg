@@ -1,9 +1,0 @@
-<svg xmlns='http://www.w3.org/2000/svg' width='336' height='20' role='img' aria-label='l10n (en): 100% ██████████'>
-  <rect width='336' height='20' rx='3' fill='#0000'/>
-  <rect width='77' height='20' rx='3' fill='#555'/>
-  <rect x='77' width='259' height='20' fill='#4c1'/>
-  <g fill='#fff' text-anchor='middle' font-family='DejaVu Sans,Verdana,Geneva,sans-serif' font-size='11'>
-    <text x='77/2' y='14'>l10n (en)</text>
-    <text x='77+259/2' y='14'>100% ██████████</text>
-  </g>
-</svg>
