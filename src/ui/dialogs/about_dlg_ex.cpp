@@ -337,9 +337,10 @@ void AboutDialogEx::CreateControls()
         auto* componentsPage = new wxPanel(m_sideBarBook);
         auto* mainPanelSizer = new wxBoxSizer(wxVERTICAL);
         componentsPage->SetSizer(mainPanelSizer);
-        m_sideBarBook->AddPage(componentsPage,
-                               /* TRANSLATORS: Software bill of materials */ _(L"SBOM"),
-                               ID_COMPONENTS, false);
+        m_sideBarBook->AddPage(
+            componentsPage,
+            _DT(L"SBOM", DTExplanation::ProperNoun, L"This is an industry standard acronym."),
+            ID_COMPONENTS, false);
 
         // Consistently format library info with the name and version number.
         const auto formatLibInfo = [](const auto& libInfo, wxString commitHash = wxString{},
