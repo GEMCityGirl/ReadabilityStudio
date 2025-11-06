@@ -1,6 +1,16 @@
+#############################################################################
+# Name:        BuildG11NDashboard.txt
+# Purpose:     Build script for Readability Studio
+# Author:      Blake Madden
+# Created:     2025-10-26
+# Copyright:   (c) 2025 Blake Madden
+# License:     Eclipse Public License 2.0
+#############################################################################
+
 # Globalization dashboard generator (l10n + i18n)
 set(MD "")
 include("${CMAKE_CURRENT_LIST_DIR}/DashboardCommon.cmake")
+include("${CMAKE_BINARY_DIR}/translation_stats.cmake")
 
 # ----- Inputs -----
 if(NOT DEFINED ROOT)
@@ -206,9 +216,13 @@ string(APPEND MD "**Scope**: Menus, dialogs, errors, tooltips, status messages. 
 string(APPEND MD "> Use POEdit’s *Catalog → Update from POT/Source code* to merge new strings; keep placeholders intact and run QA before commit.\n\n")
 string(APPEND MD "**Status**\n\n| Language | Code | Progress | Status |\n|:---:|:--:|:--:|:--:|\n")
 foreach(L IN LISTS LANGS)
-  set(_v "UI_PCT_${L}")
-  set(_pct "${${_v}}")
-  if(_pct STREQUAL "")
+  set(_v "${L}_PERCENT_TRANSLATED")
+  if(DEFINED ${_v})
+    set(_pct "${${_v}}")
+  # Already in English completely
+  elseif(${L} STREQUAL "en")
+    set(_pct 100)
+  else()
     set(_pct 0)
   endif()
 

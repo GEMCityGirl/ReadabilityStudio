@@ -21,7 +21,7 @@ _Shipping the product in multiple languages. This section tracks per-language tr
 
 > Overall = weighted average of **UI (10)**, **Docs (5)**, **Installer (1)**, **Art (1)**, **License (1)**.
 
-| Language | Progress | Overall |
+| Language | Progress | Status |
 |---|:--:|:--:|
 | German (`de`) | `█░░░░░░░░░` **11%** | 🟡 |
 | English (`en`) | `██████████` **100%** | 🟢 |
@@ -46,7 +46,7 @@ _Shipping the product in multiple languages. This section tracks per-language tr
 
 **Status**
 
-| Language | Code | Progress | Overall |
+| Language | Code | Progress | Status |
 |:---:|:--:|:--:|:--:|
 | German | `de` | `░░░░░░░░░░` **0%** | 🔴 |
 | English | `en` | `██████████` **100%** | 🟢 |
@@ -67,7 +67,7 @@ _Shipping the product in multiple languages. This section tracks per-language tr
 
 **Status**
 
-| Language | Code | Progress | Overall |
+| Language | Code | Progress | Status |
 |:---:|:--:|:--:|:--:|
 | German | `de` | `██████████` **100%** | 🟢 |
 | English | `en` | `██████████` **100%** | 🟢 |
@@ -94,7 +94,7 @@ msgfmt locale/docs/<lang>.po -o locale/docs/<lang>.mo
 
 **Status**
 
-| Language | Code | Progress | Overall |
+| Language | Code | Progress | Status |
 |:---:|:--:|:--:|:--:|
 | German | `de` | `░░░░░░░░░░` **0%** | 🔴 |
 | English | `en` | `██████████` **100%** | 🟢 |
@@ -112,7 +112,7 @@ msgfmt locale/docs/<lang>.po -o locale/docs/<lang>.mo
 
 **Status**
 
-| Language | Code | Progress | Overall |
+| Language | Code | Progress | Status |
 |:---:|:--:|:--:|:--:|
 | German | `de` | `██████████` **100%** | 🟢 |
 | English | `en` | `██████████` **100%** | 🟢 |
@@ -130,7 +130,7 @@ msgfmt locale/docs/<lang>.po -o locale/docs/<lang>.mo
 
 **Status**
 
-| Lang | Code | Progress | Overall |
+| Lang | Code | Progress | Status |
 |:---:|:--:|:--:|:--:|
 | German | `de` | `░░░░░░░░░░` **0%** | 🔴 |
 | English | `en` | `██████████` **100%** | 🟢 |
@@ -146,7 +146,7 @@ msgfmt locale/docs/<lang>.po -o locale/docs/<lang>.mo
 
 _Making the product world-ready (Unicode, plural rules, RTL, locale-sensitive formats, input methods). Each area shows a single readiness score plus a short note._
 
-| Area | Progress | Overall |
+| Area | Progress | Status |
 |---|:--:|:--:|
 | 🧩 UI | `████████░░` **75%** | 🟡 |
 | 📦 Installer | `███████░░░` **65%** | 🟡 |

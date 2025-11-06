@@ -1,5 +1,13 @@
-# Documentation & Knowledge Base dashboard generator
+#############################################################################
+# Name:        BuildDocsDashboard.txt
+# Purpose:     Build script for Readability Studio
+# Author:      Blake Madden
+# Created:     2025-10-26
+# Copyright:   (c) 2025 Blake Madden
+# License:     Eclipse Public License 2.0
+#############################################################################
 
+# Documentation & Knowledge Base dashboard generator
 set(MD "")
 include("${CMAKE_CURRENT_LIST_DIR}/DashboardCommon.cmake")
 
