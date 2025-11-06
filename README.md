@@ -18,6 +18,7 @@
 | MS PREfast | [![Microsoft C++ Code Analysis](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/msvc.yml/badge.svg)](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/msvc.yml) |
 | Quneiform  | [![Quneiform](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/quneiform.yml/badge.svg)](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/quneiform.yml) |
 | clang-tidy | [![clang-tidy](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/clang-tidy.yml/badge.svg)](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/clang-tidy.yml) |
+| CodeQL     | [![CodeQL](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/github-code-scanning/codeql) |
 
 | Documentation & Formatting | Result |
 | ------------- | ------------- |
