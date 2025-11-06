@@ -12,8 +12,9 @@
 # readstudio: builds the main application (included with ALL)
 # doxygen-docs: builds the API documentation (included with ALL)
 # manuals: builds the manuals and HTML help
-# g11n-dashboard: builds the globalization dashboard, showing the current translation statuses.
-# docs-dashboard: builds the documentation dashboard, showing the current documentation statuses (e.g., coverage, translation completion, etc.).
+# g11n-dashboard: builds the globalization dashboard, showing the current translation statuses (included with ALL)
+# docs-dashboard: builds the documentation dashboard, showing the current documentation statuses
+#     (e.g., coverage, translation completion, etc.) (included with ALL)
 
 # Options:
 # ENABLE_SANITIZERS to use ASAN & UBSAN (ignored in release build)
