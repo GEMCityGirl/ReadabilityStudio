@@ -9,7 +9,9 @@
 - 🔴 **Not Started** (< 10%)
 - ⏳ **Needs Review** (pending proofread/QA)
 
-`██████████` = 100%, `█████░░░░░` ≈ 50%
+`██████████` = 100%
+
+`█████░░░░░` ≈ 50%
 
 ---
 
@@ -46,15 +48,15 @@ _Shipping the product in multiple languages. This section tracks per-language tr
 
 **Status**
 
-| Language | Code | Progress | Status |
+| Language | Progress | Status |
 |:---:|:--:|:--:|:--:|
-| German | `de` | `░░░░░░░░░░` **0%** | 🔴 |
-| English | `en` | `██████████` **100%** | 🟢 |
-| Spanish | `es` | `██████████` **100%** | 🟢 |
-| French | `fr` | `░░░░░░░░░░` **0%** | 🔴 |
-| Japanese | `ja` | `░░░░░░░░░░` **0%** | 🔴 |
-| Portuguese | `pt` | `░░░░░░░░░░` **0%** | 🔴 |
-| Russian | `ru` | `░░░░░░░░░░` **0%** | 🔴 |
+| German | `░░░░░░░░░░` **0%** | 🔴 |
+| English | `██████████` **100%** | 🟢 |
+| Spanish | `██████████` **100%** | 🟢 |
+| French | `░░░░░░░░░░` **0%** | 🔴 |
+| Japanese | `░░░░░░░░░░` **0%** | 🔴 |
+| Portuguese | `░░░░░░░░░░` **0%** | 🔴 |
+| Russian | `░░░░░░░░░░` **0%** | 🔴 |
 ### 2) 📦 Installer
 
 **Policy**: All installer message catalogs must be Unicode-safe and localized by platform.
@@ -67,15 +69,15 @@ _Shipping the product in multiple languages. This section tracks per-language tr
 
 **Status**
 
-| Language | Code | Progress | Status |
+| Language | Progress | Status |
 |:---:|:--:|:--:|:--:|
-| German | `de` | `██████████` **100%** | 🟢 |
-| English | `en` | `██████████` **100%** | 🟢 |
-| Spanish | `es` | `██████████` **100%** | 🟢 |
-| French | `fr` | `██████████` **100%** | 🟢 |
-| Japanese | `ja` | `██████████` **100%** | 🟢 |
-| Portuguese | `pt` | `██████████` **100%** | 🟢 |
-| Russian | `ru` | `██████████` **100%** | 🟢 |
+| German | `██████████` **100%** | 🟢 |
+| English | `██████████` **100%** | 🟢 |
+| Spanish | `██████████` **100%** | 🟢 |
+| French | `██████████` **100%** | 🟢 |
+| Japanese | `██████████` **100%** | 🟢 |
+| Portuguese | `██████████` **100%** | 🟢 |
+| Russian | `██████████` **100%** | 🟢 |
 ### 3) 📚 Documentation (User Manuals)
 
 **Policy**: Documentation follows the same translation review cycle as UI. Source text is English Quarto/Markdown; translations tracked via `.po` in `locale/docs/`.
@@ -94,15 +96,15 @@ msgfmt locale/docs/<lang>.po -o locale/docs/<lang>.mo
 
 **Status**
 
-| Language | Code | Progress | Status |
+| Language | Progress | Status |
 |:---:|:--:|:--:|:--:|
-| German | `de` | `░░░░░░░░░░` **0%** | 🔴 |
-| English | `en` | `██████████` **100%** | 🟢 |
-| Spanish | `es` | `░░░░░░░░░░` **0%** | 🔴 |
-| French | `fr` | `░░░░░░░░░░` **0%** | 🔴 |
-| Japanese | `ja` | `░░░░░░░░░░` **0%** | 🔴 |
-| Portuguese | `pt` | `░░░░░░░░░░` **0%** | 🔴 |
-| Russian | `ru` | `░░░░░░░░░░` **0%** | 🔴 |
+| German | `░░░░░░░░░░` **0%** | 🔴 |
+| English | `██████████` **100%** | 🟢 |
+| Spanish | `░░░░░░░░░░` **0%** | 🔴 |
+| French | `░░░░░░░░░░` **0%** | 🔴 |
+| Japanese | `░░░░░░░░░░` **0%** | 🔴 |
+| Portuguese | `░░░░░░░░░░` **0%** | 🔴 |
+| Russian | `░░░░░░░░░░` **0%** | 🔴 |
 ### 4) 🎨 Art & Screenshots
 
 **Policy**: Core art assets remain language-neutral. Textual variants are generated at runtime from scriptable sources.
@@ -112,15 +114,15 @@ msgfmt locale/docs/<lang>.po -o locale/docs/<lang>.mo
 
 **Status**
 
-| Language | Code | Progress | Status |
+| Language | Progress | Status |
 |:---:|:--:|:--:|:--:|
-| German | `de` | `██████████` **100%** | 🟢 |
-| English | `en` | `██████████` **100%** | 🟢 |
-| Spanish | `es` | `██████████` **100%** | 🟢 |
-| French | `fr` | `██████████` **100%** | 🟢 |
-| Japanese | `ja` | `██████████` **100%** | 🟢 |
-| Portuguese | `pt` | `██████████` **100%** | 🟢 |
-| Russian | `ru` | `██████████` **100%** | 🟢 |
+| German | `██████████` **100%** | 🟢 |
+| English | `██████████` **100%** | 🟢 |
+| Spanish | `██████████` **100%** | 🟢 |
+| French | `██████████` **100%** | 🟢 |
+| Japanese | `██████████` **100%** | 🟢 |
+| Portuguese | `██████████` **100%** | 🟢 |
+| Russian | `██████████` **100%** | 🟢 |
 
 ---
 
@@ -130,15 +132,15 @@ msgfmt locale/docs/<lang>.po -o locale/docs/<lang>.mo
 
 **Status**
 
-| Lang | Code | Progress | Status |
+| Lang | Progress | Status |
 |:---:|:--:|:--:|:--:|
-| German | `de` | `░░░░░░░░░░` **0%** | 🔴 |
-| English | `en` | `██████████` **100%** | 🟢 |
-| Spanish | `es` | `░░░░░░░░░░` **0%** | 🔴 |
-| French | `fr` | `░░░░░░░░░░` **0%** | 🔴 |
-| Japanese | `ja` | `░░░░░░░░░░` **0%** | 🔴 |
-| Portuguese | `pt` | `░░░░░░░░░░` **0%** | 🔴 |
-| Russian | `ru` | `░░░░░░░░░░` **0%** | 🔴 |
+| German | `░░░░░░░░░░` **0%** | 🔴 |
+| English | `██████████` **100%** | 🟢 |
+| Spanish | `░░░░░░░░░░` **0%** | 🔴 |
+| French | `░░░░░░░░░░` **0%** | 🔴 |
+| Japanese | `░░░░░░░░░░` **0%** | 🔴 |
+| Portuguese | `░░░░░░░░░░` **0%** | 🔴 |
+| Russian | `░░░░░░░░░░` **0%** | 🔴 |
 
 ---
 

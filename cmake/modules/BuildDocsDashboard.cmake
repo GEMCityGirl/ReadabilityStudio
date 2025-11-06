@@ -94,14 +94,14 @@ string(APPEND MD
   "- 🟡 **In Progress** (10–94%)\n"
   "- 🔴 **Not Started** (< 10%)\n"
   "- ⏳ **Needs Review** (pending proofread/QA)\n\n"
-  "`██████████` = 100%, `█████░░░░░` ≈ 50%\n\n"
+  "`██████████` = 100%\n\n`█████░░░░░` ≈ 50%\n\n"
   "---\n\n"
 )
 
 # ----- Roll-up table by language -----
 string(APPEND MD "## Summary by Language\n\n")
 string(APPEND MD "Overall documentation coverage for translatable docs (User Manual, Admin Guide, Programming Reference).\n\n")
-string(APPEND MD "| Language | Code | Progress | Status |\n|---|:--:|:--:|:--:|\n")
+string(APPEND MD "| Language | Progress | Status |\n|---|:--:|:--:|:--:|\n")
 
 foreach(L IN LISTS DOC_LANGS)
   set(_pall_var "DOC_PALL_${L}")
@@ -112,7 +112,7 @@ foreach(L IN LISTS DOC_LANGS)
   _emoji_for(EMJ "${P_ALL}")
   _resolve_lang_name(_LNAME "${L}")
 
-  string(APPEND MD "| ${_LNAME} | `${L}` | `${BAR}` **${P_ALL}%** | ${EMJ} |\n")
+  string(APPEND MD "| ${_LNAME} (`${L}`) | `${BAR}` **${P_ALL}%** | ${EMJ} |\n")
 endforeach()
 
 string(APPEND MD "\n---\n\n")
@@ -126,14 +126,14 @@ string(APPEND MD
   "**Sources**: Quarto/Markdown in `docs/` (e.g., `docs/user-manual.qmd`).  \n"
   "**Localization**: Strings extracted into `locale/docs/*.po` and maintained with POEdit.\n\n"
 )
-string(APPEND MD "**Status**\n\n| Language | Code | Progress | Status |\n|:---:|:--:|:--:|:--:|\n")
+string(APPEND MD "**Status**\n\n| Language | Progress | Status |\n|:---:|:--:|:--:|:--:|\n")
 foreach(L IN LISTS DOC_LANGS)
   _val_or(DOC_USER_${L} 0)
   set(_pct "${RET}")
   _bar10(_bar "${_pct}")
   _emoji_for(_emj "${_pct}")
   _resolve_lang_name(_LNAME "${L}")
-  string(APPEND MD "| ${_LNAME} | `${L}` | `${_bar}` **${_pct}%** | ${_emj} |\n")
+  string(APPEND MD "| ${_LNAME} | `${_bar}` **${_pct}%** | ${_emj} |\n")
 endforeach()
 if(NOT "${DOC_USER_COMMENT}" STREQUAL "")
   _emit_comment_md(_blk "${DOC_USER_COMMENT}")
@@ -148,14 +148,14 @@ string(APPEND MD
   "**Sources**: Quarto/Markdown in `docs/` (e.g., `docs/admin-guide.qmd`).  \n"
   "**Localization**: Tracked via `locale/docs/*.po` alongside the User Manual.\n\n"
 )
-string(APPEND MD "**Status**\n\n| Language | Code | Progress | Status |\n|:---:|:--:|:--:|:--:|\n")
+string(APPEND MD "**Status**\n\n| Language | Progress | Status |\n|:---:|:--:|:--:|:--:|\n")
 foreach(L IN LISTS DOC_LANGS)
   _val_or(DOC_ADMIN_${L} 0)
   set(_pct "${RET}")
   _bar10(_bar "${_pct}")
   _emoji_for(_emj "${_pct}")
   _resolve_lang_name(_LNAME "${L}")
-  string(APPEND MD "| ${_LNAME} | `${L}` | `${_bar}` **${_pct}%** | ${_emj} |\n")
+  string(APPEND MD "| ${_LNAME} | `${_bar}` **${_pct}%** | ${_emj} |\n")
 endforeach()
 if(NOT "${DOC_ADMIN_COMMENT}" STREQUAL "")
   _emit_comment_md(_blk "${DOC_ADMIN_COMMENT}")
@@ -170,14 +170,14 @@ string(APPEND MD
   "**Sources**: Quarto/Markdown in `docs/` (e.g., `docs/programming-reference.qmd`).  \n"
   "**Localization**: Translations optional but recommended for major locales; examples may remain in English.\n\n"
 )
-string(APPEND MD "**Status**\n\n| Language | Code | Progress | Status |\n|:---:|:--:|:--:|:--:|\n")
+string(APPEND MD "**Status**\n\n| Language | Progress | Status |\n|:---:|:--:|:--:|:--:|\n")
 foreach(L IN LISTS DOC_LANGS)
   _val_or(DOC_API_${L} 0)
   set(_pct "${RET}")
   _bar10(_bar "${_pct}")
   _emoji_for(_emj "${_pct}")
   _resolve_lang_name(_LNAME "${L}")
-  string(APPEND MD "| ${_LNAME} | `${L}` | `${_bar}` **${_pct}%** | ${_emj} |\n")
+  string(APPEND MD "| ${_LNAME} | `${_bar}` **${_pct}%** | ${_emj} |\n")
 endforeach()
 if(NOT "${DOC_API_COMMENT}" STREQUAL "")
   _emit_comment_md(_blk "${DOC_API_COMMENT}")

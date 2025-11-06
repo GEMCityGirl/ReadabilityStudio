@@ -11,7 +11,9 @@
 - 🔴 **Not Started** (< 10%)
 - ⏳ **Needs Review** (pending proofread/QA)
 
-`██████████` = 100%, `█████░░░░░` ≈ 50%
+`██████████` = 100%
+
+`█████░░░░░` ≈ 50%
 
 ---
 
@@ -19,11 +21,11 @@
 
 Overall documentation coverage for translatable docs (User Manual, Admin Guide, Programming Reference).
 
-| Language | Code | Progress | Status |
+| Language | Progress | Status |
 |---|:--:|:--:|:--:|
-| German | `de` | `░░░░░░░░░░` **0%** | 🔴 |
-| English | `en` | `████████░░` **83%** | 🟡 |
-| Spanish | `es` | `░░░░░░░░░░` **0%** | 🔴 |
+| German (`de`) | `░░░░░░░░░░` **0%** | 🔴 |
+| English (`en`) | `████████░░` **83%** | 🟡 |
+| Spanish (`es`) | `░░░░░░░░░░` **0%** | 🔴 |
 
 ---
 
@@ -35,11 +37,11 @@ Overall documentation coverage for translatable docs (User Manual, Admin Guide, 
 
 **Status**
 
-| Language | Code | Progress | Status |
+| Language | Progress | Status |
 |:---:|:--:|:--:|:--:|
-| German | `de` | `░░░░░░░░░░` **0%** | 🔴 |
-| English | `en` | `██████████` **100%** | 🟢 |
-| Spanish | `es` | `░░░░░░░░░░` **0%** | 🔴 |
+| German | `░░░░░░░░░░` **0%** | 🔴 |
+| English | `██████████` **100%** | 🟢 |
+| Spanish | `░░░░░░░░░░` **0%** | 🔴 |
 
 #### User Manual
 - [x] All major features documented
@@ -57,11 +59,11 @@ Overall documentation coverage for translatable docs (User Manual, Admin Guide, 
 
 **Status**
 
-| Language | Code | Progress | Status |
+| Language | Progress | Status |
 |:---:|:--:|:--:|:--:|
-| German | `de` | `░░░░░░░░░░` **0%** | 🔴 |
-| English | `en` | `██████████` **100%** | 🟢 |
-| Spanish | `es` | `░░░░░░░░░░` **0%** | 🔴 |
+| German | `░░░░░░░░░░` **0%** | 🔴 |
+| English | `██████████` **100%** | 🟢 |
+| Spanish | `░░░░░░░░░░` **0%** | 🔴 |
 
 #### System Admin Guide
 - [x] Windows install/upgrade workflows documented
@@ -85,11 +87,11 @@ Overall documentation coverage for translatable docs (User Manual, Admin Guide, 
 
 **Status**
 
-| Language | Code | Progress | Status |
+| Language | Progress | Status |
 |:---:|:--:|:--:|:--:|
-| German | `de` | `░░░░░░░░░░` **0%** | 🔴 |
-| English | `en` | `█████░░░░░` **50%** | 🟡 |
-| Spanish | `es` | `░░░░░░░░░░` **0%** | 🔴 |
+| German | `░░░░░░░░░░` **0%** | 🔴 |
+| English | `█████░░░░░` **50%** | 🟡 |
+| Spanish | `░░░░░░░░░░` **0%** | 🔴 |
 
 #### Programming Reference
 - [x] Public Lua entry points documented

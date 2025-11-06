@@ -7,7 +7,7 @@
 # License:     Eclipse Public License 2.0
 #############################################################################
 
-# Generate the Globalization dashboard + local badges 
+# Generate the Globalization dashboard
 
 # L10n status inputs
 set(G11N_STATUS_DIR ${CMAKE_SOURCE_DIR}/project-management/g11n/status)
@@ -17,7 +17,6 @@ set(G11N_STATUS_I18N_DIR ${CMAKE_SOURCE_DIR}/project-management/g11n/status/i18n
 
 # Outputs
 set(G11N_OUT_MD     ${CMAKE_SOURCE_DIR}/project-management/g11n/DASHBOARD.md)
-set(G11N_OUT_BADGES ${CMAKE_SOURCE_DIR}/project-management/g11n/badges)
 
 # Roll-up weights
 set(G11N_WEIGHTS ui=10,docs=5,installer=1,art=1,license=1)
@@ -41,7 +40,6 @@ set(G11N_PROJECT_NAME ${readstudio_DESCRIPTION})
 
 add_custom_command(
   OUTPUT ${G11N_OUT_MD}
-  COMMAND ${CMAKE_COMMAND} -E make_directory ${G11N_OUT_BADGES}
   COMMAND ${CMAKE_COMMAND}
           -DROOT=${CMAKE_SOURCE_DIR}
           -DSTATUS_DIR=${G11N_STATUS_DIR}
@@ -51,7 +49,7 @@ add_custom_command(
           -DPROJECT_NAME=${G11N_PROJECT_NAME}
           -P ${CMAKE_SOURCE_DIR}/cmake/modules/BuildG11NDashboard.cmake
   DEPENDS ${G11N_INPUTS}
-  COMMENT "Generating Globalization dashboard and badges"
+  COMMENT "Generating Globalization dashboard"
   VERBATIM)
 
 add_custom_target(g11n-dashboard ALL
