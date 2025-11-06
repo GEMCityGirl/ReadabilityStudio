@@ -8,7 +8,7 @@
 #############################################################################
 
 # Build targets:
-# all: builds the progam, doxygen help, and dashboard targets
+# all: builds the program, doxygen help, and dashboard targets
 # readstudio: builds the main application (included with ALL)
 # doxygen-docs: builds the API documentation (included with ALL)
 # manuals: builds the manuals and HTML help
