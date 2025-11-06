@@ -366,8 +366,6 @@ bool ReadabilityApp::OnInit()
     // init random number generators
     m_mersenneTwister = std::mt19937_64(std::random_device{}());
 
-    SetSupportEmail(L"support@oleandersoftware.com");
-
     m_webHarvester.SetEventHandler(this);
 
     if (wxLog::GetVerbose())
