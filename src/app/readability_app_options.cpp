@@ -56,48 +56,46 @@ bool PreAppInitOptions::LoadOptionsFile(wxString optionsFile)
                      wxOK | wxICON_ERROR);
         return false;
         }
-    else
+
+    // appearance of the program
+    auto* appearanceNode =
+        configRootNode->FirstChildElement(ReadabilityAppOptions::XML_APPEARANCE.data());
+    if (appearanceNode != nullptr)
         {
-        // appearance of the program
-        auto* appearanceNode =
-            configRootNode->FirstChildElement(ReadabilityAppOptions::XML_APPEARANCE.data());
-        if (appearanceNode != nullptr)
+        const int maximized = appearanceNode->ToElement()->IntAttribute(
+            ReadabilityAppOptions::XML_WINDOW_MAXIMIZED.data(), 1);
+        m_appWindowMaximized = int_to_bool(maximized);
+        // NOTE: DIPs can't be used here because this is called before UI construction
+        m_appWindowWidth = appearanceNode->ToElement()->IntAttribute(
+            ReadabilityAppOptions::XML_WINDOW_WIDTH.data(), 800);
+        m_appWindowHeight = appearanceNode->ToElement()->IntAttribute(
+            ReadabilityAppOptions::XML_WINDOW_HEIGHT.data(), 700);
+        // make sure the values make sense
+        if (m_appWindowWidth < 1)
             {
-            const int maximized = appearanceNode->ToElement()->IntAttribute(
-                ReadabilityAppOptions::XML_WINDOW_MAXIMIZED.data(), 1);
-            m_appWindowMaximized = int_to_bool(maximized);
-            // NOTE: DIPs can't be used here because this is called before UI construction
-            m_appWindowWidth = appearanceNode->ToElement()->IntAttribute(
-                ReadabilityAppOptions::XML_WINDOW_WIDTH.data(), 800);
-            m_appWindowHeight = appearanceNode->ToElement()->IntAttribute(
-                ReadabilityAppOptions::XML_WINDOW_HEIGHT.data(), 700);
-            // make sure the values make sense
-            if (m_appWindowWidth < 1)
-                {
-                m_appWindowWidth = 800;
-                }
-            if (m_appWindowHeight < 1)
-                {
-                m_appWindowHeight = 700;
-                }
-            m_uiLanguage = static_cast<UiLanguage>(appearanceNode->ToElement()->IntAttribute(
-                ReadabilityAppOptions::XML_UI_LANGUAGE.data(),
-                static_cast<int>(UiLanguage::Default)));
+            m_appWindowWidth = 800;
             }
-        // log report settings
-        auto* logSettingsNode =
-            configRootNode->FirstChildElement(ReadabilityAppOptions::XML_LOG_SETTINGS.data());
-        if (logSettingsNode != nullptr)
+        if (m_appWindowHeight < 1)
             {
-            auto* logAppendNode = logSettingsNode->FirstChildElement(
-                ReadabilityAppOptions::XML_LOG_APPEND_DAILY.data());
-            if (logAppendNode != nullptr)
-                {
-                m_logAppendDailyLog = int_to_bool(logAppendNode->ToElement()->IntAttribute(
-                    ReadabilityAppOptions::XML_VALUE.data(), 1));
-                }
+            m_appWindowHeight = 700;
+            }
+        m_uiLanguage = static_cast<UiLanguage>(appearanceNode->ToElement()->IntAttribute(
+            ReadabilityAppOptions::XML_UI_LANGUAGE.data(), static_cast<int>(UiLanguage::Default)));
+        }
+    // log report settings
+    auto* logSettingsNode =
+        configRootNode->FirstChildElement(ReadabilityAppOptions::XML_LOG_SETTINGS.data());
+    if (logSettingsNode != nullptr)
+        {
+        auto* logAppendNode =
+            logSettingsNode->FirstChildElement(ReadabilityAppOptions::XML_LOG_APPEND_DAILY.data());
+        if (logAppendNode != nullptr)
+            {
+            m_logAppendDailyLog = int_to_bool(logAppendNode->ToElement()->IntAttribute(
+                ReadabilityAppOptions::XML_VALUE.data(), 1));
             }
         }
+
     return true;
     }
 

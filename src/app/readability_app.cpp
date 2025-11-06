@@ -3909,11 +3909,11 @@ void MainFrame::OnStartPageClick(const wxCommandEvent& event)
                 }
             }
         }
-    else if (GetStartPage()->IsFileId(event.GetId()))
+    else if (wxStartPage::IsFileId(event.GetId()))
         {
         OpenFile(event.GetString());
         }
-    else if (GetStartPage()->IsFileListClearId(event.GetId()))
+    else if (wxStartPage::IsFileListClearId(event.GetId()))
         {
         wxGetApp().ClearFileHistoryMenu();
         }

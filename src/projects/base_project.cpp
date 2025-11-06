@@ -2152,14 +2152,14 @@ void BaseProject::LoadHardWords()
 
     // calculate the Dolch level completions
     std::set<readability::sight_word> unusedDolchWords;
-    for (auto DolchPos = BaseProjectDoc::m_dolch_word_list.get_words().cbegin();
-         DolchPos != BaseProjectDoc::m_dolch_word_list.get_words().cend(); ++DolchPos)
+    for (auto dolchPos = BaseProjectDoc::m_dolch_word_list.get_words().cbegin();
+         dolchPos != BaseProjectDoc::m_dolch_word_list.get_words().cend(); ++dolchPos)
         {
         if (!m_word_frequency_map->get_data().contains(word_case_insensitive_no_stem(
-                DolchPos->get_word().c_str(), DolchPos->get_word().length(),
+                dolchPos->get_word().c_str(), dolchPos->get_word().length(),
                 /* filler arguments not used*/ 0, 0, 0, false, false, false, false, 0, 0)))
             {
-            unusedDolchWords.insert(*DolchPos);
+            unusedDolchWords.insert(*dolchPos);
             }
         }
 
@@ -3698,10 +3698,8 @@ BaseProject::ExtractRawTextWithEncoding(const std::wstring& sourceFileText,
                                         filterHtml.get_author() });
             return std::make_pair(true, std::move(filteredText));
             }
-        else
-            {
-            return std::make_pair(true, sourceFileText);
-            }
+
+        return std::make_pair(true, sourceFileText);
         }
     catch (...)
         {
@@ -4346,14 +4344,12 @@ std::pair<bool, std::wstring> BaseProject::ExtractRawText(std::string_view sourc
         return std::make_pair(true, std::move(extractResult.second));
         }
     // ...otherwise, just load it as regular text
-    else
-        {
-        // This should be logged instead of shown to the user;
-        // otherwise, they will see this warning every time they refresh.
-        wxLogWarning(L"Unknown file extension. File will be imported as plain text.");
-        return std::make_pair(true, Wisteria::TextStream::CharStreamToUnicode(
-                                        sourceFileText.data(), sourceFileText.length()));
-        }
+
+    // This should be logged instead of shown to the user;
+    // otherwise, they will see this warning every time they refresh.
+    wxLogWarning(L"Unknown file extension. File will be imported as plain text.");
+    return std::make_pair(true, Wisteria::TextStream::CharStreamToUnicode(sourceFileText.data(),
+                                                                          sourceFileText.length()));
     }
 
 //------------------------------------------------
