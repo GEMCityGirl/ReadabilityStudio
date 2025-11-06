@@ -5134,8 +5134,7 @@ void MainFrame::OnHelpCheckForUpdates([[maybe_unused]] wxRibbonButtonBarEvent& e
     {
     wxString updateFileContent, contentType, statusText;
     // clang-format off
-    wxString updatedFilePath =
-        _DT(L"https://github.com/eclipse-ers/ReadabilityStudio/current-version.txt");
+    wxString updatedFilePath{ _READSTUDIO_REMOTE_VERSION_FILE };
     // clang-format on
     int responseCode{ 404 };
     if (!wxGetApp().GetWebHarvester().ReadWebPage(updatedFilePath, updateFileContent, contentType,

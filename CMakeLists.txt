@@ -84,6 +84,8 @@ set(PROGRAM_RDNS_IDENTIFIER "org.eclipse.readabilitystudio")
 set(GIT_REPO "https://github.com/eclipse-ers/ReadabilityStudio.git")
 string(REGEX REPLACE "[.]git$" "" ISSUE_PAGE "${GIT_REPO}")
 string(APPEND ISSUE_PAGE "/issues")
+string(REGEX REPLACE "[.]git$" "" REMOTE_VERSION_FILE "${GIT_REPO}")
+string(APPEND REMOTE_VERSION_FILE "/current-version.txt")
 set(INNOSETUP_GUID "{FBFBEAB6-622A-4E16-893D-216C25FF6A69}")
 set(PROGRAM_LICENSE "Eclipse Public License 2.0")
 
