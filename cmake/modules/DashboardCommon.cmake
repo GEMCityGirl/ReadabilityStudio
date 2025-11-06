@@ -187,23 +187,6 @@ function(_color_for OUT P)
     set(${OUT} "${c}" PARENT_SCOPE)
 endfunction()
 
-function(_hex_for OUT NAME)
-    if(NAME STREQUAL "brightgreen")
-        set(h "4c1")
-    elseif(NAME STREQUAL "green")
-        set(h "97CA00")
-    elseif(NAME STREQUAL "yellowgreen")
-        set(h "a4a61d")
-    elseif(NAME STREQUAL "yellow")
-        set(h "dfb317")
-    elseif(NAME STREQUAL "orange")
-        set(h "fe7d37")
-    else()
-        set(h "e05d44")
-    endif()
-    set(${OUT} "${h}" PARENT_SCOPE)
-endfunction()
-
 # helper: progress emoji for the roll-up table
 function(_emoji_for OUT P)
     if(P GREATER_EQUAL 95)
@@ -214,46 +197,6 @@ function(_emoji_for OUT P)
         set(e "🔴")
     endif()
     set(${OUT} "${e}" PARENT_SCOPE)
-endfunction()
-
-# Clean, flat badge (no gradients/masks). If LABEL is empty, it's a single bar.
-function(_make_flat_badge OUT LABEL MSG COLOR)
-    string(LENGTH "${LABEL}" lab_len)
-    string(LENGTH "${MSG}"   msg_len)
-
-    if(lab_len GREATER 0)
-        math(EXPR lw "7*${lab_len}+14")
-    else()
-        set(lw 0)
-    endif()
-    math(EXPR mw "7*${msg_len}+14")
-    math(EXPR w  "${lw}+${mw}")
-    set(h 20)
-
-    _hex_for(hex "${COLOR}")
-
-    set(svg "<svg xmlns='http://www.w3.org/2000/svg' width='${w}' height='${h}' role='img' aria-label='${LABEL}: ${MSG}'>")
-    string(APPEND svg "\n  <rect width='${w}' height='${h}' rx='3' fill='#0000'/>\n")
-
-    if(lw GREATER 0)
-        string(APPEND svg "  <rect width='${lw}' height='${h}' rx='3' fill='#555'/>\n")
-        string(APPEND svg "  <rect x='${lw}' width='${mw}' height='${h}' fill='#${hex}'/>\n")
-    else()
-        string(APPEND svg "  <rect width='${mw}' height='${h}' rx='3' fill='#${hex}'/>\n")
-    endif()
-
-    string(APPEND svg "  <g fill='#fff' text-anchor='middle' font-family='DejaVu Sans,Verdana,Geneva,sans-serif' font-size='11'>\n")
-
-    if(lw GREATER 0)
-        string(APPEND svg "    <text x='${lw}/2' y='14'>${LABEL}</text>\n")
-        string(APPEND svg "    <text x='${lw}+${mw}/2' y='14'>${MSG}</text>\n")
-    else()
-        math(EXPR cx "${mw}/2")
-        string(APPEND svg "    <text x='${cx}' y='14'>${MSG}</text>\n")
-    endif()
-
-    string(APPEND svg "  </g>\n</svg>")
-    set(${OUT} "${svg}" PARENT_SCOPE)
 endfunction()
 
 # Read i18n JSON: { "value": <0..100>, "title": "...", "must": "...", "recommended": "...", "comment": "..." }
@@ -398,16 +341,6 @@ function(_emit_checklist_with_header OUT HEADER COMMENT)
     endforeach()
 
     set(${OUT} "${_out}\n" PARENT_SCOPE)
-endfunction()
-
-# Make an SVG badge from a numeric value (0–100)
-# OUT_SVG = SVG string
-function(_badge_from_value OUT_SVG VAL)
-    set(_val "${VAL}")
-    _bar10(_b "${_val}")
-    _color_for(_c "${_val}")
-    _make_flat_badge(_s "" "${_val}% ${_b}" "${_c}")
-    set(${OUT_SVG} "${_s}" PARENT_SCOPE)
 endfunction()
 
 macro(_emit_section TITLE_VAR MUST_VAR REC_VAR CMT_VAR)
