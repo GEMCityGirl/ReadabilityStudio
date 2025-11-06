@@ -8,7 +8,7 @@ set(DOC_OUT_MD ${CMAKE_SOURCE_DIR}/project-management/docs/DASHBOARD.md)
 
 # Project name for header (you can override this before including)
 if(NOT DEFINED DOCS_PROJECT_NAME)
-    set(DOCS_PROJECT_NAME "${CMAKE_PROJECT_NAME}")
+    set(DOCS_PROJECT_NAME ${readstudio_DESCRIPTION})
 endif()
 
 # Inputs that trigger regeneration
@@ -17,8 +17,7 @@ set(DOC_INPUTS
         ${DOC_STATUS_DIR}/user-manual.json
         ${DOC_STATUS_DIR}/admin-guide.json
         ${DOC_STATUS_DIR}/programming-reference.json
-        ${DOC_STATUS_DIR}/doxygen.json
-)
+        ${DOC_STATUS_DIR}/doxygen.json)
 
 add_custom_command(
         OUTPUT ${DOC_OUT_MD}
@@ -30,10 +29,7 @@ add_custom_command(
         -P ${CMAKE_SOURCE_DIR}/cmake/modules/BuildDocsDashboard.cmake
         DEPENDS ${DOC_INPUTS}
         COMMENT "Generating Documentation & Knowledge dashboard"
-        VERBATIM
-)
+        VERBATIM)
 
 add_custom_target(docs-dashboard ALL
-        DEPENDS ${DOC_OUT_MD})
-
-message(STATUS "[DOCS] rules loaded → ${DOC_OUT_MD}")
+    DEPENDS ${DOC_OUT_MD})

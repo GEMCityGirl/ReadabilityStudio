@@ -224,7 +224,6 @@ else()
 endif()
 
 include(cmake/G11NDashboard.cmake)
-set(DOCS_PROJECT_NAME "${readstudio_DESCRIPTION}")
 include(cmake/DocsDashboard.cmake)
 
 # Build source and resource file lists to include

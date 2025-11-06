@@ -2,5 +2,5 @@
   "en": 100,
   "es": 0,
   "de": 0,
-  "comment": "System Admin Guide;1: Install/upgrade workflows covered;"
+  "comment": "System Admin Guide;1: Windows install/upgrade workflows documented;0: macOS install/upgrade workflows documented;0: Linux install/upgrade workflows documented;1: Windows build system documented;1: macOS build system documented;1: Linux build system documented;1: Coding-style guide documented;1: Contributor process documented;0: Code structure mapped"
 }

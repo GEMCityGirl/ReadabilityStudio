@@ -1,6 +1,6 @@
 # 🌐 Globalization Dashboard
 
-> **Project:** Readability Studio · **Last updated:** 2025-11-05
+> **Project:** Readability Studio · **Last updated:** 2025-11-06
 
 ## Legend
 
@@ -48,13 +48,13 @@ _Shipping the product in multiple languages. This section tracks per-language tr
 
 | Language | Code | Progress | Overall |
 |:---:|:--:|:--:|:--:|
-| German | `de` | `░░░░░░░░░░` | 🔴 **0%** |
-| English | `en` | `██████████` | 🟢 **100%** |
-| Spanish | `es` | `██████████` | 🟢 **100%** |
-| French | `fr` | `░░░░░░░░░░` | 🔴 **0%** |
-| Japanese | `ja` | `░░░░░░░░░░` | 🔴 **0%** |
-| Portuguese | `pt` | `░░░░░░░░░░` | 🔴 **0%** |
-| Russian | `ru` | `░░░░░░░░░░` | 🔴 **0%** |
+| German | `de` | `░░░░░░░░░░` **0%** | 🔴 |
+| English | `en` | `██████████` **100%** | 🟢 |
+| Spanish | `es` | `██████████` **100%** | 🟢 |
+| French | `fr` | `░░░░░░░░░░` **0%** | 🔴 |
+| Japanese | `ja` | `░░░░░░░░░░` **0%** | 🔴 |
+| Portuguese | `pt` | `░░░░░░░░░░` **0%** | 🔴 |
+| Russian | `ru` | `░░░░░░░░░░` **0%** | 🔴 |
 ### 2) 📦 Installer
 
 **Policy**: All installer message catalogs must be Unicode-safe and localized by platform.
@@ -69,13 +69,13 @@ _Shipping the product in multiple languages. This section tracks per-language tr
 
 | Language | Code | Progress | Overall |
 |:---:|:--:|:--:|:--:|
-| German | `de` | `██████████` | 🟢 **100%** |
-| English | `en` | `██████████` | 🟢 **100%** |
-| Spanish | `es` | `██████████` | 🟢 **100%** |
-| French | `fr` | `██████████` | 🟢 **100%** |
-| Japanese | `ja` | `██████████` | 🟢 **100%** |
-| Portuguese | `pt` | `██████████` | 🟢 **100%** |
-| Russian | `ru` | `██████████` | 🟢 **100%** |
+| German | `de` | `██████████` **100%** | 🟢 |
+| English | `en` | `██████████` **100%** | 🟢 |
+| Spanish | `es` | `██████████` **100%** | 🟢 |
+| French | `fr` | `██████████` **100%** | 🟢 |
+| Japanese | `ja` | `██████████` **100%** | 🟢 |
+| Portuguese | `pt` | `██████████` **100%** | 🟢 |
+| Russian | `ru` | `██████████` **100%** | 🟢 |
 ### 3) 📚 Documentation (User Manuals)
 
 **Policy**: Documentation follows the same translation review cycle as UI. Source text is English Quarto/Markdown; translations tracked via `.po` in `locale/docs/`.
@@ -96,13 +96,13 @@ msgfmt locale/docs/<lang>.po -o locale/docs/<lang>.mo
 
 | Language | Code | Progress | Overall |
 |:---:|:--:|:--:|:--:|
-| German | `de` | `░░░░░░░░░░` | 🔴 **0%** |
-| English | `en` | `██████████` | 🟢 **100%** |
-| Spanish | `es` | `░░░░░░░░░░` | 🔴 **0%** |
-| French | `fr` | `░░░░░░░░░░` | 🔴 **0%** |
-| Japanese | `ja` | `░░░░░░░░░░` | 🔴 **0%** |
-| Portuguese | `pt` | `░░░░░░░░░░` | 🔴 **0%** |
-| Russian | `ru` | `░░░░░░░░░░` | 🔴 **0%** |
+| German | `de` | `░░░░░░░░░░` **0%** | 🔴 |
+| English | `en` | `██████████` **100%** | 🟢 |
+| Spanish | `es` | `░░░░░░░░░░` **0%** | 🔴 |
+| French | `fr` | `░░░░░░░░░░` **0%** | 🔴 |
+| Japanese | `ja` | `░░░░░░░░░░` **0%** | 🔴 |
+| Portuguese | `pt` | `░░░░░░░░░░` **0%** | 🔴 |
+| Russian | `ru` | `░░░░░░░░░░` **0%** | 🔴 |
 ### 4) 🎨 Art & Screenshots
 
 **Policy**: Core art assets remain language-neutral. Textual variants are generated at runtime from scriptable sources.
@@ -114,13 +114,13 @@ msgfmt locale/docs/<lang>.po -o locale/docs/<lang>.mo
 
 | Language | Code | Progress | Overall |
 |:---:|:--:|:--:|:--:|
-| German | `de` | `██████████` | 🟢 **100%** |
-| English | `en` | `██████████` | 🟢 **100%** |
-| Spanish | `es` | `██████████` | 🟢 **100%** |
-| French | `fr` | `██████████` | 🟢 **100%** |
-| Japanese | `ja` | `██████████` | 🟢 **100%** |
-| Portuguese | `pt` | `██████████` | 🟢 **100%** |
-| Russian | `ru` | `██████████` | 🟢 **100%** |
+| German | `de` | `██████████` **100%** | 🟢 |
+| English | `en` | `██████████` **100%** | 🟢 |
+| Spanish | `es` | `██████████` **100%** | 🟢 |
+| French | `fr` | `██████████` **100%** | 🟢 |
+| Japanese | `ja` | `██████████` **100%** | 🟢 |
+| Portuguese | `pt` | `██████████` **100%** | 🟢 |
+| Russian | `ru` | `██████████` **100%** | 🟢 |
 
 ---
 
@@ -132,13 +132,13 @@ msgfmt locale/docs/<lang>.po -o locale/docs/<lang>.mo
 
 | Lang | Code | Progress | Overall |
 |:---:|:--:|:--:|:--:|
-| German | `de` | `░░░░░░░░░░` | 🔴 **0%** |
-| English | `en` | `██████████` | 🟢 **100%** |
-| Spanish | `es` | `░░░░░░░░░░` | 🔴 **0%** |
-| French | `fr` | `░░░░░░░░░░` | 🔴 **0%** |
-| Japanese | `ja` | `░░░░░░░░░░` | 🔴 **0%** |
-| Portuguese | `pt` | `░░░░░░░░░░` | 🔴 **0%** |
-| Russian | `ru` | `░░░░░░░░░░` | 🔴 **0%** |
+| German | `de` | `░░░░░░░░░░` **0%** | 🔴 |
+| English | `en` | `██████████` **100%** | 🟢 |
+| Spanish | `es` | `░░░░░░░░░░` **0%** | 🔴 |
+| French | `fr` | `░░░░░░░░░░` **0%** | 🔴 |
+| Japanese | `ja` | `░░░░░░░░░░` **0%** | 🔴 |
+| Portuguese | `pt` | `░░░░░░░░░░` **0%** | 🔴 |
+| Russian | `ru` | `░░░░░░░░░░` **0%** | 🔴 |
 
 ---
 
@@ -148,11 +148,11 @@ _Making the product world-ready (Unicode, plural rules, RTL, locale-sensitive fo
 
 | Area | Progress | Overall |
 |---|:--:|:--:|
-| 🧩 UI | `████████░░` | 🟡 **75%** |
-| 📦 Installer | `███████░░░` | 🟡 **65%** |
-| 📚 Docs | `███████░░░` | 🟡 **70%** |
-| 🎨 Art | `████████░░` | 🟡 **75%** |
-| 📜 License | `░░░░░░░░░░` | 🔴 **0%** |
+| 🧩 UI | `████████░░` **75%** | 🟡 |
+| 📦 Installer | `███████░░░` **65%** | 🟡 |
+| 📚 Docs | `███████░░░` **70%** | 🟡 |
+| 🎨 Art | `████████░░` **75%** | 🟡 |
+| 📜 License | `░░░░░░░░░░` **0%** | 🔴 |
 
 #### Application UI
 

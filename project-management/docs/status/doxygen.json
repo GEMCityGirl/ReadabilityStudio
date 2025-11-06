@@ -1,7 +1,6 @@
 {
   "value": 70,
   "title": "Doxygen Coverage & Quality",
-  "must": "Baseline Requirements;1: All public APIs have non-empty brief descriptions;1: Parameters and return values documented for stable APIs;0: Deprecated APIs marked and explained;0: Warnings from Doxygen build kept under agreed threshold",
-  "recommended": "Recommended Enhancements;0: Cross-references between related classes/functions;0: More code examples for complex workflows;0: Consistent terminology with user and admin docs",
-  "comment": "0: Periodically review Doxygen warnings as part of release readiness;0: Keep comment style consistent with wxWidgets and project guidelines"
+  "must": "Baseline Requirements;1: All public APIs have non-empty brief descriptions;1: Parameters and return values documented for stable APIs;1: Deprecated APIs marked and explained;0: Warnings from Doxygen build kept under agreed threshold",
+  "recommended": "Recommended Enhancements;0: More code examples for complex workflows;0: Consistent terminology with user and admin docs",
 }

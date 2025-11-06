@@ -30,27 +30,20 @@ set(G11N_INPUTS
 # Pretty project name
 set(G11N_PROJECT_NAME ${readstudio_DESCRIPTION})
 
-# Stamp so the badges dir participates in up-to-date checks
-set(G11N_BADGES_STAMP ${G11N_OUT_BADGES}/.stamp)
-
 add_custom_command(
-  OUTPUT ${G11N_OUT_MD} ${G11N_BADGES_STAMP}
+  OUTPUT ${G11N_OUT_MD}
   COMMAND ${CMAKE_COMMAND} -E make_directory ${G11N_OUT_BADGES}
   COMMAND ${CMAKE_COMMAND}
           -DROOT=${CMAKE_SOURCE_DIR}
           -DSTATUS_DIR=${G11N_STATUS_DIR}
           -DSTATUS_DIR_I18N=${G11N_STATUS_I18N_DIR}
           -DOUT_MD=${G11N_OUT_MD}
-          -DOUT_BADGES=${G11N_OUT_BADGES}
           -DWEIGHTS=${G11N_WEIGHTS}
           -DPROJECT_NAME=${G11N_PROJECT_NAME}
           -P ${CMAKE_SOURCE_DIR}/cmake/modules/BuildG11NDashboard.cmake
-  COMMAND ${CMAKE_COMMAND} -E touch ${G11N_BADGES_STAMP}
   DEPENDS ${G11N_INPUTS}
   COMMENT "Generating Globalization dashboard and badges"
   VERBATIM)
 
 add_custom_target(g11n-dashboard ALL
-  DEPENDS ${G11N_OUT_MD} ${G11N_BADGES_STAMP})
-
-message(STATUS "[G11N] rules loaded → ${G11N_OUT_MD}")
+  DEPENDS ${G11N_OUT_MD})
