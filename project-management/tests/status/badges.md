@@ -29,7 +29,7 @@
 
 ---
 
-<img src="../../src/Wisteria-Dataviz/wisteria-dv.svg" width="64"/>
+<img src="https://raw.githubusercontent.com/Blake-Madden/Wisteria-Dataviz/main/wisteria-dv.svg" width="64"/>
 
 ## Wisteria Dataviz (graphics engine)
 
@@ -57,7 +57,7 @@
 
 ---
 
-<img src="../../src/tinyexpr-plusplus/docs/tinyexpr_logo.png" width="64"/>
+<img src="https://raw.githubusercontent.com/Blake-Madden/tinyexpr-plusplus/tinyexpr++/docs/tinyexpr_logo.png" width="64"/>
 
 ## TinyExpr++ (formula-parsing engine)
 
@@ -84,7 +84,7 @@
 
 ---
 
-<img src="../../src/OleanderStemmingLibrary/stemming.png" width="64"/>
+<img src="https://raw.githubusercontent.com/Blake-Madden/OleanderStemmingLibrary/master/stemming.png" width="64"/>
 
 ## Oleander Stemming Library (word-stemming engine)
 
