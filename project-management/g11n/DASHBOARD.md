@@ -49,7 +49,7 @@ _Shipping the product in multiple languages. This section tracks per-language tr
 **Status**
 
 | Language | Progress | Status |
-|:---:|:--:|:--:|:--:|
+|:--:|:--:|:--:|
 | German | `░░░░░░░░░░` **0%** | 🔴 |
 | English | `██████████` **100%** | 🟢 |
 | Spanish | `██████████` **100%** | 🟢 |
@@ -70,7 +70,7 @@ _Shipping the product in multiple languages. This section tracks per-language tr
 **Status**
 
 | Language | Progress | Status |
-|:---:|:--:|:--:|:--:|
+|:--:|:--:|:--:|
 | German | `██████████` **100%** | 🟢 |
 | English | `██████████` **100%** | 🟢 |
 | Spanish | `██████████` **100%** | 🟢 |
@@ -97,7 +97,7 @@ msgfmt locale/docs/<lang>.po -o locale/docs/<lang>.mo
 **Status**
 
 | Language | Progress | Status |
-|:---:|:--:|:--:|:--:|
+|:--:|:--:|:--:|
 | German | `░░░░░░░░░░` **0%** | 🔴 |
 | English | `██████████` **100%** | 🟢 |
 | Spanish | `░░░░░░░░░░` **0%** | 🔴 |
@@ -115,7 +115,7 @@ msgfmt locale/docs/<lang>.po -o locale/docs/<lang>.mo
 **Status**
 
 | Language | Progress | Status |
-|:---:|:--:|:--:|:--:|
+|:--:|:--:|:--:|
 | German | `██████████` **100%** | 🟢 |
 | English | `██████████` **100%** | 🟢 |
 | Spanish | `██████████` **100%** | 🟢 |
@@ -133,7 +133,7 @@ msgfmt locale/docs/<lang>.po -o locale/docs/<lang>.mo
 **Status**
 
 | Lang | Progress | Status |
-|:---:|:--:|:--:|:--:|
+|:--:|:--:|:--:|
 | German | `░░░░░░░░░░` **0%** | 🔴 |
 | English | `██████████` **100%** | 🟢 |
 | Spanish | `░░░░░░░░░░` **0%** | 🔴 |

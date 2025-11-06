@@ -22,7 +22,7 @@
 Overall documentation coverage for translatable docs (User Manual, Admin Guide, Programming Reference).
 
 | Language | Progress | Status |
-|---|:--:|:--:|:--:|
+|:--:|:--:|:--:|
 | German (`de`) | `░░░░░░░░░░` **0%** | 🔴 |
 | English (`en`) | `████████░░` **83%** | 🟡 |
 | Spanish (`es`) | `░░░░░░░░░░` **0%** | 🔴 |
@@ -38,7 +38,7 @@ Overall documentation coverage for translatable docs (User Manual, Admin Guide, 
 **Status**
 
 | Language | Progress | Status |
-|:---:|:--:|:--:|:--:|
+|:--:|:--:|:--:|
 | German | `░░░░░░░░░░` **0%** | 🔴 |
 | English | `██████████` **100%** | 🟢 |
 | Spanish | `░░░░░░░░░░` **0%** | 🔴 |
@@ -60,7 +60,7 @@ Overall documentation coverage for translatable docs (User Manual, Admin Guide, 
 **Status**
 
 | Language | Progress | Status |
-|:---:|:--:|:--:|:--:|
+|:--:|:--:|:--:|
 | German | `░░░░░░░░░░` **0%** | 🔴 |
 | English | `██████████` **100%** | 🟢 |
 | Spanish | `░░░░░░░░░░` **0%** | 🔴 |
@@ -88,7 +88,7 @@ Overall documentation coverage for translatable docs (User Manual, Admin Guide, 
 **Status**
 
 | Language | Progress | Status |
-|:---:|:--:|:--:|:--:|
+|:--:|:--:|:--:|
 | German | `░░░░░░░░░░` **0%** | 🔴 |
 | English | `█████░░░░░` **50%** | 🟡 |
 | Spanish | `░░░░░░░░░░` **0%** | 🔴 |
