@@ -116,6 +116,7 @@ class MainFrame final : public Wisteria::UI::BaseMainFrame
     void OnHelpContents([[maybe_unused]] wxCommandEvent& event) final;
     void OnHelpManual([[maybe_unused]] wxRibbonButtonBarEvent& event);
     void OnHelpCheckForUpdates([[maybe_unused]] wxRibbonButtonBarEvent& event);
+    void OnHelpSupport([[maybe_unused]] wxRibbonButtonBarEvent& event);
     void OnOpenExample(const wxCommandEvent& event);
     // pane events
     void OnWordListByPage(const wxCommandEvent& event);

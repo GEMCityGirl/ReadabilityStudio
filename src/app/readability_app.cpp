@@ -2925,6 +2925,8 @@ void ReadabilityApp::LoadRibbonHelpPage(wxRibbonBar* ribbon)
     auto* supportButtonBar = new wxRibbonButtonBar(supportPanel);
     supportButtonBar->AddButton(XRCID("ID_CHECK_FOR_UPDATES"), _(L"Updates"),
                                 ReadSvgIcon(L"ribbon/updates.svg"), _(L"Check for updates."));
+    supportButtonBar->AddButton(XRCID("ID_SUPPORT"), _(L"Support"),
+                                ReadSvgIcon(L"ribbon/support.svg"), _(L"Contact support."));
     supportButtonBar->AddButton(wxID_ABOUT, _(L"About"), ReadSvgIcon(L"ribbon/app-logo.svg"),
                                 _(L"Learn more about the program."));
     }
@@ -3583,6 +3585,16 @@ MainFrame::MainFrame(wxDocManager* manager, wxFrame* frame,
             OnHelpCheckForUpdates(event);
         },
         XRCID("ID_CHECK_FOR_UPDATES"));
+
+    Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &MainFrame::OnHelpSupport, this, XRCID("ID_SUPPORT"));
+    Bind(
+        wxEVT_MENU,
+        [this]([[maybe_unused]] wxCommandEvent&)
+        {
+            wxRibbonButtonBarEvent event;
+            OnHelpSupport(event);
+        },
+        XRCID("ID_SUPPORT"));
 
     Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &MainFrame::OnHelpManual, this, XRCID("ID_HELP_MANUAL"));
     Bind(
@@ -5125,6 +5137,12 @@ void MainFrame::OnHelpManual([[maybe_unused]] wxRibbonButtonBarEvent& event)
     const wxString manualPath =
         GetHelpDirectory() + wxFileName::GetPathSeparator() + _DT(L"readability-studio-manual.pdf");
     wxLaunchDefaultApplication(manualPath);
+    }
+
+//-------------------------------------------------------
+void MainFrame::OnHelpSupport([[maybe_unused]] wxRibbonButtonBarEvent& event)
+    {
+    wxLaunchDefaultBrowser(_READSTUDIO_ISSUE_PAGE);
     }
 
 //-------------------------------------------------------
