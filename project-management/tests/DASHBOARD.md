@@ -113,7 +113,7 @@
 
 ---
 
-## wxStartPage (start page control)
+## wxStartPage (landing-page control)
 
 | Platforms  | Result |
 | ------------- | ------------- |
