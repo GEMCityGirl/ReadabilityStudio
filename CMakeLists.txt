@@ -227,7 +227,7 @@ include(cmake/G11NDashboard.cmake)
 include(cmake/DocsDashboard.cmake)
 
 # Build source and resource file lists to include
-include(cmake/list-files.cmake)
+include(cmake/ListFiles.cmake)
 
 # Setup wxWidgets (can be 1-5 folders up from here)
 ##############################################################
