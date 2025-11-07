@@ -1039,10 +1039,9 @@ namespace LuaScripting
             }
 
         wxString outputStr;
-        wxStringTokenizer tokenizer;
         for (const auto& phrase : phraseList.get_phrases())
             {
-            tokenizer.SetString(phrase.second.c_str(), L",", wxTOKEN_STRTOK);
+            wxStringTokenizer tokenizer(phrase.second.c_str(), L",", wxTOKEN_STRTOK);
             while (tokenizer.HasMoreTokens())
                 {
                 wxString replacementStr = tokenizer.GetNextToken();

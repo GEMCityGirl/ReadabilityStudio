@@ -201,7 +201,7 @@ void WordListDlg::CreateControls()
 
     auto* searchSizer = new wxBoxSizer(wxHORIZONTAL);
     searchSizer->AddStretchSpacer(1);
-    auto searcher = new Wisteria::UI::SearchPanel(this, wxID_ANY);
+    auto* searcher = new Wisteria::UI::SearchPanel(this, wxID_ANY);
     searcher->SetBackgroundColour(GetBackgroundColour());
     searchSizer->Add(searcher);
     mainSizer->Add(searchSizer, wxSizerFlags{}.Expand());

@@ -11,6 +11,42 @@
  *   Blake Madden - initial implementation
  ********************************************************************************/
 
+/*== == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == =*\
+||                                                                                              ||
+||                    +----------------------------------------------+                          ||
+||                    | /   /   /   /   /   /      @@@@@@@@@@@@@@@@@@|                          ||
+||                    |                       /      @@@@@@@@@@@@@@@@|                          ||
+||                    |                  /        /    @@@@@@@@@@@@@@|                          ||
+||                    |              /        /          @@@@@@@@@@@@|                          ||
+||                    |          /         /        /      @@@@@@@@@@|                          ||
+||                    |      /          /         /    /     @@@@@@@@|                          ||
+||                    |              /          /     /     /  @@@@@@|                          ||
+||                    |           /           /      /      /    @@@@|                          ||
+||                    |@       /            /       /       /      @@|                          ||
+||                    |@@@                /        /        /       @|                          ||
+||                    |@@@@@@           /         /         /        |                          ||
+||                    |@@@@@@@@@                 /          /        |                          ||
+||                    |@@@@@@@@@@@              /           /        |                          ||
+||                    |@@@@@@@@@@@@@@          /            /        |                          ||
+||                    |@@@@@@@@@@@@@@@@@                    /        |                          ||
+||                    |@@@@@@@@@@@@@@@@@@@@                 /        |                          ||
+||                    |@@@@@@@@@@@@@@@@@@@@@@@                       |                          ||
+||                    +----------------------------------------------+                          ||
+||                                                                                              ||
+||    RRRRR   EEEEE   AAAAA   DDDD    AAAAA   BBBBB   IIIII   L       IIIII   TTTTT    Y   Y    ||
+||    R   R   E       A   A   D   D   A   A   B   B     I     L         I       T      Y   Y    ||
+||    RRRR    EEEE    AAAAA   D   D   AAAAA   BBBB      I     L         I       T       Y Y     ||
+||    R  R    E       A   A   D   D   A   A   B   B     I     L         I       T        Y      ||
+||    R   R   EEEEE   A   A   DDDD    A   A   BBBBB   IIIII   LLLLL   IIIII     T        Y      ||
+||                                                                                              ||
+||                                            SSSS    TTTTT   U   U   DDDD    IIIII   OOOO      ||
+||                                            S         T     U   U   D   D     I    O    O     ||
+||                                            SSSS      T     U   U   D   D     I    O    O     ||
+||                                               S      T     U   U   D   D     I    O    O     ||
+||                                            SSSS      T     UUUUU   DDDD    IIIII   OOOO      ||
+||                                                                                              ||
+\*== == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == =*/
+
 #include "webharvester.h"
 #include "filepathresolver.h"
 #include "wx/tokenzr.h"
@@ -37,7 +73,7 @@ wxString WebHarvester::DownloadFile(wxString& Url, const wxString& fileExtension
     {
     if (Url.empty())
         {
-        return wxString{};
+        return {};
         }
 
     // strip off bookmark (if there is one)
@@ -101,7 +137,7 @@ wxString WebHarvester::DownloadFile(wxString& Url, const wxString& fileExtension
     wxString fileName = wxFileName(urlLocalFileFriendlyName).GetFullName();
     if (fileName.empty())
         {
-        return wxString{};
+        return {};
         }
     downloadPath = downloadPath + StripIllegalFileCharacters(fileName);
 
@@ -133,7 +169,7 @@ wxString WebHarvester::DownloadFile(wxString& Url, const wxString& fileExtension
             if (fileExtension.empty() && QueueDownload::IsBadResponseCode(rCode))
                 {
                 wxLogVerbose(L"'%s': bad response from web page; unable to download", Url);
-                return wxString{};
+                return {};
                 }
             downloadPath += L'.' + downloadExt;
             }
@@ -152,7 +188,7 @@ wxString WebHarvester::DownloadFile(wxString& Url, const wxString& fileExtension
         downloadPath = CreateNewFileName(downloadPath);
         if (downloadPath.empty())
             {
-            return wxString{};
+            return {};
             }
         }
 
@@ -166,7 +202,7 @@ wxString WebHarvester::DownloadFile(wxString& Url, const wxString& fileExtension
                                       wxString::Format(_(L"Downloading \"%s\""), urlLabel)))
             {
             m_isCancelled = true;
-            return wxString{};
+            return {};
             }
         }
 
@@ -477,7 +513,7 @@ bool WebHarvester::CrawlLinks(wxString& url,
         }
 
     wxString fileText;
-    FilePathResolver resolve(url, true);
+    const FilePathResolver resolve(url, true);
     if (resolve.IsHTTPFile() || resolve.IsHTTPSFile())
         {
         // read in the page
@@ -621,11 +657,10 @@ void WebHarvester::CrawlLink(const wxString& currentLink,
                              linkParser.get_html_parser().is_current_link_an_image() :
                              false;
 
-    const wxString urlLabel = currentLink;
     if (!m_progressDlg->Pulse(m_hideFileNamesWhileDownloading ?
                                   // TRANSLATORS: Searching across websites.
                                   _(L"Crawling...") :
-                                  wxString::Format(_(L"Crawling \"%s\""), urlLabel)))
+                                  wxString::Format(_(L"Crawling \"%s\""), currentLink)))
         {
         m_isCancelled = true;
         --m_currentLevel;
