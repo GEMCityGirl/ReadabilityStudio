@@ -118,6 +118,7 @@ namespace LuaScripting
     int /*boolean*/ /*INTERNAL!!!*/ PhraseListToWordList(lua_State* L /*string inputPhraseList, string outputFile*/); // INTERNAL FUNCTION!!! SHOULD NOT BE DOCUMENTED.
     int /*boolean*/ CrossReferencePhraseLists(lua_State* L /*string phraseList, string otherPhraseList, string outputFile*/); // Compares two phrase lists and creates a new one that contains only the words that appear in both of them.
     int SetWindowSize(lua_State* L /*number width, number height*/); // Sets the size of the program's main window.
+    int /*table*/ GetWindowSize(lua_State* L); // Returns the current size of the application window (table containing width and height).
     int /*number*/ GetTestId(lua_State* L /*string testName*/); // Converts a test name (a string) into it's enumeration equivalent.
     int /*boolean*/ SplashScreen(lua_State* L /*number imageIndex*/); // Displays the splashscreen, based on the provided splashscreen's index.
     int /*boolean*/ CheckHtmlLinks(lua_State* L /*string path, boolean includeExternalLinks*/); // Checks for broken links in folder of HTML documents. (All broken links will be sent to the log report.)
@@ -626,6 +627,7 @@ namespace LuaScripting
         { "HighlightDolchNouns", HighlightDolchNouns },
         { "IsHighlightingDolchNouns", IsHighlightingDolchNouns },
         { "SetWindowSize", SetWindowSize },
+        { "GetWindowSize", GetWindowSize },
         { "RemoveAllCustomTests", RemoveAllCustomTests },
         { "RemoveAllCustomTestBundles", RemoveAllCustomTestBundles },
         { "WriteToFile", WriteToFile },

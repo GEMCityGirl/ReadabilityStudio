@@ -228,6 +228,28 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
+    int StandardProject::GetWindowSize(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        const auto size = m_project->GetFirstView()->GetFrame()->GetSize();
+
+        lua_createtable(L, 0, 2);
+
+        lua_pushinteger(L, size.GetWidth());
+        lua_setfield(L, -2, _DT("Width"));
+
+        lua_pushinteger(L, size.GetHeight());
+        lua_setfield(L, -2, _DT("Height"));
+
+        wxGetApp().Yield();
+        return 1;
+        }
+
+    //-------------------------------------------------------------
     int StandardProject::GetSentenceCount(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
@@ -4670,6 +4692,7 @@ namespace LuaScripting
         LUNA_DECLARE_METHOD(StandardProject, DelayReloading),
         LUNA_DECLARE_METHOD(StandardProject, GetTitle),
         LUNA_DECLARE_METHOD(StandardProject, SetWindowSize),
+        LUNA_DECLARE_METHOD(StandardProject, GetWindowSize),
         LUNA_DECLARE_METHOD(StandardProject, GetSentenceCount),
         LUNA_DECLARE_METHOD(StandardProject, GetIndependentClauseCount),
         LUNA_DECLARE_METHOD(StandardProject, GetNumeralCount),

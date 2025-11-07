@@ -3733,6 +3733,23 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
+    int GetWindowSize(lua_State* L)
+        {
+        const auto size = wxGetApp().GetMainFrame()->GetSize();
+
+        lua_createtable(L, 0, 2);
+
+        lua_pushinteger(L, size.GetWidth());
+        lua_setfield(L, -2, _DT("Width"));
+
+        lua_pushinteger(L, size.GetHeight());
+        lua_setfield(L, -2, _DT("Height"));
+
+        wxGetApp().Yield();
+        return 1;
+        }
+
+    //-------------------------------------------------------------
     int SetPaperOrientation(lua_State* L)
         {
         if (!VerifyParameterCount(L, 1, __func__))

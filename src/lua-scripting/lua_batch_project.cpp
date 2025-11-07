@@ -292,6 +292,28 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
+    int BatchProject::GetWindowSize(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        const auto size = m_project->GetFirstView()->GetFrame()->GetSize();
+        
+        lua_createtable(L, 0, 2);
+
+        lua_pushinteger(L, size.GetWidth());
+        lua_setfield(L, -2, _DT("Width"));
+
+        lua_pushinteger(L, size.GetHeight());
+        lua_setfield(L, -2, _DT("Height"));
+
+        wxGetApp().Yield();
+        return 1;
+        }
+
+    //-------------------------------------------------------------
     int BatchProject::SetIncludeIncompleteTolerance(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
@@ -3456,6 +3478,7 @@ namespace LuaScripting
         LUNA_DECLARE_METHOD(BatchProject, LoadFiles),
         LUNA_DECLARE_METHOD(BatchProject, GetTitle),
         LUNA_DECLARE_METHOD(BatchProject, SetWindowSize),
+        LUNA_DECLARE_METHOD(BatchProject, GetWindowSize),
         LUNA_DECLARE_METHOD(BatchProject, DelayReloading),
         LUNA_DECLARE_METHOD(BatchProject, SetLanguage),
         LUNA_DECLARE_METHOD(BatchProject, GetLanguage),

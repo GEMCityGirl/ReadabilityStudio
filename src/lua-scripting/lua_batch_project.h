@@ -136,6 +136,7 @@ namespace LuaScripting
 
         int /*string*/ GetTitle(lua_State* L); // Returns the title of the project.
         int SetWindowSize(lua_State* L /*number width, number height*/); // Sets the size of the project window.
+        int /*table*/ GetWindowSize(lua_State* L); // Returns the current size of the project window (table containing width and height).
 
         int DelayReloading(lua_State* L /*boolean delay*/); // Prevents a project from updating while settings are being changed.
 
