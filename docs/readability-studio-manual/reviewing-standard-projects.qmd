@@ -439,7 +439,7 @@ Note that if there are no long sentences in your document, then this window will
 
 A box plot\index{box plots!sentence length} of the sentence lengths (measured by word count) is also available:
 
-![]"images/sentences-boxplot.png"){width=75% fig-align="center"}
+![](images/sentences-boxplot.png){width=75% fig-align="center"}
 
 The first item to review is the box, which measures the percentiles range.
 Above, we see that this range is 4.5–19.5, meaning that half of the sentences are between 4.5–19.5 words.

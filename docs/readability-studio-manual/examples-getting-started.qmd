@@ -97,7 +97,7 @@ To export just the words that you have highlighted, select the option **Export s
 Also, because we are only interested in saving the **Word** column—not the **Syllable Count** or **Frequency Count** columns—enter 1 in the **Columns: from** and **to:** fields.
 Finally, uncheck the option **Include column headers** because we are only exporting one column.
 
-![]"images/exportoptions.png"){width=38% fig-align="center"}
+![](images/exportoptions.png){width=38% fig-align="center"}
 
 Click `r keys("OK")` to export the word list to distribute to your students to help prepare them for their reading assignments.
 
