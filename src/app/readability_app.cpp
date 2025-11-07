@@ -448,6 +448,8 @@ bool ReadabilityApp::OnInit()
                    std::make_pair(_(L"Barn"), DONTTRANSLATE(L"barn")),
                    std::make_pair(_(L"Farm"), DONTTRANSLATE(L"farm")),
                    std::make_pair(_(L"Dollar"), DONTTRANSLATE(L"dollar")),
+                   std::make_pair(_(L"Pumpkin"), DONTTRANSLATE(L"pumpkin")),
+                   std::make_pair(_(L"Jack-o'-lantern"), DONTTRANSLATE(L"jack-o-lantern")),
                    std::make_pair(_(L"Monitor"), DONTTRANSLATE(L"monitor")) };
 
     // do the same for the color schemes (for the graphs)
