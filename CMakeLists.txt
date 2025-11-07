@@ -73,7 +73,7 @@ set(MIN_RAM "2 GB")
 set(RAM_RECOMMENDED "4 GB")
 
 # Edit these values when bumping the release version
-project(readstudio VERSION 2025.0.0.0 DESCRIPTION "Readability Studio" HOMEPAGE_URL https://eclipse.dev/ers)
+project(readstudio VERSION 2026.0.0.0 DESCRIPTION "Readability Studio" HOMEPAGE_URL https://eclipse.dev/ers)
 set(PROGRAM_LONGNAME "Eclipse ${readstudio_DESCRIPTION}")
 set(PROGRAM_NUMBERED_VERSION 9.0)
 set(PUBLISHER "Eclipse Foundation AISBL")
