@@ -5185,9 +5185,7 @@ void MainFrame::OnHelpSupport([[maybe_unused]] wxRibbonButtonBarEvent& event)
 void MainFrame::OnHelpCheckForUpdates([[maybe_unused]] wxRibbonButtonBarEvent& event)
     {
     wxString updateFileContent, contentType, statusText;
-    // clang-format off
     wxString updatedFilePath{ _READSTUDIO_REMOTE_VERSION_FILE };
-    // clang-format on
     int responseCode{ 404 };
     if (!wxGetApp().GetWebHarvester().ReadWebPage(updatedFilePath, updateFileContent, contentType,
                                                   statusText, responseCode, false))
