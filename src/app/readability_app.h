@@ -417,9 +417,6 @@ class ReadabilityApp final : public Wisteria::UI::BaseApp
     void LoadRibbonReadabilityPage(wxRibbonBar* ribbon, RibbonType rtype);
     void LoadRibbonToolsPage(wxRibbonBar* ribbon, RibbonType rtype);
     void LoadRibbonHelpPage(wxRibbonBar* ribbon);
-    // Loads a bitmap (with provided size in DIPs) from provided path to be compatible with the UI.
-    // This will handle DIPs and scale factor (i.e., Retina display) calculations.
-    wxBitmap ReadSvgIcon(const wxString& path, const wxSize baseSize = wxSize{ 32, 32 });
 
     // menu creation
     void FillPrintMenu(wxMenu& printMenu, const RibbonType rtype);

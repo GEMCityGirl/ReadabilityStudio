@@ -1794,20 +1794,6 @@ Wisteria::UI::SideBar* ReadabilityApp::CreateSideBar(wxWindow* frame, const wxWi
     }
 
 //-----------------------------------
-wxBitmap ReadabilityApp::ReadSvgIcon(const wxString& path,
-                                     const wxSize baseSize /*= wxSize{ 32, 32 }*/)
-    {
-    const auto contentScalingFactor{ GetMainFrame()->GetContentScaleFactor() };
-    const wxSize buttonSize =
-        GetMainFrame()->FromDIP(wxSize{ wxRound(baseSize.GetWidth() * contentScalingFactor),
-                                        wxRound(baseSize.GetHeight() * contentScalingFactor) });
-    wxBitmap loadedImage{ GetResourceManager().GetSVG(path).GetBitmap(buttonSize) };
-    wxASSERT_MSG(loadedImage.IsOk(), "Failed to load SVG image.");
-    loadedImage.SetScaleFactor(contentScalingFactor);
-    return loadedImage;
-    }
-
-//-----------------------------------
 void ReadabilityApp::LoadRibbonHomePage(wxRibbonBar* ribbon, const RibbonType rtype,
                                         const wxDocument* doc)
     {
@@ -1877,18 +1863,15 @@ void ReadabilityApp::LoadRibbonHomePage(wxRibbonBar* ribbon, const RibbonType rt
             auto* editButtonBar =
                 new wxRibbonButtonBar(editPanel, MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
 
-            editButtonBar->AddHybridButton(wxID_COPY, _(L"Copy"),
-                                           wxGetApp().ReadSvgIcon(L"ribbon/copy.svg"),
+            editButtonBar->AddHybridButton(wxID_COPY, _(L"Copy"), ReadSvgIcon(L"ribbon/copy.svg"),
                                            _(L"Copy the selected rows."));
             editButtonBar->AddButton(wxID_SELECTALL, _(L"Select All"),
-                                     wxGetApp().ReadSvgIcon(L"ribbon/select-all.svg"),
-                                     _(L"Select All"));
+                                     ReadSvgIcon(L"ribbon/select-all.svg"), _(L"Select All"));
             editButtonBar->AddButton(XRCID("ID_VIEW_ITEM"), _(L"View Item"),
-                                     wxGetApp().ReadSvgIcon(L"ribbon/view-spreadsheet-item.svg"),
+                                     ReadSvgIcon(L"ribbon/view-spreadsheet-item.svg"),
                                      _(L"View the selected row in tabular format."));
             editButtonBar->AddButton(XRCID("ID_LIST_SORT"), _(L"Sort"),
-                                     wxGetApp().ReadSvgIcon(L"ribbon/sort.svg"),
-                                     _(L"Sort the list."));
+                                     ReadSvgIcon(L"ribbon/sort.svg"), _(L"Sort the list."));
             }
             // list button edit panel (Long Format, Grade Scales, Copy, Select, View, Sort)
             {
@@ -1900,23 +1883,20 @@ void ReadabilityApp::LoadRibbonHomePage(wxRibbonBar* ribbon, const RibbonType rt
                 new wxRibbonButtonBar(editPanel, MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
 
             editButtonBar->AddToggleButton(XRCID("ID_LONG_FORMAT"), _(L"Long Format"),
-                                           wxGetApp().ReadSvgIcon(L"ribbon/grade-display.svg"),
+                                           ReadSvgIcon(L"ribbon/grade-display.svg"),
                                            _(L"Display scores in long format."));
             editButtonBar->AddDropdownButton(XRCID("ID_GRADE_SCALES"), _(L"Grade Scale"),
-                                             wxGetApp().ReadSvgIcon(L"ribbon/education.svg"),
+                                             ReadSvgIcon(L"ribbon/education.svg"),
                                              _(L"Change the grade scale display of the scores."));
-            editButtonBar->AddHybridButton(wxID_COPY, _(L"Copy"),
-                                           wxGetApp().ReadSvgIcon(L"ribbon/copy.svg"),
+            editButtonBar->AddHybridButton(wxID_COPY, _(L"Copy"), ReadSvgIcon(L"ribbon/copy.svg"),
                                            _(L"Copy the selected rows."));
             editButtonBar->AddButton(wxID_SELECTALL, _(L"Select All"),
-                                     wxGetApp().ReadSvgIcon(L"ribbon/select-all.svg"),
-                                     _(L"Select All"));
+                                     ReadSvgIcon(L"ribbon/select-all.svg"), _(L"Select All"));
             editButtonBar->AddButton(XRCID("ID_VIEW_ITEM"), _(L"View Item"),
-                                     wxGetApp().ReadSvgIcon(L"ribbon/view-spreadsheet-item.svg"),
+                                     ReadSvgIcon(L"ribbon/view-spreadsheet-item.svg"),
                                      _(L"View the selected row in tabular format."));
             editButtonBar->AddButton(XRCID("ID_LIST_SORT"), _(L"Sort"),
-                                     wxGetApp().ReadSvgIcon(L"ribbon/sort.svg"),
-                                     _(L"Sort the list."));
+                                     ReadSvgIcon(L"ribbon/sort.svg"), _(L"Sort the list."));
             }
             // list button edit panel (Copy, Select, View, Sort, Sum)
             {
@@ -1927,20 +1907,17 @@ void ReadabilityApp::LoadRibbonHomePage(wxRibbonBar* ribbon, const RibbonType rt
             auto* editButtonBar =
                 new wxRibbonButtonBar(editPanel, MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
 
-            editButtonBar->AddHybridButton(wxID_COPY, _(L"Copy"),
-                                           wxGetApp().ReadSvgIcon(L"ribbon/copy.svg"),
+            editButtonBar->AddHybridButton(wxID_COPY, _(L"Copy"), ReadSvgIcon(L"ribbon/copy.svg"),
                                            _(L"Copy the selected rows."));
             editButtonBar->AddButton(wxID_SELECTALL, _(L"Select All"),
-                                     wxGetApp().ReadSvgIcon(L"ribbon/select-all.svg"),
-                                     _(L"Select All"));
+                                     ReadSvgIcon(L"ribbon/select-all.svg"), _(L"Select All"));
             editButtonBar->AddButton(XRCID("ID_VIEW_ITEM"), _(L"View Item"),
-                                     wxGetApp().ReadSvgIcon(L"ribbon/view-spreadsheet-item.svg"),
+                                     ReadSvgIcon(L"ribbon/view-spreadsheet-item.svg"),
                                      _(L"View the selected row in tabular format."));
             editButtonBar->AddButton(XRCID("ID_LIST_SORT"), _(L"Sort"),
-                                     wxGetApp().ReadSvgIcon(L"ribbon/sort.svg"),
-                                     _(L"Sort the list."));
+                                     ReadSvgIcon(L"ribbon/sort.svg"), _(L"Sort the list."));
             editButtonBar->AddButton(XRCID("ID_SUMMATION"), _(L"Sum"),
-                                     wxGetApp().ReadSvgIcon(L"ribbon/sum.svg"),
+                                     ReadSvgIcon(L"ribbon/sum.svg"),
                                      _(L"Total the values from the selected column."));
             }
             // list button edit panel (Copy, Select, Sort)
@@ -1952,14 +1929,12 @@ void ReadabilityApp::LoadRibbonHomePage(wxRibbonBar* ribbon, const RibbonType rt
             auto* editButtonBar =
                 new wxRibbonButtonBar(editPanel, MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
 
-            editButtonBar->AddHybridButton(wxID_COPY, _(L"Copy"),
-                                           wxGetApp().ReadSvgIcon(L"ribbon/copy.svg"), _(L"Copy"));
+            editButtonBar->AddHybridButton(wxID_COPY, _(L"Copy"), ReadSvgIcon(L"ribbon/copy.svg"),
+                                           _(L"Copy"));
             editButtonBar->AddButton(wxID_SELECTALL, _(L"Select All"),
-                                     wxGetApp().ReadSvgIcon(L"ribbon/select-all.svg"),
-                                     _(L"Select All"));
+                                     ReadSvgIcon(L"ribbon/select-all.svg"), _(L"Select All"));
             editButtonBar->AddButton(XRCID("ID_LIST_SORT"), _(L"Sort"),
-                                     wxGetApp().ReadSvgIcon(L"ribbon/sort.svg"),
-                                     _(L"Sort the list."));
+                                     ReadSvgIcon(L"ribbon/sort.svg"), _(L"Sort the list."));
             }
             // list button edit panel (Copy, Select, Sort, Sum)
             {
@@ -1970,16 +1945,14 @@ void ReadabilityApp::LoadRibbonHomePage(wxRibbonBar* ribbon, const RibbonType rt
             auto* editButtonBar =
                 new wxRibbonButtonBar(editPanel, MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
 
-            editButtonBar->AddHybridButton(wxID_COPY, _(L"Copy"),
-                                           wxGetApp().ReadSvgIcon(L"ribbon/copy.svg"), _(L"Copy"));
+            editButtonBar->AddHybridButton(wxID_COPY, _(L"Copy"), ReadSvgIcon(L"ribbon/copy.svg"),
+                                           _(L"Copy"));
             editButtonBar->AddButton(wxID_SELECTALL, _(L"Select All"),
-                                     wxGetApp().ReadSvgIcon(L"ribbon/select-all.svg"),
-                                     _(L"Select All"));
+                                     ReadSvgIcon(L"ribbon/select-all.svg"), _(L"Select All"));
             editButtonBar->AddButton(XRCID("ID_LIST_SORT"), _(L"Sort"),
-                                     wxGetApp().ReadSvgIcon(L"ribbon/sort.svg"),
-                                     _(L"Sort the list."));
+                                     ReadSvgIcon(L"ribbon/sort.svg"), _(L"Sort the list."));
             editButtonBar->AddButton(XRCID("ID_SUMMATION"), _(L"Sum"),
-                                     wxGetApp().ReadSvgIcon(L"ribbon/sum.svg"),
+                                     ReadSvgIcon(L"ribbon/sum.svg"),
                                      _(L"Total the values from the selected column."));
             }
             // list button edit panel (Copy, Select, Exclude, Sum, Sort)
@@ -1992,19 +1965,17 @@ void ReadabilityApp::LoadRibbonHomePage(wxRibbonBar* ribbon, const RibbonType rt
             auto* editButtonBar =
                 new wxRibbonButtonBar(editPanel, MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
 
-            editButtonBar->AddHybridButton(wxID_COPY, _(L"Copy"),
-                                           wxGetApp().ReadSvgIcon(L"ribbon/copy.svg"), _(L"Copy"));
+            editButtonBar->AddHybridButton(wxID_COPY, _(L"Copy"), ReadSvgIcon(L"ribbon/copy.svg"),
+                                           _(L"Copy"));
             editButtonBar->AddButton(wxID_SELECTALL, _(L"Select All"),
-                                     wxGetApp().ReadSvgIcon(L"ribbon/select-all.svg"),
-                                     _(L"Select All"));
+                                     ReadSvgIcon(L"ribbon/select-all.svg"), _(L"Select All"));
             editButtonBar->AddButton(XRCID("ID_LIST_SORT"), _(L"Sort"),
-                                     wxGetApp().ReadSvgIcon(L"ribbon/sort.svg"),
-                                     _(L"Sort the list."));
+                                     ReadSvgIcon(L"ribbon/sort.svg"), _(L"Sort the list."));
             editButtonBar->AddButton(XRCID("ID_EXCLUDE_SELECTED"), _(L"Exclude Selected"),
-                                     wxGetApp().ReadSvgIcon(L"ribbon/exclude-selected.svg"),
+                                     ReadSvgIcon(L"ribbon/exclude-selected.svg"),
                                      _(L"Exclude selected words."));
             editButtonBar->AddButton(XRCID("ID_SUMMATION"), _(L"Sum"),
-                                     wxGetApp().ReadSvgIcon(L"ribbon/sum.svg"),
+                                     ReadSvgIcon(L"ribbon/sum.svg"),
                                      _(L"Total the values from the selected column."));
             }
             // HTML window
@@ -2016,8 +1987,7 @@ void ReadabilityApp::LoadRibbonHomePage(wxRibbonBar* ribbon, const RibbonType rt
             auto* editButtonBar =
                 new wxRibbonButtonBar(editPanel, MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
 
-            editButtonBar->AddButton(wxID_COPY, _(L"Copy"),
-                                     wxGetApp().ReadSvgIcon(L"ribbon/copy.svg"),
+            editButtonBar->AddButton(wxID_COPY, _(L"Copy"), ReadSvgIcon(L"ribbon/copy.svg"),
                                      _(L"Copy the report."));
             }
             // explanation list control
@@ -2030,17 +2000,15 @@ void ReadabilityApp::LoadRibbonHomePage(wxRibbonBar* ribbon, const RibbonType rt
                 new wxRibbonButtonBar(editPanel, MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
 
             editButtonBar->AddToggleButton(XRCID("ID_LONG_FORMAT"), _(L"Long Format"),
-                                           wxGetApp().ReadSvgIcon(L"ribbon/grade-display.svg"),
+                                           ReadSvgIcon(L"ribbon/grade-display.svg"),
                                            _(L"Display scores in long format."));
             editButtonBar->AddDropdownButton(XRCID("ID_GRADE_SCALES"), _(L"Grade Scale"),
-                                             wxGetApp().ReadSvgIcon(L"ribbon/education.svg"),
+                                             ReadSvgIcon(L"ribbon/education.svg"),
                                              _(L"Change the grade scale display of the scores."));
-            editButtonBar->AddButton(wxID_COPY, _(L"Copy"),
-                                     wxGetApp().ReadSvgIcon(L"ribbon/copy.svg"),
+            editButtonBar->AddButton(wxID_COPY, _(L"Copy"), ReadSvgIcon(L"ribbon/copy.svg"),
                                      _(L"Copy the selected rows."));
             editButtonBar->AddButton(XRCID("ID_LIST_SORT"), _(L"Sort"),
-                                     wxGetApp().ReadSvgIcon(L"ribbon/sort.svg"),
-                                     _(L"Sort the list."));
+                                     ReadSvgIcon(L"ribbon/sort.svg"), _(L"Sort the list."));
             }
             // formatted text control
             {
@@ -2052,16 +2020,14 @@ void ReadabilityApp::LoadRibbonHomePage(wxRibbonBar* ribbon, const RibbonType rt
                 new wxRibbonButtonBar(editPanel, MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
 
             editButtonBar->AddButton(XRCID("ID_TEXT_WINDOW_FONT"), _(L"Font"),
-                                     wxGetApp().ReadSvgIcon(L"ribbon/font.svg"),
-                                     _(L"Change the font."));
+                                     ReadSvgIcon(L"ribbon/font.svg"), _(L"Change the font."));
             editButtonBar->AddButton(XRCID("ID_TEXT_WINDOW_COLORS"), _(L"Highlight"),
-                                     wxGetApp().ReadSvgIcon(L"ribbon/highlighting.svg"),
+                                     ReadSvgIcon(L"ribbon/highlighting.svg"),
                                      _(L"Change the highlight colors."));
-            editButtonBar->AddButton(wxID_COPY, _(L"Copy"),
-                                     wxGetApp().ReadSvgIcon(L"ribbon/copy.svg"), _(L"Copy"));
+            editButtonBar->AddButton(wxID_COPY, _(L"Copy"), ReadSvgIcon(L"ribbon/copy.svg"),
+                                     _(L"Copy"));
             editButtonBar->AddButton(wxID_SELECTALL, _(L"Select All"),
-                                     wxGetApp().ReadSvgIcon(L"ribbon/select-all.svg"),
-                                     _(L"Select All"));
+                                     ReadSvgIcon(L"ribbon/select-all.svg"), _(L"Select All"));
             }
             // statistics list report in a standard project
             {
@@ -2073,20 +2039,17 @@ void ReadabilityApp::LoadRibbonHomePage(wxRibbonBar* ribbon, const RibbonType rt
                 new wxRibbonButtonBar(editPanel, MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
 
             editButtonBar->AddButton(XRCID("ID_EDIT_STATS_REPORT"), _(L"Edit Report"),
-                                     wxGetApp().ReadSvgIcon(L"ribbon/edit-report.svg"),
+                                     ReadSvgIcon(L"ribbon/edit-report.svg"),
                                      _(L"Select which statistics to include in the report."));
-            editButtonBar->AddHybridButton(wxID_COPY, _(L"Copy"),
-                                           wxGetApp().ReadSvgIcon(L"ribbon/copy.svg"),
+            editButtonBar->AddHybridButton(wxID_COPY, _(L"Copy"), ReadSvgIcon(L"ribbon/copy.svg"),
                                            _(L"Copy the selected rows."));
             editButtonBar->AddButton(wxID_SELECTALL, _(L"Select All"),
-                                     wxGetApp().ReadSvgIcon(L"ribbon/select-all.svg"),
-                                     _(L"Select All"));
+                                     ReadSvgIcon(L"ribbon/select-all.svg"), _(L"Select All"));
             editButtonBar->AddButton(XRCID("ID_VIEW_ITEM"), _(L"View Item"),
-                                     wxGetApp().ReadSvgIcon(L"ribbon/view-spreadsheet-item.svg"),
+                                     ReadSvgIcon(L"ribbon/view-spreadsheet-item.svg"),
                                      _(L"View the selected row in tabular format."));
             editButtonBar->AddButton(XRCID("ID_LIST_SORT"), _(L"Sort"),
-                                     wxGetApp().ReadSvgIcon(L"ribbon/sort.svg"),
-                                     _(L"Sort the list."));
+                                     ReadSvgIcon(L"ribbon/sort.svg"), _(L"Sort the list."));
             }
             // statistics HTML report in a standard project
             {
@@ -2098,10 +2061,10 @@ void ReadabilityApp::LoadRibbonHomePage(wxRibbonBar* ribbon, const RibbonType rt
                 new wxRibbonButtonBar(editPanel, MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
 
             editButtonBar->AddButton(XRCID("ID_EDIT_STATS_REPORT"), _(L"Edit Report"),
-                                     wxGetApp().ReadSvgIcon(L"ribbon/edit-report.svg"),
+                                     ReadSvgIcon(L"ribbon/edit-report.svg"),
                                      _(L"Select which statistics to include in the report."));
-            editButtonBar->AddButton(wxID_COPY, _(L"Copy"),
-                                     wxGetApp().ReadSvgIcon(L"ribbon/copy.svg"), _(L"Copy"));
+            editButtonBar->AddButton(wxID_COPY, _(L"Copy"), ReadSvgIcon(L"ribbon/copy.svg"),
+                                     _(L"Copy"));
             }
             // bar chart panel
             {
@@ -2113,38 +2076,36 @@ void ReadabilityApp::LoadRibbonHomePage(wxRibbonBar* ribbon, const RibbonType rt
                 new wxRibbonButtonBar(editPanel, MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
 
             editButtonBar->AddDropdownButton(XRCID("ID_EDIT_GRAPH_BACKGROUND"), _(L"Background"),
-                                             wxGetApp().ReadSvgIcon(L"ribbon/photos.svg"),
+                                             ReadSvgIcon(L"ribbon/photos.svg"),
                                              _(L"Set the graph's background."));
             editButtonBar->AddDropdownButton(XRCID("ID_EDIT_GRAPH_FONTS"), _(L"Font"),
-                                             wxGetApp().ReadSvgIcon(L"ribbon/font.svg"),
+                                             ReadSvgIcon(L"ribbon/font.svg"),
                                              _(L"Change the graph's fonts."));
             editButtonBar->AddButton(XRCID("ID_EDIT_WATERMARK"), _(L"Watermark"),
-                                     wxGetApp().ReadSvgIcon(L"ribbon/watermark.svg"),
+                                     ReadSvgIcon(L"ribbon/watermark.svg"),
                                      _(L"Add a watermark to the graph."));
             editButtonBar->AddButton(XRCID("ID_EDIT_LOGO"), _(L"Logo"),
-                                     wxGetApp().ReadSvgIcon(L"ribbon/logo.svg"),
+                                     ReadSvgIcon(L"ribbon/logo.svg"),
                                      _(L"Add a logo to the graph."));
             editButtonBar->AddToggleButton(XRCID("ID_DROP_SHADOW"), _(L"Shadows"),
-                                           wxGetApp().ReadSvgIcon(L"ribbon/shadow.svg"),
+                                           ReadSvgIcon(L"ribbon/shadow.svg"),
                                            _(L"Display drop shadows on the graphs."));
-            editButtonBar->AddDropdownButton(
-                XRCID("ID_EDIT_BAR_STYLE"), _(L"Bar Style"),
-                wxGetApp().ReadSvgIcon(L"ribbon/bar-top-to-bottom.svg"),
-                _(L"Changes the bar appearance."));
+            editButtonBar->AddDropdownButton(XRCID("ID_EDIT_BAR_STYLE"), _(L"Bar Style"),
+                                             ReadSvgIcon(L"ribbon/bar-top-to-bottom.svg"),
+                                             _(L"Changes the bar appearance."));
             editButtonBar->AddToggleButton(XRCID("ID_EDIT_BAR_LABELS"), _(L"Labels"),
-                                           wxGetApp().ReadSvgIcon(L"ribbon/bar-labels.svg"),
+                                           ReadSvgIcon(L"ribbon/bar-labels.svg"),
                                            _(L"Shows or hides the bars' labels."));
             editButtonBar->AddDropdownButton(XRCID("ID_EDIT_BAR_ORIENTATION"), _(L"Orientation"),
-                                             wxGetApp().ReadSvgIcon(L"ribbon/axis-orientation.svg"),
+                                             ReadSvgIcon(L"ribbon/axis-orientation.svg"),
                                              _(L"Changes the axis orientation."));
             editButtonBar->AddDropdownButton(XRCID("ID_GRAPH_SORT"), _(L"Sort"),
-                                             wxGetApp().ReadSvgIcon(L"ribbon/bar-sort.svg"),
+                                             ReadSvgIcon(L"ribbon/bar-sort.svg"),
                                              _(L"Sort the bars in the graph."));
-            editButtonBar->AddButton(wxID_COPY, _(L"Copy"),
-                                     wxGetApp().ReadSvgIcon(L"ribbon/copy.svg"), _(L"Copy"));
+            editButtonBar->AddButton(wxID_COPY, _(L"Copy"), ReadSvgIcon(L"ribbon/copy.svg"),
+                                     _(L"Copy"));
             editButtonBar->AddHybridButton(wxID_ZOOM_IN, _(L"Zoom"),
-                                           wxGetApp().ReadSvgIcon(L"ribbon/zoom-in.svg"),
-                                           _(L"Zoom"));
+                                           ReadSvgIcon(L"ribbon/zoom-in.svg"), _(L"Zoom"));
             }
             // box plot panel
             {
@@ -2156,38 +2117,35 @@ void ReadabilityApp::LoadRibbonHomePage(wxRibbonBar* ribbon, const RibbonType rt
                 new wxRibbonButtonBar(editPanel, MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
 
             editButtonBar->AddDropdownButton(XRCID("ID_EDIT_GRAPH_BACKGROUND"), _(L"Background"),
-                                             wxGetApp().ReadSvgIcon(L"ribbon/photos.svg"),
+                                             ReadSvgIcon(L"ribbon/photos.svg"),
                                              _(L"Set the graph's background."));
             editButtonBar->AddDropdownButton(XRCID("ID_EDIT_GRAPH_FONTS"), _(L"Font"),
-                                             wxGetApp().ReadSvgIcon(L"ribbon/font.svg"),
+                                             ReadSvgIcon(L"ribbon/font.svg"),
                                              _(L"Change the graph's fonts."));
             editButtonBar->AddButton(XRCID("ID_EDIT_WATERMARK"), _(L"Watermark"),
-                                     wxGetApp().ReadSvgIcon(L"ribbon/watermark.svg"),
+                                     ReadSvgIcon(L"ribbon/watermark.svg"),
                                      _(L"Add a watermark to the graph."));
             editButtonBar->AddButton(XRCID("ID_EDIT_LOGO"), _(L"Logo"),
-                                     wxGetApp().ReadSvgIcon(L"ribbon/logo.svg"),
+                                     ReadSvgIcon(L"ribbon/logo.svg"),
                                      _(L"Add a logo to the graph."));
             editButtonBar->AddToggleButton(XRCID("ID_DROP_SHADOW"), _(L"Shadows"),
-                                           wxGetApp().ReadSvgIcon(L"ribbon/shadow.svg"),
+                                           ReadSvgIcon(L"ribbon/shadow.svg"),
                                            _(L"Display drop shadows on the graphs."));
-            editButtonBar->AddDropdownButton(
-                XRCID("ID_EDIT_BOX_STYLE"), _(L"Box Style"),
-                wxGetApp().ReadSvgIcon(L"ribbon/bar-top-to-bottom.svg"),
-                _(L"Changes the box appearance."));
+            editButtonBar->AddDropdownButton(XRCID("ID_EDIT_BOX_STYLE"), _(L"Box Style"),
+                                             ReadSvgIcon(L"ribbon/bar-top-to-bottom.svg"),
+                                             _(L"Changes the box appearance."));
             editButtonBar->AddToggleButton(XRCID("ID_BOX_PLOT_DISPLAY_LABELS"),
                                            _(L"Display Labels"),
-                                           wxGetApp().ReadSvgIcon(L"ribbon/show-all-labels.svg"),
+                                           ReadSvgIcon(L"ribbon/show-all-labels.svg"),
                                            _(L"Displays labels on the box and whiskers."));
             editButtonBar->AddToggleButton(XRCID("ID_BOX_PLOT_DISPLAY_ALL_POINTS"),
                                            _(L"Display Points"),
-                                           wxGetApp().ReadSvgIcon(L"ribbon/show-all-points.svg"),
+                                           ReadSvgIcon(L"ribbon/show-all-points.svg"),
                                            _(L"Displays all data points onto the plot."));
-            editButtonBar->AddButton(wxID_COPY, _(L"Copy"),
-                                     wxGetApp().ReadSvgIcon(L"ribbon/copy.svg"),
+            editButtonBar->AddButton(wxID_COPY, _(L"Copy"), ReadSvgIcon(L"ribbon/copy.svg"),
                                      _(L"Copy the graph."));
             editButtonBar->AddHybridButton(wxID_ZOOM_IN, _(L"Zoom"),
-                                           wxGetApp().ReadSvgIcon(L"ribbon/zoom-in.svg"),
-                                           _(L"Zoom"));
+                                           ReadSvgIcon(L"ribbon/zoom-in.svg"), _(L"Zoom"));
             }
             // histogram panel
             {
@@ -2201,37 +2159,34 @@ void ReadabilityApp::LoadRibbonHomePage(wxRibbonBar* ribbon, const RibbonType rt
             editButtonBar->AddToggleButton(
                 XRCID("ID_EDIT_GRAPH_SHOWCASE_KEY_ITEMS"),
                 // TRANSLATORS: Draw attention to.
-                _(L"Showcase"), wxGetApp().ReadSvgIcon(L"ribbon/showcase.svg"),
+                _(L"Showcase"), ReadSvgIcon(L"ribbon/showcase.svg"),
                 _(L"Toggle whether complex word bars are being showcased."));
 
             editButtonBar->AddDropdownButton(XRCID("ID_EDIT_GRAPH_BACKGROUND"), _(L"Background"),
-                                             wxGetApp().ReadSvgIcon(L"ribbon/photos.svg"),
+                                             ReadSvgIcon(L"ribbon/photos.svg"),
                                              _(L"Set the graph's background."));
             editButtonBar->AddDropdownButton(XRCID("ID_EDIT_GRAPH_FONTS"), _(L"Font"),
-                                             wxGetApp().ReadSvgIcon(L"ribbon/font.svg"),
+                                             ReadSvgIcon(L"ribbon/font.svg"),
                                              _(L"Change the graph's fonts."));
             editButtonBar->AddButton(XRCID("ID_EDIT_WATERMARK"), _(L"Watermark"),
-                                     wxGetApp().ReadSvgIcon(L"ribbon/watermark.svg"),
+                                     ReadSvgIcon(L"ribbon/watermark.svg"),
                                      _(L"Add a watermark to the graph."));
             editButtonBar->AddButton(XRCID("ID_EDIT_LOGO"), _(L"Logo"),
-                                     wxGetApp().ReadSvgIcon(L"ribbon/logo.svg"),
+                                     ReadSvgIcon(L"ribbon/logo.svg"),
                                      _(L"Add a logo to the graph."));
             editButtonBar->AddToggleButton(XRCID("ID_DROP_SHADOW"), _(L"Shadows"),
-                                           wxGetApp().ReadSvgIcon(L"ribbon/shadow.svg"),
+                                           ReadSvgIcon(L"ribbon/shadow.svg"),
                                            _(L"Display drop shadows on the graphs."));
-            editButtonBar->AddDropdownButton(
-                XRCID("ID_EDIT_HISTOGRAM_BAR_STYLE"), _(L"Bar Style"),
-                wxGetApp().ReadSvgIcon(L"ribbon/bar-top-to-bottom.svg"),
-                _(L"Changes the bar appearance."));
+            editButtonBar->AddDropdownButton(XRCID("ID_EDIT_HISTOGRAM_BAR_STYLE"), _(L"Bar Style"),
+                                             ReadSvgIcon(L"ribbon/bar-top-to-bottom.svg"),
+                                             _(L"Changes the bar appearance."));
             editButtonBar->AddDropdownButton(XRCID("ID_EDIT_HISTOBAR_LABELS"), _(L"Labels"),
-                                             wxGetApp().ReadSvgIcon(L"ribbon/bar-labels.svg"),
+                                             ReadSvgIcon(L"ribbon/bar-labels.svg"),
                                              _(L"Changes what is displayed on the bars' labels."));
-            editButtonBar->AddButton(wxID_COPY, _(L"Copy"),
-                                     wxGetApp().ReadSvgIcon(L"ribbon/copy.svg"),
+            editButtonBar->AddButton(wxID_COPY, _(L"Copy"), ReadSvgIcon(L"ribbon/copy.svg"),
                                      _(L"Copy the graph."));
             editButtonBar->AddHybridButton(wxID_ZOOM_IN, _(L"Zoom"),
-                                           wxGetApp().ReadSvgIcon(L"ribbon/zoom-in.svg"),
-                                           _(L"Zoom"));
+                                           ReadSvgIcon(L"ribbon/zoom-in.svg"), _(L"Zoom"));
             }
             // histogram panel
             {
@@ -2243,33 +2198,30 @@ void ReadabilityApp::LoadRibbonHomePage(wxRibbonBar* ribbon, const RibbonType rt
                 new wxRibbonButtonBar(editPanel, MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
 
             editButtonBar->AddDropdownButton(XRCID("ID_EDIT_GRAPH_BACKGROUND"), _(L"Background"),
-                                             wxGetApp().ReadSvgIcon(L"ribbon/photos.svg"),
+                                             ReadSvgIcon(L"ribbon/photos.svg"),
                                              _(L"Set the graph's background."));
             editButtonBar->AddDropdownButton(XRCID("ID_EDIT_GRAPH_FONTS"), _(L"Font"),
-                                             wxGetApp().ReadSvgIcon(L"ribbon/font.svg"),
+                                             ReadSvgIcon(L"ribbon/font.svg"),
                                              _(L"Change the graph's fonts."));
             editButtonBar->AddButton(XRCID("ID_EDIT_WATERMARK"), _(L"Watermark"),
-                                     wxGetApp().ReadSvgIcon(L"ribbon/watermark.svg"),
+                                     ReadSvgIcon(L"ribbon/watermark.svg"),
                                      _(L"Add a watermark to the graph."));
             editButtonBar->AddButton(XRCID("ID_EDIT_LOGO"), _(L"Logo"),
-                                     wxGetApp().ReadSvgIcon(L"ribbon/logo.svg"),
+                                     ReadSvgIcon(L"ribbon/logo.svg"),
                                      _(L"Add a logo to the graph."));
             editButtonBar->AddToggleButton(XRCID("ID_DROP_SHADOW"), _(L"Shadows"),
-                                           wxGetApp().ReadSvgIcon(L"ribbon/shadow.svg"),
+                                           ReadSvgIcon(L"ribbon/shadow.svg"),
                                            _(L"Display drop shadows on the graphs."));
-            editButtonBar->AddDropdownButton(
-                XRCID("ID_EDIT_HISTOGRAM_BAR_STYLE"), _(L"Bar Style"),
-                wxGetApp().ReadSvgIcon(L"ribbon/bar-top-to-bottom.svg"),
-                _(L"Changes the bar appearance."));
+            editButtonBar->AddDropdownButton(XRCID("ID_EDIT_HISTOGRAM_BAR_STYLE"), _(L"Bar Style"),
+                                             ReadSvgIcon(L"ribbon/bar-top-to-bottom.svg"),
+                                             _(L"Changes the bar appearance."));
             editButtonBar->AddDropdownButton(XRCID("ID_EDIT_HISTOBAR_LABELS"), _(L"Labels"),
-                                             wxGetApp().ReadSvgIcon(L"ribbon/bar-labels.svg"),
+                                             ReadSvgIcon(L"ribbon/bar-labels.svg"),
                                              _(L"Changes what is displayed on the bars' labels."));
-            editButtonBar->AddButton(wxID_COPY, _(L"Copy"),
-                                     wxGetApp().ReadSvgIcon(L"ribbon/copy.svg"),
+            editButtonBar->AddButton(wxID_COPY, _(L"Copy"), ReadSvgIcon(L"ribbon/copy.svg"),
                                      _(L"Copy the graph."));
             editButtonBar->AddHybridButton(wxID_ZOOM_IN, _(L"Zoom"),
-                                           wxGetApp().ReadSvgIcon(L"ribbon/zoom-in.svg"),
-                                           _(L"Zoom"));
+                                           ReadSvgIcon(L"ribbon/zoom-in.svg"), _(L"Zoom"));
             }
             // batch project histogram panel
             {
@@ -2281,39 +2233,36 @@ void ReadabilityApp::LoadRibbonHomePage(wxRibbonBar* ribbon, const RibbonType rt
                 new wxRibbonButtonBar(editPanel, MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
 
             editButtonBar->AddButton(XRCID("ID_EDIT_GRAPH_COLOR_SCHEME"), _(L"Colors"),
-                                     wxGetApp().ReadSvgIcon(L"ribbon/color-wheel.svg"),
+                                     ReadSvgIcon(L"ribbon/color-wheel.svg"),
                                      _(L"Select the color scheme for the grouped histogram."));
             editButtonBar->AddDropdownButton(XRCID("ID_EDIT_GRAPH_BACKGROUND"), _(L"Background"),
-                                             wxGetApp().ReadSvgIcon(L"ribbon/photos.svg"),
+                                             ReadSvgIcon(L"ribbon/photos.svg"),
                                              _(L"Set the graph's background."));
             editButtonBar->AddDropdownButton(XRCID("ID_EDIT_GRAPH_FONTS"), _(L"Font"),
-                                             wxGetApp().ReadSvgIcon(L"ribbon/font.svg"),
+                                             ReadSvgIcon(L"ribbon/font.svg"),
                                              _(L"Change the graph's fonts."));
             editButtonBar->AddButton(XRCID("ID_EDIT_WATERMARK"), _(L"Watermark"),
-                                     wxGetApp().ReadSvgIcon(L"ribbon/watermark.svg"),
+                                     ReadSvgIcon(L"ribbon/watermark.svg"),
                                      _(L"Add a watermark to the graph."));
             editButtonBar->AddButton(XRCID("ID_EDIT_LOGO"), _(L"Logo"),
-                                     wxGetApp().ReadSvgIcon(L"ribbon/logo.svg"),
+                                     ReadSvgIcon(L"ribbon/logo.svg"),
                                      _(L"Add a logo to the graph."));
             editButtonBar->AddToggleButton(XRCID("ID_DROP_SHADOW"), _(L"Shadows"),
-                                           wxGetApp().ReadSvgIcon(L"ribbon/shadow.svg"),
+                                           ReadSvgIcon(L"ribbon/shadow.svg"),
                                            _(L"Display drop shadows on the graphs."));
             editButtonBar->AddDropdownButton(XRCID("ID_GRADE_SCALES"), _(L"Grade Scale"),
-                                             wxGetApp().ReadSvgIcon(L"ribbon/education.svg"),
+                                             ReadSvgIcon(L"ribbon/education.svg"),
                                              _(L"Change the grade scale display of the scores."));
-            editButtonBar->AddDropdownButton(
-                XRCID("ID_EDIT_HISTOGRAM_BAR_STYLE"), _(L"Bar Style"),
-                wxGetApp().ReadSvgIcon(L"ribbon/bar-top-to-bottom.svg"),
-                _(L"Changes the bar appearance."));
+            editButtonBar->AddDropdownButton(XRCID("ID_EDIT_HISTOGRAM_BAR_STYLE"), _(L"Bar Style"),
+                                             ReadSvgIcon(L"ribbon/bar-top-to-bottom.svg"),
+                                             _(L"Changes the bar appearance."));
             editButtonBar->AddDropdownButton(XRCID("ID_EDIT_HISTOBAR_LABELS"), _(L"Labels"),
-                                             wxGetApp().ReadSvgIcon(L"ribbon/bar-labels.svg"),
+                                             ReadSvgIcon(L"ribbon/bar-labels.svg"),
                                              _(L"Changes what is displayed on the bars' labels."));
-            editButtonBar->AddButton(wxID_COPY, _(L"Copy"),
-                                     wxGetApp().ReadSvgIcon(L"ribbon/copy.svg"),
+            editButtonBar->AddButton(wxID_COPY, _(L"Copy"), ReadSvgIcon(L"ribbon/copy.svg"),
                                      _(L"Copy the graph."));
             editButtonBar->AddHybridButton(wxID_ZOOM_IN, _(L"Zoom"),
-                                           wxGetApp().ReadSvgIcon(L"ribbon/zoom-in.svg"),
-                                           _(L"Zoom"));
+                                           ReadSvgIcon(L"ribbon/zoom-in.svg"), _(L"Zoom"));
             }
             // wordcloud panel
             {
@@ -2325,28 +2274,26 @@ void ReadabilityApp::LoadRibbonHomePage(wxRibbonBar* ribbon, const RibbonType rt
                 new wxRibbonButtonBar(editPanel, MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
 
             editButtonBar->AddButton(XRCID("ID_EDIT_GRAPH_COLOR_SCHEME"), _(L"Colors"),
-                                     wxGetApp().ReadSvgIcon(L"ribbon/color-wheel.svg"),
+                                     ReadSvgIcon(L"ribbon/color-wheel.svg"),
                                      _(L"Select the color scheme for the pie chart."));
 
             editButtonBar->AddDropdownButton(XRCID("ID_EDIT_GRAPH_BACKGROUND"), _(L"Background"),
-                                             wxGetApp().ReadSvgIcon(L"ribbon/photos.svg"),
+                                             ReadSvgIcon(L"ribbon/photos.svg"),
                                              _(L"Set the graph's background."));
             editButtonBar->AddDropdownButton(XRCID("ID_EDIT_GRAPH_FONTS"), _(L"Font"),
-                                             wxGetApp().ReadSvgIcon(L"ribbon/font.svg"),
+                                             ReadSvgIcon(L"ribbon/font.svg"),
                                              _(L"Change the graph's fonts."));
             editButtonBar->AddButton(XRCID("ID_EDIT_WATERMARK"), _(L"Watermark"),
-                                     wxGetApp().ReadSvgIcon(L"ribbon/watermark.svg"),
+                                     ReadSvgIcon(L"ribbon/watermark.svg"),
                                      _(L"Add a watermark to the graph."));
             editButtonBar->AddButton(XRCID("ID_EDIT_LOGO"), _(L"Logo"),
-                                     wxGetApp().ReadSvgIcon(L"ribbon/logo.svg"),
+                                     ReadSvgIcon(L"ribbon/logo.svg"),
                                      _(L"Add a logo to the graph."));
 
-            editButtonBar->AddButton(wxID_COPY, _(L"Copy"),
-                                     wxGetApp().ReadSvgIcon(L"ribbon/copy.svg"),
+            editButtonBar->AddButton(wxID_COPY, _(L"Copy"), ReadSvgIcon(L"ribbon/copy.svg"),
                                      _(L"Copy the graph."));
             editButtonBar->AddHybridButton(wxID_ZOOM_IN, _(L"Zoom"),
-                                           wxGetApp().ReadSvgIcon(L"ribbon/zoom-in.svg"),
-                                           _(L"Zoom"));
+                                           ReadSvgIcon(L"ribbon/zoom-in.svg"), _(L"Zoom"));
             }
             // pie chart panel
             {
@@ -2358,33 +2305,31 @@ void ReadabilityApp::LoadRibbonHomePage(wxRibbonBar* ribbon, const RibbonType rt
                 new wxRibbonButtonBar(editPanel, MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
 
             editButtonBar->AddButton(XRCID("ID_EDIT_GRAPH_COLOR_SCHEME"), _(L"Colors"),
-                                     wxGetApp().ReadSvgIcon(L"ribbon/color-wheel.svg"),
+                                     ReadSvgIcon(L"ribbon/color-wheel.svg"),
                                      _(L"Select the color scheme for the pie chart."));
             editButtonBar->AddToggleButton(
                 XRCID("ID_EDIT_GRAPH_SHOWCASE_KEY_ITEMS"), _(L"Showcase"),
-                wxGetApp().ReadSvgIcon(L"ribbon/showcase.svg"),
+                ReadSvgIcon(L"ribbon/showcase.svg"),
                 // TRANSLATORS: Pie chart slices.
                 _(L"Toggle whether complex word slices are being showcased."));
 
             editButtonBar->AddDropdownButton(XRCID("ID_EDIT_GRAPH_BACKGROUND"), _(L"Background"),
-                                             wxGetApp().ReadSvgIcon(L"ribbon/photos.svg"),
+                                             ReadSvgIcon(L"ribbon/photos.svg"),
                                              _(L"Set the graph's background."));
             editButtonBar->AddDropdownButton(XRCID("ID_EDIT_GRAPH_FONTS"), _(L"Font"),
-                                             wxGetApp().ReadSvgIcon(L"ribbon/font.svg"),
+                                             ReadSvgIcon(L"ribbon/font.svg"),
                                              _(L"Change the graph's fonts."));
             editButtonBar->AddButton(XRCID("ID_EDIT_WATERMARK"), _(L"Watermark"),
-                                     wxGetApp().ReadSvgIcon(L"ribbon/watermark.svg"),
+                                     ReadSvgIcon(L"ribbon/watermark.svg"),
                                      _(L"Add a watermark to the graph."));
             editButtonBar->AddButton(XRCID("ID_EDIT_LOGO"), _(L"Logo"),
-                                     wxGetApp().ReadSvgIcon(L"ribbon/logo.svg"),
+                                     ReadSvgIcon(L"ribbon/logo.svg"),
                                      _(L"Add a logo to the graph."));
 
-            editButtonBar->AddButton(wxID_COPY, _(L"Copy"),
-                                     wxGetApp().ReadSvgIcon(L"ribbon/copy.svg"),
+            editButtonBar->AddButton(wxID_COPY, _(L"Copy"), ReadSvgIcon(L"ribbon/copy.svg"),
                                      _(L"Copy the graph."));
             editButtonBar->AddHybridButton(wxID_ZOOM_IN, _(L"Zoom"),
-                                           wxGetApp().ReadSvgIcon(L"ribbon/zoom-in.svg"),
-                                           _(L"Zoom"));
+                                           ReadSvgIcon(L"ribbon/zoom-in.svg"), _(L"Zoom"));
             }
             // graph panel
             {
@@ -2396,27 +2341,25 @@ void ReadabilityApp::LoadRibbonHomePage(wxRibbonBar* ribbon, const RibbonType rt
                 new wxRibbonButtonBar(editPanel, MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
 
             editButtonBar->AddDropdownButton(XRCID("ID_EDIT_GRAPH_BACKGROUND"), _(L"Background"),
-                                             wxGetApp().ReadSvgIcon(L"ribbon/photos.svg"),
+                                             ReadSvgIcon(L"ribbon/photos.svg"),
                                              _(L"Set the graph's background."));
             editButtonBar->AddDropdownButton(XRCID("ID_EDIT_GRAPH_FONTS"), _(L"Font"),
-                                             wxGetApp().ReadSvgIcon(L"ribbon/font.svg"),
+                                             ReadSvgIcon(L"ribbon/font.svg"),
                                              _(L"Change the graph's fonts."));
             editButtonBar->AddButton(XRCID("ID_EDIT_WATERMARK"), _(L"Watermark"),
-                                     wxGetApp().ReadSvgIcon(L"ribbon/watermark.svg"),
+                                     ReadSvgIcon(L"ribbon/watermark.svg"),
                                      _(L"Add a watermark to the graph."));
             editButtonBar->AddButton(XRCID("ID_EDIT_LOGO"), _(L"Logo"),
-                                     wxGetApp().ReadSvgIcon(L"ribbon/logo.svg"),
+                                     ReadSvgIcon(L"ribbon/logo.svg"),
                                      _(L"Add a logo to the graph."));
             editButtonBar->AddToggleButton(XRCID("ID_DROP_SHADOW"), _(L"Shadows"),
-                                           wxGetApp().ReadSvgIcon(L"ribbon/shadow.svg"),
+                                           ReadSvgIcon(L"ribbon/shadow.svg"),
                                            _(L"Display drop shadows on the graphs."));
 
-            editButtonBar->AddButton(wxID_COPY, _(L"Copy"),
-                                     wxGetApp().ReadSvgIcon(L"ribbon/copy.svg"),
+            editButtonBar->AddButton(wxID_COPY, _(L"Copy"), ReadSvgIcon(L"ribbon/copy.svg"),
                                      _(L"Copy the graph."));
             editButtonBar->AddHybridButton(wxID_ZOOM_IN, _(L"Zoom"),
-                                           wxGetApp().ReadSvgIcon(L"ribbon/zoom-in.svg"),
-                                           _(L"Zoom"));
+                                           ReadSvgIcon(L"ribbon/zoom-in.svg"), _(L"Zoom"));
             }
             // Lix (German) panel
             {
@@ -2428,30 +2371,27 @@ void ReadabilityApp::LoadRibbonHomePage(wxRibbonBar* ribbon, const RibbonType rt
                 new wxRibbonButtonBar(editPanel, MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
 
             editButtonBar->AddToggleButton(XRCID("ID_EDIT_GRAPH_SHOWCASE_KEY_ITEMS"),
-                                           _(L"Showcase"),
-                                           wxGetApp().ReadSvgIcon(L"ribbon/showcase.svg"),
+                                           _(L"Showcase"), ReadSvgIcon(L"ribbon/showcase.svg"),
                                            _(L"Toggle whether the score is being showcased."));
             editButtonBar->AddDropdownButton(XRCID("ID_EDIT_GRAPH_BACKGROUND"), _(L"Background"),
-                                             wxGetApp().ReadSvgIcon(L"ribbon/photos.svg"),
+                                             ReadSvgIcon(L"ribbon/photos.svg"),
                                              _(L"Set the graph's background."));
             editButtonBar->AddDropdownButton(XRCID("ID_EDIT_GRAPH_FONTS"), _(L"Font"),
-                                             wxGetApp().ReadSvgIcon(L"ribbon/font.svg"),
+                                             ReadSvgIcon(L"ribbon/font.svg"),
                                              _(L"Change the graph's fonts."));
             editButtonBar->AddButton(XRCID("ID_EDIT_WATERMARK"), _(L"Watermark"),
-                                     wxGetApp().ReadSvgIcon(L"ribbon/watermark.svg"),
+                                     ReadSvgIcon(L"ribbon/watermark.svg"),
                                      _(L"Add a watermark to the graph."));
             editButtonBar->AddButton(XRCID("ID_EDIT_LOGO"), _(L"Logo"),
-                                     wxGetApp().ReadSvgIcon(L"ribbon/logo.svg"),
+                                     ReadSvgIcon(L"ribbon/logo.svg"),
                                      _(L"Add a logo to the graph."));
             editButtonBar->AddToggleButton(XRCID("ID_USE_ENGLISH_LABELS"), _(L"English Labels"),
-                                           wxGetApp().ReadSvgIcon(L"ribbon/german2english.svg"),
+                                           ReadSvgIcon(L"ribbon/german2english.svg"),
                                            _(L"Use translated (English) labels for the brackets."));
-            editButtonBar->AddButton(wxID_COPY, _(L"Copy"),
-                                     wxGetApp().ReadSvgIcon(L"ribbon/copy.svg"),
+            editButtonBar->AddButton(wxID_COPY, _(L"Copy"), ReadSvgIcon(L"ribbon/copy.svg"),
                                      _(L"Copy the graph."));
             editButtonBar->AddHybridButton(wxID_ZOOM_IN, _(L"Zoom"),
-                                           wxGetApp().ReadSvgIcon(L"ribbon/zoom-in.svg"),
-                                           _(L"Zoom"));
+                                           ReadSvgIcon(L"ribbon/zoom-in.svg"), _(L"Zoom"));
             }
             // Raygor panel
             {
@@ -2463,30 +2403,28 @@ void ReadabilityApp::LoadRibbonHomePage(wxRibbonBar* ribbon, const RibbonType rt
                 new wxRibbonButtonBar(editPanel, MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
 
             editButtonBar->AddDropdownButton(XRCID("ID_EDIT_GRAPH_BACKGROUND"), _(L"Background"),
-                                             wxGetApp().ReadSvgIcon(L"ribbon/photos.svg"),
+                                             ReadSvgIcon(L"ribbon/photos.svg"),
                                              _(L"Set the graph's background."));
             editButtonBar->AddDropdownButton(XRCID("ID_EDIT_GRAPH_FONTS"), _(L"Font"),
-                                             wxGetApp().ReadSvgIcon(L"ribbon/font.svg"),
+                                             ReadSvgIcon(L"ribbon/font.svg"),
                                              _(L"Change the graph's fonts."));
             editButtonBar->AddButton(XRCID("ID_EDIT_WATERMARK"), _(L"Watermark"),
-                                     wxGetApp().ReadSvgIcon(L"ribbon/watermark.svg"),
+                                     ReadSvgIcon(L"ribbon/watermark.svg"),
                                      _(L"Add a watermark to the graph."));
             editButtonBar->AddButton(XRCID("ID_EDIT_LOGO"), _(L"Logo"),
-                                     wxGetApp().ReadSvgIcon(L"ribbon/logo.svg"),
+                                     ReadSvgIcon(L"ribbon/logo.svg"),
                                      _(L"Add a logo to the graph."));
             editButtonBar->AddButton(XRCID("ID_INVALID_REGION_COLOR"), _(L"Invalid Region"),
-                                     wxGetApp().ReadSvgIcon(L"ribbon/invalid-region.svg"),
+                                     ReadSvgIcon(L"ribbon/invalid-region.svg"),
                                      _(L"Change the color of the invalid regions."));
             editButtonBar->AddDropdownButton(XRCID("ID_EDIT_GRAPH_RAYGOR_STYLE"),
                                              _(L"Raygor Style"),
-                                             wxGetApp().ReadSvgIcon(L"ribbon/raygor-style.svg"),
+                                             ReadSvgIcon(L"ribbon/raygor-style.svg"),
                                              _(L"Change the layout style of the Raygor graph."));
-            editButtonBar->AddButton(wxID_COPY, _(L"Copy"),
-                                     wxGetApp().ReadSvgIcon(L"ribbon/copy.svg"),
+            editButtonBar->AddButton(wxID_COPY, _(L"Copy"), ReadSvgIcon(L"ribbon/copy.svg"),
                                      _(L"Copy the graph."));
             editButtonBar->AddHybridButton(wxID_ZOOM_IN, _(L"Zoom"),
-                                           wxGetApp().ReadSvgIcon(L"ribbon/zoom-in.svg"),
-                                           _(L"Zoom"));
+                                           ReadSvgIcon(L"ribbon/zoom-in.svg"), _(L"Zoom"));
             }
             // Fry panel
             {
@@ -2500,31 +2438,28 @@ void ReadabilityApp::LoadRibbonHomePage(wxRibbonBar* ribbon, const RibbonType rt
             if (doc->IsKindOf(wxCLASSINFO(ProjectDoc)))
                 {
                 editButtonBar->AddToggleButton(XRCID("ID_EDIT_GRAPH_SHOWCASE_KEY_ITEMS"),
-                                               _(L"Showcase"),
-                                               wxGetApp().ReadSvgIcon(L"ribbon/showcase.svg"),
+                                               _(L"Showcase"), ReadSvgIcon(L"ribbon/showcase.svg"),
                                                _(L"Toggle whether the score is being showcased."));
                 }
             editButtonBar->AddDropdownButton(XRCID("ID_EDIT_GRAPH_BACKGROUND"), _(L"Background"),
-                                             wxGetApp().ReadSvgIcon(L"ribbon/photos.svg"),
+                                             ReadSvgIcon(L"ribbon/photos.svg"),
                                              _(L"Set the graph's background."));
             editButtonBar->AddDropdownButton(XRCID("ID_EDIT_GRAPH_FONTS"), _(L"Font"),
-                                             wxGetApp().ReadSvgIcon(L"ribbon/font.svg"),
+                                             ReadSvgIcon(L"ribbon/font.svg"),
                                              _(L"Change the graph's fonts."));
             editButtonBar->AddButton(XRCID("ID_EDIT_WATERMARK"), _(L"Watermark"),
-                                     wxGetApp().ReadSvgIcon(L"ribbon/watermark.svg"),
+                                     ReadSvgIcon(L"ribbon/watermark.svg"),
                                      _(L"Add a watermark to the graph."));
             editButtonBar->AddButton(XRCID("ID_EDIT_LOGO"), _(L"Logo"),
-                                     wxGetApp().ReadSvgIcon(L"ribbon/logo.svg"),
+                                     ReadSvgIcon(L"ribbon/logo.svg"),
                                      _(L"Add a logo to the graph."));
             editButtonBar->AddButton(XRCID("ID_INVALID_REGION_COLOR"), _(L"Invalid Region"),
-                                     wxGetApp().ReadSvgIcon(L"ribbon/invalid-region.svg"),
+                                     ReadSvgIcon(L"ribbon/invalid-region.svg"),
                                      _(L"Change the color of the invalid regions."));
-            editButtonBar->AddButton(wxID_COPY, _(L"Copy"),
-                                     wxGetApp().ReadSvgIcon(L"ribbon/copy.svg"),
+            editButtonBar->AddButton(wxID_COPY, _(L"Copy"), ReadSvgIcon(L"ribbon/copy.svg"),
                                      _(L"Copy the graph."));
             editButtonBar->AddHybridButton(wxID_ZOOM_IN, _(L"Zoom"),
-                                           wxGetApp().ReadSvgIcon(L"ribbon/zoom-in.svg"),
-                                           _(L"Zoom"));
+                                           ReadSvgIcon(L"ribbon/zoom-in.svg"), _(L"Zoom"));
             }
             // Flesch panel
             {
@@ -2536,26 +2471,24 @@ void ReadabilityApp::LoadRibbonHomePage(wxRibbonBar* ribbon, const RibbonType rt
                 new wxRibbonButtonBar(editPanel, MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
 
             editButtonBar->AddDropdownButton(XRCID("ID_EDIT_GRAPH_BACKGROUND"), _(L"Background"),
-                                             wxGetApp().ReadSvgIcon(L"ribbon/photos.svg"),
+                                             ReadSvgIcon(L"ribbon/photos.svg"),
                                              _(L"Set the graph's background."));
             editButtonBar->AddDropdownButton(XRCID("ID_EDIT_GRAPH_FONTS"), _(L"Font"),
-                                             wxGetApp().ReadSvgIcon(L"ribbon/font.svg"),
+                                             ReadSvgIcon(L"ribbon/font.svg"),
                                              _(L"Change the graph's fonts."));
             editButtonBar->AddButton(XRCID("ID_EDIT_WATERMARK"), _(L"Watermark"),
-                                     wxGetApp().ReadSvgIcon(L"ribbon/watermark.svg"),
+                                     ReadSvgIcon(L"ribbon/watermark.svg"),
                                      _(L"Add a watermark to the graph."));
             editButtonBar->AddButton(XRCID("ID_EDIT_LOGO"), _(L"Logo"),
-                                     wxGetApp().ReadSvgIcon(L"ribbon/logo.svg"),
+                                     ReadSvgIcon(L"ribbon/logo.svg"),
                                      _(L"Add a logo to the graph."));
             editButtonBar->AddToggleButton(XRCID("ID_FLESCH_DISPLAY_LINES"), _(L"Connect Points"),
-                                           wxGetApp().ReadSvgIcon(L"ribbon/flesch-line.svg"),
+                                           ReadSvgIcon(L"ribbon/flesch-line.svg"),
                                            _(L"Display the line through the factors and score."));
-            editButtonBar->AddButton(wxID_COPY, _(L"Copy"),
-                                     wxGetApp().ReadSvgIcon(L"ribbon/copy.svg"),
+            editButtonBar->AddButton(wxID_COPY, _(L"Copy"), ReadSvgIcon(L"ribbon/copy.svg"),
                                      _(L"Copy the graph."));
             editButtonBar->AddHybridButton(wxID_ZOOM_IN, _(L"Zoom"),
-                                           wxGetApp().ReadSvgIcon(L"ribbon/zoom-in.svg"),
-                                           _(L"Zoom"));
+                                           ReadSvgIcon(L"ribbon/zoom-in.svg"), _(L"Zoom"));
             }
             // DB2
             {
@@ -2568,27 +2501,25 @@ void ReadabilityApp::LoadRibbonHomePage(wxRibbonBar* ribbon, const RibbonType rt
 
             editButtonBar->AddToggleButton(
                 XRCID("ID_EDIT_GRAPH_SHOWCASE_KEY_ITEMS"), _(L"Showcase"),
-                wxGetApp().ReadSvgIcon(L"ribbon/showcase.svg"),
+                ReadSvgIcon(L"ribbon/showcase.svg"),
                 _(L"Toggle whether areas with scores are being showcased."));
             editButtonBar->AddDropdownButton(XRCID("ID_EDIT_GRAPH_BACKGROUND"), _(L"Background"),
-                                             wxGetApp().ReadSvgIcon(L"ribbon/photos.svg"),
+                                             ReadSvgIcon(L"ribbon/photos.svg"),
                                              _(L"Set the graph's background."));
             editButtonBar->AddDropdownButton(XRCID("ID_EDIT_GRAPH_FONTS"), _(L"Font"),
-                                             wxGetApp().ReadSvgIcon(L"ribbon/font.svg"),
+                                             ReadSvgIcon(L"ribbon/font.svg"),
                                              _(L"Change the graph's fonts."));
             editButtonBar->AddButton(XRCID("ID_EDIT_WATERMARK"), _(L"Watermark"),
-                                     wxGetApp().ReadSvgIcon(L"ribbon/watermark.svg"),
+                                     ReadSvgIcon(L"ribbon/watermark.svg"),
                                      _(L"Add a watermark to the graph."));
             editButtonBar->AddButton(XRCID("ID_EDIT_LOGO"), _(L"Logo"),
-                                     wxGetApp().ReadSvgIcon(L"ribbon/logo.svg"),
+                                     ReadSvgIcon(L"ribbon/logo.svg"),
                                      _(L"Add a logo to the graph."));
 
-            editButtonBar->AddButton(wxID_COPY, _(L"Copy"),
-                                     wxGetApp().ReadSvgIcon(L"ribbon/copy.svg"),
+            editButtonBar->AddButton(wxID_COPY, _(L"Copy"), ReadSvgIcon(L"ribbon/copy.svg"),
                                      _(L"Copy the graph."));
             editButtonBar->AddHybridButton(wxID_ZOOM_IN, _(L"Zoom"),
-                                           wxGetApp().ReadSvgIcon(L"ribbon/zoom-in.svg"),
-                                           _(L"Zoom"));
+                                           ReadSvgIcon(L"ribbon/zoom-in.svg"), _(L"Zoom"));
             }
             // LIX
             {
@@ -2601,27 +2532,25 @@ void ReadabilityApp::LoadRibbonHomePage(wxRibbonBar* ribbon, const RibbonType rt
 
             editButtonBar->AddToggleButton(
                 XRCID("ID_EDIT_GRAPH_SHOWCASE_KEY_ITEMS"), _(L"Showcase"),
-                wxGetApp().ReadSvgIcon(L"ribbon/showcase.svg"),
+                ReadSvgIcon(L"ribbon/showcase.svg"),
                 _(L"Toggle whether areas with scores are being showcased."));
             editButtonBar->AddDropdownButton(XRCID("ID_EDIT_GRAPH_BACKGROUND"), _(L"Background"),
-                                             wxGetApp().ReadSvgIcon(L"ribbon/photos.svg"),
+                                             ReadSvgIcon(L"ribbon/photos.svg"),
                                              _(L"Set the graph's background."));
             editButtonBar->AddDropdownButton(XRCID("ID_EDIT_GRAPH_FONTS"), _(L"Font"),
-                                             wxGetApp().ReadSvgIcon(L"ribbon/font.svg"),
+                                             ReadSvgIcon(L"ribbon/font.svg"),
                                              _(L"Change the graph's fonts."));
             editButtonBar->AddButton(XRCID("ID_EDIT_WATERMARK"), _(L"Watermark"),
-                                     wxGetApp().ReadSvgIcon(L"ribbon/watermark.svg"),
+                                     ReadSvgIcon(L"ribbon/watermark.svg"),
                                      _(L"Add a watermark to the graph."));
             editButtonBar->AddButton(XRCID("ID_EDIT_LOGO"), _(L"Logo"),
-                                     wxGetApp().ReadSvgIcon(L"ribbon/logo.svg"),
+                                     ReadSvgIcon(L"ribbon/logo.svg"),
                                      _(L"Add a logo to the graph."));
 
-            editButtonBar->AddButton(wxID_COPY, _(L"Copy"),
-                                     wxGetApp().ReadSvgIcon(L"ribbon/copy.svg"),
+            editButtonBar->AddButton(wxID_COPY, _(L"Copy"), ReadSvgIcon(L"ribbon/copy.svg"),
                                      _(L"Copy the graph."));
             editButtonBar->AddHybridButton(wxID_ZOOM_IN, _(L"Zoom"),
-                                           wxGetApp().ReadSvgIcon(L"ribbon/zoom-in.svg"),
-                                           _(L"Zoom"));
+                                           ReadSvgIcon(L"ribbon/zoom-in.svg"), _(L"Zoom"));
             }
             // panel for other readability graphs
             {
@@ -2633,24 +2562,22 @@ void ReadabilityApp::LoadRibbonHomePage(wxRibbonBar* ribbon, const RibbonType rt
                 new wxRibbonButtonBar(editPanel, MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
 
             editButtonBar->AddDropdownButton(XRCID("ID_EDIT_GRAPH_BACKGROUND"), _(L"Background"),
-                                             wxGetApp().ReadSvgIcon(L"ribbon/photos.svg"),
+                                             ReadSvgIcon(L"ribbon/photos.svg"),
                                              _(L"Set the graph's background."));
             editButtonBar->AddDropdownButton(XRCID("ID_EDIT_GRAPH_FONTS"), _(L"Font"),
-                                             wxGetApp().ReadSvgIcon(L"ribbon/font.svg"),
+                                             ReadSvgIcon(L"ribbon/font.svg"),
                                              _(L"Change the graph's fonts."));
             editButtonBar->AddButton(XRCID("ID_EDIT_WATERMARK"), _(L"Watermark"),
-                                     wxGetApp().ReadSvgIcon(L"ribbon/watermark.svg"),
+                                     ReadSvgIcon(L"ribbon/watermark.svg"),
                                      _(L"Add a watermark to the graph."));
             editButtonBar->AddButton(XRCID("ID_EDIT_LOGO"), _(L"Logo"),
-                                     wxGetApp().ReadSvgIcon(L"ribbon/logo.svg"),
+                                     ReadSvgIcon(L"ribbon/logo.svg"),
                                      _(L"Add a logo to the graph."));
 
-            editButtonBar->AddButton(wxID_COPY, _(L"Copy"),
-                                     wxGetApp().ReadSvgIcon(L"ribbon/copy.svg"),
+            editButtonBar->AddButton(wxID_COPY, _(L"Copy"), ReadSvgIcon(L"ribbon/copy.svg"),
                                      _(L"Copy the graph."));
             editButtonBar->AddHybridButton(wxID_ZOOM_IN, _(L"Zoom"),
-                                           wxGetApp().ReadSvgIcon(L"ribbon/zoom-in.svg"),
-                                           _(L"Zoom"));
+                                           ReadSvgIcon(L"ribbon/zoom-in.svg"), _(L"Zoom"));
             }
         }
     else // rtype == RibbonType::MainFrameRibbon
