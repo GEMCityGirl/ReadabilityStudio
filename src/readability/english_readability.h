@@ -11,8 +11,44 @@
  *   Blake Madden - initial implementation
  ********************************************************************************/
 
-#ifndef __ENGLISH_READABILITY_H__
-#define __ENGLISH_READABILITY_H__
+/*== == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == =*\
+||                                                                                              ||
+||                    +----------------------------------------------+                          ||
+||                    | /   /   /   /   /   /      @@@@@@@@@@@@@@@@@@|                          ||
+||                    |                       /      @@@@@@@@@@@@@@@@|                          ||
+||                    |                  /        /    @@@@@@@@@@@@@@|                          ||
+||                    |              /        /          @@@@@@@@@@@@|                          ||
+||                    |          /         /        /      @@@@@@@@@@|                          ||
+||                    |      /          /         /    /     @@@@@@@@|                          ||
+||                    |              /          /     /     /  @@@@@@|                          ||
+||                    |           /           /      /      /    @@@@|                          ||
+||                    |@       /            /       /       /      @@|                          ||
+||                    |@@@                /        /        /       @|                          ||
+||                    |@@@@@@           /         /         /        |                          ||
+||                    |@@@@@@@@@                 /          /        |                          ||
+||                    |@@@@@@@@@@@              /           /        |                          ||
+||                    |@@@@@@@@@@@@@@          /            /        |                          ||
+||                    |@@@@@@@@@@@@@@@@@                    /        |                          ||
+||                    |@@@@@@@@@@@@@@@@@@@@                 /        |                          ||
+||                    |@@@@@@@@@@@@@@@@@@@@@@@                       |                          ||
+||                    +----------------------------------------------+                          ||
+||                                                                                              ||
+||    RRRRR   EEEEE   AAAAA   DDDD    AAAAA   BBBBB   IIIII   L       IIIII   TTTTT    Y   Y    ||
+||    R   R   E       A   A   D   D   A   A   B   B     I     L         I       T      Y   Y    ||
+||    RRRR    EEEE    AAAAA   D   D   AAAAA   BBBB      I     L         I       T       Y Y     ||
+||    R  R    E       A   A   D   D   A   A   B   B     I     L         I       T        Y      ||
+||    R   R   EEEEE   A   A   DDDD    A   A   BBBBB   IIIII   LLLLL   IIIII     T        Y      ||
+||                                                                                              ||
+||                                            SSSS    TTTTT   U   U   DDDD    IIIII   OOOO      ||
+||                                            S         T     U   U   D   D     I    O    O     ||
+||                                            SSSS      T     U   U   D   D     I    O    O     ||
+||                                               S      T     U   U   D   D     I    O    O     ||
+||                                            SSSS      T     UUUUU   DDDD    IIIII   OOOO      ||
+||                                                                                              ||
+\*== == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == =*/
+
+#ifndef ENGLISH_READABILITY_H
+#define ENGLISH_READABILITY_H
 
 #include "../indexing/syllable.h"
 #include "readability.h"
@@ -2926,4 +2962,4 @@ namespace readability
         }
     } // namespace readability
 
-#endif //__ENGLISH_READABILITY_H__
+#endif // ENGLISH_READABILITY_H
