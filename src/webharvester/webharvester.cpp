@@ -77,7 +77,7 @@ wxString WebHarvester::DownloadFile(wxString& Url, const wxString& fileExtension
         }
 
     // strip off bookmark (if there is one)
-    const auto bookMarkIndex = Url.find(L'#', true);
+    const auto bookMarkIndex = Url.rfind(L'#');
     if (bookMarkIndex != wxString::npos)
         {
         Url.Truncate(bookMarkIndex);
@@ -319,7 +319,7 @@ bool WebHarvester::ReadWebPage(wxString& url, wxString& webPageContent, wxString
         }
 
     // strip off bookmark (if there is one)
-    const auto bookMarkIndex = url.find(L'#', true);
+    const auto bookMarkIndex = url.rfind(L'#');
     if (bookMarkIndex != wxString::npos)
         {
         url.Truncate(bookMarkIndex);
