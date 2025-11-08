@@ -657,14 +657,17 @@ void WebHarvester::CrawlLink(const wxString& currentLink,
                              linkParser.get_html_parser().is_current_link_an_image() :
                              false;
 
-    if (!m_progressDlg->Pulse(m_hideFileNamesWhileDownloading ?
-                                  // TRANSLATORS: Searching across websites.
-                                  _(L"Crawling...") :
-                                  wxString::Format(_(L"Crawling \"%s\""), currentLink)))
+    if (m_progressDlg != nullptr)
         {
-        m_isCancelled = true;
-        --m_currentLevel;
-        return;
+        if (!m_progressDlg->Pulse(m_hideFileNamesWhileDownloading ?
+                                      // TRANSLATORS: Searching across websites.
+                                      _(L"Crawling...") :
+                                      wxString::Format(_(L"Crawling \"%s\""), currentLink)))
+            {
+            m_isCancelled = true;
+            --m_currentLevel;
+            return;
+            }
         }
 
     // skip "mailto" anchors, telephone numbers, placeholders,
