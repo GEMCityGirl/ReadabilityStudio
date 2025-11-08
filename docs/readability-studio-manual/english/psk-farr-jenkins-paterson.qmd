@@ -6,7 +6,9 @@ The goal of Powers, Sumner, and Kearl was to develop updated versions of four po
 These updated formulas would be based on the 1950 edition of the McCall-Crabbs test criterion.
 By using this revised test material, Powers, Sumner, and Kearl aimed to "modernize the formulas by taking advantage of the more recently administered tests" and to "establish formulas which are derived from identical materials" [-@{powers-sumner-kearl}100].
 
-The training materials used to build the regression formulas were 383 prose passages from the 1950 edition of McCall-Crabbs's *Standard Test Lessons in Reading*. For validation, the formulas were tested against 113 samples from "various publications" [-@{powers-sumner-kearl}100]. Their results (shown below) implied somewhat strong correlations for their Dale-Chall and Flesch formulas and mild correlations for their FJP and Gunning Fog formulas:
+The training materials used to build the regression formulas were 383 prose passages from the 1950 edition of McCall-Crabbs's *Standard Test Lessons in Reading*.
+For validation, the formulas were tested against 113 samples from "various publications" [-@{powers-sumner-kearl}100].
+Their results (shown below) implied somewhat strong correlations for their Dale-Chall and Flesch formulas and mild correlations for their FJP and Gunning Fog formulas:
 
 - recalculated Dale-Chall: $r^2 = 0.5092$
 - recalculated Flesch: $r^2 = 0.4034$

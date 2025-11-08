@@ -86,7 +86,7 @@ Likewise, table-based tests take a set of factors and look up the score from a t
 These tables have a specific set of grade levels and will also have an upper limit.
 (Refer to @tbl-wheeler-smith-conversion-table for an example.)
 
-In contract, tests which use regression equations do not have upper limits.
+In contrast, tests which use regression equations do not have upper limits.
 In theory, a document with extreme factors (e.g., abnormally long sentences) could yield scores above grade 19 (i.e., PhD level).
 To keep results sensical, such scores should be clamped to 19 and be displayed as 19+. This is done for a number of reasons.
 

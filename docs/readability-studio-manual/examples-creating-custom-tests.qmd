@@ -144,7 +144,9 @@ The first step is to create a list of baking-specific words that our readers are
 This can be any text file where the words are separated by spaces, tabs, commas, or semicolons.
 For this example, we will use this list:
 
+<!-- translate:off -->
 `beaten, custard, eclair, éclair, flaky, glaze, glace, glossy, grate, meringue, pastry, pinch, platter, prepare, recipe, saucepan, sift, skewer, teaspoon, teaspoonful, thicken, tumbler, unbeaten, vanilla, whisk, scrape, tablespoon, tablespoonful`
+<!-- translate:on -->
 
 The next step is to create a custom test and connect our word list to it.
 For a custom New Dale-Chall, the simplest way is to click the `r keys("Custom Tests")` button on the **Readability** tab and select **Add Custom "New Dale-Chall"...** from the menu.
@@ -283,7 +285,9 @@ The first step is to create a list of "buzzwords."
 This can be any text file where the words are separated by spaces, tabs, commas, or semicolons.
 For this example, we will use this list:
 
+<!-- translate:off -->
 `agile, collaborate, cross-platform, disrupt, empower, enterprise, framework, game-change, groundbreaking, holistic, impact, infrastructure, innovate, integrate, lean, leverage, marketplace, next-generation, nimble, paradigm, platform, powerful, proactive, revolution, ROI, seamless, solution, startup, strategy, streamline, suite, sustainable, synergy, technology, utilize, value-add, visibility, workflow`
+<!-- translate:on -->
 
 The next step is to create a custom test and connect our word list to it.
 Click the `r keys("Custom Tests")` button on the **Readability** tab and select **Add...** from the menu.

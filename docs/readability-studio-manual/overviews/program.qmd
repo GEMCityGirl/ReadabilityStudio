@@ -107,7 +107,8 @@ knitr::asis_output(glue_collapse(
 #### Helpful assistance for test selection {-}
 
 *{{< var PROGRAM_NAME >}}* presents an intuitive interface for selecting readability tests.
-Experts can manually select the tests that they want to perform, while those less familiar with these tests can be guided through a helpful [wizard](#sec-creating-standard-project). This wizard can recommend which tests to include based on the document's type (e.g., text book) or industry (e.g., health care).
+Experts can manually select the tests that they want to perform, while those less familiar with these tests can be guided through a helpful [wizard](#sec-creating-standard-project).
+This wizard can recommend which tests to include based on the document's type (e.g., text book) or industry (e.g., health care).
 
 #### Graphics {-}
 
