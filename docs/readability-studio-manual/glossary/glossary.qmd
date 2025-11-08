@@ -411,7 +411,8 @@ beeswarm(len ~ dose, data = ToothGrowth, col = 2, add = TRUE)
 *r*
 :::
 ::: {.glsdef data-latex=''}
-The correlation between two factors (e.g., sentence length vs. reading level). *r* values range from -1.0 to 1.0, where -1.0 is a perfect negative correlation and 1.0 is a perfect positive correlation.
+The correlation between two factors (e.g., sentence length vs. reading level).
+*r* values range from -1.0 to 1.0, where -1.0 is a perfect negative correlation and 1.0 is a perfect positive correlation.
 :::
 
 
