@@ -300,7 +300,7 @@ namespace LuaScripting
             }
 
         const auto size = m_project->GetFirstView()->GetFrame()->GetSize();
-        
+
         lua_createtable(L, 0, 2);
 
         lua_pushinteger(L, size.GetWidth());
