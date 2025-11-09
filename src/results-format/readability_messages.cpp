@@ -50,6 +50,7 @@
 #include "readability_messages.h"
 #include "wx/numformatter.h"
 #include "wx/tokenzr.h"
+#include <algorithm>
 
 //-----------------------------------------------
 wxString ReadabilityMessages::GetGradeScaleLongLabel(size_t grade) const
@@ -188,10 +189,7 @@ wxString ReadabilityMessages::GetFormattedValue(const wxString& value,
 //-----------------------------------------------
 wxString ReadabilityMessages::GetMonthLabel(size_t month)
     {
-    if (month > 9)
-        {
-        month = 9;
-        }
+    month = std::min<size_t>(month, 9);
 
     switch (month)
         {
