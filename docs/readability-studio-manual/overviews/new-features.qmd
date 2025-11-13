@@ -7,11 +7,13 @@ source('../R/appdown.r')
 
 # New Features and Enhancements {#sec-new-features}
 
-## {{< var PROGRAM_NAME >}} 2025 {-}
+## {{< var PROGRAM_NAME >}} 2026 {-}
 ***
 
 ### General Enhancements {-}
 
+- *{{< var PROGRAM_NAME >}}* is now open source (available under the Eclipse Public v2.0 License).
+- *{{< var PROGRAM_NAME >}}* now available for Linux (`r os_logo('linux')`).
 - Program's interface is now available in Spanish.
 - Added Lua scripting.
   This allows for programming your own scripts to automate various tasks.
@@ -55,7 +57,8 @@ source('../R/appdown.r')
 - Saving and loading settings files now supports Unicode file paths.
 - Unchecking random sample option on project wizard is now remembered.
 - Unchecking realtime update option on the **Options** dialog is now remembered.
-- Images with transparency now look sharper when displayed on graphs (Windows).
+- Images with transparency now look sharper when displayed on graphs (`r os_logo('windows')`).
+- Improved support for Retina display (`r os_logo('apple')`).
 
 \newpage
 
@@ -64,7 +67,7 @@ source('../R/appdown.r')
 
 ### General Enhancements {-}
 
-- macOS version now runs natively under Apple Silicon (i.e., ARM64 processors).
+- macOS version (`r os_logo('apple')`) now runs natively under Apple Silicon (i.e., ARM64 processors).
 
 ### Importing/Exporting Enhancements {-}
 
@@ -74,7 +77,7 @@ source('../R/appdown.r')
 
 - Fixed intermittent graph blinking issue under HiDPI settings.
 - Fixed text being too light when printing statistics report under dark mode.
-- Fixed empty dialog intermittently appearing under macOS.
+- Fixed empty dialog intermittently appearing under macOS (`r os_logo('apple')`).
 
 ## {{< var PROGRAM_NAME >}} 2024 {-}
 ***
@@ -119,7 +122,7 @@ source('../R/appdown.r')
     This allows for only downloading the base webpage(s) and nothing else.
   - Performance improvements; less requests are now sent to servers while crawling them.
   - **Restricted to same folder** domain restriction will now include links from sub-directories of the specified folder.
-- Improved dark mode appearance (Windows)
+- Improved dark mode appearance (`r os_logo('windows')`)
   - Dark mode is automatically enabled if color mode is set to **Dark**
     (on Windows, select `r menu(c('Settings', 'Personalization', 'Colors', 'Choose your mode'))`).
 - Windows version is now 64-bit.
@@ -250,8 +253,8 @@ source('../R/appdown.r')
   (The program will fill in these descriptions automatically, based on the document's title.)
 - Added ability to apply group labels to documents in a batch project.
 - Added option to include a document description in standard projects.
-- Added dark theme support (macOS).
-- Added theming (Windows).
+- Added dark theme support (`r os_logo('apple')`).
+- Added theming (`r os_logo('windows')`).
 - Improved program's appearance on high-resolution displays.
 - When selecting foreground text highlighting, the font color will be adjusted to contrast with the report's background.
 - Added browse button to **Project Settings** dialog to add document(s) to a batch project.
@@ -403,7 +406,7 @@ source('../R/appdown.r')
 - Fixed batch project **Export All** where graphs would appear duplicated in the report.
 - Office 2007 filepaths (e.g., *documents\\import.xlsx*) mentioned in a document are now seen as file names.
 - Fixed crash when trying to analyze a document that is on OneDrive but not properly synced on the local file system.
-- Fixed outdated menubar options on macOS.
+- Fixed outdated menubar options on macOS (`r os_logo('apple')`).
 - **New Project from Clipboard** option will more intelligently determine whether the clipboard content is a file path or plain text.
 - Fixed crash in Word 97-2003 (\*.doc) importer.
 - Fixed custom-test word lists appearing twice when reloading project.
@@ -499,7 +502,7 @@ source('../R/appdown.r')
 - Fixed issue with certain JPEG images being drawn with an incorrect orientation.
 - If trying to import a PDF file, an error message is now shown that PDF files are not supported.
 - PowerPoint, PHP, and macro-enabled Word files are now shown in the **File Open** dialog when **All Documents** is selected.
-- Fixed an intermittent issue on macOS where entering a new serial number in the **About** dialog would freeze the program.
+- Fixed an intermittent issue on macOS (`r os_logo('apple')`) where entering a new serial number in the **About** dialog would freeze the program.
 
 \newpage
 
