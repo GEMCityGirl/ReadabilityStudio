@@ -209,12 +209,12 @@ class WebHarvester
     bool CrawlLinks();
 
     /// @brief Downloads a file from the Internet.
-    /// @param Url The link to download.
+    /// @param url The link to download.
     /// @param fileExtension The (hint) file extension to download the file as. This is only
     ///     used if the webpage doesn't have a proper extension. If empty and
     ///     @c Url is empty, then the file extension will be determined by the MIME type.
     /// @returns The local file path of the file after downloading, or empty string upon failure.
-    wxString DownloadFile(wxString& Url, const wxString& fileExtension = wxString{});
+    wxString DownloadFile(wxString& url, const wxString& fileExtension = wxString{});
     /// @brief Download all the harvested links.
     /// @note This should be called after CrawlLinks().
     void DownloadFiles();

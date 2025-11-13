@@ -69,21 +69,21 @@ bool wxStringLessWebPath::operator()(const wxString& first, const wxString& seco
     }
 
 //----------------------------------
-wxString WebHarvester::DownloadFile(wxString& Url, const wxString& fileExtension /*= wxString{}*/)
+wxString WebHarvester::DownloadFile(wxString& url, const wxString& fileExtension /*= wxString{}*/)
     {
-    if (Url.empty())
+    if (url.empty())
         {
         return {};
         }
 
     // if a OneDrive document, then we need to connect to the page it is display on
     // and download the file from there
-    html_utilities::html_url_format formatUrl(Url.wc_str());
-    formatUrl(Url.wc_str(), false);
+    html_utilities::html_url_format formatUrl(url.wc_str());
+    formatUrl(url.wc_str(), false);
     if (formatUrl.get_domain() == L"1drv.ms" ||
         formatUrl.get_root_subdomain() == L"onedrive.live.com")
         {
-        if (!m_downloader.DownloadOneDriveFile(Url, GetDownloadDirectory()))
+        if (!m_downloader.DownloadOneDriveFile(url, GetDownloadDirectory()))
             {
             return {};
             }
@@ -94,17 +94,17 @@ wxString WebHarvester::DownloadFile(wxString& Url, const wxString& fileExtension
         }
 
     // strip off bookmark (if there is one)
-    const auto bookMarkIndex = Url.rfind(L'#');
+    const auto bookMarkIndex = url.rfind(L'#');
     if (bookMarkIndex != wxString::npos)
         {
-        Url.Truncate(bookMarkIndex);
+        url.Truncate(bookMarkIndex);
         }
-    Url = NormalizeUrl(Url);
+    url = NormalizeUrl(url);
 
     // remove "https" (and the like) from the file path so that when
     // we build a mirrored local folder structure, we don't have a
     // folder named "https."
-    wxString urlLocalFileFriendlyName = Url;
+    wxString urlLocalFileFriendlyName = url;
     const wxRegEx re(L"^(http|https|ftp|ftps|gopher|file)://", wxRE_ICASE | wxRE_EXTENDED);
     re.ReplaceFirst(&urlLocalFileFriendlyName, wxString{});
     // in case of an url like www.company.com/events/
@@ -164,7 +164,7 @@ wxString WebHarvester::DownloadFile(wxString& Url, const wxString& fileExtension
        (or determine it from the MIME type).*/
     const wxString webFileExt = GetExtensionOrDomain(downloadPath);
     if (webFileExt.empty() ||
-        html_utilities::html_url_format::is_url_top_level_domain(Url.wc_str()))
+        html_utilities::html_url_format::is_url_top_level_domain(url.wc_str()))
         {
         downloadPath += L".html";
         }
@@ -176,16 +176,16 @@ wxString WebHarvester::DownloadFile(wxString& Url, const wxString& fileExtension
         // cppcheck-suppress knownConditionTrueFalse
         if (webFileExt.empty())
             {
-            wxLogVerbose(L"'%s': querying file type from MIME type", Url);
+            wxLogVerbose(L"'%s': querying file type from MIME type", url);
             int rCode{ 200 };
             const wxString downloadExt = StripIllegalFileCharacters(
                 !fileExtension.empty() ? fileExtension :
-                                         GetFileTypeFromContentType(GetContentType(Url, rCode)));
+                                         GetFileTypeFromContentType(GetContentType(url, rCode)));
             // If we needed to connect to the page to get its MIME type, then check the response
             // code while we are at it. Bail early if we got a bad response (or timed out).
             if (fileExtension.empty() && QueueDownload::IsBadResponseCode(rCode))
                 {
-                wxLogVerbose(L"'%s': bad response from web page; unable to download", Url);
+                wxLogVerbose(L"'%s': bad response from web page; unable to download", url);
                 return {};
                 }
             downloadPath += L'.' + downloadExt;
@@ -212,7 +212,7 @@ wxString WebHarvester::DownloadFile(wxString& Url, const wxString& fileExtension
     wxYield();
     if (m_progressDlg != nullptr)
         {
-        wxStringTokenizer tkz(Url, L"\n\r", wxTOKEN_STRTOK);
+        wxStringTokenizer tkz(url, L"\n\r", wxTOKEN_STRTOK);
         const wxString urlLabel = tkz.GetNextToken();
         if (!m_progressDlg->Pulse(m_hideFileNamesWhileDownloading ?
                                       _(L"Downloading...") :
@@ -223,7 +223,7 @@ wxString WebHarvester::DownloadFile(wxString& Url, const wxString& fileExtension
             }
         }
 
-    wxLogVerbose(L"Preparing to download '%s'", Url);
+    wxLogVerbose(L"Preparing to download '%s'", url);
     // create the target folder
     if (!wxFileName::DirExists(downloadPathFolder))
         {
@@ -236,7 +236,7 @@ wxString WebHarvester::DownloadFile(wxString& Url, const wxString& fileExtension
         wxString contentType;
         wxString statusText;
         int responseCode{ 200 };
-        if (ReadWebPage(Url, fileText, contentType, statusText, responseCode, true))
+        if (ReadWebPage(url, fileText, contentType, statusText, responseCode, true))
             {
             std::wstring cookies = html_utilities::javascript_hyperlink_parse::get_cookies(
                 { fileText.wc_str(), fileText.length() });
@@ -258,7 +258,7 @@ wxString WebHarvester::DownloadFile(wxString& Url, const wxString& fileExtension
         }
 
     // now download the file locally
-    if (m_downloader.Download(Url, downloadPath))
+    if (m_downloader.Download(url, downloadPath))
         {
         m_downloadedFiles.insert(downloadPath);
         }
@@ -269,7 +269,7 @@ wxString WebHarvester::DownloadFile(wxString& Url, const wxString& fileExtension
         // check the response code
         if (QueueDownload::IsBadResponseCode(responseCode))
             {
-            wxLogWarning(L"%s: unable to connect to page, error code #%i (%s).", Url, responseCode,
+            wxLogWarning(L"%s: unable to connect to page, error code #%i (%s).", url, responseCode,
                          QueueDownload::GetResponseMessage(responseCode));
             }
         wxLogWarning(L"Unable to download to '%s': %s", downloadPath,
