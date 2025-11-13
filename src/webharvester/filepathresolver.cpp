@@ -60,7 +60,7 @@ wxString FilePathResolver::ResolvePath(
     // will set m_path directly, so we can ignore the return value here
     FilePathResolverBase::ResolvePath(path, pathsToSearch);
     // if failed, see if it's a web file by trying to connect to it
-    if (attemptToConnect && path.length() && m_fileType == FilePathType::InvalidFileType)
+    if (attemptToConnect && !path.empty() && m_fileType == FilePathType::InvalidFileType)
         {
         // See if it is an URL, but make sure this remotely resembles a legit URL first.
         // More than 3 spaces is really odd for an URL and is more than likely bogus
@@ -94,11 +94,9 @@ wxString FilePathResolver::ResolvePath(
             m_fileType = FilePathType::HTTP;
             return m_path;
             }
-        else
-            {
-            m_fileType = FilePathType::InvalidFileType;
-            return m_path;
-            }
+
+        m_fileType = FilePathType::InvalidFileType;
+        return m_path;
         }
 
     return m_path;

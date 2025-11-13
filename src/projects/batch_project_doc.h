@@ -327,7 +327,7 @@ class BatchProjectDoc final : public BaseProjectDoc
         @param allowCustomFormatting Whether custom formatting should be used for number formatting
             in the @c dataGrid.*/
     static void
-    SetScoreStatsRow(std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider> dataGrid,
+    SetScoreStatsRow(const std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider>& dataGrid,
                      const wxString& rowName, const wxString& optionalDescription,
                      const long rowNum, const std::vector<double>& data, const int decimalSize,
                      const VarianceMethod varianceMethod, const bool allowCustomFormatting);

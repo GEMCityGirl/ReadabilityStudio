@@ -7584,9 +7584,10 @@ void BatchProjectDoc::DisplaySightWords()
 
 //-------------------------------------------------------
 void BatchProjectDoc::SetScoreStatsRow(
-    std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider> dataGrid, const wxString& rowName,
-    const wxString& optionalDescription, const long rowNum, const std::vector<double>& data,
-    const int decimalSize, const VarianceMethod varianceMethod, const bool allowCustomFormatting)
+    const std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider>& dataGrid,
+    const wxString& rowName, const wxString& optionalDescription, const long rowNum,
+    const std::vector<double>& data, const int decimalSize, const VarianceMethod varianceMethod,
+    const bool allowCustomFormatting)
     {
     PROFILE();
     size_t currentColumn = 0;

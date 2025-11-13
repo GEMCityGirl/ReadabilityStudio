@@ -818,47 +818,44 @@ void WebHarvester::CrawlLink(const wxString& currentLink,
                 }
             return;
             }
-        else
+
+        // if it's a PHP query, then see if it is really a page needing to be crawled
+        if (formatCurrentUrl.has_query())
             {
-            // if it's a PHP query, then see if it is really a page needing to be crawled
-            if (formatCurrentUrl.has_query())
-                {
-                if (pageIsHtml)
-                    {
-                    CrawlLinks(fullUrl,
-                               html_utilities::hyperlink_parse::hyperlink_parse_method::html);
-                    }
-                // need to get this page's type and download it if it meets the criteria
-                fileExt = GetFileTypeFromContentType(contentType);
-                if (VerifyFileExtension(fileExt) || (pageIsHtml && m_harvestAllHtml))
-                    {
-                    // need to override its extension too because the url has a different
-                    // file extension on it due to it being a PHP query
-                    HarvestLink(fullUrl, fileExt);
-                    }
-                return;
-                }
-            // otherwise, an HTML page with an unknown extension
             if (pageIsHtml)
                 {
                 CrawlLinks(fullUrl, html_utilities::hyperlink_parse::hyperlink_parse_method::html);
-                if (m_harvestAllHtml || VerifyFileExtension(fileExt))
-                    {
-                    HarvestLink(fullUrl, fileExt);
-                    }
-                return;
                 }
-            // ...finally, not a webpage and an unknown extension.
-            // Just figure out its real type and see if we should download it
-            if (contentType.length())
+            // need to get this page's type and download it if it meets the criteria
+            fileExt = GetFileTypeFromContentType(contentType);
+            if (VerifyFileExtension(fileExt) || (pageIsHtml && m_harvestAllHtml))
                 {
-                fileExt = GetFileTypeFromContentType(contentType);
-                if (VerifyFileExtension(fileExt))
-                    {
-                    HarvestLink(fullUrl, fileExt);
-                    }
-                return;
+                // need to override its extension too because the url has a different
+                // file extension on it due to it being a PHP query
+                HarvestLink(fullUrl, fileExt);
                 }
+            return;
+            }
+        // otherwise, an HTML page with an unknown extension
+        if (pageIsHtml)
+            {
+            CrawlLinks(fullUrl, html_utilities::hyperlink_parse::hyperlink_parse_method::html);
+            if (m_harvestAllHtml || VerifyFileExtension(fileExt))
+                {
+                HarvestLink(fullUrl, fileExt);
+                }
+            return;
+            }
+        // ...finally, not a webpage and an unknown extension.
+        // Just figure out its real type and see if we should download it
+        if (!contentType.empty())
+            {
+            fileExt = GetFileTypeFromContentType(contentType);
+            if (VerifyFileExtension(fileExt))
+                {
+                HarvestLink(fullUrl, fileExt);
+                }
+            return;
             }
         }
     }
