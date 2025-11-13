@@ -134,7 +134,7 @@ endfunction()
 #    - Fails at configure time if:
 #        - Git is not found.
 #        - Submodule is missing or not a valid repo.
-#        - Submodule has uncommitted or untracked changes.
+#        - Submodule has uncommitted or untracked changes (release build).
 #        - Git hash cannot be retrieved.
 #    - On success, sets the variable OUT_VAR in the parent scope.
 #

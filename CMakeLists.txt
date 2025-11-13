@@ -19,7 +19,7 @@
 
 # Options:
 # ENABLE_SANITIZERS to use ASAN & UBSAN (ignored in release build)
-# ALLOW_DIRTY_SUBMODULES to allow building even if submodules have local changes
+# ALLOW_DIRTY_SUBMODULES to allow building even if submodules have local changes (OFF in debug build, ON in release)
 
 # Requirements
 cmake_minimum_required(VERSION 3.26)
@@ -31,8 +31,6 @@ set(MIN_MSVC_TOOLSET_REQUIRED "19.30") # VS 2022 (1930 is the build number, whic
 set(MIN_MSVC_REQUIRED "Visual Studio 2022") # Just used in the help
 Set(MIN_WXWIDGETS_REQUIRED "3.3.1")
 
-option(ALLOW_DIRTY_SUBMODULES "Allow building even if submodules have local changes" OFF)
-
 # https://blog.kitware.com/cmake-and-the-default-build-type/
 if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
     set(default_build_type "Debug")
@@ -40,6 +38,14 @@ if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
     set(CMAKE_BUILD_TYPE "${default_build_type}" CACHE STRING "Choose the type of build." FORCE)
     # Set the possible values of build type for cmake-gui
     set_property(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS "Debug" "Release")
+endif()
+
+option(ALLOW_DIRTY_SUBMODULES "Allow building even if submodules have local changes" OFF)
+# Override it based on build type (for single-config generators)
+if (CMAKE_BUILD_TYPE STREQUAL "Debug")
+    set(ALLOW_DIRTY_SUBMODULES ON CACHE BOOL "Allow building even if submodules have local changes" FORCE)
+elseif (CMAKE_BUILD_TYPE STREQUAL "Release")
+    set(ALLOW_DIRTY_SUBMODULES OFF CACHE BOOL "Allow building even if submodules have local changes" FORCE)
 endif()
 
 message(STATUS "Build: ${CMAKE_BUILD_TYPE}")
