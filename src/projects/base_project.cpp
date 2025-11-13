@@ -4399,39 +4399,37 @@ bool BaseProject::LoadExternalDocument()
         wxString content, contentType, statusText;
         int responseCode{ 404 };
         wxString urlPath = GetOriginalDocumentFilePath();
-        if (wxGetApp().GetWebHarvester().ReadWebPage(urlPath, content, contentType, statusText,
-                                                     responseCode, false))
+        std::pair<bool, std::wstring> extractResult;
+        wxString title;
+
+        if (WebHarvester::IsOneDriveDocument(GetOriginalDocumentFilePath()))
             {
-            wxString title;
-            std::pair<bool, std::wstring> extractResult = ExtractRawTextWithEncoding(
+            if (wxGetApp().GetWebHarvester().ReadWebDocument(urlPath, statusText, responseCode))
+                {
+                extractResult = ExtractRawText(
+                    std::string_view{
+                        wxGetApp().GetWebHarvester().GetDownloader().GetLastRead().data(),
+                        wxGetApp().GetWebHarvester().GetDownloader().GetLastRead().size() },
+                    wxFileName{
+                        wxGetApp().GetWebHarvester().GetDownloader().GetLastOneDriveFileName() }
+                        .GetExt());
+                title = wxGetApp().GetWebHarvester().GetDownloader().GetLastOneDriveFileName();
+                }
+            else
+                {
+                LogMessage(wxString::Format(
+                               _(L"Unable to open webpage. The following error occurred:\n%s\n%s"),
+                               QueueDownload::GetResponseMessage(responseCode), statusText),
+                           _(L"Error"), wxOK | wxICON_EXCLAMATION);
+                return false;
+                }
+            }
+        else if (wxGetApp().GetWebHarvester().ReadWebPage(urlPath, content, contentType, statusText,
+                                                          responseCode, false))
+            {
+            extractResult = ExtractRawTextWithEncoding(
                 content.wc_string(), WebHarvester::GetFileTypeFromContentType(contentType),
                 GetOriginalDocumentFilePath(), title);
-            if (!extractResult.first)
-                {
-                return false;
-                }
-            if (GetOriginalDocumentDescription().empty())
-                {
-                SetOriginalDocumentDescription(title);
-                }
-            // load the extracted text into the indexing engine
-            try
-                {
-                SetDocumentText(std::move(extractResult.second));
-                LoadDocument();
-                }
-            catch (...)
-                {
-                LogMessage(_(L"An unknown error occurred while analyzing the document. "
-                             "Unable to create project."),
-                           _(L"Import Error"), wxOK | wxICON_EXCLAMATION);
-                return false;
-                }
-            // set the name of the project from the title of the page
-            string_util::remove_extra_spaces(title);
-            title = StripIllegalFileCharacters(title);
-            title.Replace(L".", wxString{}, true);
-            SetDocumentTitle(title);
             }
         else
             {
@@ -4441,6 +4439,34 @@ bool BaseProject::LoadExternalDocument()
                        _(L"Error"), wxOK | wxICON_EXCLAMATION);
             return false;
             }
+
+        // load whatever webpage or document that we retrieved into the indexing engine
+        if (!extractResult.first)
+            {
+            return false;
+            }
+        if (GetOriginalDocumentDescription().empty())
+            {
+            SetOriginalDocumentDescription(title);
+            }
+
+        try
+            {
+            SetDocumentText(std::move(extractResult.second));
+            LoadDocument();
+            }
+        catch (...)
+            {
+            LogMessage(_(L"An unknown error occurred while analyzing the document. "
+                         "Unable to create project."),
+                       _(L"Import Error"), wxOK | wxICON_EXCLAMATION);
+            return false;
+            }
+        // set the name of the project from the title of the page
+        string_util::remove_extra_spaces(title);
+        title = StripIllegalFileCharacters(title);
+        title.Replace(L".", wxString{}, true);
+        SetDocumentTitle(title);
         }
     else if (resolvePath.IsInvalidFile())
         {

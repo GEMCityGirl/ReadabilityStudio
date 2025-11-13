@@ -241,6 +241,30 @@ class WebHarvester
                      wxString& statusText, int& responseCode,
                      const bool acceptOnlyHtmlOrScriptFiles = true);
 
+    /** @brief Reads the content of a web document
+            (not a page, but something like a OneDrive document).
+        @param[in,out] url The web line (might be altered if redirected).
+        @param[out] statusText Any possible information from the server
+            (usually extended error information).
+        @param[out] responseCode The response code when connecting to the page.
+        @returns Whether the file was successfully read.
+        @note Call GetDownloader().GetLastRead() and GetDownloader().GetLastOneDriveFileName()
+            to retrieve the document that was read.
+        @warning Currently only supports OneDrive (publicly accessible) documents.*/
+    [[nodiscard]]
+    bool ReadWebDocument(wxString& url, wxString& statusText, int& responseCode);
+
+    /// @returns @c true if @c url is a OneDrive link.
+    /// @param url The link to reviews.
+    [[nodiscard]]
+    static bool IsOneDriveDocument(const wxString& url)
+        {
+        html_utilities::html_url_format formatUrl(url.wc_str());
+        formatUrl(url.wc_str(), false);
+        return (formatUrl.get_domain() == L"1drv.ms" ||
+                formatUrl.get_root_subdomain() == L"onedrive.live.com");
+        }
+
     /// @brief Attempts to connect to @c url.
     /// @param url The webpage to try to connect to.
     void RequestResponse(const wxString& url) { m_downloader.RequestResponse(url); }

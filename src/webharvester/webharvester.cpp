@@ -78,10 +78,7 @@ wxString WebHarvester::DownloadFile(wxString& url, const wxString& fileExtension
 
     // if a OneDrive document, then we need to connect to the page it is display on
     // and download the file from there
-    html_utilities::html_url_format formatUrl(url.wc_str());
-    formatUrl(url.wc_str(), false);
-    if (formatUrl.get_domain() == L"1drv.ms" ||
-        formatUrl.get_root_subdomain() == L"onedrive.live.com")
+    if (IsOneDriveDocument(url))
         {
         if (!m_downloader.DownloadOneDriveFile(url, GetDownloadDirectory()))
             {
@@ -420,6 +417,49 @@ bool WebHarvester::ReadWebPage(wxString& url, wxString& webPageContent, wxString
         }
 
     return true;
+    }
+
+//----------------------------------
+bool WebHarvester::ReadWebDocument(wxString& url, wxString& statusText, int& responseCode)
+    {
+    statusText.clear();
+    responseCode = 404;
+
+    if (url.empty())
+        {
+        return false;
+        }
+
+    // strip off bookmark (if there is one)
+    const auto bookMarkIndex = url.rfind(L'#');
+    if (bookMarkIndex != wxString::npos)
+        {
+        url.Truncate(bookMarkIndex);
+        }
+    url = NormalizeUrl(url);
+
+    wxLogVerbose(L"Preparing to read %s", url);
+    // if a OneDrive document, then we need to connect to the page it is display on
+    // and download the file from there
+    if (IsOneDriveDocument(url))
+        {
+        if (!m_downloader.ReadOneDriveFile(url))
+            {
+            responseCode = m_downloader.GetLastStatus();
+            statusText = m_downloader.GetLastStatusText();
+            if (QueueDownload::IsBadResponseCode(responseCode))
+                {
+                wxLogWarning(L"%s: Unable to connect to page, error code #%i (%s).", url,
+                             responseCode, QueueDownload::GetResponseMessage(responseCode));
+                }
+            return false;
+            }
+        responseCode = m_downloader.GetLastStatus();
+        statusText = m_downloader.GetLastStatusText();
+        return true;
+        }
+
+    return false;
     }
 
 //----------------------------------
