@@ -76,6 +76,23 @@ wxString WebHarvester::DownloadFile(wxString& Url, const wxString& fileExtension
         return {};
         }
 
+    // if a OneDrive document, then we need to connect to the page it is display on
+    // and download the file from there
+    html_utilities::html_url_format formatUrl(Url.wc_str());
+    formatUrl(Url.wc_str(), false);
+    if (formatUrl.get_domain() == L"1drv.ms" ||
+        formatUrl.get_root_subdomain() == L"onedrive.live.com")
+        {
+        if (!m_downloader.DownloadOneDriveFile(Url, GetDownloadDirectory()))
+            {
+            return {};
+            }
+        const auto downloadPath = GetDownloadDirectory() + wxFileName::GetPathSeparator() +
+                                  m_downloader.GetLastOneDriveFileName();
+        m_downloadedFiles.insert(downloadPath);
+        return downloadPath;
+        }
+
     // strip off bookmark (if there is one)
     const auto bookMarkIndex = Url.rfind(L'#');
     if (bookMarkIndex != wxString::npos)
