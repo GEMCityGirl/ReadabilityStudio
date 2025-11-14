@@ -48,7 +48,7 @@ source('../R/appdown.r')
 
 ### Importing/Exporting Enhancements {-}
 
-- Publicly accessible OneDrive documents are now supported.
+- Publicly accessible *OneDrive* documents are now supported.
 
 ### Documentation Enhancements {-}
 

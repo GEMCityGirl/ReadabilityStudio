@@ -123,9 +123,8 @@ string(APPEND MD "\n---\n\n")
 string(APPEND MD "### 1) 📖 User Manual\n\n")
 string(APPEND MD
   "**Scope**: End-user tasks, workflows, troubleshooting, and feature overviews.  \n"
-  "**Sources**: Quarto/Markdown in `docs/` (e.g., `docs/user-manual.qmd`).  \n"
-  "**Localization**: Strings extracted into `locale/docs/*.po` and maintained with POEdit.\n\n"
-)
+  "**Sources**: Quarto/Markdown in `docs/` (e.g., `docs/sysadmin/linux-build.qmd`).  \n"
+  "**Localization**: Strings extracted into `locale/docs/*.po` and maintained with *POEdit*.\n\n")
 string(APPEND MD "**Status**\n\n| Language | Progress | Status |\n|:--:|:--:|:--:|\n")
 foreach(L IN LISTS DOC_LANGS)
   _val_or(DOC_USER_${L} 0)
@@ -167,9 +166,8 @@ string(APPEND MD "\n---\n\n")
 string(APPEND MD "### 3) 🧪 Programming Reference (Lua / Automation API)\n\n")
 string(APPEND MD
   "**Scope**: Public scripting entry points, configuration structures, return values, and code examples.  \n"
-  "**Sources**: Quarto/Markdown in `docs/` (e.g., `docs/programming-reference.qmd`).  \n"
-  "**Localization**: Translations optional but recommended for major locales; examples may remain in English.\n\n"
-)
+  "**Sources**: Quarto/Markdown in `docs/` (e.g., `docs/readability-studio-api/libraries/Debug/Print.qmd`).  \n"
+  "**Localization**: Translations optional but recommended for major locales; examples may remain in English.\n\n")
 string(APPEND MD "**Status**\n\n| Language | Progress | Status |\n|:--:|:--:|:--:|\n")
 foreach(L IN LISTS DOC_LANGS)
   _val_or(DOC_API_${L} 0)
