@@ -78,10 +78,9 @@ wxIMPLEMENT_DYNAMIC_CLASS(ProjectDoc, wxDocument)
     void ProjectDoc::ShowQueuedMessages()
     {
     auto* view = dynamic_cast<BaseProjectView*>(GetFirstView());
-    for (std::vector<WarningMessage>::const_iterator queuedMsgIter = GetQueuedMessages().begin();
-         queuedMsgIter != GetQueuedMessages().end(); ++queuedMsgIter)
+    for (const auto& queuedMsg : GetQueuedMessages())
         {
-        view->ShowInfoMessage(*queuedMsgIter);
+        view->ShowInfoMessage(queuedMsg);
         }
     }
 
@@ -477,14 +476,11 @@ bool ProjectDoc::LoadProjectFile(const char* projectFileText, const size_t textL
                     }
                 // Should not normally happen. File was supposed to be embedded, but wasn't in the
                 // project file and external file can't be found either.
-                else
-                    {
-                    wxMessageBox(
-                        _(L"Document content could not be found in the project file and "
-                          "external document could not be located.\nUnable to create project."),
-                        _(L"Error"), wxOK | wxICON_EXCLAMATION);
-                    return false;
-                    }
+                wxMessageBox(
+                    _(L"Document content could not be found in the project file and "
+                      "external document could not be located.\nUnable to create project."),
+                    _(L"Error"), wxOK | wxICON_EXCLAMATION);
+                return false;
                 }
             }
         }
@@ -498,14 +494,12 @@ bool ProjectDoc::LoadProjectFile(const char* projectFileText, const size_t textL
                 UpdateSourceFileModifiedTime();
                 return true;
                 }
-            else
-                {
-                wxMessageBox(wxString::Format(_(L"External document could not be located:\n\n"
-                                                "\"%s\"\n\nUnable to create project."),
-                                              GetOriginalDocumentFilePath()),
-                             _(L"Error"), wxOK | wxICON_EXCLAMATION);
-                return false;
-                }
+
+            wxMessageBox(wxString::Format(_(L"External document could not be located:\n\n"
+                                            "\"%s\"\n\nUnable to create project."),
+                                          GetOriginalDocumentFilePath()),
+                         _(L"Error"), wxOK | wxICON_EXCLAMATION);
+            return false;
             }
         /* This should not happen because the entered text flag overrides the storage flag to force
            it to embed, but just for the sake of being verbose... */
@@ -1223,7 +1217,7 @@ void ProjectDoc::DisplayReadabilityScores(const bool setFocus)
             }
 
         // add/remove the goals
-        if (GetTestGoals().size() || GetStatGoals().size())
+        if (!GetTestGoals().empty() || !GetStatGoals().empty())
             {
             auto* goalsList = dynamic_cast<Wisteria::UI::ListCtrlEx*>(
                 view->GetReadabilityResultsView().FindWindowById(
@@ -1335,7 +1329,7 @@ void ProjectDoc::DisplayReadabilityScores(const bool setFocus)
 //-------------------------------------------------------
 bool ProjectDoc::OnCreate(const wxString& path, long flags)
     {
-    if (flags & wxDOC_NEW)
+    if ((flags & wxDOC_NEW) != 0)
         {
         const wxString exampleFolder =
             wxGetApp().FindResourceDirectory(_DT(L"examples", DTExplanation::FilePath));
@@ -1398,7 +1392,7 @@ bool ProjectDoc::OnNewDocument()
         {
         // there is embedded text (that may have been passed from a batch project),
         // so load that here.
-        if (GetDocumentStorageMethod() == TextStorage::EmbedText && GetDocumentText().length())
+        if (GetDocumentStorageMethod() == TextStorage::EmbedText && !GetDocumentText().empty())
             {
             LoadDocument();
             }
@@ -2156,7 +2150,7 @@ void ProjectDoc::DisplayWordsBreakdown()
             dynamic_cast<Wisteria::UI::ListCtrlEx*>(view->GetWordsBreakdownView().FindWindowById(
                 BaseProjectView::PROPER_NOUNS_LIST_PAGE_ID));
         if (GetWordsBreakdownInfo().IsProperNounsEnabled() && GetProperNounsData() &&
-            GetProperNounsData()->GetItemCount())
+            (GetProperNounsData()->GetItemCount() != 0U))
             {
             if (listView != nullptr)
                 {
@@ -2207,7 +2201,7 @@ void ProjectDoc::DisplayWordsBreakdown()
             dynamic_cast<Wisteria::UI::ListCtrlEx*>(view->GetWordsBreakdownView().FindWindowById(
                 BaseProjectView::CONTRACTIONS_LIST_PAGE_ID));
         if (GetWordsBreakdownInfo().IsContractionsEnabled() && GetContractionsData() &&
-            GetContractionsData()->GetItemCount())
+            (GetContractionsData()->GetItemCount() != 0U))
             {
             if (listView != nullptr)
                 {
@@ -2268,7 +2262,7 @@ void ProjectDoc::DisplaySentenceCharts()
 
     // box plot of sentence lengths
     if (GetSentencesBreakdownInfo().IsLengthsBoxPlotEnabled() &&
-        m_sentenceWordLengths->GetRowCount())
+        (m_sentenceWordLengths->GetRowCount() != 0U))
         {
         auto* sentenceBoxPlotCanvas =
             dynamic_cast<Wisteria::Canvas*>(view->GetSentencesBreakdownView().FindWindowById(
@@ -2322,7 +2316,7 @@ void ProjectDoc::DisplaySentenceCharts()
 
     // histogram of sentence lengths
     if (GetSentencesBreakdownInfo().IsLengthsHistogramEnabled() &&
-        m_sentenceWordLengths->GetRowCount())
+        (m_sentenceWordLengths->GetRowCount() != 0U))
         {
         auto* sentenceHistogramCanvas =
             dynamic_cast<Wisteria::Canvas*>(view->GetSentencesBreakdownView().FindWindowById(
@@ -2393,7 +2387,7 @@ void ProjectDoc::DisplaySentenceCharts()
             GetWords()->get_paragraph_count() :
             GetWords()->get_valid_paragraph_count();
     if (GetSentencesBreakdownInfo().IsLengthsHeatmapEnabled() &&
-        m_sentenceWordLengths->GetRowCount())
+        (m_sentenceWordLengths->GetRowCount() != 0U))
         {
         auto* sentenceHeatmapCanvas =
             dynamic_cast<Wisteria::Canvas*>(view->GetSentencesBreakdownView().FindWindowById(
@@ -2844,6 +2838,8 @@ void ProjectDoc::DisplayWordCharts()
         syllablePieChart->SetInnerPieMidPointLabelDisplay(
             Wisteria::BinLabelDisplay::BinNameAndPercentage);
         syllablePieChart->SetOuterPieMidPointLabelDisplay(Wisteria::BinLabelDisplay::BinPercentage);
+        syllablePieChart->SetSelectable(false);
+
         syllablePieChart->SetData(m_syllableCounts, std::nullopt, GetWordTypeGroupColumnName(),
                                   GetSyllableCountsColumnName());
 
@@ -2871,7 +2867,7 @@ void ProjectDoc::DisplayWordCharts()
     auto* wordCloudCanvas = dynamic_cast<Wisteria::Canvas*>(
         view->GetWordsBreakdownView().FindWindowById(BaseProjectView::WORD_CLOUD_PAGE_ID));
     if (GetWordsBreakdownInfo().IsWordCloudEnabled() && GetTotalWords() > 0 &&
-        m_keyWordsDataset != nullptr && m_keyWordsDataset->GetRowCount())
+        m_keyWordsDataset != nullptr && (m_keyWordsDataset->GetRowCount() != 0U))
         {
         if (wordCloudCanvas == nullptr)
             {
@@ -3045,7 +3041,7 @@ void ProjectDoc::AddDB2Plot(const bool setFocus)
 //-------------------------------------------------------
 void ProjectDoc::AddLixGermanGauge(const bool setFocus)
     {
-    readability::german_lix_difficulty diffLevel;
+    readability::german_lix_difficulty diffLevel{};
     const size_t score = readability::german_lix(diffLevel, GetTotalWords(),
                                                  GetTotalHardLixRixWords(), GetTotalSentences());
 
@@ -3112,7 +3108,7 @@ void ProjectDoc::AddLixGermanGauge(const bool setFocus)
 //-------------------------------------------------------
 void ProjectDoc::AddLixGauge(const bool setFocus)
     {
-    readability::lix_difficulty diffLevel;
+    readability::lix_difficulty diffLevel{};
     size_t gradeLevel{ 1 };
     const size_t score = readability::lix(diffLevel, gradeLevel, GetTotalWords(),
                                           GetTotalHardLixRixWords(), GetTotalSentences());
@@ -3182,7 +3178,7 @@ void ProjectDoc::AddFleschChart(const bool setFocus)
             GetTotalSyllablesNumeralsOneSyllable() :
             GetTotalSyllables(),
         GetTotalWords());
-    readability::flesch_difficulty diffLevel;
+    readability::flesch_difficulty diffLevel{};
     const size_t score = readability::flesch_reading_ease(
         GetTotalWords(),
         (GetFleschNumeralSyllabizeMethod() == FleschNumeralSyllabize::NumeralIsOneSyllable) ?
@@ -4047,7 +4043,7 @@ void ProjectDoc::DisplaySentencesBreakdown()
 void ProjectDoc::DisplayStatistics()
     {
     // this area can be included for an empty project, just won't show anything
-    ProjectView* view = dynamic_cast<ProjectView*>(GetFirstView());
+    auto* view = dynamic_cast<ProjectView*>(GetFirstView());
     assert(view);
 
     if (GetStatisticsInfo().IsReportEnabled())
@@ -4516,7 +4512,7 @@ bool ProjectDoc::AddRaygorTest(const bool setFocus)
         { GetTotalWords() - GetTotalNumerals(), GetTotalSixPlusCharacterWordsIgnoringNumerals(),
           GetTotalSentences() }));
 
-    if (!GetTotalWords())
+    if (GetTotalWords() == 0.0)
         {
         LogMessage(wxString::Format(
                        _(L"Unable to calculate %s: at least one word must be present in document."),
@@ -4525,7 +4521,7 @@ bool ProjectDoc::AddRaygorTest(const bool setFocus)
         GetReadabilityTests().include_test(currentTestKey, false);
         return false;
         }
-    if (!GetTotalSentences())
+    if (GetTotalSentences() == 0.0)
         {
         LogMessage(
             wxString::Format(
@@ -4658,7 +4654,7 @@ bool ProjectDoc::AddRaygorTest(const bool setFocus)
 
 bool ProjectDoc::AddDolchSightWords()
     {
-    if (!GetTotalWords())
+    if (GetTotalWords() == 0.0)
         {
         LogMessage(
             _(L"Unable to calculate Dolch words: at least one word must be present in document."),
@@ -4666,7 +4662,7 @@ bool ProjectDoc::AddDolchSightWords()
         IncludeDolchSightWords(false);
         return false;
         }
-    if (!GetTotalSentences())
+    if (GetTotalSentences() == 0.0)
         {
         LogMessage(_(L"Unable to calculate Dolch words: "
                      "at least one valid sentence must be present in document."),
@@ -5386,7 +5382,7 @@ std::pair<ProjectDoc::TextLegendLines, size_t>
 ProjectDoc::BuildLegendLines(const HighlighterTags& highlighterTags) const
     {
     [[maybe_unused]]
-    const lily_of_the_valley::rtf_encode_text rtfEncode;
+    constexpr lily_of_the_valley::rtf_encode_text RTF_ENCODE;
     TextLegendLines legendLines;
 
     // clang-format off
@@ -5398,7 +5394,7 @@ ProjectDoc::BuildLegendLines(const HighlighterTags& highlighterTags) const
             lily_of_the_valley::html_encode_text::simple_encode(
                 { currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
         #else
-            rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
+            RTF_ENCODE({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
         #endif
         highlighterTags.CRLF.c_str());
     currentLegendLabel = _(L"3+ syllable words");
@@ -5409,7 +5405,7 @@ ProjectDoc::BuildLegendLines(const HighlighterTags& highlighterTags) const
             lily_of_the_valley::html_encode_text::simple_encode(
                 { currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
         #else
-            rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
+            RTF_ENCODE({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
         #endif
         highlighterTags.CRLF.c_str());
     currentLegendLabel = _(L"6+ character words");
@@ -5420,7 +5416,7 @@ ProjectDoc::BuildLegendLines(const HighlighterTags& highlighterTags) const
             lily_of_the_valley::html_encode_text::simple_encode(
                 { currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
         #else
-            rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
+            RTF_ENCODE({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
         #endif
         highlighterTags.CRLF.c_str());
     currentLegendLabel = _(L"Unfamiliar New Dale-Chall words");
@@ -5431,7 +5427,7 @@ ProjectDoc::BuildLegendLines(const HighlighterTags& highlighterTags) const
             lily_of_the_valley::html_encode_text::simple_encode(
                 { currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
         #else
-            rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
+            RTF_ENCODE({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
         #endif
         highlighterTags.CRLF.c_str());
     currentLegendLabel = _(L"Unfamiliar Spache Revised words");
@@ -5442,7 +5438,7 @@ ProjectDoc::BuildLegendLines(const HighlighterTags& highlighterTags) const
             lily_of_the_valley::html_encode_text::simple_encode(
                 { currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
         #else
-            rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
+            RTF_ENCODE({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
         #endif
         highlighterTags.CRLF.c_str());
     currentLegendLabel = _(L"Unfamiliar Harris-Jacobson words");
@@ -5453,7 +5449,7 @@ ProjectDoc::BuildLegendLines(const HighlighterTags& highlighterTags) const
             lily_of_the_valley::html_encode_text::simple_encode(
                 { currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
         #else
-            rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
+            RTF_ENCODE({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
         #endif
         highlighterTags.CRLF.c_str());
     currentLegendLabel = _(L"Overly-long sentences");
@@ -5464,7 +5460,7 @@ ProjectDoc::BuildLegendLines(const HighlighterTags& highlighterTags) const
             lily_of_the_valley::html_encode_text::simple_encode(
                 { currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
         #else
-            rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
+            RTF_ENCODE({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
         #endif
         highlighterTags.CRLF.c_str());
     currentLegendLabel =
@@ -5478,7 +5474,7 @@ ProjectDoc::BuildLegendLines(const HighlighterTags& highlighterTags) const
             lily_of_the_valley::html_encode_text::simple_encode(
                 { currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
         #else
-            rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length()}).c_str(),
+            RTF_ENCODE({ currentLegendLabel.wc_str(), currentLegendLabel.length()}).c_str(),
         #endif
         highlighterTags.CRLF.c_str());
     currentLegendLabel =
@@ -5491,7 +5487,7 @@ ProjectDoc::BuildLegendLines(const HighlighterTags& highlighterTags) const
             lily_of_the_valley::html_encode_text::simple_encode(
                 { currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
         #else
-            rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
+            RTF_ENCODE({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
         #endif
                              highlighterTags.CRLF.c_str()) :
         wxString{};
@@ -5503,7 +5499,7 @@ ProjectDoc::BuildLegendLines(const HighlighterTags& highlighterTags) const
                 lily_of_the_valley::html_encode_text::simple_encode(
                     { currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
             #else
-                rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
+                RTF_ENCODE({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
             #endif
                              highlighterTags.CRLF.c_str()) :
         wxString{};
@@ -5515,7 +5511,7 @@ ProjectDoc::BuildLegendLines(const HighlighterTags& highlighterTags) const
                 lily_of_the_valley::html_encode_text::simple_encode(
                     { currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
             #else
-                rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
+                RTF_ENCODE({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
             #endif
                              highlighterTags.CRLF.c_str()) :
         wxString{};
@@ -5527,7 +5523,7 @@ ProjectDoc::BuildLegendLines(const HighlighterTags& highlighterTags) const
                 lily_of_the_valley::html_encode_text::simple_encode(
                     { currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
             #else
-                rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
+                RTF_ENCODE({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
             #endif
                              highlighterTags.CRLF.c_str()) :
         wxString{};
@@ -5539,7 +5535,7 @@ ProjectDoc::BuildLegendLines(const HighlighterTags& highlighterTags) const
                 lily_of_the_valley::html_encode_text::simple_encode(
                     { currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
             #else
-                rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
+                RTF_ENCODE({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
             #endif
                              highlighterTags.CRLF.c_str()) :
         wxString{};
@@ -5551,7 +5547,7 @@ ProjectDoc::BuildLegendLines(const HighlighterTags& highlighterTags) const
                 lily_of_the_valley::html_encode_text::simple_encode(
                     { currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
             #else
-                rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
+                RTF_ENCODE({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
             #endif
                              highlighterTags.CRLF.c_str()) :
         wxString{};
@@ -5563,7 +5559,7 @@ ProjectDoc::BuildLegendLines(const HighlighterTags& highlighterTags) const
                 lily_of_the_valley::html_encode_text::simple_encode(
                     { currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
             #else
-                rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
+                RTF_ENCODE({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
             #endif
                              highlighterTags.CRLF.c_str()) :
         wxString{};
@@ -5575,7 +5571,7 @@ ProjectDoc::BuildLegendLines(const HighlighterTags& highlighterTags) const
                 lily_of_the_valley::html_encode_text::simple_encode(
                     { currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
             #else
-                rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
+                RTF_ENCODE({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
             #endif
                              highlighterTags.CRLF.c_str()) :
         wxString{};
@@ -5587,7 +5583,7 @@ ProjectDoc::BuildLegendLines(const HighlighterTags& highlighterTags) const
             lily_of_the_valley::html_encode_text::simple_encode(
                 { currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
         #else
-            rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
+            RTF_ENCODE({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
         #endif
         highlighterTags.CRLF.c_str());
     // clang-format on
@@ -5614,7 +5610,7 @@ wxString ProjectDoc::BuildLegendLine(const HighlighterTags& highlighterTags,
                                      const wxString& legendStr)
     {
     [[maybe_unused]]
-    const lily_of_the_valley::rtf_encode_text rtfEncode;
+    constexpr lily_of_the_valley::rtf_encode_text RTF_ENCODE;
 
     return wxString::Format(L"%s    %s   %s  %s%s", highlighterTags.CRLF,
                             highlighterTags.HIGHLIGHT_BEGIN_LEGEND,
@@ -5624,7 +5620,7 @@ wxString ProjectDoc::BuildLegendLine(const HighlighterTags& highlighterTags,
                                 { legendStr.wc_str(), legendStr.length() })
                                 .c_str(),
 #else
-                            rtfEncode({ legendStr.wc_str(), legendStr.length() }).c_str(),
+                            RTF_ENCODE({ legendStr.wc_str(), legendStr.length() }).c_str(),
 #endif
                             highlighterTags.CRLF);
     }
@@ -6944,7 +6940,7 @@ void ProjectDoc::DisplayOverlyLongSentences()
         dynamic_cast<Wisteria::UI::ListCtrlEx*>(view->GetSentencesBreakdownView().FindWindowById(
             BaseProjectView::LONG_SENTENCES_LIST_PAGE_ID));
     if (GetSentencesBreakdownInfo().IsLongSentencesEnabled() &&
-        m_overlyLongSentenceData->GetItemCount())
+        (m_overlyLongSentenceData->GetItemCount() != 0U))
         {
         if (listView != nullptr)
             {
@@ -7095,7 +7091,7 @@ void ProjectDoc::DisplayGrammar()
         {
         auto* listView = dynamic_cast<Wisteria::UI::ListCtrlEx*>(
             view->GetGrammarView().FindWindowById(BaseProjectView::WORDING_ERRORS_LIST_PAGE_ID));
-        if (GetGrammarInfo().IsWordingErrorsEnabled() && m_wordingErrorData->GetItemCount())
+        if (GetGrammarInfo().IsWordingErrorsEnabled() && (m_wordingErrorData->GetItemCount() != 0U))
             {
             if (listView != nullptr)
                 {
@@ -7154,7 +7150,8 @@ void ProjectDoc::DisplayGrammar()
         m_misspelledWordData->SetSize(misspelledWords.get_data().size());
         auto* listView = dynamic_cast<Wisteria::UI::ListCtrlEx*>(
             view->GetGrammarView().FindWindowById(BaseProjectView::MISSPELLED_WORD_LIST_PAGE_ID));
-        if (GetGrammarInfo().IsMisspellingsEnabled() && m_misspelledWordData->GetItemCount())
+        if (GetGrammarInfo().IsMisspellingsEnabled() &&
+            (m_misspelledWordData->GetItemCount() != 0U))
             {
             if (listView != nullptr)
                 {
@@ -7209,7 +7206,7 @@ void ProjectDoc::DisplayGrammar()
             }
         auto* listView = dynamic_cast<Wisteria::UI::ListCtrlEx*>(
             view->GetGrammarView().FindWindowById(BaseProjectView::DUPLICATES_LIST_PAGE_ID));
-        if (GetGrammarInfo().IsRepeatedWordsEnabled() && m_dupWordData->GetItemCount())
+        if (GetGrammarInfo().IsRepeatedWordsEnabled() && (m_dupWordData->GetItemCount() != 0U))
             {
             if (listView != nullptr)
                 {
@@ -7269,7 +7266,8 @@ void ProjectDoc::DisplayGrammar()
             }
         auto* listView = dynamic_cast<Wisteria::UI::ListCtrlEx*>(
             view->GetGrammarView().FindWindowById(BaseProjectView::INCORRECT_ARTICLE_PAGE_ID));
-        if (GetGrammarInfo().IsArticleMismatchesEnabled() && m_incorrectArticleData->GetItemCount())
+        if (GetGrammarInfo().IsArticleMismatchesEnabled() &&
+            (m_incorrectArticleData->GetItemCount() != 0U))
             {
             if (listView != nullptr)
                 {
@@ -7310,7 +7308,8 @@ void ProjectDoc::DisplayGrammar()
         {
         auto* listView = dynamic_cast<Wisteria::UI::ListCtrlEx*>(
             view->GetGrammarView().FindWindowById(BaseProjectView::REDUNDANT_PHRASE_LIST_PAGE_ID));
-        if (GetGrammarInfo().IsRedundantPhrasesEnabled() && m_redundantPhraseData->GetItemCount())
+        if (GetGrammarInfo().IsRedundantPhrasesEnabled() &&
+            (m_redundantPhraseData->GetItemCount() != 0U))
             {
             if (listView != nullptr)
                 {
@@ -7405,7 +7404,8 @@ void ProjectDoc::DisplayGrammar()
             dynamic_cast<Wisteria::UI::ListCtrlEx*>(view->GetGrammarView().FindWindowById(
                 BaseProjectView::OVERUSED_WORDS_BY_SENTENCE_LIST_PAGE_ID));
         if (GetGrammarInfo().IsOverUsedWordsBySentenceEnabled() &&
-            GetOverusedWordsBySentenceData() && GetOverusedWordsBySentenceData()->GetItemCount())
+            GetOverusedWordsBySentenceData() &&
+            (GetOverusedWordsBySentenceData()->GetItemCount() != 0U))
             {
             if (listView != nullptr)
                 {
@@ -7453,7 +7453,7 @@ void ProjectDoc::DisplayGrammar()
         {
         auto* listView = dynamic_cast<Wisteria::UI::ListCtrlEx*>(
             view->GetGrammarView().FindWindowById(BaseProjectView::WORDY_PHRASES_LIST_PAGE_ID));
-        if (GetGrammarInfo().IsWordyPhrasesEnabled() && m_wordyPhraseData->GetItemCount())
+        if (GetGrammarInfo().IsWordyPhrasesEnabled() && (m_wordyPhraseData->GetItemCount() != 0U))
             {
             if (listView != nullptr)
                 {
@@ -7495,7 +7495,7 @@ void ProjectDoc::DisplayGrammar()
         {
         auto* listView = dynamic_cast<Wisteria::UI::ListCtrlEx*>(
             view->GetGrammarView().FindWindowById(BaseProjectView::CLICHES_LIST_PAGE_ID));
-        if (GetGrammarInfo().IsClichesEnabled() && m_clichePhraseData->GetItemCount())
+        if (GetGrammarInfo().IsClichesEnabled() && (m_clichePhraseData->GetItemCount() != 0U))
             {
             if (listView != nullptr)
                 {
@@ -7563,7 +7563,7 @@ void ProjectDoc::DisplayGrammar()
             }
         auto* listView = dynamic_cast<Wisteria::UI::ListCtrlEx*>(
             view->GetGrammarView().FindWindowById(BaseProjectView::PASSIVE_VOICE_PAGE_ID));
-        if (GetGrammarInfo().IsPassiveVoiceEnabled() && m_passiveVoiceData->GetItemCount())
+        if (GetGrammarInfo().IsPassiveVoiceEnabled() && (m_passiveVoiceData->GetItemCount() != 0U))
             {
             if (listView != nullptr)
                 {
@@ -7631,7 +7631,7 @@ void ProjectDoc::DisplayGrammar()
             dynamic_cast<Wisteria::UI::ListCtrlEx*>(view->GetGrammarView().FindWindowById(
                 BaseProjectView::SENTENCES_CONJUNCTION_START_LIST_PAGE_ID));
         if (GetGrammarInfo().IsConjunctionStartingSentencesEnabled() &&
-            m_sentenceStartingWithConjunctionsData->GetItemCount())
+            (m_sentenceStartingWithConjunctionsData->GetItemCount() != 0U))
             {
             if (listView != nullptr)
                 {
@@ -7702,7 +7702,7 @@ void ProjectDoc::DisplayGrammar()
             dynamic_cast<Wisteria::UI::ListCtrlEx*>(view->GetGrammarView().FindWindowById(
                 BaseProjectView::SENTENCES_LOWERCASE_START_LIST_PAGE_ID));
         if (GetGrammarInfo().IsLowercaseSentencesEnabled() &&
-            m_sentenceStartingWithLowercaseData->GetItemCount())
+            (m_sentenceStartingWithLowercaseData->GetItemCount() != 0U))
             {
             if (listView != nullptr)
                 {
@@ -7766,7 +7766,7 @@ void ProjectDoc::DisplaySightWords()
         auto* listView =
             dynamic_cast<Wisteria::UI::ListCtrlEx*>(view->GetDolchSightWordsView().FindWindowById(
                 BaseProjectView::DOLCH_WORDS_LIST_PAGE_ID));
-        if (IsIncludingDolchSightWords() && GetDolchWordData()->GetItemCount())
+        if (IsIncludingDolchSightWords() && (GetDolchWordData()->GetItemCount() != 0U))
             {
             if (listView != nullptr)
                 {
@@ -7813,7 +7813,7 @@ void ProjectDoc::DisplaySightWords()
         auto* listView =
             dynamic_cast<Wisteria::UI::ListCtrlEx*>(view->GetDolchSightWordsView().FindWindowById(
                 BaseProjectView::NON_DOLCH_WORDS_LIST_PAGE_ID));
-        if (IsIncludingDolchSightWords() && GetNonDolchWordData()->GetItemCount())
+        if (IsIncludingDolchSightWords() && (GetNonDolchWordData()->GetItemCount() != 0U))
             {
             if (listView != nullptr)
                 {
@@ -7858,7 +7858,7 @@ void ProjectDoc::DisplaySightWords()
         auto* listView =
             dynamic_cast<Wisteria::UI::ListCtrlEx*>(view->GetDolchSightWordsView().FindWindowById(
                 BaseProjectView::UNUSED_DOLCH_WORDS_LIST_PAGE_ID));
-        if (IsIncludingDolchSightWords() && GetUnusedDolchWordData()->GetItemCount())
+        if (IsIncludingDolchSightWords() && (GetUnusedDolchWordData()->GetItemCount() != 0U))
             {
             if (listView != nullptr)
                 {
