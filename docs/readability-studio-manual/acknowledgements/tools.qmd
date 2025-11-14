@@ -155,3 +155,11 @@ Download and upload SVG images with CC0 public domain license.
 All fonts licensed under the SIL Open Font License Version 1.1.
 
 [https://fonts.google.com](https://fonts.google.com)
+
+#### National Library of Medicine {-}
+
+Images from the History of Medicine (IHM) collection.
+
+Images licensed under the Public Domain Mark 1.0 Universal Deed.
+
+[https://collections.nlm.nih.gov](https://collections.nlm.nih.gov)
