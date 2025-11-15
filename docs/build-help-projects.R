@@ -296,10 +296,9 @@ file_copy(glue("{docFolder}/readability-studio-manual/glossary/shortcuts.qmd"),
 file_copy(glue("{docFolder}/readability-studio-manual/_quarto-shortcuts-cheatsheet.yml"),
           glue("{docFolder}/shortcuts-cheatsheet/_quarto.yml"),
           TRUE)
-
-readLines(glue("{docFolder}/shortcuts-cheatsheet/index.qmd")) |>
-  str_replace("# Keyboard Shortcuts", "# *Readability Studio* Keyboard Shortcuts") |>
-  writeLines(glue("{docFolder}/shortcuts-cheatsheet/index.qmd"))
+  file_copy(glue("{docFolder}/_variables.yml"),
+            glue("{docFolder}/shortcuts-cheatsheet/_variables.yml"),
+            TRUE)
 
 quarto::quarto_render(output_format="pdf", as_job=F)
 # create a thumbnail for the website

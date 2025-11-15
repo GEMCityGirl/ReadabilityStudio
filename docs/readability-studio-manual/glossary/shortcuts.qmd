@@ -6,11 +6,11 @@ source('../R/appdown.r')
 ```
 
 ::: {.content-visible when-profile="manual"}
-# Keyboard Shortcuts
+# *{{< var PROGRAM_NAME >}}* Keyboard Shortcuts
 :::
 
 ::: {.content-hidden when-profile="manual"}
-# Keyboard Shortcuts {.unnumbered}
+# *{{< var PROGRAM_NAME >}}* Keyboard Shortcuts {.unnumbered}
 :::
 
 <!-- no break spaces are to add blank lines between each row in the shortcuts table,
