@@ -81,16 +81,21 @@ class Banner final : public wxWindow
         logo.SetScaleFactor(GetContentScaleFactor());
 
         const wxCoord leftBorder =
-            (GetClientSize().GetWidth() / 2) - ((logo.GetLogicalWidth() / 2) + (textWidth / 2) + 3);
+            safe_divide<int>(GetClientSize().GetWidth(), 2) -
+            (safe_divide<int>(logo.GetLogicalWidth(), 2) + safe_divide<int>(textWidth, 2) +
+             wxSizerFlags::GetDefaultBorder());
 
         dc.SetPen(wxSystemSettings::GetColour(wxSYS_COLOUR_WINDOWTEXT));
         dc.SetTextForeground(wxSystemSettings::GetColour(wxSYS_COLOUR_WINDOWTEXT));
         dc.DrawBitmap(logo, leftBorder,
-                      (GetClientSize().GetHeight() / 2) - (logo.GetLogicalHeight() / 2));
+                      safe_divide<int>(GetClientSize().GetHeight(), 2) -
+                          safe_divide<int>(logo.GetLogicalHeight(), 2));
         dc.DrawText(m_label, leftBorder + logo.GetLogicalWidth() + 6,
-                    (GetClientSize().GetHeight() / 2) - (textHeight / 2));
-        dc.DrawLine((GetClientSize().GetWidth() / 10), GetClientSize().GetHeight() - 1,
-                    GetClientSize().GetWidth() - (GetClientSize().GetWidth() / 10),
+                    safe_divide<int>(GetClientSize().GetHeight(), 2) -
+                        safe_divide<int>(textHeight, 2));
+        dc.DrawLine(safe_divide<int>(GetClientSize().GetWidth(), 10),
+                    GetClientSize().GetHeight() - 1,
+                    GetClientSize().GetWidth() - safe_divide<int>(GetClientSize().GetWidth(), 10),
                     GetClientSize().GetHeight() - 1);
         }
 
@@ -909,7 +914,7 @@ void ProjectWizardDlg::CreateControls()
         // custom test
         if (!BaseProject::m_custom_word_tests.empty())
             {
-            wxArrayString customTestNames;
+            wxArrayString customTestNames; // NOLINT(misc-const-correctness)
             for (const auto& customTest : BaseProject::m_custom_word_tests)
                 {
                 customTestNames.Add(customTest.get_name().c_str());
@@ -1081,7 +1086,7 @@ void ProjectWizardDlg::UpdateTestsUI()
     {
     TransferDataFromWindow();
     m_readabilityTests = wxGetApp().GetAppOptions()->GetReadabilityTests();
-    wxArrayString testNames;
+    wxArrayString testNames; // NOLINT(misc-const-correctness)
     m_selectedTests.clear();
     for (const auto& rTest : m_readabilityTests.get_tests())
         {
@@ -1140,7 +1145,7 @@ void ProjectWizardDlg::LoadArchive(const wxString& archivePath /*= wxString{}*/)
     const wxBusyInfo wait(_(L"Retrieving files..."), this);
 #ifdef __WXGTK__
     wxMilliSleep(100);
-    wxTheApp->Yield();
+    wxGetApp().Yield();
 #endif
     wxGetApp().SetLastSelectedDocFilter(dlg.GetSelectedFileFilter());
 
@@ -1219,7 +1224,7 @@ void ProjectWizardDlg::LoadSpreadsheet(wxString excelPath /*= wxString{}*/)
         const wxBusyInfo wait(_(L"Loading Excel file..."), this);
 #ifdef __WXGTK__
         wxMilliSleep(100);
-        wxTheApp->Yield();
+        wxGetApp().Yield();
 #endif
         const std::wstring workbookFileText = archive.ReadTextFile(L"xl/workbook.xml");
         excelExtract.read_worksheet_names(workbookFileText.c_str(), workbookFileText.length());
@@ -1259,7 +1264,7 @@ void ProjectWizardDlg::LoadSpreadsheet(wxString excelPath /*= wxString{}*/)
             const wxBusyInfo wait(_(L"Loading worksheet..."), this);
 #ifdef __WXGTK__
             wxMilliSleep(100);
-            wxTheApp->Yield();
+            wxGetApp().Yield();
 #endif
             const std::wstring sheetFile = archive.ReadTextFile(
                 wxString::Format(L"xl/worksheets/sheet%d.xml", workSheetSelections.Item(i) + 1));
@@ -1324,11 +1329,11 @@ void ProjectWizardDlg::LoadSpreadsheet(wxString excelPath /*= wxString{}*/)
         const wxBusyInfo wait(_(L"Updating file list..."), this);
 #ifdef __WXGTK__
         wxMilliSleep(100);
-        wxTheApp->Yield();
+        wxGetApp().Yield();
 #endif
         // list the cells in the grid
         const size_t currentFileCount = m_fileData->GetItemCount();
-        size_t cellCount = 0;
+        size_t cellCount = 0; // NOLINT(misc-const-correctness)
         for (auto& workSheet : workSheets)
             {
             cellCount += workSheet.second.size();
@@ -1559,7 +1564,7 @@ void ProjectWizardDlg::OnOK([[maybe_unused]] wxCommandEvent& evt)
 
     if (IsDocumentTypeSelected())
         {
-        bool hasIncludedStandardTest = false;
+        bool hasIncludedStandardTest = false; // NOLINT(misc-const-correctness)
         for (const auto& rTest : m_readabilityTests.get_tests())
             {
             if (rTest.get_test().has_document_classification(GetSelectedDocumentType()) &&
@@ -1578,7 +1583,7 @@ void ProjectWizardDlg::OnOK([[maybe_unused]] wxCommandEvent& evt)
         }
     else if (IsIndustrySelected())
         {
-        bool hasIncludedStandardTest = false;
+        bool hasIncludedStandardTest = false; // NOLINT(misc-const-correctness)
         for (const auto& rTest : m_readabilityTests.get_tests())
             {
             if (rTest.get_test().has_industry_classification(GetSelectedIndustryType()) &&
@@ -1842,7 +1847,7 @@ void ProjectWizardDlg::OnAddFolderButtonClick([[maybe_unused]] wxCommandEvent& e
         const wxBusyInfo wait(_(L"Retrieving files..."), this);
 #ifdef __WXGTK__
         wxMilliSleep(100);
-        wxTheApp->Yield();
+        wxGetApp().Yield();
 #endif
         SetLastSelectedFolder(dirDlg.GetPath());
         wxGetApp().SetLastSelectedDocFilter(dirDlg.GetSelectedFileFilter());

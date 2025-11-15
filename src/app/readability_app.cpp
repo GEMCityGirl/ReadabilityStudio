@@ -76,7 +76,7 @@
 // ===========================================================================
 // implementation
 // ===========================================================================
-wxIMPLEMENT_APP(ReadabilityApp);
+wxIMPLEMENT_APP(ReadabilityApp); // NOLINT(cppcoreguidelines-pro-type-static-cast-downcast)
 
 std::map<wxWindowID, wxWindowID> ReadabilityApp::m_dynamicIdMap;
 
@@ -3291,7 +3291,7 @@ void MainFrame::OnTestsOverview([[maybe_unused]] wxRibbonButtonBarEvent& event)
                 wxString{ _DT(L" X ") } :
                 wxString{});
         // description
-        lily_of_the_valley::html_extract_text filterHtml;
+        lily_of_the_valley::html_extract_text filterHtml; // NOLINT(misc-const-correctness)
         testsOverviewDlg.GetListCtrl()->SetItemText(
             i, 7,
             wxString(filterHtml(testPos->get_description().c_str(),
@@ -4439,7 +4439,7 @@ void MainFrame::FillMenuWithTestBundles(wxMenu* testBundleMenu, const BaseProjec
         // add the bundles to the menu
         if (includeDocMenuItems && !GetTestBundleMenuIds().empty())
             {
-            bool separatorNeeded = true;
+            bool separatorNeeded = true; // NOLINT(misc-const-correctness)
             // add all the global test bundles to this menu (if they aren't already on it)
             for (const auto& bundle : MainFrame::GetTestBundleMenuIds())
                 {
@@ -4499,7 +4499,7 @@ void MainFrame::FillMenuWithTestBundles(wxMenu* testBundleMenu, const BaseProjec
         menuItem->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/add.svg"));
         testBundleMenu->Append(menuItem);
         // if there are editable bundles, then add menu items for them
-        bool hasRemovableBundles{ false };
+        bool hasRemovableBundles{ false }; // NOLINT(misc-const-correctness)
         for (const auto& bundle : BaseProject::m_testBundles)
             {
             if (!bundle.IsLocked())
@@ -5207,7 +5207,7 @@ void MainFrame::OnFindDuplicateFiles([[maybe_unused]] wxRibbonButtonBarEvent& ev
         const wxBusyInfo wait(_(L"Retrieving files..."), this);
 #ifdef __WXGTK__
         wxMilliSleep(100);
-        wxTheApp->Yield();
+        wxGetApp().Yield();
 #endif
         wxDir::GetAllFiles(dirDlg.GetPath(), &files, wxString{},
                            dirDlg.IsRecursive() ? wxDIR_FILES | wxDIR_DIRS : wxDIR_FILES);
@@ -5224,7 +5224,7 @@ void MainFrame::OnFindDuplicateFiles([[maybe_unused]] wxRibbonButtonBarEvent& ev
                                          wxPD_CAN_ABORT | wxPD_APP_MODAL);
         progressDlg.Centre();
 
-        int counter{ 1 };
+        int counter{ 1 }; // NOLINT(misc-const-correctness)
         for (const auto& curFile : files)
             {
             progressDlg.SetTitle(wxString::Format(
@@ -5253,17 +5253,17 @@ void MainFrame::OnFindDuplicateFiles([[maybe_unused]] wxRibbonButtonBarEvent& ev
     Wisteria::UI::FileListDlg fileListDlg(wxGetApp().GetParentingWindow(), wxID_ANY,
                                           _(L"Duplicate Files"));
     fileListDlg.GetListCtrl()->SetVirtualDataSize(files.size());
-    size_t rowCount{ 0 };
+    size_t rowCount{ 0 }; // NOLINT(misc-const-correctness)
     fileListDlg.GetListCtrl()->SetForegroundColour(wxColour{ 0, 0, 0 });
         // catalogue duplicates
         {
         const wxBusyInfo wait(_(L"Loading duplicates..."), this);
 #ifdef __WXGTK__
         wxMilliSleep(100);
-        wxTheApp->Yield();
+        wxGetApp().Yield();
 #endif
-        unsigned long groupId{ 1 };
-        bool alternatingColor{ true };
+        unsigned long groupId{ 1 };    // NOLINT(misc-const-correctness)
+        bool alternatingColor{ true }; // NOLINT(misc-const-correctness)
         for (const auto& mapVal : filesMap.get_data())
             {
             if (mapVal.second.second > 1)

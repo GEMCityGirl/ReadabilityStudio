@@ -1002,7 +1002,8 @@ ToolsOptionsDlg::ToolsOptionsDlg(wxWindow* parent, BaseProjectDoc* project /*= n
         [this]([[maybe_unused]]
                wxCommandEvent& event)
         {
-            if (m_docStorageRadioBox && m_fileList && m_fileList->HasItemBeenEditedByUser())
+            if (m_docStorageRadioBox != nullptr && m_fileList != nullptr &&
+                m_fileList->HasItemBeenEditedByUser())
                 {
                 m_docStorageRadioBox->Enable(false);
                 }
@@ -1017,7 +1018,7 @@ ToolsOptionsDlg::ToolsOptionsDlg(wxWindow* parent, BaseProjectDoc* project /*= n
                wxCommandEvent& event)
         {
             TransferDataFromWindow();
-            if (m_filePath.has_changed() && m_docStorageRadioBox)
+            if (m_filePath.has_changed() && m_docStorageRadioBox != nullptr)
                 {
                 m_docStorageRadioBox->Enable(false);
                 }

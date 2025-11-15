@@ -261,7 +261,7 @@ wxString WebHarvester::DownloadFile(wxString& url, const wxString& fileExtension
         }
     else
         {
-        const int responseCode = m_downloader.GetLastStatus();
+        const int responseCode{ m_downloader.GetLastStatus() };
 
         // check the response code
         if (QueueDownload::IsBadResponseCode(responseCode))
@@ -384,7 +384,7 @@ bool WebHarvester::ReadWebPage(wxString& url, wxString& webPageContent, wxString
            Try to get it from the response header first because that is more
            accurate when the file is really UTF-8 but the designer put something like
            8859-1 in the meta section. If that fails, then read the meta section.*/
-        wxString charSet = GetCharsetFromContentType(contentType);
+        wxString charSet = GetCharsetFromContentType(contentType); // NOLINT(misc-const-correctness)
         if (charSet.empty())
             {
             charSet = GetCharsetFromPageContent(

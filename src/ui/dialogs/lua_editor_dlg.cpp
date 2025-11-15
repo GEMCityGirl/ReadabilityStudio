@@ -189,7 +189,7 @@ LuaEditorDlg::LuaEditorDlg(
 
              auto* codeEditor =
                  dynamic_cast<Wisteria::UI::CodeEditor*>(m_notebook->GetCurrentPage());
-             if (codeEditor && codeEditor->GetModify())
+             if (codeEditor != nullptr && codeEditor->GetModify())
                  {
                  if (wxMessageBox(_(L"Do you wish to save your unsaved changes?"),
                                   _(L"Save Script"), wxYES_NO | wxICON_QUESTION) == wxYES)
@@ -235,7 +235,7 @@ LuaEditorDlg::LuaEditorDlg(
                     {
                     auto* codeEditor =
                         dynamic_cast<Wisteria::UI::CodeEditor*>(m_notebook->GetCurrentPage());
-                    if (codeEditor && !codeEditor->GetModify() &&
+                    if (codeEditor != nullptr && !codeEditor->GetModify() &&
                         codeEditor->GetScriptFilePath().empty())
                         {
                         m_notebook->DeletePage(0);
@@ -300,7 +300,7 @@ LuaEditorDlg::LuaEditorDlg(
          {
              auto* codeEditor =
                  dynamic_cast<Wisteria::UI::CodeEditor*>(m_notebook->GetCurrentPage());
-             if (codeEditor)
+             if (codeEditor != nullptr)
                  {
                  codeEditor->FindNext(evt.GetString());
                  }
