@@ -706,8 +706,9 @@ void ProjectView::OnTestListDblClick([[maybe_unused]] wxListEvent& event)
     {
     const wxString selectedTest =
         GetReadabilityScoresList()->GetResultsListCtrl()->GetSelectedText();
-    auto testIter = std::find(BaseProject::m_custom_word_tests.begin(),
-                              BaseProject::m_custom_word_tests.end(), selectedTest);
+    const auto testIter =
+        std::find(BaseProject::m_custom_word_tests.begin(), // NOLINT(*-use-ranges)
+                  BaseProject::m_custom_word_tests.end(), selectedTest);
     const std::pair<std::vector<readability::readability_test>::const_iterator, bool> testPos =
         BaseProject::GetDefaultReadabilityTestsTemplate().find_test(selectedTest);
 
@@ -2756,7 +2757,7 @@ bool ProjectView::ExportAll(const wxString& folder, wxString listExt, wxString t
     const wxBusyInfo bi(wxBusyInfoFlags().Text(_(L"Exporting project...")).Parent(GetDocFrame()));
 #ifdef __WXGTK__
     wxMilliSleep(100);
-    wxTheApp->Yield();
+    wxGetApp().Yield();
 #endif
 
     // the results window
@@ -3132,7 +3133,7 @@ bool ProjectView::ExportAllToHtml(const wxFileName& filePath, wxString graphExt,
     const wxBusyInfo bi(wxBusyInfoFlags().Text(_(L"Exporting project...")).Parent(GetDocFrame()));
 #ifdef __WXGTK__
     wxMilliSleep(100);
-    wxTheApp->Yield();
+    wxGetApp().Yield();
 #endif
 
     lily_of_the_valley::html_encode_text htmlEncode;
@@ -3179,7 +3180,7 @@ bool ProjectView::ExportAllToHtml(const wxFileName& filePath, wxString graphExt,
     const auto formatList = [&outputText, &htmlEncode, &sectionCounter, &tableCounter, pageBreak](
                                 Wisteria::UI::ListCtrlEx* list, const bool includeLeadingPageBreak)
     {
-        if (!list)
+        if (list == nullptr)
             {
             return;
             }
@@ -3202,7 +3203,7 @@ bool ProjectView::ExportAllToHtml(const wxFileName& filePath, wxString graphExt,
         [&outputText, &htmlEncode, &textWindowStyleCounter, &textWindowStyleSection,
          pageBreak](Wisteria::UI::FormattedTextCtrl* textWindow, const bool includeLeadingPageBreak)
     {
-        if (!textWindow)
+        if (textWindow == nullptr)
             {
             return;
             }
@@ -3223,7 +3224,7 @@ bool ProjectView::ExportAllToHtml(const wxFileName& filePath, wxString graphExt,
         [&outputText, &htmlEncode, pageBreak](Wisteria::UI::HtmlTableWindow* html,
                                               const bool includeLeadingPageBreak)
     {
-        if (!html)
+        if (html == nullptr)
             {
             return;
             }
