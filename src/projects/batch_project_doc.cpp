@@ -420,7 +420,7 @@ bool BatchProjectDoc::OnNewDocument()
             {
             const html_utilities::html_url_format hformat(resolvePath.GetResolvedPath().wc_str());
             wxString domain = hformat.get_root_domain().c_str();
-            const auto dotPos = domain.find(L'.', true);
+            const auto dotPos = domain.rfind(L'.');
             if (dotPos != wxString::npos)
                 {
                 domain.Truncate(dotPos);
