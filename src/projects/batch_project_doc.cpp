@@ -2157,6 +2157,7 @@ bool BatchProjectDoc::LoadDocuments(wxProgressDialog& progressDlg)
                 traits::case_insensitive_wstring_ex currentPassivePhrase;
                 for (size_t wordCounter = 0; wordCounter < passiveVoiceIndex.second; ++wordCounter)
                     {
+                    // NOLINTBEGIN(readability-redundant-string-cstr)
                     currentPassivePhrase +=
                         (wordCounter == passiveVoiceIndex.second - 1) ?
                             traits::case_insensitive_wstring_ex{
@@ -2169,6 +2170,7 @@ bool BatchProjectDoc::LoadDocuments(wxProgressDialog& progressDlg)
                                     ->get_word(passiveVoiceIndex.first + wordCounter)
                                     .c_str()
                             } + L' ';
+                    // NOLINTEND(readability-redundant-string-cstr)
                     }
                 passiveVoices.insert(currentPassivePhrase);
                 }

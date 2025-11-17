@@ -1340,7 +1340,7 @@ void ProjectWizardDlg::LoadSpreadsheet(wxString excelPath /*= wxString{}*/)
             }
         m_fileData->SetSize(currentFileCount + cellCount, 2);
 
-        size_t cellCounter = 0;
+        size_t cellCounter = 0; // NOLINT(misc-const-correctness)
         for (auto& workSheet : workSheets)
             {
             const wxString fullPath = excelPath + L"#" + workSheet.first.c_str() + L"#";

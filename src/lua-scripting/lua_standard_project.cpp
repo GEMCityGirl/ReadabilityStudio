@@ -67,6 +67,7 @@ wxDECLARE_APP(ReadabilityApp);
 
 namespace LuaScripting
     {
+    // NOLINTNEXTLINE(cppcoreguidelines-avoid-c-arrays,hicpp-avoid-c-arrays,modernize-avoid-c-arrays)
     const char StandardProject::className[] = "StandardProject";
 
     //-------------------------------------------------------------
@@ -4684,8 +4685,10 @@ namespace LuaScripting
         return 0;
         }
 
+    // NOLINTBEGIN(cppcoreguidelines-avoid-c-arrays,hicpp-avoid-c-arrays,modernize-avoid-c-arrays)
     Luna<StandardProject>::PropertyType StandardProject::properties[] = { { nullptr, nullptr,
                                                                             nullptr } };
+    // NOLINTEND(cppcoreguidelines-avoid-c-arrays,hicpp-avoid-c-arrays,modernize-avoid-c-arrays)
 
     Luna<StandardProject>::FunctionType StandardProject::methods[] = {
         LUNA_DECLARE_METHOD(StandardProject, Close),

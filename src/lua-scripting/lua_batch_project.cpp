@@ -3470,6 +3470,7 @@ namespace LuaScripting
         return 0;
         }
 
+    // NOLINTBEGIN(cppcoreguidelines-avoid-c-arrays,hicpp-avoid-c-arrays,modernize-avoid-c-arrays)
     const char BatchProject::className[] = "BatchProject";
 
     Luna<BatchProject>::PropertyType BatchProject::properties[] = { { nullptr, nullptr, nullptr } };
@@ -3653,6 +3654,7 @@ namespace LuaScripting
         LUNA_DECLARE_METHOD(BatchProject, CloseProperties),
         { nullptr, nullptr }
     };
+    // NOLINTEND(cppcoreguidelines-avoid-c-arrays,hicpp-avoid-c-arrays,modernize-avoid-c-arrays)
     } // namespace LuaScripting
 
 // NOLINTEND(readability-implicit-bool-conversion)

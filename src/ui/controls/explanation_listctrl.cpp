@@ -266,7 +266,11 @@ void ExplanationListCtrl::OnCopy([[maybe_unused]] wxCommandEvent& event)
     case 2:
         GetExplanationView()->Copy();
         break;
+    default:
+        // noop
+        break;
         }
+    // NOLINTNEXTLINE(clang-analyzer-optin.core.EnumCastOutOfRange)
     m_lastCopyOption = static_cast<ExplanationListExportOptions>(choiceDlg.GetSelection());
     }
 

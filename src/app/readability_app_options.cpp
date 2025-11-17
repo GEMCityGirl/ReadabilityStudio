@@ -3766,12 +3766,14 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
         // name
         auto* testBundleName = doc.NewElement(XML_TEST_BUNDLE_NAME.data());
         const wxString testBundleNameEncoded =
+            // NOLINTNEXTLINE(readability-redundant-string-cstr)
             ENCODE({ currentBundle.GetName().c_str() }, false).c_str();
         testBundleName->SetAttribute(XML_VALUE.data(), testBundleNameEncoded.utf8_str());
         testBundle->InsertEndChild(testBundleName);
         // description
         auto* testBundleDescription = doc.NewElement(XML_TEST_BUNDLE_DESCRIPTION.data());
         const wxString testBundleDescriptionEncoded =
+            // NOLINTNEXTLINE(readability-redundant-string-cstr)
             ENCODE({ currentBundle.GetDescription().c_str() }, false).c_str();
         testBundleDescription->SetAttribute(XML_VALUE.data(),
                                             testBundleDescriptionEncoded.utf8_str());
@@ -3782,6 +3784,7 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
             {
             auto* testName = doc.NewElement(XML_TEST_NAME.data());
             const wxString testNameEncoded =
+                // NOLINTNEXTLINE(readability-redundant-string-cstr)
                 ENCODE({ bundledTest.GetName().c_str() }, false).c_str();
             testName->SetAttribute(XML_VALUE.data(), testNameEncoded.utf8_str());
             testName->SetAttribute(
@@ -3803,6 +3806,7 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
             {
             auto* statGoal = doc.NewElement(XML_BUNDLE_STATISTIC.data());
             const wxString testNameEncoded =
+                // NOLINTNEXTLINE(readability-redundant-string-cstr)
                 ENCODE({ bundledStat.GetName().c_str() }, false).c_str();
             statGoal->SetAttribute(XML_VALUE.data(), testNameEncoded.utf8_str());
             statGoal->SetAttribute(

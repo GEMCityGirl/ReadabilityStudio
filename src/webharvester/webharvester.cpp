@@ -917,38 +917,41 @@ bool WebHarvester::VerifyUrlDomainCriteria(const wxString& url) const
     formatUrl(url.wc_str(), false);
     if (m_domainRestriction == DomainRestriction::RestrictToDomain)
         {
-        if (m_domain != formatUrl.get_domain().c_str())
+        if (m_domain != formatUrl.get_domain())
             {
             return false;
             }
         }
     else if (m_domainRestriction == DomainRestriction::RestrictToSubDomain)
         {
-        if (m_fullDomain != formatUrl.get_full_domain().c_str())
+        if (m_fullDomain != formatUrl.get_full_domain())
             {
             return false;
             }
         }
     else if (m_domainRestriction == DomainRestriction::RestrictToExternalLinks)
         {
-        if (m_domain == formatUrl.get_domain().c_str() ||
-            m_fullDomain == formatUrl.get_full_domain().c_str())
+        if (m_domain == formatUrl.get_domain() || m_fullDomain == formatUrl.get_full_domain())
             {
             return false;
             }
         }
     else if (m_domainRestriction == DomainRestriction::RestrictToSpecificDomains)
         {
+        // NOLINTBEGIN(readability-redundant-string-cstr)
         if (!m_allowableWebFolders.contains(formatUrl.get_directory_path().c_str()))
             {
             return false;
             }
+        // NOLINTEND(readability-redundant-string-cstr)
         }
     else if (m_domainRestriction == DomainRestriction::RestrictToFolder)
         {
+        // NOLINTBEGIN(readability-redundant-string-cstr)
         const string_util::case_insensitive_wstring targetUrlPath{
             formatUrl.get_directory_path().c_str()
         };
+        // NOLINTEND(readability-redundant-string-cstr)
         return targetUrlPath.starts_with(m_fullDomainFolderPath);
         }
     return true;

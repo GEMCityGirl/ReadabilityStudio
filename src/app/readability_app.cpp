@@ -76,7 +76,8 @@
 // ===========================================================================
 // implementation
 // ===========================================================================
-wxIMPLEMENT_APP(ReadabilityApp); // NOLINT(cppcoreguidelines-pro-type-static-cast-downcast)
+// NOLINTNEXTLINE(cppcoreguidelines-pro-type-static-cast-downcast,cppcoreguidelines-avoid-non-const-global-variables)
+wxIMPLEMENT_APP(ReadabilityApp);
 
 std::map<wxWindowID, wxWindowID> ReadabilityApp::m_dynamicIdMap;
 
