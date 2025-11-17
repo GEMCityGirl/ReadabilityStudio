@@ -64,6 +64,7 @@ valu = "valu"
 wher = "wher"
 nin = "nin"
 DOUT = "DOUT"
+optin = "optin"
 # misspelled on purpose in examples
 specifiy = "specifiy"
 Curso = "Curso"
