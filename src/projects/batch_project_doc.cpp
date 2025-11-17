@@ -2159,11 +2159,16 @@ bool BatchProjectDoc::LoadDocuments(wxProgressDialog& progressDlg)
                     {
                     currentPassivePhrase +=
                         (wordCounter == passiveVoiceIndex.second - 1) ?
-                            traits::case_insensitive_wstring_ex(
-                                doc->GetWords()->get_word(passiveVoiceIndex.first + wordCounter)) :
-                            traits::case_insensitive_wstring_ex(
-                                doc->GetWords()->get_word(passiveVoiceIndex.first + wordCounter) +
-                                L' ');
+                            traits::case_insensitive_wstring_ex{
+                                doc->GetWords()
+                                    ->get_word(passiveVoiceIndex.first + wordCounter)
+                                    .c_str()
+                            } :
+                            traits::case_insensitive_wstring_ex{
+                                doc->GetWords()
+                                    ->get_word(passiveVoiceIndex.first + wordCounter)
+                                    .c_str()
+                            } + L' ';
                     }
                 passiveVoices.insert(currentPassivePhrase);
                 }
