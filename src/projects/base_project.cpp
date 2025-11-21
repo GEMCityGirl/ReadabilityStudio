@@ -810,214 +810,8 @@ void BaseProject::ResetStandardReadabilityTests(TestCollectionType& readabilityT
     }
 
 //-------------------------------------------------------
-void BaseProject::InitializeStandardReadabilityTests()
+void BaseProject::InitializeStandardGermanReadabilityTests()
     {
-    assert(m_defaultReadabilityTestsTemplate.get_test_count() == 0 &&
-           "InitializeStandardReadabilityTests called twice?");
-    m_defaultReadabilityTestsTemplate.clear();
-    m_testIdMap.clear();
-        // degrees of reading power
-        {
-        readability::readability_test test(
-            ReadabilityMessages::DEGREES_OF_READING_POWER(), XRCID("ID_DEGREES_OF_READING_POWER"),
-            _DT(L"Degrees of Reading Power"), _DT(L"Degrees of Reading Power"),
-            // TRANSLATORS: "Degrees of Reading Power" should not be translated.
-            _(L"Degrees of Reading Power is designed for matching documents to a student's "
-              "reading ability (based on his/her DRP score). This test is influenced by "
-              "sentence length, word length, and number of familiar Dale-Chall words."),
-            readability::readability_test_type::index_value, true,
-            _DT(L"ROUND(100 - 100*(.886593 - .083640*(R/W) + .161911*POWER((D/W),3) -\n"
-                ".021401*(W/S) + .000577*POWER((W/S), 2) - .000005*POWER((W/S), 3)))"));
-        test.add_industry_classification(
-            readability::industry_classification::adult_publishing_industry, true);
-        test.add_teaching_level(readability::test_teaching_level::primary_grade);
-        test.add_teaching_level(readability::test_teaching_level::secondary_grade);
-        test.add_language(readability::test_language::english_test);
-        test.add_factor(readability::test_factor::word_familiarity_dale_chall);
-        test.add_factor(readability::test_factor::word_length);
-        test.add_factor(readability::test_factor::sentence_length);
-        m_defaultReadabilityTestsTemplate.add_test(test);
-        m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
-        }
-
-        // degrees of reading power (grade equivalent)
-        {
-        readability::readability_test test(
-            ReadabilityMessages::DEGREES_OF_READING_POWER_GE(),
-            XRCID("ID_DEGREES_OF_READING_POWER_GE"), _DT(L"Degrees of Reading Power (GE)"),
-            _DT(L"Degrees of Reading Power (grade equivalent)"),
-            // TRANSLATORS: "Degrees of Reading Power" should not be translated.
-            _(L"Degrees of Reading Power (GE) is designed for matching documents to a student's "
-              "reading ability (based on his/her DRP score). This test is a conversion of a "
-              "DRP (difficulty) score into a grade level."),
-            readability::readability_test_type::grade_level, false, L"");
-        test.add_industry_classification(
-            readability::industry_classification::adult_publishing_industry, true);
-        test.add_teaching_level(readability::test_teaching_level::primary_grade);
-        test.add_teaching_level(readability::test_teaching_level::secondary_grade);
-        test.add_language(readability::test_language::english_test);
-        test.add_factor(readability::test_factor::word_familiarity_dale_chall);
-        test.add_factor(readability::test_factor::word_length);
-        test.add_factor(readability::test_factor::sentence_length);
-        m_defaultReadabilityTestsTemplate.add_test(test);
-        m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
-        }
-
-        // SOL (Spanish SMOG)
-        {
-        readability::readability_test test(
-            ReadabilityMessages::SOL_SPANISH(), XRCID("ID_SOL_SPANISH"), _DT(L"SOL"),
-            _DT(L"SOL (Spanish SMOG)"),
-            _(L"SOL is meant for secondary-age (4th grade to college level) "
-              "Spanish reading materials. "
-              "It is a modified version of SMOG that was recalibrated for Spanish text."),
-            readability::readability_test_type::grade_level, false,
-            _DT(L"(1.0430*SQRT(C*(30/S)) + 3.1291)*.74 - 2.51"));
-        test.add_document_classification(readability::document_classification::general_document,
-                                         true);
-        test.add_document_classification(
-            readability::document_classification::adult_literature_document, true);
-        test.add_industry_classification(
-            readability::industry_classification::childrens_publishing_industry, true);
-        test.add_industry_classification(
-            readability::industry_classification::adult_publishing_industry, true);
-        test.add_industry_classification(
-            readability::industry_classification::childrens_healthcare_industry, true);
-        test.add_industry_classification(
-            readability::industry_classification::adult_healthcare_industry, true);
-        test.add_teaching_level(readability::test_teaching_level::secondary_grade);
-        test.add_teaching_level(readability::test_teaching_level::adult_level);
-        test.add_language(readability::test_language::spanish_test);
-        test.add_factor(readability::test_factor::word_complexity_3_plus_syllables);
-        test.add_factor(readability::test_factor::sentence_length);
-        m_defaultReadabilityTestsTemplate.add_test(test);
-        m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
-        }
-
-        // GPM (Spanish) fry graph
-        {
-        readability::readability_test test(
-            ReadabilityMessages::GPM_FRY(), XRCID("ID_GPM_FRY"),
-            _DT(L"Gilliam-Pe\U000000F1a-Mountain"), _DT(L"Gilliam-Pe\U000000F1a-Mountain Graph"),
-            _(L"The <a href=\"#GPMFryGraph\">Gilliam-Pe\U000000F1a-Mountain graph</a> "
-              "is designed for most text, including literature and technical documents."),
-            readability::readability_test_type::grade_level, true, L"");
-        test.add_document_classification(readability::document_classification::general_document,
-                                         true);
-        test.add_document_classification(
-            readability::document_classification::adult_literature_document, true);
-        test.add_document_classification(
-            readability::document_classification::childrens_literature_document, true);
-        test.add_industry_classification(
-            readability::industry_classification::childrens_publishing_industry, true);
-        test.add_industry_classification(
-            readability::industry_classification::adult_publishing_industry, true);
-        test.add_industry_classification(
-            readability::industry_classification::childrens_healthcare_industry, true);
-        test.add_industry_classification(
-            readability::industry_classification::adult_healthcare_industry, true);
-        test.add_teaching_level(readability::test_teaching_level::primary_grade);
-        test.add_teaching_level(readability::test_teaching_level::secondary_grade);
-        test.add_language(readability::test_language::spanish_test);
-        test.add_factor(readability::test_factor::word_complexity);
-        test.add_factor(readability::test_factor::sentence_length);
-        m_defaultReadabilityTestsTemplate.add_test(test);
-        m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
-        }
-
-        // Frase (Spanish graph)
-        {
-        readability::readability_test test(
-            ReadabilityMessages::FRASE(), XRCID("ID_FRASE"), _DT(L"FRASE"), _DT(L"FRASE Graph"),
-            _(L"The <a href=\"#FRASE\">FRASE graph</a> is designed for educational materials "
-              "(primarily Spanish as a secondary language)."),
-            readability::readability_test_type::index_value, true, L"");
-        test.add_document_classification(
-            readability::document_classification::childrens_literature_document, true);
-        test.add_industry_classification(
-            readability::industry_classification::childrens_publishing_industry, true);
-        test.add_industry_classification(
-            readability::industry_classification::secondary_language_industry, true);
-        test.add_teaching_level(readability::test_teaching_level::primary_grade);
-        test.add_teaching_level(readability::test_teaching_level::secondary_grade);
-        test.add_teaching_level(readability::test_teaching_level::second_language);
-        test.add_language(readability::test_language::spanish_test);
-        test.add_factor(readability::test_factor::word_complexity);
-        test.add_factor(readability::test_factor::sentence_length);
-        m_defaultReadabilityTestsTemplate.add_test(test);
-        m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
-        }
-
-        // Crawford
-        {
-        readability::readability_test test(
-            ReadabilityMessages::CRAWFORD(), XRCID("ID_CRAWFORD"), _DT(L"Crawford"),
-            _DT(L"Crawford"),
-            _(L"The Crawford test is designed for primary-age Spanish reading materials. "
-              "A <a href=\"#crawford-graph\">chart</a> is also available to visualize the score."),
-            readability::readability_test_type::grade_level, false,
-            _DT(L"(S*-.205) + (B*.049) - 3.407"));
-        test.add_document_classification(
-            readability::document_classification::childrens_literature_document, true);
-        test.add_industry_classification(
-            readability::industry_classification::childrens_publishing_industry, true);
-        test.add_industry_classification(
-            readability::industry_classification::childrens_healthcare_industry, true);
-        test.add_teaching_level(readability::test_teaching_level::primary_grade);
-        test.add_language(readability::test_language::spanish_test);
-        test.add_factor(readability::test_factor::word_complexity);
-        test.add_factor(readability::test_factor::sentence_length);
-        m_defaultReadabilityTestsTemplate.add_test(test);
-        m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
-        }
-
-        // Bormuth grade placement 35
-        {
-        readability::readability_test test(
-            ReadabilityMessages::BORMUTH_GRADE_PLACEMENT_35(),
-            XRCID("ID_BORMUTH_GRADE_PLACEMENT_35"), _DT(L"Bormuth Grade Placement"),
-            _DT(L"Bormuth Grade Placement"),
-            // TRANSLATORS: "Bormuth Grade Placement" should not be translated.
-            _(L"Bormuth Grade Placement is designed for students and is "
-              "highly regarded for its accuracy because "
-              "it uses three variables (rather than the traditional two variables)."),
-            readability::readability_test_type::grade_level, false,
-            _DT(L"3.761864 + 1.053153*(R/W) - 2.138595*POWER((D/W),3) +\n"
-                ".152832*(W/S) - .002077*POWER((W/S), 2)"));
-        test.add_document_classification(
-            readability::document_classification::adult_literature_document, true);
-        test.add_teaching_level(readability::test_teaching_level::secondary_grade);
-        test.add_language(readability::test_language::english_test);
-        test.add_factor(readability::test_factor::word_familiarity_dale_chall);
-        test.add_factor(readability::test_factor::word_length);
-        test.add_factor(readability::test_factor::sentence_length);
-        m_defaultReadabilityTestsTemplate.add_test(test);
-        m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
-        }
-
-        // Bormuth cloze mean
-        {
-        readability::readability_test test(
-            ReadabilityMessages::BORMUTH_CLOZE_MEAN(), XRCID("ID_BORMUTH_CLOZE_MEAN"),
-            _DT(L"Bormuth Cloze Mean"), _DT(L"Bormuth Cloze Mean"),
-            // TRANSLATORS: "Bormuth Cloze Mean" should not be translated.
-            _(L"Bormuth Cloze Mean is designed for students and is highly "
-              "regarded for its accuracy because it uses "
-              "three variables (rather than the traditional two variables)."),
-            readability::readability_test_type::predicted_cloze_score, true,
-            _DT(L"(.886593 - .083640*(R/W) + .161911*POWER((D/W),3) -\n"
-                ".021401*(W/S) + .000577*POWER((W/S), 2) - .000005*POWER((W/S), 3))*100"));
-        test.add_document_classification(
-            readability::document_classification::adult_literature_document, true);
-        test.add_teaching_level(readability::test_teaching_level::secondary_grade);
-        test.add_language(readability::test_language::english_test);
-        test.add_factor(readability::test_factor::word_familiarity_dale_chall);
-        test.add_factor(readability::test_factor::word_length);
-        test.add_factor(readability::test_factor::sentence_length);
-        m_defaultReadabilityTestsTemplate.add_test(test);
-        m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
-        }
-
         // Schwartz (German graph)
         {
         readability::readability_test test(
@@ -1126,6 +920,363 @@ void BaseProject::InitializeStandardReadabilityTests()
         test.add_teaching_level(readability::test_teaching_level::primary_grade);
         test.add_language(readability::test_language::german_test);
         test.add_factor(readability::test_factor::word_complexity_3_plus_syllables);
+        test.add_factor(readability::test_factor::sentence_length);
+        m_defaultReadabilityTestsTemplate.add_test(test);
+        m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
+        }
+
+        // rix (German fiction)
+        {
+        readability::readability_test test(
+            ReadabilityMessages::RIX_GERMAN_FICTION(), XRCID("ID_RIX_GERMAN_FICTION"),
+            _(L"Rix (German fiction)"), _(L"Rix (German fiction)"),
+            _(L"This test is a variation of Rix meant for German fiction "
+              "(specifically, grades 1-11)."),
+            readability::readability_test_type::index_value_and_grade_level, true,
+            // needs a table to convert formula to grade level, so leave this blank
+            L"");
+        test.add_document_classification(
+            readability::document_classification::childrens_literature_document, true);
+        test.add_document_classification(
+            readability::document_classification::adult_literature_document, true);
+        test.add_industry_classification(
+            readability::industry_classification::childrens_publishing_industry, true);
+        test.add_industry_classification(
+            readability::industry_classification::adult_publishing_industry, true);
+        test.add_teaching_level(readability::test_teaching_level::primary_grade);
+        test.add_teaching_level(readability::test_teaching_level::secondary_grade);
+        test.add_language(readability::test_language::german_test);
+        test.add_factor(readability::test_factor::word_length_7_plus);
+        test.add_factor(readability::test_factor::sentence_length);
+        m_defaultReadabilityTestsTemplate.add_test(test);
+        m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
+        }
+
+        // rix (German non-fiction)
+        {
+        readability::readability_test test(
+            ReadabilityMessages::RIX_GERMAN_NONFICTION(), XRCID("ID_RIX_GERMAN_NONFICTION"),
+            _(L"Rix (German non-fiction)"), _(L"Rix (German non-fiction)"),
+            _(L"This test is a variation of Rix meant for German non-fiction "
+              "(specifically, secondary-age to adult level materials)."),
+            readability::readability_test_type::index_value_and_grade_level, true, L"");
+        test.add_document_classification(
+            readability::document_classification::adult_literature_document, true);
+        test.add_industry_classification(
+            readability::industry_classification::adult_publishing_industry, true);
+        test.add_teaching_level(readability::test_teaching_level::secondary_grade);
+        test.add_teaching_level(readability::test_teaching_level::adult_level);
+        test.add_language(readability::test_language::german_test);
+        test.add_factor(readability::test_factor::word_length_7_plus);
+        test.add_factor(readability::test_factor::sentence_length);
+        m_defaultReadabilityTestsTemplate.add_test(test);
+        m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
+        }
+
+        // lix (German children's literature)
+        {
+        readability::readability_test test(
+            ReadabilityMessages::LIX_GERMAN_CHILDRENS_LITERATURE(),
+            XRCID("ID_LIX_GERMAN_CHILDRENS_LITERATURE"), _(L"Lix (German children's literature)"),
+            _(L"Lix (German children's literature)"),
+            _(L"This test is a variation of Lix meant for German children's "
+              "literature (specifically, grades 1-8). "
+              "A <a href=\"#german-lix-gauge\">chart</a> is also available to "
+              "visualize the score."),
+            readability::readability_test_type::index_value_and_grade_level, true, L"");
+        test.add_document_classification(
+            readability::document_classification::childrens_literature_document, true);
+        test.add_industry_classification(
+            readability::industry_classification::childrens_publishing_industry, true);
+        test.add_teaching_level(readability::test_teaching_level::primary_grade);
+        test.add_teaching_level(readability::test_teaching_level::secondary_grade);
+        test.add_language(readability::test_language::german_test);
+        test.add_factor(readability::test_factor::word_length_7_plus);
+        test.add_factor(readability::test_factor::sentence_length);
+        m_defaultReadabilityTestsTemplate.add_test(test);
+        m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
+        }
+
+        // lix (German technical books)
+        {
+        readability::readability_test test(
+            ReadabilityMessages::LIX_GERMAN_TECHNICAL(), XRCID("ID_LIX_GERMAN_TECHNICAL"),
+            _(L"Lix (German technical literature)"), _(L"Lix (German technical literature)"),
+            _(L"This test is a variation of Lix meant for German technical/non-fiction literature. "
+              "A <a href=\"#german-lix-gauge\">chart</a> is also available to "
+              "visualize the score."),
+            readability::readability_test_type::index_value_and_grade_level, true, L"");
+        test.add_document_classification(readability::document_classification::technical_document,
+                                         true);
+        test.add_document_classification(
+            readability::document_classification::adult_literature_document, true);
+        test.add_industry_classification(
+            readability::industry_classification::adult_publishing_industry, true);
+        test.add_teaching_level(readability::test_teaching_level::secondary_grade);
+        test.add_teaching_level(readability::test_teaching_level::adult_level);
+        test.add_language(readability::test_language::german_test);
+        test.add_factor(readability::test_factor::word_length_7_plus);
+        test.add_factor(readability::test_factor::sentence_length);
+        m_defaultReadabilityTestsTemplate.add_test(test);
+        m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
+        }
+
+        // Qu (german)
+        {
+        readability::readability_test test(ReadabilityMessages::QU(), XRCID("ID_QU"), _DT(L"Qu"),
+                                           _DT(L"Qu (Quadratwurzelverfahren)"),
+                                           _(L"Qu is generally appropriate for secondary age "
+                                             "(4th grade to college level) readers."),
+                                           readability::readability_test_type::grade_level, false,
+                                           _DT(L"TRUNC(SQRT((C*(100/W))/(S*(100/W))*30) - 2)"));
+        test.add_teaching_level(readability::test_teaching_level::secondary_grade);
+        test.add_language(readability::test_language::german_test);
+        test.add_factor(readability::test_factor::word_complexity_3_plus_syllables);
+        test.add_factor(readability::test_factor::sentence_length);
+        m_defaultReadabilityTestsTemplate.add_test(test);
+        m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
+        }
+
+        // smog (german)
+        {
+        readability::readability_test test(
+            ReadabilityMessages::SMOG_BAMBERGER_VANECEK(), XRCID("ID_SMOG_BAMBERGER_VANECEK"),
+            _DT(L"SMOG (Bamberger-Vanecek)"), _DT(L"SMOG (Bamberger-Vanecek)"),
+            _(L"A German adaption of SMOG, which is generally appropriate for secondary age "
+              "(4th grade to college level) readers. SMOG tests for 100% comprehension, "
+              "whereas most formulas test for around 50%-75% comprehension."),
+            readability::readability_test_type::grade_level, false,
+            _DT(L"TRUNC(SQRT(C*(30/S)) - 2)"));
+        test.add_document_classification(readability::document_classification::general_document,
+                                         true);
+        test.add_document_classification(
+            readability::document_classification::adult_literature_document, true);
+        test.add_industry_classification(
+            readability::industry_classification::childrens_publishing_industry, true);
+        test.add_industry_classification(
+            readability::industry_classification::adult_publishing_industry, true);
+        test.add_industry_classification(
+            readability::industry_classification::childrens_healthcare_industry, true);
+        test.add_industry_classification(
+            readability::industry_classification::adult_healthcare_industry, true);
+        test.add_teaching_level(readability::test_teaching_level::secondary_grade);
+        test.add_teaching_level(readability::test_teaching_level::adult_level);
+        test.add_language(readability::test_language::german_test);
+        test.add_factor(readability::test_factor::word_complexity_3_plus_syllables);
+        test.add_factor(readability::test_factor::sentence_length);
+        m_defaultReadabilityTestsTemplate.add_test(test);
+        m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
+        }
+    }
+
+//-------------------------------------------------------
+void BaseProject::InitializeStandardSpanishReadabilityTests()
+    {
+        // SOL (Spanish SMOG)
+        {
+        readability::readability_test test(
+            ReadabilityMessages::SOL_SPANISH(), XRCID("ID_SOL_SPANISH"), _DT(L"SOL"),
+            _DT(L"SOL (Spanish SMOG)"),
+            _(L"SOL is meant for secondary-age (4th grade to college level) "
+              "Spanish reading materials. "
+              "It is a modified version of SMOG that was recalibrated for Spanish text."),
+            readability::readability_test_type::grade_level, false,
+            _DT(L"(1.0430*SQRT(C*(30/S)) + 3.1291)*.74 - 2.51"));
+        test.add_document_classification(readability::document_classification::general_document,
+                                         true);
+        test.add_document_classification(
+            readability::document_classification::adult_literature_document, true);
+        test.add_industry_classification(
+            readability::industry_classification::childrens_publishing_industry, true);
+        test.add_industry_classification(
+            readability::industry_classification::adult_publishing_industry, true);
+        test.add_industry_classification(
+            readability::industry_classification::childrens_healthcare_industry, true);
+        test.add_industry_classification(
+            readability::industry_classification::adult_healthcare_industry, true);
+        test.add_teaching_level(readability::test_teaching_level::secondary_grade);
+        test.add_teaching_level(readability::test_teaching_level::adult_level);
+        test.add_language(readability::test_language::spanish_test);
+        test.add_factor(readability::test_factor::word_complexity_3_plus_syllables);
+        test.add_factor(readability::test_factor::sentence_length);
+        m_defaultReadabilityTestsTemplate.add_test(test);
+        m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
+        }
+
+        // GPM (Spanish) fry graph
+        {
+        readability::readability_test test(
+            ReadabilityMessages::GPM_FRY(), XRCID("ID_GPM_FRY"),
+            _DT(L"Gilliam-Pe\U000000F1a-Mountain"), _DT(L"Gilliam-Pe\U000000F1a-Mountain Graph"),
+            _(L"The <a href=\"#GPMFryGraph\">Gilliam-Pe\U000000F1a-Mountain graph</a> "
+              "is designed for most text, including literature and technical documents."),
+            readability::readability_test_type::grade_level, true, L"");
+        test.add_document_classification(readability::document_classification::general_document,
+                                         true);
+        test.add_document_classification(
+            readability::document_classification::adult_literature_document, true);
+        test.add_document_classification(
+            readability::document_classification::childrens_literature_document, true);
+        test.add_industry_classification(
+            readability::industry_classification::childrens_publishing_industry, true);
+        test.add_industry_classification(
+            readability::industry_classification::adult_publishing_industry, true);
+        test.add_industry_classification(
+            readability::industry_classification::childrens_healthcare_industry, true);
+        test.add_industry_classification(
+            readability::industry_classification::adult_healthcare_industry, true);
+        test.add_teaching_level(readability::test_teaching_level::primary_grade);
+        test.add_teaching_level(readability::test_teaching_level::secondary_grade);
+        test.add_language(readability::test_language::spanish_test);
+        test.add_factor(readability::test_factor::word_complexity);
+        test.add_factor(readability::test_factor::sentence_length);
+        m_defaultReadabilityTestsTemplate.add_test(test);
+        m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
+        }
+
+        // Frase (Spanish graph)
+        {
+        readability::readability_test test(
+            ReadabilityMessages::FRASE(), XRCID("ID_FRASE"), _DT(L"FRASE"), _DT(L"FRASE Graph"),
+            _(L"The <a href=\"#FRASE\">FRASE graph</a> is designed for educational materials "
+              "(primarily Spanish as a secondary language)."),
+            readability::readability_test_type::index_value, true, L"");
+        test.add_document_classification(
+            readability::document_classification::childrens_literature_document, true);
+        test.add_industry_classification(
+            readability::industry_classification::childrens_publishing_industry, true);
+        test.add_industry_classification(
+            readability::industry_classification::secondary_language_industry, true);
+        test.add_teaching_level(readability::test_teaching_level::primary_grade);
+        test.add_teaching_level(readability::test_teaching_level::secondary_grade);
+        test.add_teaching_level(readability::test_teaching_level::second_language);
+        test.add_language(readability::test_language::spanish_test);
+        test.add_factor(readability::test_factor::word_complexity);
+        test.add_factor(readability::test_factor::sentence_length);
+        m_defaultReadabilityTestsTemplate.add_test(test);
+        m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
+        }
+
+        // Crawford
+        {
+        readability::readability_test test(
+            ReadabilityMessages::CRAWFORD(), XRCID("ID_CRAWFORD"), _DT(L"Crawford"),
+            _DT(L"Crawford"),
+            _(L"The Crawford test is designed for primary-age Spanish reading materials. "
+              "A <a href=\"#crawford-graph\">chart</a> is also available to visualize the score."),
+            readability::readability_test_type::grade_level, false,
+            _DT(L"(S*-.205) + (B*.049) - 3.407"));
+        test.add_document_classification(
+            readability::document_classification::childrens_literature_document, true);
+        test.add_industry_classification(
+            readability::industry_classification::childrens_publishing_industry, true);
+        test.add_industry_classification(
+            readability::industry_classification::childrens_healthcare_industry, true);
+        test.add_teaching_level(readability::test_teaching_level::primary_grade);
+        test.add_language(readability::test_language::spanish_test);
+        test.add_factor(readability::test_factor::word_complexity);
+        test.add_factor(readability::test_factor::sentence_length);
+        m_defaultReadabilityTestsTemplate.add_test(test);
+        m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
+        }
+    }
+
+//-------------------------------------------------------
+void BaseProject::InitializeStandardReadabilityTests()
+    {
+    assert(m_defaultReadabilityTestsTemplate.get_test_count() == 0 &&
+           "InitializeStandardReadabilityTests called twice?");
+    m_defaultReadabilityTestsTemplate.clear();
+    m_testIdMap.clear();
+        // degrees of reading power
+        {
+        readability::readability_test test(
+            ReadabilityMessages::DEGREES_OF_READING_POWER(), XRCID("ID_DEGREES_OF_READING_POWER"),
+            _DT(L"Degrees of Reading Power"), _DT(L"Degrees of Reading Power"),
+            // TRANSLATORS: "Degrees of Reading Power" should not be translated.
+            _(L"Degrees of Reading Power is designed for matching documents to a student's "
+              "reading ability (based on his/her DRP score). This test is influenced by "
+              "sentence length, word length, and number of familiar Dale-Chall words."),
+            readability::readability_test_type::index_value, true,
+            _DT(L"ROUND(100 - 100*(.886593 - .083640*(R/W) + .161911*POWER((D/W),3) -\n"
+                ".021401*(W/S) + .000577*POWER((W/S), 2) - .000005*POWER((W/S), 3)))"));
+        test.add_industry_classification(
+            readability::industry_classification::adult_publishing_industry, true);
+        test.add_teaching_level(readability::test_teaching_level::primary_grade);
+        test.add_teaching_level(readability::test_teaching_level::secondary_grade);
+        test.add_language(readability::test_language::english_test);
+        test.add_factor(readability::test_factor::word_familiarity_dale_chall);
+        test.add_factor(readability::test_factor::word_length);
+        test.add_factor(readability::test_factor::sentence_length);
+        m_defaultReadabilityTestsTemplate.add_test(test);
+        m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
+        }
+
+        // degrees of reading power (grade equivalent)
+        {
+        readability::readability_test test(
+            ReadabilityMessages::DEGREES_OF_READING_POWER_GE(),
+            XRCID("ID_DEGREES_OF_READING_POWER_GE"), _DT(L"Degrees of Reading Power (GE)"),
+            _DT(L"Degrees of Reading Power (grade equivalent)"),
+            // TRANSLATORS: "Degrees of Reading Power" should not be translated.
+            _(L"Degrees of Reading Power (GE) is designed for matching documents to a student's "
+              "reading ability (based on his/her DRP score). This test is a conversion of a "
+              "DRP (difficulty) score into a grade level."),
+            readability::readability_test_type::grade_level, false, L"");
+        test.add_industry_classification(
+            readability::industry_classification::adult_publishing_industry, true);
+        test.add_teaching_level(readability::test_teaching_level::primary_grade);
+        test.add_teaching_level(readability::test_teaching_level::secondary_grade);
+        test.add_language(readability::test_language::english_test);
+        test.add_factor(readability::test_factor::word_familiarity_dale_chall);
+        test.add_factor(readability::test_factor::word_length);
+        test.add_factor(readability::test_factor::sentence_length);
+        m_defaultReadabilityTestsTemplate.add_test(test);
+        m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
+        }
+
+        // Bormuth grade placement 35
+        {
+        readability::readability_test test(
+            ReadabilityMessages::BORMUTH_GRADE_PLACEMENT_35(),
+            XRCID("ID_BORMUTH_GRADE_PLACEMENT_35"), _DT(L"Bormuth Grade Placement"),
+            _DT(L"Bormuth Grade Placement"),
+            // TRANSLATORS: "Bormuth Grade Placement" should not be translated.
+            _(L"Bormuth Grade Placement is designed for students and is "
+              "highly regarded for its accuracy because "
+              "it uses three variables (rather than the traditional two variables)."),
+            readability::readability_test_type::grade_level, false,
+            _DT(L"3.761864 + 1.053153*(R/W) - 2.138595*POWER((D/W),3) +\n"
+                ".152832*(W/S) - .002077*POWER((W/S), 2)"));
+        test.add_document_classification(
+            readability::document_classification::adult_literature_document, true);
+        test.add_teaching_level(readability::test_teaching_level::secondary_grade);
+        test.add_language(readability::test_language::english_test);
+        test.add_factor(readability::test_factor::word_familiarity_dale_chall);
+        test.add_factor(readability::test_factor::word_length);
+        test.add_factor(readability::test_factor::sentence_length);
+        m_defaultReadabilityTestsTemplate.add_test(test);
+        m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
+        }
+
+        // Bormuth cloze mean
+        {
+        readability::readability_test test(
+            ReadabilityMessages::BORMUTH_CLOZE_MEAN(), XRCID("ID_BORMUTH_CLOZE_MEAN"),
+            _DT(L"Bormuth Cloze Mean"), _DT(L"Bormuth Cloze Mean"),
+            // TRANSLATORS: "Bormuth Cloze Mean" should not be translated.
+            _(L"Bormuth Cloze Mean is designed for students and is highly "
+              "regarded for its accuracy because it uses "
+              "three variables (rather than the traditional two variables)."),
+            readability::readability_test_type::predicted_cloze_score, true,
+            _DT(L"(.886593 - .083640*(R/W) + .161911*POWER((D/W),3) -\n"
+                ".021401*(W/S) + .000577*POWER((W/S), 2) - .000005*POWER((W/S), 3))*100"));
+        test.add_document_classification(
+            readability::document_classification::adult_literature_document, true);
+        test.add_teaching_level(readability::test_teaching_level::secondary_grade);
+        test.add_language(readability::test_language::english_test);
+        test.add_factor(readability::test_factor::word_familiarity_dale_chall);
+        test.add_factor(readability::test_factor::word_length);
         test.add_factor(readability::test_factor::sentence_length);
         m_defaultReadabilityTestsTemplate.add_test(test);
         m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
@@ -1313,102 +1464,6 @@ void BaseProject::InitializeStandardReadabilityTests()
         test.add_language(readability::test_language::english_test);
         test.add_language(readability::test_language::french_test);
         test.add_language(readability::test_language::spanish_test);
-        test.add_language(readability::test_language::german_test);
-        test.add_factor(readability::test_factor::word_length_7_plus);
-        test.add_factor(readability::test_factor::sentence_length);
-        m_defaultReadabilityTestsTemplate.add_test(test);
-        m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
-        }
-
-        // rix (German fiction)
-        {
-        readability::readability_test test(
-            ReadabilityMessages::RIX_GERMAN_FICTION(), XRCID("ID_RIX_GERMAN_FICTION"),
-            _(L"Rix (German fiction)"), _(L"Rix (German fiction)"),
-            _(L"This test is a variation of Rix meant for German fiction "
-              "(specifically, grades 1-11)."),
-            readability::readability_test_type::index_value_and_grade_level, true,
-            // needs a table to convert formula to grade level, so leave this blank
-            L"");
-        test.add_document_classification(
-            readability::document_classification::childrens_literature_document, true);
-        test.add_document_classification(
-            readability::document_classification::adult_literature_document, true);
-        test.add_industry_classification(
-            readability::industry_classification::childrens_publishing_industry, true);
-        test.add_industry_classification(
-            readability::industry_classification::adult_publishing_industry, true);
-        test.add_teaching_level(readability::test_teaching_level::primary_grade);
-        test.add_teaching_level(readability::test_teaching_level::secondary_grade);
-        test.add_language(readability::test_language::german_test);
-        test.add_factor(readability::test_factor::word_length_7_plus);
-        test.add_factor(readability::test_factor::sentence_length);
-        m_defaultReadabilityTestsTemplate.add_test(test);
-        m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
-        }
-
-        // rix (German non-fiction)
-        {
-        readability::readability_test test(
-            ReadabilityMessages::RIX_GERMAN_NONFICTION(), XRCID("ID_RIX_GERMAN_NONFICTION"),
-            _(L"Rix (German non-fiction)"), _(L"Rix (German non-fiction)"),
-            _(L"This test is a variation of Rix meant for German non-fiction "
-              "(specifically, secondary-age to adult level materials)."),
-            readability::readability_test_type::index_value_and_grade_level, true, L"");
-        test.add_document_classification(
-            readability::document_classification::adult_literature_document, true);
-        test.add_industry_classification(
-            readability::industry_classification::adult_publishing_industry, true);
-        test.add_teaching_level(readability::test_teaching_level::secondary_grade);
-        test.add_teaching_level(readability::test_teaching_level::adult_level);
-        test.add_language(readability::test_language::german_test);
-        test.add_factor(readability::test_factor::word_length_7_plus);
-        test.add_factor(readability::test_factor::sentence_length);
-        m_defaultReadabilityTestsTemplate.add_test(test);
-        m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
-        }
-
-        // lix (German children's literature)
-        {
-        readability::readability_test test(
-            ReadabilityMessages::LIX_GERMAN_CHILDRENS_LITERATURE(),
-            XRCID("ID_LIX_GERMAN_CHILDRENS_LITERATURE"), _(L"Lix (German children's literature)"),
-            _(L"Lix (German children's literature)"),
-            _(L"This test is a variation of Lix meant for German children's "
-              "literature (specifically, grades 1-8). "
-              "A <a href=\"#german-lix-gauge\">chart</a> is also available to "
-              "visualize the score."),
-            readability::readability_test_type::index_value_and_grade_level, true, L"");
-        test.add_document_classification(
-            readability::document_classification::childrens_literature_document, true);
-        test.add_industry_classification(
-            readability::industry_classification::childrens_publishing_industry, true);
-        test.add_teaching_level(readability::test_teaching_level::primary_grade);
-        test.add_teaching_level(readability::test_teaching_level::secondary_grade);
-        test.add_language(readability::test_language::german_test);
-        test.add_factor(readability::test_factor::word_length_7_plus);
-        test.add_factor(readability::test_factor::sentence_length);
-        m_defaultReadabilityTestsTemplate.add_test(test);
-        m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
-        }
-
-        // lix (German technical books)
-        {
-        readability::readability_test test(
-            ReadabilityMessages::LIX_GERMAN_TECHNICAL(), XRCID("ID_LIX_GERMAN_TECHNICAL"),
-            _(L"Lix (German technical literature)"), _(L"Lix (German technical literature)"),
-            _(L"This test is a variation of Lix meant for German technical/non-fiction literature. "
-              "A <a href=\"#german-lix-gauge\">chart</a> is also available to "
-              "visualize the score."),
-            readability::readability_test_type::index_value_and_grade_level, true, L"");
-        test.add_document_classification(readability::document_classification::technical_document,
-                                         true);
-        test.add_document_classification(
-            readability::document_classification::adult_literature_document, true);
-        test.add_industry_classification(
-            readability::industry_classification::adult_publishing_industry, true);
-        test.add_teaching_level(readability::test_teaching_level::secondary_grade);
-        test.add_teaching_level(readability::test_teaching_level::adult_level);
         test.add_language(readability::test_language::german_test);
         test.add_factor(readability::test_factor::word_length_7_plus);
         test.add_factor(readability::test_factor::sentence_length);
@@ -1787,53 +1842,6 @@ void BaseProject::InitializeStandardReadabilityTests()
         m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
         }
 
-        // Qu (german)
-        {
-        readability::readability_test test(ReadabilityMessages::QU(), XRCID("ID_QU"), _DT(L"Qu"),
-                                           _DT(L"Qu (Quadratwurzelverfahren)"),
-                                           _(L"Qu is generally appropriate for secondary age "
-                                             "(4th grade to college level) readers."),
-                                           readability::readability_test_type::grade_level, false,
-                                           _DT(L"TRUNC(SQRT((C*(100/W))/(S*(100/W))*30) - 2)"));
-        test.add_teaching_level(readability::test_teaching_level::secondary_grade);
-        test.add_language(readability::test_language::german_test);
-        test.add_factor(readability::test_factor::word_complexity_3_plus_syllables);
-        test.add_factor(readability::test_factor::sentence_length);
-        m_defaultReadabilityTestsTemplate.add_test(test);
-        m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
-        }
-
-        // smog (german)
-        {
-        readability::readability_test test(
-            ReadabilityMessages::SMOG_BAMBERGER_VANECEK(), XRCID("ID_SMOG_BAMBERGER_VANECEK"),
-            _DT(L"SMOG (Bamberger-Vanecek)"), _DT(L"SMOG (Bamberger-Vanecek)"),
-            _(L"A German adaption of SMOG, which is generally appropriate for secondary age "
-              "(4th grade to college level) readers. SMOG tests for 100% comprehension, "
-              "whereas most formulas test for around 50%-75% comprehension."),
-            readability::readability_test_type::grade_level, false,
-            _DT(L"TRUNC(SQRT(C*(30/S)) - 2)"));
-        test.add_document_classification(readability::document_classification::general_document,
-                                         true);
-        test.add_document_classification(
-            readability::document_classification::adult_literature_document, true);
-        test.add_industry_classification(
-            readability::industry_classification::childrens_publishing_industry, true);
-        test.add_industry_classification(
-            readability::industry_classification::adult_publishing_industry, true);
-        test.add_industry_classification(
-            readability::industry_classification::childrens_healthcare_industry, true);
-        test.add_industry_classification(
-            readability::industry_classification::adult_healthcare_industry, true);
-        test.add_teaching_level(readability::test_teaching_level::secondary_grade);
-        test.add_teaching_level(readability::test_teaching_level::adult_level);
-        test.add_language(readability::test_language::german_test);
-        test.add_factor(readability::test_factor::word_complexity_3_plus_syllables);
-        test.add_factor(readability::test_factor::sentence_length);
-        m_defaultReadabilityTestsTemplate.add_test(test);
-        m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
-        }
-
         // smog
         {
         readability::readability_test test(
@@ -1964,7 +1972,7 @@ void BaseProject::InitializeStandardReadabilityTests()
         m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
         }
 
-        // fry
+        // Fry
         {
         readability::readability_test test(
             ReadabilityMessages::FRY(), XRCID("ID_FRY"), _DT(L"Fry"), _DT(L"Fry"),
@@ -2023,6 +2031,9 @@ void BaseProject::InitializeStandardReadabilityTests()
         m_defaultReadabilityTestsTemplate.add_test(test);
         m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
         }
+
+    InitializeStandardSpanishReadabilityTests();
+    InitializeStandardGermanReadabilityTests();
     }
 
 //-------------------------------------------------------

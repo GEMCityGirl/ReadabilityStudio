@@ -1704,6 +1704,8 @@ class BaseProject : public ProjectRefresh
         }
 
     static void InitializeStandardReadabilityTests();
+    static void InitializeStandardSpanishReadabilityTests();
+    static void InitializeStandardGermanReadabilityTests();
     static void ResetStandardReadabilityTests(TestCollectionType& readabilityTests);
 
     [[nodiscard]]
