@@ -27,10 +27,7 @@ jobs:
       EXCLUDE_DIRS: |
         src/Catch2
         src/lua
-        src/OleanderStemmingLibrary
-        src/tinyexpr-plusplus
         src/tinyxml2
-        src/Wisteria-Dataviz
 
     steps:
       - name: Checkout
