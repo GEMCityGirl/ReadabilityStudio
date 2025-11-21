@@ -6218,11 +6218,12 @@ bool BatchProjectDoc::OnOpenDocument(const wxString& filename)
                        _(L"Project Open"), wxOK | wxICON_EXCLAMATION);
             return false;
             }
-        auto projectFileText = std::make_unique<char[]>(m_File.Length() + 1);
+        std::string projectFileText;
+        projectFileText.resize(m_File.Length());
 
         m_File.Seek(0);
-        const size_t readSize = m_File.Read(projectFileText.get(), m_File.Length());
-        LoadProjectFile(projectFileText.get(), readSize);
+        const size_t readSize = m_File.Read(projectFileText.data(), projectFileText.size());
+        LoadProjectFile(projectFileText.data(), readSize);
         }
     catch (const MemoryMappedFileEmptyException&)
         {
@@ -6248,11 +6249,12 @@ bool BatchProjectDoc::OnOpenDocument(const wxString& filename)
             {
             return false;
             }
-        auto projectFileText = std::make_unique<char[]>(m_File.Length() + 1);
+        std::string projectFileText;
+        projectFileText.resize(m_File.Length());
 
         m_File.Seek(0);
-        const size_t readSize = m_File.Read(projectFileText.get(), m_File.Length());
-        LoadProjectFile(projectFileText.get(), readSize);
+        const size_t readSize = m_File.Read(projectFileText.data(), projectFileText.size());
+        LoadProjectFile(projectFileText.data(), readSize);
         }
     catch (...)
         {

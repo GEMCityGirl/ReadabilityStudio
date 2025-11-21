@@ -329,15 +329,16 @@ LuaEditorDlg::LuaEditorDlg(
         },
         wxID_ANY);
 
-    wxAcceleratorEntry accelEntries[6];
-    accelEntries[0].Set(wxACCEL_CMD, static_cast<int>(L'N'), XRCID("ID_NEW"));
-    accelEntries[1].Set(wxACCEL_CMD, static_cast<int>(L'O'), XRCID("ID_OPEN"));
-    accelEntries[2].Set(wxACCEL_CMD, static_cast<int>(L'S'), XRCID("ID_SAVE"));
-    accelEntries[3].Set(wxACCEL_CMD, static_cast<int>(L'F'), wxID_FIND);
-    accelEntries[4].Set(wxACCEL_CMD, static_cast<int>(L'H'), wxID_REPLACE);
-    accelEntries[5].Set(wxACCEL_NORMAL, WXK_F5, XRCID("ID_RUN"));
-    const wxAcceleratorTable accelTable(std::size(accelEntries), accelEntries);
-    wxWindowBase::SetAcceleratorTable(accelTable);
+    const auto accelEntries =
+        std::to_array<wxAcceleratorEntry>({ { wxACCEL_CMD, 'N', XRCID("ID_NEW") },
+                                            { wxACCEL_CMD, 'O', XRCID("ID_OPEN") },
+                                            { wxACCEL_CMD, 'S', XRCID("ID_SAVE") },
+                                            { wxACCEL_CMD, 'F', wxID_FIND },
+                                            { wxACCEL_CMD, 'H', wxID_REPLACE },
+                                            { wxACCEL_NORMAL, WXK_F5, XRCID("ID_RUN") } });
+
+    wxWindowBase::SetAcceleratorTable(
+        wxAcceleratorTable{ accelEntries.size(), accelEntries.data() });
     }
 
 //------------------------------------------------------

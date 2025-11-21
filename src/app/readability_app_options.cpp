@@ -3688,8 +3688,10 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     for (const auto& exclusionBlockTag : m_exclusionBlockTags)
         {
         auto* excludeTags = doc.NewElement(XML_EXCLUDE_BLOCK_TAG.data());
-        const wchar_t excludeTagsStr[3] = { exclusionBlockTag.first, exclusionBlockTag.second, 0 };
-        const wxString excludeTagsEncoded = ENCODE({ excludeTagsStr, 2 }, false).c_str();
+        const std::array<wchar_t, 3> excludeTagsStr{ exclusionBlockTag.first,
+                                                     exclusionBlockTag.second, L'\0' };
+
+        const wxString excludeTagsEncoded = ENCODE({ excludeTagsStr.data(), 2 }, false).c_str();
         excludeTags->SetAttribute(XML_VALUE.data(), excludeTagsEncoded.utf8_str());
         excludeTagsSection->InsertEndChild(excludeTags);
         }

@@ -64,6 +64,7 @@ ExplanationListCtrl::ExplanationListCtrl(wxWindow* parent, wxWindowID id,
                                          const wxString& name /*= wxString{}*/)
     : wxSplitterWindow(parent, id, point, size, wxCLIP_CHILDREN | wxSP_NOBORDER, name)
     {
+    // NOLINTBEGIN(cppcoreguidelines-prefer-member-initializer)
     m_results_view = new Wisteria::UI::ListCtrlEx(
         this, id, wxDefaultPosition, wxDefaultSize,
         wxLC_SINGLE_SEL | wxLC_REPORT | wxLC_VIRTUAL | wxBORDER_SUNKEN, wxDefaultValidator);
@@ -72,6 +73,7 @@ ExplanationListCtrl::ExplanationListCtrl(wxWindow* parent, wxWindowID id,
     GetResultsListCtrl()->EnableGridLines();
     GetResultsListCtrl()->EnableAlternateRowColours(false);
     m_explanation_view = new Wisteria::UI::HtmlTableWindow(this);
+    // NOLINTEND(cppcoreguidelines-prefer-member-initializer)
     wxSplitterWindow::SplitHorizontally(GetResultsListCtrl(), GetExplanationView());
     SetMinimumPaneSize(100 * wxWindow::GetDPIScaleFactor());
 
@@ -233,6 +235,7 @@ void ExplanationListCtrl::OnSave([[maybe_unused]] wxCommandEvent& event)
         {
         return;
         }
+    // NOLINTNEXTLINE(bugprone-branch-clone,misc-static-cast-sign-conversion)
     Save(filePath, static_cast<ExplanationListExportOptions>(choiceDlg.GetSelection()));
     m_lastSaveOption = static_cast<ExplanationListExportOptions>(choiceDlg.GetSelection());
     }

@@ -485,7 +485,11 @@ void ToolsOptionsDlg::OnFontSelect(wxCommandEvent& event)
         data.SetInitialFont(m_rightTitleFont.get_value());
         data.SetColour(m_rightTitleFontColor.get_value());
         break;
+    default:
+        // no-op
+        break;
         };
+
     wxFontDialog dialog(this, data);
     if (dialog.ShowModal() == wxID_OK)
         {
@@ -518,6 +522,9 @@ void ToolsOptionsDlg::OnFontSelect(wxCommandEvent& event)
         case ID_GRAPH_RIGHT_TITLE_FONT_BUTTON:
             m_rightTitleFont = dialog.GetFontData().GetChosenFont();
             m_rightTitleFontColor = dialog.GetFontData().GetColour();
+            break;
+        default:
+            // no-op
             break;
             };
         }

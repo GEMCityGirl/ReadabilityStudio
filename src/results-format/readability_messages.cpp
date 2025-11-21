@@ -223,6 +223,9 @@ wxString ReadabilityMessages::GetMonthLabel(size_t month)
     case 9:
         return _(L"ninth month of class completed");
         break;
+    default:
+        wxLogDebug(L"Invalid month in GetMonthLabel()!");
+        return {};
         }
 
     return {};

@@ -1513,7 +1513,7 @@ void ReadabilityApp::EditCustomTest(CustomReadabilityTest& selectedTest)
             {
             for (size_t i = 0; i < docs.GetCount(); ++i)
                 {
-                BaseProjectDoc* doc = dynamic_cast<BaseProjectDoc*>(docs.Item(i)->GetData());
+                auto* doc = dynamic_cast<BaseProjectDoc*>(docs.Item(i)->GetData());
                 if ((doc != nullptr) && doc->HasCustomTest(selectedTest.get_name().c_str()))
                     {
                     doc->Modify(true);
@@ -3446,13 +3446,14 @@ MainFrame::MainFrame(wxDocManager* manager, wxFrame* frame,
     {
     Bind(wxEVT_MENU, &MainFrame::OnOpenExample, this, EXAMPLE_RANGE.GetFirstId(),
          EXAMPLE_RANGE.GetLastId());
-    wxAcceleratorEntry accelEntries[4];
-    accelEntries[0].Set(wxACCEL_NORMAL, WXK_F1, wxID_HELP);
-    accelEntries[1].Set(wxACCEL_CMD, static_cast<int>(L'N'), wxID_NEW);
-    accelEntries[2].Set(wxACCEL_CMD, static_cast<int>(L'O'), wxID_OPEN);
-    accelEntries[3].Set(wxACCEL_CMD, static_cast<int>(L'V'), wxID_PASTE);
-    const wxAcceleratorTable accelTable(std::size(accelEntries), accelEntries);
-    wxWindowBase::SetAcceleratorTable(accelTable);
+    const auto accelEntries =
+        std::to_array<wxAcceleratorEntry>({ { wxACCEL_NORMAL, WXK_F1, wxID_HELP },
+                                            { wxACCEL_CMD, static_cast<int>(L'N'), wxID_NEW },
+                                            { wxACCEL_CMD, static_cast<int>(L'O'), wxID_OPEN },
+                                            { wxACCEL_CMD, static_cast<int>(L'V'), wxID_PASTE } });
+
+    wxWindowBase::SetAcceleratorTable(
+        wxAcceleratorTable{ accelEntries.size(), accelEntries.data() });
 
     // bind menu events to their respective ribbon button events
     Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &MainFrame::OnToolsWebHarvest, this,

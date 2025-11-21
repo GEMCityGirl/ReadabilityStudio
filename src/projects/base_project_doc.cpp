@@ -2527,13 +2527,14 @@ wxString BaseProjectDoc::FormatProjectSettings() const
     for (auto currentExcludeTag = GetExclusionBlockTags().cbegin();
          currentExcludeTag != GetExclusionBlockTags().cend(); ++currentExcludeTag)
         {
-        const wchar_t excludeTagsStr[3] = { currentExcludeTag->first, currentExcludeTag->second,
-                                            0 };
+        const std::array<wchar_t, 3> excludeTagsStr{ currentExcludeTag->first,
+                                                     currentExcludeTag->second, L'\0' };
+
         fileText.append(L"\t\t<")
             .append(ReadabilityAppOptions::XML_EXCLUDE_BLOCK_TAG.data())
             .append(L">\n");
         XmlFormat::FormatSection(sectionText, ReadabilityAppOptions::XML_VALUE.data(),
-                                 HTML_ENCODE({ excludeTagsStr, 2 }, false), 3);
+                                 HTML_ENCODE({ excludeTagsStr.data(), 2 }, false), 3);
         fileText += sectionText;
         fileText.append(L"\t\t</")
             .append(ReadabilityAppOptions::XML_EXCLUDE_BLOCK_TAG.data())

@@ -4690,6 +4690,7 @@ namespace LuaScripting
                                                                             nullptr } };
     // NOLINTEND(cppcoreguidelines-avoid-c-arrays,hicpp-avoid-c-arrays,modernize-avoid-c-arrays)
 
+    // NOLINTBEGIN(cppcoreguidelines-avoid-c-arrays,hicpp-avoid-c-arrays,modernize-avoid-c-arrays)
     Luna<StandardProject>::FunctionType StandardProject::methods[] = {
         LUNA_DECLARE_METHOD(StandardProject, Close),
         LUNA_DECLARE_METHOD(StandardProject, DelayReloading),
@@ -4926,6 +4927,7 @@ namespace LuaScripting
         LUNA_DECLARE_METHOD(StandardProject, SelectTextGrammarWindow),
         { nullptr, nullptr }
     };
+    // NOLINTEND(cppcoreguidelines-avoid-c-arrays,hicpp-avoid-c-arrays,modernize-avoid-c-arrays)
     } // namespace LuaScripting
 
 // NOLINTEND(readability-implicit-bool-conversion)

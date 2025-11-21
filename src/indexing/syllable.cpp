@@ -2978,13 +2978,9 @@ namespace grammar
             // EA at end of word
             if (position + 2 == m_length)
                 {
-                // plea
-                if (m_syllable_count == 0)
-                    {
-                    return false;
-                    }
-                // achillea, nausea
-                return true;
+                // plea -> false
+                // achillea, nausea -> true
+                return m_syllable_count != 0;
                 }
             // EA[letter]...
             if (position + 3 == m_length ||
@@ -3295,16 +3291,12 @@ namespace grammar
                 // everything else (e.g., "peon" and "Peoria" will split)
                 return true;
                 }
-            // someone
-            if (position == 3 &&
+            // someone -> false
+            // geometric, neon -> true
+            return !(position == 3 &&
                 traits::case_insensitive_ex::eq(word[0], common_lang_constants::LOWER_S) &&
                 traits::case_insensitive_ex::eq(word[1], common_lang_constants::LOWER_O) &&
-                traits::case_insensitive_ex::eq(word[2], common_lang_constants::LOWER_M))
-                {
-                return false;
-                }
-            // geometric, neon
-            return true;
+                traits::case_insensitive_ex::eq(word[2], common_lang_constants::LOWER_M));
             }
         // UI
         else if ((position + 1 < m_length) &&
