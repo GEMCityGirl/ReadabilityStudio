@@ -3294,9 +3294,9 @@ namespace grammar
             // someone -> false
             // geometric, neon -> true
             return !(position == 3 &&
-                traits::case_insensitive_ex::eq(word[0], common_lang_constants::LOWER_S) &&
-                traits::case_insensitive_ex::eq(word[1], common_lang_constants::LOWER_O) &&
-                traits::case_insensitive_ex::eq(word[2], common_lang_constants::LOWER_M));
+                     traits::case_insensitive_ex::eq(word[0], common_lang_constants::LOWER_S) &&
+                     traits::case_insensitive_ex::eq(word[1], common_lang_constants::LOWER_O) &&
+                     traits::case_insensitive_ex::eq(word[2], common_lang_constants::LOWER_M));
             }
         // UI
         else if ((position + 1 < m_length) &&
