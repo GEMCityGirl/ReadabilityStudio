@@ -21,6 +21,7 @@ jobs:
       # Scan these roots for *.cpp
       INCLUDE_DIRS: |
         src
+        src/Wisteria-Dataviz/src
 
       # Exclude these folders (repo-root relative).
       # Tip: list the folder roots; the step adds '/*' for you.
@@ -28,6 +29,13 @@ jobs:
         src/Catch2
         src/lua
         src/tinyxml2
+        src/tinyexpr-plusplus
+        src/OleanderStemmingLibrary
+        src/Wisteria-Dataviz/src/CRCpp
+        src/Wisteria-Dataviz/src/easyexif
+        src/Wisteria-Dataviz/src/utfcpp
+        src/Wisteria-Dataviz/src/wxSimpleJSON
+        src/Wisteria-Dataviz/src/easyexif
 
     steps:
       - name: Checkout
