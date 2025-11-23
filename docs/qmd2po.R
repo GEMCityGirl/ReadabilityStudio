@@ -145,6 +145,19 @@ extract_translatable_lines <- function(lines) {
       text_trim = stringr::str_replace_all(text, "\\p{Z}", " ") |> stringr::str_trim()
     ) %>%
     dplyr::mutate(
+      translator_comment = dplyr::if_else(
+        stringr::str_detect(
+          text_trim,
+          "^<!--\\s*TRANSLATORS:\\s*(.*?)-->$"
+        ),
+        stringr::str_match(
+          text_trim,
+          "^<!--\\s*TRANSLATORS:\\s*(.*?)-->$"
+        )[,2],
+        NA_character_
+      )
+    ) %>%
+    dplyr::mutate(
       # skip patterns – be conservative
       skip =
         text_trim == "" |
@@ -435,7 +448,8 @@ qmd2po <- function(input,
   
   # ---- Warn about malformed images ------------------------------------------
   df_for_warn <- fence_df %>%
-    dplyr::filter(!in_code, !in_yaml, !in_math, !in_callout, !in_html_comment, !in_suppress) %>%
+    dplyr::filter(!in_code, !in_yaml, !in_math, !in_callout,
+                  !in_html_comment, !in_suppress) %>%
     dplyr::mutate(text_trim = stringr::str_trim(text))
   
   invalid_candidates <- df_for_warn %>%
@@ -453,24 +467,31 @@ qmd2po <- function(input,
   
   # ---- Extract translatable lines -------------------------------------------
   df <- extract_translatable_lines(lines)
-  
+
   if (nrow(df) == 0) {
     message("No translatable lines found.")
     return(invisible(NULL))
   }
-
+  
   # ---- Group or dedupe, while preserving translator comments ----------------
   if (use_context) {
     df <- df %>%
       dplyr::group_by(text_clean) %>%
       dplyr::summarise(
         lines = paste(sort(unique(line_num)), collapse = ", "),
+        translator_comment =
+          paste(na.omit(unique(translator_comment)), collapse = " | "),
         .groups = "drop"
       )
   } else {
-    df <- df %>% dplyr::distinct(text_clean, .keep_all = TRUE)
+    df <- df %>%
+      dplyr::distinct(text_clean, .keep_all = TRUE) %>%
+      dplyr::mutate(
+        translator_comment =
+          paste(na.omit(unique(translator_comment)), collapse = " | ")
+      )
   }
-
+  
   # ---- Dry run --------------------------------------------------------------
   if (dry_run) {
     cat("\n🧩 Dry run — lines that would be extracted:\n\n")
@@ -478,7 +499,7 @@ qmd2po <- function(input,
     cat("\n\n")
     return(invisible(df))
   }
-
+  
   # ---- Build PO header ------------------------------------------------------
   header_block <- paste0(
     'msgid ""\n',
@@ -493,11 +514,11 @@ qmd2po <- function(input,
     '"Content-Type: text/plain; charset=UTF-8\\n"\n',
     '"Content-Transfer-Encoding: 8bit\\n"\n\n'
   )
-
+  
   # ---- Load existing translations -------------------------------------------
   existing <- if (!is.null(output) && file.exists(output)) parse_po(output) else NULL
   has_existing <- !is.null(existing) && nrow(existing) > 0
-
+  
   if (has_existing) {
     existing_norm <- existing %>%
       dplyr::mutate(norm_key = normalize_msgid(msgid)) %>%
@@ -505,7 +526,7 @@ qmd2po <- function(input,
   } else {
     existing_norm <- tibble::tibble(norm_key = character(), msgstr = character())
   }
-
+  
   # ---- Build PO entries ------------------------------------------------------
   po_lines <- df %>%
     dplyr::mutate(
@@ -515,6 +536,15 @@ qmd2po <- function(input,
       } else {
         sprintf("#: %s", basename(input))
       },
+      
+      # Translator comment (PO format — no TRANSLATORS: prefix)
+      translator_comment_line = dplyr::if_else(
+        !is.na(translator_comment) & translator_comment != "",
+        paste0("#. ", translator_comment),
+        ""
+      ),
+      
+      # Escape msgid
       msgid = sprintf(
         'msgid "%s"',
         text_clean %>%
@@ -532,12 +562,20 @@ qmd2po <- function(input,
             else 'msgstr ""'
           } else {
             'msgstr ""'
-        }
+          }
         }
       )
     ) %>%
     dplyr::mutate(
-      po_block = paste(header, msgid, msgstr, "", sep = "\n")
+      # Combine final PO block
+      po_block = paste(
+        translator_comment_line[translator_comment_line != ""],
+        header,
+        msgid,
+        msgstr,
+        "",
+        sep = "\n"
+      )
     ) %>%
     dplyr::pull(po_block)
   
@@ -546,7 +584,7 @@ qmd2po <- function(input,
     readr::write_lines(c(header_block, po_lines), output)
     message("Wrote ", nrow(df), " entries to ", output, " [Language: ", lang, "]")
   }
-
+  
   invisible(df)
 }
 
@@ -578,7 +616,6 @@ qmd2po_folder <- function(input_dir,
   
   message("Found ", length(qmd_files), " QMD file(s) under ", input_dir)
   
-  # Extract per-file, isolate fence state, keep ordering
   all_entries <- purrr::imap_dfr(qmd_files, function(file_path, file_index) {
     buffer <- readr::read_lines(file_path, skip_empty_rows = FALSE)
     
@@ -620,14 +657,19 @@ qmd2po_folder <- function(input_dir,
           paste0(source_base, ":", line_num),
           collapse = ", "
         ),
+        translator_comment =
+          paste(na.omit(unique(translator_comment)), collapse = " | "),
         .groups = "drop"
       ) %>%
       dplyr::arrange(first_order)
   } else {
-    # distinct() keeps the *first* row it sees, so make sure it's in the right order
     df <- all_entries %>%
       dplyr::arrange(order_index) %>%
-      dplyr::distinct(text_clean, .keep_all = TRUE)
+      dplyr::distinct(text_clean, .keep_all = TRUE) %>%
+      dplyr::mutate(
+        translator_comment =
+          paste(na.omit(unique(translator_comment)), collapse = " | ")
+      )
   }
   
   if (dry_run) {
@@ -651,10 +693,10 @@ qmd2po_folder <- function(input_dir,
     '"Content-Type: text/plain; charset=UTF-8\\n"\n',
     '"Content-Transfer-Encoding: 8bit\\n"\n\n'
   )
-
+  
   existing <- if (file.exists(output_po)) parse_po(output_po) else NULL
   has_existing <- !is.null(existing) && nrow(existing) > 0
-
+  
   if (has_existing) {
     existing_norm <- existing %>%
       dplyr::mutate(norm_key = normalize_msgid(msgid)) %>%
@@ -662,12 +704,12 @@ qmd2po_folder <- function(input_dir,
   } else {
     existing_norm <- tibble::tibble(norm_key = character(), msgstr = character())
   }
-
+  
   # df already has text_clean; normalize it the same way
   df_norm <- df %>%
     dplyr::mutate(norm_key = normalize_msgid(text_clean)) %>%
     dplyr::left_join(existing_norm, by = "norm_key")
-
+  
   po_lines <- df_norm %>%
     dplyr::mutate(
       header = if (use_context) {
@@ -675,6 +717,13 @@ qmd2po_folder <- function(input_dir,
       } else {
         "#: aggregated"
       },
+      
+      translator_comment_line = dplyr::if_else(
+        !is.na(translator_comment) & translator_comment != "",
+        paste0("#. ", translator_comment),
+        ""
+      ),
+      
       msgid = sprintf(
         'msgid "%s"',
         text_clean %>%
@@ -688,10 +737,17 @@ qmd2po_folder <- function(input_dir,
       )
     ) %>%
     dplyr::mutate(
-      po_block = paste(header, msgid, msgstr, "", sep = "\n")
+      po_block = paste(
+        translator_comment_line[translator_comment_line != ""],
+        header,
+        msgid,
+        msgstr,
+        "",
+        sep = "\n"
+      )
     ) %>%
     dplyr::pull(po_block)
-
+  
   readr::write_lines(c(header_block, po_lines), output_po)
   message("Wrote ", nrow(df), " entries to ", output_po, " [Language: ", lang, "]")
   invisible(df)
