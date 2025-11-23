@@ -179,6 +179,8 @@ extract_translatable_lines <- function(lines) {
         stringr::str_detect(text_trim, "^\\{%.*%\\}$") |
         (stringr::str_detect(text_trim, "^\\{\\{<[^>]+>\\}\\}$") &
          !stringr::str_detect(text_trim, "\\*") ) |
+        # pure link-only lines like [https://git-scm.com/](https://git-scm.com/)
+        stringr::str_detect(text_trim, "^\\s*\\[[^\\]]+\\]\\([^)]*\\)\\s*$") |
         # hrules
         stringr::str_detect(text_trim, "^\\s{0,3}(\\*{3,}|-{3,}|_{3,})\\s*$") |
         # ASCII table borders (grid/pipe)
