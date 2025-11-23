@@ -6,7 +6,7 @@ if (nchar(system.file(package = "pacman")) == 0) {
   install.packages("pacman")
 }
 library(pacman)
-pacman::p_load(tidyverse, this.path, glue, stringr, readr, purrr, tibble, dplyr)
+pacman::p_load(tidyverse, this.path, glue, stringr, readr, purrr, tibble, dplyr, fs)
 
 ##########################
 # 1. Normalization Core  #
@@ -424,13 +424,16 @@ parse_po <- function(po_path) {
 # 6. qmd2po: single-file QMD → PO extractor #
 #############################################
 
-qmd2po <- function(input, output = NULL, dry_run = FALSE,
-                   lang = "en", use_context = TRUE) {
+qmd2po <- function(input,
+                   output = NULL,
+                   dry_run = FALSE,
+                   lang = "en",
+                   use_context = TRUE) {
   
   lines <- readr::read_lines(input)
   fence_df <- scan_fences(lines)
   
-  # Warn for malformed images (same as before, shortened)
+  # ---- Warn about malformed images ------------------------------------------
   df_for_warn <- fence_df %>%
     dplyr::filter(!in_code, !in_yaml, !in_math, !in_callout, !in_html_comment, !in_suppress) %>%
     dplyr::mutate(text_trim = stringr::str_trim(text))
@@ -441,12 +444,14 @@ qmd2po <- function(input, output = NULL, dry_run = FALSE,
          !stringr::str_detect(text_trim, "^!\\[.*\\]\\(.*\\)")) |
         stringr::str_detect(text_trim, "^!\\[.*\\]\\(\\\".*\\\"\\)")
     )
+  
   if (nrow(invalid_candidates) > 0) {
     cat("\n⚠️  Warning: possible malformed Markdown image lines detected:\n")
     purrr::walk(invalid_candidates$text_trim, ~cat("  •", .x, "\n"))
     cat("  (Common causes: missing '(', misplaced quotes, or mismatched brackets.)\n\n")
   }
   
+  # ---- Extract translatable lines -------------------------------------------
   df <- extract_translatable_lines(lines)
   
   if (nrow(df) == 0) {
@@ -454,7 +459,7 @@ qmd2po <- function(input, output = NULL, dry_run = FALSE,
     return(invisible(NULL))
   }
 
-  # Add context or dedupe
+  # ---- Group or dedupe, while preserving translator comments ----------------
   if (use_context) {
     df <- df %>%
       dplyr::group_by(text_clean) %>%
@@ -466,6 +471,7 @@ qmd2po <- function(input, output = NULL, dry_run = FALSE,
     df <- df %>% dplyr::distinct(text_clean, .keep_all = TRUE)
   }
 
+  # ---- Dry run --------------------------------------------------------------
   if (dry_run) {
     cat("\n🧩 Dry run — lines that would be extracted:\n\n")
     cat(paste0(df$text_clean, collapse = "\n"))
@@ -473,7 +479,7 @@ qmd2po <- function(input, output = NULL, dry_run = FALSE,
     return(invisible(df))
   }
 
-  # PO header
+  # ---- Build PO header ------------------------------------------------------
   header_block <- paste0(
     'msgid ""\n',
     'msgstr ""\n',
@@ -488,6 +494,7 @@ qmd2po <- function(input, output = NULL, dry_run = FALSE,
     '"Content-Transfer-Encoding: 8bit\\n"\n\n'
   )
 
+  # ---- Load existing translations -------------------------------------------
   existing <- if (!is.null(output) && file.exists(output)) parse_po(output) else NULL
   has_existing <- !is.null(existing) && nrow(existing) > 0
 
@@ -499,9 +506,10 @@ qmd2po <- function(input, output = NULL, dry_run = FALSE,
     existing_norm <- tibble::tibble(norm_key = character(), msgstr = character())
   }
 
-  # Build entries
+  # ---- Build PO entries ------------------------------------------------------
   po_lines <- df %>%
     dplyr::mutate(
+      # Usage context (location in file)
       header = if (use_context) {
         sprintf("#: %s:%s", basename(input), lines)
       } else {
@@ -513,6 +521,8 @@ qmd2po <- function(input, output = NULL, dry_run = FALSE,
           stringr::str_replace_all('\\\\', '\\\\\\\\') %>%  # escape backslashes
           stringr::str_replace_all('"', '\\\\\"')           # escape quotes
       ),
+      
+      # Apply existing translation if present
       msgstr = purrr::map_chr(
         text_clean,
         ~ {
@@ -520,7 +530,9 @@ qmd2po <- function(input, output = NULL, dry_run = FALSE,
             old <- dplyr::filter(existing, msgid == .x)$msgstr[1]
             if (!is.na(old) && nzchar(old)) sprintf('msgstr "%s"', old)
             else 'msgstr ""'
-          } else 'msgstr ""'
+          } else {
+            'msgstr ""'
+        }
         }
       )
     ) %>%
@@ -529,6 +541,7 @@ qmd2po <- function(input, output = NULL, dry_run = FALSE,
     ) %>%
     dplyr::pull(po_block)
   
+  # ---- Write PO file --------------------------------------------------------
   if (!is.null(output)) {
     readr::write_lines(c(header_block, po_lines), output)
     message("Wrote ", nrow(df), " entries to ", output, " [Language: ", lang, "]")

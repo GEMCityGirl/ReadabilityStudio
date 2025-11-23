@@ -35,6 +35,7 @@ build_translated_docs <- function(docFolder, lang, exclude_pattern = NULL,
   # output folder under locale/docs/<lang>
   out_dir <- file.path(dirname(docFolder), "locale", "docs", lang)
   dir.create(out_dir, recursive = TRUE, showWarnings = FALSE)
+  dir.create(glue("{docFolder}/{lang}"), recursive = TRUE, showWarnings = FALSE)
 
   message(glue::glue("🌐 Building documentation for language: {lang}"))
   message(glue::glue("PO output: {out_dir}/{lang}.po\n"))
