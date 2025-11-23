@@ -6,7 +6,7 @@ Catch2|OleanderStemmingLibrary/tests|tinyexpr-plusplus/tests|utfcpp/tests|\
 utfcpp/samples|utfcpp/extern|cxxopts|xmltest.cpp|html5-printer.cpp|\
 textclassifier.cpp|candlestickplot.cpp|ganttchart.cpp|lrroadmap.cpp|proconroadmap.cpp|\
 roadmap.cpp|sankeydiagram.cpp|table.cpp|wcurveplot.cpp|variableselectdlg.cpp|reportbuilder.cpp|\
-win_loss_sparkline.cpp|multi_series_lineplot.cpp|likertchart.cpp|\
+win_loss_sparkline.cpp|multi_series_lineplot.cpp|likertchart.cpp|waffle_chart.cpp|\
 pivot.cpp|subset.cpp|join.cpp|clone.cpp)")
 
 # these files get compiled into larger ones that are included with the distribution
