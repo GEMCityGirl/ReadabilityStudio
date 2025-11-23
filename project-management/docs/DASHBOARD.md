@@ -1,6 +1,6 @@
 # 📚 Documentation & Knowledge Base Dashboard
 
-> **Project:** Readability Studio · **Last updated:** 2025-11-06
+> **Project:** Readability Studio · **Last updated:** 2025-11-23
 
 ---
 
@@ -32,8 +32,8 @@ Overall documentation coverage for translatable docs (User Manual, Admin Guide, 
 ### 1) 📖 User Manual
 
 **Scope**: End-user tasks, workflows, troubleshooting, and feature overviews.  
-**Sources**: Quarto/Markdown in `docs/` (e.g., `docs/user-manual.qmd`).  
-**Localization**: Strings extracted into `locale/docs/*.po` and maintained with POEdit.
+**Sources**: Quarto/Markdown in `docs/` (e.g., `docs/sysadmin/linux-build.qmd`).  
+**Localization**: Strings extracted into `locale/docs/*.po` and maintained with *POEdit*.
 
 **Status**
 
@@ -82,7 +82,7 @@ Overall documentation coverage for translatable docs (User Manual, Admin Guide, 
 ### 3) 🧪 Programming Reference (Lua / Automation API)
 
 **Scope**: Public scripting entry points, configuration structures, return values, and code examples.  
-**Sources**: Quarto/Markdown in `docs/` (e.g., `docs/programming-reference.qmd`).  
+**Sources**: Quarto/Markdown in `docs/` (e.g., `docs/readability-studio-api/libraries/Debug/Print.qmd`).  
 **Localization**: Translations optional but recommended for major locales; examples may remain in English.
 
 **Status**

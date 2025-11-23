@@ -1,6 +1,6 @@
 # 🌐 Globalization Dashboard
 
-> **Project:** Readability Studio · **Last updated:** 2025-11-06
+> **Project:** Readability Studio · **Last updated:** 2025-11-23
 
 ## Legend
 
@@ -44,7 +44,7 @@ _Shipping the product in multiple languages. This section tracks per-language tr
 **Locale dir**: `locale/<lang>/LC_MESSAGES/`  
 **Recommended tool**: **POEdit** — Update from POT, translate, compile to `.mo`.
 
-> Use POEdit’s *Catalog → Update from POT/Source code* to merge new strings; keep placeholders intact and run QA before commit.
+> Use *POEdit*’s *Catalog → Update from POT/Source code* to merge new strings; keep placeholders intact and run QA before commit.
 
 **Status**
 
@@ -86,13 +86,8 @@ _Shipping the product in multiple languages. This section tracks per-language tr
 **Doc locale**: `locale/docs/`  
 **File types**: `.qmd` / `.md` → `.po` → `.mo`
 
-**Default md2po → po2mo flow**
-```bash
-md2po docs/ -o locale/docs/<lang>.po --wrapwidth=0
-msgmerge --update --backup=none locale/docs/<lang>.po locale/docs/template.pot
-msgfmt locale/docs/<lang>.po -o locale/docs/<lang>.mo
-```
-> Or generate translated Markdown with `po2md` for static localized doc sets.
+**build-localized-docs.R**
+Updates `.po files and generates the localized help.
 
 **Status**
 
