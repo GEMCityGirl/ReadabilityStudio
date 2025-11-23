@@ -21,7 +21,9 @@ jobs:
           std: c++20
           inline_suppression: enable
           inconclusive: disable
-          exclude_check: ./tests
+          exclude_check: |
+            ./tests
+            ./src/tinyexpr-plusplus
           output_file: cppcheck_report.txt
           other_options: --library=wxwidgets
           
