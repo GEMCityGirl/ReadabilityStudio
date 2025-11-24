@@ -11,13 +11,14 @@
  *   Blake Madden - initial implementation
  ********************************************************************************/
 
+// clang-format off
+// NOLINTBEGIN
+// cppcheck-suppress-file redundantInitialization
+
 #include <catch2/catch_test_macros.hpp>
 #include <catch2/matchers/catch_matchers.hpp>
 #include <catch2/matchers/catch_matchers_floating_point.hpp>
 #include "../src/indexing/tokenize.h"
-
-// clang-format off
-// NOLINTBEGIN
 
 TEST_CASE("C++ tokenize", "[document]")
     {

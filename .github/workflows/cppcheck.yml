@@ -21,6 +21,7 @@ jobs:
           std: c++20
           inline_suppression: enable
           inconclusive: disable
+          skip_preprocessor: true
           exclude_check: |
             tests
             src/tinyexpr-plusplus
