@@ -33,6 +33,7 @@ parse_arg <- function(key, fallback)
   # 3. Otherwise return the fallback default
   return(fallback)
   }
+
 # Command line from RScript and override with manuals get built (and not built)
 # Rscript build-help-projects.R --args buildReleaseNotes=FALSE buildTestReference=FALSE
 buildSysAdminManual <- as.logical(parse_arg("buildSysAdminManual", TRUE))
@@ -45,8 +46,8 @@ docsLanguage <- parse_arg("docsLanguage", "")
 
 scriptFolder <- this.path::this.dir()
 docFolder <- this.path::this.dir()
-# translate subfolder of translated docs (if requested)
-if (nzchar(docsLanguage)) {
+# build subfolder of translated docs (if requested)
+if (nzchar(docsLanguage) && docsLanguage != "en") {
   docFolder <- file.path(docFolder, docsLanguage)
   message(str_glue("🏗️ Building translated subfolder '{docsLanguage}' → {docFolder}"))
 }
