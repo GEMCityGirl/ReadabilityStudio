@@ -791,7 +791,7 @@ void CustomTestDlg::CreateControls()
             formulaButtonsSizer->Add(new wxBitmapButton(
                 formulaBoxSizer->GetStaticBox(), ID_FUNCTION_BROWSER_BUTTON,
                 wxGetApp().GetResourceManager().GetSVG(wxSystemSettings::GetAppearance().IsDark() ?
-                                                           L"ribbon/function-light.svg" :
+                                                           L"ribbon/function-dark.svg" :
                                                            L"ribbon/function.svg")));
 
             formulaBoxSizer->Add(formulaButtonsSizer,

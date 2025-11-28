@@ -69,7 +69,7 @@ ribbon/find.svg
 ribbon/flesch-line.svg
 ribbon/font.svg
 ribbon/formula.svg
-ribbon/function-light.svg
+ribbon/function-dark.svg
 ribbon/function.svg
 ribbon/gears.svg
 ribbon/german2english.svg

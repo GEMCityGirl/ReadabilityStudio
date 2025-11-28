@@ -3,7 +3,7 @@
 
 <svg
    id="svg1"
-   sodipodi:docname="function.svg"
+   sodipodi:docname="function-dark.svg"
    viewBox="0 0 60 60"
    sodipodi:version="0.32"
    version="1.0"
@@ -40,16 +40,17 @@
      inkscape:current-layer="svg1" />
   <g
      id="g1"
-     transform="matrix(1.5978335,0,0,1.5978335,-20.346289,-14.443041)">
+     transform="matrix(1.5978335,0,0,1.5978335,-20.346289,-14.443041)"
+     style="fill:#e6e6e6;stroke:#ececec;stroke-opacity:1">
     <path
        id="path836"
        sodipodi:nodetypes="cc"
-       style="fill:none;stroke:#333333;stroke-width:5;stroke-linecap:round;stroke-linejoin:round"
+       style="fill:#e6e6e6;stroke:#ececec;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1"
        d="m 38.822846,12.495563 c -11.643,3.3 -5.039,27.413 -16.024,30.638"
        sodipodi:stroke-cmyk="(0.0000000 0.0000000 0.0000000 0.80000001)" />
     <path
        id="path837"
-       style="fill:none;stroke:#333333;stroke-width:5;stroke-linecap:round;stroke-linejoin:round"
+       style="fill:#e6e6e6;stroke:#ececec;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1"
        d="m 23.815346,24.748563 h 16.404"
        sodipodi:stroke-cmyk="(0.0000000 0.0000000 0.0000000 0.80000001)" />
   </g>
@@ -68,7 +69,6 @@
             <dc:title>Openclipart</dc:title>
           </cc:Agent>
         </dc:publisher>
-        <dc:title>ftfunct</dc:title>
         <dc:date>2011-01-31T02:01:33</dc:date>
         <dc:description>Originally uploaded by Danny Allen for OCAL 0.18 this icon is part of the flat theme</dc:description>
         <dc:source>https://openclipart.org/detail/112681/ftfunct-by-anonymous</dc:source>

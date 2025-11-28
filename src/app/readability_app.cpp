@@ -118,7 +118,9 @@ RSArtProvider::RSArtProvider()
                     { L"ID_DOCUMENT", L"ribbon/document.svg" },
                     { L"ID_DOCUMENTS", L"ribbon/documents.svg" },
                     { L"ID_EDIT_DOCUMENT", L"ribbon/edit-document.svg" },
-                    { L"ID_FUNCTION", L"ribbon/function.svg" },
+                    { L"ID_FUNCTION", wxSystemSettings::GetAppearance().IsDark() ?
+                                          L"ribbon/function-dark.svg" :
+                                          L"ribbon/function.svg" },
                     { L"ID_SPREADSHEET", L"ribbon/spreadsheet.svg" },
                     { L"ID_ARCHIVE", L"ribbon/archive.svg" },
                     { L"ID_GEARS", L"ribbon/gears.svg" },
