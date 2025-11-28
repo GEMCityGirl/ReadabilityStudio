@@ -36,6 +36,8 @@ jobs:
         src/Wisteria-Dataviz/src/utfcpp
         src/Wisteria-Dataviz/src/wxSimpleJSON
         src/Wisteria-Dataviz/src/easyexif
+        src/Wisteria-Dataviz/tests
+        src/Wisteria-Dataviz/demo
 
     steps:
       - name: Checkout
