@@ -1,3 +1,5 @@
+// cppcheck-suppress-file redundantInitialization
+
 /********************************************************************************
  * Copyright (c) 2005-2025 Blake Madden
  *

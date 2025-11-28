@@ -1,3 +1,5 @@
+// cppcheck-suppress-file redundantInitialization
+
 /********************************************************************************
  * Copyright (c) 2005-2025 Blake Madden
  *
@@ -13,7 +15,6 @@
 
 // clang-format off
 // NOLINTBEGIN
-// cppcheck-suppress-file redundantInitialization
 
 #include <catch2/catch_test_macros.hpp>
 #include <catch2/matchers/catch_matchers.hpp>

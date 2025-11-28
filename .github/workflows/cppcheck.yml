@@ -14,6 +14,9 @@ jobs:
       contents: read
     steps:
       - uses: actions/checkout@v4
+  
+      - name: Remove tinyexpr-plusplus from analysis
+        run: rm -rf src/tinyexpr-plusplus
           
       - name: cppcheck
         uses: deep5050/cppcheck-action@main
@@ -22,13 +25,11 @@ jobs:
           inline_suppression: enable
           inconclusive: disable
           skip_preprocessor: true
-          exclude_check: |
-            tests
-            src/tinyexpr-plusplus
+          exclude_check: tests
           output_file: cppcheck_report.txt
           other_options: --library=wxwidgets
           
-      - name: print output
+      - name: Print output
         run: |
              REPORTFILE=./cppcheck_report.txt
              WARNINGSFILE=./warnings.txt
