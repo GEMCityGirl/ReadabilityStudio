@@ -275,6 +275,15 @@ message(STATUS "wxWidgets found in: ${wxWidgets_BASEDIR}")
 add_subdirectory(${wxWidgets_BASEDIR} ${CMAKE_CURRENT_SOURCE_DIR}/wxWidgets_lib EXCLUDE_FROM_ALL)
 set(wxWidgets_LIBRARIES wx::core wx::base wx::xrc wx::propgrid wx::xml
                         wx::aui wx::ribbon wx::qa wx::stc wx::net wx::richtext)
+# Apply compiler warning suppressions to wxWidgets targets
+if (CMAKE_CXX_COMPILER_ID MATCHES "Clang|GNU|AppleClang")
+    foreach(tgt IN LISTS wxWidgets_LIBRARIES)
+        target_compile_options(${tgt} PRIVATE
+            -Wno-alloc-size-larger-than
+            -Wno-format
+            -Wno-deprecated-declarations)
+    endforeach()
+endif()
 message(STATUS "Adding wxWidgets libraries: ${wxWidgets_LIBRARIES}")
 
 if(wxVERSION VERSION_LESS ${MIN_WXWIDGETS_REQUIRED})
@@ -500,9 +509,8 @@ elseif(APPLE)
         __WXOSX__ CRCPP_USE_CPP11
         $<$<CONFIG:Debug>:__WXDEBUG__ ENABLE_PROFILING>
         $<$<CONFIG:Release>:NDEBUG>)
-    # TODO: don't include -Werror for now, but eventually add it
     target_compile_options(${PROJECT_NAME} PUBLIC
-        -Wall -Wextra -Wpedantic -Wshadow
+        -Wall -Wextra -Wpedantic -Wshadow -Werror
         $<$<OR:$<CXX_COMPILER_ID:GNU>,$<CXX_COMPILER_ID:Clang>>:-fstack-protector-strong>
         $<$<OR:$<CXX_COMPILER_ID:GNU>,$<CXX_COMPILER_ID:Clang>>:-D_FORTIFY_SOURCE=2>
         $<$<CONFIG:Debug>:-Og -g3 ${SANITIZER_FLAGS} ${SANITIZER_EXTRA_FLAGS}>
@@ -518,9 +526,8 @@ elseif(UNIX)
         __WXGTK__ CRCPP_USE_CPP11
         $<$<CONFIG:Debug>:__WXDEBUG__ ENABLE_PROFILING>
         $<$<CONFIG:Release>:NDEBUG>)
-    # TODO: don't include -Werror for now, but eventually add it
     target_compile_options(${PROJECT_NAME} PUBLIC
-        -Wall -Wextra -Wpedantic -Wshadow -fopenmp
+        -Wall -Wextra -Wpedantic -Wshadow -Werror -fopenmp
         $<$<OR:$<CXX_COMPILER_ID:GNU>,$<CXX_COMPILER_ID:Clang>>:-fstack-protector-strong>
         $<$<OR:$<CXX_COMPILER_ID:GNU>,$<CXX_COMPILER_ID:Clang>>:-D_FORTIFY_SOURCE=2>
         $<$<CONFIG:Debug>:-Og -g3 ${SANITIZER_FLAGS} ${SANITIZER_EXTRA_FLAGS}>
