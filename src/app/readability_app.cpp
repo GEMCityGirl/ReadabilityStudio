@@ -894,9 +894,10 @@ bool ReadabilityApp::LoadWordLists(const wxString& AppSettingFolderPath)
                      wxOK | wxICON_EXCLAMATION);
         return false;
         }
-    auto wordyZipFileText = std::make_unique<char[]>(theFile.Length() + 1);
-    const size_t readSize = theFile.Read(wordyZipFileText.get(), theFile.Length());
-    const Wisteria::ZipCatalog cat(wordyZipFileText.get(), readSize);
+
+    std::vector<char> wordyZipFileText(theFile.Length());
+    const size_t readSize = theFile.Read(wordyZipFileText.data(), wordyZipFileText.size());
+    const Wisteria::ZipCatalog cat(wordyZipFileText.data(), readSize);
     // read in the wordy items
     const std::wstring englishWordyPhraseFileText = cat.ReadTextFile(L"wordy-phrases/english.txt");
     const std::wstring spanishWordyPhraseFileText = cat.ReadTextFile(L"wordy-phrases/spanish.txt");
