@@ -110,8 +110,8 @@ Outlier values that do not fall within these areas are plotted outside of the wh
 
 ```{r}
 #| label: fig-boxplot
-#| fig-cap: "Box plot layout"
-#| fig-subcap: "Adapted from DeCicco (“Exploring ggplot2 boxplots”)"
+#| fig-cap: 'Box plot layout'
+#| fig-subcap: 'Adapted from DeCicco ("Exploring ggplot2 boxplots")'
 #| echo: false
 
 # translatable content

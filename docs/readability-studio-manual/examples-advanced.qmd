@@ -267,7 +267,7 @@ Along with policy changes to the program, they have redesigned the program's fly
 Let's first take a look at the updated flyer.
 From the **Help** tab on the ribbon, click the `r keys('Example Documents')` button, and select "YA Enterprise Software Symposium."
 Next, you will be prompted to either create a new project or view the document; select **View document**.
-Once the document is opened, note how the flyer’s short text boxes have been replaced by full sentences:
+Once the document is opened, note how the flyer's short text boxes have been replaced by full sentences:
 
 ![](images/non-generated/ya-enterprise-software-symposium.png){width=75% fig-align="center"}
 
@@ -291,7 +291,7 @@ When the project appears, select **Flesch Reading Ease** under the **Scores** se
 
 ![](images/addendum-flesch1.png){width=75% fig-align="center"}
 
-Note that this new flyer is difficult, so let’s review it.
+Note that this new flyer is difficult, so let's review it.
 Click **Words Breakdown** on the sidebar and then select **3+ Syllables Report**.
 As we scroll through this window, note the highlighted difficult words:
 

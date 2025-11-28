@@ -521,7 +521,7 @@ Along with selecting tests, you can also specify the range of values that a docu
 First, on the **Goals** page, click the add button to include a new goal.
 Next, double click in the **Test** column to select the test.
 Finally, click in either the **Recommended minimum score** or **Recommended maximum score** column and enter the acceptable score range.
-Now, when this bundle is applied to a project, the document’s pass/fail status will be displayed in the [**Goals**](#sec-reviewing-goals) section.
+Now, when this bundle is applied to a project, the document's pass/fail status will be displayed in the [**Goals**](#sec-reviewing-goals) section.
 
 Beneath the test goals grid is another grid for creating statistics goals as well.
 For example, you can add a goal such as specifying the maximum average sentence length for the document.

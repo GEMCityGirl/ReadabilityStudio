@@ -66,6 +66,6 @@ The Gilliam-Peña-Mountain graph formula is:
 This test is designed for 100-word samples, with 3 samples being recommended for best results. ([Normalization](#sec-glossary) can also be used to analyze larger samples or entire documents.)
 
 Note that numerals\index{numerals!Gilliam-Peña-Mountain} are fully syllabized for this test.
-For example, "1945" will be counted as nine syllables (“u-no”-“nu-e-ve”-“cua-tro”-“cin-co”).\index{Gilliam-Peña-Mountain|)}
+For example, "1945" will be counted as nine syllables ("u-no"-"nu-e-ve"-"cua-tro"-"cin-co").\index{Gilliam-Peña-Mountain|)}
 
 \newpage
