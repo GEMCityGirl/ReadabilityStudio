@@ -23,6 +23,7 @@ SUPPRESS_MSG_SUBSTR = {
     "file not found",
     "unknown type name",
     "no matching function for call to",
+    "boolean expression can be simplified by DeMorgan's theorem",
 }
 # Optional env overrides (comma-separated lists)
 SUPPRESS_CHECKS |= {s.strip() for s in os.getenv("CT_SUPPRESS_CHECKS", "").split(",") if s.strip()}
