@@ -397,17 +397,20 @@ markdown_to_kable_footnote <- function(text)
   {
   if (knitr::is_latex_output())
     {
+    text %<>% # enquote() function
+               stringr::str_replace_all("enquote\\((.*?)\\)",
+                                        "\\\\\\\\enquote{\\1}") %>%
                # convert markdown bold tags
-    text %<>% stringr::str_replace_all("\\*\\*([\\w (),-[.]]{1,})\\*\\*",
+               stringr::str_replace_all("\\*\\*([^*]+)\\*\\*",
                                         "\\\\\\\\textbf{\\1}") %>%
                # italics
-               stringr::str_replace_all("\\*([\\w (),-[.]]{1,})\\*",
+               stringr::str_replace_all("\\*([^*]+)\\*",
                                         "\\\\\\\\textit{\\1}") %>%
                # superscript
-               stringr::str_replace_all("\\^([\\w (),-[.]]{1,})\\^",
+               stringr::str_replace_all("`([^`]+)`",
                                         "\\\\\\\\textsuperscript{\\1}") %>%
                # inline code
-               stringr::str_replace_all("`([\\w (),-[.]]{1,})`",
+               stringr::str_replace_all("\\^([^\\^]+)\\^",
                                         "\\\\\\\\texttt{\\1}") %>%
                # newlines
                stringr::str_replace_all("\n", "\\\\\\\\newline ")
@@ -415,17 +418,19 @@ markdown_to_kable_footnote <- function(text)
     }
   else if (knitr::is_html_output())
     {
+    text %<>% # enquote() for HTML
+              stringr::str_replace_all("enquote\\((.*?)\\)", "<q>\\1</q>") %>%
               # convert markdown bold tags
-    text %<>% stringr::str_replace_all("\\*\\*([\\w (),-[.]]{1,})\\*\\*",
+              stringr::str_replace_all("\\*\\*([^*]+)\\*\\*",
                                        R"(<span style='font-weight: bold;'>\1</span>)") %>%
               # italics
-              stringr::str_replace_all("\\*([\\w (),-[.]]{1,})\\*",
+              stringr::str_replace_all("\\*([^*]+)\\*",
                                        R"(<span style='font-style: italic;'>\1</span>)") %>%
               # superscript
-              stringr::str_replace_all("\\^([\\w (),-[.]]{1,})\\^",
+              stringr::str_replace_all("`([^`]+)`",
                                        R"(<sup>\1</sup>)") %>%
               # inline code
-              stringr::str_replace_all("`([\\w (),-[.]]{1,})`",
+              stringr::str_replace_all("\\^([^\\^]+)\\^",
                                        R"(<tt>\1</tt>)") %>%
               # newlines
               stringr::str_replace_all("\n", "<br />")

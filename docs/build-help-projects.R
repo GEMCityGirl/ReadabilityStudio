@@ -265,7 +265,7 @@ if (buildUserManual)
   combine_files("readability-tests-spanish.qmd", "spanish", addendum = "{{< elevator 'Back to top' >}}")
   combine_files("readability-tests-german.qmd", "german", addendum = "{{< elevator 'Back to top' >}}")
   combine_files("scoring-notes.qmd", "scoring-notes", addendum = "{{< elevator 'Back to top' >}}")
-  
+
   quarto::quarto_render(output_format="pdf", as_job=F, profile="manual")
   thumbNail <- image_convert(image_read_pdf(glue("{docFolder}/readability-studio-manual/docs-manual/readability-studio-manual.pdf"), 1),
                              format="png") %>%
@@ -275,7 +275,7 @@ if (buildUserManual)
   image_write(thumbNail, glue("{docFolder}/readability-studio-manual/docs-manual/readability-studio-manual-thumb.png"))
   # note that the online build using the thumbnail that was just generated
   quarto::quarto_render(output_format="html", as_job=F, profile="online")
-  
+
   unlink(glue("{docFolder}/readability-studio-manual/readability-tests-english.qmd"))
   unlink(glue("{docFolder}/readability-studio-manual/readability-tests-spanish.qmd"))
   unlink(glue("{docFolder}/readability-studio-manual/readability-tests-german.qmd"))

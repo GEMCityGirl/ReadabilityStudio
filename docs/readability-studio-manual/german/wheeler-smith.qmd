@@ -23,7 +23,7 @@ wheelersmithBVData <- tibble(col1 = c("I", "C", "W", "U"),
 colnames(wheelersmithBVData) <- rep('', ncol(wheelersmithBVData))
 kableExtra::kbl(wheelersmithBVData, booktabs=T, centering=T, align='l', escape=F) %>%
   kableExtra::kable_classic(full_width=F) %>%
-  footnote(alphabet = c(markdown_to_kable_footnote('“*drei- und mehrsilbigen*”')),
+  footnote(alphabet = c(markdown_to_kable_footnote('enquote(*drei- und mehrsilbigen*)')),
            escape=F, threeparttable=T)
 ```
 

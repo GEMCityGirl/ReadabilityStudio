@@ -65,6 +65,7 @@ format:
     documentclass: LegrandOrangeBook
     template: latex/default.tex
     include-in-header: latex/preamble.tex
+    csquotes: true
     latex-engine: xelatex
     keep-tex: true
     citation-package: biblatex

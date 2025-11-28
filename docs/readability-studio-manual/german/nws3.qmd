@@ -22,7 +22,7 @@ nws3Data <- tibble(col1 = c("G", "C", "S", "W"),
 colnames(nws3Data) <- rep('', ncol(nws3Data))
 kableExtra::kbl(nws3Data, booktabs=T, centering=T, align='l', escape=F, linesep="") %>%
   kableExtra::kable_classic(full_width=F) %>%
-  footnote(alphabet = c(markdown_to_kable_footnote('“*drei- und mehrsilbigen*”')),
+  footnote(alphabet = c(markdown_to_kable_footnote('enquote(*drei- und mehrsilbigen*)')),
            escape=F, threeparttable=T)
 ```
 
