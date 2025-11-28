@@ -12,11 +12,11 @@ source('R/appdown.r')
 Most experts recommend ignoring items such as chapter titles, list items, and table of contents when calculating reading levels.
 One reason that these items should be ignored is because they falsely lower the average sentence length (ASL).
 For example, chapter titles are usually just a couple of words.
-If you treat every section and chapter title as a regular sentence, then these short “sentences” will dramatically lower the ASL.
+If you treat every section and chapter title as a regular sentence, then these short "sentences" will dramatically lower the ASL.
 In turn, this will falsely lower most of your test scores.
 The other reason to ignore these items is because they are not usually part of the main content, but rather dividers or sectional markers.
 These items are read, but it is the narrative content that readers may struggle with.
-Therefore, it is the content that should be our main focus, and titles and list items should just be considered “noise.”
+Therefore, it is the content that should be our main focus, and titles and list items should just be considered "noise."
 
 These items, by default, are ignored for all newly created projects.
 That is, any word inside an incomplete sentence is not factored into any of the statistics or tests.
@@ -228,7 +228,7 @@ Under the **Sentence deduction** section, there are two options: **Ignore blank 
 `r menu(c('Tools','Options','Document Indexing','Sentence deduction'))`
 
 The option **Sentences must begin with capitalized words** controls whether sentences must begin with capitalized words.
-Selecting this option will make *{{< var PROGRAM_NAME >}}* more grammatically strict when counting sentences; however, it is recommended to leave this option unselected for “loosely written” documents.
+Selecting this option will make *{{< var PROGRAM_NAME >}}* more grammatically strict when counting sentences; however, it is recommended to leave this option unselected for "loosely written" documents.
 
 The option **Ignore blank lines** is used for controlling how multi-line sentences with blank lines between them are seen.
 For example:
@@ -296,17 +296,17 @@ For example, [Fry](#sec-fry-test)\index{Fry} will always sound out each numeric 
 ::: {.minipage data-latex="{\textwidth}"}
 The following symbols are syllabized as follows:
 
-   # = 1 syllable (“pound”)  
-   £ = 1 syllable (“pound” or “quid”) if at the beginning of the word  
-   ± = 3 syllables (“plus mi-nus”) if at the beginning of the word  
-   $ = 2 syllables (“do-llar”) if at the beginning of the word  
-   € = 2 syllables (“eu-ro”) if at the beginning of the word  
-   ¢ = 1 syllable (“cent”) if at the end of the word  
-   % = 2 syllables (“per-cent”) if at the end of the word  
-   ° = 2 syllables (“de-grees”) if at the end of the word  
-   ¼ = 2 syllables (“one fourth”) if at the end of the word  
-   ½ = 2 syllables (“one half”) if at the end of the word  
-   ¾ = 2 syllables (“three fourths”) if at the end of the word
+   # = 1 syllable ("pound")  
+   £ = 1 syllable ("pound" or "quid") if at the beginning of the word  
+   ± = 3 syllables ("plus mi-nus") if at the beginning of the word  
+   $ = 2 syllables ("do-llar") if at the beginning of the word  
+   € = 2 syllables ("eu-ro") if at the beginning of the word  
+   ¢ = 1 syllable ("cent") if at the end of the word  
+   % = 2 syllables ("per-cent") if at the end of the word  
+   ° = 2 syllables ("de-grees") if at the end of the word  
+   ¼ = 2 syllables ("one fourth") if at the end of the word  
+   ½ = 2 syllables ("one half") if at the end of the word  
+   ¾ = 2 syllables ("three fourths") if at the end of the word
 :::
 
 ## Repeated Word Exceptions {#sec-repeated-word-exceptions}

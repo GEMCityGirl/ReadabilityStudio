@@ -239,7 +239,7 @@ Also, the romanization of items that may cause issues with legacy programs:
 The first set of items are normally excluded from analysis because they a.) are not part of the narrative text and b.) skew the average sentence length.
 
 By default, *{{< var PROGRAM_NAME >}}* will automatically ignore these items, rather than requiring you to manually remove them from your document.
-This is helpful by saving time and by not having to maintain two copies of your document: the original and the “cleansed” version used for analysis.
+This is helpful by saving time and by not having to maintain two copies of your document: the original and the "cleansed" version used for analysis.
 
 The second set of items do not cause issue with *{{< var PROGRAM_NAME >}}*.
 It can recognize extended characters (e.g., *é*, *—*, etc.) and can properly deduce sentence endings.

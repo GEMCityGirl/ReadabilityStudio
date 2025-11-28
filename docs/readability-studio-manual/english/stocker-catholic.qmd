@@ -13,6 +13,6 @@ Next, expand **Readability Scores**, select **Test Options**, and then check **I
 After selecting this option, all New Dale-Chall tests performed in new projects will include this supplement.
 :::
 
-[^Stocker]: The students involved in this study were “6,743 randomly selected Catholic fourth-graders attending 136 parochial schools throughout the country” [-@{stocker}87–88].
+[^Stocker]: The students involved in this study were "6,743 randomly selected Catholic fourth-graders attending 136 parochial schools throughout the country" [-@{stocker}87–88].
 
 \newpage

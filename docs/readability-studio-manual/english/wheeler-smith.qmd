@@ -12,7 +12,7 @@ The Woodsman saw the seven sisters come into their bedroom.
 He saw them put on the shoes in which they danced.
 He saw them put on their party dresses.  
 When they were all dressed, the oldest sister opened a door in the floor near her bed.  
-“Sisters, we are ready,” she said.  
+"Sisters, we are ready," she said.  
 They walked down the secret steps.  
 The Woodsman put on his magic cap and followed them down the steps.  
 Thanks to his magic cap, no one was able to see him.  
@@ -24,7 +24,7 @@ Others had leaves of gold.
 
 The authors reported 20 polysyllabic words in the above sample.
 *Wonderful* is the only 3+ syllable word in this sample, whereas there are 18 2+ syllable words.
-It may be inferred that the authors were considering *their* as 2 syllables, which in that case would yield 20 2+ syllable (i.e., “polysyllabic”) words.
+It may be inferred that the authors were considering *their* as 2 syllables, which in that case would yield 20 2+ syllable (i.e., "polysyllabic") words.
 
 In regards to unit\index{sentences!units} (i.e., sentence) length, the researchers noted that sentence lengths strongly correlated with the manually-rated grade levels.
 Because of this, sentence length was given a stronger weight in the formula (compared to previous formulas).

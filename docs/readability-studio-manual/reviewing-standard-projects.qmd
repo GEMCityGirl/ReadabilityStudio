@@ -139,8 +139,8 @@ In the above graph, we can see that the intersection of the factors is 175 and 7
 The number of syllables is 175 (Y axis). The number of sentences is approximately 7 (between 8.4 and 5.9 on the plot [corresponding to 175 on the Y axis]).
 From this intersection, the point's X axis value is 3.7. Hence, 3.7 is the grade-level score for this graph.
 
-The Flesch\index{Flesch Reading Ease!chart} chart plots a document's factors onto a pair of “rulers” and then connects them to determine the Flesch score.
-This score ranges from 0 (“very difficult”) to 100 (“very easy”). Below is an example of a Flesch chart:
+The Flesch\index{Flesch Reading Ease!chart} chart plots a document's factors onto a pair of "rulers" and then connects them to determine the Flesch score.
+This score ranges from 0 ("very difficult") to 100 ("very easy"). Below is an example of a Flesch chart:
 
 ![Flesch chart](images/flesch-chart.png){width=75% fig-align="center"}
 
@@ -152,14 +152,14 @@ Similar to a Flesch chart, the Lix gauge\index{Lix!gauge plot} plots a document'
 
 ![Lix gauge](images/lix-gauge.png){width=75% fig-align="center"}
 
-In the above chart, we can see that Lix scores can range from 0 (“very easy”) to 60+ (“very difficult”).
+In the above chart, we can see that Lix scores can range from 0 ("very easy") to 60+ ("very difficult").
 
 There is also a variation of the Lix gauge\index{Lix!gauge plot (German)} that is adjusted for German materials:
 
 ![German Lix gauge](images/german-lix-gauge.png){width=75% fig-align="center"}
 
 This version adjusts the scaling of the score, assuming that German text is inherently more difficult than other languages.
-It also includes additional levels of difficulty (e.g., “children and young adult”).
+It also includes additional levels of difficulty (e.g., "children and young adult").
 
 Note that if you plot any of these graphs, its score can also be viewed in the [**Readability Scores**](#sec-reviewing-test-scores) area.
 
@@ -896,7 +896,7 @@ Note that there may be a slight discrepancy between a category's coverage value 
 This will happen if your document contains variations of certain words, such as *ask* and *asked*.
 The program will treat morphological variations of a word the same as its root word when calculating coverage statistics.
 However, when calculating unique word statistics, different forms of words will be counted separately.
-For example, the words *asked* and *asking* will be counted as separate unique words; however, they both will be seen as “ask” when calculating the verb-list coverage.
+For example, the words *asked* and *asking* will be counted as separate unique words; however, they both will be seen as "ask" when calculating the verb-list coverage.
 
 To graphically view the Dolch words breakdown, click on the [**Word Counts**](#sec-reviewing-dolch) subitem.
 This will display a bar chart of these statistics, listed by category.

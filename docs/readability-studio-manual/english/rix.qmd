@@ -6,7 +6,7 @@ It is based on the [Lix](#sec-lix-test) readability formula [@{bjornsson:1983}48
 
 "Rate" in this context refers to the rate of long words throughout the document.
 Comparing against other tests that traditionally recommend fixed sample sizes (e.g., [SMOG](#sec-smog-test)), Anderson noted that Rix could be applied to any length of text without normalization.
-As he explained, “the concept of rate has the advantage of being applied over any number of sentences, for it is a running average” [@{anderson:1983}495].
+As he explained, "the concept of rate has the advantage of being applied over any number of sentences, for it is a running average" [@{anderson:1983}495].
 
 Regarding the factors used for this test, Anderson defined a sentence "as a sequence of words terminated by a full-stop (period), question or exclamation mark, colon, or semicolon" [@{anderson:1983}495].
 In other words, sentences [units](#sec-glossary) should be used for the calculation.
