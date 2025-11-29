@@ -240,7 +240,7 @@ if (buildShortcutsCheatsheet)
             glue("{docFolder}/shortcuts-cheatsheet/_variables.yml"),
             TRUE)
 
-  quarto::quarto_render(output_format="pdf", as_job=F)
+  quarto::quarto_render(output_format="pdf", as_job=F, profile="cheatsheet")
   # create a thumbnail for the website
   thumbNail <- image_convert(image_read_pdf(glue("{docFolder}/shortcuts-cheatsheet/docs/shortcuts-cheatsheet.pdf"), 1),
                        format="png") %>%
