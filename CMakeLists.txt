@@ -493,7 +493,7 @@ if(MSVC)
         $<$<CONFIG:Release>:NDEBUG>)
     target_compile_options(${PROJECT_NAME} PUBLIC
         /Zc:__cplusplus /MP /W3 /WX /wd6211 /openmp /permissive- /sdl
-        "$<$<CONFIG:Debug>:/Od ${SANITIZER_FLAGS}>"
+        $<$<CONFIG:Debug>:/Od ${SANITIZER_FLAGS}>
         $<$<CONFIG:Release>:/O2>)
 
 elseif(MINGW OR MSYS)
@@ -505,7 +505,7 @@ elseif(MINGW OR MSYS)
         -Wall -Wextra -Wpedantic -Wshadow -Werror
         $<$<OR:$<CXX_COMPILER_ID:GNU>,$<CXX_COMPILER_ID:Clang>>:-fstack-protector-strong>
         $<$<OR:$<CXX_COMPILER_ID:GNU>,$<CXX_COMPILER_ID:Clang>>:-D_FORTIFY_SOURCE=2>
-        "$<$<CONFIG:Debug>:-Og -g3 ${SANITIZER_FLAGS} ${SANITIZER_EXTRA_FLAGS}>"
+        $<$<CONFIG:Debug>:-Og -g3 ${SANITIZER_FLAGS} ${SANITIZER_EXTRA_FLAGS}>
         $<$<CONFIG:Release>:-O2>)
     target_link_options(${PROJECT_NAME} PUBLIC
         "$<$<CONFIG:Debug>:${SANITIZER_LINK_FLAGS}>")
@@ -519,7 +519,7 @@ elseif(APPLE)
         -Wall -Wextra -Wpedantic -Wshadow -Werror
         $<$<OR:$<CXX_COMPILER_ID:GNU>,$<CXX_COMPILER_ID:Clang>>:-fstack-protector-strong>
         $<$<OR:$<CXX_COMPILER_ID:GNU>,$<CXX_COMPILER_ID:Clang>>:-D_FORTIFY_SOURCE=2>
-        "$<$<CONFIG:Debug>:-Og -g3 ${SANITIZER_FLAGS} ${SANITIZER_EXTRA_FLAGS}>"
+        $<$<CONFIG:Debug>:-Og -g3 ${SANITIZER_FLAGS} ${SANITIZER_EXTRA_FLAGS}>
         $<$<CONFIG:Release>:-O2>)
     target_link_options(${PROJECT_NAME} PUBLIC
         "$<$<CONFIG:Debug>:${SANITIZER_LINK_FLAGS}>")
@@ -536,11 +536,11 @@ elseif(UNIX)
         -Wall -Wextra -Wpedantic -Wshadow -Werror -fopenmp
         $<$<OR:$<CXX_COMPILER_ID:GNU>,$<CXX_COMPILER_ID:Clang>>:-fstack-protector-strong>
         $<$<OR:$<CXX_COMPILER_ID:GNU>,$<CXX_COMPILER_ID:Clang>>:-D_FORTIFY_SOURCE=2>
-        "$<$<CONFIG:Debug>:-Og -g3 ${SANITIZER_FLAGS} ${SANITIZER_EXTRA_FLAGS}>"
+        $<$<CONFIG:Debug>:-Og -g3 ${SANITIZER_FLAGS} ${SANITIZER_EXTRA_FLAGS}>
         $<$<CONFIG:Release>:-O2>)
     target_link_options(${PROJECT_NAME} PUBLIC
         $<$<OR:$<CXX_COMPILER_ID:GNU>,$<CXX_COMPILER_ID:Clang>>:-Wl,-z,relro,-z,now>
-        "$<$<CONFIG:Debug>:${SANITIZER_LINK_FLAGS}>")
+        $<$<CONFIG:Debug>:${SANITIZER_LINK_FLAGS}>)
 endif()
 
 if(DEFINED wxBUILD_DEBUG_LEVEL AND NOT "${wxBUILD_DEBUG_LEVEL}" STREQUAL "${PROJECT_WX_DEBUG_LEVEL}")
