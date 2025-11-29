@@ -139,12 +139,6 @@ message(STATUS "Compiler: ${CMAKE_CXX_COMPILER_ID} ${CMAKE_CXX_COMPILER_VERSION}
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
     include(cmake/modules/CheckASAN.cmake)
     include(cmake/modules/EnableSanitizers.cmake)
-    # Expose the human-readable list to the code
-    string(REPLACE "\n" "\\n" ENABLED_SANITIZERS_STR_ESCAPED "${ENABLED_SANITIZERS_STR}")
-    string(REPLACE "\"" "\\\"" ENABLED_SANITIZERS_STR_ESCAPED "${ENABLED_SANITIZERS_STR_ESCAPED}")
-
-    string(REPLACE "\n" "\\n" SANITIZER_ENV_HINTS_STR_ESCAPED "${SANITIZER_ENV_HINTS_STR}")
-    string(REPLACE "\"" "\\\"" SANITIZER_ENV_HINTS_STR_ESCAPED "${SANITIZER_ENV_HINTS_STR_ESCAPED}")
 endif()
 
 # interproceduarl optimization
@@ -474,8 +468,8 @@ add_executable(${PROJECT_NAME} WIN32 MACOSX_BUNDLE ${APP_SRC_FILES})
 
 target_compile_definitions(${PROJECT_NAME} PUBLIC
     $<$<CONFIG:Debug>:
-        ENABLED_SANITIZERS_STR="${ENABLED_SANITIZERS_STR_ESCAPED}"
-        SANITIZER_ENV_HINTS_STR="${SANITIZER_ENV_HINTS_STR_ESCAPED}">)
+        ENABLED_SANITIZERS_STR="${ENABLED_SANITIZERS_STR}"
+        SANITIZER_ENV_HINTS_STR="${SANITIZER_ENV_HINTS_STR}">)
 
 # ----------------------------------------
 # Platform-specific settings

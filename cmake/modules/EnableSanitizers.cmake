@@ -5,9 +5,11 @@
 #   SANITIZER_FLAGS
 #   SANITIZER_EXTRA_FLAGS
 #   SANITIZER_DEFS
-#   ENABLED_SANITIZERS_STR     (pretty, bullet-point string)
-#   SANITIZER_ENV_VARS         (list of "NAME=VALUE" env assignments)
-#   SANITIZER_ENV_HINTS_STR    (pretty, multi-line help text)
+#   ENABLED_SANITIZERS_SUMMARY  (pretty, bullet-point string for CMake output)
+#   ENABLED_SANITIZERS_STR      (pretty, bullet-point string for code)
+#   SANITIZER_ENV_VARS          (list of "NAME=VALUE" env assignments)
+#   SANITIZER_ENV_HINTS_SUMMARY (pretty, multi-line help text for CMake output)
+#   SANITIZER_ENV_HINTS_STR     (pretty, multi-line help text for code)
 
 option(ENABLE_SANITIZERS "Enable sanitizers on supported compilers (applied to Debug builds via generator expressions)" OFF)
 
@@ -16,6 +18,7 @@ set(SANITIZER_EXTRA_FLAGS "")
 set(SANITIZER_LINK_FLAGS "")
 set(SANITIZER_DEFS "")
 set(SANITIZER_LIST "")
+set(ENABLED_SANITIZERS_SUMMARY "")
 set(ENABLED_SANITIZERS_STR "")
 
 # We keep our default combo: ASan+UBSan on Clang/GCC; ASan on MSVC.
@@ -44,8 +47,8 @@ if(ENABLE_SANITIZERS)
     endif()
 
     # Pretty list (bulleted)
-    string(REPLACE ";" "\n  • " ENABLED_SANITIZERS_STR "${SANITIZER_LIST}")
-    set(ENABLED_SANITIZERS_STR "  • ${ENABLED_SANITIZERS_STR}")
+    string(REPLACE ";" "\n  • " ENABLED_SANITIZERS_SUMMARY "${SANITIZER_LIST}")
+    set(ENABLED_SANITIZERS_SUMMARY "  • ${ENABLED_SANITIZERS_SUMMARY}")
 
     # ------------------------------
     # Recommended runtime env values
@@ -94,11 +97,11 @@ if(ENABLE_SANITIZERS)
     endif()
 
     # Build human-readable help block
-    set(SANITIZER_ENV_HINTS_STR "")
+    set(SANITIZER_ENV_HINTS_SUMMARY "")
     if(_env_hints)
         # Pretty bullets
-        string(REPLACE ";" "\n  • " SANITIZER_ENV_HINTS_STR "${_env_hints}")
-        set(SANITIZER_ENV_HINTS_STR "${SANITIZER_ENV_HINTS_STR}")
+        string(REPLACE ";" "\n  • " SANITIZER_ENV_HINTS_SUMMARY "${_env_hints}")
+        set(SANITIZER_ENV_HINTS_SUMMARY "${SANITIZER_ENV_HINTS_SUMMARY}")
     endif()
 
     # Verbose summary
@@ -116,7 +119,7 @@ if(ENABLE_SANITIZERS)
     message(STATUS "Platform                    : ${CMAKE_SYSTEM_NAME}")
     if(SANITIZER_LIST)
         message(STATUS "Enabled Sanitizers and Features:")
-        message("${ENABLED_SANITIZERS_STR}")
+        message("${ENABLED_SANITIZERS_SUMMARY}")
     else()
         message(STATUS "Enabled Sanitizers and Features: (none)")
     endif()
@@ -132,9 +135,9 @@ if(ENABLE_SANITIZERS)
 
     # Show recommended env usage
     message(STATUS "---------------- Recommended Runtime Environment ------------")
-    if(SANITIZER_ENV_HINTS_STR)
+    if(SANITIZER_ENV_HINTS_SUMMARY)
         message(STATUS "Suggested variables:")
-        message("${SANITIZER_ENV_HINTS_STR}")
+        message("${SANITIZER_ENV_HINTS_SUMMARY}")
     else()
         message(STATUS "(No runtime environment variables recommended for this toolchain.)")
     endif()
@@ -159,6 +162,15 @@ set(SANITIZER_FLAGS "${SANITIZER_FLAGS}")
 set(SANITIZER_EXTRA_FLAGS "${SANITIZER_EXTRA_FLAGS}")
 set(SANITIZER_LINK_FLAGS "${SANITIZER_LINK_FLAGS}")
 set(SANITIZER_DEFS "${SANITIZER_DEFS}")
+set(ENABLED_SANITIZERS_SUMMARY "${ENABLED_SANITIZERS_SUMMARY}")
+
+string(REPLACE "\n" "\\n" ENABLED_SANITIZERS_STR "${ENABLED_SANITIZERS_SUMMARY}")
+string(REPLACE "\"" "\\\"" ENABLED_SANITIZERS_STR "${ENABLED_SANITIZERS_STR}")
 set(ENABLED_SANITIZERS_STR "${ENABLED_SANITIZERS_STR}")
+
 set(SANITIZER_ENV_VARS "${SANITIZER_ENV_VARS}")
+set(SANITIZER_ENV_HINTS_SUMMARY "${SANITIZER_ENV_HINTS_SUMMARY}")
+
+string(REPLACE "\n" "\\n" SANITIZER_ENV_HINTS_STR "${SANITIZER_ENV_HINTS_SUMMARY}")
+string(REPLACE "\"" "\\\"" SANITIZER_ENV_HINTS_STR "${SANITIZER_ENV_HINTS_STR}")
 set(SANITIZER_ENV_HINTS_STR "${SANITIZER_ENV_HINTS_STR}")
