@@ -49,8 +49,8 @@
 
 #include "base_project_doc.h"
 #include "../Wisteria-Dataviz/src/base/reportenumconvert.h"
-#include "../Wisteria-Dataviz/src/import/html_encode.h"
 #include "../Wisteria-Dataviz/src/graphs/wordcloud.h"
+#include "../Wisteria-Dataviz/src/import/html_encode.h"
 #include "../app/readability_app.h"
 
 wxIMPLEMENT_DYNAMIC_CLASS(BaseProjectDoc, wxDocument)
