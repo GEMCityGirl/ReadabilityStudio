@@ -276,12 +276,18 @@ add_subdirectory(${wxWidgets_BASEDIR} ${CMAKE_CURRENT_SOURCE_DIR}/wxWidgets_lib 
 set(wxWidgets_LIBRARIES wx::core wx::base wx::xrc wx::propgrid wx::xml
                         wx::aui wx::ribbon wx::qa wx::stc wx::net wx::richtext)
 # Apply compiler warning suppressions to wxWidgets targets
-if (CMAKE_CXX_COMPILER_ID MATCHES "Clang|GNU|AppleClang")
+if(CMAKE_CXX_COMPILER_ID MATCHES "Clang|GNU|AppleClang")
     foreach(tgt IN LISTS wxWidgets_LIBRARIES)
+        if(TARGET ${tgt})
+            get_target_property(is_imported ${tgt} IMPORTED)
+            get_target_property(is_alias ${tgt} ALIASED_TARGET)
+            if(NOT is_imported AND NOT is_alias)
         target_compile_options(${tgt} PRIVATE
             -Wno-alloc-size-larger-than
             -Wno-format
             -Wno-deprecated-declarations)
+            endif()
+        endif()
     endforeach()
 endif()
 message(STATUS "Adding wxWidgets libraries: ${wxWidgets_LIBRARIES}")
