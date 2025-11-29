@@ -489,7 +489,7 @@ target_compile_definitions(${PROJECT_NAME} PUBLIC
 if(MSVC)
     target_compile_definitions(${PROJECT_NAME} PUBLIC
         __WXMSW__ CRCPP_USE_CPP11 _CRT_SECURE_NO_WARNINGS _UNICODE
-        "$<$<CONFIG:Debug>:__WXDEBUG__ ENABLE_PROFILING ${SANITIZER_DEFS}>"
+        $<$<CONFIG:Debug>:__WXDEBUG__ ENABLE_PROFILING ${SANITIZER_DEFS}>
         $<$<CONFIG:Release>:NDEBUG>)
     target_compile_options(${PROJECT_NAME} PUBLIC
         /Zc:__cplusplus /MP /W3 /WX /wd6211 /openmp /permissive- /sdl
@@ -508,7 +508,7 @@ elseif(MINGW OR MSYS)
         $<$<CONFIG:Debug>:-Og -g3 ${SANITIZER_FLAGS} ${SANITIZER_EXTRA_FLAGS}>
         $<$<CONFIG:Release>:-O2>)
     target_link_options(${PROJECT_NAME} PUBLIC
-        "$<$<CONFIG:Debug>:${SANITIZER_LINK_FLAGS}>")
+        $<$<CONFIG:Debug>:${SANITIZER_LINK_FLAGS}>)
 
 elseif(APPLE)
     target_compile_definitions(${PROJECT_NAME} PUBLIC
@@ -522,7 +522,7 @@ elseif(APPLE)
         $<$<CONFIG:Debug>:-Og -g3 ${SANITIZER_FLAGS} ${SANITIZER_EXTRA_FLAGS}>
         $<$<CONFIG:Release>:-O2>)
     target_link_options(${PROJECT_NAME} PUBLIC
-        "$<$<CONFIG:Debug>:${SANITIZER_LINK_FLAGS}>")
+        $<$<CONFIG:Debug>:${SANITIZER_LINK_FLAGS}>)
 
 elseif(UNIX)
     # strip dead code
