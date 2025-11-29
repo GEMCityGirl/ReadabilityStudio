@@ -276,10 +276,10 @@ if(CMAKE_CXX_COMPILER_ID MATCHES "Clang|GNU|AppleClang")
             get_target_property(is_imported ${tgt} IMPORTED)
             get_target_property(is_alias ${tgt} ALIASED_TARGET)
             if(NOT is_imported AND NOT is_alias)
-        target_compile_options(${tgt} PRIVATE
-            -Wno-alloc-size-larger-than
-            -Wno-format
-            -Wno-deprecated-declarations)
+                target_compile_options(${tgt} PRIVATE
+                        -Wno-alloc-size-larger-than
+                        -Wno-format
+                        -Wno-deprecated-declarations)
             endif()
         endif()
     endforeach()
@@ -542,9 +542,13 @@ if(DEFINED wxBUILD_DEBUG_LEVEL AND NOT "${wxBUILD_DEBUG_LEVEL}" STREQUAL "${PROJ
 endif()
 
 # Print per-target summary
-if(ENABLE_SANITIZERS AND ENABLED_SANITIZERS_STR)
-    message(STATUS "Target ${PROJECT_NAME} built with sanitizers (Debug): ${ENABLED_SANITIZERS_STR}")
+if(ENABLE_SANITIZERS AND ENABLED_SANITIZERS_SUMMARY)
+    message(STATUS "Target ${PROJECT_NAME} built with sanitizers (Debug): ${ENABLED_SANITIZERS_SUMMARY}")
 endif()
+include(cmake/modules/PrintCompilerFlags.cmake)
+print_compile_flags_summary(${PROJECT_NAME})
+target_compile_definitions(${PROJECT_NAME} PUBLIC
+    COMPILE_FLAGS_SUMMARY_STR="${COMPILE_FLAGS_SUMMARY_STR}")
 
 set_target_properties(${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
 

@@ -243,23 +243,36 @@ void AboutDialogEx::CreateControls()
             productInfoGrid->Add(new wxStaticText(mainPage, wxID_ANY, _(L"Build:")));
             productInfoGrid->Add(new wxStaticText(mainPage, wxID_ANY, wxString{ BUILD_VERSION }));
             }
+
+        productInfoGrid->Add(new wxStaticText(mainPage, wxID_ANY,
+                                              // TRANSLATORS: Options used to compile the program.
+                                              _(L"Build Info:")));
+        wxString buildInfo;
 #ifndef NDEBUG
-        productInfoGrid->Add(new wxStaticText(
-            mainPage, wxID_ANY,
-            // TRANSLATORS: Compiled version of the program (e.g., DEBUG or RELEASE)
-            _(L"Build Type:")));
-    #ifdef ENABLED_SANITIZERS_STR
+        buildInfo += _(L"DEBUG version");
+#else
+        // TRANSLATORS: Release version of the program.
+        buildInfo += _(L"Release version");
+#endif
+#ifdef COMPILE_FLAGS_SUMMARY_STR
+        wxString compileFlagsInfo = wxString::FromUTF8(COMPILE_FLAGS_SUMMARY_STR);
+        compileFlagsInfo.Replace(L"\\n", L"\n");
+        compileFlagsInfo.Trim();
+        compileFlagsInfo.Trim(false);
+        // TRANSLATORS: Options used to compile the program.
+        buildInfo += _(L"\n\nCompile options:\n--------------------\n") + compileFlagsInfo;
+#endif
+#if defined(ENABLED_SANITIZERS_STR) && defined(SANITIZER_ENV_HINTS_STR)
         wxString sanitizerInfo = wxString::FromUTF8(ENABLED_SANITIZERS_STR) + L"\n" +
                                  wxString::FromUTF8(SANITIZER_ENV_HINTS_STR);
         sanitizerInfo.Replace(L"\\n", L"\n");
         sanitizerInfo.Trim();
-        productInfoGrid->Add(
-            new wxStaticText(mainPage, wxID_ANY,
-                             _DT(L"DEBUG with:\n", DTExplanation::DebugMessage) + sanitizerInfo));
-    #else
-        productInfoGrid->Add(new wxStaticText(mainPage, wxID_ANY, _DT(L"DEBUG")));
-    #endif
+        sanitizerInfo.Trim(false);
+        // TRANSLATORS: AddressSanitizer options used to compile the program.
+        buildInfo += _(L"\n\nSanitizer options:\n--------------------\n") + sanitizerInfo;
 #endif
+        productInfoGrid->Add(new wxStaticText(mainPage, wxID_ANY, buildInfo));
+
         productInfoGrid->Add(new wxStaticText(mainPage, wxID_ANY, _(L"Build Date:")));
         wxDateTime buildDate;
         buildDate.ParseDate(__DATE__);
