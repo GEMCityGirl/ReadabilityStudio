@@ -63,6 +63,7 @@
 #include <utility>
 #include <wx/generic/statbmpg.h>
 #include <wx/stc/stc.h>
+#include <wx/valgen.h>
 #include <wx/webview.h>
 #include <wx/zstream.h>
 
