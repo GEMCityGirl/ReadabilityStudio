@@ -53,6 +53,7 @@
 #include "../../projects/batch_project_view.h"
 #include "../../projects/standard_project_doc.h"
 #include "../../projects/standard_project_view.h"
+#include <wx/valgen.h>
 
 wxDECLARE_APP(ReadabilityApp);
 

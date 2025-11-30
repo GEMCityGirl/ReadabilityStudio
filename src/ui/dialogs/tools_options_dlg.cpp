@@ -63,6 +63,7 @@
 #include "edit_word_list_dlg.h"
 #include <wx/bannerwindow.h>
 #include <wx/colordlg.h>
+#include <wx/valgen.h>
 #include <wx/wx.h>
 
 wxDECLARE_APP(ReadabilityApp);

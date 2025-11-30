@@ -51,6 +51,7 @@
 #include "../../Wisteria-Dataviz/src/import/html_extract_text.h"
 #include "../../app/readability_app.h"
 #include <wx/gbsizer.h>
+#include <wx/valgen.h>
 
 wxDECLARE_APP(ReadabilityApp);
 

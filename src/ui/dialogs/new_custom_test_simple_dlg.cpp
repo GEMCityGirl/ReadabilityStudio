@@ -49,6 +49,7 @@
 
 #include "new_custom_test_simple_dlg.h"
 #include "../../app/readability_app.h"
+#include <wx/valgen.h>
 
 wxDECLARE_APP(ReadabilityApp);
 

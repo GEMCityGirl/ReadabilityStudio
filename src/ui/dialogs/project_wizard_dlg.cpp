@@ -51,6 +51,7 @@
 #include "../../Wisteria-Dataviz/src/ui/dialogs/getdirdlg.h"
 #include <utility>
 #include <wx/dir.h>
+#include <wx/valgen.h>
 
 wxDECLARE_APP(ReadabilityApp);
 

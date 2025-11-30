@@ -49,6 +49,7 @@
 
 #include "web_harvester_dlg.h"
 #include "../../app/readability_app.h"
+#include <wx/valgen.h>
 
 wxDECLARE_APP(ReadabilityApp);
 
