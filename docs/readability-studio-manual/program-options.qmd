@@ -810,7 +810,7 @@ He's been takin' that test for five hours.
 He ain't never goin' to finish.
 :::
 
-Checking this option will instruct the program to not consider words such as *takin’* and *goin’* as misspellings.
+Checking this option will instruct the program to not consider words such as *takin'* and *goin'* as misspellings.
 
 **Ignore social media hashtags**: Check this to ignore hashtags, such as *#ReadabilityFormulasRock* or *\@AskLibreOffice*.
 
@@ -1052,7 +1052,7 @@ Also, this feature will remove the legend (if grouping is in use).
 
 #### Lix Gauge {-}
 
-**Use English translations for German Lix gauge**: Check this to display Schulz’s [-@{schulz}53] English translated bracket labels on the [German Lix](#sec-lix-german-technical) gauge.
+**Use English translations for German Lix gauge**: Check this to display Schulz's [-@{schulz}53] English translated bracket labels on the [German Lix](#sec-lix-german-technical) gauge.
 
 ### Bar Charts {-}
 

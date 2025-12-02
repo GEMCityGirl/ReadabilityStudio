@@ -268,7 +268,7 @@ For example, in the name *McCoy*, the prefix is really a separate syllable.
 *{{< var PROGRAM_NAME >}}* uses an algorithmic approach which takes these linguistic nuances into account.
 
 Different algorithms should be used for different languages.
-The rules for vowel-blocks, silent *e*’s, and number counting can greatly vary between languages.
+The rules for vowel-blocks, silent *e*'s, and number counting can greatly vary between languages.
 For example, *85* would be two syllables in English (*eight five*), whereas in Spanish[^spanishSyllabizerFootnote] it would be four syllables (*o-cho cin-co*).
 To account for this, *{{< var PROGRAM_NAME >}}* uses the proper syllabizer based on the [language](#sec-project-settings) that you specify for your project.
 
