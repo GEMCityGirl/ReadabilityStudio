@@ -43,16 +43,16 @@ endif()
 option(ALLOW_DIRTY_SUBMODULES "Allow building even if submodules have local changes" OFF)
 # Override it based on build type (for single-config generators)
 if (CMAKE_BUILD_TYPE STREQUAL "Debug")
-    set(ALLOW_DIRTY_SUBMODULES ON CACHE BOOL "Allow building even if submodules have local changes" FORCE)
+    set(ALLOW_DIRTY_SUBMODULES ON CACHE BOOL "Allow building even if submodules have local changes")
 elseif (CMAKE_BUILD_TYPE STREQUAL "Release")
-    set(ALLOW_DIRTY_SUBMODULES OFF CACHE BOOL "Allow building even if submodules have local changes" FORCE)
+    set(ALLOW_DIRTY_SUBMODULES OFF CACHE BOOL "Allow building even if submodules have local changes")
 endif()
 
 message(STATUS "Build: ${CMAKE_BUILD_TYPE}")
 message(STATUS "Generator: ${CMAKE_GENERATOR}")
 
 if(APPLE)
-    set(CMAKE_OSX_ARCHITECTURES "arm64;x86_64" CACHE STRING "" FORCE)
+    set(CMAKE_OSX_ARCHITECTURES "arm64;x86_64" CACHE STRING "macOS Architecture")
     # Enable hardened runtime:
 	# https://developer.apple.com/documentation/security/hardened_runtime
     # Note that this will need to be set via codesign later because we are not
@@ -67,14 +67,13 @@ endif()
 if(APPLE AND CMAKE_SYSTEM_NAME STREQUAL "iOS")
     set(CMAKE_OSX_DEPLOYMENT_TARGET 12.0 CACHE STRING "iOS Deployment Target")
 else()
-    set(CMAKE_OSX_DEPLOYMENT_TARGET 10.15 CACHE STRING "macOS Deployment Target")
+    set(CMAKE_OSX_DEPLOYMENT_TARGET 13.3 CACHE STRING "macOS Deployment Target")
 endif()
 message(STATUS "macOS deployment target: ${CMAKE_OSX_DEPLOYMENT_TARGET}")
 
-set(UNIX_ARCHITECTURE "x86_64" CACHE STRING "" FORCE)
-
 # Only used for the docs
 set(WIN32_DEPLOYMENT_TARGET 10)
+set(UNIX_ARCHITECTURE "x86_64")
 set(MIN_RAM "2 GB")
 set(RAM_RECOMMENDED "4 GB")
 
@@ -254,12 +253,12 @@ endif()
 message(STATUS "wxWidgets debug level: ${PROJECT_WX_DEBUG_LEVEL}")
 
 # Add wxWidgets to the build
-set(wxUSE_WEBVIEW_EDGE ON CACHE BOOL "Use Edge backend for WebView (MSW)" FORCE)
-set(wxBUILD_SHARED OFF CACHE BOOL "Build wxWidgets statically" FORCE)
-set(wxBUILD_DEBUG_LEVEL ${PROJECT_WX_DEBUG_LEVEL} CACHE STRING "wxWidgets runtime debug level" FORCE)
+set(wxUSE_WEBVIEW_EDGE ON)
+set(wxBUILD_SHARED OFF)
+set(wxBUILD_DEBUG_LEVEL ${PROJECT_WX_DEBUG_LEVEL})
 if(CMAKE_BUILD_TYPE STREQUAL "Release")
-    set(wxBUILD_OPTIMISE ON CACHE BOOL "Optimize wxWidgets for Release" FORCE)
-    set(wxBUILD_STRIPPED_RELEASE ON CACHE BOOL "Strip symbols from wxWidgets Release builds" FORCE)
+    set(wxBUILD_OPTIMISE ON)
+    set(wxBUILD_STRIPPED_RELEASE ON)
 endif()
 find_directory("wxWidgets" wxWidgets_BASEDIR)
 if(NOT EXISTS "${wxWidgets_BASEDIR}")
