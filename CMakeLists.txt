@@ -141,7 +141,7 @@ if(CMAKE_BUILD_TYPE STREQUAL "Debug")
     include(cmake/modules/EnableSanitizers.cmake)
 endif()
 
-# interprocedural optimization
+# Interprocedural optimization
 if(${CMAKE_BUILD_TYPE} STREQUAL "Release")
     include(CheckIPOSupported)
     check_ipo_supported(RESULT ipo_supported)
@@ -431,7 +431,7 @@ add_custom_target(manuals
                 WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/docs/")
 
 # Build the API documentation
-########################
+##############################################################
 find_package(Doxygen)
 if(NOT DOXYGEN_FOUND)
     # Just warning about API docs not being built.
@@ -471,10 +471,9 @@ target_compile_definitions(${PROJECT_NAME} PUBLIC
         ENABLED_SANITIZERS_STR="${ENABLED_SANITIZERS_STR}"
         SANITIZER_ENV_HINTS_STR="${SANITIZER_ENV_HINTS_STR}">)
 
-# ----------------------------------------
 # Platform-specific settings
-# Definitions, warnings, and optimizations
-# ----------------------------------------
+# (definitions, warnings, and optimizations)
+##############################################################
 
 # Define wxDEBUG_LEVEL consistently for all platforms
 target_compile_definitions(${PROJECT_NAME} PUBLIC 
