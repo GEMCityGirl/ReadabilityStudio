@@ -99,7 +99,7 @@ namespace LuaScripting
         // encoded links will hex encode non-alphanumeric values in them,
         // so convert that to match the real name of the local file
         const wchar_t* filteredFileName = extract(link, length, true, false);
-        if (!filteredFileName)
+        if (filteredFileName == nullptr)
             {
             return;
             }
@@ -122,7 +122,7 @@ namespace LuaScripting
             path.replace(percentIndex, 3, wxString(1, value));
             }
         // strip off bookmark (if there is one)
-        const size_t bookMarkIndex = path.find(L'#', true);
+        const size_t bookMarkIndex = path.rfind(L'#');
         if (bookMarkIndex != wxString::npos)
             {
             path.erase(bookMarkIndex);
