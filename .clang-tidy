@@ -17,6 +17,7 @@ google-*,-readability-function-cognitive-complexity,-bugprone-branch-clone,-hicp
 -hicpp-no-assembler,
 -bugprone-suspicious-stringview-data-usage,
 -readability-redundant-inline-specifier,
+-cppcoreguidelines-pro-type-reinterpret-cast,
 -bugprone-empty-catch,
 -bugprone-lambda-function-name,
 -google-runtime-int'
