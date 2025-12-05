@@ -103,7 +103,7 @@ Line chaining (or sentence chaining) is a sentence deduction method where lines 
 In other words, multiple lines of text can be joined into a single sentence.
 This is normally preferred behavior when text is formatted to a specific width, such as the following:
 
-<!--quneiform-suppress-begin!-->
+<!--quneiform-suppress-begin-->
 :::: {.fancyquotes data-latex=''}
 ::: {.FlushLeft data-latex=''}
 WARNING:
@@ -114,7 +114,7 @@ OFF the mower. Failure to comply may\
 result in injury.
 :::
 ::::
-<!--quneiform-suppress-end!-->
+<!--quneiform-suppress-end-->
 
 Although this is five lines of text, we would expect for this to be seen as three sentences.
 By chaining lines 2, 3, and part of 4 into one sentence (from *Before* to *mower.*), we properly see the sentences (regardless of the line breaks).
@@ -161,7 +161,7 @@ As we can see, the program helps avoid incorrect line chaining.
 Just as important, it will chain lines correctly when it is actually necessary.
 Consider the following:
 
-<!--quneiform-suppress-begin!-->
+<!--quneiform-suppress-begin-->
 :::: {.fancyquotes data-latex=''}
 ::: {.FlushLeft data-latex=''}
 WARNING:
@@ -172,7 +172,7 @@ OFF the mower. Failure to comply may\
 result in injury.
 :::
 ::::
-<!--quneiform-suppress-end!-->
+<!--quneiform-suppress-end-->
 
 The first line, *WARNING:*, will be seen as a single sentence because the line ends with a colon.
 Although colons are not normally treated as a sentence terminating character, an exception is made when it is encountered at the end of a line.
@@ -406,7 +406,7 @@ Some published documents format each line of text to a specific width to fit on 
 In doing so, longer words at the end of some lines may be split and hyphenated.
 For example:
 
-<!--quneiform-suppress-begin!-->
+<!--quneiform-suppress-begin-->
 :::: {.fancyquotes data-latex=''}
 ::: {.FlushLeft data-latex=''}
 COBOL is an acronym for COmmon *Bus-\
@@ -417,7 +417,7 @@ can be found in the backend of many Point-of-\
 Sale systems.
 :::
 ::::
-<!--quneiform-suppress-end!-->
+<!--quneiform-suppress-end-->
 
 Note how *Business* and *Point-of-Sale* are split across multiple lines.
 

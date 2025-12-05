@@ -89,11 +89,11 @@ Grades 5/6:
 ::: {.minipage data-latex="{\textwidth}"}
 Grades 7/8:
 
-<!--quneiform-suppress-begin!-->
+<!--quneiform-suppress-begin-->
 - *Bayerisches Lesebuch für das seibte und achte Schuljahr*
 - *Lesebuch für die Volksschulen, Vierter Band. 7. und 8. Schuljahr*
 - *Lesebuch. C 8 (8. Schuljahr)*
-<!--quneiform-suppress-end!-->
+<!--quneiform-suppress-end-->
 :::
 
 ::: {.minipage data-latex="{\textwidth}"}

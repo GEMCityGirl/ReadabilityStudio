@@ -94,7 +94,7 @@ For options specific to a graph that needs to be added to the ribbon:
 - Add its `AddXXXTest()` function to `r file_path(c("src", "projects", "base_project.cpp"))`
 - If a graphical test (e.g., Fry), then also do the following:
   - The `AddXXXTest()` function must be virtual and derived in `r file_path(c("src", "projects", "standard_project_doc.h"))` and `r file_path(c("src", "projects", "standard_project_doc.cpp"))` also
-  - If a graphical test that’s a supplement to a test (that already has its own `AddXXXTest()` function), then call the graphical `AddXXXTest()` from the test’s original `AddXXXTest()` function in `r file_path(c("src", "projects", "base_project.cpp"))`
+  - If a graphical test that's a supplement to a test (that already has its own `AddXXXTest()` function), then call the graphical `AddXXXTest()` from the test's original `AddXXXTest()` function in `r file_path(c("src", "projects", "base_project.cpp"))`
   - Handle its exclusion in `ProjectDoc::DisplayReadabilityGraphs()`
   - Add its `GetXXXLabel()` function in `r file_path(c("src", "projects", "base_project_view.h"))`
   - Define its graph window ID in `r file_path(c("src", "projects", "base_project_view.h"))`
@@ -140,7 +140,7 @@ This applies to full words lists (e.g., Dale-Chall), not supplements such as Sto
 - Add XML constants in `r file_path(c("src", "app", "readability_app_options.h"))` and\
   `r file_path(c("src", "app", "readability_app_options.cpp"))` for these unique and total values
 - Add `GetXXX()/SetXXX()` functions in `BaseProject` for these fields
-- Zero out these values in `BaseProject`’s constructor and initializers
+- Zero out these values in `BaseProject`'s constructor and initializers
 - Zero out these values in `BaseProject::LoadHardWords()`
 - In `BaseProject::LoadHardWords()`, create an `is_familiar_word` object connected up to the word list.
   (An example is the `isDCWord` object.)
@@ -155,8 +155,8 @@ This applies to full words lists (e.g., Dale-Chall), not supplements such as Sto
 - Add a page ID for the list in `r file_path(c("src", "projects", "base_project_view.h"))`
 - Add this ID to the `ListType` enumeration in `r file_path(c("resources", "scripting", "rs-constants.lua"))`
 - Add hard word list data provider to `BaseProject`
-- Initialize the data provider in `BaseProject`’s constructor
-- Delete the data provider in `BaseProject`’s destructor
+- Initialize the data provider in `BaseProject`'s constructor
+- Delete the data provider in `BaseProject`'s destructor
 - In `BaseProject::LoadHardWords()`, delete all the items in the data provider, and then resize it to the size of the word map
 - In the aforementioned unfamiliar word handler in `BaseProject::LoadHardWords()` (e.g., `isDCWord`), fill the data provider with the unfamiliar words
 - In `ProjectDoc::DisplayWordsBreakdown()`, add logic to add a page for the data provider and show it in a list control.
@@ -172,7 +172,7 @@ This applies to full words lists (e.g., Dale-Chall), not supplements such as Sto
 - Add unfamiliar function object (based on `IsNotFamiliarWordWithHighlighting`) to\
   `ProjectDoc::DisplayHighlightedText()`. (An example is `isNotDCWord`.)
 - Add a legend line for the word list in text window in `ProjectDoc::DisplayHighlightedText()`
-- Add the legend’s line length to `maxLegendSize`
+- Add the legend's line length to `maxLegendSize`
 - Add a legend (including the aforementioned legend line)
 - Load and fill the text window in `ProjectDoc::DisplayHighlightedText()`
 - Hide or show the text window in `ProjectDoc::DisplayHighlightedText()` based on whether its test is included in the project
