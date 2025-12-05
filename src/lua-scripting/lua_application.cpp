@@ -116,10 +116,9 @@ namespace LuaScripting
                 {
                 break;
                 }
-            wchar_t* dummy{ nullptr };
             const wxString extractedHexCode{ path.substr(percentIndex + 1, 2) };
             const auto value =
-                static_cast<wchar_t>(std::wcstol(extractedHexCode.wc_str(), &dummy, 16));
+                static_cast<wchar_t>(std::wcstol(extractedHexCode.wc_str(), nullptr, 16));
             path.replace(percentIndex, 3, wxString(1, value));
             }
         // strip off bookmark (if there is one)
