@@ -84,7 +84,7 @@ namespace grammar
                 return false;
                 }
             // see is the verb is a "to be" verb
-            if (!m_to_be_verbs.contains(string_type{ words[0].c_str(), words[0].length() }))
+            if (!m_toBeVerbs.contains(string_type{ words[0].c_str(), words[0].length() }))
                 {
                 return false;
                 }
@@ -103,7 +103,7 @@ namespace grammar
             // if this is [to be][not][past participle]
             if (is_past_participle(words[analyzePosition]))
                 {
-                if (m_past_participle_exceptions.contains(words[analyzePosition].c_str()))
+                if (m_pastParticipleExceptions.contains(words[analyzePosition].c_str()))
                     {
                     // "ed" word should be followed by preposition showing
                     // that something is affecting "I".
@@ -121,18 +121,16 @@ namespace grammar
                         }
                     return false;
                     }
-                else
+
+                // see if what looks like a past participle is really a proper name
+                if (words[analyzePosition].length() >= 2 &&
+                    characters::is_character::is_upper(words[analyzePosition][0]) &&
+                    characters::is_character::is_lower(words[analyzePosition][1]))
                     {
-                    // see if what looks like a past participle is really a proper name
-                    if (words[analyzePosition].length() >= 2 &&
-                        characters::is_character::is_upper(words[analyzePosition][0]) &&
-                        characters::is_character::is_lower(words[analyzePosition][1]))
-                        {
-                        return false;
-                        }
-                    word_count = analyzePosition + 1;
-                    return true;
+                    return false;
                     }
+                word_count = analyzePosition + 1;
+                return true;
                 }
             return false;
             }
@@ -146,7 +144,7 @@ namespace grammar
         [[nodiscard]]
         static word_list& get_past_participle_exceptions() noexcept
             {
-            return m_past_participle_exceptions;
+            return m_pastParticipleExceptions;
             }
 
       private:
@@ -162,8 +160,8 @@ namespace grammar
                      traits::case_insensitive_ex::eq(word[word.length() - 1], L'n')));
             }
 
-        static std::set<string_type> m_to_be_verbs;
-        static word_list m_past_participle_exceptions;
+        static std::set<string_type> m_toBeVerbs;
+        static word_list m_pastParticipleExceptions;
         };
     } // namespace grammar
 

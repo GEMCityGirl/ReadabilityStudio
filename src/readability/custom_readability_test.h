@@ -419,48 +419,37 @@ namespace readability
             switch (m_stemming_type)
                 {
             case stemming::stemming_type::danish:
-                std::for_each(wordData.begin(), wordData.end(),
-                              stemming::danish_stem<string_type>());
+                std::ranges::for_each(wordData, stemming::danish_stem<string_type>());
                 break;
             case stemming::stemming_type::dutch:
-                std::for_each(wordData.begin(), wordData.end(),
-                              stemming::dutch_porter_stem<string_type>());
+                std::ranges::for_each(wordData, stemming::dutch_porter_stem<string_type>());
                 break;
             case stemming::stemming_type::english:
-                std::for_each(wordData.begin(), wordData.end(),
-                              stemming::english_stem<string_type>());
+                std::ranges::for_each(wordData, stemming::english_stem<string_type>());
                 break;
             case stemming::stemming_type::finnish:
-                std::for_each(wordData.begin(), wordData.end(),
-                              stemming::finnish_stem<string_type>());
+                std::ranges::for_each(wordData, stemming::finnish_stem<string_type>());
                 break;
             case stemming::stemming_type::french:
-                std::for_each(wordData.begin(), wordData.end(),
-                              stemming::french_stem<string_type>());
+                std::ranges::for_each(wordData, stemming::french_stem<string_type>());
                 break;
             case stemming::stemming_type::german:
-                std::for_each(wordData.begin(), wordData.end(),
-                              stemming::german_stem<string_type>());
+                std::ranges::for_each(wordData, stemming::german_stem<string_type>());
                 break;
             case stemming::stemming_type::italian:
-                std::for_each(wordData.begin(), wordData.end(),
-                              stemming::italian_stem<string_type>());
+                std::ranges::for_each(wordData, stemming::italian_stem<string_type>());
                 break;
             case stemming::stemming_type::norwegian:
-                std::for_each(wordData.begin(), wordData.end(),
-                              stemming::norwegian_stem<string_type>());
+                std::ranges::for_each(wordData, stemming::norwegian_stem<string_type>());
                 break;
             case stemming::stemming_type::portuguese:
-                std::for_each(wordData.begin(), wordData.end(),
-                              stemming::portuguese_stem<string_type>());
+                std::ranges::for_each(wordData, stemming::portuguese_stem<string_type>());
                 break;
             case stemming::stemming_type::swedish:
-                std::for_each(wordData.begin(), wordData.end(),
-                              stemming::swedish_stem<string_type>());
+                std::ranges::for_each(wordData, stemming::swedish_stem<string_type>());
                 break;
             case stemming::stemming_type::spanish:
-                std::for_each(wordData.begin(), wordData.end(),
-                              stemming::spanish_stem<string_type>());
+                std::ranges::for_each(wordData, stemming::spanish_stem<string_type>());
                 break;
             default:
                 // don't stem anything
@@ -502,13 +491,13 @@ namespace readability
                               const bool treat_numeric_as_familiar) const
             {
             is_familiar_word<word_typeT, const word_list_type, stemming::no_op_stem<string_type>>
-                temp_proper_noun_or_numeric_familiar(
+                tempProperNounOrNumericFamiliar(
                     nullptr,
                     treat_proper_as_familiar ?
                         proper_noun_counting_method::all_proper_nouns_are_familiar :
                         proper_noun_counting_method::all_proper_nouns_are_unfamiliar,
                     treat_numeric_as_familiar);
-            if (temp_proper_noun_or_numeric_familiar(theWord))
+            if (tempProperNounOrNumericFamiliar(theWord))
                 {
                 return true;
                 }

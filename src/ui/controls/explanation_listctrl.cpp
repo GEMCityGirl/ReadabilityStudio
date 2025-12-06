@@ -235,10 +235,10 @@ void ExplanationListCtrl::OnSave([[maybe_unused]] wxCommandEvent& event)
         {
         return;
         }
-    // NOLINTBEGIN(bugprone-branch-clone,misc-static-cast-sign-conversion)
+    // NOLINTBEGIN(bugprone-branch-clone,misc-static-cast-sign-conversion,clang-analyzer-optin.core.EnumCastOutOfRange)
     Save(filePath, static_cast<ExplanationListExportOptions>(choiceDlg.GetSelection()));
     m_lastSaveOption = static_cast<ExplanationListExportOptions>(choiceDlg.GetSelection());
-    // NOLINTEND(bugprone-branch-clone,misc-static-cast-sign-conversion)
+    // NOLINTEND(bugprone-branch-clone,misc-static-cast-sign-conversion,clang-analyzer-optin.core.EnumCastOutOfRange)
     }
 
 //------------------------------------------------------

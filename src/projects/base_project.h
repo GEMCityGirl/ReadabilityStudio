@@ -2277,7 +2277,7 @@ class BaseProject : public ProjectRefresh
     static grammar::phrase_collection m_copyrightNoticePhrases;
     static grammar::phrase_collection m_citationPhrases;
     static word_list m_knownProperNouns;
-    static word_list known_personal_nouns;
+    static word_list m_knownPersonalNouns;
     static word_list known_english_spellings;
     static word_list known_programming_spellings;
     static word_list known_custom_english_spellings;

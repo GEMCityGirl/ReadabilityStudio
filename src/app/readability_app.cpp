@@ -969,7 +969,7 @@ bool ReadabilityApp::LoadWordLists(const wxString& AppSettingFolderPath)
         difficultWordReplacementFileText.c_str(), false);
 
     BaseProject::m_knownProperNouns.load_words(properNounsFileText.c_str(), false, false);
-    BaseProject::known_personal_nouns.load_words(personalNounsFileText.c_str(), false, false);
+    BaseProject::m_knownPersonalNouns.load_words(personalNounsFileText.c_str(), false, false);
     BaseProject::english_stoplist.load_words(englishStopList.c_str(), false, false);
     BaseProject::spanish_stoplist.load_words(spanishStopList.c_str(), false, false);
     BaseProject::german_stoplist.load_words(germanStopList.c_str(), false, false);
@@ -1137,7 +1137,7 @@ bool ReadabilityApp::VerifyWordLists()
         {
         wxLogMessage(_DT(L"Proper nouns are sorted properly."));
         }
-    if (!BaseProject::known_personal_nouns.is_sorted())
+    if (!BaseProject::m_knownPersonalNouns.is_sorted())
         {
         wxLogError(_DT(L"Personal nouns are not sorted."));
         retVal = false;
@@ -4544,8 +4544,7 @@ void MainFrame::FillMenuWithCustomTests(wxMenu* customTestMenu, const BaseProjec
         if (includeDocMenuItems && !GetCustomTestMenuIds().empty())
             {
             // add all the global custom tests to this view's menu (if they aren't already on it)
-            for (std::map<int, wxString>::const_iterator pos =
-                     MainFrame::GetCustomTestMenuIds().begin();
+            for (std::map<int, wxString>::const_iterator pos = GetCustomTestMenuIds().begin();
                  pos != GetCustomTestMenuIds().end(); ++pos)
                 {
                 if (customTestMenu->FindItem(pos->first) == nullptr)

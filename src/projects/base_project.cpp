@@ -73,7 +73,7 @@ grammar::phrase_collection BaseProject::m_germanWordyPhrases;
 grammar::phrase_collection BaseProject::m_copyrightNoticePhrases;
 grammar::phrase_collection BaseProject::m_citationPhrases;
 word_list BaseProject::m_knownProperNouns;
-word_list BaseProject::known_personal_nouns;
+word_list BaseProject::m_knownPersonalNouns;
 word_list BaseProject::known_english_spellings;
 word_list BaseProject::known_programming_spellings;
 word_list BaseProject::known_custom_english_spellings;
@@ -170,7 +170,7 @@ void BaseProject::UpdateDocumentSettings()
     GetWords()->set_copyright_phrase_function(&m_copyrightNoticePhrases);
     GetWords()->set_citation_phrase_function(&m_citationPhrases);
     GetWords()->set_known_proper_nouns(&m_knownProperNouns);
-    GetWords()->set_known_personal_nouns(&known_personal_nouns);
+    GetWords()->set_known_personal_nouns(&m_knownPersonalNouns);
     GetWords()->get_spell_checker().set_programmer_word_list(&known_programming_spellings);
     GetWords()->get_spell_checker().ignore_proper_nouns(SpellCheckIsIgnoringProperNouns());
     GetWords()->get_spell_checker().ignore_uppercased(SpellCheckIsIgnoringUppercased());
@@ -332,15 +332,13 @@ bool BaseProject::IsIncludingClozeTest() const
             return true;
             }
         }
-    for (const auto& customTest : GetCustTestsInUse())
-        {
-        if (customTest.GetIterator()->get_test_type() ==
-            readability::readability_test_type::predicted_cloze_score)
-            {
-            return true;
-            }
-        }
-    return false;
+
+    return std::ranges::any_of(GetCustTestsInUse(),
+                               [](const auto& customTest)
+                               {
+                                   return customTest.GetIterator()->get_test_type() ==
+                                          readability::readability_test_type::predicted_cloze_score;
+                               });
     }
 
 //-------------------------------------------------------
@@ -358,15 +356,13 @@ bool BaseProject::IsIncludingGradeTest() const
             return true;
             }
         }
-    for (const auto& customTest : GetCustTestsInUse())
-        {
-        if (customTest.GetIterator()->get_test_type() ==
-            readability::readability_test_type::grade_level)
-            {
-            return true;
-            }
-        }
-    return false;
+
+    return std::ranges::any_of(GetCustTestsInUse(),
+                               [](const auto& customTest)
+                               {
+                                   return customTest.GetIterator()->get_test_type() ==
+                                          readability::readability_test_type::grade_level;
+                               });
     }
 
 //-------------------------------------------------------
@@ -2893,11 +2889,9 @@ void BaseProject::LoadHardWords()
             if (GetWordsBreakdownInfo().IsWordCloudEnabled())
                 {
                 // which variation of the current stem occurs the most often
-                auto mostFrequentWordVariation =
-                    std::max_element(keyWordFreqInfo.first.get_data().cbegin(),
-                                     keyWordFreqInfo.first.get_data().cend(),
-                                     [](const auto& lhv, const auto& rhv) noexcept
-                                     { return lhv.second < rhv.second; });
+                auto mostFrequentWordVariation = std::ranges::max_element(
+                    keyWordFreqInfo.first.get_data(), [](const auto& lhv, const auto& rhv) noexcept
+                    { return lhv.second < rhv.second; });
                 assert(mostFrequentWordVariation != keyWordFreqInfo.first.get_data().cend() &&
                        L"Empty word list for stemmed word?!");
                 // add the next word to the dataset's string table
@@ -3402,20 +3396,19 @@ void BaseProject::CalculateStatisticsIgnoringInvalidSentences()
                         add_valid_word_size<word_case_insensitive_no_stem>()) +
         GetWords()->get_valid_punctuation_count();
     // Monosyllabic words
-    m_totalMonoSyllabic = std::count_if(
-        GetWords()->get_words().begin(), GetWords()->get_words().end(),
+    m_totalMonoSyllabic = std::ranges::count_if(
+        GetWords()->get_words(),
         valid_syllable_count_equals<word_case_insensitive_no_stem>(
             1, GetNumeralSyllabicationMethod() == NumeralSyllabize::WholeWordIsOneSyllable));
     // Numerals
-    m_totalNumerals = std::count_if(GetWords()->get_words().begin(), GetWords()->get_words().end(),
-                                    is_valid_numeric<word_case_insensitive_no_stem>());
+    m_totalNumerals = std::ranges::count_if(GetWords()->get_words(),
+                                            is_valid_numeric<word_case_insensitive_no_stem>());
     // proper nouns
-    m_totalProperNouns =
-        std::count_if(GetWords()->get_words().begin(), GetWords()->get_words().end(),
-                      is_valid_proper_noun<word_case_insensitive_no_stem>());
+    m_totalProperNouns = std::ranges::count_if(
+        GetWords()->get_words(), is_valid_proper_noun<word_case_insensitive_no_stem>());
     // hard lix/rix words
-    m_totalHardWordsLixRix = std::count_if(
-        GetWords()->get_words().begin(), GetWords()->get_words().end(),
+    m_totalHardWordsLixRix = std::ranges::count_if(
+        GetWords()->get_words(),
         valid_word_length_excluding_punctuation_greater_equals<word_case_insensitive_no_stem>(7));
 
     // load the unique words and their frequencies.
@@ -3458,8 +3451,8 @@ void BaseProject::CalculateStatisticsIgnoringInvalidSentences()
     if (GetTotalSentences() > 0)
         {
         // Number of overly long sentences
-        m_totalOverlyLongSentences = std::count_if(
-            GetWords()->get_sentences().begin(), GetWords()->get_sentences().end(),
+        m_totalOverlyLongSentences = std::ranges::count_if(
+            GetWords()->get_sentences(),
             grammar::complete_sentence_length_greater_than(m_difficultSentenceLength));
 
         for (const auto& sent : GetWords()->get_sentences())
@@ -3486,9 +3479,8 @@ void BaseProject::CalculateStatisticsIgnoringInvalidSentences()
                 }
             }
 
-        auto longestSent = std::max_element(GetWords()->get_sentences().cbegin(),
-                                            GetWords()->get_sentences().cend(),
-                                            grammar::complete_sentence_length_less());
+        auto longestSent = std::ranges::max_element(GetWords()->get_sentences(),
+                                                    grammar::complete_sentence_length_less{});
         m_longestSentence = longestSent->get_valid_word_count();
         // be sure to add 1 to make it one-indexed when being displayed
         m_longestSentenceIndex = (longestSent - GetWords()->get_sentences().begin());
@@ -3578,20 +3570,19 @@ void BaseProject::CalculateStatistics()
                         static_cast<size_t>(0), add_word_size<word_case_insensitive_no_stem>()) +
         GetWords()->get_punctuation_count();
     // Monosyllabic words
-    m_totalMonoSyllabic = std::count_if(
-        GetWords()->get_words().begin(), GetWords()->get_words().end(),
+    m_totalMonoSyllabic = std::ranges::count_if(
+        GetWords()->get_words(),
         syllable_count_equals<word_case_insensitive_no_stem>(
             1, GetNumeralSyllabicationMethod() == NumeralSyllabize::WholeWordIsOneSyllable));
     // Numerals
-    m_totalNumerals = std::count_if(GetWords()->get_words().begin(), GetWords()->get_words().end(),
-                                    is_numeric<word_case_insensitive_no_stem>());
+    m_totalNumerals =
+        std::ranges::count_if(GetWords()->get_words(), is_numeric<word_case_insensitive_no_stem>());
     // proper nouns
-    m_totalProperNouns =
-        std::count_if(GetWords()->get_words().begin(), GetWords()->get_words().end(),
-                      is_proper_noun<word_case_insensitive_no_stem>());
+    m_totalProperNouns = std::ranges::count_if(GetWords()->get_words(),
+                                               is_proper_noun<word_case_insensitive_no_stem>());
     // hard lix/rix words
-    m_totalHardWordsLixRix = std::count_if(
-        GetWords()->get_words().begin(), GetWords()->get_words().end(),
+    m_totalHardWordsLixRix = std::ranges::count_if(
+        GetWords()->get_words(),
         word_length_excluding_punctuation_greater_equals<word_case_insensitive_no_stem>(7));
 
     // load the unique words and their frequencies
@@ -3635,8 +3626,8 @@ void BaseProject::CalculateStatistics()
         {
         // Number of overly long sentences
         m_totalOverlyLongSentences =
-            std::count_if(GetWords()->get_sentences().begin(), GetWords()->get_sentences().end(),
-                          grammar::sentence_length_greater_than(m_difficultSentenceLength));
+            std::ranges::count_if(GetWords()->get_sentences(),
+                                  grammar::sentence_length_greater_than(m_difficultSentenceLength));
 
         for (const auto& sent : GetWords()->get_sentences())
             {
@@ -4687,8 +4678,7 @@ bool BaseProject::LoadExternalDocument()
                 }
             // find the sheet to get the cells from
             auto sheetPos =
-                std::find(filterXlsx.get_worksheet_names().begin(),
-                          filterXlsx.get_worksheet_names().end(), worksheetName.wc_str());
+                std::ranges::find(filterXlsx.get_worksheet_names(), worksheetName.wc_str());
             if (sheetPos != filterXlsx.get_worksheet_names().end())
                 {
                 const std::wstring sheetFile = zc.ReadTextFile(
@@ -8252,8 +8242,10 @@ void BaseProject::SyncCustomTests()
     for (auto pos = m_customTestsInUse.begin(); pos != m_customTestsInUse.end();
          /* in loop*/)
         {
+        // NOLINTBEGIN(modernize-use-ranges)
         auto testIter =
             std::find(m_custom_word_tests.begin(), m_custom_word_tests.end(), pos->GetTestName());
+        // NOLINTEND(modernize-use-ranges)
         // shouldn't happen, but remove test from project if not found in the global system
         if (testIter == m_custom_word_tests.end())
             {
@@ -8278,12 +8270,14 @@ bool BaseProject::AddCustomReadabilityTest(const wxString& name, const bool calc
     ClearReadabilityTestResult();
 
     // first, see if this is a legit custom test that is loaded in the global system
+    // NOLINTNEXTLINE(modernize-use-ranges)
     const auto testIter = std::find(m_custom_word_tests.cbegin(), m_custom_word_tests.cend(), name);
     if (testIter == m_custom_word_tests.cend())
         {
         return false;
         }
 
+    // NOLINTNEXTLINE(modernize-use-ranges)
     auto pos = std::find(m_customTestsInUse.begin(), m_customTestsInUse.end(), name);
     // see if test needs to be included
     if (pos == m_customTestsInUse.end())
@@ -8291,6 +8285,7 @@ bool BaseProject::AddCustomReadabilityTest(const wxString& name, const bool calc
         m_customTestsInUse.emplace_back(name);
         // reset the internal iterators that point to the global tests
         SyncCustomTests();
+        // NOLINTNEXTLINE(modernize-use-ranges)
         pos = std::find(m_customTestsInUse.begin(), m_customTestsInUse.end(), name);
         if (pos == m_customTestsInUse.end())
             {
@@ -8565,6 +8560,7 @@ bool BaseProject::AddCustomReadabilityTest(const wxString& name, const bool calc
 std::vector<CustomReadabilityTestInterface>::iterator
 BaseProject::RemoveCustomReadabilityTest(const wxString& testName, [[maybe_unused]] const int Id)
     {
+    // NOLINTNEXTLINE(modernize-use-ranges)
     const auto testPos = std::find(m_customTestsInUse.begin(), m_customTestsInUse.end(), testName);
     if (testPos == m_customTestsInUse.end())
         {

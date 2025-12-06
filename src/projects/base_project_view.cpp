@@ -1208,29 +1208,32 @@ bool BaseProjectView::OnCreate(wxDocument* doc, [[maybe_unused]] long flags)
 
     m_frame->SetSizer(mainSizer);
 
-    wxAcceleratorEntry accelEntries[18];
-    accelEntries[0].Set(wxACCEL_NORMAL, WXK_F1, wxID_HELP);
-    accelEntries[1].Set(wxACCEL_CMD, static_cast<int>(L'N'), wxID_NEW);
-    accelEntries[2].Set(wxACCEL_CMD, static_cast<int>(L'O'), wxID_OPEN);
-    accelEntries[3].Set(wxACCEL_CMD, static_cast<int>(L'V'), wxID_PASTE);
-    accelEntries[4].Set(wxACCEL_CMD, static_cast<int>(L'P'), wxID_PRINT);
-    accelEntries[5].Set(wxACCEL_CMD, static_cast<int>(L'F'), wxID_FIND);
-    accelEntries[6].Set(wxACCEL_CMD, static_cast<int>(L'C'), wxID_COPY);
-    accelEntries[7].Set(wxACCEL_CMD, static_cast<int>(L'S'), wxID_SAVE);
-    accelEntries[8].Set(wxACCEL_CMD, static_cast<int>(L'A'), wxID_SELECTALL);
-    accelEntries[9].Set(wxACCEL_NORMAL, WXK_F5, XRCID("ID_DOCUMENT_REFRESH"));
-    accelEntries[10].Set(wxACCEL_CMD, WXK_BACK, XRCID("ID_REMOVE_TEST"));
-    accelEntries[11].Set(wxACCEL_CMD, WXK_NUMPAD_DELETE, XRCID("ID_REMOVE_TEST"));
-    accelEntries[12].Set(wxACCEL_CMD, WXK_DELETE, XRCID("ID_REMOVE_TEST"));
-    accelEntries[13].Set(wxACCEL_NORMAL, WXK_F2, XRCID("ID_SHOW_SIDEBAR"));
-    accelEntries[14].Set(wxACCEL_NORMAL, WXK_F3, XRCID("ID_FIND_NEXT"));
-    // the Microsoft Office shortcut for this is Ctrl+F1, but Ctrl and function key
-    // combinations don't seem to work under GTK+
-    accelEntries[15].Set(wxACCEL_NORMAL, WXK_F4, XRCID("ID_TOGGLE_RIBBON"));
-    accelEntries[16].Set(wxACCEL_CMD, WXK_RIGHT, XRCID("ID_SEND_TO_STANDARD_PROJECT"));
-    accelEntries[17].Set(wxACCEL_NORMAL, WXK_F6, XRCID("ID_LAUNCH_SOURCE_FILE"));
-    wxAcceleratorTable accelTable(std::size(accelEntries), accelEntries);
-    m_frame->SetAcceleratorTable(accelTable);
+    const std::array<wxAcceleratorEntry, 18> accelEntries = {
+        wxAcceleratorEntry(wxACCEL_NORMAL, WXK_F1, wxID_HELP),
+        wxAcceleratorEntry(wxACCEL_CMD, 'N', wxID_NEW),
+        wxAcceleratorEntry(wxACCEL_CMD, 'O', wxID_OPEN),
+        wxAcceleratorEntry(wxACCEL_CMD, 'V', wxID_PASTE),
+        wxAcceleratorEntry(wxACCEL_CMD, 'P', wxID_PRINT),
+        wxAcceleratorEntry(wxACCEL_CMD, 'F', wxID_FIND),
+        wxAcceleratorEntry(wxACCEL_CMD, 'C', wxID_COPY),
+        wxAcceleratorEntry(wxACCEL_CMD, 'S', wxID_SAVE),
+        wxAcceleratorEntry(wxACCEL_CMD, 'A', wxID_SELECTALL),
+
+        wxAcceleratorEntry(wxACCEL_NORMAL, WXK_F5, XRCID("ID_DOCUMENT_REFRESH")),
+        wxAcceleratorEntry(wxACCEL_CMD, WXK_BACK, XRCID("ID_REMOVE_TEST")),
+        wxAcceleratorEntry(wxACCEL_CMD, WXK_NUMPAD_DELETE, XRCID("ID_REMOVE_TEST")),
+        wxAcceleratorEntry(wxACCEL_CMD, WXK_DELETE, XRCID("ID_REMOVE_TEST")),
+
+        wxAcceleratorEntry(wxACCEL_NORMAL, WXK_F2, XRCID("ID_SHOW_SIDEBAR")),
+        wxAcceleratorEntry(wxACCEL_NORMAL, WXK_F3, XRCID("ID_FIND_NEXT")),
+        // the Microsoft Office shortcut for this is Ctrl+F1, but Ctrl and function key
+        // combinations don't seem to work under GTK+
+        wxAcceleratorEntry(wxACCEL_NORMAL, WXK_F4, XRCID("ID_TOGGLE_RIBBON")),
+        wxAcceleratorEntry(wxACCEL_CMD, WXK_RIGHT, XRCID("ID_SEND_TO_STANDARD_PROJECT")),
+        wxAcceleratorEntry(wxACCEL_NORMAL, WXK_F6, XRCID("ID_LAUNCH_SOURCE_FILE")),
+    };
+
+    m_frame->SetAcceleratorTable(wxAcceleratorTable{ accelEntries.size(), accelEntries.data() });
 
     Bind(wxEVT_RIBBONBAR_TAB_LEFT_DCLICK, &BaseProjectView::OnDClickRibbonBar, this, wxID_ANY);
     Bind(wxEVT_RIBBONBAR_PAGE_CHANGED, &BaseProjectView::OnClickRibbonBar, this, wxID_ANY);

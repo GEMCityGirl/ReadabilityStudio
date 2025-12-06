@@ -207,10 +207,8 @@ namespace grammar
                         break;
                         }
                     // else, we already moved to the next character to analyze, so just restart loop
-                    else
-                        {
-                        continue;
-                        }
+
+                    continue;
                     }
                 // syllabize any pertinent symbols
                 m_syllable_count += get_symbol_syllable_count(start, end, currentChar);
@@ -518,10 +516,8 @@ namespace grammar
                 {
                 return std::make_pair(2, 3);
                 }
-            else
-                {
-                return std::make_pair(0, 0);
-                }
+
+            return std::make_pair(0, 0);
             }
 
         /** @brief Determines if a vowel is a strong (or accented strong) vowel,
@@ -664,31 +660,21 @@ namespace grammar
                                                  common_lang_constants::LOWER_A)))
                 {
                 // exception for "criado"
-                if (position == 2 &&
-                    traits::case_insensitive_ex::eq(word[position - 2],
-                                                    common_lang_constants::LOWER_C) &&
-                    traits::case_insensitive_ex::eq(word[position - 1],
-                                                    common_lang_constants::LOWER_R))
-                    {
-                    return false;
-                    }
-                else
-                    {
-                    return true;
-                    }
+                return position != 2 ||
+                       !traits::case_insensitive_ex::eq(word[position - 2],
+                                                        common_lang_constants::LOWER_C) ||
+                       !traits::case_insensitive_ex::eq(word[position - 1],
+                                                        common_lang_constants::LOWER_R);
                 }
             // two strong together will split--this is the standard rule,
             // but exceptions need to be checked first
-            else if (is_strong_vowel(word[position]) && is_strong_vowel(word[position + 1]))
+            if (is_strong_vowel(word[position]) && is_strong_vowel(word[position + 1]))
                 {
                 return true;
                 }
             // two weak vowels or one strong and regular (i.e., not accented)
             // weak vowel are one sound
-            else
-                {
-                return false;
-                }
+            return false;
             }
         };
     } // namespace grammar

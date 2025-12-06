@@ -223,8 +223,8 @@ namespace tokenize
             m_moved_past_beginning_nontext = true;
 
             const auto lengthToBlockEnd =
-                [&m_text_block_end = std::as_const(m_text_block_end)](const auto* startOfBlock)
-            { return static_cast<size_t>(std::distance(startOfBlock, m_text_block_end)); };
+                [&textBlockEnd = std::as_const(m_text_block_end)](const auto* startOfBlock)
+            { return static_cast<size_t>(std::distance(startOfBlock, textBlockEnd)); };
 
             // see if this might be a header paragraph
             if (is_at_eol() && (!m_is_at_end_of_sentence))
@@ -409,7 +409,7 @@ namespace tokenize
                     // through to let the punctuation indexer pick it up.
                     if (isPunctuation(m_current_char[0]) &&
                         // a few punctuation marks can be full words by themselves
-                        punctuation::punctuation_count::m_whole_word_punctuation.find(
+                        punctuation::punctuation_count::WHOLE_WORD_PUNCTUATION.find(
                             string_util::full_width_to_narrow(m_current_char[0])) ==
                             std::wstring_view::npos &&
                         std::next(m_current_char) < m_text_block_end &&
@@ -470,22 +470,20 @@ namespace tokenize
                             {
                             break;
                             }
-                        else
+
+                        // skip current hyphen and then step over any newlines/spaces to connect
+                        // this word
+                        ++m_current_char;
+                        while (m_current_char != m_text_block_end)
                             {
-                            // skip current hyphen and then step over any newlines/spaces to connect
-                            // this word
-                            ++m_current_char;
-                            while (m_current_char != m_text_block_end)
+                            if (characters::is_character::is_space(m_current_char[0]))
                                 {
-                                if (characters::is_character::is_space(m_current_char[0]))
-                                    {
-                                    m_is_split_word = true;
-                                    ++m_current_char;
-                                    }
-                                else
-                                    {
-                                    break;
-                                    }
+                                m_is_split_word = true;
+                                ++m_current_char;
+                                }
+                            else
+                                {
+                                break;
                                 }
                             }
                         }
@@ -814,11 +812,9 @@ namespace tokenize
                         {
                         break;
                         }
-                    else
-                        {
-                        --m_current_char;
-                        --wordEnd;
-                        }
+
+                    --m_current_char;
+                    --wordEnd;
                     }
                 m_current_word_length = (wordEnd - wordStart) + 1;
                 /* If truly at the end of a sentence, then see if the last word is an acronym or
@@ -846,10 +842,8 @@ namespace tokenize
 
                 return wordStart;
                 }
-            else
-                {
-                return nullptr;
-                }
+
+            return nullptr;
             }
 
         /** @returns The index (into the document) of the last parsed paragraph.

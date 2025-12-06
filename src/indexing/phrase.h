@@ -139,7 +139,7 @@ namespace grammar
             @note The current contents of the phrase will be cleared.
             @param src The start of the string vector to copy from.
             @param count The number of items from the source vector to copy over.*/
-        void copy_words(typename std::vector<word_typeT>::const_iterator src, const size_t count)
+        void copy_words(std::vector<word_typeT>::const_iterator src, const size_t count)
             {
             m_words.resize(count);
             std::copy(src, src + count, m_words.begin());

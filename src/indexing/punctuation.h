@@ -91,9 +91,8 @@ namespace punctuation
                 }
             /* special case where the word is just ('&', '#', '@', or '%');
                treat it like a regular character (e.g., not punctuation)*/
-            if (text.length() == 1 &&
-                m_whole_word_punctuation.find(string_util::full_width_to_narrow(text[0])) !=
-                    std::wstring_view::npos)
+            if (text.length() == 1 && WHOLE_WORD_PUNCTUATION.find(string_util::full_width_to_narrow(
+                                          text[0])) != std::wstring_view::npos)
                 {
                 return 0;
                 }
@@ -102,7 +101,7 @@ namespace punctuation
             }
 
         /// @brief Punctuation marks can be full words by themselves.
-        constexpr static std::wstring_view m_whole_word_punctuation{ L"&#@%" };
+        constexpr static std::wstring_view WHOLE_WORD_PUNCTUATION{ L"&#@%" };
         };
 
     /** @brief Punctuation mark class. Used in tokenizer to keep track of
