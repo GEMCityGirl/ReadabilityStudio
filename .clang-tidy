@@ -15,6 +15,7 @@ google-*,-readability-function-cognitive-complexity,-bugprone-branch-clone,-hicp
 -misc-non-private-member-variables-in-classes,
 -cppcoreguidelines-non-private-member-variables-in-classes,
 -hicpp-no-assembler,
+-cppcoreguidelines-avoid-const-or-ref-data-members,
 -bugprone-suspicious-stringview-data-usage,
 -readability-redundant-inline-specifier,
 -cppcoreguidelines-pro-type-reinterpret-cast,
