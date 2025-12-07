@@ -214,7 +214,7 @@ ProjectWizardDlg::ProjectWizardDlg(wxWindow* parent, const ProjectType projectTy
     Bind(wxEVT_RADIOBOX, &ProjectWizardDlg::OnTestSelectionMethodChanged, this,
          TEST_SELECT_METHOD_BUTTON);
 
-    Bind(wxEVT_SIDEBARBOOK_PAGE_CHANGED, &ProjectWizardDlg::OnPageChange, this);
+    Bind(Wisteria::UI::wxEVT_SIDEBARBOOK_PAGE_CHANGED, &ProjectWizardDlg::OnPageChange, this);
 
     Bind(wxEVT_HELP, &ProjectWizardDlg::OnContextHelp, this);
 

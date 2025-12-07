@@ -81,7 +81,8 @@ wxIMPLEMENT_DYNAMIC_CLASS(ProjectView, BaseProjectView)
     Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &ProjectView::OnRealTimeUpdate, this,
          XRCID("ID_REALTIME_UPDATE"));
 
-    Bind(wxEVT_SIDEBAR_CLICK, &ProjectView::OnItemSelected, this, BaseProjectView::LEFT_PANE);
+    Bind(Wisteria::UI::wxEVT_SIDEBAR_CLICK, &ProjectView::OnItemSelected, this,
+         BaseProjectView::LEFT_PANE);
 
     Bind(wxEVT_WISTERIA_CANVAS_DCLICK, &ProjectView::OnEditGraphOptions, this);
 

@@ -77,7 +77,8 @@ wxIMPLEMENT_DYNAMIC_CLASS(BatchProjectView, BaseProjectView)
     {
     Bind(wxEVT_LIST_ITEM_SELECTED, &BatchProjectView::OnNonScoreItemSelected, this,
          STATS_LIST_PAGE_ID);
-    Bind(wxEVT_SIDEBAR_CLICK, &BatchProjectView::OnItemSelected, this, BaseProjectView::LEFT_PANE);
+    Bind(Wisteria::UI::wxEVT_SIDEBAR_CLICK, &BatchProjectView::OnItemSelected, this,
+         BaseProjectView::LEFT_PANE);
 
     Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &BatchProjectView::OnRibbonButtonCommand, this,
          wxID_SELECTALL);
