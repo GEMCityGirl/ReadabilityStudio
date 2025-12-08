@@ -808,6 +808,42 @@ void BaseProject::ResetStandardReadabilityTests(TestCollectionType& readabilityT
 //-------------------------------------------------------
 void BaseProject::InitializeStandardGermanReadabilityTests()
     {
+        // Amstad
+        {
+        readability::readability_test test(
+            ReadabilityMessages::AMSTAD(), XRCID("ID_AMSTAD"), _DT(L"Amstad"), _DT(L"Amstad"),
+            // TRANSLATORS: "Flesch Reading Ease" should not be translated.
+            _(L"Amstad is a recalculation of Flesch Reading Ease for German text. "
+              "It is meant for secondary and adult-level text. "
+              "Scores range from 0-100 (the higher the score, the easier to read). "
+              "Average documents should be within the range of 60-70."),
+            readability::readability_test_type::index_value, true,
+            _DT(L"180 - (W/S) - (58.5*(B/W))"));
+        test.add_document_classification(readability::document_classification::general_document,
+                                         true);
+        test.add_document_classification(readability::document_classification::technical_document,
+                                         true);
+        test.add_document_classification(
+            readability::document_classification::adult_literature_document, true);
+        test.add_industry_classification(
+            readability::industry_classification::childrens_publishing_industry, true);
+        test.add_industry_classification(
+            readability::industry_classification::adult_publishing_industry, true);
+        test.add_industry_classification(
+            readability::industry_classification::childrens_healthcare_industry, true);
+        test.add_industry_classification(
+            readability::industry_classification::adult_healthcare_industry, true);
+        test.add_industry_classification(
+            readability::industry_classification::military_government_industry, true);
+        test.add_teaching_level(readability::test_teaching_level::secondary_grade);
+        test.add_teaching_level(readability::test_teaching_level::adult_level);
+        test.add_language(readability::test_language::german_test);
+        test.add_factor(readability::test_factor::word_complexity);
+        test.add_factor(readability::test_factor::sentence_length);
+        m_defaultReadabilityTestsTemplate.add_test(test);
+        m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
+        }
+
         // Schwartz (German graph)
         {
         readability::readability_test test(
@@ -1178,12 +1214,166 @@ void BaseProject::InitializeStandardSpanishReadabilityTests()
     }
 
 //-------------------------------------------------------
-void BaseProject::InitializeStandardReadabilityTests()
+void BaseProject::InitializeStandardEnglishFamiliarWordReadabilityTests()
     {
-    assert(m_defaultReadabilityTestsTemplate.get_test_count() == 0 &&
-           "InitializeStandardReadabilityTests called twice?");
-    m_defaultReadabilityTestsTemplate.clear();
-    m_testIdMap.clear();
+        // Harris-Jacobson
+        {
+        readability::readability_test test(
+            ReadabilityMessages::HARRIS_JACOBSON(), XRCID("ID_HARRIS_JACOBSON"),
+            _DT(L"Harris-Jacobson"), _DT(L"Harris-Jacobson Wide Range Formula"),
+            _(L"Harris-Jacobson is generally used for primary and secondary age "
+              "(Kindergarten to 11th grade) readers."),
+            readability::readability_test_type::grade_level, false, L"");
+        test.add_document_classification(
+            readability::document_classification::childrens_literature_document, true);
+        test.add_industry_classification(
+            readability::industry_classification::childrens_publishing_industry, true);
+        test.add_document_classification(
+            readability::document_classification::adult_literature_document, true);
+        test.add_industry_classification(
+            readability::industry_classification::childrens_healthcare_industry, true);
+        test.add_teaching_level(readability::test_teaching_level::primary_grade);
+        test.add_teaching_level(readability::test_teaching_level::secondary_grade);
+        test.add_language(readability::test_language::english_test);
+        test.add_factor(readability::test_factor::word_familiarity_harris_jacobson);
+        test.add_factor(readability::test_factor::sentence_length);
+        m_defaultReadabilityTestsTemplate.add_test(test);
+        m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
+        }
+
+        // Spache
+        {
+        readability::readability_test test(
+            ReadabilityMessages::SPACHE(), XRCID("ID_SPACHE"), _DT(L"Spache Revised"),
+            _DT(L"Spache Revised"),
+            _(L"Spache is generally used for primary age (Kindergarten to 7th grade) "
+              "readers to help classify school textbooks and literature."),
+            readability::readability_test_type::grade_level, false,
+            _DT(L"(.121 * (W/S)) + (.082 * UUS*(100/W)) + .659"));
+        test.add_document_classification(
+            readability::document_classification::childrens_literature_document, true);
+        test.add_industry_classification(
+            readability::industry_classification::childrens_publishing_industry, true);
+        test.add_teaching_level(readability::test_teaching_level::primary_grade);
+        test.add_language(readability::test_language::english_test);
+        test.add_factor(readability::test_factor::word_familiarity_spache);
+        test.add_factor(readability::test_factor::sentence_length);
+        m_defaultReadabilityTestsTemplate.add_test(test);
+        m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
+        }
+
+        // New Dale-Chall
+        {
+        readability::readability_test test(
+            ReadabilityMessages::DALE_CHALL(), XRCID("ID_NEW_DALE_CHALL"), _DT(L"New Dale-Chall"),
+            _DT(L"New Dale-Chall"),
+            // TRANSLATORS: "New Dale-Chall" should not be translated; it is a test name.
+            _(L"New Dale-Chall is generally used for primary and secondary age readers "
+              "to help classify school text books and literature."),
+            readability::readability_test_type::grade_level, false, L"");
+        test.add_document_classification(
+            readability::document_classification::adult_literature_document, true);
+        test.add_industry_classification(
+            readability::industry_classification::childrens_publishing_industry, true);
+        test.add_industry_classification(
+            readability::industry_classification::adult_publishing_industry, true);
+        test.add_industry_classification(
+            readability::industry_classification::childrens_healthcare_industry, true);
+        test.add_teaching_level(readability::test_teaching_level::secondary_grade);
+        test.add_language(readability::test_language::english_test);
+        test.add_factor(readability::test_factor::word_familiarity_dale_chall);
+        test.add_factor(readability::test_factor::sentence_length);
+        m_defaultReadabilityTestsTemplate.add_test(test);
+        m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
+        }
+
+        // PSK (new dale-chall)
+        {
+        readability::readability_test test(
+            ReadabilityMessages::PSK_DALE_CHALL(), XRCID("ID_PSK_DALE_CHALL"),
+            _DT(L"PSK Dale-Chall"), _DT(L"Powers-Sumner-Kearl (Dale-Chall)"),
+            _(L"PSK Dale-Chall is generally used for primary and secondary age readers "
+              "to help classify school text books and literature."),
+            readability::readability_test_type::grade_level, false,
+            _DT(L"3.2672 + (.0596*(W/S)) + (.1155*((UDC/W)*100))"));
+        // don't associate this test with anything, users should just be offered
+        // New Dale-Chall from the project wizards instead
+        test.add_teaching_level(readability::test_teaching_level::secondary_grade);
+        test.add_language(readability::test_language::english_test);
+        test.add_factor(readability::test_factor::word_familiarity_dale_chall);
+        test.add_factor(readability::test_factor::sentence_length);
+        m_defaultReadabilityTestsTemplate.add_test(test);
+        m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
+        }
+    }
+
+//-------------------------------------------------------
+void BaseProject::InitializeStandardEnglishGraphReadabilityTests()
+    {
+        // Fry
+        {
+        readability::readability_test test(
+            ReadabilityMessages::FRY(), XRCID("ID_FRY"), _DT(L"Fry"), _DT(L"Fry"),
+            _(L"The <a href=\"#FryGraph\">Fry graph</a> is designed for most text, "
+              "including literature and technical documents."),
+            readability::readability_test_type::grade_level, true, L"");
+        test.add_document_classification(readability::document_classification::general_document,
+                                         true);
+        test.add_document_classification(
+            readability::document_classification::adult_literature_document, true);
+        test.add_document_classification(
+            readability::document_classification::childrens_literature_document, true);
+        test.add_industry_classification(
+            readability::industry_classification::childrens_publishing_industry, true);
+        test.add_industry_classification(
+            readability::industry_classification::adult_publishing_industry, true);
+        test.add_industry_classification(
+            readability::industry_classification::childrens_healthcare_industry, true);
+        test.add_industry_classification(
+            readability::industry_classification::adult_healthcare_industry, true);
+        test.add_teaching_level(readability::test_teaching_level::primary_grade);
+        test.add_teaching_level(readability::test_teaching_level::secondary_grade);
+        test.add_language(readability::test_language::english_test);
+        test.add_factor(readability::test_factor::word_complexity);
+        test.add_factor(readability::test_factor::sentence_length);
+        m_defaultReadabilityTestsTemplate.add_test(test);
+        m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
+        }
+
+        // Raygor
+        {
+        readability::readability_test test(
+            ReadabilityMessages::RAYGOR(), XRCID("ID_RAYGOR"), _DT(L"Raygor Estimate"),
+            _DT(L"Raygor Estimate"),
+            _(L"The <a href=\"#RaygorGraph\">Raygor estimate graph</a> is designed for most text, "
+              "including literature and technical documents."),
+            readability::readability_test_type::grade_level, true, L"");
+        test.add_document_classification(readability::document_classification::general_document,
+                                         true);
+        test.add_document_classification(
+            readability::document_classification::adult_literature_document, true);
+        test.add_document_classification(
+            readability::document_classification::childrens_literature_document, true);
+        test.add_industry_classification(
+            readability::industry_classification::childrens_publishing_industry, true);
+        test.add_industry_classification(
+            readability::industry_classification::adult_publishing_industry, true);
+        test.add_industry_classification(
+            readability::industry_classification::childrens_healthcare_industry, true);
+        test.add_industry_classification(
+            readability::industry_classification::adult_healthcare_industry, true);
+        test.add_teaching_level(readability::test_teaching_level::secondary_grade);
+        test.add_language(readability::test_language::english_test);
+        test.add_factor(readability::test_factor::word_length_6_plus);
+        test.add_factor(readability::test_factor::sentence_length);
+        m_defaultReadabilityTestsTemplate.add_test(test);
+        m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
+        }
+    }
+
+//-------------------------------------------------------
+void BaseProject::InitializeStandardEnglishRegressionReadabilityTests()
+    {
         // degrees of reading power
         {
         readability::readability_test test(
@@ -1295,52 +1485,6 @@ void BaseProject::InitializeStandardReadabilityTests()
         test.add_teaching_level(readability::test_teaching_level::primary_grade);
         test.add_language(readability::test_language::english_test);
         test.add_factor(readability::test_factor::word_complexity_2_plus_syllables);
-        test.add_factor(readability::test_factor::sentence_length);
-        m_defaultReadabilityTestsTemplate.add_test(test);
-        m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
-        }
-
-        // Harris-Jacobson
-        {
-        readability::readability_test test(
-            ReadabilityMessages::HARRIS_JACOBSON(), XRCID("ID_HARRIS_JACOBSON"),
-            _DT(L"Harris-Jacobson"), _DT(L"Harris-Jacobson Wide Range Formula"),
-            _(L"Harris-Jacobson is generally used for primary and secondary age "
-              "(Kindergarten to 11th grade) readers."),
-            readability::readability_test_type::grade_level, false, L"");
-        test.add_document_classification(
-            readability::document_classification::childrens_literature_document, true);
-        test.add_industry_classification(
-            readability::industry_classification::childrens_publishing_industry, true);
-        test.add_document_classification(
-            readability::document_classification::adult_literature_document, true);
-        test.add_industry_classification(
-            readability::industry_classification::childrens_healthcare_industry, true);
-        test.add_teaching_level(readability::test_teaching_level::primary_grade);
-        test.add_teaching_level(readability::test_teaching_level::secondary_grade);
-        test.add_language(readability::test_language::english_test);
-        test.add_factor(readability::test_factor::word_familiarity_harris_jacobson);
-        test.add_factor(readability::test_factor::sentence_length);
-        m_defaultReadabilityTestsTemplate.add_test(test);
-        m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
-        }
-
-        // spache
-        {
-        readability::readability_test test(
-            ReadabilityMessages::SPACHE(), XRCID("ID_SPACHE"), _DT(L"Spache Revised"),
-            _DT(L"Spache Revised"),
-            _(L"Spache is generally used for primary age (Kindergarten to 7th grade) "
-              "readers to help classify school textbooks and literature."),
-            readability::readability_test_type::grade_level, false,
-            _DT(L"(.121 * (W/S)) + (.082 * UUS*(100/W)) + .659"));
-        test.add_document_classification(
-            readability::document_classification::childrens_literature_document, true);
-        test.add_industry_classification(
-            readability::industry_classification::childrens_publishing_industry, true);
-        test.add_teaching_level(readability::test_teaching_level::primary_grade);
-        test.add_language(readability::test_language::english_test);
-        test.add_factor(readability::test_factor::word_familiarity_spache);
         test.add_factor(readability::test_factor::sentence_length);
         m_defaultReadabilityTestsTemplate.add_test(test);
         m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
@@ -1519,31 +1663,6 @@ void BaseProject::InitializeStandardReadabilityTests()
         m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
         }
 
-        // New Dale-Chall
-        {
-        readability::readability_test test(
-            ReadabilityMessages::DALE_CHALL(), XRCID("ID_NEW_DALE_CHALL"), _DT(L"New Dale-Chall"),
-            _DT(L"New Dale-Chall"),
-            // TRANSLATORS: "New Dale-Chall" should not be translated; it is a test name.
-            _(L"New Dale-Chall is generally used for primary and secondary age readers "
-              "to help classify school text books and literature."),
-            readability::readability_test_type::grade_level, false, L"");
-        test.add_document_classification(
-            readability::document_classification::adult_literature_document, true);
-        test.add_industry_classification(
-            readability::industry_classification::childrens_publishing_industry, true);
-        test.add_industry_classification(
-            readability::industry_classification::adult_publishing_industry, true);
-        test.add_industry_classification(
-            readability::industry_classification::childrens_healthcare_industry, true);
-        test.add_teaching_level(readability::test_teaching_level::secondary_grade);
-        test.add_language(readability::test_language::english_test);
-        test.add_factor(readability::test_factor::word_familiarity_dale_chall);
-        test.add_factor(readability::test_factor::sentence_length);
-        m_defaultReadabilityTestsTemplate.add_test(test);
-        m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
-        }
-
         // Danielson-Bryan 1
         {
         readability::readability_test test(
@@ -1573,25 +1692,6 @@ void BaseProject::InitializeStandardReadabilityTests()
         test.add_teaching_level(readability::test_teaching_level::secondary_grade);
         test.add_language(readability::test_language::english_test);
         test.add_factor(readability::test_factor::word_length);
-        test.add_factor(readability::test_factor::sentence_length);
-        m_defaultReadabilityTestsTemplate.add_test(test);
-        m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
-        }
-
-        // PSK (new dale-chall)
-        {
-        readability::readability_test test(
-            ReadabilityMessages::PSK_DALE_CHALL(), XRCID("ID_PSK_DALE_CHALL"),
-            _DT(L"PSK Dale-Chall"), _DT(L"Powers-Sumner-Kearl (Dale-Chall)"),
-            _(L"PSK Dale-Chall is generally used for primary and secondary age readers "
-              "to help classify school text books and literature."),
-            readability::readability_test_type::grade_level, false,
-            _DT(L"3.2672 + (.0596*(W/S)) + (.1155*((UDC/W)*100))"));
-        // don't associate this test with anything, users should just be offered
-        // New Dale-Chall from the project wizards instead
-        test.add_teaching_level(readability::test_teaching_level::secondary_grade);
-        test.add_language(readability::test_language::english_test);
-        test.add_factor(readability::test_factor::word_familiarity_dale_chall);
         test.add_factor(readability::test_factor::sentence_length);
         m_defaultReadabilityTestsTemplate.add_test(test);
         m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
@@ -1714,42 +1814,6 @@ void BaseProject::InitializeStandardReadabilityTests()
         m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
         }
 
-        // Amstad
-        {
-        readability::readability_test test(
-            ReadabilityMessages::AMSTAD(), XRCID("ID_AMSTAD"), _DT(L"Amstad"), _DT(L"Amstad"),
-            // TRANSLATORS: "Flesch Reading Ease" should not be translated.
-            _(L"Amstad is a recalculation of Flesch Reading Ease for German text. "
-              "It is meant for secondary and adult-level text. "
-              "Scores range from 0-100 (the higher the score, the easier to read). "
-              "Average documents should be within the range of 60-70."),
-            readability::readability_test_type::index_value, true,
-            _DT(L"180 - (W/S) - (58.5*(B/W))"));
-        test.add_document_classification(readability::document_classification::general_document,
-                                         true);
-        test.add_document_classification(readability::document_classification::technical_document,
-                                         true);
-        test.add_document_classification(
-            readability::document_classification::adult_literature_document, true);
-        test.add_industry_classification(
-            readability::industry_classification::childrens_publishing_industry, true);
-        test.add_industry_classification(
-            readability::industry_classification::adult_publishing_industry, true);
-        test.add_industry_classification(
-            readability::industry_classification::childrens_healthcare_industry, true);
-        test.add_industry_classification(
-            readability::industry_classification::adult_healthcare_industry, true);
-        test.add_industry_classification(
-            readability::industry_classification::military_government_industry, true);
-        test.add_teaching_level(readability::test_teaching_level::secondary_grade);
-        test.add_teaching_level(readability::test_teaching_level::adult_level);
-        test.add_language(readability::test_language::german_test);
-        test.add_factor(readability::test_factor::word_complexity);
-        test.add_factor(readability::test_factor::sentence_length);
-        m_defaultReadabilityTestsTemplate.add_test(test);
-        m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
-        }
-
         // Flesch-Kincaid
         {
         readability::readability_test test(
@@ -1818,7 +1882,7 @@ void BaseProject::InitializeStandardReadabilityTests()
         m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
         }
 
-        // eflaw
+        // EFLAW
         {
         readability::readability_test test(
             ReadabilityMessages::EFLAW(), XRCID("ID_EFLAW"), _DT(L"EFLAW"), _DT(L"McAlpine EFLAW"),
@@ -1838,7 +1902,7 @@ void BaseProject::InitializeStandardReadabilityTests()
         m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
         }
 
-        // smog
+        // SMOG
         {
         readability::readability_test test(
             ReadabilityMessages::SMOG(), XRCID("ID_SMOG"), _DT(L"SMOG"), _DT(L"SMOG"),
@@ -1869,7 +1933,7 @@ void BaseProject::InitializeStandardReadabilityTests()
         m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
         }
 
-        // smog (simplified)
+        // SMOG (simplified)
         {
         readability::readability_test test(
             ReadabilityMessages::SMOG_SIMPLIFIED(), XRCID("ID_SMOG_SIMPLIFIED"),
@@ -1888,7 +1952,7 @@ void BaseProject::InitializeStandardReadabilityTests()
         m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
         }
 
-        // smog (modified for primary readers)
+        // SMOG (modified for primary readers)
         {
         readability::readability_test test(
             ReadabilityMessages::MODIFIED_SMOG(), XRCID("ID_SMOG_MODIFIED"), _DT(L"Modified SMOG"),
@@ -1924,7 +1988,7 @@ void BaseProject::InitializeStandardReadabilityTests()
         m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
         }
 
-        // new ARI
+        // New ARI
         {
         readability::readability_test test(
             ReadabilityMessages::NEW_ARI(), XRCID("ID_NEW_ARI"), _DT(L"New ARI"),
@@ -1947,7 +2011,7 @@ void BaseProject::InitializeStandardReadabilityTests()
         m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
         }
 
-        // psk flesch
+        // PSK Flesch
         {
         readability::readability_test test(
             ReadabilityMessages::PSK_FLESCH(), XRCID("ID_PSK_FLESCH"), _DT(L"PSK Flesch"),
@@ -1967,67 +2031,19 @@ void BaseProject::InitializeStandardReadabilityTests()
         m_defaultReadabilityTestsTemplate.add_test(test);
         m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
         }
+    }
 
-        // Fry
-        {
-        readability::readability_test test(
-            ReadabilityMessages::FRY(), XRCID("ID_FRY"), _DT(L"Fry"), _DT(L"Fry"),
-            _(L"The <a href=\"#FryGraph\">Fry graph</a> is designed for most text, "
-              "including literature and technical documents."),
-            readability::readability_test_type::grade_level, true, L"");
-        test.add_document_classification(readability::document_classification::general_document,
-                                         true);
-        test.add_document_classification(
-            readability::document_classification::adult_literature_document, true);
-        test.add_document_classification(
-            readability::document_classification::childrens_literature_document, true);
-        test.add_industry_classification(
-            readability::industry_classification::childrens_publishing_industry, true);
-        test.add_industry_classification(
-            readability::industry_classification::adult_publishing_industry, true);
-        test.add_industry_classification(
-            readability::industry_classification::childrens_healthcare_industry, true);
-        test.add_industry_classification(
-            readability::industry_classification::adult_healthcare_industry, true);
-        test.add_teaching_level(readability::test_teaching_level::primary_grade);
-        test.add_teaching_level(readability::test_teaching_level::secondary_grade);
-        test.add_language(readability::test_language::english_test);
-        test.add_factor(readability::test_factor::word_complexity);
-        test.add_factor(readability::test_factor::sentence_length);
-        m_defaultReadabilityTestsTemplate.add_test(test);
-        m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
-        }
+//-------------------------------------------------------
+void BaseProject::InitializeStandardReadabilityTests()
+    {
+    wxASSERT_MSG(m_defaultReadabilityTestsTemplate.get_test_count() == 0,
+                 L"InitializeStandardReadabilityTests called twice?");
+    m_defaultReadabilityTestsTemplate.clear();
+    m_testIdMap.clear();
 
-        // Raygor
-        {
-        readability::readability_test test(
-            ReadabilityMessages::RAYGOR(), XRCID("ID_RAYGOR"), _DT(L"Raygor Estimate"),
-            _DT(L"Raygor Estimate"),
-            _(L"The <a href=\"#RaygorGraph\">Raygor estimate graph</a> is designed for most text, "
-              "including literature and technical documents."),
-            readability::readability_test_type::grade_level, true, L"");
-        test.add_document_classification(readability::document_classification::general_document,
-                                         true);
-        test.add_document_classification(
-            readability::document_classification::adult_literature_document, true);
-        test.add_document_classification(
-            readability::document_classification::childrens_literature_document, true);
-        test.add_industry_classification(
-            readability::industry_classification::childrens_publishing_industry, true);
-        test.add_industry_classification(
-            readability::industry_classification::adult_publishing_industry, true);
-        test.add_industry_classification(
-            readability::industry_classification::childrens_healthcare_industry, true);
-        test.add_industry_classification(
-            readability::industry_classification::adult_healthcare_industry, true);
-        test.add_teaching_level(readability::test_teaching_level::secondary_grade);
-        test.add_language(readability::test_language::english_test);
-        test.add_factor(readability::test_factor::word_length_6_plus);
-        test.add_factor(readability::test_factor::sentence_length);
-        m_defaultReadabilityTestsTemplate.add_test(test);
-        m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
-        }
-
+    InitializeStandardEnglishFamiliarWordReadabilityTests();
+    InitializeStandardEnglishGraphReadabilityTests();
+    InitializeStandardEnglishRegressionReadabilityTests();
     InitializeStandardSpanishReadabilityTests();
     InitializeStandardGermanReadabilityTests();
     }
