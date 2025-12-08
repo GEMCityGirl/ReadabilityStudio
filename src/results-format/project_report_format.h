@@ -188,7 +188,8 @@ class ProjectReportFormat
 
     [[nodiscard]]
     static wxString FormatDolchRow(const long labelColumnWidth, const long numberColumnWidth,
-                              const wxString& label, const wxString& value, const wxString& percent)
+                                   const wxString& label, const wxString& value,
+                                   const wxString& percent)
         {
         return wxString::Format(L"\n<tr><td style='min-width:%ldpx; width:40%%;'>%s</td>"
                                 "<td style='text-align:right; width:%ldpx;'>%s</td>"
