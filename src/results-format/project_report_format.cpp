@@ -196,11 +196,11 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(
     assert(project);
     if (project == nullptr)
         {
-        return wxString{};
+        return {};
         }
     if (!project->IsIncludingDolchSightWords())
         {
-        return wxString{};
+        return {};
         }
     size_t listDataItemCount = 0;
     if (listData)
@@ -233,7 +233,7 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(
         htmlText += _(L"No Dolch statistics <a href=\"#SelectStatistics\">currently selected</a>.");
         }
 
-    wxBitmap bmp(100, 100);
+    wxBitmap bmp{ 100, 100 };
     wxMemoryDC measuringDc(bmp);
     measuringDc.SetFont(measuringDc.GetFont().Larger().Larger());
     // will likely be the longest label (even after translation)
@@ -248,28 +248,10 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(
 
     const wxString tableStart = L"<table class='minipage' border='0' style='width:100%'>";
 
-    const auto formatHeader = [](const wxString& label)
-    {
-        return wxString::Format(L"\n<tr class='report-column-header' style='background:%s;'>"
-                                "<td colspan='3'><span style='color:%s;'>%s</span></td></tr>",
-                                GetReportHeaderColor().GetAsString(wxC2S_HTML_SYNTAX),
-                                GetReportHeaderFontColor().GetAsString(wxC2S_HTML_SYNTAX), label);
-    };
-
-    const auto formatRow = [labelColumnWidth, numberColumnWidth](const wxString& label,
-                                                                 const wxString& value,
-                                                                 const wxString& percent)
-    {
-        return wxString::Format(L"\n<tr><td style='min-width:%ldpx; width:40%%;'>%s</td>"
-                                "<td style='text-align:right; width:%ldpx;'>%s</td>"
-                                "<td style='text-align:left;'>%s</td></tr>",
-                                labelColumnWidth, label, numberColumnWidth, value, percent);
-    };
-
     if (statsInfo.IsDolchCoverageEnabled())
         {
         // list completions
-        htmlText += tableStart + formatHeader(_(L"Dolch Word Coverage"));
+        htmlText += tableStart + FormatDolchHeader(_(L"Dolch Word Coverage"));
 
         const double dolchConjunctionPercentage =
             safe_divide<double>(
@@ -330,7 +312,8 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(
                                      wxNumberFormatter::ToString(
                                          dolchConjunctionPercentage, 1,
                                          wxNumberFormatter::Style::Style_NoTrailingZeroes));
-            htmlText += formatRow(_(L"Conjunctions used:"), valueStr, percentStr);
+            htmlText += FormatDolchRow(labelColumnWidth, numberColumnWidth,
+                                       _(L"Conjunctions used:"), valueStr, percentStr);
 
             if (listData)
                 {
@@ -377,7 +360,8 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(
                                      wxNumberFormatter::ToString(
                                          dolchPrepositionsPercentage, 1,
                                          wxNumberFormatter::Style::Style_NoTrailingZeroes));
-            htmlText += formatRow(_(L"Prepositions used:"), valueStr, percentStr);
+            htmlText += FormatDolchRow(labelColumnWidth, numberColumnWidth,
+                                       _(L"Prepositions used:"), valueStr, percentStr);
 
             if (listData)
                 {
@@ -424,7 +408,8 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(
                                      wxNumberFormatter::ToString(
                                          dolchPronounsPercentage, 1,
                                          wxNumberFormatter::Style::Style_NoTrailingZeroes));
-            htmlText += formatRow(_(L"Pronouns used:"), valueStr, percentStr);
+            htmlText += FormatDolchRow(labelColumnWidth, numberColumnWidth, _(L"Pronouns used:"),
+                                       valueStr, percentStr);
 
             if (listData)
                 {
@@ -471,7 +456,8 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(
                                      wxNumberFormatter::ToString(
                                          dolchAdverbsPercentage, 1,
                                          wxNumberFormatter::Style::Style_NoTrailingZeroes));
-            htmlText += formatRow(_(L"Adverbs used:"), valueStr, percentStr);
+            htmlText += FormatDolchRow(labelColumnWidth, numberColumnWidth, _(L"Adverbs used:"),
+                                       valueStr, percentStr);
 
             if (listData)
                 {
@@ -518,7 +504,8 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(
                                      wxNumberFormatter::ToString(
                                          dolchAdjectivesPercentage, 1,
                                          wxNumberFormatter::Style::Style_NoTrailingZeroes));
-            htmlText += formatRow(_(L"Adjectives used:"), valueStr, percentStr);
+            htmlText += FormatDolchRow(labelColumnWidth, numberColumnWidth, _(L"Adjectives used:"),
+                                       valueStr, percentStr);
 
             if (listData)
                 {
@@ -565,7 +552,8 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(
                                      wxNumberFormatter::ToString(
                                          dolchVerbsPercentage, 1,
                                          wxNumberFormatter::Style::Style_NoTrailingZeroes));
-            htmlText += formatRow(_(L"Verbs used:"), valueStr, percentStr);
+            htmlText += FormatDolchRow(labelColumnWidth, numberColumnWidth, _(L"Verbs used:"),
+                                       valueStr, percentStr);
 
             if (listData)
                 {
@@ -611,7 +599,8 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(
                                      wxNumberFormatter::ToString(
                                          dolchNounPercentage, 1,
                                          wxNumberFormatter::Style::Style_NoTrailingZeroes));
-            htmlText += formatRow(_(L"Nouns used:"), valueStr, percentStr);
+            htmlText += FormatDolchRow(labelColumnWidth, numberColumnWidth, _(L"Nouns used:"),
+                                       valueStr, percentStr);
 
             if (listData)
                 {
@@ -686,7 +675,7 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(
     // total words
     if (statsInfo.IsDolchWordsEnabled())
         {
-        htmlText += tableStart + formatHeader(_(L"Dolch Words"));
+        htmlText += tableStart + FormatDolchHeader(_(L"Dolch Words"));
 
             // number of Dolch words
             {
@@ -717,7 +706,8 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(
                                          totalDolchPercentage, 1,
                                          wxNumberFormatter::Style::Style_NoTrailingZeroes |
                                              wxNumberFormatter::Style::Style_WithThousandsSep));
-            htmlText += formatRow(_(L"Number of Dolch words:"), valueStr, percentStr);
+            htmlText += FormatDolchRow(labelColumnWidth, numberColumnWidth,
+                                       _(L"Number of Dolch words:"), valueStr, percentStr);
 
             if (listData)
                 {
@@ -766,8 +756,9 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(
                                          totalDolchExcludingNounsPercentage, 1,
                                          wxNumberFormatter::Style::Style_NoTrailingZeroes |
                                              wxNumberFormatter::Style::Style_WithThousandsSep));
-            htmlText +=
-                formatRow(_(L"Number of Dolch words (excluding nouns):"), valueStr, percentStr);
+            htmlText += FormatDolchRow(labelColumnWidth, numberColumnWidth,
+                                       _(L"Number of Dolch words (excluding nouns):"), valueStr,
+                                       percentStr);
 
             if (listData)
                 {
@@ -819,7 +810,8 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(
                                          100 - totalDolchPercentage, 1,
                                          wxNumberFormatter::Style::Style_NoTrailingZeroes |
                                              wxNumberFormatter::Style::Style_WithThousandsSep));
-            htmlText += formatRow(_(L"Number of non-Dolch words:"), valueStr, percentStr);
+            htmlText += FormatDolchRow(labelColumnWidth, numberColumnWidth,
+                                       _(L"Number of non-Dolch words:"), valueStr, percentStr);
 
             if (listData)
                 {
@@ -854,7 +846,8 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(
                     1,
                     wxNumberFormatter::Style::Style_NoTrailingZeroes |
                         wxNumberFormatter::Style::Style_WithThousandsSep));
-            htmlText += formatRow(_(L"Number of Dolch conjunctions:"), valueStr, percentStr);
+            htmlText += FormatDolchRow(labelColumnWidth, numberColumnWidth,
+                                       _(L"Number of Dolch conjunctions:"), valueStr, percentStr);
 
             if (listData)
                 {
@@ -877,8 +870,8 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(
                                 wxNumberFormatter::Style::Style_WithThousandsSep)));
                 }
 
-            htmlText += formatRow(
-                _(L"Number of unique Dolch conjunctions:"),
+            htmlText += FormatDolchRow(
+                labelColumnWidth, numberColumnWidth, _(L"Number of unique Dolch conjunctions:"),
                 wxNumberFormatter::ToString(project->GetDolchConjunctionCounts().first, 0,
                                             wxNumberFormatter::Style::Style_NoTrailingZeroes |
                                                 wxNumberFormatter::Style::Style_WithThousandsSep),
@@ -909,7 +902,8 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(
                     1,
                     wxNumberFormatter::Style::Style_NoTrailingZeroes |
                         wxNumberFormatter::Style::Style_WithThousandsSep));
-            htmlText += formatRow(_(L"Number of Dolch prepositions:"), valueStr, percentStr);
+            htmlText += FormatDolchRow(labelColumnWidth, numberColumnWidth,
+                                       _(L"Number of Dolch prepositions:"), valueStr, percentStr);
             if (listData)
                 {
                 listData->SetItemText(listDataItemCount, 0, _(L"Number of Dolch prepositions"));
@@ -931,8 +925,8 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(
                                 wxNumberFormatter::Style::Style_WithThousandsSep)));
                 }
 
-            htmlText += formatRow(
-                _(L"Number of unique Dolch prepositions:"),
+            htmlText += FormatDolchRow(
+                labelColumnWidth, numberColumnWidth, _(L"Number of unique Dolch prepositions:"),
                 wxNumberFormatter::ToString(project->GetDolchPrepositionWordCounts().first, 0,
                                             wxNumberFormatter::Style::Style_NoTrailingZeroes |
                                                 wxNumberFormatter::Style::Style_WithThousandsSep),
@@ -963,7 +957,8 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(
                                      1,
                                      wxNumberFormatter::Style::Style_NoTrailingZeroes |
                                          wxNumberFormatter::Style::Style_WithThousandsSep));
-            htmlText += formatRow(_(L"Number of Dolch pronouns:"), valueStr, percentStr);
+            htmlText += FormatDolchRow(labelColumnWidth, numberColumnWidth,
+                                       _(L"Number of Dolch pronouns:"), valueStr, percentStr);
 
             if (listData)
                 {
@@ -986,8 +981,8 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(
                                 wxNumberFormatter::Style::Style_WithThousandsSep)));
                 }
 
-            htmlText += formatRow(
-                _(L"Number of unique Dolch pronouns:"),
+            htmlText += FormatDolchRow(
+                labelColumnWidth, numberColumnWidth, _(L"Number of unique Dolch pronouns:"),
                 wxNumberFormatter::ToString(project->GetDolchPronounCounts().first, 0,
                                             wxNumberFormatter::Style::Style_NoTrailingZeroes |
                                                 wxNumberFormatter::Style::Style_WithThousandsSep),
@@ -1017,7 +1012,8 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(
                                      1,
                                      wxNumberFormatter::Style::Style_NoTrailingZeroes |
                                          wxNumberFormatter::Style::Style_WithThousandsSep));
-            htmlText += formatRow(_(L"Number of Dolch adverbs:"), valueStr, percentStr);
+            htmlText += FormatDolchRow(labelColumnWidth, numberColumnWidth,
+                                       _(L"Number of Dolch adverbs:"), valueStr, percentStr);
 
             if (listData)
                 {
@@ -1039,8 +1035,8 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(
                                              wxNumberFormatter::Style::Style_WithThousandsSep)));
                 }
 
-            htmlText += formatRow(
-                _(L"Number of unique Dolch adverbs:"),
+            htmlText += FormatDolchRow(
+                labelColumnWidth, numberColumnWidth, _(L"Number of unique Dolch adverbs:"),
                 wxNumberFormatter::ToString(project->GetDolchAdverbCounts().first, 0,
                                             wxNumberFormatter::Style::Style_NoTrailingZeroes |
                                                 wxNumberFormatter::Style::Style_WithThousandsSep),
@@ -1070,7 +1066,8 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(
                                      1,
                                      wxNumberFormatter::Style::Style_NoTrailingZeroes |
                                          wxNumberFormatter::Style::Style_WithThousandsSep));
-            htmlText += formatRow(_(L"Number of Dolch adjectives:"), valueStr, percentStr);
+            htmlText += FormatDolchRow(labelColumnWidth, numberColumnWidth,
+                                       _(L"Number of Dolch adjectives:"), valueStr, percentStr);
 
             if (listData)
                 {
@@ -1093,8 +1090,8 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(
                                 wxNumberFormatter::Style::Style_WithThousandsSep)));
                 }
 
-            htmlText += formatRow(
-                _(L"Number of unique Dolch adjectives:"),
+            htmlText += FormatDolchRow(
+                labelColumnWidth, numberColumnWidth, _(L"Number of unique Dolch adjectives:"),
                 wxNumberFormatter::ToString(project->GetDolchAdjectiveCounts().first, 0,
                                             wxNumberFormatter::Style::Style_NoTrailingZeroes |
                                                 wxNumberFormatter::Style::Style_WithThousandsSep),
@@ -1125,7 +1122,8 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(
                                      1,
                                      wxNumberFormatter::Style::Style_NoTrailingZeroes |
                                          wxNumberFormatter::Style::Style_WithThousandsSep));
-            htmlText += formatRow(_(L"Number of Dolch verbs:"), valueStr, percentStr);
+            htmlText += FormatDolchRow(labelColumnWidth, numberColumnWidth,
+                                       _(L"Number of Dolch verbs:"), valueStr, percentStr);
 
             if (listData)
                 {
@@ -1147,8 +1145,8 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(
                                              wxNumberFormatter::Style::Style_WithThousandsSep)));
                 }
 
-            htmlText += formatRow(
-                _(L"Number of unique Dolch verbs:"),
+            htmlText += FormatDolchRow(
+                labelColumnWidth, numberColumnWidth, _(L"Number of unique Dolch verbs:"),
                 wxNumberFormatter::ToString(project->GetDolchVerbsCounts().first, 0,
                                             wxNumberFormatter::Style::Style_NoTrailingZeroes |
                                                 wxNumberFormatter::Style::Style_WithThousandsSep),
@@ -1178,7 +1176,8 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(
                                      1,
                                      wxNumberFormatter::Style::Style_NoTrailingZeroes |
                                          wxNumberFormatter::Style::Style_WithThousandsSep));
-            htmlText += formatRow(_(L"Number of Dolch nouns:"), valueStr, percentStr);
+            htmlText += FormatDolchRow(labelColumnWidth, numberColumnWidth,
+                                       _(L"Number of Dolch nouns:"), valueStr, percentStr);
             if (listData)
                 {
                 listData->SetItemText(listDataItemCount, 0, _(L"Number of Dolch nouns"));
@@ -1199,8 +1198,8 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(
                                              wxNumberFormatter::Style::Style_WithThousandsSep)));
                 }
 
-            htmlText += formatRow(
-                _(L"Number of unique Dolch nouns:"),
+            htmlText += FormatDolchRow(
+                labelColumnWidth, numberColumnWidth, _(L"Number of unique Dolch nouns:"),
                 wxNumberFormatter::ToString(project->GetDolchNounCounts().first, 0,
                                             wxNumberFormatter::Style::Style_NoTrailingZeroes |
                                                 wxNumberFormatter::Style::Style_WithThousandsSep),
@@ -1227,7 +1226,7 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(
 
     if (includeExplanation && statsInfo.IsDolchExplanationEnabled())
         {
-        htmlText += tableStart + formatHeader(_(L"Explanation"));
+        htmlText += tableStart + FormatDolchHeader(_(L"Explanation"));
         htmlText += L"\n<tr><td style='width:100%'><p>";
         htmlText +=
             _(L"The Dolch Sight Words represent the most frequently occurring service "
@@ -1297,7 +1296,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
     PROFILE();
     if (project == nullptr)
         {
-        return wxString{};
+        return {};
         }
     wxString currentLabel;
     const lily_of_the_valley::html_encode_text htmlEncode;
@@ -3364,7 +3363,7 @@ wxString ProjectReportFormat::FormatSentence(
     assert(project);
     if (project == nullptr)
         {
-        return wxString{};
+        return {};
         }
     wxString currentSentence;
     for (size_t i = sentence.get_first_word_index(); i <= sentence.get_last_word_index(); ++i)

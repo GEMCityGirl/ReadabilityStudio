@@ -177,6 +177,25 @@ class ProjectReportFormat
         return { L"#55A8E6" };
         }
 
+    [[nodiscard]]
+    static wxString FormatDolchHeader(const wxString& label)
+        {
+        return wxString::Format(L"\n<tr class='report-column-header' style='background:%s;'>"
+                                "<td colspan='3'><span style='color:%s;'>%s</span></td></tr>",
+                                GetReportHeaderColor().GetAsString(wxC2S_HTML_SYNTAX),
+                                GetReportHeaderFontColor().GetAsString(wxC2S_HTML_SYNTAX), label);
+        }
+
+    [[nodiscard]]
+    static wxString FormatDolchRow(const long labelColumnWidth, const long numberColumnWidth,
+                              const wxString& label, const wxString& value, const wxString& percent)
+        {
+        return wxString::Format(L"\n<tr><td style='min-width:%ldpx; width:40%%;'>%s</td>"
+                                "<td style='text-align:right; width:%ldpx;'>%s</td>"
+                                "<td style='text-align:left;'>%s</td></tr>",
+                                labelColumnWidth, label, numberColumnWidth, value, percent);
+        }
+
     /** @returns A test's factors formatted into an HTML table.
         @param test The test to format.*/
     [[nodiscard]]
