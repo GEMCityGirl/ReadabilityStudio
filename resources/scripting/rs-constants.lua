@@ -67,7 +67,8 @@ GraphType =
   SyllablePieChart = 8075,   -- Pie chart showing the distribution of words by syllable size.
   GermanLix = 8028,          -- German variation of Lix.
   DanielsonBryan2 = 8029,    -- **Danielson Bryan 2** readability graph (a variation of **Flesch Reading Ease**).
-  WordCloud = 8039           -- Word cloud of key words.
+  WordCloud = 8039,          -- Word cloud of key words.
+  InfleszChart = 8076        -- **Inflesz** readability graph (a Spanish variation of **Flesch Reading Ease**).
   }
 
 -- The following options for sorting data into bins are available.

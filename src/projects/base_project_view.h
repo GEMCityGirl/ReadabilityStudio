@@ -505,6 +505,12 @@ class BaseProjectView : public wxView
         }
 
     [[nodiscard]]
+    static wxString GetInfleszChartLabel()
+        {
+        return _(L"INFLESZ Chart");
+        }
+
+    [[nodiscard]]
     static wxString GetDB2Label()
         {
         return _DT(L"Danielson-Bryan 2");
@@ -675,6 +681,7 @@ class BaseProjectView : public wxView
     constexpr static int SYLLABLE_PIECHART_PAGE_ID = wxID_HIGHEST + 46;
     constexpr static int SENTENCE_HEATMAP_PAGE_ID = wxID_HIGHEST + 47;
     constexpr static int WORD_CLOUD_PAGE_ID = wxID_HIGHEST + 48;
+    constexpr static int INFLESZ_GRAPH_PAGE_ID = wxID_HIGHEST + 49;
     // batch IDs
     //----------
     constexpr static int ID_SCORE_LIST_PAGE_ID = wxID_HIGHEST + 60;

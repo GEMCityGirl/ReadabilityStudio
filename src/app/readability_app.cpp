@@ -50,6 +50,7 @@
 #include "readability_app.h"
 #include "../Wisteria-Dataviz/src/CRCpp/inc/CRC.h"
 #include "../Wisteria-Dataviz/src/graphs/danielsonbryan2plot.h"
+#include "../Wisteria-Dataviz/src/graphs/inflesz.h"
 #include "../Wisteria-Dataviz/src/graphs/lixgauge.h"
 #include "../Wisteria-Dataviz/src/graphs/lixgaugegerman.h"
 #include "../Wisteria-Dataviz/src/ui/dialogs/filelistdlg.h"
@@ -630,6 +631,7 @@ bool ReadabilityApp::OnInit()
         { 8073, BaseProjectView::SIDEBAR_STATS_SUMMARY_SECTION_ID },
         { 8074, BaseProjectView::SIDEBAR_SENTENCES_BREAKDOWN_SECTION_ID },
         { 8075, BaseProjectView::SYLLABLE_PIECHART_PAGE_ID },
+        { 8076, BaseProjectView::INFLESZ_GRAPH_PAGE_ID },
         { 9000, EditWordListDlg::ID_FILE_PATH_FIELD },
         { 10001, ProjectWizardDlg::ID_FILE_BROWSE_BUTTON },
         { 10002, ProjectWizardDlg::ID_FROM_FILE_BUTTON },
@@ -1574,6 +1576,10 @@ void ReadabilityApp::FillBlankGraphsMenu(wxMenu& blankGraphsMenu)
                               _DT(L"Gilliam-Pe\U000000F1a-Mountain"));
     menuItem->SetBitmap(
         wxGetApp().GetResourceManager().GetSVG(L"tests/gilliam-pena-mountain-fry-graph.svg"));
+    blankGraphsMenu.Append(menuItem);
+
+    menuItem = new wxMenuItem(&blankGraphsMenu, XRCID("ID_BLANK_INFLESZ_GRAPH"), _DT(L"INFLESZ"));
+    menuItem->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"tests/inflesz-test.svg"));
     blankGraphsMenu.Append(menuItem);
 
     // German
@@ -3332,6 +3338,17 @@ void MainFrame::OnBlankGraph(const wxCommandEvent& event)
         graphDlg.GetCanvas()->ResetResizeDelay();
         graphDlg.ShowModal();
         }
+    else if (event.GetId() == XRCID("ID_BLANK_INFLESZ_GRAPH"))
+        {
+        Wisteria::UI::GraphDlg graphDlg(
+            wxGetApp().GetParentingWindow(), wxID_ANY,
+            wxString::Format(_(L"Blank \"%s\" Graph"), _DT(L"INFLESZ")));
+        graphDlg.GetCanvas()->SetFixedObject(
+            0, 0, std::make_shared<Wisteria::Graphs::InfleszChart>(graphDlg.GetCanvas()));
+        wxGetApp().GetAppOptions()->UpdateGraphOptions(graphDlg.GetCanvas());
+        graphDlg.GetCanvas()->ResetResizeDelay();
+        graphDlg.ShowModal();
+        }
     else if (event.GetId() == XRCID("ID_BLANK_FRY_GRAPH"))
         {
         Wisteria::UI::GraphDlg graphDlg(wxGetApp().GetParentingWindow(), wxID_ANY,
@@ -3695,6 +3712,7 @@ MainFrame::MainFrame(wxDocManager* manager, wxFrame* frame,
     Bind(wxEVT_MENU, &MainFrame::OnBlankGraph, this, XRCID("ID_BLANK_GPM_GRAPH"));
     Bind(wxEVT_MENU, &MainFrame::OnBlankGraph, this, XRCID("ID_BLANK_RAYGOR_GRAPH"));
     Bind(wxEVT_MENU, &MainFrame::OnBlankGraph, this, XRCID("ID_BLANK_CRAWFORD_GRAPH"));
+    Bind(wxEVT_MENU, &MainFrame::OnBlankGraph, this, XRCID("ID_BLANK_INFLESZ_GRAPH"));
     Bind(wxEVT_MENU, &MainFrame::OnBlankGraph, this, XRCID("ID_BLANK_FLESCH_GRAPH"));
     Bind(wxEVT_MENU, &MainFrame::OnBlankGraph, this, XRCID("ID_BLANK_DB2_GRAPH"));
     Bind(wxEVT_MENU, &MainFrame::OnBlankGraph, this, XRCID("ID_BLANK_SCHWARTZ_GRAPH"));
@@ -3779,6 +3797,7 @@ void ReadabilityApp::InitProjectSidebar()
     imgList.push_back(GetResourceManager().GetSVG(L"ribbon/checklist.svg"));
     imgList.push_back(GetResourceManager().GetSVG(L"ribbon/word-cloud.svg"));
     imgList.push_back(GetResourceManager().GetSVG(L"ribbon/donut-subgrouped.svg"));
+    imgList.push_back(GetResourceManager().GetSVG(L"tests/inflesz-test.svg"));
     }
 
 //---------------------------------------------------

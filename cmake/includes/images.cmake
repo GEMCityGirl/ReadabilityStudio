@@ -191,6 +191,7 @@ tests/fry-test.svg
 tests/gilliam-pena-mountain-fry-graph.svg
 tests/gunning-fog-test.svg
 tests/harris-jacobson.svg
+tests/inflesz-test.svg
 tests/lix-german-childrens-literature.svg
 tests/lix-german-technical.svg
 tests/lix-test.svg

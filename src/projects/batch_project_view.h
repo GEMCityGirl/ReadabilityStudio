@@ -369,6 +369,21 @@ class BatchProjectView final : public BaseProjectView
 
     void SetCrawfordGraph(Wisteria::Canvas* graph) noexcept { m_crawfordGraph = graph; }
 
+    // INFLESZ
+    [[nodiscard]]
+    Wisteria::Canvas* GetInfleszGraph() noexcept
+        {
+        return m_infleszGraph;
+        }
+
+    [[nodiscard]]
+    const Wisteria::Canvas* GetInfleszGraph() const noexcept
+        {
+        return m_infleszGraph;
+        }
+
+    void SetInfleszGraph(Wisteria::Canvas* graph) noexcept { m_infleszGraph = graph; }
+
     void UpdateSideBarIcons();
 
     void OnEditGraphOptions([[maybe_unused]] wxCommandEvent& event);
@@ -501,6 +516,7 @@ class BatchProjectView final : public BaseProjectView
     Wisteria::Canvas* m_GermanLixGauge{ nullptr };
     Wisteria::Canvas* m_raygorGraph{ nullptr };
     Wisteria::Canvas* m_crawfordGraph{ nullptr };
+    Wisteria::Canvas* m_infleszGraph{ nullptr };
     Wisteria::UI::HtmlTablePanel* m_testExplanations{ nullptr };
     Wisteria::UI::HtmlTablePanel* m_statsReport{ nullptr };
 

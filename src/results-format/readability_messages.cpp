@@ -1069,70 +1069,68 @@ wxString ReadabilityMessages::GetGradeScaleDescription(size_t firstGrade, size_t
 wxString
 ReadabilityMessages::GetDanielsonBryan2Description(const readability::flesch_difficulty diffLevel)
     {
-    wxString description;
     switch (diffLevel)
         {
     case readability::flesch_difficulty::flesch_very_difficult:
-        description = _(L"Text is very difficult to read, college level.");
-        break;
+        return _(L"Text is very difficult to read, college level.");
     case readability::flesch_difficulty::flesch_difficult:
-        description = _(L"Text is difficult to read, high school level.");
-        break;
+        return _(L"Text is difficult to read, high school level.");
     case readability::flesch_difficulty::flesch_fairly_difficult:
-        description = _(L"Text is fairly difficult to read, junior high school level.");
-        break;
+        return _(L"Text is fairly difficult to read, junior high school level.");
     case readability::flesch_difficulty::flesch_standard:
-        description = _(L"Text is average in terms of reading difficulty, sixth-grade level.");
-        break;
+        return _(L"Text is average in terms of reading difficulty, sixth-grade level.");
     case readability::flesch_difficulty::flesch_fairly_easy:
-        description = _(L"Text is fairly easy to read, fifth-grade level.");
-        break;
+        return _(L"Text is fairly easy to read, fifth-grade level.");
     case readability::flesch_difficulty::flesch_easy:
-        description = _(L"Text is easy to read, fourth-grade level.");
-        break;
+        return _(L"Text is easy to read, fourth-grade level.");
     case readability::flesch_difficulty::flesch_very_easy:
-        description = _(L"Text is very easy to read, third-grade level.");
-        break;
+        return _(L"Text is very easy to read, third-grade level.");
     default:
-        description = _(L"Unable to determine difficulty.");
-        break;
+        return _(L"Unable to determine difficulty.");
         };
-    return description;
+    return {};
+    }
+
+//-----------------------------------------------------
+wxString ReadabilityMessages::GetInfleszDescription(const readability::inflesz_difficulty diffLevel)
+    {
+    switch (diffLevel)
+        {
+    case readability::inflesz_difficulty::very_difficult:
+        return _DT(L"MUY DIFÍCIL");
+    case readability::inflesz_difficulty::fairly_difficult:
+        return _DT(L"ALGO DIFÍCIL");
+    case readability::inflesz_difficulty::normal:
+        return _DT(L"NORMAL");
+    case readability::inflesz_difficulty::fairly_easy:
+        return _DT(L"BASTANTE FÁCIL");
+    case readability::inflesz_difficulty::very_easy:
+        return _DT(L"MUY FÁCIL");
+        };
+    return {};
     }
 
 //-----------------------------------------------------
 wxString ReadabilityMessages::GetFleschDescription(const readability::flesch_difficulty diffLevel)
     {
-    wxString description;
     switch (diffLevel)
         {
     case readability::flesch_difficulty::flesch_very_difficult:
-        description = _(L"Text is very difficult to read.");
-        break;
+        return _(L"Text is very difficult to read.");
     case readability::flesch_difficulty::flesch_difficult:
-        description = _(L"Text is difficult to read.");
-        break;
+        return _(L"Text is difficult to read.");
     case readability::flesch_difficulty::flesch_fairly_difficult:
-        description = _(L"Text is fairly difficult to read.");
-        break;
+        return _(L"Text is fairly difficult to read.");
     case readability::flesch_difficulty::flesch_standard:
-        description =
-            _(L"Text is average (i.e., \"Plain English\") in terms of reading difficulty.");
-        break;
+        return _(L"Text is average (i.e., \"Plain English\") in terms of reading difficulty.");
     case readability::flesch_difficulty::flesch_fairly_easy:
-        description = _(L"Text is fairly easy to read.");
-        break;
+        return _(L"Text is fairly easy to read.");
     case readability::flesch_difficulty::flesch_easy:
-        description = _(L"Text is easy to read.");
-        break;
+        return _(L"Text is easy to read.");
     case readability::flesch_difficulty::flesch_very_easy:
-        description = _(L"Text is very easy to read.");
-        break;
-    default:
-        description = _(L"Unable to determine difficulty.");
-        break;
+        return _(L"Text is very easy to read.");
         };
-    return description;
+    return {};
     }
 
 //-----------------------------------------------------
@@ -1142,19 +1140,14 @@ wxString ReadabilityMessages::GetEflawDescription(const readability::eflaw_diffi
         {
     case readability::eflaw_difficulty::eflaw_very_confusing:
         return _(L"Text is very confusing to read.");
-        break;
     case readability::eflaw_difficulty::eflaw_confusing:
         return _(L"Text is confusing to read.");
-        break;
     case readability::eflaw_difficulty::eflaw_easy:
         return _(L"Text is easy to read.");
-        break;
     case readability::eflaw_difficulty::eflaw_very_easy:
         return _(L"Text is very easy to read.");
-        break;
-    default:
-        return _(L"Unable to determine difficulty.");
         };
+    return {};
     }
 
 //-----------------------------------------------------
@@ -1172,9 +1165,8 @@ wxString ReadabilityMessages::GetLixDescription(const readability::lix_difficult
         return _(L"Text is easy to read.");
     case readability::lix_difficulty::lix_very_easy:
         return _(L"Text is very easy to read.");
-    default:
-        return _(L"Unable to determine difficulty.");
         };
+    return {};
     }
 
 //-----------------------------------------------------
@@ -1200,15 +1192,14 @@ wxString ReadabilityMessages::GetLixDescription(const readability::german_lix_di
         return _(L"Text is at a technical document level of difficulty.");
     case readability::german_lix_difficulty::german_lix_very_difficult:
         return _(L"Text is very difficult to read.");
-    default:
-        return _(L"Unable to determine difficulty.");
         };
+    return {};
     }
 
 //-------------------------------------------------------
-wxString ReadabilityMessages::GetFraseDescription(const size_t frazeLevel)
+wxString ReadabilityMessages::GetFraseDescription(const size_t fraseLevel)
     {
-    switch (frazeLevel)
+    switch (fraseLevel)
         {
     case 1:
         return _(L"Beginning (Level I)");
@@ -1221,6 +1212,7 @@ wxString ReadabilityMessages::GetFraseDescription(const size_t frazeLevel)
     default:
         return _(L"Unknown Level");
         };
+    return {};
     }
 
 //-------------------------------------------------------

@@ -658,7 +658,7 @@ ReadabilityFormulaParser::ReadabilityFormulaParser(const BaseProject* project,
              m_formulaProject.GetProject()->GetTotalHardWordsDaleChall());
 
     set_variables_and_functions(std::set<te_variable>{
-        // note that these constants must be char* (not whcar_t*)
+        // note that these constants must be char* (not wchar_t*)
         { _DT("UNIQUETHREESYLLABLEPLUSWORDCOUNT"),
           static_cast<te_confun1>(UniqueThreeSyllablePlusWordCount), TE_DEFAULT,
           &m_formulaProject },

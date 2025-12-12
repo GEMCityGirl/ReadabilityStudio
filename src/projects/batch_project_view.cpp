@@ -709,6 +709,8 @@ void BatchProjectView::UpdateSideBarIcons()
                 (isGraph &&
                  checkGraphType(window, wxCLASSINFO(Wisteria::Graphs::DanielsonBryan2Plot))) ?
                                                                                                27 :
+                (isGraph && checkGraphType(window, wxCLASSINFO(Wisteria::Graphs::InfleszChart))) ?
+                                                                                               31 :
                                                                                                9);
             }
         }
@@ -1488,6 +1490,7 @@ void BatchProjectView::UpdateStatAndTestPanes(const long scoreListItem)
     const auto drpPos =
         doc->GetReadabilityTests().get_test(ReadabilityMessages::DEGREES_OF_READING_POWER());
     const auto frasePos = doc->GetReadabilityTests().get_test(ReadabilityMessages::FRASE());
+    const auto infleszPos = doc->GetReadabilityTests().get_test(ReadabilityMessages::INFLESZ());
     for (long i = 2 /*skip document and description column*/; i < list->GetColumnCount(); ++i)
         {
         const wxString currentTestFullName = list->GetColumnName(i);
@@ -1581,6 +1584,26 @@ void BatchProjectView::UpdateStatAndTestPanes(const long scoreListItem)
                                                        score))
                     {
                     scoreText += L"\n<tr><td>" + ReadabilityMessages::GetFraseDescription(score) +
+                                 L"</td></tr>";
+                    scoreText +=
+                        L"\n<tr><td>" +
+                        wxString(
+                            doc->GetReadabilityTests().get_test_description(currentTest).c_str()) +
+                        L"</td></tr></table>";
+                    }
+                }
+            else if (infleszPos.second &&
+                     *infleszPos.first == readability::readability_test(currentTest))
+                {
+                if (ReadabilityMessages::GetScoreValue(list->GetItemTextEx(scoreListItem, i),
+                                                       score))
+                    {
+                    const readability::inflesz_difficulty diffLevel =
+                        readability::szigriszt_pazos_perspicuity_score_to_difficulty_inflesz_level(
+                            static_cast<size_t>(score));
+
+                    scoreText += L"\n<tr><td>" +
+                                 ReadabilityMessages::GetInfleszDescription(diffLevel) +
                                  L"</td></tr>";
                     scoreText +=
                         L"\n<tr><td>" +

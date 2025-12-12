@@ -2880,6 +2880,65 @@ void ProjectDoc::DisplayWordCharts()
     }
 
 //-------------------------------------------------------
+void ProjectDoc::AddInfleszGraph(const bool setFocus)
+    {
+    const size_t val = readability::szigriszt_pazos_perspicuity(
+        GetTotalWords(), GetTotalSyllables(), GetTotalSentences());
+
+    const wxString scoresColumnName{ _DT(L"SCORES") };
+
+    auto scoreDataset = std::make_shared<Wisteria::Data::Dataset>();
+    scoreDataset->AddContinuousColumn(scoresColumnName);
+
+    scoreDataset->AddRow(Wisteria::Data::RowInfo().Continuous({ static_cast<double>(val) }));
+
+    // INFLESZ graph
+    auto* view = dynamic_cast<ProjectView*>(GetFirstView());
+    wxGCDC gdc(view->GetDocFrame());
+
+    auto* infleszGraphView = dynamic_cast<Wisteria::Canvas*>(
+        view->GetReadabilityResultsView().FindWindowById(BaseProjectView::INFLESZ_GRAPH_PAGE_ID));
+    if (infleszGraphView != nullptr)
+        {
+        auto infleszGraph = std::dynamic_pointer_cast<Wisteria::Graphs::InfleszChart>(
+            infleszGraphView->GetFixedObject(0, 0));
+        infleszGraph->SetData(scoreDataset, scoresColumnName);
+        }
+    else
+        {
+        infleszGraphView =
+            new Wisteria::Canvas(view->GetSplitter(), BaseProjectView::INFLESZ_GRAPH_PAGE_ID);
+        infleszGraphView->SetFixedObjectsGridSize(1, 1);
+
+        infleszGraphView->Hide();
+        infleszGraphView->SetLabel(BaseProjectView::GetInfleszChartLabel());
+        infleszGraphView->SetName(BaseProjectView::GetInfleszChartLabel());
+        infleszGraphView->SetPrinterSettings(*wxGetApp().GetPrintData());
+
+        auto infleszGraph = std::make_shared<Wisteria::Graphs::InfleszChart>(
+            infleszGraphView,
+            std::make_shared<Wisteria::Colors::Schemes::ColorScheme>(
+                Wisteria::Colors::Schemes::ColorScheme{ Wisteria::Colors::ColorBrewer::GetColor(
+                    Wisteria::Colors::Color::CelestialBlue) }));
+
+        infleszGraph->SetData(scoreDataset, scoresColumnName);
+        infleszGraphView->SetFixedObject(0, 0, infleszGraph);
+
+        view->GetReadabilityResultsView().AddWindow(infleszGraphView);
+        }
+    UpdateGraphOptions(infleszGraphView);
+    infleszGraphView->CalcAllSizes(gdc);
+
+    // if they asked to set focus to the score, then select the graph
+    if (setFocus)
+        {
+        view->UpdateSideBarIcons();
+        view->GetSideBar()->SelectSubItem(
+            view->GetSideBar()->FindSubItem(BaseProjectView::INFLESZ_GRAPH_PAGE_ID));
+        }
+    }
+
+//-------------------------------------------------------
 void ProjectDoc::AddCrawfordGraph(const bool setFocus)
     {
     const double gradeValue =
@@ -3573,14 +3632,21 @@ void ProjectDoc::DisplayReadabilityGraphs()
             view->GetReadabilityResultsView().RemoveWindowById(
                 BaseProjectView::LIX_GAUGE_GERMAN_PAGE_ID);
             }
-        // remove Crawford graph if test is not included (Note that this chart is added by
+        // remove Crawford graph if test is not included (Note that this graph is added by
         // AddCrawfordTest, not here).
         if (!GetReadabilityTests().is_test_included(ReadabilityMessages::CRAWFORD()))
             {
             view->GetReadabilityResultsView().RemoveWindowById(
                 BaseProjectView::CRAWFORD_GRAPH_PAGE_ID);
             }
-        // remove Raygor graph if test is not included (Note that this chart is added by
+        // remove INFLESZ graph if test is not included (Note that this graph is added by
+        // AddInfleszGraph, not here).
+        if (!GetReadabilityTests().is_test_included(ReadabilityMessages::INFLESZ()))
+            {
+            view->GetReadabilityResultsView().RemoveWindowById(
+                BaseProjectView::INFLESZ_GRAPH_PAGE_ID);
+            }
+        // remove Raygor graph if test is not included (Note that this graph is added by
         // AddRaygorTest, not here).
         if (!GetReadabilityTests().is_test_included(ReadabilityMessages::RAYGOR()))
             {

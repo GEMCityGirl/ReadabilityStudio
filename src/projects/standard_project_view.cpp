@@ -519,6 +519,8 @@ void ProjectView::OnEditGraphOptions(wxCommandEvent& event)
         [[fallthrough]];
     case FLESCH_CHART_PAGE_ID:
         [[fallthrough]];
+    case INFLESZ_GRAPH_PAGE_ID:
+        [[fallthrough]];
     case CRAWFORD_GRAPH_PAGE_ID:
         [[fallthrough]];
     case SCHWARTZ_PAGE_ID:
@@ -599,6 +601,10 @@ void ProjectView::OnHyperlinkClicked(wxHtmlLinkEvent& event)
     else if (event.GetLinkInfo().GetHref() == L"#crawford-graph")
         {
         GetSideBar()->SelectSubItem(GetSideBar()->FindSubItem(CRAWFORD_GRAPH_PAGE_ID));
+        }
+    else if (event.GetLinkInfo().GetHref() == L"#inflesz")
+        {
+        GetSideBar()->SelectSubItem(GetSideBar()->FindSubItem(INFLESZ_GRAPH_PAGE_ID));
         }
     else if (event.GetLinkInfo().GetHref() == L"#GPMFryGraph")
         {
@@ -1095,6 +1101,8 @@ void ProjectView::UpdateSideBarIcons()
                 (isGraph &&
                  checkGraphType(window, wxCLASSINFO(Wisteria::Graphs::DanielsonBryan2Plot))) ?
                                                                                                27 :
+                (isGraph && checkGraphType(window, wxCLASSINFO(Wisteria::Graphs::InfleszChart))) ?
+                                                                                               31 :
                                                                                                9);
             }
         }
@@ -2333,8 +2341,9 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
     else if (event.GetInt() == FLESCH_CHART_PAGE_ID || event.GetInt() == DB2_PAGE_ID ||
              event.GetInt() == FRY_PAGE_ID || event.GetInt() == RAYGOR_PAGE_ID ||
              event.GetInt() == CRAWFORD_GRAPH_PAGE_ID || event.GetInt() == FRASE_PAGE_ID ||
-             event.GetInt() == SCHWARTZ_PAGE_ID || event.GetInt() == LIX_GAUGE_PAGE_ID ||
-             event.GetInt() == LIX_GAUGE_GERMAN_PAGE_ID || event.GetInt() == GPM_FRY_PAGE_ID)
+             event.GetInt() == INFLESZ_GRAPH_PAGE_ID || event.GetInt() == SCHWARTZ_PAGE_ID ||
+             event.GetInt() == LIX_GAUGE_PAGE_ID || event.GetInt() == LIX_GAUGE_GERMAN_PAGE_ID ||
+             event.GetInt() == GPM_FRY_PAGE_ID)
         {
         m_activeWindow = GetReadabilityResultsView().FindWindowById(event.GetInt());
         resetActiveCanvasResizeDelay();

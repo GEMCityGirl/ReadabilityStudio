@@ -50,6 +50,7 @@
 #ifndef RS_PROJECT_VIEW_H
 #define RS_PROJECT_VIEW_H
 
+#include "../Wisteria-Dataviz/src/graphs/inflesz.h"
 #include "../Wisteria-Dataviz/src/math/statistics.h"
 #include "../Wisteria-Dataviz/src/util/windowcontainer.h"
 #include "../graphs/frygraph.h"

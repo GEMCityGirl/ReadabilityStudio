@@ -1297,6 +1297,7 @@ class BaseProject : public ProjectRefresh
     bool AddElfTest(const bool setFocus = true);
     bool AddDanielsonBryan1Test(const bool setFocus = true);
     bool AddDanielsonBryan2Test(const bool setFocus = true);
+    bool AddInfleszTest(const bool setFocus = true);
 
     virtual bool AddFryTest(const bool /*setFocus = true, not used here*/)
         {
@@ -2368,7 +2369,41 @@ class BaseProject : public ProjectRefresh
     [[nodiscard]]
     bool VerifyTestBeforeAdding(
         const std::pair<std::vector<ProjectTestType>::const_iterator, bool>& theTest);
+
+        [[nodiscard]]
+    bool VerifyTotalWordsForTest(const wxString& currentTestKey)
+        {
+        if (GetTotalWords() == 0)
+            {
+            LogMessage(
+                wxString::Format(
+                    _(L"Unable to calculate %s: at least one word must be present in document."),
+                    GetReadabilityTests().get_test_short_name(currentTestKey).c_str()),
+                _(L"Error"), wxOK | wxICON_ERROR, wxString{}, true);
+            GetReadabilityTests().include_test(currentTestKey, false);
+            return false;
+            }
+        return true;
+        }
+
+    [[nodiscard]]
+    bool VerifyTotalSentencesForTest(const wxString& currentTestKey)
+        {
+        if (GetTotalSentences() == 0)
+            {
+            LogMessage(
+                wxString::Format(_(L"Unable to calculate %s: at least one sentence must be present "
+                                   L"in document."),
+                                 GetReadabilityTests().get_test_short_name(currentTestKey).c_str()),
+                _(L"Error"), wxOK | wxICON_ERROR, wxString{}, true);
+            GetReadabilityTests().include_test(currentTestKey, false);
+            return false;
+            }
+        return true;
+        }
+
     void HandleFailedTestCalculation(const wxString& testName);
+
     [[nodiscard]]
     bool FindMissingFile(const wxString& filePath, wxString& fileBySameNameInProjectDirectory);
 
@@ -2386,6 +2421,9 @@ class BaseProject : public ProjectRefresh
 
     // only AddCrawfordTest should call this
     virtual void AddCrawfordGraph([[maybe_unused]] const bool setFocus) {}
+
+    // only AddInfleszTest should call this
+    virtual void AddInfleszGraph([[maybe_unused]] const bool setFocus) {}
 
     /** @returns @c true value and raw/encoded text (usually HTML) converted into a filtered string
             on success, @c false and empty string otherwise.

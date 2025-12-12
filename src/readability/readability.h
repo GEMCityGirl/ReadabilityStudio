@@ -322,6 +322,16 @@ namespace readability
         flesch_very_difficult    /*!< Very difficult.*/
         };
 
+    /// @brief Difficulty levels defined by INFLESZ.
+    enum class inflesz_difficulty
+        {
+        very_easy,        /*!< Very easy.*/
+        fairly_easy,      /*!< Fairly easy.*/
+        normal,           /*!< Average.*/
+        fairly_difficult, /*!< Fairly difficult.*/
+        very_difficult    /*!< Very difficult.*/
+        };
+
     /** @brief Rate Index (variation of Lix).
         @param[out] grade_level The grade level.
         @param number_of_longwords The number of words that are @c 7 or
@@ -512,7 +522,7 @@ namespace readability
         }
 
     /** @brief Helper function to convert a Flesch score into a human readable difficulty level.
-        @param result The 0-100 calculated Flesch Reading Ease Index.
+        @param result The 0-100 calculated Flesch Reading Ease index.
         @returns The difficulty level of the index value.*/
     [[nodiscard]]
     inline flesch_difficulty flesch_score_to_difficulty_level(const size_t result) noexcept
@@ -541,7 +551,7 @@ namespace readability
             {
             return flesch_difficulty::flesch_easy;
             }
-        else // bigger than 90
+        else // 90 or above
             {
             return flesch_difficulty::flesch_very_easy;
             }

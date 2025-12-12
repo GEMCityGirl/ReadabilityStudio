@@ -127,6 +127,13 @@ class ReadabilityMessages final : public Wisteria::NumberFormat<wxString>
         return { _DT(L"fry-test") };
         }
 
+    /// @returns INFLESZ key.
+    [[nodiscard]]
+    static wxString INFLESZ()
+        {
+        return { _DT(L"inflesz-test") };
+        }
+
     /// @returns GUNNING_FOG key.
     [[nodiscard]]
     static wxString GUNNING_FOG()
@@ -534,6 +541,10 @@ class ReadabilityMessages final : public Wisteria::NumberFormat<wxString>
     /// @param diffLevel The difficulty level.
     [[nodiscard]]
     static wxString GetFleschDescription(const readability::flesch_difficulty diffLevel);
+    /// @returns A label describing an INFLESZ difficulty level.
+    /// @param diffLevel The difficulty level.
+    [[nodiscard]]
+    static wxString GetInfleszDescription(const readability::inflesz_difficulty diffLevel);
     /** @returns A label describing a DB2 difficulty level.
         @param diffLevel The difficulty level.
         @note DB2's scale is the same as Flesch, but its descriptions
@@ -559,9 +570,9 @@ class ReadabilityMessages final : public Wisteria::NumberFormat<wxString>
     [[nodiscard]]
     static wxString GetDrpUnitDescription(const size_t drpScore);
     /// @returns A description for FRASE.
-    /// @param frazeLevel The FRASE level to describe.
+    /// @param fraseLevel The FRASE level to describe.
     [[nodiscard]]
-    static wxString GetFraseDescription(const size_t frazeLevel);
+    static wxString GetFraseDescription(const size_t fraseLevel);
 
     /// @returns The month of completion from a given 0-9 value (the mantissa of a grade score).
     ///     This is grade scale independent.

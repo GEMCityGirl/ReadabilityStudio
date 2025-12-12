@@ -50,6 +50,7 @@
 #include "batch_project_doc.h"
 #include "../Wisteria-Dataviz/src/base/reportenumconvert.h"
 #include "../Wisteria-Dataviz/src/graphs/danielsonbryan2plot.h"
+#include "../Wisteria-Dataviz/src/graphs/inflesz.h"
 #include "../Wisteria-Dataviz/src/graphs/lixgauge.h"
 #include "../Wisteria-Dataviz/src/graphs/lixgaugegerman.h"
 #include "../Wisteria-Dataviz/src/graphs/wordcloud.h"
@@ -83,7 +84,7 @@ void BatchProjectDoc::RemoveMisspellings(const wxArrayString& misspellingsToRemo
     {
     traits::case_insensitive_wstring_ex reportStr;
     wxString searchStr;
-    wxString multFactorValue;
+    wxString multiFactorValue;
     for (size_t i = 0; i < GetMisspelledWordData()->GetItemCount(); ++i)
         {
         double totalCount = GetMisspelledWordData()->GetItemValue(i, 2);
@@ -98,15 +99,15 @@ void BatchProjectDoc::RemoveMisspellings(const wxArrayString& misspellingsToRemo
                 size_t endIndex = reportStr.find(L',', index + searchStr.length());
                 if (endIndex != wxString::npos)
                     {
-                    size_t multFactorIndex = reportStr.find(L'*', index + searchStr.length());
-                    if (multFactorIndex != wxString::npos && multFactorIndex < endIndex)
+                    size_t multiFactorIndex = reportStr.find(L'*', index + searchStr.length());
+                    if (multiFactorIndex != wxString::npos && multiFactorIndex < endIndex)
                         {
                         // skip "* "
-                        multFactorIndex += 2;
-                        multFactorValue =
-                            reportStr.substr(multFactorIndex, endIndex - multFactorIndex).c_str();
+                        multiFactorIndex += 2;
+                        multiFactorValue =
+                            reportStr.substr(multiFactorIndex, endIndex - multiFactorIndex).c_str();
                         double val{ 0 };
-                        if (multFactorValue.ToDouble(&val))
+                        if (multiFactorValue.ToDouble(&val))
                             {
                             assert(val > 0);
                             totalCount -= (val - 1 /* we will subtract 1 later*/);
@@ -123,14 +124,14 @@ void BatchProjectDoc::RemoveMisspellings(const wxArrayString& misspellingsToRemo
                         {
                         index -= 2;
                         }
-                    size_t multFactorIndex = reportStr.find(L'*', index + searchStr.length());
-                    if (multFactorIndex != wxString::npos)
+                    size_t multiFactorIndex = reportStr.find(L'*', index + searchStr.length());
+                    if (multiFactorIndex != wxString::npos)
                         {
                         // skip "* "
-                        multFactorIndex += 2;
-                        multFactorValue = reportStr.substr(multFactorIndex).c_str();
+                        multiFactorIndex += 2;
+                        multiFactorValue = reportStr.substr(multiFactorIndex).c_str();
                         double val{ 0 };
-                        if (multFactorValue.ToDouble(&val))
+                        if (multiFactorValue.ToDouble(&val))
                             {
                             assert(val > 0);
                             totalCount -= (val - 1 /* we will subtract 1 later*/);
@@ -3823,6 +3824,12 @@ void BatchProjectDoc::DisplayScores()
         {
         view->GetScoresView().AddWindow(view->GetCrawfordGraph());
         }
+    if ((view->GetInfleszGraph() != nullptr) &&
+        GetReadabilityTests().is_test_included(ReadabilityMessages::INFLESZ()) &&
+        !GetDocuments().empty())
+        {
+        view->GetScoresView().AddWindow(view->GetInfleszGraph());
+        }
     if ((view->GetFleschChart() != nullptr) &&
         GetReadabilityTests().is_test_included(ReadabilityMessages::FLESCH()) &&
         !GetDocuments().empty())
@@ -3950,6 +3957,106 @@ void BatchProjectDoc::DisplayScoreStatisticsWindow(
     else
         {
         listView->Resort();
+        }
+    }
+
+//------------------------------------------------------------
+/// @todo implement this!
+void BatchProjectDoc::DisplayInfleszGraph() {
+    auto* view = dynamic_cast<BatchProjectView*>(GetFirstView());
+
+    const wxString scoresColumnName{ _DT(L"SCORES") };
+    const wxString groupColumnName{ _DT(L"GROUP") };
+
+    auto scoreDataset = std::make_shared<Wisteria::Data::Dataset>();
+    scoreDataset->AddContinuousColumn(scoresColumnName);
+    scoreDataset->AddCategoricalColumn(groupColumnName, m_groupStringTable);
+    scoreDataset->GetIdColumn().SetName(_DT(L"DOCS"));
+    scoreDataset->Reserve(GetDocuments().size());
+
+    for (auto* doc : GetDocuments())
+        {
+        if (doc->LoadingOriginalTextSucceeded())
+            {
+            const double indexValue = readability::szigriszt_pazos_perspicuity(
+                doc->GetTotalWords(), doc->GetTotalSyllables(), doc->GetTotalSentences());
+
+            auto foundGroupId =
+                GetDocumentLabels().find(doc->GetOriginalDocumentDescription().wc_str());
+            assert((!IsShowingGroupLegends() || foundGroupId != GetDocumentLabels().cend()) &&
+                   L"Could not find group label for INFLESZ graph!");
+            scoreDataset->AddRow(
+                Wisteria::Data::RowInfo()
+                    .Id(wxFileName(doc->GetOriginalDocumentFilePath()).GetFullName().wc_str())
+                    .Categoricals({ IsShowingGroupLegends() ? foundGroupId->second : 0 })
+                    .Continuous({ indexValue }));
+            }
+        }
+
+    // INFLESZ Graph
+    if (GetReadabilityTests().is_test_included(ReadabilityMessages::INFLESZ()) && !m_docs.empty())
+        {
+        std::shared_ptr<Wisteria::Graphs::InfleszChart> infleszGraph{ nullptr };
+        auto* infleszGraphCanvas = dynamic_cast<Wisteria::Canvas*>(
+            view->GetScoresView().FindWindowById(BaseProjectView::INFLESZ_GRAPH_PAGE_ID));
+
+        if (infleszGraphCanvas == nullptr)
+            {
+            infleszGraphCanvas =
+                new Wisteria::Canvas(view->GetSplitter(), BaseProjectView::INFLESZ_GRAPH_PAGE_ID);
+            infleszGraphCanvas->SetFixedObjectsGridSize(1, 1);
+
+            infleszGraph = std::make_shared<Wisteria::Graphs::InfleszChart>(
+                infleszGraphCanvas,
+                std::make_shared<Wisteria::Colors::Schemes::ColorScheme>(
+                    *std::make_shared<Wisteria::Colors::Schemes::EarthTones>()));
+            infleszGraph->SetData(scoreDataset, scoresColumnName,
+                                   IsShowingGroupLegends() ?
+                                       std::optional<const wxString>(groupColumnName) :
+                                       std::nullopt);
+            infleszGraphCanvas->SetFixedObject(0, 0, infleszGraph);
+            infleszGraphCanvas->Hide();
+            view->SetInfleszGraph(infleszGraphCanvas);
+            view->GetInfleszGraph()->SetLabel(
+                GetReadabilityTests().get_test_long_name(ReadabilityMessages::INFLESZ()).c_str());
+            view->GetInfleszGraph()->SetName(
+                GetReadabilityTests().get_test_long_name(ReadabilityMessages::INFLESZ()).c_str());
+            }
+        else
+            {
+            infleszGraph = std::dynamic_pointer_cast<Wisteria::Graphs::InfleszChart>(
+                view->GetInfleszGraph()->GetFixedObject(0, 0));
+            assert(infleszGraph);
+            infleszGraph->SetData(scoreDataset, scoresColumnName,
+                                   IsShowingGroupLegends() ?
+                                       std::optional<const wxString>(groupColumnName) :
+                                       std::nullopt);
+            }
+        UpdateGraphOptions(view->GetInfleszGraph());
+
+        // add legend if grouping
+        if (IsShowingGroupLegends())
+            {
+            view->GetInfleszGraph()->SetFixedObjectsGridSize(1, 2);
+            view->GetInfleszGraph()->SetFixedObject(
+                0, 1,
+                infleszGraph->CreateLegend(Wisteria::Graphs::LegendOptions().PlacementHint(
+                    Wisteria::LegendCanvasPlacementHint::RightOfGraph)));
+            }
+        // ...and if not grouping, use light blue for points
+        else
+            {
+            infleszGraph->SetColorScheme(std::make_shared<Wisteria::Colors::Schemes::ColorScheme>(
+                Wisteria::Colors::Schemes::ColorScheme{ Wisteria::Colors::ColorBrewer::GetColor(
+                    Wisteria::Colors::Color::CelestialBlue) }));
+            }
+
+        wxGCDC gdc(view->GetDocFrame());
+        view->GetInfleszGraph()->CalcAllSizes(gdc);
+        }
+    else
+        {
+        view->GetScoresView().RemoveWindowById(BaseProjectView::INFLESZ_GRAPH_PAGE_ID);
         }
     }
 
@@ -4488,6 +4595,7 @@ void BatchProjectDoc::DisplayReadabilityGraphs()
     DisplayFleschChart();
     DisplayDB2Plot();
     DisplayCrawfordGraph();
+    DisplayInfleszGraph();
     DisplayLixGauge();
     DisplayGermanLixGauge();
 

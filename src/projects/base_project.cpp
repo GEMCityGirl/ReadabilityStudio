@@ -468,6 +468,13 @@ BaseProject::BaseProject()
         m_standardTestFunctions.insert(
             std::make_pair(testPos->second, &BaseProject::AddCrawfordTest));
         }
+    // INFLESZ
+    testPos = m_testIdMap.find(ReadabilityMessages::INFLESZ());
+    if (testPos != m_testIdMap.cend())
+        {
+        m_standardTestFunctions.insert(
+            std::make_pair(testPos->second, &BaseProject::AddInfleszTest));
+        }
     // FRASE
     testPos = m_testIdMap.find(ReadabilityMessages::FRASE());
     if (testPos != m_testIdMap.cend())
@@ -1205,6 +1212,39 @@ void BaseProject::InitializeStandardSpanishReadabilityTests()
         test.add_industry_classification(
             readability::industry_classification::childrens_healthcare_industry, true);
         test.add_teaching_level(readability::test_teaching_level::primary_grade);
+        test.add_language(readability::test_language::spanish_test);
+        test.add_factor(readability::test_factor::word_complexity);
+        test.add_factor(readability::test_factor::sentence_length);
+        m_defaultReadabilityTestsTemplate.add_test(test);
+        m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
+        }
+
+        // INFLESZ
+        {
+        readability::readability_test test(
+            ReadabilityMessages::INFLESZ(), XRCID("ID_INFLESZ"), _DT(L"INFLESZ"), _DT(L"INFLESZ"),
+            _(L"The <a href=\"#inflesz\">INFLESZ graph</a> is a Flesch Reading Ease "
+              "like graph for Spanish. It is designed as a general purpose formula for most text."),
+            readability::readability_test_type::index_value, true,
+            // Szigriszt-Pazos Perspicuity scale, which needs to be plotted onto the INFLESZ graph
+            _DT(L"ROUND(CLAMP(206.835 - (W/S) - (62.3 * (B/W)), 0, 100))"));
+        // general purpose test, just like FRE
+        test.add_document_classification(readability::document_classification::general_document,
+                                         true);
+        test.add_document_classification(readability::document_classification::technical_document,
+                                         true);
+        test.add_document_classification(
+            readability::document_classification::adult_literature_document, true);
+        test.add_industry_classification(
+            readability::industry_classification::childrens_publishing_industry, true);
+        test.add_industry_classification(
+            readability::industry_classification::adult_publishing_industry, true);
+        test.add_industry_classification(
+            readability::industry_classification::childrens_healthcare_industry, true);
+        test.add_industry_classification(
+            readability::industry_classification::adult_healthcare_industry, true);
+        test.add_teaching_level(readability::test_teaching_level::secondary_grade);
+        test.add_teaching_level(readability::test_teaching_level::adult_level);
         test.add_language(readability::test_language::spanish_test);
         test.add_factor(readability::test_factor::word_complexity);
         test.add_factor(readability::test_factor::sentence_length);
@@ -5874,6 +5914,59 @@ bool BaseProject::AddSmogTest(const bool setFocus)
         HandleFailedTestCalculation(currentTestKey);
         return false;
         }
+
+    GetReadabilityTests().include_test(currentTestKey, true);
+    return true;
+    }
+
+//-------------------------------------------------------
+bool BaseProject::AddInfleszTest(const bool setFocus)
+    {
+    ClearReadabilityTestResult();
+
+    const wxString currentTestKey = ReadabilityMessages::INFLESZ();
+
+    if (!VerifyTotalWordsForTest(currentTestKey))
+        {
+        return false;
+        }
+    if (!VerifyTotalSentencesForTest(currentTestKey))
+        {
+        return false;
+        }
+
+    try
+        {
+        const size_t val = readability::szigriszt_pazos_perspicuity(
+            GetTotalWords(), GetTotalSyllables(), GetTotalSentences());
+
+        const auto theTest = GetReadabilityTests().find_test(currentTestKey);
+        if (!VerifyTestBeforeAdding(theTest))
+            {
+            return false;
+            }
+
+        const readability::inflesz_difficulty diffLevel =
+            readability::szigriszt_pazos_perspicuity_score_to_difficulty_inflesz_level(val);
+
+        const wxString description = HasUI() ?
+                                         ProjectReportFormat::FormatTestResult(
+                                             ReadabilityMessages::GetInfleszDescription(diffLevel),
+                                             theTest.first->get_test()) :
+                                         wxString{};
+
+        SetReadabilityTestResult(
+            currentTestKey, theTest.first->get_test().get_long_name().c_str(), description,
+            std::make_pair(std::numeric_limits<double>::quiet_NaN(), wxString{}), wxString{}, val,
+            std::numeric_limits<double>::quiet_NaN(), setFocus);
+        }
+    catch (...)
+        {
+        HandleFailedTestCalculation(currentTestKey);
+        return false;
+        }
+
+    AddInfleszGraph(setFocus);
 
     GetReadabilityTests().include_test(currentTestKey, true);
     return true;

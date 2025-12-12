@@ -144,6 +144,36 @@ namespace readability
 
         return result;
         }
+
+    /** @brief Helper function to convert a Szigriszt-Pazos Perspicuity score
+            into a INFLESZ scale difficulty level.
+        @param result The 0-100 calculated INFLESZ index.
+        @returns The difficulty level of the index value, mapping to the INFLESZ column.*/
+    [[nodiscard]]
+    inline inflesz_difficulty
+    szigriszt_pazos_perspicuity_score_to_difficulty_inflesz_level(const size_t result) noexcept
+        {
+        if (result <= 40)
+            {
+            return inflesz_difficulty::very_difficult;
+            }
+        else if (result <= 55)
+            {
+            return inflesz_difficulty::fairly_difficult;
+            }
+        else if (result <= 65)
+            {
+            return inflesz_difficulty::normal;
+            }
+        else if (result <= 80)
+            {
+            return inflesz_difficulty::fairly_easy;
+            }
+        else // above 80
+            {
+            return inflesz_difficulty::very_easy;
+            }
+        }
     } // namespace readability
 
 #endif // SPANISH_READABILITY_H

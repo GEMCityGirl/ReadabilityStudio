@@ -268,6 +268,7 @@ class BatchProjectDoc final : public BaseProjectDoc
     void DisplayFleschChart();
     void DisplayDB2Plot();
     void DisplayCrawfordGraph();
+    void DisplayInfleszGraph();
     void DisplayLixGauge();
     void DisplayGermanLixGauge();
     constexpr static size_t CUMULATIVE_STATS_COUNT = 13;

@@ -86,13 +86,13 @@ For options specific to a graph that needs to be added to the ribbon:
 
 - Add the actual function to `r file_path(c("src", "readability", "english_readability.h"))` (or other file if a different language).
   (This only applies to linear-regression based tests with a formula, not tests that calculate their values graphically [e.g., Fry].)
-- Add its definition to `BaseProject::InitializeStandardReadabilityTests()` (or proper subfunction)
+- Add its definition to `BaseProject::InitializeStandardReadabilityTests()` (or subfunction)
 - Add internal name constant to `r file_path(c("src", "results_format", "readability_messages.h"))`.
   This will be a string ID that is used throughout the program, documentation, and resources to identify the test.
 - Add its `AddXXXTest()` function to `r file_path(c("src", "projects", "base_project.cpp"))`
 - If a graphical test (e.g., Fry), then also do the following:
-  - The `AddXXXTest()` function must be virtual and derived in `r file_path(c("src", "projects", "standard_project_doc.h"))` and `r file_path(c("src", "projects", "standard_project_doc.cpp"))` also
-  - If a graphical test that's a supplement to a test (that already has its own `AddXXXTest()` function), then call the graphical `AddXXXTest()` from the test's original `AddXXXTest()` function in `r file_path(c("src", "projects", "base_project.cpp"))`
+  - If the graph calculates the score (e.g., Fry), then the `AddXXXTest()` function must be virtual and derived in `r file_path(c("src", "projects", "standard_project_doc.h"))` also
+  - Otherwise, if the score is calucalated by a formula and the graph is a supplement to visualize that score (e.g., Crawford), then add a virtual `AddXXXGraph()` function to `r file_path(c("src", "projects", "base_project.h"))` and call that from the test's `AddXXXTest()` function in `r file_path(c("src", "projects", "base_project.cpp"))`
   - Handle its exclusion in `ProjectDoc::DisplayReadabilityGraphs()`
   - Add its `GetXXXLabel()` function in `r file_path(c("src", "projects", "base_project_view.h"))`
   - Define its graph window ID in `r file_path(c("src", "projects", "base_project_view.h"))`
@@ -101,17 +101,21 @@ For options specific to a graph that needs to be added to the ribbon:
   - Add aforementioned numeric ID and constant name into the `GraphType` enum in\
     `r file_path(c("resources", "scripting", "rs-constants.lua"))`
   - Handle the aforementioned window ID in `ProjectView::OnEditGraphOptions()`,\
-    `ProjectView::OnHyperlinkClicked()`, `ProjectView::OnItemSelected()`,\
-    and `BatchProjectDoc::DisplayReadabilityGraphs()`
+    `ProjectView::OnHyperlinkClicked()`, `ProjectView::OnItemSelected()`
+  - Load results in `BatchProjectDoc::LoadScoresSection()` if graph handles its own scoring (e.g., Fry)
+  - If the graph calculates the score, then handle loading its scores into the graph and toggling its shown state in\
+    `BatchProjectDoc::DisplayReadabilityGraphs()` (or a subfunction from that)
+  - If the graph is a supplement to a formula, then handle calculating its scores and toggling its shown state in\
+    `BatchProjectDoc::DisplayReadabilityGraphs()` (or a subfunction from that)
   - Add `Set/GetXXXGraph()` functions to `r file_path(c("src", "projects", "batch_project_view.h"))`
   - Show/hide window in `BatchProjectDoc::DisplayScores()`
-  - Load results in `BatchProjectDoc::LoadScores()` if graph handles its own scoring (e.g., Fry)
-  - Add its icon loading to `MainFrame::MainFrame()`
+  - Add its icon loading to `ReadabilityApp::InitProjectSidebar()`
   - Connect the sidebar item to the icon in `ProjectView::UpdateSideBarIcons()` and\
     `BatchProjectView::UpdateSideBarIcons()`
-  - Add a blank graph for it in `MainFrame::OnBlankGraph()` and `MainFrame::FillMenuWithBlankGraphs()`
-- Add this `AddXXXTest()` function to the standard test function pointer map table in\
-  `BaseProject::OnItemSelected()`
+  - Add a blank graph for it in `MainFrame::OnBlankGraph()` and `MainFrame::FillBlankGraphsMenu()`
+  - Bind the XRC ID for the test to `MainFrame::OnBlankGraph()` in `MainFrame::MainFrame()`
+- Add this `AddXXXTest()` function to the test function pointer map in\
+  `BaseProject::BaseProject()`
 - If an index test, add its score formatting logic to `BatchProjectView::UpdateStatAndTestPanes()`
 - Document it in the help:
   - Add a topic for it in `r file_path(c("docs", "readability-studio-manual", "[language]"))`, where "[language]" is the language that the test is meant for

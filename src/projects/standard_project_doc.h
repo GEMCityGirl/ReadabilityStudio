@@ -149,6 +149,7 @@ class ProjectDoc final : public BaseProjectDoc
     void AddLixGermanGauge(const bool setFocus) final;
     void AddLixGauge(const bool setFocus) final;
     void AddCrawfordGraph(const bool setFocus) final;
+    void AddInfleszGraph(const bool setFocus) final;
     void LoadManuallyEnteredText();
     bool LoadProjectFile(const char* projectFileText, const size_t textLength);
     void DisplayStatistics();
