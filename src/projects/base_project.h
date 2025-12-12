@@ -2370,7 +2370,7 @@ class BaseProject : public ProjectRefresh
     bool VerifyTestBeforeAdding(
         const std::pair<std::vector<ProjectTestType>::const_iterator, bool>& theTest);
 
-        [[nodiscard]]
+    [[nodiscard]]
     bool VerifyTotalWordsForTest(const wxString& currentTestKey)
         {
         if (GetTotalWords() == 0)

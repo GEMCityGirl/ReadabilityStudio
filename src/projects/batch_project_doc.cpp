@@ -3961,8 +3961,8 @@ void BatchProjectDoc::DisplayScoreStatisticsWindow(
     }
 
 //------------------------------------------------------------
-/// @todo implement this!
-void BatchProjectDoc::DisplayInfleszGraph() {
+void BatchProjectDoc::DisplayInfleszGraph()
+    {
     auto* view = dynamic_cast<BatchProjectView*>(GetFirstView());
 
     const wxString scoresColumnName{ _DT(L"SCORES") };
@@ -4011,9 +4011,9 @@ void BatchProjectDoc::DisplayInfleszGraph() {
                 std::make_shared<Wisteria::Colors::Schemes::ColorScheme>(
                     *std::make_shared<Wisteria::Colors::Schemes::EarthTones>()));
             infleszGraph->SetData(scoreDataset, scoresColumnName,
-                                   IsShowingGroupLegends() ?
-                                       std::optional<const wxString>(groupColumnName) :
-                                       std::nullopt);
+                                  IsShowingGroupLegends() ?
+                                      std::optional<const wxString>(groupColumnName) :
+                                      std::nullopt);
             infleszGraphCanvas->SetFixedObject(0, 0, infleszGraph);
             infleszGraphCanvas->Hide();
             view->SetInfleszGraph(infleszGraphCanvas);
@@ -4028,9 +4028,9 @@ void BatchProjectDoc::DisplayInfleszGraph() {
                 view->GetInfleszGraph()->GetFixedObject(0, 0));
             assert(infleszGraph);
             infleszGraph->SetData(scoreDataset, scoresColumnName,
-                                   IsShowingGroupLegends() ?
-                                       std::optional<const wxString>(groupColumnName) :
-                                       std::nullopt);
+                                  IsShowingGroupLegends() ?
+                                      std::optional<const wxString>(groupColumnName) :
+                                      std::nullopt);
             }
         UpdateGraphOptions(view->GetInfleszGraph());
 

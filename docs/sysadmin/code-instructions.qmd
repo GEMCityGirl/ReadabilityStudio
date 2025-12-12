@@ -74,8 +74,8 @@ For options specific to a graph that needs to be added to the ribbon:
 - If not already present, create a `wxRibbonPanel*` variable from calling\
   `hideEditPanel()` with the graph's ribbon panel ID in\
   `BatchProjectView::OnItemSelected()` (`r file_path(c("src", "projects", "batch_project_view.cpp"))`).
-  - In the same function, (if not present) add code to show the graph's panel
-    when the selected item is of that graph's type. Also, add code to toggle the button's state (if applicable)
+  - In the same function, (if not present) add code to show the graph's panel when the selected item is of that graph's type.
+    Also, add code to toggle the button's state (if applicable)
 - Repeat the aforementioned steps, but in\
   `r file_path(c("src", "projects", "standard_project_view.cpp"))`
 - If not already present, add a function to\
