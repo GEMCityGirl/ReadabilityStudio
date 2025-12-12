@@ -303,7 +303,7 @@ void BaseProject::FormatFilteredText(std::wstring& text, const bool romanizeText
         {
         return;
         }
-    text.reserve(GetDocumentText().length());
+    text.reserve(project->GetDocumentText().length());
     FormatFilteredWordCollection(
         project->GetWords(), text,
         (GetInvalidSentenceMethod() == InvalidSentence::IncludeAsFullSentences) ?
@@ -5133,23 +5133,12 @@ bool BaseProject::AddPskDaleChallTest(const bool setFocus)
 
     const wxString currentTestKey = ReadabilityMessages::PSK_DALE_CHALL();
 
-    if (GetTotalWords() == 0)
+    if (!VerifyTotalWordsForTest(currentTestKey))
         {
-        LogMessage(wxString::Format(
-                       _(L"Unable to calculate %s: at least one word must be present in document."),
-                       GetReadabilityTests().get_test_short_name(currentTestKey).c_str()),
-                   _(L"Error"), wxOK | wxICON_ERROR, wxString{}, true);
-        GetReadabilityTests().include_test(currentTestKey, false);
         return false;
         }
-    if (GetTotalSentences() == 0)
+    if (!VerifyTotalSentencesForTest(currentTestKey))
         {
-        LogMessage(
-            wxString::Format(
-                _(L"Unable to calculate %s: at least one sentence must be present in document."),
-                GetReadabilityTests().get_test_short_name(currentTestKey).c_str()),
-            _(L"Error"), wxOK | wxICON_ERROR, wxString{}, true);
-        GetReadabilityTests().include_test(currentTestKey, false);
         return false;
         }
 
@@ -5545,14 +5534,8 @@ bool BaseProject::AddElfTest(const bool setFocus)
 
     const wxString currentTestKey = ReadabilityMessages::ELF();
 
-    if (GetTotalSentences() == 0)
+    if (!VerifyTotalSentencesForTest(currentTestKey))
         {
-        LogMessage(
-            wxString::Format(
-                _(L"Unable to calculate %s: at least one sentence must be present in document."),
-                GetReadabilityTests().get_test_short_name(currentTestKey).c_str()),
-            _(L"Error"), wxOK | wxICON_ERROR, wxString{}, true);
-        GetReadabilityTests().include_test(currentTestKey, false);
         return false;
         }
 
@@ -5605,14 +5588,8 @@ bool BaseProject::AddSmogSimplifiedTest(const bool setFocus)
 
     const wxString currentTestKey = ReadabilityMessages::SMOG_SIMPLIFIED();
 
-    if (GetTotalSentences() == 0)
+    if (!VerifyTotalSentencesForTest(currentTestKey))
         {
-        LogMessage(
-            wxString::Format(
-                _(L"Unable to calculate %s: at least one sentence must be present in document."),
-                GetReadabilityTests().get_test_short_name(currentTestKey).c_str()),
-            _(L"Error"), wxOK | wxICON_ERROR, wxString{}, true);
-        GetReadabilityTests().include_test(currentTestKey, false);
         return false;
         }
 
@@ -5669,14 +5646,8 @@ bool BaseProject::AddModifiedSmogTest(const bool setFocus)
 
     const wxString currentTestKey = ReadabilityMessages::MODIFIED_SMOG();
 
-    if (GetTotalSentences() == 0)
+    if (!VerifyTotalSentencesForTest(currentTestKey))
         {
-        LogMessage(
-            wxString::Format(
-                _(L"Unable to calculate %s: at least one sentence must be present in document."),
-                GetReadabilityTests().get_test_short_name(currentTestKey).c_str()),
-            _(L"Error"), wxOK | wxICON_ERROR, wxString{}, true);
-        GetReadabilityTests().include_test(currentTestKey, false);
         return false;
         }
 
@@ -5733,14 +5704,8 @@ bool BaseProject::AddQuBambergerVanecekTest(const bool setFocus)
 
     const wxString currentTestKey = ReadabilityMessages::QU();
 
-    if (GetTotalSentences() == 0)
+    if (!VerifyTotalSentencesForTest(currentTestKey))
         {
-        LogMessage(
-            wxString::Format(
-                _(L"Unable to calculate %s: at least one sentence must be present in document."),
-                GetReadabilityTests().get_test_short_name(currentTestKey).c_str()),
-            _(L"Error"), wxOK | wxICON_ERROR, wxString{}, true);
-        GetReadabilityTests().include_test(currentTestKey, false);
         return false;
         }
 
@@ -5798,14 +5763,8 @@ bool BaseProject::AddSmogBambergerVanecekTest(const bool setFocus)
 
     const wxString currentTestKey = ReadabilityMessages::SMOG_BAMBERGER_VANECEK();
 
-    if (GetTotalSentences() == 0)
+    if (!VerifyTotalSentencesForTest(currentTestKey))
         {
-        LogMessage(
-            wxString::Format(
-                _(L"Unable to calculate %s: at least one sentence must be present in document."),
-                GetReadabilityTests().get_test_short_name(currentTestKey).c_str()),
-            _(L"Error"), wxOK | wxICON_ERROR, wxString{}, true);
-        GetReadabilityTests().include_test(currentTestKey, false);
         return false;
         }
 
@@ -5862,14 +5821,8 @@ bool BaseProject::AddSmogTest(const bool setFocus)
 
     const wxString currentTestKey = ReadabilityMessages::SMOG();
 
-    if (GetTotalSentences() == 0)
+    if (!VerifyTotalSentencesForTest(currentTestKey))
         {
-        LogMessage(
-            wxString::Format(
-                _(L"Unable to calculate %s: at least one sentence must be present in document."),
-                GetReadabilityTests().get_test_short_name(currentTestKey).c_str()),
-            _(L"Error"), wxOK | wxICON_ERROR, wxString{}, true);
-        GetReadabilityTests().include_test(currentTestKey, false);
         return false;
         }
 
@@ -5979,13 +5932,8 @@ bool BaseProject::AddCrawfordTest(const bool setFocus)
 
     const wxString currentTestKey = ReadabilityMessages::CRAWFORD();
 
-    if (GetTotalWords() == 0)
+    if (!VerifyTotalWordsForTest(currentTestKey))
         {
-        LogMessage(wxString::Format(
-                       _(L"Unable to calculate %s: at least one word must be present in document."),
-                       GetReadabilityTests().get_test_short_name(currentTestKey).c_str()),
-                   _(L"Error"), wxOK | wxICON_ERROR, wxString{}, true);
-        GetReadabilityTests().include_test(currentTestKey, false);
         return false;
         }
 
@@ -6044,23 +5992,12 @@ bool BaseProject::AddNeueWienerSachtextformel1(const bool setFocus)
 
     const wxString currentTestKey = ReadabilityMessages::NEUE_WIENER_SACHTEXTFORMEL1();
 
-    if (GetTotalWords() == 0)
+    if (!VerifyTotalWordsForTest(currentTestKey))
         {
-        LogMessage(wxString::Format(
-                       _(L"Unable to calculate %s: at least one word must be present in document."),
-                       GetReadabilityTests().get_test_short_name(currentTestKey).c_str()),
-                   _(L"Error"), wxOK | wxICON_ERROR, wxString{}, true);
-        GetReadabilityTests().include_test(currentTestKey, false);
         return false;
         }
-    if (GetTotalSentences() == 0)
+    if (!VerifyTotalSentencesForTest(currentTestKey))
         {
-        LogMessage(
-            wxString::Format(
-                _(L"Unable to calculate %s: at least one sentence must be present in document."),
-                GetReadabilityTests().get_test_short_name(currentTestKey).c_str()),
-            _(L"Error"), wxOK | wxICON_ERROR, wxString{}, true);
-        GetReadabilityTests().include_test(currentTestKey, false);
         return false;
         }
 
@@ -6114,23 +6051,12 @@ bool BaseProject::AddNeueWienerSachtextformel2(const bool setFocus)
 
     const wxString currentTestKey = ReadabilityMessages::NEUE_WIENER_SACHTEXTFORMEL2();
 
-    if (GetTotalWords() == 0)
+    if (!VerifyTotalWordsForTest(currentTestKey))
         {
-        LogMessage(wxString::Format(
-                       _(L"Unable to calculate %s: at least one word must be present in document."),
-                       GetReadabilityTests().get_test_short_name(currentTestKey).c_str()),
-                   _(L"Error"), wxOK | wxICON_ERROR, wxString{}, true);
-        GetReadabilityTests().include_test(currentTestKey, false);
         return false;
         }
-    if (GetTotalSentences() == 0)
+    if (!VerifyTotalSentencesForTest(currentTestKey))
         {
-        LogMessage(
-            wxString::Format(
-                _(L"Unable to calculate %s: at least one sentence must be present in document."),
-                GetReadabilityTests().get_test_short_name(currentTestKey).c_str()),
-            _(L"Error"), wxOK | wxICON_ERROR, wxString{}, true);
-        GetReadabilityTests().include_test(currentTestKey, false);
         return false;
         }
 
@@ -6184,23 +6110,12 @@ bool BaseProject::AddNeueWienerSachtextformel3(const bool setFocus)
 
     const wxString currentTestKey = ReadabilityMessages::NEUE_WIENER_SACHTEXTFORMEL3();
 
-    if (GetTotalWords() == 0)
+    if (!VerifyTotalWordsForTest(currentTestKey))
         {
-        LogMessage(wxString::Format(
-                       _(L"Unable to calculate %s: at least one word must be present in document."),
-                       GetReadabilityTests().get_test_short_name(currentTestKey).c_str()),
-                   _(L"Error"), wxOK | wxICON_ERROR, wxString{}, true);
-        GetReadabilityTests().include_test(currentTestKey, false);
         return false;
         }
-    if (GetTotalSentences() == 0)
+    if (!VerifyTotalSentencesForTest(currentTestKey))
         {
-        LogMessage(
-            wxString::Format(
-                _(L"Unable to calculate %s: at least one sentence must be present in document."),
-                GetReadabilityTests().get_test_short_name(currentTestKey).c_str()),
-            _(L"Error"), wxOK | wxICON_ERROR, wxString{}, true);
-        GetReadabilityTests().include_test(currentTestKey, false);
         return false;
         }
 
@@ -6253,13 +6168,8 @@ bool BaseProject::AddWheelerSmithBambergerVanecekTest(const bool setFocus)
 
     const wxString currentTestKey = ReadabilityMessages::WHEELER_SMITH_BAMBERGER_VANECEK();
 
-    if (GetTotalWords() == 0)
+    if (!VerifyTotalWordsForTest(currentTestKey))
         {
-        LogMessage(wxString::Format(
-                       _(L"Unable to calculate %s: at least one word must be present in document."),
-                       GetReadabilityTests().get_test_short_name(currentTestKey).c_str()),
-                   _(L"Error"), wxOK | wxICON_ERROR, wxString{}, true);
-        GetReadabilityTests().include_test(currentTestKey, false);
         return false;
         }
     if (GetTotalSentenceUnits() == 0.0)
@@ -6324,13 +6234,8 @@ bool BaseProject::AddWheelerSmithTest(const bool setFocus)
 
     const wxString currentTestKey = ReadabilityMessages::WHEELER_SMITH();
 
-    if (GetTotalWords() == 0)
+    if (!VerifyTotalWordsForTest(currentTestKey))
         {
-        LogMessage(wxString::Format(
-                       _(L"Unable to calculate %s: at least one word must be present in document."),
-                       GetReadabilityTests().get_test_short_name(currentTestKey).c_str()),
-                   _(L"Error"), wxOK | wxICON_ERROR, wxString{}, true);
-        GetReadabilityTests().include_test(currentTestKey, false);
         return false;
         }
     if (GetTotalSentenceUnits() == 0.0)
@@ -6395,23 +6300,12 @@ bool BaseProject::AddColemanLiauTest(const bool setFocus)
 
     const wxString currentTestKey = ReadabilityMessages::COLEMAN_LIAU();
 
-    if (GetTotalWords() == 0)
+    if (!VerifyTotalWordsForTest(currentTestKey))
         {
-        LogMessage(wxString::Format(
-                       _(L"Unable to calculate %s: at least one word must be present in document."),
-                       GetReadabilityTests().get_test_short_name(currentTestKey).c_str()),
-                   _(L"Error"), wxOK | wxICON_ERROR, wxString{}, true);
-        GetReadabilityTests().include_test(currentTestKey, false);
         return false;
         }
-    if (GetTotalSentences() == 0)
+    if (!VerifyTotalSentencesForTest(currentTestKey))
         {
-        LogMessage(
-            wxString::Format(
-                _(L"Unable to calculate %s: at least one sentence must be present in document."),
-                GetReadabilityTests().get_test_short_name(currentTestKey).c_str()),
-            _(L"Error"), wxOK | wxICON_ERROR, wxString{}, true);
-        GetReadabilityTests().include_test(currentTestKey, false);
         return false;
         }
 
@@ -6529,23 +6423,12 @@ bool BaseProject::AddSpacheTest(const bool setFocus)
 
     const wxString currentTestKey = ReadabilityMessages::SPACHE();
 
-    if (GetTotalWords() == 0)
+    if (!VerifyTotalWordsForTest(currentTestKey))
         {
-        LogMessage(wxString::Format(
-                       _(L"Unable to calculate %s: at least one word must be present in document."),
-                       GetReadabilityTests().get_test_short_name(currentTestKey).c_str()),
-                   _(L"Error"), wxOK | wxICON_ERROR, wxString{}, true);
-        GetReadabilityTests().include_test(currentTestKey, false);
         return false;
         }
-    if (GetTotalSentences() == 0)
+    if (!VerifyTotalSentencesForTest(currentTestKey))
         {
-        LogMessage(
-            wxString::Format(
-                _(L"Unable to calculate %s: at least one sentence must be present in document."),
-                GetReadabilityTests().get_test_short_name(currentTestKey).c_str()),
-            _(L"Error"), wxOK | wxICON_ERROR, wxString{}, true);
-        GetReadabilityTests().include_test(currentTestKey, false);
         return false;
         }
 
@@ -6598,13 +6481,8 @@ bool BaseProject::AddNewFogCountTest(const bool setFocus)
 
     const wxString currentTestKey = ReadabilityMessages::NEW_FOG();
 
-    if (GetTotalWords() == 0)
+    if (!VerifyTotalWordsForTest(currentTestKey))
         {
-        LogMessage(wxString::Format(
-                       _(L"Unable to calculate %s: at least one word must be present in document."),
-                       GetReadabilityTests().get_test_short_name(currentTestKey).c_str()),
-                   _(L"Error"), wxOK | wxICON_ERROR, wxString{}, true);
-        GetReadabilityTests().include_test(currentTestKey, false);
         return false;
         }
     if ((IsFogUsingSentenceUnits() && GetTotalSentenceUnits() == 0) || GetTotalSentences() == 0)
@@ -6672,13 +6550,8 @@ bool BaseProject::AddPskFogTest(const bool setFocus)
 
     const wxString currentTestKey = ReadabilityMessages::PSK_GUNNING_FOG();
 
-    if (GetTotalWords() == 0)
+    if (!VerifyTotalWordsForTest(currentTestKey))
         {
-        LogMessage(wxString::Format(
-                       _(L"Unable to calculate %s: at least one word must be present in document."),
-                       GetReadabilityTests().get_test_short_name(currentTestKey).c_str()),
-                   _(L"Error"), wxOK | wxICON_ERROR, wxString{}, true);
-        GetReadabilityTests().include_test(currentTestKey, false);
         return false;
         }
     if ((IsFogUsingSentenceUnits() && GetTotalSentenceUnits() == 0) || GetTotalSentences() == 0)
@@ -6746,13 +6619,8 @@ bool BaseProject::AddFogTest(const bool setFocus)
 
     const wxString currentTestKey = ReadabilityMessages::GUNNING_FOG();
 
-    if (GetTotalWords() == 0)
+    if (!VerifyTotalWordsForTest(currentTestKey))
         {
-        LogMessage(wxString::Format(
-                       _(L"Unable to calculate %s: at least one word must be present in document."),
-                       GetReadabilityTests().get_test_short_name(currentTestKey).c_str()),
-                   _(L"Error"), wxOK | wxICON_ERROR, wxString{}, true);
-        GetReadabilityTests().include_test(currentTestKey, false);
         return false;
         }
     if ((IsFogUsingSentenceUnits() && GetTotalSentenceUnits() == 0) || GetTotalSentences() == 0)
@@ -6820,13 +6688,8 @@ bool BaseProject::AddForcastTest(const bool setFocus)
 
     const wxString currentTestKey = ReadabilityMessages::FORCAST();
 
-    if (GetTotalWords() == 0)
+    if (!VerifyTotalWordsForTest(currentTestKey))
         {
-        LogMessage(wxString::Format(
-                       _(L"Unable to calculate %s: at least one word must be present in document."),
-                       GetReadabilityTests().get_test_short_name(currentTestKey).c_str()),
-                   _(L"Error"), wxOK | wxICON_ERROR, wxString{}, true);
-        GetReadabilityTests().include_test(currentTestKey, false);
         return false;
         }
 
@@ -6879,23 +6742,12 @@ bool BaseProject::AddAmstadTest(const bool setFocus)
 
     const wxString currentTestKey = ReadabilityMessages::AMSTAD();
 
-    if (GetTotalWords() == 0)
+    if (!VerifyTotalWordsForTest(currentTestKey))
         {
-        LogMessage(wxString::Format(
-                       _(L"Unable to calculate %s: at least one word must be present in document."),
-                       GetReadabilityTests().get_test_short_name(currentTestKey).c_str()),
-                   _(L"Error"), wxOK | wxICON_ERROR, wxString{}, true);
-        GetReadabilityTests().include_test(currentTestKey, false);
         return false;
         }
-    if (GetTotalSentences() == 0)
+    if (!VerifyTotalSentencesForTest(currentTestKey))
         {
-        LogMessage(
-            wxString::Format(
-                _(L"Unable to calculate %s: at least one sentence must be present in document."),
-                GetReadabilityTests().get_test_short_name(currentTestKey).c_str()),
-            _(L"Error"), wxOK | wxICON_ERROR, wxString{}, true);
-        GetReadabilityTests().include_test(currentTestKey, false);
         return false;
         }
 
@@ -6944,23 +6796,12 @@ bool BaseProject::AddDanielsonBryan1Test(const bool setFocus)
 
     const wxString currentTestKey = ReadabilityMessages::DANIELSON_BRYAN_1();
 
-    if (GetTotalWords() == 0)
+    if (!VerifyTotalWordsForTest(currentTestKey))
         {
-        LogMessage(wxString::Format(
-                       _(L"Unable to calculate %s: at least one word must be present in document."),
-                       GetReadabilityTests().get_test_short_name(currentTestKey).c_str()),
-                   _(L"Error"), wxOK | wxICON_ERROR, wxString{}, true);
-        GetReadabilityTests().include_test(currentTestKey, false);
         return false;
         }
-    if (GetTotalSentences() == 0)
+    if (!VerifyTotalSentencesForTest(currentTestKey))
         {
-        LogMessage(
-            wxString::Format(
-                _(L"Unable to calculate %s: at least one sentence must be present in document."),
-                GetReadabilityTests().get_test_short_name(currentTestKey).c_str()),
-            _(L"Error"), wxOK | wxICON_ERROR, wxString{}, true);
-        GetReadabilityTests().include_test(currentTestKey, false);
         return false;
         }
 
@@ -7013,23 +6854,12 @@ bool BaseProject::AddDanielsonBryan2Test(const bool setFocus)
 
     const wxString currentTestKey = ReadabilityMessages::DANIELSON_BRYAN_2();
 
-    if (GetTotalWords() == 0)
+    if (!VerifyTotalWordsForTest(currentTestKey))
         {
-        LogMessage(wxString::Format(
-                       _(L"Unable to calculate %s: at least one word must be present in document."),
-                       GetReadabilityTests().get_test_short_name(currentTestKey).c_str()),
-                   _(L"Error"), wxOK | wxICON_ERROR, wxString{}, true);
-        GetReadabilityTests().include_test(currentTestKey, false);
         return false;
         }
-    if (GetTotalSentences() == 0)
+    if (!VerifyTotalSentencesForTest(currentTestKey))
         {
-        LogMessage(
-            wxString::Format(
-                _(L"Unable to calculate %s: at least one sentence must be present in document."),
-                GetReadabilityTests().get_test_short_name(currentTestKey).c_str()),
-            _(L"Error"), wxOK | wxICON_ERROR, wxString{}, true);
-        GetReadabilityTests().include_test(currentTestKey, false);
         return false;
         }
 
@@ -7077,23 +6907,12 @@ bool BaseProject::AddFleschTest(const bool setFocus)
 
     const wxString currentTestKey = ReadabilityMessages::FLESCH();
 
-    if (GetTotalWords() == 0)
+    if (!VerifyTotalWordsForTest(currentTestKey))
         {
-        LogMessage(wxString::Format(
-                       _(L"Unable to calculate %s: at least one word must be present in document."),
-                       GetReadabilityTests().get_test_short_name(currentTestKey).c_str()),
-                   _(L"Error"), wxOK | wxICON_ERROR, wxString{}, true);
-        GetReadabilityTests().include_test(currentTestKey, false);
         return false;
         }
-    if (GetTotalSentences() == 0)
+    if (!VerifyTotalSentencesForTest(currentTestKey))
         {
-        LogMessage(
-            wxString::Format(
-                _(L"Unable to calculate %s: at least one sentence must be present in document."),
-                GetReadabilityTests().get_test_short_name(currentTestKey).c_str()),
-            _(L"Error"), wxOK | wxICON_ERROR, wxString{}, true);
-        GetReadabilityTests().include_test(currentTestKey, false);
         return false;
         }
 
@@ -7144,23 +6963,12 @@ bool BaseProject::AddFarrJenkinsPatersonTest(const bool setFocus)
 
     const wxString currentTestKey = ReadabilityMessages::FARR_JENKINS_PATERSON();
 
-    if (GetTotalWords() == 0)
+    if (!VerifyTotalWordsForTest(currentTestKey))
         {
-        LogMessage(wxString::Format(
-                       _(L"Unable to calculate %s: at least one word must be present in document."),
-                       GetReadabilityTests().get_test_short_name(currentTestKey).c_str()),
-                   _(L"Error"), wxOK | wxICON_ERROR, wxString{}, true);
-        GetReadabilityTests().include_test(currentTestKey, false);
         return false;
         }
-    if (GetTotalSentences() == 0)
+    if (!VerifyTotalSentencesForTest(currentTestKey))
         {
-        LogMessage(
-            wxString::Format(
-                _(L"Unable to calculate %s: at least one sentence must be present in document."),
-                GetReadabilityTests().get_test_short_name(currentTestKey).c_str()),
-            _(L"Error"), wxOK | wxICON_ERROR, wxString{}, true);
-        GetReadabilityTests().include_test(currentTestKey, false);
         return false;
         }
 
@@ -7204,23 +7012,12 @@ bool BaseProject::AddNewFarrJenkinsPatersonTest(const bool setFocus)
 
     const wxString currentTestKey = ReadabilityMessages::NEW_FARR_JENKINS_PATERSON();
 
-    if (GetTotalWords() == 0)
+    if (!VerifyTotalWordsForTest(currentTestKey))
         {
-        LogMessage(wxString::Format(
-                       _(L"Unable to calculate %s: at least one word must be present in document."),
-                       GetReadabilityTests().get_test_short_name(currentTestKey).c_str()),
-                   _(L"Error"), wxOK | wxICON_ERROR, wxString{}, true);
-        GetReadabilityTests().include_test(currentTestKey, false);
         return false;
         }
-    if (GetTotalSentences() == 0)
+    if (!VerifyTotalSentencesForTest(currentTestKey))
         {
-        LogMessage(
-            wxString::Format(
-                _(L"Unable to calculate %s: at least one sentence must be present in document."),
-                GetReadabilityTests().get_test_short_name(currentTestKey).c_str()),
-            _(L"Error"), wxOK | wxICON_ERROR, wxString{}, true);
-        GetReadabilityTests().include_test(currentTestKey, false);
         return false;
         }
 
@@ -7273,23 +7070,12 @@ bool BaseProject::AddPskFarrJenkinsPatersonTest(const bool setFocus)
 
     const wxString currentTestKey = ReadabilityMessages::PSK_FARR_JENKINS_PATERSON();
 
-    if (GetTotalWords() == 0)
+    if (!VerifyTotalWordsForTest(currentTestKey))
         {
-        LogMessage(wxString::Format(
-                       _(L"Unable to calculate %s: at least one word must be present in document."),
-                       GetReadabilityTests().get_test_short_name(currentTestKey).c_str()),
-                   _(L"Error"), wxOK | wxICON_ERROR, wxString{}, true);
-        GetReadabilityTests().include_test(currentTestKey, false);
         return false;
         }
-    if (GetTotalSentences() == 0)
+    if (!VerifyTotalSentencesForTest(currentTestKey))
         {
-        LogMessage(
-            wxString::Format(
-                _(L"Unable to calculate %s: at least one sentence must be present in document."),
-                GetReadabilityTests().get_test_short_name(currentTestKey).c_str()),
-            _(L"Error"), wxOK | wxICON_ERROR, wxString{}, true);
-        GetReadabilityTests().include_test(currentTestKey, false);
         return false;
         }
 
@@ -7342,23 +7128,12 @@ bool BaseProject::AddFleschKincaidSimplifiedTest(const bool setFocus)
 
     const wxString currentTestKey = ReadabilityMessages::FLESCH_KINCAID_SIMPLIFIED();
 
-    if (GetTotalWords() == 0)
+    if (!VerifyTotalWordsForTest(currentTestKey))
         {
-        LogMessage(wxString::Format(
-                       _(L"Unable to calculate %s: at least one word must be present in document."),
-                       GetReadabilityTests().get_test_short_name(currentTestKey).c_str()),
-                   _(L"Error"), wxOK | wxICON_ERROR, wxString{}, true);
-        GetReadabilityTests().include_test(currentTestKey, false);
         return false;
         }
-    if (GetTotalSentences() == 0)
+    if (!VerifyTotalSentencesForTest(currentTestKey))
         {
-        LogMessage(
-            wxString::Format(
-                _(L"Unable to calculate %s: at least one sentence must be present in document."),
-                GetReadabilityTests().get_test_short_name(currentTestKey).c_str()),
-            _(L"Error"), wxOK | wxICON_ERROR, wxString{}, true);
-        GetReadabilityTests().include_test(currentTestKey, false);
         return false;
         }
 
@@ -7416,23 +7191,12 @@ bool BaseProject::AddFleschKincaidTest(const bool setFocus)
 
     const wxString currentTestKey = ReadabilityMessages::FLESCH_KINCAID();
 
-    if (GetTotalWords() == 0)
+    if (!VerifyTotalWordsForTest(currentTestKey))
         {
-        LogMessage(wxString::Format(
-                       _(L"Unable to calculate %s: at least one word must be present in document."),
-                       GetReadabilityTests().get_test_short_name(currentTestKey).c_str()),
-                   _(L"Error"), wxOK | wxICON_ERROR, wxString{}, true);
-        GetReadabilityTests().include_test(currentTestKey, false);
         return false;
         }
-    if (GetTotalSentences() == 0)
+    if (!VerifyTotalSentencesForTest(currentTestKey))
         {
-        LogMessage(
-            wxString::Format(
-                _(L"Unable to calculate %s: at least one sentence must be present in document."),
-                GetReadabilityTests().get_test_short_name(currentTestKey).c_str()),
-            _(L"Error"), wxOK | wxICON_ERROR, wxString{}, true);
-        GetReadabilityTests().include_test(currentTestKey, false);
         return false;
         }
 
@@ -7490,23 +7254,12 @@ bool BaseProject::AddPskFleschTest(const bool setFocus)
 
     const wxString currentTestKey = ReadabilityMessages::PSK_FLESCH();
 
-    if (GetTotalWords() == 0)
+    if (!VerifyTotalWordsForTest(currentTestKey))
         {
-        LogMessage(wxString::Format(
-                       _(L"Unable to calculate %s: at least one word must be present in document."),
-                       GetReadabilityTests().get_test_short_name(currentTestKey).c_str()),
-                   _(L"Error"), wxOK | wxICON_ERROR, wxString{}, true);
-        GetReadabilityTests().include_test(currentTestKey, false);
         return false;
         }
-    if (GetTotalSentences() == 0)
+    if (!VerifyTotalSentencesForTest(currentTestKey))
         {
-        LogMessage(
-            wxString::Format(
-                _(L"Unable to calculate %s: at least one sentence must be present in document."),
-                GetReadabilityTests().get_test_short_name(currentTestKey).c_str()),
-            _(L"Error"), wxOK | wxICON_ERROR, wxString{}, true);
-        GetReadabilityTests().include_test(currentTestKey, false);
         return false;
         }
 
@@ -7563,23 +7316,12 @@ bool BaseProject::AddAriTest(const bool setFocus)
 
     const wxString currentTestKey = ReadabilityMessages::ARI();
 
-    if (GetTotalWords() == 0)
+    if (!VerifyTotalWordsForTest(currentTestKey))
         {
-        LogMessage(wxString::Format(
-                       _(L"Unable to calculate %s: at least one word must be present in document."),
-                       GetReadabilityTests().get_test_short_name(currentTestKey).c_str()),
-                   _(L"Error"), wxOK | wxICON_ERROR, wxString{}, true);
-        GetReadabilityTests().include_test(currentTestKey, false);
         return false;
         }
-    if (GetTotalSentences() == 0)
+    if (!VerifyTotalSentencesForTest(currentTestKey))
         {
-        LogMessage(
-            wxString::Format(
-                _(L"Unable to calculate %s: at least one sentence must be present in document."),
-                GetReadabilityTests().get_test_short_name(currentTestKey).c_str()),
-            _(L"Error"), wxOK | wxICON_ERROR, wxString{}, true);
-        GetReadabilityTests().include_test(currentTestKey, false);
         return false;
         }
 
@@ -7632,23 +7374,12 @@ bool BaseProject::AddNewAriTest(const bool setFocus)
 
     const wxString currentTestKey = ReadabilityMessages::NEW_ARI();
 
-    if (GetTotalWords() == 0)
+    if (!VerifyTotalWordsForTest(currentTestKey))
         {
-        LogMessage(wxString::Format(
-                       _(L"Unable to calculate %s: at least one word must be present in document."),
-                       GetReadabilityTests().get_test_short_name(currentTestKey).c_str()),
-                   _(L"Error"), wxOK | wxICON_ERROR, wxString{}, true);
-        GetReadabilityTests().include_test(currentTestKey, false);
         return false;
         }
-    if (GetTotalSentences() == 0)
+    if (!VerifyTotalSentencesForTest(currentTestKey))
         {
-        LogMessage(
-            wxString::Format(
-                _(L"Unable to calculate %s: at least one sentence must be present in document."),
-                GetReadabilityTests().get_test_short_name(currentTestKey).c_str()),
-            _(L"Error"), wxOK | wxICON_ERROR, wxString{}, true);
-        GetReadabilityTests().include_test(currentTestKey, false);
         return false;
         }
 
@@ -7701,23 +7432,12 @@ bool BaseProject::AddSimplifiedAriTest(const bool setFocus)
 
     const wxString currentTestKey = ReadabilityMessages::SIMPLE_ARI();
 
-    if (GetTotalWords() == 0)
+    if (!VerifyTotalWordsForTest(currentTestKey))
         {
-        LogMessage(wxString::Format(
-                       _(L"Unable to calculate %s: at least one word must be present in document."),
-                       GetReadabilityTests().get_test_short_name(currentTestKey).c_str()),
-                   _(L"Error"), wxOK | wxICON_ERROR, wxString{}, true);
-        GetReadabilityTests().include_test(currentTestKey, false);
         return false;
         }
-    if (GetTotalSentences() == 0)
+    if (!VerifyTotalSentencesForTest(currentTestKey))
         {
-        LogMessage(
-            wxString::Format(
-                _(L"Unable to calculate %s: at least one sentence must be present in document."),
-                GetReadabilityTests().get_test_short_name(currentTestKey).c_str()),
-            _(L"Error"), wxOK | wxICON_ERROR, wxString{}, true);
-        GetReadabilityTests().include_test(currentTestKey, false);
         return false;
         }
 
@@ -7770,23 +7490,12 @@ bool BaseProject::AddEflawTest(const bool setFocus)
 
     const wxString currentTestKey = ReadabilityMessages::EFLAW();
 
-    if (GetTotalWords() == 0)
+    if (!VerifyTotalWordsForTest(currentTestKey))
         {
-        LogMessage(wxString::Format(
-                       _(L"Unable to calculate %s: at least one word must be present in document."),
-                       GetReadabilityTests().get_test_short_name(currentTestKey).c_str()),
-                   _(L"Error"), wxOK | wxICON_ERROR, wxString{}, true);
-        GetReadabilityTests().include_test(currentTestKey, false);
         return false;
         }
-    if (GetTotalSentences() == 0)
+    if (!VerifyTotalSentencesForTest(currentTestKey))
         {
-        LogMessage(
-            wxString::Format(
-                _(L"Unable to calculate %s: at least one sentence must be present in document."),
-                GetReadabilityTests().get_test_short_name(currentTestKey).c_str()),
-            _(L"Error"), wxOK | wxICON_ERROR, wxString{}, true);
-        GetReadabilityTests().include_test(currentTestKey, false);
         return false;
         }
 
@@ -7921,13 +7630,8 @@ bool BaseProject::AddRixTest(const bool setFocus)
 
     const wxString currentTestKey = ReadabilityMessages::RIX();
 
-    if (GetTotalWords() == 0)
+    if (!VerifyTotalWordsForTest(currentTestKey))
         {
-        LogMessage(wxString::Format(
-                       _(L"Unable to calculate %s: at least one word must be present in document."),
-                       GetReadabilityTests().get_test_short_name(currentTestKey).c_str()),
-                   _(L"Error"), wxOK | wxICON_ERROR, wxString{}, true);
-        GetReadabilityTests().include_test(currentTestKey, false);
         return false;
         }
     if (GetTotalSentenceUnits() == 0.0)
@@ -7991,13 +7695,8 @@ bool BaseProject::AddRixGermanFiction(const bool setFocus)
 
     const wxString currentTestKey = ReadabilityMessages::RIX_GERMAN_FICTION();
 
-    if (GetTotalWords() == 0)
+    if (!VerifyTotalWordsForTest(currentTestKey))
         {
-        LogMessage(wxString::Format(
-                       _(L"Unable to calculate %s: at least one word must be present in document."),
-                       GetReadabilityTests().get_test_short_name(currentTestKey).c_str()),
-                   _(L"Error"), wxOK | wxICON_ERROR, wxString{}, true);
-        GetReadabilityTests().include_test(currentTestKey, false);
         return false;
         }
     if (GetTotalSentenceUnits() == 0.0)
@@ -8061,13 +7760,8 @@ bool BaseProject::AddRixGermanNonFiction(const bool setFocus)
 
     const wxString currentTestKey = ReadabilityMessages::RIX_GERMAN_NONFICTION();
 
-    if (GetTotalWords() == 0)
+    if (!VerifyTotalWordsForTest(currentTestKey))
         {
-        LogMessage(wxString::Format(
-                       _(L"Unable to calculate %s: at least one word must be present in document."),
-                       GetReadabilityTests().get_test_short_name(currentTestKey).c_str()),
-                   _(L"Error"), wxOK | wxICON_ERROR, wxString{}, true);
-        GetReadabilityTests().include_test(currentTestKey, false);
         return false;
         }
     if (GetTotalSentenceUnits() == 0.0)
@@ -8131,23 +7825,12 @@ bool BaseProject::AddLixGermanChildrensLiterature(const bool setFocus)
 
     const wxString currentTestKey = ReadabilityMessages::LIX_GERMAN_CHILDRENS_LITERATURE();
 
-    if (GetTotalWords() == 0)
+    if (!VerifyTotalWordsForTest(currentTestKey))
         {
-        LogMessage(wxString::Format(
-                       _(L"Unable to calculate %s: at least one word must be present in document."),
-                       GetReadabilityTests().get_test_short_name(currentTestKey).c_str()),
-                   _(L"Error"), wxOK | wxICON_ERROR, wxString{}, true);
-        GetReadabilityTests().include_test(currentTestKey, false);
         return false;
         }
-    if (GetTotalSentences() == 0)
+    if (!VerifyTotalSentencesForTest(currentTestKey))
         {
-        LogMessage(
-            wxString::Format(
-                _(L"Unable to calculate %s: at least one sentence must be present in document."),
-                GetReadabilityTests().get_test_short_name(currentTestKey).c_str()),
-            _(L"Error"), wxOK | wxICON_ERROR, wxString{}, true);
-        GetReadabilityTests().include_test(currentTestKey, false);
         return false;
         }
 
@@ -8205,23 +7888,12 @@ bool BaseProject::AddLixGermanTechnical(const bool setFocus)
 
     const wxString currentTestKey = ReadabilityMessages::LIX_GERMAN_TECHNICAL();
 
-    if (GetTotalWords() == 0)
+    if (!VerifyTotalWordsForTest(currentTestKey))
         {
-        LogMessage(wxString::Format(
-                       _(L"Unable to calculate %s: at least one word must be present in document."),
-                       GetReadabilityTests().get_test_short_name(currentTestKey).c_str()),
-                   _(L"Error"), wxOK | wxICON_ERROR, wxString{}, true);
-        GetReadabilityTests().include_test(currentTestKey, false);
         return false;
         }
-    if (GetTotalSentences() == 0)
+    if (!VerifyTotalSentencesForTest(currentTestKey))
         {
-        LogMessage(
-            wxString::Format(
-                _(L"Unable to calculate %s: at least one sentence must be present in document."),
-                GetReadabilityTests().get_test_short_name(currentTestKey).c_str()),
-            _(L"Error"), wxOK | wxICON_ERROR, wxString{}, true);
-        GetReadabilityTests().include_test(currentTestKey, false);
         return false;
         }
 
@@ -8279,23 +7951,12 @@ bool BaseProject::AddLixTest(const bool setFocus)
 
     const wxString currentTestKey = ReadabilityMessages::LIX();
 
-    if (GetTotalWords() == 0)
+    if (!VerifyTotalWordsForTest(currentTestKey))
         {
-        LogMessage(wxString::Format(
-                       _(L"Unable to calculate %s: at least one word must be present in document."),
-                       GetReadabilityTests().get_test_short_name(currentTestKey).c_str()),
-                   _(L"Error"), wxOK | wxICON_ERROR, wxString{}, true);
-        GetReadabilityTests().include_test(currentTestKey, false);
         return false;
         }
-    if (GetTotalSentences() == 0)
+    if (!VerifyTotalSentencesForTest(currentTestKey))
         {
-        LogMessage(
-            wxString::Format(
-                _(L"Unable to calculate %s: at least one sentence must be present in document."),
-                GetReadabilityTests().get_test_short_name(currentTestKey).c_str()),
-            _(L"Error"), wxOK | wxICON_ERROR, wxString{}, true);
-        GetReadabilityTests().include_test(currentTestKey, false);
         return false;
         }
 

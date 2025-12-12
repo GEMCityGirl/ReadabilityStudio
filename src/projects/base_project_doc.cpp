@@ -696,7 +696,7 @@ void BaseProjectDoc::RemoveAllGlobalCustomReadabilityTests()
         }
 
     wxArrayString testNames;
-    for (const auto& customWordTest : BaseProject::m_custom_word_tests)
+    for (const auto& customWordTest : m_custom_word_tests)
         {
         testNames.Add(customWordTest.get_name().c_str());
         }
@@ -1101,16 +1101,16 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
     // words breakdown
     const wchar_t* wordsBreakdownSection = lily_of_the_valley::html_extract_text::find_element(
         settingsFileText, settingsFileTextEnd, ReadabilityAppOptions::XML_WORDS_BREAKDOWN_W, true);
-    const wchar_t* wordsBreakdownSectionSectionEnd =
+    const wchar_t* wordsBreakdownSectionEnd =
         (wordsBreakdownSection != nullptr) ?
             lily_of_the_valley::html_extract_text::find_closing_element(
                 wordsBreakdownSection, settingsFileTextEnd,
                 ReadabilityAppOptions::XML_WORDS_BREAKDOWN_W) :
             nullptr;
-    if ((wordsBreakdownSection != nullptr) && (wordsBreakdownSectionSectionEnd != nullptr))
+    if ((wordsBreakdownSection != nullptr) && (wordsBreakdownSectionEnd != nullptr))
         {
         const wxString wordsBreakdownInfo =
-            XmlFormat::GetString(wordsBreakdownSection, wordsBreakdownSectionSectionEnd,
+            XmlFormat::GetString(wordsBreakdownSection, wordsBreakdownSectionEnd,
                                  ReadabilityAppOptions::XML_WORDS_BREAKDOWN_INFO.data());
         if (!wordsBreakdownInfo.empty())
             {
