@@ -523,7 +523,11 @@ namespace readability
 
     /** @brief Helper function to convert a Flesch score into a human readable difficulty level.
         @param result The 0-100 calculated Flesch Reading Ease index.
-        @returns The difficulty level of the index value.*/
+        @returns The difficulty level of the index value.
+        @note In the book, it states that 0-30 is "very difficult," and then 30-50 is "difficult."
+            Which category 30 should fall into becomes debatable. It does later state that 90-100
+            is "very easy," so it's best to assume that 80-89 (not 80-90) would be "easy." Hence,
+            our ranges will go from 0-29 ("very difficult") and such.*/
     [[nodiscard]]
     inline flesch_difficulty flesch_score_to_difficulty_level(const size_t result) noexcept
         {

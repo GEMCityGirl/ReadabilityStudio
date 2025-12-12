@@ -148,7 +148,12 @@ namespace readability
     /** @brief Helper function to convert a Szigriszt-Pazos Perspicuity score
             into a INFLESZ scale difficulty level.
         @param result The 0-100 calculated INFLESZ index.
-        @returns The difficulty level of the index value, mapping to the INFLESZ column.*/
+        @returns The difficulty level of the index value, mapping to the INFLESZ column.
+        @note The categorization of values in the article following the same contradictory
+            logic of saying 0-40 is "very difficult," then 40-55 is "fairly difficult", etc.
+            that the Flesch book does. However, it does eventually say that "> 80" is very easy.
+            Because of this, we take the oppositive approach of FRE, instead saying that 0-40
+            is "very difficult," then 40-55 is "fairly difficult," etc.*/
     [[nodiscard]]
     inline inflesz_difficulty
     szigriszt_pazos_perspicuity_score_to_difficulty_inflesz_level(const size_t result) noexcept
