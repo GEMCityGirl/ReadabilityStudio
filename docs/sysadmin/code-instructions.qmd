@@ -37,7 +37,7 @@ Finally:
   - Note that if the option is in a property grid, then there is no direct variable and instead you use a string label to get and set the values from the property grid.
     Instead, the default value for this field is loaded in `ToolsOptionsDlg::CreateControls()`.
 - Add change watching logic for variable to `ToolsOptionsDlg::HaveXXXOptionsChanged()` if related to project settings (note there are different versions of these functions for each type of feature)
-- Add saving logic to `ToolsOptionsDlg::SaveOptions()` (and related `ToolsOptionsDlg::SaveProjectXXXOptions()` function, if applicable)
+- Add saving logic to `ToolsOptionsDlg::SaveOptions()` (and related `SaveProjectXXXOptions()` function, if applicable)
 - Attach variable to interface in `ToolsOptionsDlg::CreateControls()`
 - Use the variable in the program where applicable
 - Add it to the documentation
@@ -65,8 +65,7 @@ For options specific to a graph that needs to be added to the ribbon:
   - Add a `wxWindowID` constant for the graph's ribbon panel to\
     `r file_path(c("src", "app", "readability_app.h"))`
 - Add logic for adding the new option button to the graph's panel in\
-  `ReadabilityApp::CreateRibbon()`\
-  (`r file_path(c("src", "app", "readability_app.cpp"))`)
+  `ReadabilityApp::CreateRibbon()` (`r file_path(c("src", "app", "readability_app.cpp"))`)
 - Add logic for using the option to the graph's function in\
   `r file_path(c("src", "projects", "standard_project_doc.cpp"))`\
   (for readability graphs, this will be its `AddXXX()` function)
@@ -74,23 +73,22 @@ For options specific to a graph that needs to be added to the ribbon:
   `r file_path(c("src", "projects", "batch_project_doc.cpp"))`
 - If not already present, create a `wxRibbonPanel*` variable from calling\
   `hideEditPanel()` with the graph's ribbon panel ID in\
-  `BatchProjectView::OnItemSelected()`\
-  (`r file_path(c("src", "projects", "batch_project_view.cpp"))`).
+  `BatchProjectView::OnItemSelected()` (`r file_path(c("src", "projects", "batch_project_view.cpp"))`).
   - In the same function, (if not present) add code to show the graph's panel
-    when the selected item is of that graph's type.\
-    Also, add code to toggle the button's state (if applicable)
+    when the selected item is of that graph's type. Also, add code to toggle the button's state (if applicable)
 - Repeat the aforementioned steps, but in\
   `r file_path(c("src", "projects", "standard_project_view.cpp"))`
 - If not already present, add a function to\
-  `r file_path(c("src", "projects", "project_frame.cpp"))`\
-  to handle the new ribbon button being clicked.\
+  `r file_path(c("src", "projects", "project_frame.cpp"))` to handle the new ribbon button being clicked\
   Refer to `ProjectDocChildFrame::OnShowcaseKeyItems()` as an example
 
 ## Adding a New Test {-#add-a-new-test}
 
-- Add the actual function to `r file_path(c("src", "readability", "english_readability.h"))` (or other file if a different language). (This only applies to linear regression based tests with a formula, not tests that calculate their values graphically [e.g., Fry].)
-- Add its definition to `BaseProject::InitializeStandardReadabilityTests()`
-- Add internal name constant to `r file_path(c("src", "results_format", "readability_messages.h/cpp"))`. This will be a string ID that is used throughout the program, documentation, and resources to identify the test.
+- Add the actual function to `r file_path(c("src", "readability", "english_readability.h"))` (or other file if a different language).
+  (This only applies to linear-regression based tests with a formula, not tests that calculate their values graphically [e.g., Fry].)
+- Add its definition to `BaseProject::InitializeStandardReadabilityTests()` (or proper subfunction)
+- Add internal name constant to `r file_path(c("src", "results_format", "readability_messages.h"))`.
+  This will be a string ID that is used throughout the program, documentation, and resources to identify the test.
 - Add its `AddXXXTest()` function to `r file_path(c("src", "projects", "base_project.cpp"))`
 - If a graphical test (e.g., Fry), then also do the following:
   - The `AddXXXTest()` function must be virtual and derived in `r file_path(c("src", "projects", "standard_project_doc.h"))` and `r file_path(c("src", "projects", "standard_project_doc.cpp"))` also
@@ -98,26 +96,29 @@ For options specific to a graph that needs to be added to the ribbon:
   - Handle its exclusion in `ProjectDoc::DisplayReadabilityGraphs()`
   - Add its `GetXXXLabel()` function in `r file_path(c("src", "projects", "base_project_view.h"))`
   - Define its graph window ID in `r file_path(c("src", "projects", "base_project_view.h"))`
-  - Add aforementioned window ID into the `GraphType` enum in\
+  - Add aforementioned constant to `m_dynamicIdMap` in\
+    `r file_path(c("src", "app", "readability_app.cpp"))`, mapping it to an unused numeric ID
+  - Add aforementioned numeric ID and constant name into the `GraphType` enum in\
     `r file_path(c("resources", "scripting", "rs-constants.lua"))`
-  - Add to `GraphType`'s list of values in `r file_path(c("resources", "scripting", "rs-libraries.api"))`
-  - Handle that aforementioned window ID in `ProjectView::OnEditGraphOptions()`,\
-    `ProjectView::OnHyperlinkClicked()`, `ProjectView::OnItemSelected()`, `MainFrame::OnHelpContents()`,\
+  - Handle the aforementioned window ID in `ProjectView::OnEditGraphOptions()`,\
+    `ProjectView::OnHyperlinkClicked()`, `ProjectView::OnItemSelected()`,\
     and `BatchProjectDoc::DisplayReadabilityGraphs()`
   - Add `Set/GetXXXGraph()` functions to `r file_path(c("src", "projects", "batch_project_view.h"))`
   - Show/hide window in `BatchProjectDoc::DisplayScores()`
-  - Load results in `BatchProjectDoc::LoadScores()` if graph handles scoring instead of the formula (e.g., Fry)
+  - Load results in `BatchProjectDoc::LoadScores()` if graph handles its own scoring (e.g., Fry)
   - Add its icon loading to `MainFrame::MainFrame()`
-  - Connect the sidebar item to the icon in `ProjectView::UpdateSideBarIcons()` and `BatchProjectView::UpdateSideBarIcons()`
+  - Connect the sidebar item to the icon in `ProjectView::UpdateSideBarIcons()` and\
+    `BatchProjectView::UpdateSideBarIcons()`
   - Add a blank graph for it in `MainFrame::OnBlankGraph()` and `MainFrame::FillMenuWithBlankGraphs()`
-- Add this `AddXXXTest()` function to standard test function pointer map table in `BaseProject::OnItemSelected()`
+- Add this `AddXXXTest()` function to the standard test function pointer map table in\
+  `BaseProject::OnItemSelected()`
 - If an index test, add its score formatting logic to `BatchProjectView::UpdateStatAndTestPanes()`
 - Document it in the help:
   - Add a topic for it in `r file_path(c("docs", "readability-studio-manual", "[language]"))`, where "[language]" is the language that the test is meant for
   - Add it to the proper dataset in `r file_path(c("docs", "readability-studio-manual", "data"))`\
     (e.g., "EnglishTests.txt")
   - If a graphical test, automate making a screenshot of the graph for the help
-- Add an icon to `r file_path(c("resources", "images", "tests"))` in SVG format with the same name as the test's string ID
+- Add an icon to `r file_path(c("resources", "images", "tests"))` in SVG format using the name of the test's string ID
 
 ## Adding a New Familiar Word List {-}
 
@@ -170,7 +171,8 @@ This applies to full words lists (e.g., Dale-Chall), not supplements such as Sto
 - Add this ID to the `HighlightedReportType` enumeration in `r file_path(c("resources", "scripting", "rs-constants.lua"))`
 - Add a `wxFormattedTextCtrl` window in `r file_path(c("src", "projects", "standard_project_doc.h"))`
 - Add unfamiliar function object (based on `IsNotFamiliarWordWithHighlighting`) to\
-  `ProjectDoc::DisplayHighlightedText()`. (An example is `isNotDCWord`.)
+  `ProjectDoc::DisplayHighlightedText()`.
+  (An example is `isNotDCWord`.)
 - Add a legend line for the word list in text window in `ProjectDoc::DisplayHighlightedText()`
 - Add the legend's line length to `maxLegendSize`
 - Add a legend (including the aforementioned legend line)
@@ -224,7 +226,7 @@ This applies to full words lists (e.g., Dale-Chall), not supplements such as Sto
 
 - Add a `GetCustomXXXSignature()` function in `r file_path(c("src", "test_helpers", "readability_formula_parser.h"))` that returns the label `"CustomXXX()"` (where `XXX` is the name of the word-list test)
 - Add a `static double CustomXXX(const te_expr* context)` function in\
-  `r file_path(c("src", "test_helpers", "readability_formula_parser.cpp"))` that handles a custom version of the original test.\
+  `r file_path(c("src", "test_helpers", "readability_formula_parser.cpp"))` that handles a custom version of the original test\
   This function is what gets mapped to `"CustomXXX()."` (Refer to `CustomNewDaleChall()` as an example.)
 - Map this function in `ReadabilityFormulaParser::ReadabilityFormulaParser()`
 - Add the new `` function to `m_customFamiliarWords` in `CustomTestDlg::Create()`
@@ -276,7 +278,8 @@ When a new stipple shape is added to the `r file_path("Wisteria-Dataviz")` submo
 When a new color scheme is added to the `r file_path("Wisteria-Dataviz")`  submodule, it can be included in this program.
 
 - Add a mapping of the displayable name and internal *Wisteria* key in `m_colorSchemeMap` in\
-  `r file_path(c("src", "app", "readability_app.cpp"))`. (This will need to be the internal keys, not the displayable name.)
+  `r file_path(c("src", "app", "readability_app.cpp"))`.
+  (This will need to be the internal keys, not the displayable name.)
 
 ## Adding New Files
 
