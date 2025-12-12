@@ -277,6 +277,13 @@ class ToolsOptionsDlg final : public wxDialog
     /// Creates the controls and sizers
     void CreateControls();
     void CreateGraphSection();
+    void CreateGraphGeneralSection();
+    void CreateGraphAxesSection();
+    void CreateGraphTitlesSection();
+    void CreateGraphReadabilitySection();
+    void CreateGraphBarChartSection();
+    void CreateGraphHistogramSection();
+    void CreateGraphBoxPlotSection();
 
     [[nodiscard]]
     static wxString GetCustomTestsLabel()

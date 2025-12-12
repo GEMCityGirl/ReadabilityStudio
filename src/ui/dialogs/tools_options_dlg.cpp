@@ -5329,843 +5329,813 @@ void ToolsOptionsDlg::CreateControls()
     }
 
 //-------------------------------------------------------------
+void ToolsOptionsDlg::CreateGraphTitlesSection()
+    {
+    auto* panel = new wxPanel(m_sideBar, GRAPH_TITLES_PAGE, wxDefaultPosition, wxDefaultSize,
+                              wxTAB_TRAVERSAL);
+    auto* panelSizer = new wxBoxSizer(wxVERTICAL);
+    auto* optionsSizer = new wxBoxSizer(wxVERTICAL);
+    panel->SetSizer(panelSizer);
+    m_sideBar->AddSubPage(panel, GetTitlesLabel(), GRAPH_TITLES_PAGE, false, 9);
+
+    CreateLabelHeader(panel, panelSizer, _(L"Fonts:"), true);
+    m_graphTopTitleFontButton =
+        new wxButton(panel, ID_GRAPH_TOP_TITLE_FONT_BUTTON, _(L"Top titles"));
+    m_graphTopTitleFontButton->SetBitmap(
+        wxGetApp().GetResourceManager().GetSVG(L"ribbon/top-titles.svg"));
+    optionsSizer->Add(m_graphTopTitleFontButton, wxSizerFlags{}.Expand().DoubleBorder(wxLEFT));
+
+    m_graphBottomTitleFontButton =
+        new wxButton(panel, ID_GRAPH_BOTTOM_TITLE_FONT_BUTTON, _(L"Bottom titles"));
+    m_graphBottomTitleFontButton->SetBitmap(
+        wxGetApp().GetResourceManager().GetSVG(L"ribbon/bottom-titles.svg"));
+    optionsSizer->Add(m_graphBottomTitleFontButton, wxSizerFlags{}.Expand().DoubleBorder(wxLEFT));
+
+    m_graphLeftTitleFontButton =
+        new wxButton(panel, ID_GRAPH_LEFT_TITLE_FONT_BUTTON, _(L"Left titles"));
+    m_graphLeftTitleFontButton->SetBitmap(
+        wxGetApp().GetResourceManager().GetSVG(L"ribbon/left-titles.svg"));
+    optionsSizer->Add(m_graphLeftTitleFontButton, wxSizerFlags{}.Expand().DoubleBorder(wxLEFT));
+
+    m_graphRightTitleFontButton =
+        new wxButton(panel, ID_GRAPH_RIGHT_TITLE_FONT_BUTTON, _(L"Right titles"));
+    m_graphRightTitleFontButton->SetBitmap(
+        wxGetApp().GetResourceManager().GetSVG(L"ribbon/right-titles.svg"));
+    optionsSizer->Add(m_graphRightTitleFontButton, wxSizerFlags{}.Expand().DoubleBorder(wxLEFT));
+
+    panelSizer->Add(optionsSizer);
+    }
+
+//-------------------------------------------------------------
+void ToolsOptionsDlg::CreateGraphAxesSection()
+    {
+    auto* panel =
+        new wxPanel(m_sideBar, GRAPH_AXIS_PAGE, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
+    auto* panelSizer = new wxBoxSizer(wxVERTICAL);
+    auto* optionsSizer = new wxBoxSizer(wxVERTICAL);
+    panel->SetSizer(panelSizer);
+    m_sideBar->AddSubPage(panel, GetAxisSettingsLabel(), GRAPH_AXIS_PAGE, false, 9);
+
+    CreateLabelHeader(panel, panelSizer, _(L"Fonts:"), true);
+    m_xAxisFontButton = new wxButton(panel, ID_X_AXIS_FONT_BUTTON, _(L"X axis"));
+    m_xAxisFontButton->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/x-axis.svg"));
+    optionsSizer->Add(m_xAxisFontButton, wxSizerFlags{}.Expand().DoubleBorder(wxLEFT));
+
+    m_yAxisFontButton = new wxButton(panel, ID_Y_AXIS_FONT_BUTTON, _(L"Y axis"));
+    m_yAxisFontButton->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/y-axis.svg"));
+    optionsSizer->Add(m_yAxisFontButton, wxSizerFlags{}.Expand().DoubleBorder(wxLEFT));
+
+    panelSizer->Add(optionsSizer);
+    }
+
+//-------------------------------------------------------------
+void ToolsOptionsDlg::CreateGraphGeneralSection()
+    {
+    auto* graphGeneralPage = new wxPanel(m_sideBar, GRAPH_GENERAL_PAGE, wxDefaultPosition,
+                                         wxDefaultSize, wxTAB_TRAVERSAL);
+    m_sideBar->AddPage(graphGeneralPage, GetGraphsLabel(), GRAPH_GENERAL_PAGE,
+                       // if the only section being shown, then show this page
+                       (GetSectionsBeingShown() == GraphsSection), 7);
+
+    auto* panelSizer = new wxBoxSizer(wxVERTICAL);
+    graphGeneralPage->SetSizer(panelSizer);
+    m_sideBar->AddSubPage(graphGeneralPage, GetGeneralLabel(), GRAPH_GENERAL_PAGE, false, 9);
+
+    auto* pgMan = new wxPropertyGridManager(
+        graphGeneralPage, ID_GRAPH_OPTIONS_PROPERTYGRID, wxDefaultPosition, wxDefaultSize,
+        wxPG_BOLD_MODIFIED | wxPG_DESCRIPTION | wxPGMAN_DEFAULT_STYLE);
+    m_generalGraphPropertyGrid = pgMan->AddPage();
+
+    wxPGChoices graphColorSchemes;
+    for (const auto& colorScheme : wxGetApp().GetGraphColorSchemeMap())
+        {
+        graphColorSchemes.Add(colorScheme.first);
+        }
+    // do a reverse lookup to map internal "coffeeshop" to UI's "Coffee Shop"
+    wxString defaultColorSchemeValue{ _("Campfire") };
+    const wxString systemColorSchemeValue =
+        ((m_readabilityProjectDoc != nullptr) ? m_readabilityProjectDoc->GetGraphColorScheme() :
+                                                wxGetApp().GetAppOptions()->GetGraphColorScheme());
+    for (const auto& theme : wxGetApp().GetGraphColorSchemeMap())
+        {
+        if (systemColorSchemeValue.CmpNoCase(theme.second) == 0)
+            {
+            defaultColorSchemeValue = theme.first;
+            break;
+            }
+        }
+    auto* colorSchemeProp = m_generalGraphPropertyGrid->Append(
+        new wxEnumProperty(GetGraphColorSchemeLabel(), wxPG_LABEL, graphColorSchemes));
+    colorSchemeProp->SetValue(defaultColorSchemeValue);
+    colorSchemeProp->SetHelpString(_(L"Select from here the color scheme to apply to pie charts, "
+                                     "word clouds, and grouped histograms."));
+
+    m_generalGraphPropertyGrid->Append(new wxPropertyCategory(GetGraphBackgroundLabel()));
+    m_generalGraphPropertyGrid->SetPropertyHelpString(
+        GetGraphBackgroundLabel(),
+        _(L"The options in this section customize the backgrounds of the graphs."));
+    // color
+    auto* backgroundColorProp = m_generalGraphPropertyGrid->Append(new wxColourProperty(
+        GetColorLabel(), GetBackgroundColorLabel(),
+        ((m_readabilityProjectDoc != nullptr) ? m_readabilityProjectDoc->GetBackGroundColor() :
+                                                wxGetApp().GetAppOptions()->GetBackGroundColor())));
+    backgroundColorProp->SetHelpString(
+        _(L"Selects the color for the graphs' background. "
+          "Note that if you are displaying an image, then the image will be "
+          "shown on top of this color."));
+    // color fade
+    auto* colorFadeProp = backgroundColorProp->AppendChild(
+        new wxBoolProperty(GetApplyFadeLabel(), wxPG_LABEL,
+                           ((m_readabilityProjectDoc != nullptr) ?
+                                m_readabilityProjectDoc->GetGraphBackGroundLinearGradient() :
+                                wxGetApp().GetAppOptions()->GetGraphBackGroundLinearGradient())));
+    colorFadeProp->SetAttribute(wxPG_BOOL_USE_CHECKBOX, true);
+    colorFadeProp->SetHelpString(
+        _(L"Check this to apply a downward fade to the background color of your graphs. "
+          "The background of your graphs will fade (top-to-bottom) starting with the "
+          "color that you have selected into white."));
+
+    // plot area
+    m_generalGraphPropertyGrid->Append(new wxPropertyCategory(GetPlotAreaBackgroundLabel()));
+    m_generalGraphPropertyGrid->SetPropertyHelpString(
+        GetPlotAreaBackgroundLabel(), _(L"The options in this section customize the plot area "
+                                        "backgrounds of the graphs."));
+
+    // color
+    auto* plotColor =
+        new wxColourProperty(GetColorLabel(), wxPG_LABEL,
+                             ((m_readabilityProjectDoc != nullptr) ?
+                                  m_readabilityProjectDoc->GetPlotBackGroundColor() :
+                                  wxGetApp().GetAppOptions()->GetPlotBackGroundColor()));
+    plotColor->SetHelpString(_(L"Selects the color for the plot area background of the graphs."));
+    // opacity
+    auto* plotColorOpacity = plotColor->AppendChild(
+        new wxIntProperty(GetOpacityLabel(), wxPG_LABEL,
+                          ((m_readabilityProjectDoc != nullptr) ?
+                               m_readabilityProjectDoc->GetPlotBackGroundColorOpacity() :
+                               wxGetApp().GetAppOptions()->GetPlotBackGroundColorOpacity())));
+    plotColorOpacity->SetEditor(wxPGEditor_SpinCtrl);
+    plotColorOpacity->SetAttribute(wxPG_ATTR_MIN, wxALPHA_TRANSPARENT);
+    plotColorOpacity->SetAttribute(wxPG_ATTR_MAX, wxALPHA_OPAQUE);
+    plotColorOpacity->SetHelpString(_(L"Sets the transparency of the plot background color. "
+                                      "A value of 255 will set the background to be fully opaque, "
+                                      "whereas 0 will set the background to be transparent."));
+
+    m_generalGraphPropertyGrid->Append(plotColor);
+
+    // image
+    auto* backgroundImage =
+        new wxImageFileProperty(GetImageLabel(), wxPG_LABEL,
+                                ((m_readabilityProjectDoc != nullptr) ?
+                                     m_readabilityProjectDoc->GetPlotBackGroundImagePath() :
+                                     wxGetApp().GetAppOptions()->GetPlotBackGroundImagePath()));
+    backgroundImage->SetAttribute(wxPG_FILE_WILDCARD,
+                                  Wisteria::GraphItems::Image::GetImageFileFilter());
+    backgroundImage->SetAttribute(wxPG_DIALOG_TITLE, _(L"Select Plot Background Image"));
+    backgroundImage->SetAttribute(wxPG_ATTR_HINT, _(L"Select an image"));
+    backgroundImage->SetHelpString(_(L"Selects the image for the graphs' background."));
+
+    // image effect
+    wxPGChoices imgEffects;
+    imgEffects.Add(_(L"No effect"));
+    imgEffects.Add(_(L"Grayscale"));
+    imgEffects.Add(_(L"Blur horizontally"));
+    imgEffects.Add(_(L"Blur vertically"));
+    imgEffects.Add(_(L"Sepia"));
+    imgEffects.Add(_(L"Frosted glass"));
+    imgEffects.Add(_(L"Oil painting"));
+    auto* imgEffectProp = backgroundImage->AppendChild(new wxEnumProperty(
+        GetEffectLabel(), wxPG_LABEL, imgEffects,
+        ((m_readabilityProjectDoc != nullptr) ?
+             static_cast<int>(m_readabilityProjectDoc->GetPlotBackGroundImageEffect()) :
+             static_cast<int>(wxGetApp().GetAppOptions()->GetPlotBackGroundImageEffect()))));
+    imgEffectProp->SetHelpString(_(L"Applies an effect to the plot background image."));
+
+    // image opacity
+    auto* imgOpacityProp = backgroundImage->AppendChild(
+        new wxIntProperty(GetOpacityLabel(), wxPG_LABEL,
+                          ((m_readabilityProjectDoc != nullptr) ?
+                               m_readabilityProjectDoc->GetPlotBackGroundImageOpacity() :
+                               wxGetApp().GetAppOptions()->GetPlotBackGroundImageOpacity())));
+    imgOpacityProp->SetEditor(wxPGEditor_SpinCtrl);
+    imgOpacityProp->SetAttribute(wxPG_ATTR_MIN, wxALPHA_TRANSPARENT);
+    imgOpacityProp->SetAttribute(wxPG_ATTR_MAX, wxALPHA_OPAQUE);
+    imgOpacityProp->SetHelpString(
+        _(L"Sets the transparency of the plot background image. "
+          "A value of 255 will set the image to be fully opaque, whereas 0 will set "
+          "the image to be transparent."));
+
+    // image fit
+    wxPGChoices imgFits;
+    // TRANSLATORS: "Crop" as in trimming an image. These are both verbs.
+    imgFits.Add(_(L"Crop & center"));
+    imgFits.Add(_(L"Shrink to fit"));
+    auto* imgFitProp = backgroundImage->AppendChild(new wxEnumProperty(
+        GetFitLabel(), wxPG_LABEL, imgFits,
+        ((m_readabilityProjectDoc != nullptr) ?
+             static_cast<int>(m_readabilityProjectDoc->GetPlotBackGroundImageFit()) :
+             static_cast<int>(wxGetApp().GetAppOptions()->GetPlotBackGroundImageFit()))));
+    imgFitProp->SetHelpString(_(L"How to fit the image within the plot background."));
+
+    m_generalGraphPropertyGrid->Append(backgroundImage);
+    // set the default folder to the global image folder if no image provided
+    if (m_generalGraphPropertyGrid->GetPropertyValueAsString(GetImageLabel()).empty())
+        {
+        backgroundImage->SetAttribute(wxPG_FILE_INITIAL_PATH,
+                                      wxGetApp().GetAppOptions()->GetImagePath());
+        }
+
+    m_generalGraphPropertyGrid->Append(new wxPropertyCategory(GetWatermarksLogosLabel()));
+    m_generalGraphPropertyGrid->SetPropertyHelpString(
+        GetWatermarksLogosLabel(), _(L"The options in this section customize the watermarks and "
+                                     "logo images of the graphs."));
+    // watermark
+    m_generalGraphPropertyGrid->Append(new wxStringProperty(
+        GetWatermarkLabel(), wxPG_LABEL,
+        ((m_readabilityProjectDoc != nullptr) ? m_readabilityProjectDoc->GetWatermark() :
+                                                wxGetApp().GetAppOptions()->GetWatermark())));
+    m_generalGraphPropertyGrid->SetPropertyAttribute(GetWatermarkLabel(), wxPG_ATTR_HINT,
+                                                     _(L"Enter text"));
+    m_generalGraphPropertyGrid->SetPropertyHelpString(
+        GetWatermarkLabel(), _(L"Enter a label to be stamped across your graphs into this field. "
+                               "This label will be stamped diagonally, top left-hand corner to "
+                               "bottom right-hand corner."));
+    // logo
+    auto* graphLogo = new wxImageFileProperty(GetLogoImageLabel(), wxPG_LABEL,
+                                              ((m_readabilityProjectDoc != nullptr) ?
+                                                   m_readabilityProjectDoc->GetWatermarkLogoPath() :
+                                                   wxGetApp().GetAppOptions()->GetWatermarkLogo()));
+    graphLogo->SetAttribute(wxPG_FILE_WILDCARD, Wisteria::GraphItems::Image::GetImageFileFilter());
+    graphLogo->SetAttribute(wxPG_DIALOG_TITLE, _(L"Select Logo Image"));
+    graphLogo->SetAttribute(wxPG_ATTR_HINT, _(L"Select an image"));
+    m_generalGraphPropertyGrid->Append(graphLogo);
+    // set the default folder to the global image folder if no image provided
+    if (m_generalGraphPropertyGrid->GetPropertyValueAsString(GetLogoImageLabel()).empty())
+        {
+        graphLogo->SetAttribute(wxPG_FILE_INITIAL_PATH, wxGetApp().GetAppOptions()->GetImagePath());
+        }
+    m_generalGraphPropertyGrid->SetPropertyHelpString(
+        GetLogoImageLabel(),
+        _(L"Enter the path to the image file used as your graphs' logo into this field. "
+          "The logo will be displayed in the lower right-hand corner of each graph."));
+
+    m_generalGraphPropertyGrid->Append(new wxPropertyCategory(GetEffectsLabel()));
+    m_generalGraphPropertyGrid->SetPropertyHelpString(
+        GetEffectsLabel(),
+        _(L"The options in this section customize various visual effects of the graphs."));
+    // stipple image
+    auto* customBrushProp = new wxImageFileProperty(
+        GetStippleImageLabel(), wxPG_LABEL,
+        ((m_readabilityProjectDoc != nullptr) ? m_readabilityProjectDoc->GetStippleImagePath() :
+                                                wxGetApp().GetAppOptions()->GetStippleImagePath()));
+    customBrushProp->SetAttribute(wxPG_FILE_WILDCARD,
+                                  Wisteria::GraphItems::Image::GetImageFileFilter());
+    customBrushProp->SetAttribute(wxPG_DIALOG_TITLE, _(L"Select Stipple Image"));
+    customBrushProp->SetAttribute(wxPG_ATTR_HINT, _(L"Select an image"));
+    m_generalGraphPropertyGrid->Append(customBrushProp);
+    m_generalGraphPropertyGrid->SetPropertyHelpString(
+        GetStippleImageLabel(),
+        _(L"Enter into this field the file path to the image used for a stipple brush. "
+          "A stipple brush can be used to draw stacked images across bars and boxes"));
+    // set the default folder to the global image folder if no image is provided
+    if (m_generalGraphPropertyGrid->GetPropertyValueAsString(GetStippleImageLabel()).empty())
+        {
+        customBrushProp->SetAttribute(wxPG_FILE_INITIAL_PATH,
+                                      wxGetApp().GetAppOptions()->GetImagePath());
+        }
+
+    wxPGChoices shapes;
+    for (const auto& sh : wxGetApp().GetShapeMap())
+        {
+        shapes.Add(sh.first);
+        }
+    // do a reverse lookup to map internal "fall-leaf" to UI's "Fall leaf"
+    wxString defaultValue{ _("Book") };
+    const wxString systemValue =
+        ((m_readabilityProjectDoc != nullptr) ? m_readabilityProjectDoc->GetStippleShape() :
+                                                wxGetApp().GetAppOptions()->GetStippleShape());
+    for (const auto& sh : wxGetApp().GetShapeMap())
+        {
+        if (systemValue.CmpNoCase(sh.second) == 0)
+            {
+            defaultValue = sh.first;
+            break;
+            }
+        }
+    auto* shapesProp = m_generalGraphPropertyGrid->Append(
+        new wxEnumProperty(GetStippleShapeLabel(), wxPG_LABEL, shapes));
+    shapesProp->SetValue(defaultValue);
+    shapesProp->SetHelpString(
+        _(L"Select from here which shape to use for a stipple brush. "
+          "A stipple brush can be used to draw stacked shape across bars and boxes"));
+
+    auto* shapeColorProp = shapesProp->AppendChild(
+        new wxColourProperty(GetColorLabel(), wxPG_LABEL,
+                             ((m_readabilityProjectDoc != nullptr) ?
+                                  m_readabilityProjectDoc->GetStippleShapeColor() :
+                                  wxGetApp().GetAppOptions()->GetStippleShapeColor())));
+    shapeColorProp->SetHelpString(_(L"Selects the color used for certain stipple shapes."));
+
+    // common image
+    auto* commonImageProp =
+        new wxImageFileProperty(GetCommonImageLabel(), wxPG_LABEL,
+                                ((m_readabilityProjectDoc != nullptr) ?
+                                     m_readabilityProjectDoc->GetGraphCommonImagePath() :
+                                     wxGetApp().GetAppOptions()->GetGraphCommonImagePath()));
+    commonImageProp->SetAttribute(wxPG_FILE_WILDCARD,
+                                  Wisteria::GraphItems::Image::GetImageFileFilter());
+    commonImageProp->SetAttribute(wxPG_DIALOG_TITLE, _(L"Select Common Image"));
+    commonImageProp->SetAttribute(wxPG_ATTR_HINT, _(L"Select an image"));
+    m_generalGraphPropertyGrid->Append(commonImageProp);
+    m_generalGraphPropertyGrid->SetPropertyHelpString(
+        GetCommonImageLabel(), _(L"Enter into this field the file path to the common image "
+                                 "used used to draw across all bars/boxes."));
+    // set the default folder to the global image folder if no image is provided
+    if (m_generalGraphPropertyGrid->GetPropertyValueAsString(GetCommonImageLabel()).empty())
+        {
+        commonImageProp->SetAttribute(wxPG_FILE_INITIAL_PATH,
+                                      wxGetApp().GetAppOptions()->GetImagePath());
+        }
+
+    // drop shadows
+    m_generalGraphPropertyGrid->Append(
+        new wxBoolProperty(GetDisplayDropShadowsLabel(), wxPG_LABEL,
+                           ((m_readabilityProjectDoc != nullptr) ?
+                                m_readabilityProjectDoc->IsDisplayingDropShadows() :
+                                wxGetApp().GetAppOptions()->IsDisplayingDropShadows())));
+    m_generalGraphPropertyGrid->SetPropertyAttribute(GetDisplayDropShadowsLabel(),
+                                                     wxPG_BOOL_USE_CHECKBOX, true);
+    m_generalGraphPropertyGrid->SetPropertyHelpString(
+        GetDisplayDropShadowsLabel(),
+        _(L"Check this to include shadows underneath items such as boxes, bars, "
+          "and labels. Unchecking this option will give your graphs a more \"flat\" "
+          "look."));
+
+    auto* showcaseOption = m_generalGraphPropertyGrid->Append(
+        new wxBoolProperty(GetShowcaseKeyItemsLabel(), wxPG_LABEL,
+                           ((m_readabilityProjectDoc != nullptr) ?
+                                m_readabilityProjectDoc->IsShowcasingKeyItems() :
+                                wxGetApp().GetAppOptions()->IsShowcasingKeyItems())));
+    showcaseOption->SetAttribute(wxPG_BOOL_USE_CHECKBOX, true);
+    showcaseOption->SetHelpString(
+        _(L"Check this to draw attention to the complex (i.e., 3+ syllable) word groups "
+          "on syllable histograms and pie charts (standard projects)."));
+
+    pgMan->SelectProperty(GetGraphBackgroundLabel());
+
+    panelSizer->Add(pgMan, wxSizerFlags{ 1 }.Expand());
+    }
+
+//-------------------------------------------------------------
+void ToolsOptionsDlg::CreateGraphReadabilitySection()
+    {
+    auto* panel = new wxPanel(m_sideBar, GRAPH_READABILITY_GRAPHS_PAGE, wxDefaultPosition,
+                              wxDefaultSize, wxTAB_TRAVERSAL);
+    auto* panelSizer = new wxBoxSizer(wxVERTICAL);
+    panel->SetSizer(panelSizer);
+    m_sideBar->AddSubPage(panel, GetReadabilityGraphLabel(), GRAPH_READABILITY_GRAPHS_PAGE, false,
+                          9);
+
+    // Fry-like graphs
+    auto* pgMan =
+        new wxPropertyGridManager(panel, wxID_ANY, wxDefaultPosition, wxDefaultSize,
+                                  wxPG_BOLD_MODIFIED | wxPG_DESCRIPTION | wxPGMAN_DEFAULT_STYLE);
+    m_readabilityGraphPropertyGrid = pgMan->AddPage();
+    m_readabilityGraphPropertyGrid->Append(new wxPropertyCategory(GetFryLikeLabel()));
+    m_readabilityGraphPropertyGrid->SetPropertyHelpString(
+        GetFryLikeLabel(),
+        _(L"The options in this section customize the Fry, Gilliam-Pe\U000000F1a-Mountain, "
+          "Raygor, and Schwartz graphs."));
+    m_readabilityGraphPropertyGrid->Append(
+        new wxColourProperty(GetInvalidRegionsColorLabel(), wxPG_LABEL,
+                             ((m_readabilityProjectDoc != nullptr) ?
+                                  m_readabilityProjectDoc->GetInvalidAreaColor() :
+                                  wxGetApp().GetAppOptions()->GetInvalidAreaColor())));
+    m_readabilityGraphPropertyGrid->SetPropertyHelpString(
+        GetInvalidRegionsColorLabel(),
+        _(L"Selects the color for the invalid sentence/word regions."));
+
+    wxPGChoices raygorStyles;
+    raygorStyles.Add(_(L"Original"));
+    raygorStyles.Add(_DT(L"Baldwin-Kaufman"));
+    raygorStyles.Add(_(L"Modern"));
+    m_readabilityGraphPropertyGrid->Append(
+        new wxEnumProperty(GetRaygorStyleLabel(), wxPG_LABEL, raygorStyles,
+                           ((m_readabilityProjectDoc != nullptr) ?
+                                static_cast<int>(m_readabilityProjectDoc->GetRaygorStyle()) :
+                                static_cast<int>(wxGetApp().GetAppOptions()->GetRaygorStyle()))));
+    m_readabilityGraphPropertyGrid->SetPropertyHelpString(
+        GetRaygorStyleLabel(), _(L"Selects the layout style of the Raygor graph."));
+    // flesch
+    m_readabilityGraphPropertyGrid->Append(new wxPropertyCategory(GetFleschChartLabel()));
+    m_readabilityGraphPropertyGrid->SetPropertyHelpString(
+        GetFleschChartLabel(), _(L"The options in this section customize the Flesch chart."));
+    m_readabilityGraphPropertyGrid->Append(
+        new wxBoolProperty(GetFleschChartConnectPointsLabel(), wxPG_LABEL,
+                           ((m_readabilityProjectDoc != nullptr) ?
+                                m_readabilityProjectDoc->IsConnectingFleschPoints() :
+                                wxGetApp().GetAppOptions()->IsConnectingFleschPoints())));
+    m_readabilityGraphPropertyGrid->SetPropertyAttribute(GetFleschChartConnectPointsLabel(),
+                                                         wxPG_BOOL_USE_CHECKBOX, true);
+    m_readabilityGraphPropertyGrid->SetPropertyHelpString(
+        GetFleschChartConnectPointsLabel(),
+        _(L"Check this to connect the factor and score points."));
+
+    m_readabilityGraphPropertyGrid->Append(
+        new wxBoolProperty(GetFleschSyllableRulerDocGroupsLabel(), wxPG_LABEL,
+                           ((m_readabilityProjectDoc != nullptr) ?
+                                m_readabilityProjectDoc->IsIncludingFleschRulerDocGroups() :
+                                wxGetApp().GetAppOptions()->IsIncludingFleschRulerDocGroups())));
+    m_readabilityGraphPropertyGrid->SetPropertyAttribute(GetFleschSyllableRulerDocGroupsLabel(),
+                                                         wxPG_BOOL_USE_CHECKBOX, true);
+    m_readabilityGraphPropertyGrid->SetPropertyHelpString(
+        GetFleschSyllableRulerDocGroupsLabel(),
+        _(L"Check this to display document names grouped along the syllable ruler."));
+
+    // Lix gauge
+    m_readabilityGraphPropertyGrid->Append(new wxPropertyCategory(GetLixGaugeLabel()));
+    m_readabilityGraphPropertyGrid->SetPropertyHelpString(
+        GetLixGaugeLabel(), _(L"The options in this section customize the Lix Gauge."));
+    m_readabilityGraphPropertyGrid->Append(
+        new wxBoolProperty(GetUseEnglishLabelsForGermanLixLabel(), wxPG_LABEL,
+                           ((m_readabilityProjectDoc != nullptr) ?
+                                m_readabilityProjectDoc->IsUsingEnglishLabelsForGermanLix() :
+                                wxGetApp().GetAppOptions()->IsUsingEnglishLabelsForGermanLix())));
+    m_readabilityGraphPropertyGrid->SetPropertyAttribute(GetUseEnglishLabelsForGermanLixLabel(),
+                                                         wxPG_BOOL_USE_CHECKBOX, true);
+    m_readabilityGraphPropertyGrid->SetPropertyHelpString(
+        GetUseEnglishLabelsForGermanLixLabel(),
+        _(L"Check this to display the English translated bracket labels "
+          "on the German Lix gauge."));
+
+    pgMan->SelectProperty(GetFryLikeLabel());
+
+    panelSizer->Add(pgMan, wxSizerFlags{ 1 }.Expand());
+    }
+
+//-------------------------------------------------------------
+void ToolsOptionsDlg::CreateGraphBarChartSection()
+    {
+    if (!IsBatchProjectSettings())
+        {
+        auto* panel = new wxPanel(m_sideBar, GRAPH_BAR_CHART_PAGE, wxDefaultPosition, wxDefaultSize,
+                                  wxTAB_TRAVERSAL);
+        auto* panelSizer = new wxBoxSizer(wxVERTICAL);
+        panel->SetSizer(panelSizer);
+        m_sideBar->AddSubPage(panel, GetBarChartLabel(), GRAPH_BAR_CHART_PAGE, false, 9);
+
+        auto* pgMan = new wxPropertyGridManager(
+            panel, ID_BARCHART_OPTIONS_PROPERTYGRID, wxDefaultPosition, wxDefaultSize,
+            wxPG_BOLD_MODIFIED | wxPG_DESCRIPTION | wxPGMAN_DEFAULT_STYLE);
+        m_barChartPropertyGrid = pgMan->AddPage();
+        m_barChartPropertyGrid->Append(new wxPropertyCategory(GetBarAppearanceLabel()));
+        m_barChartPropertyGrid->SetPropertyHelpString(
+            GetBarAppearanceLabel(),
+            _(L"The options in this section customize the display of the bars."));
+
+        // color for bars
+        m_barChartPropertyGrid->Append(
+            new wxColourProperty(GetColorLabel(), wxPG_LABEL,
+                                 ((m_readabilityProjectDoc != nullptr) ?
+                                      m_readabilityProjectDoc->GetBarChartBarColor() :
+                                      wxGetApp().GetAppOptions()->GetBarChartBarColor())));
+        m_barChartPropertyGrid->SetPropertyHelpString(GetColorLabel(),
+                                                      _(L"Selects the color used for the bars."));
+        // effects
+        wxPGChoices boxEffects;
+        boxEffects.Add(_(L"Solid"),
+                       wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-solid.svg"));
+        boxEffects.Add(_(L"Glass effect"),
+                       wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-glass.svg"));
+        boxEffects.Add(_(L"Color fade, bottom to top"),
+                       wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-bottom-to-top.svg"));
+        boxEffects.Add(_(L"Color fade, top to bottom"),
+                       wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-top-to-bottom.svg"));
+        boxEffects.Add(_(L"Stipple image"),
+                       wxGetApp().GetResourceManager().GetSVG(L"ribbon/image.svg"));
+        boxEffects.Add(_(L"Stipple shape"),
+                       wxGetApp().GetResourceManager().GetSVG(L"ribbon/apple.svg"));
+        boxEffects.Add(_(L"Watercolor"),
+                       wxGetApp().GetResourceManager().GetSVG(L"ribbon/brush.svg"));
+        boxEffects.Add(_(L"Thick watercolor"),
+                       wxGetApp().GetResourceManager().GetSVG(L"ribbon/brush.svg"));
+        boxEffects.Add(_(L"Common image"),
+                       wxGetApp().GetResourceManager().GetSVG(L"ribbon/image.svg"));
+        m_barChartPropertyGrid->Append(new wxEnumProperty(
+            GetEffectLabel(), wxPG_LABEL, boxEffects,
+            ((m_readabilityProjectDoc != nullptr) ?
+                 static_cast<int>(m_readabilityProjectDoc->GetGraphBarEffect()) :
+                 static_cast<int>(wxGetApp().GetAppOptions()->GetGraphBarEffect()))));
+        m_barChartPropertyGrid->SetPropertyHelpString(
+            GetEffectLabel(), _(L"Selects which effect to apply to the bars."));
+        // bar opacity
+        m_barChartPropertyGrid->Append(new wxIntProperty(
+            GetOpacityLabel(), wxPG_LABEL,
+            ((m_readabilityProjectDoc != nullptr) ?
+                 static_cast<int>(m_readabilityProjectDoc->GetGraphBarOpacity()) :
+                 static_cast<int>(wxGetApp().GetAppOptions()->GetGraphBarOpacity()))));
+        m_barChartPropertyGrid->SetPropertyEditor(GetOpacityLabel(), wxPGEditor_SpinCtrl);
+        m_barChartPropertyGrid->SetPropertyAttribute(GetOpacityLabel(), wxPG_ATTR_MIN,
+                                                     wxALPHA_TRANSPARENT);
+        m_barChartPropertyGrid->SetPropertyAttribute(GetOpacityLabel(), wxPG_ATTR_MAX,
+                                                     wxALPHA_OPAQUE);
+        m_barChartPropertyGrid->SetPropertyHelpString(
+            GetOpacityLabel(),
+            _(L"Sets the transparency of the bars. A value of 255 will set the box "
+              "to be fully opaque, whereas 0 will set the bars to be transparent."));
+        // orientation
+        wxPGChoices orientation;
+        orientation.Add(_(L"Horizontal"),
+                        wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-chart.svg"));
+        orientation.Add(_(L"Vertical"),
+                        wxGetApp().GetResourceManager().GetSVG(L"ribbon/histogram.svg"));
+        m_barChartPropertyGrid->Append(new wxEnumProperty(
+            GeOrientationLabel(), wxPG_LABEL, orientation,
+            ((m_readabilityProjectDoc != nullptr) ?
+                 static_cast<int>(m_readabilityProjectDoc->GetBarChartOrientation()) :
+                 static_cast<int>(wxGetApp().GetAppOptions()->GetBarChartOrientation()))));
+        m_barChartPropertyGrid->SetPropertyHelpString(
+            GeOrientationLabel(),
+            _(L"Selects whether to display the bars horizontally or vertically."));
+
+        // labels
+        m_barChartPropertyGrid->Append(
+            new wxBoolProperty(GetLabelsOnBarsLabel(), wxPG_LABEL,
+                               ((m_readabilityProjectDoc != nullptr) ?
+                                    m_readabilityProjectDoc->IsDisplayingBarChartLabels() :
+                                    wxGetApp().GetAppOptions()->IsDisplayingBarChartLabels())));
+        m_barChartPropertyGrid->SetPropertyAttribute(GetLabelsOnBarsLabel(), wxPG_BOOL_USE_CHECKBOX,
+                                                     true);
+        m_barChartPropertyGrid->SetPropertyHelpString(
+            GetLabelsOnBarsLabel(), _(L"Check this to display labels on the bars."));
+
+        pgMan->SelectProperty(GetBarAppearanceLabel());
+
+        panelSizer->Add(pgMan, wxSizerFlags{ 1 }.Expand());
+        }
+    }
+
+//-------------------------------------------------------------
+void ToolsOptionsDlg::CreateGraphHistogramSection()
+    {
+    auto* panel = new wxPanel(m_sideBar, GRAPH_HISTOGRAM_PAGE, wxDefaultPosition, wxDefaultSize,
+                              wxTAB_TRAVERSAL);
+    auto* panelSizer = new wxBoxSizer(wxVERTICAL);
+    panel->SetSizer(panelSizer);
+    m_sideBar->AddSubPage(panel, GetHistogramsLabel(), GRAPH_HISTOGRAM_PAGE, false, 9);
+
+    auto* pgMan =
+        new wxPropertyGridManager(panel, wxID_ANY, wxDefaultPosition, wxDefaultSize,
+                                  wxPG_BOLD_MODIFIED | wxPG_DESCRIPTION | wxPGMAN_DEFAULT_STYLE);
+    m_histogramPropertyGrid = pgMan->AddPage();
+    m_histogramPropertyGrid->Append(new wxPropertyCategory(GetBarAppearanceLabel()));
+    m_histogramPropertyGrid->SetPropertyHelpString(
+        GetBarAppearanceLabel(),
+        _(L"The options in this section customize the display of the bars."));
+    // color for bars
+    m_histogramPropertyGrid->Append(
+        new wxColourProperty(GetColorLabel(), wxPG_LABEL,
+                             ((m_readabilityProjectDoc != nullptr) ?
+                                  m_readabilityProjectDoc->GetHistogramBarColor() :
+                                  wxGetApp().GetAppOptions()->GetHistogramBarColor())));
+    m_histogramPropertyGrid->SetPropertyHelpString(GetColorLabel(),
+                                                   _(L"Selects the color used for the bars."));
+    // effects
+    wxPGChoices boxEffects;
+    boxEffects.Add(_(L"Solid"), wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-solid.svg"));
+    boxEffects.Add(_(L"Glass effect"),
+                   wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-glass.svg"));
+    boxEffects.Add(_(L"Color fade, bottom to top"),
+                   wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-bottom-to-top.svg"));
+    boxEffects.Add(_(L"Color fade, top to bottom"),
+                   wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-top-to-bottom.svg"));
+    boxEffects.Add(_(L"Stipple image"),
+                   wxGetApp().GetResourceManager().GetSVG(L"ribbon/image.svg"));
+    boxEffects.Add(_(L"Stipple shape"),
+                   wxGetApp().GetResourceManager().GetSVG(L"ribbon/apple.svg"));
+    boxEffects.Add(_(L"Watercolor"), wxGetApp().GetResourceManager().GetSVG(L"ribbon/brush.svg"));
+    boxEffects.Add(_(L"Thick watercolor"),
+                   wxGetApp().GetResourceManager().GetSVG(L"ribbon/brush.svg"));
+    boxEffects.Add(_(L"Common image"), wxGetApp().GetResourceManager().GetSVG(L"ribbon/image.svg"));
+    m_histogramPropertyGrid->Append(new wxEnumProperty(
+        GetEffectLabel(), wxPG_LABEL, boxEffects,
+        ((m_readabilityProjectDoc != nullptr) ?
+             static_cast<int>(m_readabilityProjectDoc->GetHistogramBarEffect()) :
+             static_cast<int>(wxGetApp().GetAppOptions()->GetHistogramBarEffect()))));
+    m_histogramPropertyGrid->SetPropertyHelpString(
+        GetEffectLabel(), _(L"Selects which effect to apply to the bars."));
+    // bar opacity
+    m_histogramPropertyGrid->Append(
+        new wxIntProperty(GetOpacityLabel(), wxPG_LABEL,
+                          ((m_readabilityProjectDoc != nullptr) ?
+                               m_readabilityProjectDoc->GetHistogramBarOpacity() :
+                               wxGetApp().GetAppOptions()->GetHistogramBarOpacity())));
+    m_histogramPropertyGrid->SetPropertyEditor(GetOpacityLabel(), wxPGEditor_SpinCtrl);
+    m_histogramPropertyGrid->SetPropertyAttribute(GetOpacityLabel(), wxPG_ATTR_MIN,
+                                                  wxALPHA_TRANSPARENT);
+    m_histogramPropertyGrid->SetPropertyAttribute(GetOpacityLabel(), wxPG_ATTR_MAX, wxALPHA_OPAQUE);
+    m_histogramPropertyGrid->SetPropertyHelpString(
+        GetOpacityLabel(),
+        _(L"Sets the transparency of the bars. A value of 255 will set the box to "
+          "be fully opaque, whereas 0 will set the bars to be transparent."));
+
+    if (IsBatchProjectSettings() || IsGeneralSettings())
+        {
+        m_histogramPropertyGrid->Append(new wxPropertyCategory(GetBinningOptionsLabel()));
+        m_histogramPropertyGrid->SetPropertyHelpString(
+            GetBinningOptionsLabel(),
+            _(L"The options in this section control how the data are categorized."));
+
+        // sorting
+        wxPGChoices sortChoices;
+        wxArrayString categories;
+        categories.Add(_(L"Create a bin for each unique value"));
+        categories.Add(_(L"Sort by interval"));
+        categories.Add(_(L"Sort by neat interval"));
+        sortChoices.Add(categories);
+        m_histogramPropertyGrid->Append(new wxEnumProperty(
+            GetBinSortingLabel(), wxPG_LABEL, sortChoices,
+            ((m_readabilityProjectDoc != nullptr) ?
+                 static_cast<int>(m_readabilityProjectDoc->GetHistogramBinningMethod()) :
+                 static_cast<int>(wxGetApp().GetAppOptions()->GetHistogramBinningMethod()))));
+        m_histogramPropertyGrid->SetPropertyHelpString(
+            GetBinSortingLabel(),
+            _(L"Binning refers to how values (e.g., index and grade scores) are "
+              "categorized into separate classes. Each class (or bin) is displayed "
+              "on a histogram as a bar. The options listed here control how these "
+              "bins are created and how your data are sorted into them."));
+
+        // rounding
+        wxPGChoices roundingChoices;
+        roundingChoices.Add(_(L"Round"));
+        roundingChoices.Add(_(L"Round down"));
+        roundingChoices.Add(_(L"Round up"));
+        roundingChoices.Add(_(L"Do not round"));
+        m_histogramPropertyGrid->Append(new wxEnumProperty(
+            GetGradeLevelRoundingLabel(), wxPG_LABEL, roundingChoices,
+            ((m_readabilityProjectDoc != nullptr) ?
+                 static_cast<int>(m_readabilityProjectDoc->GetHistogramRoundingMethod()) :
+                 static_cast<int>(wxGetApp().GetAppOptions()->GetHistogramRoundingMethod()))));
+        m_histogramPropertyGrid->SetPropertyHelpString(
+            GetGradeLevelRoundingLabel(), _(L"This option controls how floating-point values are "
+                                            "rounded when being sorted into bins."));
+        }
+
+    m_histogramPropertyGrid->Append(new wxPropertyCategory(GetBinDisplayLabel()));
+    m_histogramPropertyGrid->SetPropertyHelpString(
+        GetBinDisplayLabel(), _(L"The options in this section control how the bars are labeled."));
+
+    if (IsBatchProjectSettings() || IsGeneralSettings())
+        {
+        wxPGChoices intervalTypes;
+        intervalTypes.Add(_(L"Cutpoints"));
+        intervalTypes.Add(_(L"Midpoints"));
+        m_histogramPropertyGrid->Append(new wxEnumProperty(
+            GetIntervalDisplayLabel(), wxPG_LABEL, intervalTypes,
+            ((m_readabilityProjectDoc != nullptr) ?
+                 static_cast<int>(m_readabilityProjectDoc->GetHistogramIntervalDisplay()) :
+                 static_cast<int>(wxGetApp().GetAppOptions()->GetHistogramIntervalDisplay()))));
+        m_histogramPropertyGrid->SetPropertyHelpString(
+            GetIntervalDisplayLabel(),
+            _(L"Specifies how to display the bars' values range on the axis."));
+        }
+
+    wxPGChoices catLabelTypes;
+    catLabelTypes.Add(_(L"Counts"));
+    catLabelTypes.Add(_(L"Percentages"));
+    catLabelTypes.Add(_(L"Counts & percentages"));
+    catLabelTypes.Add(_(L"No labels"));
+    m_histogramPropertyGrid->Append(new wxEnumProperty(
+        GetBinLabelsLabel(), wxPG_LABEL, catLabelTypes,
+        ((m_readabilityProjectDoc != nullptr) ?
+             static_cast<int>(m_readabilityProjectDoc->GetHistogramBinLabelDisplay()) :
+             static_cast<int>(wxGetApp().GetAppOptions()->GetHistogramBinLabelDisplay()))));
+    m_histogramPropertyGrid->SetPropertyHelpString(
+        GetBinLabelsLabel(), _(L"Specifies what to display on the bars' labels."));
+
+    pgMan->SelectProperty(GetBarAppearanceLabel());
+
+    panelSizer->Add(pgMan, wxSizerFlags{ 1 }.Expand());
+    }
+
+//-------------------------------------------------------------
+void ToolsOptionsDlg::CreateGraphBoxPlotSection()
+    {
+    auto* panel = new wxPanel(m_sideBar, GRAPH_BOX_PLOT_PAGE, wxDefaultPosition, wxDefaultSize,
+                              wxTAB_TRAVERSAL);
+    auto* panelSizer = new wxBoxSizer(wxVERTICAL);
+    panel->SetSizer(panelSizer);
+    m_sideBar->AddSubPage(panel, GetBoxPlotLabel(), GRAPH_BOX_PLOT_PAGE, false, 9);
+
+    auto* pgMan =
+        new wxPropertyGridManager(panel, wxID_ANY, wxDefaultPosition, wxDefaultSize,
+                                  wxPG_BOLD_MODIFIED | wxPG_DESCRIPTION | wxPGMAN_DEFAULT_STYLE);
+    m_boxPlotsPropertyGrid = pgMan->AddPage();
+    m_boxPlotsPropertyGrid->Append(new wxPropertyCategory(GetBoxAppearanceLabel()));
+    m_boxPlotsPropertyGrid->SetPropertyHelpString(
+        GetBoxAppearanceLabel(),
+        _(L"The options in this section customize the display of the boxes."));
+    // color for box
+    m_boxPlotsPropertyGrid->Append(new wxColourProperty(
+        GetColorLabel(), wxPG_LABEL,
+        ((m_readabilityProjectDoc != nullptr) ? m_readabilityProjectDoc->GetGraphBoxColor() :
+                                                wxGetApp().GetAppOptions()->GetGraphBoxColor())));
+    m_boxPlotsPropertyGrid->SetPropertyHelpString(GetColorLabel(),
+                                                  _(L"Selects the color used for the boxes."));
+    // effects
+    wxPGChoices boxEffects;
+    boxEffects.Add(_(L"Solid"), wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-solid.svg"));
+    boxEffects.Add(_(L"Glass effect"),
+                   wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-glass.svg"));
+    boxEffects.Add(_(L"Color fade, left to right"),
+                   wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-left-to-right.svg"));
+    boxEffects.Add(_(L"Color fade, right to left"),
+                   wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-right-to-left.svg"));
+    boxEffects.Add(_(L"Stipple image"),
+                   wxGetApp().GetResourceManager().GetSVG(L"ribbon/image.svg"));
+    boxEffects.Add(_(L"Stipple shape"),
+                   wxGetApp().GetResourceManager().GetSVG(L"ribbon/apple.svg"));
+    boxEffects.Add(_(L"Watercolor"), wxGetApp().GetResourceManager().GetSVG(L"ribbon/brush.svg"));
+    boxEffects.Add(_(L"Thick watercolor"),
+                   wxGetApp().GetResourceManager().GetSVG(L"ribbon/brush.svg"));
+    boxEffects.Add(_(L"Common image"), wxGetApp().GetResourceManager().GetSVG(L"ribbon/image.svg"));
+    m_boxPlotsPropertyGrid->Append(new wxEnumProperty(
+        GetEffectLabel(), wxPG_LABEL, boxEffects,
+        ((m_readabilityProjectDoc != nullptr) ?
+             static_cast<int>(m_readabilityProjectDoc->GetGraphBoxEffect()) :
+             static_cast<int>(wxGetApp().GetAppOptions()->GetGraphBoxEffect()))));
+    m_boxPlotsPropertyGrid->SetPropertyHelpString(
+        GetEffectLabel(), _(L"Selects which effect to apply to the boxes."));
+    // box opacity
+    m_boxPlotsPropertyGrid->Append(new wxIntProperty(
+        GetOpacityLabel(), wxPG_LABEL,
+        ((m_readabilityProjectDoc != nullptr) ? m_readabilityProjectDoc->GetGraphBoxOpacity() :
+                                                wxGetApp().GetAppOptions()->GetGraphBoxOpacity())));
+    m_boxPlotsPropertyGrid->SetPropertyEditor(GetOpacityLabel(), wxPGEditor_SpinCtrl);
+    m_boxPlotsPropertyGrid->SetPropertyAttribute(GetOpacityLabel(), wxPG_ATTR_MIN,
+                                                 wxALPHA_TRANSPARENT);
+    m_boxPlotsPropertyGrid->SetPropertyAttribute(GetOpacityLabel(), wxPG_ATTR_MAX, wxALPHA_OPAQUE);
+    m_boxPlotsPropertyGrid->SetPropertyHelpString(
+        GetOpacityLabel(), _(L"Sets the transparency of the box. A value of 255 will set the box "
+                             "to be fully opaque, whereas 0 will set the box to be transparent."));
+
+    m_boxPlotsPropertyGrid->Append(new wxPropertyCategory(GetBoxOptionsLabel()));
+    m_boxPlotsPropertyGrid->SetPropertyHelpString(
+        GetBoxOptionsLabel(),
+        _(L"The options in this section customize the display of the labels and data."));
+
+    m_boxPlotsPropertyGrid->Append(
+        new wxBoolProperty(GetLabelsOnBoxesLabel(), wxPG_LABEL,
+                           ((m_readabilityProjectDoc != nullptr) ?
+                                m_readabilityProjectDoc->IsDisplayingBoxPlotLabels() :
+                                wxGetApp().GetAppOptions()->IsDisplayingBoxPlotLabels())));
+    m_boxPlotsPropertyGrid->SetPropertyAttribute(GetLabelsOnBoxesLabel(), wxPG_BOOL_USE_CHECKBOX,
+                                                 true);
+    m_boxPlotsPropertyGrid->SetPropertyHelpString(
+        GetLabelsOnBoxesLabel(), _(L"Check this to display labels on the middle points, "
+                                   "upper/lower control limits, and whiskers."));
+
+    m_boxPlotsPropertyGrid->Append(
+        new wxBoolProperty(GetConnectBoxesLabel(), wxPG_LABEL,
+                           ((m_readabilityProjectDoc != nullptr) ?
+                                m_readabilityProjectDoc->IsConnectingBoxPlotMiddlePoints() :
+                                wxGetApp().GetAppOptions()->IsConnectingBoxPlotMiddlePoints())));
+    m_boxPlotsPropertyGrid->SetPropertyAttribute(GetConnectBoxesLabel(), wxPG_BOOL_USE_CHECKBOX,
+                                                 true);
+    m_boxPlotsPropertyGrid->SetPropertyHelpString(
+        GetConnectBoxesLabel(),
+        _(L"Check this to display a line connecting the middle points of each box. "
+          "This only applies to plots with multiple boxes."));
+
+    m_boxPlotsPropertyGrid->Append(
+        new wxBoolProperty(GetShowAllDataPointsLabel(), wxPG_LABEL,
+                           ((m_readabilityProjectDoc != nullptr) ?
+                                m_readabilityProjectDoc->IsShowingAllBoxPlotPoints() :
+                                wxGetApp().GetAppOptions()->IsShowingAllBoxPlotPoints())));
+    m_boxPlotsPropertyGrid->SetPropertyAttribute(GetShowAllDataPointsLabel(),
+                                                 wxPG_BOOL_USE_CHECKBOX, true);
+    m_boxPlotsPropertyGrid->SetPropertyHelpString(
+        GetShowAllDataPointsLabel(),
+        _(L"Check this to display all data points on the box and whiskers. "
+          "If this is unchecked, then only outliers will be shown."));
+
+    pgMan->SelectProperty(GetBoxAppearanceLabel());
+
+    panelSizer->Add(pgMan, wxSizerFlags{ 1 }.Expand());
+    }
+
+//-------------------------------------------------------------
 void ToolsOptionsDlg::CreateGraphSection()
     {
     if ((GetSectionsBeingShown() & GraphsSection) != 0)
         {
-        auto* graphGeneralPage = new wxPanel(m_sideBar, GRAPH_GENERAL_PAGE, wxDefaultPosition,
-                                             wxDefaultSize, wxTAB_TRAVERSAL);
-        m_sideBar->AddPage(graphGeneralPage, GetGraphsLabel(), GRAPH_GENERAL_PAGE,
-                           // if the only section being shown, then show this page
-                           (GetSectionsBeingShown() == GraphsSection), 7);
-
-            // General tab
-            //-----------
-            {
-            auto* panelSizer = new wxBoxSizer(wxVERTICAL);
-            graphGeneralPage->SetSizer(panelSizer);
-            m_sideBar->AddSubPage(graphGeneralPage, GetGeneralLabel(), GRAPH_GENERAL_PAGE, false,
-                                  9);
-
-            auto* pgMan = new wxPropertyGridManager(
-                graphGeneralPage, ID_GRAPH_OPTIONS_PROPERTYGRID, wxDefaultPosition, wxDefaultSize,
-                wxPG_BOLD_MODIFIED | wxPG_DESCRIPTION | wxPGMAN_DEFAULT_STYLE);
-            m_generalGraphPropertyGrid = pgMan->AddPage();
-
-            wxPGChoices graphColorSchemes;
-            for (const auto& colorScheme : wxGetApp().GetGraphColorSchemeMap())
-                {
-                graphColorSchemes.Add(colorScheme.first);
-                }
-            // do a reverse lookup to map internal "coffeeshop" to UI's "Coffee Shop"
-            wxString defaultColorSchemeValue{ _("Campfire") };
-            const wxString systemColorSchemeValue =
-                ((m_readabilityProjectDoc != nullptr) ?
-                     m_readabilityProjectDoc->GetGraphColorScheme() :
-                     wxGetApp().GetAppOptions()->GetGraphColorScheme());
-            for (const auto& theme : wxGetApp().GetGraphColorSchemeMap())
-                {
-                if (systemColorSchemeValue.CmpNoCase(theme.second) == 0)
-                    {
-                    defaultColorSchemeValue = theme.first;
-                    break;
-                    }
-                }
-            auto* colorSchemeProp = m_generalGraphPropertyGrid->Append(
-                new wxEnumProperty(GetGraphColorSchemeLabel(), wxPG_LABEL, graphColorSchemes));
-            colorSchemeProp->SetValue(defaultColorSchemeValue);
-            colorSchemeProp->SetHelpString(
-                _(L"Select from here the color scheme to apply to pie charts, "
-                  "word clouds, and grouped histograms."));
-
-            m_generalGraphPropertyGrid->Append(new wxPropertyCategory(GetGraphBackgroundLabel()));
-            m_generalGraphPropertyGrid->SetPropertyHelpString(
-                GetGraphBackgroundLabel(),
-                _(L"The options in this section customize the backgrounds of the graphs."));
-            // color
-            auto* backgroundColorProp = m_generalGraphPropertyGrid->Append(
-                new wxColourProperty(GetColorLabel(), GetBackgroundColorLabel(),
-                                     ((m_readabilityProjectDoc != nullptr) ?
-                                          m_readabilityProjectDoc->GetBackGroundColor() :
-                                          wxGetApp().GetAppOptions()->GetBackGroundColor())));
-            backgroundColorProp->SetHelpString(
-                _(L"Selects the color for the graphs' background. "
-                  "Note that if you are displaying an image, then the image will be "
-                  "shown on top of this color."));
-            // color fade
-            auto* colorFadeProp = backgroundColorProp->AppendChild(new wxBoolProperty(
-                GetApplyFadeLabel(), wxPG_LABEL,
-                ((m_readabilityProjectDoc != nullptr) ?
-                     m_readabilityProjectDoc->GetGraphBackGroundLinearGradient() :
-                     wxGetApp().GetAppOptions()->GetGraphBackGroundLinearGradient())));
-            colorFadeProp->SetAttribute(wxPG_BOOL_USE_CHECKBOX, true);
-            colorFadeProp->SetHelpString(
-                _(L"Check this to apply a downward fade to the background color of your graphs. "
-                  "The background of your graphs will fade (top-to-bottom) starting with the "
-                  "color that you have selected into white."));
-
-            // plot area
-            m_generalGraphPropertyGrid->Append(
-                new wxPropertyCategory(GetPlotAreaBackgroundLabel()));
-            m_generalGraphPropertyGrid->SetPropertyHelpString(
-                GetPlotAreaBackgroundLabel(),
-                _(L"The options in this section customize the plot area "
-                  "backgrounds of the graphs."));
-
-            // color
-            auto* plotColor =
-                new wxColourProperty(GetColorLabel(), wxPG_LABEL,
-                                     ((m_readabilityProjectDoc != nullptr) ?
-                                          m_readabilityProjectDoc->GetPlotBackGroundColor() :
-                                          wxGetApp().GetAppOptions()->GetPlotBackGroundColor()));
-            plotColor->SetHelpString(
-                _(L"Selects the color for the plot area background of the graphs."));
-            // opacity
-            auto* plotColorOpacity = plotColor->AppendChild(new wxIntProperty(
-                GetOpacityLabel(), wxPG_LABEL,
-                ((m_readabilityProjectDoc != nullptr) ?
-                     m_readabilityProjectDoc->GetPlotBackGroundColorOpacity() :
-                     wxGetApp().GetAppOptions()->GetPlotBackGroundColorOpacity())));
-            plotColorOpacity->SetEditor(wxPGEditor_SpinCtrl);
-            plotColorOpacity->SetAttribute(wxPG_ATTR_MIN, wxALPHA_TRANSPARENT);
-            plotColorOpacity->SetAttribute(wxPG_ATTR_MAX, wxALPHA_OPAQUE);
-            plotColorOpacity->SetHelpString(
-                _(L"Sets the transparency of the plot background color. "
-                  "A value of 255 will set the background to be fully opaque, "
-                  "whereas 0 will set the background to be transparent."));
-
-            m_generalGraphPropertyGrid->Append(plotColor);
-
-            // image
-            auto* backgroundImage = new wxImageFileProperty(
-                GetImageLabel(), wxPG_LABEL,
-                ((m_readabilityProjectDoc != nullptr) ?
-                     m_readabilityProjectDoc->GetPlotBackGroundImagePath() :
-                     wxGetApp().GetAppOptions()->GetPlotBackGroundImagePath()));
-            backgroundImage->SetAttribute(wxPG_FILE_WILDCARD,
-                                          Wisteria::GraphItems::Image::GetImageFileFilter());
-            backgroundImage->SetAttribute(wxPG_DIALOG_TITLE, _(L"Select Plot Background Image"));
-            backgroundImage->SetAttribute(wxPG_ATTR_HINT, _(L"Select an image"));
-            backgroundImage->SetHelpString(_(L"Selects the image for the graphs' background."));
-
-            // image effect
-            wxPGChoices imgEffects;
-            imgEffects.Add(_(L"No effect"));
-            imgEffects.Add(_(L"Grayscale"));
-            imgEffects.Add(_(L"Blur horizontally"));
-            imgEffects.Add(_(L"Blur vertically"));
-            imgEffects.Add(_(L"Sepia"));
-            imgEffects.Add(_(L"Frosted glass"));
-            imgEffects.Add(_(L"Oil painting"));
-            auto* imgEffectProp = backgroundImage->AppendChild(new wxEnumProperty(
-                GetEffectLabel(), wxPG_LABEL, imgEffects,
-                ((m_readabilityProjectDoc != nullptr) ?
-                     static_cast<int>(m_readabilityProjectDoc->GetPlotBackGroundImageEffect()) :
-                     static_cast<int>(
-                         wxGetApp().GetAppOptions()->GetPlotBackGroundImageEffect()))));
-            imgEffectProp->SetHelpString(_(L"Applies an effect to the plot background image."));
-
-            // image opacity
-            auto* imgOpacityProp = backgroundImage->AppendChild(new wxIntProperty(
-                GetOpacityLabel(), wxPG_LABEL,
-                ((m_readabilityProjectDoc != nullptr) ?
-                     m_readabilityProjectDoc->GetPlotBackGroundImageOpacity() :
-                     wxGetApp().GetAppOptions()->GetPlotBackGroundImageOpacity())));
-            imgOpacityProp->SetEditor(wxPGEditor_SpinCtrl);
-            imgOpacityProp->SetAttribute(wxPG_ATTR_MIN, wxALPHA_TRANSPARENT);
-            imgOpacityProp->SetAttribute(wxPG_ATTR_MAX, wxALPHA_OPAQUE);
-            imgOpacityProp->SetHelpString(
-                _(L"Sets the transparency of the plot background image. "
-                  "A value of 255 will set the image to be fully opaque, whereas 0 will set "
-                  "the image to be transparent."));
-
-            // image fit
-            wxPGChoices imgFits;
-            // TRANSLATORS: "Crop" as in trimming an image. These are both verbs.
-            imgFits.Add(_(L"Crop & center"));
-            imgFits.Add(_(L"Shrink to fit"));
-            auto* imgFitProp = backgroundImage->AppendChild(new wxEnumProperty(
-                GetFitLabel(), wxPG_LABEL, imgFits,
-                ((m_readabilityProjectDoc != nullptr) ?
-                     static_cast<int>(m_readabilityProjectDoc->GetPlotBackGroundImageFit()) :
-                     static_cast<int>(wxGetApp().GetAppOptions()->GetPlotBackGroundImageFit()))));
-            imgFitProp->SetHelpString(_(L"How to fit the image within the plot background."));
-
-            m_generalGraphPropertyGrid->Append(backgroundImage);
-            // set the default folder to the global image folder if no image provided
-            if (m_generalGraphPropertyGrid->GetPropertyValueAsString(GetImageLabel()).empty())
-                {
-                backgroundImage->SetAttribute(wxPG_FILE_INITIAL_PATH,
-                                              wxGetApp().GetAppOptions()->GetImagePath());
-                }
-
-            m_generalGraphPropertyGrid->Append(new wxPropertyCategory(GetWatermarksLogosLabel()));
-            m_generalGraphPropertyGrid->SetPropertyHelpString(
-                GetWatermarksLogosLabel(),
-                _(L"The options in this section customize the watermarks and "
-                  "logo images of the graphs."));
-            // watermark
-            m_generalGraphPropertyGrid->Append(
-                new wxStringProperty(GetWatermarkLabel(), wxPG_LABEL,
-                                     ((m_readabilityProjectDoc != nullptr) ?
-                                          m_readabilityProjectDoc->GetWatermark() :
-                                          wxGetApp().GetAppOptions()->GetWatermark())));
-            m_generalGraphPropertyGrid->SetPropertyAttribute(GetWatermarkLabel(), wxPG_ATTR_HINT,
-                                                             _(L"Enter text"));
-            m_generalGraphPropertyGrid->SetPropertyHelpString(
-                GetWatermarkLabel(),
-                _(L"Enter a label to be stamped across your graphs into this field. "
-                  "This label will be stamped diagonally, top left-hand corner to "
-                  "bottom right-hand corner."));
-            // logo
-            auto* graphLogo =
-                new wxImageFileProperty(GetLogoImageLabel(), wxPG_LABEL,
-                                        ((m_readabilityProjectDoc != nullptr) ?
-                                             m_readabilityProjectDoc->GetWatermarkLogoPath() :
-                                             wxGetApp().GetAppOptions()->GetWatermarkLogo()));
-            graphLogo->SetAttribute(wxPG_FILE_WILDCARD,
-                                    Wisteria::GraphItems::Image::GetImageFileFilter());
-            graphLogo->SetAttribute(wxPG_DIALOG_TITLE, _(L"Select Logo Image"));
-            graphLogo->SetAttribute(wxPG_ATTR_HINT, _(L"Select an image"));
-            m_generalGraphPropertyGrid->Append(graphLogo);
-            // set the default folder to the global image folder if no image provided
-            if (m_generalGraphPropertyGrid->GetPropertyValueAsString(GetLogoImageLabel()).empty())
-                {
-                graphLogo->SetAttribute(wxPG_FILE_INITIAL_PATH,
-                                        wxGetApp().GetAppOptions()->GetImagePath());
-                }
-            m_generalGraphPropertyGrid->SetPropertyHelpString(
-                GetLogoImageLabel(),
-                _(L"Enter the path to the image file used as your graphs' logo into this field. "
-                  "The logo will be displayed in the lower right-hand corner of each graph."));
-
-            m_generalGraphPropertyGrid->Append(new wxPropertyCategory(GetEffectsLabel()));
-            m_generalGraphPropertyGrid->SetPropertyHelpString(
-                GetEffectsLabel(),
-                _(L"The options in this section customize various visual effects of the graphs."));
-            // stipple image
-            auto* customBrushProp =
-                new wxImageFileProperty(GetStippleImageLabel(), wxPG_LABEL,
-                                        ((m_readabilityProjectDoc != nullptr) ?
-                                             m_readabilityProjectDoc->GetStippleImagePath() :
-                                             wxGetApp().GetAppOptions()->GetStippleImagePath()));
-            customBrushProp->SetAttribute(wxPG_FILE_WILDCARD,
-                                          Wisteria::GraphItems::Image::GetImageFileFilter());
-            customBrushProp->SetAttribute(wxPG_DIALOG_TITLE, _(L"Select Stipple Image"));
-            customBrushProp->SetAttribute(wxPG_ATTR_HINT, _(L"Select an image"));
-            m_generalGraphPropertyGrid->Append(customBrushProp);
-            m_generalGraphPropertyGrid->SetPropertyHelpString(
-                GetStippleImageLabel(),
-                _(L"Enter into this field the file path to the image used for a stipple brush. "
-                  "A stipple brush can be used to draw stacked images across bars and boxes"));
-            // set the default folder to the global image folder if no image is provided
-            if (m_generalGraphPropertyGrid->GetPropertyValueAsString(GetStippleImageLabel())
-                    .empty())
-                {
-                customBrushProp->SetAttribute(wxPG_FILE_INITIAL_PATH,
-                                              wxGetApp().GetAppOptions()->GetImagePath());
-                }
-
-            wxPGChoices shapes;
-            for (const auto& sh : wxGetApp().GetShapeMap())
-                {
-                shapes.Add(sh.first);
-                }
-            // do a reverse lookup to map internal "fall-leaf" to UI's "Fall leaf"
-            wxString defaultValue{ _("Book") };
-            const wxString systemValue = ((m_readabilityProjectDoc != nullptr) ?
-                                              m_readabilityProjectDoc->GetStippleShape() :
-                                              wxGetApp().GetAppOptions()->GetStippleShape());
-            for (const auto& sh : wxGetApp().GetShapeMap())
-                {
-                if (systemValue.CmpNoCase(sh.second) == 0)
-                    {
-                    defaultValue = sh.first;
-                    break;
-                    }
-                }
-            auto* shapesProp = m_generalGraphPropertyGrid->Append(
-                new wxEnumProperty(GetStippleShapeLabel(), wxPG_LABEL, shapes));
-            shapesProp->SetValue(defaultValue);
-            shapesProp->SetHelpString(
-                _(L"Select from here which shape to use for a stipple brush. "
-                  "A stipple brush can be used to draw stacked shape across bars and boxes"));
-
-            auto* shapeColorProp = shapesProp->AppendChild(
-                new wxColourProperty(GetColorLabel(), wxPG_LABEL,
-                                     ((m_readabilityProjectDoc != nullptr) ?
-                                          m_readabilityProjectDoc->GetStippleShapeColor() :
-                                          wxGetApp().GetAppOptions()->GetStippleShapeColor())));
-            shapeColorProp->SetHelpString(_(L"Selects the color used for certain stipple shapes."));
-
-            // common image
-            auto* commonImageProp = new wxImageFileProperty(
-                GetCommonImageLabel(), wxPG_LABEL,
-                ((m_readabilityProjectDoc != nullptr) ?
-                     m_readabilityProjectDoc->GetGraphCommonImagePath() :
-                     wxGetApp().GetAppOptions()->GetGraphCommonImagePath()));
-            commonImageProp->SetAttribute(wxPG_FILE_WILDCARD,
-                                          Wisteria::GraphItems::Image::GetImageFileFilter());
-            commonImageProp->SetAttribute(wxPG_DIALOG_TITLE, _(L"Select Common Image"));
-            commonImageProp->SetAttribute(wxPG_ATTR_HINT, _(L"Select an image"));
-            m_generalGraphPropertyGrid->Append(commonImageProp);
-            m_generalGraphPropertyGrid->SetPropertyHelpString(
-                GetCommonImageLabel(), _(L"Enter into this field the file path to the common image "
-                                         "used used to draw across all bars/boxes."));
-            // set the default folder to the global image folder if no image is provided
-            if (m_generalGraphPropertyGrid->GetPropertyValueAsString(GetCommonImageLabel()).empty())
-                {
-                commonImageProp->SetAttribute(wxPG_FILE_INITIAL_PATH,
-                                              wxGetApp().GetAppOptions()->GetImagePath());
-                }
-
-            // drop shadows
-            m_generalGraphPropertyGrid->Append(
-                new wxBoolProperty(GetDisplayDropShadowsLabel(), wxPG_LABEL,
-                                   ((m_readabilityProjectDoc != nullptr) ?
-                                        m_readabilityProjectDoc->IsDisplayingDropShadows() :
-                                        wxGetApp().GetAppOptions()->IsDisplayingDropShadows())));
-            m_generalGraphPropertyGrid->SetPropertyAttribute(GetDisplayDropShadowsLabel(),
-                                                             wxPG_BOOL_USE_CHECKBOX, true);
-            m_generalGraphPropertyGrid->SetPropertyHelpString(
-                GetDisplayDropShadowsLabel(),
-                _(L"Check this to include shadows underneath items such as boxes, bars, "
-                  "and labels. Unchecking this option will give your graphs a more \"flat\" "
-                  "look."));
-
-            auto* showcaseOption = m_generalGraphPropertyGrid->Append(
-                new wxBoolProperty(GetShowcaseKeyItemsLabel(), wxPG_LABEL,
-                                   ((m_readabilityProjectDoc != nullptr) ?
-                                        m_readabilityProjectDoc->IsShowcasingKeyItems() :
-                                        wxGetApp().GetAppOptions()->IsShowcasingKeyItems())));
-            showcaseOption->SetAttribute(wxPG_BOOL_USE_CHECKBOX, true);
-            showcaseOption->SetHelpString(
-                _(L"Check this to draw attention to the complex (i.e., 3+ syllable) word groups "
-                  "on syllable histograms and pie charts (standard projects)."));
-
-            pgMan->SelectProperty(GetGraphBackgroundLabel());
-
-            panelSizer->Add(pgMan, wxSizerFlags{ 1 }.Expand());
-            }
-
-            // Axes tab
-            //-----------
-            {
-            auto* panel = new wxPanel(m_sideBar, GRAPH_AXIS_PAGE, wxDefaultPosition, wxDefaultSize,
-                                      wxTAB_TRAVERSAL);
-            auto* panelSizer = new wxBoxSizer(wxVERTICAL);
-            auto* optionsSizer = new wxBoxSizer(wxVERTICAL);
-            panel->SetSizer(panelSizer);
-            m_sideBar->AddSubPage(panel, GetAxisSettingsLabel(), GRAPH_AXIS_PAGE, false, 9);
-
-            CreateLabelHeader(panel, panelSizer, _(L"Fonts:"), true);
-            m_xAxisFontButton = new wxButton(panel, ID_X_AXIS_FONT_BUTTON, _(L"X axis"));
-            m_xAxisFontButton->SetBitmap(
-                wxGetApp().GetResourceManager().GetSVG(L"ribbon/x-axis.svg"));
-            optionsSizer->Add(m_xAxisFontButton, wxSizerFlags{}.Expand().DoubleBorder(wxLEFT));
-
-            m_yAxisFontButton = new wxButton(panel, ID_Y_AXIS_FONT_BUTTON, _(L"Y axis"));
-            m_yAxisFontButton->SetBitmap(
-                wxGetApp().GetResourceManager().GetSVG(L"ribbon/y-axis.svg"));
-            optionsSizer->Add(m_yAxisFontButton, wxSizerFlags{}.Expand().DoubleBorder(wxLEFT));
-
-            panelSizer->Add(optionsSizer);
-            }
-
-            // Titles tab
-            //-----------
-            {
-            auto* panel = new wxPanel(m_sideBar, GRAPH_TITLES_PAGE, wxDefaultPosition,
-                                      wxDefaultSize, wxTAB_TRAVERSAL);
-            auto* panelSizer = new wxBoxSizer(wxVERTICAL);
-            auto* optionsSizer = new wxBoxSizer(wxVERTICAL);
-            panel->SetSizer(panelSizer);
-            m_sideBar->AddSubPage(panel, GetTitlesLabel(), GRAPH_TITLES_PAGE, false, 9);
-
-            CreateLabelHeader(panel, panelSizer, _(L"Fonts:"), true);
-            m_graphTopTitleFontButton =
-                new wxButton(panel, ID_GRAPH_TOP_TITLE_FONT_BUTTON, _(L"Top titles"));
-            m_graphTopTitleFontButton->SetBitmap(
-                wxGetApp().GetResourceManager().GetSVG(L"ribbon/top-titles.svg"));
-            optionsSizer->Add(m_graphTopTitleFontButton,
-                              wxSizerFlags{}.Expand().DoubleBorder(wxLEFT));
-
-            m_graphBottomTitleFontButton =
-                new wxButton(panel, ID_GRAPH_BOTTOM_TITLE_FONT_BUTTON, _(L"Bottom titles"));
-            m_graphBottomTitleFontButton->SetBitmap(
-                wxGetApp().GetResourceManager().GetSVG(L"ribbon/bottom-titles.svg"));
-            optionsSizer->Add(m_graphBottomTitleFontButton,
-                              wxSizerFlags{}.Expand().DoubleBorder(wxLEFT));
-
-            m_graphLeftTitleFontButton =
-                new wxButton(panel, ID_GRAPH_LEFT_TITLE_FONT_BUTTON, _(L"Left titles"));
-            m_graphLeftTitleFontButton->SetBitmap(
-                wxGetApp().GetResourceManager().GetSVG(L"ribbon/left-titles.svg"));
-            optionsSizer->Add(m_graphLeftTitleFontButton,
-                              wxSizerFlags{}.Expand().DoubleBorder(wxLEFT));
-
-            m_graphRightTitleFontButton =
-                new wxButton(panel, ID_GRAPH_RIGHT_TITLE_FONT_BUTTON, _(L"Right titles"));
-            m_graphRightTitleFontButton->SetBitmap(
-                wxGetApp().GetResourceManager().GetSVG(L"ribbon/right-titles.svg"));
-            optionsSizer->Add(m_graphRightTitleFontButton,
-                              wxSizerFlags{}.Expand().DoubleBorder(wxLEFT));
-
-            panelSizer->Add(optionsSizer);
-            }
-
-            // Readability Graphs tab
-            //-----------
-            {
-            auto* panel = new wxPanel(m_sideBar, GRAPH_READABILITY_GRAPHS_PAGE, wxDefaultPosition,
-                                      wxDefaultSize, wxTAB_TRAVERSAL);
-            auto* panelSizer = new wxBoxSizer(wxVERTICAL);
-            panel->SetSizer(panelSizer);
-            m_sideBar->AddSubPage(panel, GetReadabilityGraphLabel(), GRAPH_READABILITY_GRAPHS_PAGE,
-                                  false, 9);
-
-            // Fry-like graphs
-            auto* pgMan = new wxPropertyGridManager(
-                panel, wxID_ANY, wxDefaultPosition, wxDefaultSize,
-                wxPG_BOLD_MODIFIED | wxPG_DESCRIPTION | wxPGMAN_DEFAULT_STYLE);
-            m_readabilityGraphPropertyGrid = pgMan->AddPage();
-            m_readabilityGraphPropertyGrid->Append(new wxPropertyCategory(GetFryLikeLabel()));
-            m_readabilityGraphPropertyGrid->SetPropertyHelpString(
-                GetFryLikeLabel(),
-                _(L"The options in this section customize the Fry, Gilliam-Pe\U000000F1a-Mountain, "
-                  "Raygor, and Schwartz graphs."));
-            m_readabilityGraphPropertyGrid->Append(
-                new wxColourProperty(GetInvalidRegionsColorLabel(), wxPG_LABEL,
-                                     ((m_readabilityProjectDoc != nullptr) ?
-                                          m_readabilityProjectDoc->GetInvalidAreaColor() :
-                                          wxGetApp().GetAppOptions()->GetInvalidAreaColor())));
-            m_readabilityGraphPropertyGrid->SetPropertyHelpString(
-                GetInvalidRegionsColorLabel(),
-                _(L"Selects the color for the invalid sentence/word regions."));
-
-            wxPGChoices raygorStyles;
-            raygorStyles.Add(_(L"Original"));
-            raygorStyles.Add(_DT(L"Baldwin-Kaufman"));
-            raygorStyles.Add(_(L"Modern"));
-            m_readabilityGraphPropertyGrid->Append(new wxEnumProperty(
-                GetRaygorStyleLabel(), wxPG_LABEL, raygorStyles,
-                ((m_readabilityProjectDoc != nullptr) ?
-                     static_cast<int>(m_readabilityProjectDoc->GetRaygorStyle()) :
-                     static_cast<int>(wxGetApp().GetAppOptions()->GetRaygorStyle()))));
-            m_readabilityGraphPropertyGrid->SetPropertyHelpString(
-                GetRaygorStyleLabel(), _(L"Selects the layout style of the Raygor graph."));
-            // flesch
-            m_readabilityGraphPropertyGrid->Append(new wxPropertyCategory(GetFleschChartLabel()));
-            m_readabilityGraphPropertyGrid->SetPropertyHelpString(
-                GetFleschChartLabel(),
-                _(L"The options in this section customize the Flesch chart."));
-            m_readabilityGraphPropertyGrid->Append(
-                new wxBoolProperty(GetFleschChartConnectPointsLabel(), wxPG_LABEL,
-                                   ((m_readabilityProjectDoc != nullptr) ?
-                                        m_readabilityProjectDoc->IsConnectingFleschPoints() :
-                                        wxGetApp().GetAppOptions()->IsConnectingFleschPoints())));
-            m_readabilityGraphPropertyGrid->SetPropertyAttribute(GetFleschChartConnectPointsLabel(),
-                                                                 wxPG_BOOL_USE_CHECKBOX, true);
-            m_readabilityGraphPropertyGrid->SetPropertyHelpString(
-                GetFleschChartConnectPointsLabel(),
-                _(L"Check this to connect the factor and score points."));
-
-            m_readabilityGraphPropertyGrid->Append(new wxBoolProperty(
-                GetFleschSyllableRulerDocGroupsLabel(), wxPG_LABEL,
-                ((m_readabilityProjectDoc != nullptr) ?
-                     m_readabilityProjectDoc->IsIncludingFleschRulerDocGroups() :
-                     wxGetApp().GetAppOptions()->IsIncludingFleschRulerDocGroups())));
-            m_readabilityGraphPropertyGrid->SetPropertyAttribute(
-                GetFleschSyllableRulerDocGroupsLabel(), wxPG_BOOL_USE_CHECKBOX, true);
-            m_readabilityGraphPropertyGrid->SetPropertyHelpString(
-                GetFleschSyllableRulerDocGroupsLabel(),
-                _(L"Check this to display document names grouped along the syllable ruler."));
-
-            // Lix gauge
-            m_readabilityGraphPropertyGrid->Append(new wxPropertyCategory(GetLixGaugeLabel()));
-            m_readabilityGraphPropertyGrid->SetPropertyHelpString(
-                GetLixGaugeLabel(), _(L"The options in this section customize the Lix Gauge."));
-            m_readabilityGraphPropertyGrid->Append(new wxBoolProperty(
-                GetUseEnglishLabelsForGermanLixLabel(), wxPG_LABEL,
-                ((m_readabilityProjectDoc != nullptr) ?
-                     m_readabilityProjectDoc->IsUsingEnglishLabelsForGermanLix() :
-                     wxGetApp().GetAppOptions()->IsUsingEnglishLabelsForGermanLix())));
-            m_readabilityGraphPropertyGrid->SetPropertyAttribute(
-                GetUseEnglishLabelsForGermanLixLabel(), wxPG_BOOL_USE_CHECKBOX, true);
-            m_readabilityGraphPropertyGrid->SetPropertyHelpString(
-                GetUseEnglishLabelsForGermanLixLabel(),
-                _(L"Check this to display the English translated bracket labels "
-                  "on the German Lix gauge."));
-
-            pgMan->SelectProperty(GetFryLikeLabel());
-
-            panelSizer->Add(pgMan, wxSizerFlags{ 1 }.Expand());
-            }
-
-        // Bar Chart tab
-        //-----------
-        if (!IsBatchProjectSettings())
-            {
-            auto* panel = new wxPanel(m_sideBar, GRAPH_BAR_CHART_PAGE, wxDefaultPosition,
-                                      wxDefaultSize, wxTAB_TRAVERSAL);
-            auto* panelSizer = new wxBoxSizer(wxVERTICAL);
-            panel->SetSizer(panelSizer);
-            m_sideBar->AddSubPage(panel, GetBarChartLabel(), GRAPH_BAR_CHART_PAGE, false, 9);
-
-            auto* pgMan = new wxPropertyGridManager(
-                panel, ID_BARCHART_OPTIONS_PROPERTYGRID, wxDefaultPosition, wxDefaultSize,
-                wxPG_BOLD_MODIFIED | wxPG_DESCRIPTION | wxPGMAN_DEFAULT_STYLE);
-            m_barChartPropertyGrid = pgMan->AddPage();
-            m_barChartPropertyGrid->Append(new wxPropertyCategory(GetBarAppearanceLabel()));
-            m_barChartPropertyGrid->SetPropertyHelpString(
-                GetBarAppearanceLabel(),
-                _(L"The options in this section customize the display of the bars."));
-
-            // color for bars
-            m_barChartPropertyGrid->Append(
-                new wxColourProperty(GetColorLabel(), wxPG_LABEL,
-                                     ((m_readabilityProjectDoc != nullptr) ?
-                                          m_readabilityProjectDoc->GetBarChartBarColor() :
-                                          wxGetApp().GetAppOptions()->GetBarChartBarColor())));
-            m_barChartPropertyGrid->SetPropertyHelpString(
-                GetColorLabel(), _(L"Selects the color used for the bars."));
-            // effects
-            wxPGChoices boxEffects;
-            boxEffects.Add(_(L"Solid"),
-                           wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-solid.svg"));
-            boxEffects.Add(_(L"Glass effect"),
-                           wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-glass.svg"));
-            boxEffects.Add(_(L"Color fade, bottom to top"),
-                           wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-bottom-to-top.svg"));
-            boxEffects.Add(_(L"Color fade, top to bottom"),
-                           wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-top-to-bottom.svg"));
-            boxEffects.Add(_(L"Stipple image"),
-                           wxGetApp().GetResourceManager().GetSVG(L"ribbon/image.svg"));
-            boxEffects.Add(_(L"Stipple shape"),
-                           wxGetApp().GetResourceManager().GetSVG(L"ribbon/apple.svg"));
-            boxEffects.Add(_(L"Watercolor"),
-                           wxGetApp().GetResourceManager().GetSVG(L"ribbon/brush.svg"));
-            boxEffects.Add(_(L"Thick watercolor"),
-                           wxGetApp().GetResourceManager().GetSVG(L"ribbon/brush.svg"));
-            boxEffects.Add(_(L"Common image"),
-                           wxGetApp().GetResourceManager().GetSVG(L"ribbon/image.svg"));
-            m_barChartPropertyGrid->Append(new wxEnumProperty(
-                GetEffectLabel(), wxPG_LABEL, boxEffects,
-                ((m_readabilityProjectDoc != nullptr) ?
-                     static_cast<int>(m_readabilityProjectDoc->GetGraphBarEffect()) :
-                     static_cast<int>(wxGetApp().GetAppOptions()->GetGraphBarEffect()))));
-            m_barChartPropertyGrid->SetPropertyHelpString(
-                GetEffectLabel(), _(L"Selects which effect to apply to the bars."));
-            // bar opacity
-            m_barChartPropertyGrid->Append(new wxIntProperty(
-                GetOpacityLabel(), wxPG_LABEL,
-                ((m_readabilityProjectDoc != nullptr) ?
-                     static_cast<int>(m_readabilityProjectDoc->GetGraphBarOpacity()) :
-                     static_cast<int>(wxGetApp().GetAppOptions()->GetGraphBarOpacity()))));
-            m_barChartPropertyGrid->SetPropertyEditor(GetOpacityLabel(), wxPGEditor_SpinCtrl);
-            m_barChartPropertyGrid->SetPropertyAttribute(GetOpacityLabel(), wxPG_ATTR_MIN,
-                                                         wxALPHA_TRANSPARENT);
-            m_barChartPropertyGrid->SetPropertyAttribute(GetOpacityLabel(), wxPG_ATTR_MAX,
-                                                         wxALPHA_OPAQUE);
-            m_barChartPropertyGrid->SetPropertyHelpString(
-                GetOpacityLabel(),
-                _(L"Sets the transparency of the bars. A value of 255 will set the box "
-                  "to be fully opaque, whereas 0 will set the bars to be transparent."));
-            // orientation
-            wxPGChoices orientation;
-            orientation.Add(_(L"Horizontal"),
-                            wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-chart.svg"));
-            orientation.Add(_(L"Vertical"),
-                            wxGetApp().GetResourceManager().GetSVG(L"ribbon/histogram.svg"));
-            m_barChartPropertyGrid->Append(new wxEnumProperty(
-                GeOrientationLabel(), wxPG_LABEL, orientation,
-                ((m_readabilityProjectDoc != nullptr) ?
-                     static_cast<int>(m_readabilityProjectDoc->GetBarChartOrientation()) :
-                     static_cast<int>(wxGetApp().GetAppOptions()->GetBarChartOrientation()))));
-            m_barChartPropertyGrid->SetPropertyHelpString(
-                GeOrientationLabel(),
-                _(L"Selects whether to display the bars horizontally or vertically."));
-
-            // labels
-            m_barChartPropertyGrid->Append(
-                new wxBoolProperty(GetLabelsOnBarsLabel(), wxPG_LABEL,
-                                   ((m_readabilityProjectDoc != nullptr) ?
-                                        m_readabilityProjectDoc->IsDisplayingBarChartLabels() :
-                                        wxGetApp().GetAppOptions()->IsDisplayingBarChartLabels())));
-            m_barChartPropertyGrid->SetPropertyAttribute(GetLabelsOnBarsLabel(),
-                                                         wxPG_BOOL_USE_CHECKBOX, true);
-            m_barChartPropertyGrid->SetPropertyHelpString(
-                GetLabelsOnBarsLabel(), _(L"Check this to display labels on the bars."));
-
-            pgMan->SelectProperty(GetBarAppearanceLabel());
-
-            panelSizer->Add(pgMan, wxSizerFlags{ 1 }.Expand());
-            }
-
-            // Histogram tab
-            //-----------
-            {
-            auto* panel = new wxPanel(m_sideBar, GRAPH_HISTOGRAM_PAGE, wxDefaultPosition,
-                                      wxDefaultSize, wxTAB_TRAVERSAL);
-            auto* panelSizer = new wxBoxSizer(wxVERTICAL);
-            panel->SetSizer(panelSizer);
-            m_sideBar->AddSubPage(panel, GetHistogramsLabel(), GRAPH_HISTOGRAM_PAGE, false, 9);
-
-            auto* pgMan = new wxPropertyGridManager(
-                panel, wxID_ANY, wxDefaultPosition, wxDefaultSize,
-                wxPG_BOLD_MODIFIED | wxPG_DESCRIPTION | wxPGMAN_DEFAULT_STYLE);
-            m_histogramPropertyGrid = pgMan->AddPage();
-            m_histogramPropertyGrid->Append(new wxPropertyCategory(GetBarAppearanceLabel()));
-            m_histogramPropertyGrid->SetPropertyHelpString(
-                GetBarAppearanceLabel(),
-                _(L"The options in this section customize the display of the bars."));
-            // color for bars
-            m_histogramPropertyGrid->Append(
-                new wxColourProperty(GetColorLabel(), wxPG_LABEL,
-                                     ((m_readabilityProjectDoc != nullptr) ?
-                                          m_readabilityProjectDoc->GetHistogramBarColor() :
-                                          wxGetApp().GetAppOptions()->GetHistogramBarColor())));
-            m_histogramPropertyGrid->SetPropertyHelpString(
-                GetColorLabel(), _(L"Selects the color used for the bars."));
-            // effects
-            wxPGChoices boxEffects;
-            boxEffects.Add(_(L"Solid"),
-                           wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-solid.svg"));
-            boxEffects.Add(_(L"Glass effect"),
-                           wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-glass.svg"));
-            boxEffects.Add(_(L"Color fade, bottom to top"),
-                           wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-bottom-to-top.svg"));
-            boxEffects.Add(_(L"Color fade, top to bottom"),
-                           wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-top-to-bottom.svg"));
-            boxEffects.Add(_(L"Stipple image"),
-                           wxGetApp().GetResourceManager().GetSVG(L"ribbon/image.svg"));
-            boxEffects.Add(_(L"Stipple shape"),
-                           wxGetApp().GetResourceManager().GetSVG(L"ribbon/apple.svg"));
-            boxEffects.Add(_(L"Watercolor"),
-                           wxGetApp().GetResourceManager().GetSVG(L"ribbon/brush.svg"));
-            boxEffects.Add(_(L"Thick watercolor"),
-                           wxGetApp().GetResourceManager().GetSVG(L"ribbon/brush.svg"));
-            boxEffects.Add(_(L"Common image"),
-                           wxGetApp().GetResourceManager().GetSVG(L"ribbon/image.svg"));
-            m_histogramPropertyGrid->Append(new wxEnumProperty(
-                GetEffectLabel(), wxPG_LABEL, boxEffects,
-                ((m_readabilityProjectDoc != nullptr) ?
-                     static_cast<int>(m_readabilityProjectDoc->GetHistogramBarEffect()) :
-                     static_cast<int>(wxGetApp().GetAppOptions()->GetHistogramBarEffect()))));
-            m_histogramPropertyGrid->SetPropertyHelpString(
-                GetEffectLabel(), _(L"Selects which effect to apply to the bars."));
-            // bar opacity
-            m_histogramPropertyGrid->Append(
-                new wxIntProperty(GetOpacityLabel(), wxPG_LABEL,
-                                  ((m_readabilityProjectDoc != nullptr) ?
-                                       m_readabilityProjectDoc->GetHistogramBarOpacity() :
-                                       wxGetApp().GetAppOptions()->GetHistogramBarOpacity())));
-            m_histogramPropertyGrid->SetPropertyEditor(GetOpacityLabel(), wxPGEditor_SpinCtrl);
-            m_histogramPropertyGrid->SetPropertyAttribute(GetOpacityLabel(), wxPG_ATTR_MIN,
-                                                          wxALPHA_TRANSPARENT);
-            m_histogramPropertyGrid->SetPropertyAttribute(GetOpacityLabel(), wxPG_ATTR_MAX,
-                                                          wxALPHA_OPAQUE);
-            m_histogramPropertyGrid->SetPropertyHelpString(
-                GetOpacityLabel(),
-                _(L"Sets the transparency of the bars. A value of 255 will set the box to "
-                  "be fully opaque, whereas 0 will set the bars to be transparent."));
-
-            if (IsBatchProjectSettings() || IsGeneralSettings())
-                {
-                m_histogramPropertyGrid->Append(new wxPropertyCategory(GetBinningOptionsLabel()));
-                m_histogramPropertyGrid->SetPropertyHelpString(
-                    GetBinningOptionsLabel(),
-                    _(L"The options in this section control how the data are categorized."));
-
-                // sorting
-                wxPGChoices sortChoices;
-                wxArrayString categories;
-                categories.Add(_(L"Create a bin for each unique value"));
-                categories.Add(_(L"Sort by interval"));
-                categories.Add(_(L"Sort by neat interval"));
-                sortChoices.Add(categories);
-                m_histogramPropertyGrid->Append(new wxEnumProperty(
-                    GetBinSortingLabel(), wxPG_LABEL, sortChoices,
-                    ((m_readabilityProjectDoc != nullptr) ?
-                         static_cast<int>(m_readabilityProjectDoc->GetHistogramBinningMethod()) :
-                         static_cast<int>(
-                             wxGetApp().GetAppOptions()->GetHistogramBinningMethod()))));
-                m_histogramPropertyGrid->SetPropertyHelpString(
-                    GetBinSortingLabel(),
-                    _(L"Binning refers to how values (e.g., index and grade scores) are "
-                      "categorized into separate classes. Each class (or bin) is displayed "
-                      "on a histogram as a bar. The options listed here control how these "
-                      "bins are created and how your data are sorted into them."));
-
-                // rounding
-                wxPGChoices roundingChoices;
-                roundingChoices.Add(_(L"Round"));
-                roundingChoices.Add(_(L"Round down"));
-                roundingChoices.Add(_(L"Round up"));
-                roundingChoices.Add(_(L"Do not round"));
-                m_histogramPropertyGrid->Append(new wxEnumProperty(
-                    GetGradeLevelRoundingLabel(), wxPG_LABEL, roundingChoices,
-                    ((m_readabilityProjectDoc != nullptr) ?
-                         static_cast<int>(m_readabilityProjectDoc->GetHistogramRoundingMethod()) :
-                         static_cast<int>(
-                             wxGetApp().GetAppOptions()->GetHistogramRoundingMethod()))));
-                m_histogramPropertyGrid->SetPropertyHelpString(
-                    GetGradeLevelRoundingLabel(),
-                    _(L"This option controls how floating-point values are "
-                      "rounded when being sorted into bins."));
-                }
-
-            m_histogramPropertyGrid->Append(new wxPropertyCategory(GetBinDisplayLabel()));
-            m_histogramPropertyGrid->SetPropertyHelpString(
-                GetBinDisplayLabel(),
-                _(L"The options in this section control how the bars are labeled."));
-
-            if (IsBatchProjectSettings() || IsGeneralSettings())
-                {
-                wxPGChoices intervalTypes;
-                intervalTypes.Add(_(L"Cutpoints"));
-                intervalTypes.Add(_(L"Midpoints"));
-                m_histogramPropertyGrid->Append(new wxEnumProperty(
-                    GetIntervalDisplayLabel(), wxPG_LABEL, intervalTypes,
-                    ((m_readabilityProjectDoc != nullptr) ?
-                         static_cast<int>(m_readabilityProjectDoc->GetHistogramIntervalDisplay()) :
-                         static_cast<int>(
-                             wxGetApp().GetAppOptions()->GetHistogramIntervalDisplay()))));
-                m_histogramPropertyGrid->SetPropertyHelpString(
-                    GetIntervalDisplayLabel(),
-                    _(L"Specifies how to display the bars' values range on the axis."));
-                }
-
-            wxPGChoices catLabelTypes;
-            catLabelTypes.Add(_(L"Counts"));
-            catLabelTypes.Add(_(L"Percentages"));
-            catLabelTypes.Add(_(L"Counts & percentages"));
-            catLabelTypes.Add(_(L"No labels"));
-            m_histogramPropertyGrid->Append(new wxEnumProperty(
-                GetBinLabelsLabel(), wxPG_LABEL, catLabelTypes,
-                ((m_readabilityProjectDoc != nullptr) ?
-                     static_cast<int>(m_readabilityProjectDoc->GetHistogramBinLabelDisplay()) :
-                     static_cast<int>(wxGetApp().GetAppOptions()->GetHistogramBinLabelDisplay()))));
-            m_histogramPropertyGrid->SetPropertyHelpString(
-                GetBinLabelsLabel(), _(L"Specifies what to display on the bars' labels."));
-
-            pgMan->SelectProperty(GetBarAppearanceLabel());
-
-            panelSizer->Add(pgMan, wxSizerFlags{ 1 }.Expand());
-            }
-
-            // Box Plot tab
-            //-----------
-            {
-            auto* panel = new wxPanel(m_sideBar, GRAPH_BOX_PLOT_PAGE, wxDefaultPosition,
-                                      wxDefaultSize, wxTAB_TRAVERSAL);
-            auto* panelSizer = new wxBoxSizer(wxVERTICAL);
-            panel->SetSizer(panelSizer);
-            m_sideBar->AddSubPage(panel, GetBoxPlotLabel(), GRAPH_BOX_PLOT_PAGE, false, 9);
-
-            auto* pgMan = new wxPropertyGridManager(
-                panel, wxID_ANY, wxDefaultPosition, wxDefaultSize,
-                wxPG_BOLD_MODIFIED | wxPG_DESCRIPTION | wxPGMAN_DEFAULT_STYLE);
-            m_boxPlotsPropertyGrid = pgMan->AddPage();
-            m_boxPlotsPropertyGrid->Append(new wxPropertyCategory(GetBoxAppearanceLabel()));
-            m_boxPlotsPropertyGrid->SetPropertyHelpString(
-                GetBoxAppearanceLabel(),
-                _(L"The options in this section customize the display of the boxes."));
-            // color for box
-            m_boxPlotsPropertyGrid->Append(
-                new wxColourProperty(GetColorLabel(), wxPG_LABEL,
-                                     ((m_readabilityProjectDoc != nullptr) ?
-                                          m_readabilityProjectDoc->GetGraphBoxColor() :
-                                          wxGetApp().GetAppOptions()->GetGraphBoxColor())));
-            m_boxPlotsPropertyGrid->SetPropertyHelpString(
-                GetColorLabel(), _(L"Selects the color used for the boxes."));
-            // effects
-            wxPGChoices boxEffects;
-            boxEffects.Add(_(L"Solid"),
-                           wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-solid.svg"));
-            boxEffects.Add(_(L"Glass effect"),
-                           wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-glass.svg"));
-            boxEffects.Add(_(L"Color fade, left to right"),
-                           wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-left-to-right.svg"));
-            boxEffects.Add(_(L"Color fade, right to left"),
-                           wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-right-to-left.svg"));
-            boxEffects.Add(_(L"Stipple image"),
-                           wxGetApp().GetResourceManager().GetSVG(L"ribbon/image.svg"));
-            boxEffects.Add(_(L"Stipple shape"),
-                           wxGetApp().GetResourceManager().GetSVG(L"ribbon/apple.svg"));
-            boxEffects.Add(_(L"Watercolor"),
-                           wxGetApp().GetResourceManager().GetSVG(L"ribbon/brush.svg"));
-            boxEffects.Add(_(L"Thick watercolor"),
-                           wxGetApp().GetResourceManager().GetSVG(L"ribbon/brush.svg"));
-            boxEffects.Add(_(L"Common image"),
-                           wxGetApp().GetResourceManager().GetSVG(L"ribbon/image.svg"));
-            m_boxPlotsPropertyGrid->Append(new wxEnumProperty(
-                GetEffectLabel(), wxPG_LABEL, boxEffects,
-                ((m_readabilityProjectDoc != nullptr) ?
-                     static_cast<int>(m_readabilityProjectDoc->GetGraphBoxEffect()) :
-                     static_cast<int>(wxGetApp().GetAppOptions()->GetGraphBoxEffect()))));
-            m_boxPlotsPropertyGrid->SetPropertyHelpString(
-                GetEffectLabel(), _(L"Selects which effect to apply to the boxes."));
-            // box opacity
-            m_boxPlotsPropertyGrid->Append(
-                new wxIntProperty(GetOpacityLabel(), wxPG_LABEL,
-                                  ((m_readabilityProjectDoc != nullptr) ?
-                                       m_readabilityProjectDoc->GetGraphBoxOpacity() :
-                                       wxGetApp().GetAppOptions()->GetGraphBoxOpacity())));
-            m_boxPlotsPropertyGrid->SetPropertyEditor(GetOpacityLabel(), wxPGEditor_SpinCtrl);
-            m_boxPlotsPropertyGrid->SetPropertyAttribute(GetOpacityLabel(), wxPG_ATTR_MIN,
-                                                         wxALPHA_TRANSPARENT);
-            m_boxPlotsPropertyGrid->SetPropertyAttribute(GetOpacityLabel(), wxPG_ATTR_MAX,
-                                                         wxALPHA_OPAQUE);
-            m_boxPlotsPropertyGrid->SetPropertyHelpString(
-                GetOpacityLabel(),
-                _(L"Sets the transparency of the box. A value of 255 will set the box "
-                  "to be fully opaque, whereas 0 will set the box to be transparent."));
-
-            m_boxPlotsPropertyGrid->Append(new wxPropertyCategory(GetBoxOptionsLabel()));
-            m_boxPlotsPropertyGrid->SetPropertyHelpString(
-                GetBoxOptionsLabel(),
-                _(L"The options in this section customize the display of the labels and data."));
-
-            m_boxPlotsPropertyGrid->Append(
-                new wxBoolProperty(GetLabelsOnBoxesLabel(), wxPG_LABEL,
-                                   ((m_readabilityProjectDoc != nullptr) ?
-                                        m_readabilityProjectDoc->IsDisplayingBoxPlotLabels() :
-                                        wxGetApp().GetAppOptions()->IsDisplayingBoxPlotLabels())));
-            m_boxPlotsPropertyGrid->SetPropertyAttribute(GetLabelsOnBoxesLabel(),
-                                                         wxPG_BOOL_USE_CHECKBOX, true);
-            m_boxPlotsPropertyGrid->SetPropertyHelpString(
-                GetLabelsOnBoxesLabel(), _(L"Check this to display labels on the middle points, "
-                                           "upper/lower control limits, and whiskers."));
-
-            m_boxPlotsPropertyGrid->Append(new wxBoolProperty(
-                GetConnectBoxesLabel(), wxPG_LABEL,
-                ((m_readabilityProjectDoc != nullptr) ?
-                     m_readabilityProjectDoc->IsConnectingBoxPlotMiddlePoints() :
-                     wxGetApp().GetAppOptions()->IsConnectingBoxPlotMiddlePoints())));
-            m_boxPlotsPropertyGrid->SetPropertyAttribute(GetConnectBoxesLabel(),
-                                                         wxPG_BOOL_USE_CHECKBOX, true);
-            m_boxPlotsPropertyGrid->SetPropertyHelpString(
-                GetConnectBoxesLabel(),
-                _(L"Check this to display a line connecting the middle points of each box. "
-                  "This only applies to plots with multiple boxes."));
-
-            m_boxPlotsPropertyGrid->Append(
-                new wxBoolProperty(GetShowAllDataPointsLabel(), wxPG_LABEL,
-                                   ((m_readabilityProjectDoc != nullptr) ?
-                                        m_readabilityProjectDoc->IsShowingAllBoxPlotPoints() :
-                                        wxGetApp().GetAppOptions()->IsShowingAllBoxPlotPoints())));
-            m_boxPlotsPropertyGrid->SetPropertyAttribute(GetShowAllDataPointsLabel(),
-                                                         wxPG_BOOL_USE_CHECKBOX, true);
-            m_boxPlotsPropertyGrid->SetPropertyHelpString(
-                GetShowAllDataPointsLabel(),
-                _(L"Check this to display all data points on the box and whiskers. "
-                  "If this is unchecked, then only outliers will be shown."));
-
-            pgMan->SelectProperty(GetBoxAppearanceLabel());
-
-            panelSizer->Add(pgMan, wxSizerFlags{ 1 }.Expand());
-            }
+        CreateGraphGeneralSection();
+        CreateGraphAxesSection();
+        CreateGraphTitlesSection();
+        CreateGraphReadabilitySection();
+        CreateGraphBarChartSection();
+        CreateGraphHistogramSection();
+        CreateGraphBoxPlotSection();
         }
     }
 
