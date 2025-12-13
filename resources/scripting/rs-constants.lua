@@ -68,15 +68,15 @@ GraphType =
   GermanLix = 8028,          -- German variation of Lix.
   DanielsonBryan2 = 8029,    -- **Danielson Bryan 2** readability graph (a variation of **Flesch Reading Ease**).
   WordCloud = 8039,          -- Word cloud of key words.
-  InfleszChart = 8076        -- **Inflesz** readability graph (a Spanish variation of **Flesch Reading Ease**).
+  Inflesz = 8076             -- **Inflesz** readability graph (a Spanish variation of **Flesch Reading Ease**).
   }
 
 -- The following options for sorting data into bins are available.
 Binning =
   {
   BinUniqueValues = 0,   -- Each unique value gets its own bin.
-  BinByRange = 1,        -- Values are categorized into ranges (this is the norm for histograms, expect this method retains the values' floating-point precision when creating the bin size and range).
-  BinByIntegerRange = 2  -- Values are categorized into ranges, where the bin size and range are integral. This is usually the norm, classifying data by floating-point precision categories isn't common.
+  BinByRange = 1,        -- Values are categorized into ranges (this method retains the values' floating-point precision when creating the bin size and range).
+  BinByIntegerRange = 2  -- Values are categorized into ranges, where the bin size and range are integral. This is usually the norm; classifying data by floating-point precision categories isn't common.
   }
 
 -- The following rounding options are available.
@@ -407,26 +407,26 @@ ProperNounCountingMethod =
 -- How to display a reading age.
 ReadingAgeDisplay =
   {
-  ReadingAgeAsARange = 0,       -- Convert a grade level like 5.6 to "10-11".
+  ReadingAgeAsARange = 0,       -- Convert a grade level like 5.6 to "10–11".
   ReadingAgeRoundToSemester = 1 -- Convert a grade level like 5.6 to "11".
   }
 
 -- Grade scales from across the globe.
 GradeScale =
   {
-  K12PlusUnitedStates = 0,            -- United States K-12.
-  K12PlusAlberta = 1,                 -- Alberta K-12.
-  K12PlusBritishColumbia = 2,         -- British Columbia K-12.
-  K12PlusManitoba = 3,                -- Manitoba K-12.
-  K12PlusNewbrunswick = 4,            -- New Brunswick K-12.
-  K12PlusNewfoundlandAndLabrador = 5, -- Newfoundland & Labrador K-12.
-  K12PlusNorthwestTerritories = 6,    -- Northwest Territories K-12.
-  K12PlusNovaScotia = 7,              -- Nova Scotia K-12.
-  K12PlusOntario = 8,                 -- Ontario K-12.
-  K12PlusPrinceEdwardIsland = 9,      -- Prince Edward Island K-12.
-  K12PlusSaskatchewan = 10,           -- Saskatchewan K-12.
-  K12PlusNunavut = 11,                -- Nunavut K-12.
-  Quebec = 12,                        -- Quebec K-12.
+  K12PlusUnitedStates = 0,            -- United States K–12.
+  K12PlusAlberta = 1,                 -- Alberta K–12.
+  K12PlusBritishColumbia = 2,         -- British Columbia K–12.
+  K12PlusManitoba = 3,                -- Manitoba K–12.
+  K12PlusNewbrunswick = 4,            -- New Brunswick K–12.
+  K12PlusNewfoundlandAndLabrador = 5, -- Newfoundland & Labrador K–12.
+  K12PlusNorthwestTerritories = 6,    -- Northwest Territories K–12.
+  K12PlusNovaScotia = 7,              -- Nova Scotia K–12.
+  K12PlusOntario = 8,                 -- Ontario K–12.
+  K12PlusPrinceEdwardIsland = 9,      -- Prince Edward Island K–12.
+  K12PlusSaskatchewan = 10,           -- Saskatchewan K–12.
+  K12PlusNunavut = 11,                -- Nunavut K–12.
+  Quebec = 12,                        -- Quebec K–12.
   KeyStagesEnglandWales = 13          -- Key Stages.
   }
 
