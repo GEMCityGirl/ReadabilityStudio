@@ -153,7 +153,7 @@ This score can then be compared between three different classification scales: I
 (INFLESZ is preferred over Szigriszt, and Flesch Reading Ease is only included for reference.)
 Similar to Flesch, it groups its scores from "*MUY DIFÍCIL*" ("very difficult") to "*MUY FÁCIL*" ("very easy").
 
-![INFLESZ](images/inflesz-chart.png){width=75% fig-align="center"}
+![INFLESZ](images/inflesz-graph.png){width=75% fig-align="center"}
 
 Similar to a Flesch chart, the Lix gauge\index{Lix!gauge plot} plots a document's Lix index score on a chart showing its difficulty level:
 
@@ -218,7 +218,7 @@ Both of these reports contain the following statistics:
 - number of paragraphs and average number of sentences per paragraph
 - number of sentences and average number of words per sentence
 - number and percentage of difficult sentences
-- number of [units](#sec-glossary)\index{sentences!units}/independent clauses\index{independent clauses|see{sentences units}} (This statistic is only available if [**Extended Information**](#sec-options-statistics) is enabled.)
+- number of [units](#sec-glossary)\index{sentences!units}/independent clauses\index{independent clauses|see{sentence units}} (This statistic is only available if [**Extended Information**](#sec-options-statistics) is enabled.)
 - number of interrogative sentences (questions)
 - number of exclamatory sentences
 - number of words
