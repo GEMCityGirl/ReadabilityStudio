@@ -500,7 +500,7 @@ This includes:
 - Broadcasting
 :::
 
-More specific bundles based on research articles are also included, such as *Patient Consent Forms* [@{grundner}9-10] and *Kincaid's Tests for Navy-Personnel Materials*.
+More specific bundles based on research articles are also included, such as *Patient Consent Forms* [@{grundner}9–10] and *Kincaid's Tests for Navy-Personnel Materials*.
 (Some of these bundles may include goals, if recommended in the original article.)
 
 Select any of these bundles from the menu and all the tests within it will be added to the active project.

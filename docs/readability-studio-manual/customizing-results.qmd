@@ -62,7 +62,7 @@ You can sort any list column by clicking on the column header.
 The first time you click a column's header, that column will be sorted into ascending order.
 This means that the column's values will go from smallest to largest as you move downward.
 For numeric columns, numbers will be sorted 1, 2, 3, etc. as you go downward.
-For text columns, the column will be sorted alphabetically, going from A-Z as you move downward.
+For text columns, the column will be sorted alphabetically, going from A–Z as you move downward.
 
 Clicking the column a second time will sort that column into descending order.
 As we can see below, the **Syllable Count** column is sorted in descending order (largest to smallest):

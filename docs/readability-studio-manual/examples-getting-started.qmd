@@ -451,7 +451,7 @@ In each paragraph, its sentences are shown left-to-right.
 ![](images/fixed-with-r-sentencemap.png){width=75% fig-align="center"}
 
 In the above heatmap, we can see that the first half of the document contains mostly one-word sentences (most of which are medium length).
-In most of the second half of the document there are a few more longer sentences, although the paragraphs do remain within 1-2 sentences.
+In most of the second half of the document there are a few more longer sentences, although the paragraphs do remain within 1–2 sentences.
 In the last ten paragraphs, however, we do see longer paragraphs that also happen to contain longer sentences.
 In this case, we may want to review the ending section of the document.
 
@@ -474,7 +474,7 @@ Create a new project with the defaults and select the heatmap when the project o
 
 Because this document contains more than 500 paragraphs, grouping will not be used.
 Instead, the sentences will appear in a single heatmap, where the all sentences are displayed left-to-right, top-to-bottom.
-In the above graph, we can see that the novel's sentences range from 1-19 words in length.
+In the above graph, we can see that the novel's sentences range from 1–19 words in length.
 Also, the sentence lengths are rather evenly distributed.
 In other words, the longer sentences are not clumping together within any particular section.
 
@@ -580,7 +580,7 @@ Now the cumulative bar group and labels will only be shown for these bars:
 ![](images/example-difficult-syllables-histogram-showcased.png){width=75% fig-align="center"}
 
 If using a solid color for the bars, then the one- and two-syllable word bars will also be translucent.
-By "ghosting" these bars [@{tufte:eyes}24-25], the complex-word bars will receive the focus.
+By "ghosting" these bars [@{tufte:eyes}24–25], the complex-word bars will receive the focus.
 
 For another way to visualize complexity, click the **Syllable Counts** on the sidebar (the one with the pie icon).
 Here we can see how much of the document consists of complex words by looking at the outer ring.

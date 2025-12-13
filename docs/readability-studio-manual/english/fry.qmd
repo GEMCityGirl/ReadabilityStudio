@@ -1,10 +1,10 @@
 ## Fry\index{Fry|(idxit} Graph {#sec-fry-test}
 
-Fry [-@{fry:1968}513-16, 575-78; -@{fry:extensions:1977}242–52] is a graphical test for English documents.
+Fry [-@{fry:1968}513–16, 575–78; -@{fry:extensions:1977}242–52] is a graphical test for English documents.
 It calculates a document's grade level from its average number of sentences and syllables per hundred words.
 These averages are plotted onto a chart where their intersection determines the reading level of the content.
 
-The original version of this graph included grade levels 1–12 and college [-@{fry:1968}513-516; -@{fry:elementary:1977}217].
+The original version of this graph included grade levels 1–12 and college [-@{fry:1968}513–516; -@{fry:elementary:1977}217].
 It was trained against samples from the following books:
 
 - *Light in the Forest*

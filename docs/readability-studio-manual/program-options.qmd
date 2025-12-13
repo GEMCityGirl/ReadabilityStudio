@@ -605,7 +605,7 @@ The **text exclusion** option will affect any custom test using the following fu
 ### Scores {-}
 
 The options on this page customize which results to include in the **Readability Scores** section and how grade-level scores and reading ages are displayed.
-Most readability tests use U.S. K-12 (+college) grade levels to represent their scores; however, *{{< var PROGRAM_NAME >}}* can display these scores in other formats as well.
+Most readability tests use U.S. K–12 (+college) grade levels to represent their scores; however, *{{< var PROGRAM_NAME >}}* can display these scores in other formats as well.
 For example, a score of 4 could be shown as *Key stage 2 (year 5)* if using the Key Stages grade scale.
 
 #### Results {-}
@@ -643,7 +643,7 @@ The following options are available for customizing how these ages are calculate
 For example, if a test scores at *5.3* (fifth grade), then the age range for fifth graders (i.e., *10–11*) will be used.
 
 Note that when calculating the reading-age aggregate statistics (e.g., the average reading age), the middle point of each range is used.
-For example, the average for two ranges such as *10–11* and *11–12* would be 11. The middle point of *10–11* is 10.5, the middle point of *11-12* is 11.5; therefore, (10.5+11.5)/2 = 11.
+For example, the average for two ranges such as *10–11* and *11–12* would be 11. The middle point of *10–11* is 10.5, the middle point of *11–12* is 11.5; therefore, (10.5+11.5)/2 = 11.
 
 **Round to semester**: Select this option to calculate a reading age from a grade level by rounding the grade level.
 For example, a grade level score of *5.3* will be seen as the first semester of fifth grade and the starting age of most fifth graders (i.e., *10*) will be used as the reading age.

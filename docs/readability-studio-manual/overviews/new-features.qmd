@@ -412,7 +412,7 @@ source('../R/appdown.r')
 - Fixed crash when trying to analyze a document that is on OneDrive but not properly synced on the local file system.
 - Fixed outdated menubar options on macOS (`r os_logo('apple')`).
 - **New Project from Clipboard** option will more intelligently determine whether the clipboard content is a file path or plain text.
-- Fixed crash in Word 97-2003 (\*.doc) importer.
+- Fixed crash in Word 97–2003 (\*.doc) importer.
 - Fixed custom-test word lists appearing twice when reloading project.
 
 \newpage
@@ -498,7 +498,7 @@ source('../R/appdown.r')
 
 ### Bug Fixes {-}
 
-- Fixed crash in Word 97-2003 (\*.doc) importer.
+- Fixed crash in Word 97–2003 (\*.doc) importer.
 - Fixed error messages being blocked by the splash screen when opening certain projects.
 - Fixed unnecessary warning message on Windows 10 when the custom dictionary file is blank.
 - Fixed intermittent crash with large list-control data.
@@ -644,7 +644,7 @@ source('../R/appdown.r')
 
 \newpage
 
-## {{< var PROGRAM_NAME >}} 3.0-3.2 (2009–2010) {-}
+## {{< var PROGRAM_NAME >}} 3.0–3.2 (2009–2010) {-}
 ***
 
 ### General Enhancements {-}
