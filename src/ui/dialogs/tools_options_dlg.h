@@ -251,6 +251,8 @@ class ToolsOptionsDlg final : public wxDialog
     void SaveProjectGraphOptions();
     void SaveTextWindowOptions();
     void SaveStatisticsOptions();
+    void SaveProjectOptions();
+    void SaveGlobalOptions();
     [[nodiscard]]
     bool HaveOptionsChanged() const;
     [[nodiscard]]
