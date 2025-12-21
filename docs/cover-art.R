@@ -1,9 +1,9 @@
 
 # Make an image look like a Polaroid
-creatPolaroid <- function(image,
-                          caption = "Polaroid",
-                          rotate = 3,
-                          font_candidates = NULL)
+createPolaroid <- function(image,
+                           caption = "Polaroid",
+                           rotate = 3,
+                           font_candidates = NULL)
   {
   # Default handwritten candidates
   if (is.null(font_candidates)) {
@@ -23,9 +23,9 @@ creatPolaroid <- function(image,
   captionFont <- "sans"
   if (length(matchedFont) > 0) {
     captionFont <- matchedFont[1]
-    message(str_glue("✔ Using font family {captionFont} for Polariod effect."))
+    message(str_glue("✔ Using font family {captionFont} for Polaroid effect."))
   } else {
-    message("⚠ No magick-compatible handwritten font found; falling back to 'sans' for Polariod effect.")
+    message("⚠ No magick-compatible handwritten font found; falling back to 'sans' for Polaroid effect.")
   }
 
   # if a path, load it as an image
@@ -77,7 +77,7 @@ createCover <- function(image1, image2, image3, outImage, captions = c())
 
   if (length(captions) >= 3)
     {
-    imageLeft %<>% creatPolaroid(captions[1], 3)
+    imageLeft %<>% createPolaroid(caption = captions[1], rotate = 3)
     }
 
   imageRight <- image_read(image2) %>%
@@ -85,7 +85,7 @@ createCover <- function(image1, image2, image3, outImage, captions = c())
 
   if (length(captions) >= 3)
     {
-    imageRight %<>% creatPolaroid(captions[2], 5)
+    imageRight %<>% createPolaroid(caption = captions[2], rotate = 5)
     }
 
   imageBottom <- image_read(image3) %>%
@@ -93,7 +93,7 @@ createCover <- function(image1, image2, image3, outImage, captions = c())
 
   if (length(captions) >= 3)
     {
-    imageBottom %<>% creatPolaroid(captions[3], -5)
+    imageBottom %<>% createPolaroid(caption = captions[3], rotate = -5)
     }
 
   manualCover <- magick::image_blank(width = 1913, height = 2200) %>%

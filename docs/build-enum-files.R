@@ -1,6 +1,7 @@
 library(tidyverse)
 library(stringi)
 library(magrittr)
+library(janitor)
 
 # Loads Lua API function signatures from a header file.
 # The format should be:
@@ -8,7 +9,7 @@ library(magrittr)
 # int /*actual return type*/ FuncName(/*parameteres*/)
 #
 # Parameter and return types are optional.
-loadClassInfo <- function(filePath, includeDescription = F)
+loadClassInfo <- function(filePath, includeDescription = FALSE)
   {
   classInfoSignatureRE <- R'([[:space:]]*int[[:space:]]*(\/\*([[:space:]_[:alnum:]]*)\*\/)?[[:space:]]*([_[:alnum:]]+)[(]lua_State[*]( L)?[[:space:]]*(\/\*([[:space:]_\,\.[:alnum:]]*)\*\/)?[)][;]([ ]?\/\/[ ]?([ _[:alnum:][:punct:]]+))?)'
   classText <- read_file(filePath)
@@ -107,7 +108,7 @@ loadEnums <- function(filePath)
 loadEnum <- function(enum)
   {
   description <- stringr::str_extract(enum, "[-]{1,}[ ]*([[:alnum:] [:punct:]]+)", group = 1)
-  name <- stringr::str_extract(enum, "[-]{2,}[ ]*([[:alnum:] [:punct:]]+)[[:space:]]*([:alnum:]+)", group = 2)
+  name <- stringr::str_extract(enum, "[-]{2,}[ ]*([[:alnum:] [:punct:]]+)[[:space:]]*([[:alnum:]]+)", group = 2)
   
   values <- stringr::str_extract(enum, '[{]([[:space:][:alnum:][;&"\'+=#*().,{–—][-]]+)[}]', group = 1)
   values <- stringr::str_extract_all(values, '[:space:]*([ [:alnum:][;&"\'+=#*().,{–—][-]]+)')
@@ -122,7 +123,7 @@ loadEnum <- function(enum)
 # This is loaded by the script editor (in the actual program) for intellisense.
 enumToEditorString <- function(enum)
   {
-  str_glue("{enum$name}\t{paste0({enum$values[[1]]$name}, collapse = ';')}")
+  str_glue("{enum$name}\t{paste(enum$values[[1]]$name, collapse = ';')}")
   }
 
 writeEnumEditorFile <- function(enums, filePath)

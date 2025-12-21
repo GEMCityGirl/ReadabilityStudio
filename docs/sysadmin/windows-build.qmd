@@ -45,6 +45,10 @@ To allow building with uncommitted changes in Git submodules, open your "CMakePr
 
 ## Build the installer {-}
 
+::: {.tipsection data-latex=""}
+The following steps are only required if you are distributing builds outside CI, your local machine, or Eclipse's infrastructure.
+:::
+
 ::: {.notesection data-latex=""}
 If you build the "Release" version of *{{< var PROGRAM_NAME >}}*, then the *CMake* build process will copy "{{< var BUILD_TARGET >}}.exe" into `r menu(c('installers', 'windows', 'release'))`.
 :::

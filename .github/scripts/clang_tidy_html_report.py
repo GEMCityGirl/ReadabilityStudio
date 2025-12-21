@@ -44,19 +44,19 @@ def normalize_path(p: str) -> str:
 # ---------- configurable suppression ----------
 # Hide diagnostics whose check name exactly matches any of these:
 SUPPRESS_CHECKS = {
-    'IgnoreClassesWithAllMemberVariablesBeingPublic',
-    'openmp-use-default-none',
-    'clang-diagnostic-error',
-    'clang-analyzer-optin.cplusplus.VirtualCall',
+    "IgnoreClassesWithAllMemberVariablesBeingPublic",
+    "openmp-use-default-none",
+    "clang-diagnostic-error",
+    "clang-analyzer-optin.cplusplus.VirtualCall",
 }
 # Hide diagnostics whose *message* contains any of these substrings:
 SUPPRESS_MSG_SUBSTR = {
-    'IgnoreClassesWithAllMemberVariablesBeingPublic',
-    'use of undeclared identifier',
-    'file not found',
-    'unknown type name',
-    'no matching function for call to',
-    'boolean expression can be simplified by DeMorgan's theorem',
+    "IgnoreClassesWithAllMemberVariablesBeingPublic",
+    "use of undeclared identifier",
+    "file not found",
+    "unknown type name",
+    "no matching function for call to",
+    "boolean expression can be simplified by DeMorgan's theorem",
 }
 # Optional env overrides (comma-separated lists)
 SUPPRESS_CHECKS |= {s.strip() for s in os.getenv("CT_SUPPRESS_CHECKS", "").split(",") if s.strip()}
@@ -65,20 +65,20 @@ SUPPRESS_MSG_SUBSTR |= {s.strip() for s in os.getenv("CT_SUPPRESS_MSG_SUBSTR", "
 
 # Warnings in headers that you do NOT care about
 SUPPRESS_CHECKS_IN_HEADERS = {
-    'readability-magic-numbers',
-    'cppcoreguidelines-avoid-magic-numbers',
-    'modernize-use-trailing-return-type',
-    'cppcoreguidelines-macro-usage',
-    'cppcoreguidelines-macro-to-enum',
-    'modernize-macro-to-enum',
-    'cert-oop54-cpp',
-    'openmp-use-default-none',
-    'readability-identifier-naming',
+    "readability-magic-numbers",
+    "cppcoreguidelines-avoid-magic-numbers",
+    "modernize-use-trailing-return-type",
+    "cppcoreguidelines-macro-usage",
+    "cppcoreguidelines-macro-to-enum",
+    "modernize-macro-to-enum",
+    "cert-oop54-cpp",
+    "openmp-use-default-none",
+    "readability-identifier-naming",
 }
 
 # Ignore all notes in headers
 SUPPRESS_SEVERITY_IN_HEADERS = {
-    'note',
+    "note",
 }
 
 ROW_RE = re.compile(

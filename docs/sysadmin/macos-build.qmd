@@ -73,7 +73,13 @@ To create a debug build, pass `-DCMAKE_BUILD_TYPE=Debug` during the configuratio
 You can also pass `-DENABLE_SANITIZERS=TRUE` to enable AddressSanitizer support in debug builds.
 
 If you need to build with local modifications in Git submodules, add `-DALLOW_DIRTY_SUBMODULES=ON` to bypass the clean-check validation.
-(This is currently necessary for the macOS build.)
+(This is currently necessary for macOS builds.)
+:::
+
+## Code sign {-}
+
+::: {.tipsection data-latex=""}
+The following steps are only required if you are distributing builds outside CI, your local machine, or Eclipse's infrastructure.
 :::
 
 If code signing locally, do the following:
@@ -97,7 +103,7 @@ codesign --verify --verbose=2 ./"Readability Studio.app"
 ## Build the DMG image {-}
 
 ::: {.notesection data-latex=""}
-If you build the "Release" version of *{{< var PROGRAM_NAME >}}*, then the CMake build process will copy "{{< var PROGRAM_NAME >}}.app" into `r menu(c('installers', 'macos', 'release'))`.
+If you build the "Release" version of *{{< var PROGRAM_NAME >}}*, then the *CMake* build process will copy "{{< var PROGRAM_NAME >}}.app" into `r menu(c('installers', 'macos', 'release'))`.
 :::
 
 Go to  `r menu(c('installers', 'macos', 'release'))` and run the following:
