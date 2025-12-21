@@ -17,7 +17,7 @@ SetPaperOrientation(Orientation orient)
 | :-- | :-- |
 | [`Orientation`](#orientation) orient | The orientation of the paper when printing. |
 
-### Example {-}
+#### Example {-}
 
 ``` {.lua}
 -- Set headers and footers for printouts.

@@ -22,7 +22,7 @@ SortList(ListType list,
 | [`SortOrder`](#sortorder) order | The sorting direction to use. |
 | ... | Any additional pairs of columns and sort orders to use. |
 
-### Example\index{examples!sorting lists} {-}
+#### Example\index{examples!sorting lists} {-}
 
 ``` {.lua}
 -- Open a project from the user's "Documents" folder

@@ -15,7 +15,7 @@ SetBarChartBarEffect(BoxEffect effect)
 | :-- | :-- |
 | [`BoxEffect`](#boxeffect) effect | The effect to apply to the bars. |
 
-### Example {-}
+#### Example {-}
 
 ``` {.lua}
 cocoa = StandardProject(Application.GetExamplesFolder() ..

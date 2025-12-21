@@ -15,7 +15,7 @@ SetDomainRestriction(DomainRestriction restriction)
 | :-- | :-- |
 | [`DomainRestriction`](#domainrestriction) restriction | Which domains can files be downloaded from while harvesting. |
 
-### See also {-}
+#### See also {-}
 
 [`AddAllowableDomain()`](#addallowabledomain)
 :::

@@ -15,7 +15,7 @@ SetBarChartBarColor(string colorName)
 | :-- | :-- |
 | `string` colorName | The name of the color to use. |
 
-### Example\index{examples!editing graphs} {-}
+#### Example\index{examples!editing graphs} {-}
 
 ``` {.lua}
 symposium = StandardProject(Application.GetExamplesFolder() ..

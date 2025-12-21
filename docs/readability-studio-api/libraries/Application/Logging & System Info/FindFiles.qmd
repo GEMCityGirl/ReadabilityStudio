@@ -25,7 +25,7 @@ A table listing the files.
 | `string` fileFilter | The file pattern to search for. |
 | `boolean` recursive | (optional) `true` to search the folder recursively. |
 
-### Example\index{examples!finding files} {-}
+#### Example\index{examples!finding files} {-}
 
 ``` {.lua}
 files = Application.FindFiles(
@@ -38,7 +38,7 @@ do
 end
 ```
 
-### See also {-}
+#### See also {-}
 
 [`BatchProject:LoadFiles()`](#loadfiles)
 :::

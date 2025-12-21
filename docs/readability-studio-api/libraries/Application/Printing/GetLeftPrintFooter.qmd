@@ -13,7 +13,7 @@ string GetLeftPrintFooter()
 
 Type: `string`
 
-### Example {-}
+#### Example {-}
 
 ``` {.lua}
 -- Set headers and footers for printouts.

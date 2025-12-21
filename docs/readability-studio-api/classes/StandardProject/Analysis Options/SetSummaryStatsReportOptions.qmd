@@ -28,7 +28,7 @@ SetSummaryStatsReportOptions(boolean includeParagraphs,
 | `boolean` includeNotes | (Optional) `true` to include notes. |  
 | `boolean` includeExtendedInfo | (Optional) `true` to include extended information, such as file information. |
 
-### Example {-}
+#### Example {-}
 
 ``` {.lua}
 cocoaDoc = StandardProject(Application.GetExamplesFolder() ..

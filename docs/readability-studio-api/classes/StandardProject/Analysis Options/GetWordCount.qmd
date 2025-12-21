@@ -14,7 +14,7 @@ number GetWordCount()
 
 Type: `number`
 
-### Example {-}
+#### Example {-}
 
 ``` {.lua}
 medInstructions = StandardProject(Application.GetUserFolder(UserPath.Documents) ..

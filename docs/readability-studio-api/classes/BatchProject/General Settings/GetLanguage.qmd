@@ -13,7 +13,7 @@ Language GetLanguage()
 
 Type: [`Language`](#language)
 
-### Example {-}
+#### Example {-}
 
 ``` {.lua}
 -- Open a previously saved batch project.

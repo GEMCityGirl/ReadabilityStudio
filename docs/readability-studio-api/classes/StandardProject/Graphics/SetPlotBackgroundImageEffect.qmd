@@ -15,7 +15,7 @@ SetPlotBackgroundImageEffect(ImageEffect effect)
 | :-- | :-- |
 | [`ImageEffect`](#imageeffect) effect | The effect to render with. |
 
-### Example {-}
+#### Example {-}
 
 ``` {.lua}
 symposium = StandardProject(Application.GetExamplesFolder() ..

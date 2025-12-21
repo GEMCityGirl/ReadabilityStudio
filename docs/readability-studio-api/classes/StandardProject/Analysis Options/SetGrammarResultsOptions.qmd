@@ -39,7 +39,7 @@ SetGrammarResultsOptions(boolean includeHighlightedReport,
 | `boolean` includeLowercasedSentences | (Optional) `true` to include sentences that start with lowercase letters. |
 
 ::: {.minipage data-latex="{\textwidth}"}
-### Example {-}
+#### Example {-}
 
 ``` {.lua}
 cocoaDoc = StandardProject(Application.GetExamplesFolder() ..

@@ -18,7 +18,7 @@ LoadFolder(string folderPath,
 | `string` folderPath | The folder to load documents from. | 
 | `boolean` recursiveSearch | `true` to search the folder recursively for documents. |
 
-### Example {-}
+#### Example {-}
 
 ``` {.lua}
 -- Create an empty project and delay the analyses.
@@ -44,6 +44,6 @@ This function only appends documents to the project.
 All documents in the project previously will remain in it.
 ::::
 
-### See also {-}
+#### See also {-}
 
 [`DelayReloading()`](#delayreloading), [`Reload()`](#reload)

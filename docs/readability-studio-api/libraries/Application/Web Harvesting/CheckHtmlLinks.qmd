@@ -22,7 +22,7 @@ Issues are recorded into the program's log.
 View the log report(**Log Report** on the **Tools** tab) to see any issues that were found after calling this.
 ::::
 
-### See also {-}
+#### See also {-}
 
 [`WebHarvest()`](#webharvest), [`ExportLogReport()`](#exportlogreport)
 :::

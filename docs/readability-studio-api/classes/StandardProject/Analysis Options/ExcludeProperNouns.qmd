@@ -16,7 +16,7 @@ ExcludeProperNouns(boolean exclude)
 | :-- | :-- |
 | `boolean` exclude | `true` to exclude proper nouns. |
 
-### Example {-}
+#### Example {-}
 
 ``` {.lua}
 -- Open a document from user's "Documents" folder.

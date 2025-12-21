@@ -15,7 +15,7 @@ SetTextExclusion(TextExclusionType type)
 | :-- | :-- |
 | [`TextExclusionType`](#textexclusiontype) type | How text should be excluded. |
 
-### Example {-}
+#### Example {-}
 
 ``` {.lua}
 -- Don't exclude any text for all future projects.

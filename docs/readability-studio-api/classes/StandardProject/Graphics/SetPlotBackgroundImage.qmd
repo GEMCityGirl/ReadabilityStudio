@@ -15,7 +15,7 @@ SetPlotBackgroundImage(string imagePath)
 | :-- | :-- |
 | `string` imagePath | The path to the image. |
 
-### Example {-}
+#### Example {-}
 
 ``` {.lua}
 symposium = StandardProject(Application.GetExamplesFolder() ..

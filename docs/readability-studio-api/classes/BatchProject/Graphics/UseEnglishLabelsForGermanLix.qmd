@@ -15,7 +15,7 @@ UseEnglishLabelsForGermanLix(boolean useEnglish)
 | :-- | :-- |
 | `boolean` useEnglish | `true` to display English translations for the labels. |
 
-### Example {-}
+#### Example {-}
 
 ``` {.lua}
 -- Open a previously saved batch project.

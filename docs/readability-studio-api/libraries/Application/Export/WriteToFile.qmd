@@ -24,7 +24,7 @@ Type: `boolean`
 
 Returns `true` if output was successfully written to the file.
 
-### Example {-}
+#### Example {-}
 
 ``` {.lua}
 medInstructions = StandardProject(Application.GetUserFolder(UserPath.Documents) ..

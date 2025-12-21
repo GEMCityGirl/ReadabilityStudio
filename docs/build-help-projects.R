@@ -306,7 +306,7 @@ if (buildProgrammingManual)
   # A message will appear in the console window listing any topics that are created;
   # these can be edited afterwards (e.g., adding examples).
   writeClassTopics(loadClassInfo(normalizePath(glue("{docFolder}/../src/lua-scripting/lua_debug.h")), TRUE),
-                   glue("{docFolder}/readability-studio-api/libraries/Debug"))
+                   glue("{docFolder}/readability-studio-api/libraries/Debug"), FALSE)
   writeClassTopics(loadClassInfo(normalizePath(glue("{docFolder}/../src/lua-scripting/lua_application.h")), TRUE),
                    glue("{docFolder}/readability-studio-api/libraries/Application"))
   writeClassTopics(loadClassInfo(normalizePath(glue("{docFolder}/../src/lua-scripting/lua_standard_project.h")), TRUE),

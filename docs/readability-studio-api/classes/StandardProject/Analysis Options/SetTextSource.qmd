@@ -15,7 +15,7 @@ SetTextSource(TextSource storageMethod)
 | :-- | :-- |
 | `TextSource` storageMethod | Where the project is getting its content from. |
 
-### Example {-}
+#### Example {-}
 
 ``` {.lua}
 doc = StandardProject()

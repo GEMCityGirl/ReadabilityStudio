@@ -15,7 +15,7 @@ SetDocumentFilePath(string docPath)
 | :-- | :-- |
 | `string` docPath | The path of the document. |
 
-### Example {-}
+#### Example {-}
 
 ``` {.lua}
 doc = StandardProject()

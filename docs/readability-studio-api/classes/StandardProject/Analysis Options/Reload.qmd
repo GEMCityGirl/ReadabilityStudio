@@ -10,7 +10,7 @@ Reanalyzes the project's document.
 Reload()
 ```
 
-### Example\index{examples!adding tests} {-}
+#### Example\index{examples!adding tests} {-}
 
 ``` {.lua}
 -- Open a document from user's "Documents" folder.
@@ -30,7 +30,7 @@ consentForm:Reload()
 consentForm:AddTest("Patient Consent Formula")
 ```
 
-### See also {-}
+#### See also {-}
 
 [`DelayReloading()`](#standard-delayreloading)
 

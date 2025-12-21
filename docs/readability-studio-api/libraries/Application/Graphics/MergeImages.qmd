@@ -28,7 +28,7 @@ Returns `true` if image was successfully saved.
 | `string` outputImagePath | Where to save the combined images. | 
 | [`Orientation`](#orientation) direction | The direction to combine the images. | 
 
-### Example\index{examples!editing images} {-}
+#### Example\index{examples!editing images} {-}
 
 ``` {.lua}
 Application.MergeImages(
@@ -39,6 +39,6 @@ Application.MergeImages(
     Orientation.Horizontal)
 ```
 
-### See also {-}
+#### See also {-}
 
 [`GetImageInfo()`](#getimageinfo), [`ApplyImageEffect()`](#applyimageeffect)

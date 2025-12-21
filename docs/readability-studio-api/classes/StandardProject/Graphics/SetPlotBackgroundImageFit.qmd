@@ -15,7 +15,7 @@ SetPlotBackgroundImageFit(ImageFit fitType)
 | :-- | :-- |
 | [`ImageFit`](#imagefit) fitType | How to fit the image. |
 
-### Example {-}
+#### Example {-}
 
 ``` {.lua}
 symposium = StandardProject(Application.GetExamplesFolder() ..

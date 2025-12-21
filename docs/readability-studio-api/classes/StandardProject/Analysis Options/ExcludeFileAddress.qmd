@@ -15,7 +15,7 @@ ExcludeFileAddress(boolean exclude)
 | :-- | :-- |
 | `boolean` exclude | `true` to exclude filepaths and URLs. |
 
-### Example {-}
+#### Example {-}
 
 ``` {.lua}
 -- Open a document from user's "Documents" folder.

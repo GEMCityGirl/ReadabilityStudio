@@ -18,7 +18,7 @@ DelayReloading(boolean delay = true)
 | :-- | :-- |
 | `boolean` delay | Specifies whether to delay reloading the project. |
 
-### Example {-}
+#### Example {-}
 
 ``` {.lua}
 -- Opens a document from user's "Documents" folder and changes a few options.
@@ -38,7 +38,7 @@ consentForm:Reload()
 consentForm:AddTest("Patient Consent Formula")
 ```
 
-### See also {-}
+#### See also {-}
 
 [`Reload()`](#standard-reload)
 :::

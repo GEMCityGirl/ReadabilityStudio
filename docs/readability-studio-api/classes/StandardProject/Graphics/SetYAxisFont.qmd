@@ -21,7 +21,7 @@ SetYAxisFont(string fontName,
 | [`FontWeight`](#fontweight) weight | (Optional) The weight of the font. | 
 | `string` color | (Optional) The name of the color. |
 
-### Examples {-}
+#### Examples {-}
 
 ``` {.lua}
 desserts = StandardProject(Application.GetExamplesFolder() ..

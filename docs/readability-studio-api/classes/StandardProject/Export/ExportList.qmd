@@ -37,7 +37,7 @@ ExportList(ListType type,
 | `boolean` includeHeaders | (Optional) Specifies whether to include the column headers. |
 | `boolean` includePageBreaks | (Optional) Specifies whether to insert page breaks.<br>\linebreak (This only applies if exporting as HTML.) |
 
-### Example\index{examples!exporting lists} {-}
+#### Example\index{examples!exporting lists} {-}
 
 ``` {.lua}
 -- Open a project from the user's "Documents" folder

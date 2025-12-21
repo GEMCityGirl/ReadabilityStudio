@@ -18,7 +18,7 @@ SetGraphColorScheme(string colorScheme)
 
 Refer to [`Application.SetGraphColorScheme()`](#app-setstippleshape) for a list of available IDs.
 
-### Example {-}
+#### Example {-}
 
 ``` {.lua}
 cocoa = StandardProject(Application.GetExamplesFolder() ..

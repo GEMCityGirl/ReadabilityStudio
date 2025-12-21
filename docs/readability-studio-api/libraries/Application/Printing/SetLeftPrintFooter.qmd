@@ -15,7 +15,7 @@ SetLeftPrintFooter(string label)
 | :-- | :-- |
 | `string` label | The label to appear in the bottom left corner of printouts. |
 
-### Example\index{examples!changing printer settings} {-}
+#### Example\index{examples!changing printer settings} {-}
 
 ``` {.lua}
 -- Set headers and footers for printouts.

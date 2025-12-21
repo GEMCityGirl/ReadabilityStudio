@@ -16,7 +16,7 @@ Type: `number`
 
 The number of words consisting of three or more syllables from the document.
 
-### Example {-}
+#### Example {-}
 
 ``` {.lua}
 medInstructions = StandardProject(Application.GetUserFolder(UserPath.Documents) ..

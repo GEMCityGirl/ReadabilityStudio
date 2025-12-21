@@ -27,7 +27,7 @@ Returns `true` if image was successfully saved.
 | `string` outputImagePath | Where to save the altered image. | 
 | [`ImageEffect`](#imageeffect) effect | The effect to apply to the image. |
 
-### Example\index{examples!editing images} {-}
+#### Example\index{examples!editing images} {-}
 
 ``` {.lua}
 Application.ApplyImageEffect(
@@ -38,7 +38,7 @@ Application.ApplyImageEffect(
     ImageEffect.OilPainting)
 ```
 
-### See also {-}
+#### See also {-}
 
 [`GetImageInfo()`](#getimageinfo), [`MergeImages()`](#mergeimages)
 

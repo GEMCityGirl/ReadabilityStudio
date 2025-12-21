@@ -17,7 +17,7 @@ SelectWindow(SideBarSection section,
 | [`SideBarSection`](#sidebarsection) section | The section (along the sidebar) where the window is. | 
 | `number` windowId | (Optional) The window's ID. |
 
-### Example {-}
+#### Example {-}
 
 ``` {.lua}
 Application.GetActiveStandardProject():SelectWindow(

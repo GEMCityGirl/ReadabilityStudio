@@ -10,7 +10,7 @@ Reanalyzes the project's documents.
 Reload()
 ```
 
-### See also {-}
+#### See also {-}
 
 [`DelayReloading()`](#batch-delayreloading)
 
@@ -18,7 +18,7 @@ Reload()
 After calling this, delayed reloading will be reset.
 :::
 
-### Example {-}
+#### Example {-}
 
 ``` {.lua}
 -- Create an empty project and delay the analyses.

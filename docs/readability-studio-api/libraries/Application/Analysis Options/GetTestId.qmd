@@ -23,7 +23,7 @@ Type: `number`
 The numeric ID of the test.
 Will be -1 if test was not found.
 
-### Example\index{examples!retrieving custom test IDs} {-}
+#### Example\index{examples!retrieving custom test IDs} {-}
 
 ``` {.lua}
 -- Export the report of highlighted unfamiliar words for the

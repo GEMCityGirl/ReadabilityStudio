@@ -27,7 +27,7 @@ Returns `true` if cross reference file was successfully saved.
 | `string` otherWordList | The second phrase list. | 
 | `string` outputFile | The output containing only phrase found in both files. |
 
-### See also {-}
+#### See also {-}
 
 [`MergePhraseLists()`](#mergephraselists), [`MergeWordLists()`](#mergewordlists)
 :::

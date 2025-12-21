@@ -15,7 +15,7 @@ SetCenterPrintFooter(string label)
 | :-- | :-- |
 | `string` label | The label to appear in the center bottom of printouts. |
 
-### Example {-}
+#### Example {-}
 
 ``` {.lua}
 -- Set headers and footers for printouts.

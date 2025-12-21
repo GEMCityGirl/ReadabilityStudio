@@ -15,7 +15,7 @@ SetPlotBackgroundImageOpacity(number opacity)
 | :-- | :-- |
 | `number` opacity | The opacity level to apply to the image (should be between 0--255) |
 
-### Example {-}
+#### Example {-}
 
 ``` {.lua}
 symposium = StandardProject(Application.GetExamplesFolder() ..

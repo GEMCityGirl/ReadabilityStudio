@@ -22,7 +22,7 @@ Type: `table`
 
 A two-column table of the image's information.
 
-### Example {-}
+#### Example {-}
 
 ``` {.lua}
 imgInfo = Application.GetImageInfo("C:\\users\\Martin\\images\\GraphLogo.png")
@@ -34,7 +34,7 @@ Debug.Print("<b>Height</b>: " .. imgInfo["Height"])
 ```
 1. The HTML tags `<b>` and `</b>` can be used to bold the message.
 
-### See also {-}
+#### See also {-}
 
 [`MergeImages()`](#mergeimages), [`ApplyImageEffect()`](#applyimageeffect)
 

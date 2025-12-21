@@ -13,7 +13,7 @@ string GetExamplesFolder()
 
 Type: `string`
 
-### Example\index{examples!getting file paths} {-}
+#### Example\index{examples!getting file paths} {-}
 
 ``` {.lua}
 cocoa = StandardProject(Application.GetExamplesFolder() ..

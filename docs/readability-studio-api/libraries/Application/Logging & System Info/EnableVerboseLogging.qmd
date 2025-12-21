@@ -16,7 +16,7 @@ EnableVerboseLogging(boolean enable)
 | :-- | :-- |
 | `boolean` enable | `true` to use verbose logging. |
 
-### Example {-}
+#### Example {-}
 
 ``` {.lua}
 Application.EnableVerboseLogging(true)

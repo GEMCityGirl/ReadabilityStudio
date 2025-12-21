@@ -19,7 +19,7 @@ Type: `string`
 | :-- | :-- |
 | [`UserPath`](#userpath) path | The type of user folder to find. |
 
-### Example {-}
+#### Example {-}
 
 ``` {.lua}
 cocoa = StandardProject(Application.GetExamplesFolder() ..

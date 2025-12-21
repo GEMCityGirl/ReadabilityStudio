@@ -16,7 +16,7 @@ ExcludeNumerals(boolean exclude)
 | :-- | :-- |
 `boolean` exclude | `true` to exclude numerals.
 
-### Example {-}
+#### Example {-}
 
 ``` {.lua}
 -- Open a document from user's "Documents" folder.

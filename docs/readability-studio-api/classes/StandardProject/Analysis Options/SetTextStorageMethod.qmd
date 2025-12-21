@@ -15,7 +15,7 @@ SetTextStorageMethod(TextStorage storageMethod)
 | :-- | :-- |
 | [`TextStorage`](#textstorage) storageMethod | The text storage method to use for the project. |
 
-### Example {-}
+#### Example {-}
 
 ``` {.lua}
 doc = StandardProject()

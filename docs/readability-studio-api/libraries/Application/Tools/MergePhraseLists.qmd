@@ -33,6 +33,6 @@ Returns `true` if files were successfully merged.
 The output file will also be sorted and have any duplicate entries removed.
 ::::
 
-### See also {-}
+#### See also {-}
 
 [`MergeWordLists()`](#mergewordlists), [`CrossReferencePhraseLists()`](#crossreferencephraselists)

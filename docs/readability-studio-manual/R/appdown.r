@@ -176,23 +176,70 @@ keys <- function(buttonKeys)
 #                read all files.
 # @param addendum Extra text to add to the bottom of the file.
 # @note The input folder is read recursively, and files are read alphabetically.
-combine_files <- function(output, inputFolder, pattern=NULL, addendum = "")
+combine_files <- function(output, inputFolder, pattern = NULL, addendum = "")
   {
-  output <- str_glue('{getwd()}/{output}')
-  if (file.exists(output))
-    { file.remove(output) }
-  theFiles <- list.files(path=str_glue('{getwd()}/{inputFolder}'),
-                         pattern=pattern, recursive=T, full.names=T)
-  for (x in theFiles)
+  output <- str_glue("{getwd()}/{output}")
+  if (file.exists(output)) file.remove(output)
+ 
+  basePath <- str_glue("{getwd()}/{inputFolder}")
+ 
+  # root-level files (overview topics)
+  rootFiles <- list.files(
+    basePath,
+    pattern = pattern,
+    recursive = FALSE,
+    full.names = TRUE)
+ 
+  rootFiles <- rootFiles[file.info(rootFiles)$isdir == FALSE]
+ 
+  # find immediate subdirectories (sections)
+  sections <- list.dirs(basePath, recursive = FALSE, full.names = FALSE)
+ 
+  # write root-level overview files first
+  for (x in sort(rootFiles))
     {
-    # add a newline between combined files
-    write_lines(append(read_lines(x), "\n"),
-                output, append=T)
+    write_lines(c(read_lines(x), ""), output, append = TRUE)
+    }
+ 
+  # if no subdirectories, we are done (flat behavior)
+  if (length(sections) == 0)
+    {
+    if (nzchar(addendum))
+      {
+      write_lines(addendum, output, append = TRUE)
+      }
+    return(invisible())
     }
 
-  if (length(addendum))
+  # write each section and its files
+  for (i in seq_along(sort(sections)))
     {
-    write_lines(addendum, output, append=T)
+    section <- sort(sections)[i]
+
+    # page break before every section except the first
+    if (i > 1)
+      {
+      write_lines("\n{{< pagebreak >}}\n", output, append = TRUE)
+      }
+
+    # section header
+    write_lines(str_glue("## {section}\n"), output, append = TRUE)
+
+    files <- list.files(
+      path = file.path(basePath, section),
+      pattern = pattern,
+      recursive = TRUE,
+      full.names = TRUE)
+
+    for (x in sort(files))
+      {
+      write_lines(c(read_lines(x), ""), output, append = TRUE)
+      }
+    }
+ 
+  if (nzchar(addendum))
+    {
+    write_lines(addendum, output, append = TRUE)
     }
   }
 

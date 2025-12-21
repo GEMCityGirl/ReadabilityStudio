@@ -15,7 +15,7 @@ Close(boolean saveChanges = false)
 | :-- | :-- |
 | `boolean` saveChanges | Specifies whether to save any changes made to the project. |
 
-### Example {-}
+#### Example {-}
 
 ``` {.lua}
 -- Open a project from the user's "Documents" folder and save its scores summary

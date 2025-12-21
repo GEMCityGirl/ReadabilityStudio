@@ -19,7 +19,7 @@ SetGraphCommonImage(string imagePath)
 The [`BoxEffect.CommonImage`](#boxeffect) effect will need to be enabled for either box plots or bar charts for this to have any effect.
 ::::
 
-### Example {-}
+#### Example {-}
 
 ``` {.lua}
 cocoa = StandardProject(Application.GetExamplesFolder() ..

@@ -23,7 +23,7 @@ Type: `string`
 
 The full file path.
 
-### Example\index{examples!getting file paths} {-}
+#### Example\index{examples!getting file paths} {-}
 
 ``` {.lua}
 -- Assuming that there is a file "ProfileReport.txt" in the folder "Mizzie/Documents"

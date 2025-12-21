@@ -37,7 +37,7 @@ SetWordsBreakdownResultsOptions(boolean includeWordCounts,
 | `boolean` includeKeyWords | (Optional) `true` to include the list of key words. |
 
 ::: {.minipage data-latex="{\textwidth}"}
-### Example {-}
+#### Example {-}
 
 ``` {.lua}
 cocoaDoc = StandardProject(Application.GetExamplesFolder() ..

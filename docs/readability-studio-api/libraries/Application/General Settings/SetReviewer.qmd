@@ -16,7 +16,7 @@ SetReviewer(string name)
 | :-- | :-- |
 `string` name | The user name for the software.
 
-### Example {-}
+#### Example {-}
 
 ``` {.lua}
 Application.SetReviewer("AClark")

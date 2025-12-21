@@ -15,7 +15,7 @@ IncludeScoreSummaryReport(boolean include)
 | :-- | :-- |
 | `boolean` include | `true` to include the test score summary report. |
 
-### Example {-}
+#### Example {-}
 
 ``` {.lua}
 cocoaDoc = StandardProject(Application.GetExamplesFolder() ..

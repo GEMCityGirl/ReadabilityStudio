@@ -3,6 +3,21 @@ library(stringi)
 library(magrittr)
 library(janitor)
 
+classifyFunction <- function(name)
+  {
+  if (str_detect(name, "Chart|Graph|Plot|Image|Bar|Box|Cloud|Histogram|Watermark|Stipple|Connect|Axis|Showcase|UseEnglishLabelsForGermanLix|RaygorStyle|Showcasing|FleschRulerDocGroups")) return("Graphics")
+  if (str_detect(name, "TextWindow|Highlighting|TextHighlight|SetDolch|ReportFont|GrammarIssuesHighlightColor|IncludeScoreSummaryReport|HighlightDolch")) return("Reports")
+  if (str_detect(name, "Export|Save|Write")) return("Export")
+  if (str_detect(name, "SortList")) return("Lists")
+  if (str_detect(name, "UI|Dialog|Window|Close|Sidebar|SelectHighlightedWordReport|GetActive|Warning|SplashScreen")) return("User Interface")
+  if (str_detect(name, "Reviewer|Title|Language|Status|Settings")) return("General Settings")
+  if (str_detect(name, "Harvest|Cookie|JavaScript|Download|Website|ReplaceExistingFiles|SSL|Links|Agent|GetUserFolder|Domain|DepthLevel|ExistingFiles")) return("Web Harvesting")
+  if (str_detect(name, "Print|Paper")) return("Printing")
+  if (str_detect(name, "MergeWord|MergePhrase|CrossRef")) return("Tools")
+  if (str_detect(name, "Log|Message|GetProgramPath|GetLuaConstantsPath|GetExamplesFolder|GetAbsoluteFilePath|FindFiles")) return("Logging & System Info")
+  "Analysis Options"
+  }
+
 # Loads Lua API function signatures from a header file.
 # The format should be:
 #
@@ -24,7 +39,7 @@ loadClassInfo <- function(filePath, includeDescription = FALSE)
 functionToTopic <- function(functionInfo)
   {
   xformedSignatureRE <- R"(([_[:alnum:]]+)[(]([[:alnum:],\._ ]+)?[)]->([_[:alnum:]]+)?[|]([ _[:alnum:][:punct:]]+)?)"
-  topicContent <- stringr::str_replace(stringr::str_extract(functionInfo, xformedSignatureRE)[[1]], xformedSignatureRE, '## `\\1`\n\n\\4\n\n### Syntax {-}\n\n``` {.lua}\n\\3 \\1(\\2)\n```')
+  topicContent <- stringr::str_replace(stringr::str_extract(functionInfo, xformedSignatureRE)[[1]], xformedSignatureRE, '### `\\1` {-}\n\n\\4\n\n#### Syntax {-}\n\n``` {.lua}\n\\3 \\1(\\2)\n```')
   topicContent <- str_replace(topicContent, "\n ", "\n")
   syntax <- str_match(topicContent, R"(```[[:space:]]*\{\.lua\}[[:space:]]*([[:alnum:], \(\)]+))")[[2]]
   funcNameLength <- str_length(str_match(syntax, "^[[:alnum:], ]+[(]"))
@@ -41,7 +56,7 @@ functionToTopic <- function(functionInfo)
     params <- str_replace(params, "[|]`([A-Z][[:alnum:]]+)`", "|[`\\1`](#\\1)")
     params <- str_replace(params, "#[A-Z][[:alnum:]]+", str_to_lower) # lowercase the reference
     params <- str_replace_all(params, ", ", " \n")
-    params <- str_glue("\n\n### Parameters {-}\n\n**Parameter** | **Description**\n| :-- | :-- |\n<params>\n\n", .open="<", .close=">");
+    params <- str_glue("\n\n#### Parameters {-}\n\n**Parameter** | **Description**\n| :-- | :-- |\n<params>\n\n", .open="<", .close=">");
     }
 
   returnType <- stringr::str_replace(stringr::str_extract_all(functionInfo, xformedSignatureRE)[[1]], xformedSignatureRE, '\\3')
@@ -50,11 +65,11 @@ functionToTopic <- function(functionInfo)
     # if uppercased type, then it is most likely an object or enum; link to that
     if (str_detect(returnType, '^[A-Z]'))
       {
-      returnType <- str_glue("\n\n### Return value {-}\n\nType: [`<returnType>`](#<str_to_lower(returnType)>)\n\n", .open="<", .close=">");
+      returnType <- str_glue("\n\n#### Return value {-}\n\nType: [`<returnType>`](#<str_to_lower(returnType)>)\n\n", .open="<", .close=">");
       }
     else
       {
-      returnType <- str_glue("\n\n### Return value {-}\n\nType: `<returnType>`\n\n", .open="<", .close=">");
+      returnType <- str_glue("\n\n#### Return value {-}\n\nType: `<returnType>`\n\n", .open="<", .close=">");
       }
     }
 
@@ -64,20 +79,80 @@ functionToTopic <- function(functionInfo)
                   .close = ">"))
   }
 
+fixLegacyHeadings <- function(file)
+  {
+  lines <- readLines(file, warn = FALSE)
+  original <- lines
+ 
+  # function header: ## `Foo` → ### `Foo`
+  lines <- sub("^## (`.+`)", "### \\1", lines)
+ 
+  # subsection headers: ### → ####
+  lines <- sub("^### (Syntax|Parameters|Return value|Example|See also)", "#### \\1", lines)
+ 
+  # only write back if something actually changed
+  if (!identical(lines, original))
+    {
+    message(sprintf("🛠️  Fixing legacy heading levels in %s", basename(file)))
+    writeLines(lines, file)
+    }
+  }
+
 # Builds function topics for a class (or library), but only if the file doesn't already exist.
 # It is assumed that these files can be edited later, usually by adding examples or expanding on what the return type does.
 # The purpose of this is to create starter topics for any APIs that aren't documented yet.
-writeClassTopics <- function(functions, folderPath)
+writeClassTopics <- function(functions, folderPath, classify = TRUE)
   {
-  for (i in 1 : length(functions))
+  for (i in seq_along(functions))
     {
     topicName <- stringr::str_extract(functions[i], R"(([_[:alnum:]]+))")
     topicContent <- functionToTopic(functions[i])
 
-    if (!file.exists(str_glue("{folderPath}/{topicName}.qmd")))
+    if (classify)
       {
-      message(str_glue("New API topic available: {folderPath}/{topicName}.qmd"))
-      readr::write_file(topicContent, str_glue("{folderPath}/{topicName}.qmd"))
+      section <- classifyFunction(topicName)
+      sectionPath <- file.path(folderPath, section)
+      dir.create(sectionPath, recursive = TRUE, showWarnings = FALSE)
+      
+      legacyFile <- file.path(folderPath, str_glue("{topicName}.qmd"))
+      newFile    <- file.path(sectionPath, str_glue("{topicName}.qmd"))
+  
+      # already classified → do nothing
+      if (file.exists(newFile))
+        {
+        if (file.exists(newFile))
+          {
+          fixLegacyHeadings(newFile)
+          }
+        next
+        }
+  
+      # legacy root file exists → copy it
+      if (file.exists(legacyFile))
+        {
+        message(str_glue("📦 Copying legacy topic: {topicName} → {section}/"))
+        file.copy(legacyFile, newFile)
+        if (file.exists(newFile))
+          {
+          fixLegacyHeadings(newFile)
+          }
+        next
+        }
+  
+      # brand new topic → generate
+      message(str_glue("✨ New API topic available: {newFile}"))
+      readr::write_file(topicContent, newFile)
+      }
+    else
+      {
+      # flat (legacy) behavior
+      outFile <- file.path(folderPath, str_glue("{topicName}.qmd"))
+  
+      if (!file.exists(outFile))
+        {
+        message(str_glue("✨ New API topic available: {outFile}"))
+        readr::write_file(topicContent, outFile)
+        }
       }
     }
   }

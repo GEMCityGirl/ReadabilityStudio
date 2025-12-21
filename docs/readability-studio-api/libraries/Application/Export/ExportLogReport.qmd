@@ -20,7 +20,7 @@ Type: `boolean`
 | :-- | :-- |
 | `string` outPath | The path to save a copy of the log file to. |
 
-### Example {-}
+#### Example {-}
 
 ``` {.lua}
 Application.EnableVerboseLogging(true)

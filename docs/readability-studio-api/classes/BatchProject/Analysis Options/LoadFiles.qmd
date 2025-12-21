@@ -16,7 +16,7 @@ LoadFiles(table files)
 | :-- | :-- |
 | `table` files | A table containing the files to add to the batch. |
 
-### Example\index{examples!analyzing files} {-}
+#### Example\index{examples!analyzing files} {-}
 
 ``` {.lua}
 -- Add all files with "feline" in the title from the folder "X:\Clinics\med-instructions"
@@ -26,6 +26,6 @@ felineDocs:LoadFiles(Application.FindFiles(
 ```
 1. '\\' characters need to be escaped with another '\\' in Lua.
 
-### See also {-}
+#### See also {-}
 
 [`Application.FindFiles()`](#findfiles), [`LoadFolder()`](#loadfolder)

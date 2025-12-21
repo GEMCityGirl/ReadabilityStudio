@@ -15,7 +15,7 @@ AggressivelyExclude(boolean beAggressive)
 | :-- | :-- |
 `boolean` beAggressive | Specifies whether to use aggressive text exclusion.
 
-### Example {-}
+#### Example {-}
 
 ``` {.lua}
 -- Change various program options.
