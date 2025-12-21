@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `ExcludeCopyrightNotices` {#batch-excludecopyrightnotices}
+### `ExcludeCopyrightNotices` {#batch-excludecopyrightnotices}
 
 Specifies whether to exclude copyright notices\index{text exclusion}.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 ExcludeCopyrightNotices(boolean exclude)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

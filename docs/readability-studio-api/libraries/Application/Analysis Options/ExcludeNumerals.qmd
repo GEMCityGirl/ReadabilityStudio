@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `ExcludeNumerals`
+### `ExcludeNumerals`
 
 Specifies whether to exclude\index{text exclusion} numerals from the document analysis.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 ExcludeNumerals(boolean exclude)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

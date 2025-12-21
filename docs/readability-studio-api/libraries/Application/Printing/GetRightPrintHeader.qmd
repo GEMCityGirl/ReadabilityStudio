@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `GetRightPrintHeader`
+### `GetRightPrintHeader`
 
 Returns the right print header\index{printing!headers \& footers}.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 string GetRightPrintHeader()
 ```
 
-### Return value {-}
+#### Return value {-}
 
 Type: `string`
 

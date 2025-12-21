@@ -1,16 +1,16 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `HighlightDolchPronouns`
+### `HighlightDolchPronouns`
 
 Sets whether to highlight Dolch pronouns in the formatted Dolch report.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 HighlightDolchPronouns(boolean highlight)
 ```
 
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

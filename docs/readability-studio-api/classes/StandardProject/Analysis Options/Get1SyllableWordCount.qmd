@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `Get1SyllableWordCount` {#standard-get1syllablewordcount}
+### `Get1SyllableWordCount` {#standard-get1syllablewordcount}
 
 Returns the number of monosyllabic words from the document.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 number Get1SyllableWordCount()
 ```
 
-### Return value {-}
+#### Return value {-}
 
 Type: `number`
 

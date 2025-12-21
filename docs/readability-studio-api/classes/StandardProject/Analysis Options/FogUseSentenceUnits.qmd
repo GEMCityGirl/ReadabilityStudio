@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `FogUseSentenceUnits`
+### `FogUseSentenceUnits`
 
 Sets whether independent clauses are being counted when calculating Gunning Fog.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 FogUseSentenceUnits(boolean use)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `GetHistogramBarEffect`
+### `GetHistogramBarEffect`
 
 Returns how bars should be drawn within the various histograms\index{graphs!histograms} for new projects.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 BoxEffect GetHistogramBarEffect()
 ```
 
-### Return value {-}
+#### Return value {-}
 
 Type: [`BoxEffect`](#boxeffect)
 :::

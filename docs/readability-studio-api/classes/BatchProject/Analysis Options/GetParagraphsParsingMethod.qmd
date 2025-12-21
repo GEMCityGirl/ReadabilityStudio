@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `GetParagraphsParsingMethod`
+### `GetParagraphsParsingMethod`
 
 Returns the method for how paragraphs are parsed.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 ParagraphParse GetParagraphsParsingMethod()
 ```
 
-### Return value {-}
+#### Return value {-}
 
 Type: [`ParagraphParse`](#paragraphparse)
 :::

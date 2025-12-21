@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `ExcludeProperNouns` {#batch-excludepropernouns}
+### `ExcludeProperNouns` {#batch-excludepropernouns}
 
 Specifies whether to exclude\index{text exclusion} proper nouns.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 ExcludeProperNouns(boolean exclude)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

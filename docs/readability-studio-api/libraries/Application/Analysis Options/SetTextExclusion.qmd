@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `SetTextExclusion`
+### `SetTextExclusion`
 
 Specifies how text should be excluded.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 SetTextExclusion(TextExclusionType type)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

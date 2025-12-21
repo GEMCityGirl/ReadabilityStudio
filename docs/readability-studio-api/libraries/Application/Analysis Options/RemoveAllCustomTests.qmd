@@ -1,9 +1,9 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `RemoveAllCustomTests`
+### `RemoveAllCustomTests`
 
 Clears all custom tests from the program.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 RemoveAllCustomTests()

@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `SetBoxPlotColor`
+### `SetBoxPlotColor`
 
 Sets box color\index{graphs!box plots} (in box plots).
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 SetBoxPlotColor(string colorName)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

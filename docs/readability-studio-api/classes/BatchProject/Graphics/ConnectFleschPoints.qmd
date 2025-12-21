@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `ConnectFleschPoints`
+### `ConnectFleschPoints`
 
 Sets whether connection lines should be drawn between the three rulers in Flesch charts.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 ConnectFleschPoints(boolean connect)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

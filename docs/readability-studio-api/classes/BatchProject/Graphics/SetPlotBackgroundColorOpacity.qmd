@@ -1,14 +1,14 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `SetPlotBackgroundColorOpacity`
+### `SetPlotBackgroundColorOpacity`
 
 Sets the graph background color opacity\index{images!opacity}.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 SetPlotBackgroundColorOpacity(number opacity)
 ```
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

@@ -1,16 +1,16 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `GetMinDocWordCountForBatch`
+### `GetMinDocWordCountForBatch`
 
 Returns the minimum number of words that a document must have to be included in batch projects.
 
-### Syntax {-}
+#### Syntax {-}
 
 
 ``` {.lua}
 number GetMinDocWordCountForBatch()
 ```
 
-### Return value {-}
+#### Return value {-}
 
 Type: `number`
 

@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `SetNumeralSyllabication`
+### `SetNumeralSyllabication`
 
 Sets the method to determine how to syllabize numerals.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 SetNumeralSyllabication(NumeralSyllabize method)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

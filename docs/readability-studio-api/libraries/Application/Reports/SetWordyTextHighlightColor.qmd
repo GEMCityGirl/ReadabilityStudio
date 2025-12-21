@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `SetWordyTextHighlightColor`
+### `SetWordyTextHighlightColor`
 
 Sets the font color for wordy content in formatted reports\index{highlighted reports!fonts} for new projects.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 SetWordyTextHighlightColor(string colorName)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

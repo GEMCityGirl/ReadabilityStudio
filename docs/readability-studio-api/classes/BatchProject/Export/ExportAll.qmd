@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `ExportAll` {#batch-exportall}
+### `ExportAll` {#batch-exportall}
 
 Exports the project's results to the specified folder.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 ExportAll(string outputFolder)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

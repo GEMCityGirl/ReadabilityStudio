@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `GetTextStorageMethod`
+### `GetTextStorageMethod`
 
 Returns whether projects embed their documents or link to them.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 TextStorage GetTextStorageMethod()
 ```
 
-### Return value {-}
+#### Return value {-}
 
 Type: [`TextStorage`](#textstorage)
 

@@ -1,10 +1,10 @@
 {{< pagebreak >}}
 
-## `SortList` {#standard-sortlist}
+### `SortList` {#standard-sortlist}
 
 Sorts\index{lists!sorting} the specified list using a series of columns and sorting orders.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 SortList(ListType list,
@@ -13,7 +13,7 @@ SortList(ListType list,
          ...) 
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

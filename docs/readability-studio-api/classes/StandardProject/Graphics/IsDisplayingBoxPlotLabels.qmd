@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `IsDisplayingBoxPlotLabels`
+### `IsDisplayingBoxPlotLabels`
 
 Returns whether to display labels on box plots.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 boolean IsDisplayingBoxPlotLabels()
 ```
 
-### Return value {-}
+#### Return value {-}
 
 Type: `boolean`
 :::

@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `ExportScores` {#standard-exportscores}
+### `ExportScores` {#standard-exportscores}
 
 Saves the project's test scores to *outputFilePath*.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 ExportScores(string outputFilePath)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

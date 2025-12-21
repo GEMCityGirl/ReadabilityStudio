@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `SetCenterPrintFooter`
+### `SetCenterPrintFooter`
 
 Sets the label to appear in the center bottom of printouts\index{printing!headers \& footers}.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 SetCenterPrintFooter(string label)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

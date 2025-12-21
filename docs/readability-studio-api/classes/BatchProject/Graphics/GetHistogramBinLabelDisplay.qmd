@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `GetHistogramBinLabelDisplay`
+### `GetHistogramBinLabelDisplay`
 
 Returns how bar labels are displayed on histograms.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 BinLabelDisplay GetHistogramBinLabelDisplay()
 ```
 
-### Return value {-}
+#### Return value {-}
 
 Type: [`BinLabelDisplay`](#binlabeldisplay)
 :::

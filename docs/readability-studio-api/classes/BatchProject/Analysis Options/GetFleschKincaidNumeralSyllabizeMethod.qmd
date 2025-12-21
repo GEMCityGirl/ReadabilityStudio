@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `GetFleschKincaidNumeralSyllabizeMethod`
+### `GetFleschKincaidNumeralSyllabizeMethod`
 
 Returns how numerals' syllables are counted for the Flesch-Kincaid test.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 FleschKincaidNumeralSyllabize GetFleschKincaidNumeralSyllabizeMethod()
 ```
 
-### Return value {-}
+#### Return value {-}
 
 Type: [`FleschKincaidNumeralSyllabize`](#fleschkincaidnumeralsyllabize)
 :::

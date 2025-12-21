@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `SetBoxPlotOpacity`
+### `SetBoxPlotOpacity`
 
 Sets box opacity\index{graphs!box plots} (in box plots).
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 SetBoxPlotOpacity(number opacity)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

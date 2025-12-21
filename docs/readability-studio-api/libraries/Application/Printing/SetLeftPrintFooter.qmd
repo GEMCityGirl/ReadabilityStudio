@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `SetLeftPrintFooter`
+### `SetLeftPrintFooter`
 
 Sets the label to appear in the bottom left corner of printouts\index{printing!headers \& footers}.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 SetLeftPrintFooter(string label)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

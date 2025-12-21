@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `IsExcludingCopyrightNotices`
+### `IsExcludingCopyrightNotices`
 
 Returns whether copyright notices are being excluded.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 boolean IsExcludingCopyrightNotices()
 ```
 
-### Return value {-}
+#### Return value {-}
 
 Type: `boolean`
 :::

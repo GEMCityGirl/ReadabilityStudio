@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `GetUnique3SyllablePlusWordCount`
+### `GetUnique3SyllablePlusWordCount`
 
 Returns the number of unique words consisting of three or more syllables from the document.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 number GetUnique3SyllablePlusWordCount()
 ```
 
-### Return value {-}
+#### Return value {-}
 
 Type: `number`
 :::

@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `IsIncludingScoreSummaryReport`
+### `IsIncludingScoreSummaryReport`
 
 Returns whether the test score summary report is being included for new projects.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 boolean IsIncludingScoreSummaryReport()
 ```
 
-### Return value {-}
+#### Return value {-}
 
 Type: `boolean`
 :::

@@ -1,17 +1,17 @@
 {{< pagebreak >}}
 
-## `LoadFolder`
+### `LoadFolder`
 
 Analyses all supported documents from the provided folder.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 LoadFolder(string folderPath,
            boolean recursiveSearch = true)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

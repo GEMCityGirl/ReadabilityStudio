@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `UseRealTimeUpdate`
+### `UseRealTimeUpdate`
 
 Toggles whether documents are being re-analyzed as they change\index{real-time updating}.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 UseRealTimeUpdate(boolean use)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

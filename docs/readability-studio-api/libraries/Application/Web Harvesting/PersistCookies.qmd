@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `PersistCookies`
+### `PersistCookies`
 
 Toggles whether the web harvester uses keeps cookies read from JavaScript between harvests.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 PersistCookies(boolean keepCookies)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

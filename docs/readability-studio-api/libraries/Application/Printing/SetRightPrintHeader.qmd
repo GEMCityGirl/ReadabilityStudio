@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `SetRightPrintHeader`
+### `SetRightPrintHeader`
 
 Sets the label to appear in the top right corner of printouts\index{printing!headers \& footers}.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 SetRightPrintHeader(string label)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `SetBarChartBarColor`
+### `SetBarChartBarColor`
 
 Sets the bar color for bar charts\index{graphs!bar charts}.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 SetBarChartBarColor(string colorName)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

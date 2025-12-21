@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `GetProgramPath`
+### `GetProgramPath`
 
 Returns the folder path\index{file paths!application folder} to the application.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 string GetProgramPath() 
 ```
 
-### Return value {-}
+#### Return value {-}
 
 Type: `string`
 

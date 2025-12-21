@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `GetStatus`
+### `GetStatus`
 
 Returns the status of the project.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 string GetStatus()
 ```
 
-### Return value {-}
+#### Return value {-}
 
 Type: `string`
 :::

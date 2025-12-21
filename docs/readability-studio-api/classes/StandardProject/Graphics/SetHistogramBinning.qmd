@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `SetHistogramBinning`
+### `SetHistogramBinning`
 
 Sets how data are binned in histograms\index{graphs!histograms}.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 SetHistogramBinning(BinningMethod method)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

@@ -1,16 +1,16 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `SetReviewer`
+### `SetReviewer`
 
 Sets the user name for the software.
 This will appear in various output when exporting.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 SetReviewer(string name)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

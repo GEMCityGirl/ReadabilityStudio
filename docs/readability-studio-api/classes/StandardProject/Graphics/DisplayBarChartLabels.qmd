@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `DisplayBarChartLabels`
+### `DisplayBarChartLabels`
 
 Specifies whether to display labels above each bar in a bar chart\index{graphs!bar charts}.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 DisplayBarChartLabels(boolean display)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

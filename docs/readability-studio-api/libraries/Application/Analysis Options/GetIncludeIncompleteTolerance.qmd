@@ -1,16 +1,16 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `GetIncludeIncompleteTolerance`
+### `GetIncludeIncompleteTolerance`
 
 Sets the incomplete-sentence tolerance for new projects.
 This is the minimum number of words that will make a sentence missing terminating punctuation be considered complete.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 number GetIncludeIncompleteTolerance()
 ```
 
-### Return value {-}
+#### Return value {-}
 
 Type: `number`
 :::

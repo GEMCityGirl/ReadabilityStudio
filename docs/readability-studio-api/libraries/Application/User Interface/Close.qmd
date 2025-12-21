@@ -1,9 +1,9 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `Close`
+### `Close`
 
 Closes the program.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 Close()

@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `SetBlockExclusionTags`
+### `SetBlockExclusionTags`
 
 Specifies a pair of tags that will have all text between them excluded from the analysis for new projects.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 SetBlockExclusionTags(string tags)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

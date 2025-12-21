@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `SetFilePathDisplayMode`
+### `SetFilePathDisplayMode`
 
 Sets how filepaths are displayed in the lists.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 SetFilePathDisplayMode(FilePathDisplayMode displayMode)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

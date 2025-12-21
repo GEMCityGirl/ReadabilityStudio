@@ -1,16 +1,16 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `SetWebHarvesterFileFilter`
+### `SetWebHarvesterFileFilter`
 
 Sets the file types that the web harvester will download.
 This should be a semicolon separated list of file wildcards (e.g., `"*.html;*.png"`).
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 SetWebHarvesterFileFilter(string filter)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

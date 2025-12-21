@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `SetDifficultSentenceLength`
+### `SetDifficultSentenceLength`
 
 Sets the threshold for determining an overly-long sentence for new projects.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 SetDifficultSentenceLength(number length)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

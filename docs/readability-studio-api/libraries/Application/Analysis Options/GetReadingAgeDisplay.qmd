@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `GetReadingAgeDisplay`
+### `GetReadingAgeDisplay`
 
 Returns the age display for test scores to display for new projects.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 ReadingAgeDisplay GetReadingAgeDisplay()
 ```
 
-### Return value {-}
+#### Return value {-}
 
 Type: [`ReadingAgeDisplay`](#readingagedisplay)
 :::

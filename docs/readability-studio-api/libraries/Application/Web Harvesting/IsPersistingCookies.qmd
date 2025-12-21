@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `IsPersistingCookies`
+### `IsPersistingCookies`
 
 Returns whether the web harvester uses keeps cookies read from JavaScript between harvests.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 boolean IsPersistingCookies()
 ```
 
-### Return value {-}
+#### Return value {-}
 
 Type: `boolean`
 :::

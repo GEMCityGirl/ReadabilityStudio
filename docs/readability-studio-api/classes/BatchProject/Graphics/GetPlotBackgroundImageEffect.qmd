@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `GetPlotBackgroundImageEffect`
+### `GetPlotBackgroundImageEffect`
 
 Returns the effect applied to an image\index{images!effects} when drawn as a graph's background.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 ImageEffect GetPlotBackgroundImageEffect()
 ```
 
-### Return value {-}
+#### Return value {-}
 
 Type: [`ImageEffect`](#imageeffect)
 :::

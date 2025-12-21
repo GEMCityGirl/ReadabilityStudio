@@ -1,10 +1,10 @@
 {{< pagebreak >}}
 
-## `SetSummaryStatsReportOptions`
+### `SetSummaryStatsReportOptions`
 
 Sets which results in the summary statistics reports should be included.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 SetSummaryStatsReportOptions(boolean includeParagraphs,
@@ -16,7 +16,7 @@ SetSummaryStatsReportOptions(boolean includeParagraphs,
                              boolean includeExtendedInfo)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

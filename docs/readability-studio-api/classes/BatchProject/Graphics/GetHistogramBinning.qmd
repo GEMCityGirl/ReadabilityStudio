@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `GetHistogramBinning`
+### `GetHistogramBinning`
 
 Returns how data are binned in histograms\index{graphs!histograms}.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 BinningMethod GetHistogramBinning()
 ```
 
-### Return value {-}
+#### Return value {-}
 
 Type: [`BinningMethod`](#binningmethod)
 :::

@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `SetDownloadFolder`
+### `SetDownloadFolder`
 
 Sets the directory path\index{web harvester!settings} where the web harvester will download files.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 SetDownloadFolder(string path)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `GetGraphLogoImage`
+### `GetGraphLogoImage`
 
 Returns the logo image filepath.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 string GetGraphLogoImage()
 ```
 
-### Return value {-}
+#### Return value {-}
 
 Type: `string`
 :::

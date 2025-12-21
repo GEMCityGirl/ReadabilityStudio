@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `UseWebsitesFolderStructure`
+### `UseWebsitesFolderStructure`
 
 Sets whether to mirror websites' folder structure\index{web harvester!settings} when downloading their files.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 UseWebsitesFolderStructure(boolean use)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

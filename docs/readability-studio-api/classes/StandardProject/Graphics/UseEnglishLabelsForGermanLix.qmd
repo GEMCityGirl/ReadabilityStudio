@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `UseEnglishLabelsForGermanLix`
+### `UseEnglishLabelsForGermanLix`
 
 Sets whether English labels are being used for the brackets on German Lix gauges.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 UseEnglishLabelsForGermanLix(boolean useEnglish)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

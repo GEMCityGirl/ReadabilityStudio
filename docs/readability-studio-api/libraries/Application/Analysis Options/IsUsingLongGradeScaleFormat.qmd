@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `IsUsingLongGradeScaleFormat`
+### `IsUsingLongGradeScaleFormat`
 
 Returns whether test scores are being shown in long format for new projects.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 boolean IsUsingLongGradeScaleFormat()
 ```
 
-### Return value {-}
+#### Return value {-}
 
 Type: `boolean`
 :::

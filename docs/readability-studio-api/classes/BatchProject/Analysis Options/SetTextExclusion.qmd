@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `SetTextExclusion` {#batch-settextexclusion}
+### `SetTextExclusion` {#batch-settextexclusion}
 
 Specifies how text should be excluded while parsing the source document.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 SetTextExclusion(TextExclusionType exclusionType)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `GetIndependentClauseCount`
+### `GetIndependentClauseCount`
 
 Returns the number of independent clauses from the document.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 number GetIndependentClauseCount()
 ```
 
-### Return value {-}
+#### Return value {-}
 
 Type: `number`
 :::

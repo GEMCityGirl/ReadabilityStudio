@@ -1,16 +1,16 @@
 {{< pagebreak >}}
 
-## `LogError`
+### `LogError`
 
 Sends an error message\index{log report!sending messages to} to program's logging system.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 LogError(string errorMessage)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

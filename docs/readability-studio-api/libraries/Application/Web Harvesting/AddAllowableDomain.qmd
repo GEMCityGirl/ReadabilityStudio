@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `AddAllowableDomain`
+### `AddAllowableDomain`
 
 Adds a user-defined web path (domain/folder structure) to restrict harvesting to.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 AddAllowableDomain(string domain)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

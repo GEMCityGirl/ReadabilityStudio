@@ -1,19 +1,19 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `GetUserFolder`
+### `GetUserFolder`
 
 Returns the path of a given folder\index{file paths!user folders} in the user's directory.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 string GetUserFolder(UserPath path)
 ```
 
-### Return value {-}
+#### Return value {-}
 
 Type: `string`
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

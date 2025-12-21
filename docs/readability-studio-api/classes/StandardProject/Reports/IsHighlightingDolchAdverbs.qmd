@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `IsHighlightingDolchAdverbs`
+### `IsHighlightingDolchAdverbs`
 
 Returns whether Dolch adverbs are being highlighted in the formatted Dolch report.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 boolean IsHighlightingDolchAdverbs()
 ```
 
-### Return value {-}
+#### Return value {-}
 
 Type: `boolean`
 :::

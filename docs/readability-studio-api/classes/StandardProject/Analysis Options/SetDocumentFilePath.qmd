@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `SetDocumentFilePath`
+### `SetDocumentFilePath`
 
 Sets the path of the document being analyzed by the project.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 SetDocumentFilePath(string docPath)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

@@ -1,9 +1,9 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `FindFiles`
+### `FindFiles`
 
 Searches the specified folder for files\index{file paths!searching} matching the given file filter (e.g., "\*.docx" or "\*patient\*") and returns the retrieved filepaths.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 table FindFiles(string folderPath,
@@ -11,13 +11,13 @@ table FindFiles(string folderPath,
                 boolean recursive = true)
 ```
 
-### Return value {-}
+#### Return value {-}
 
 Type: `table`
 
 A table listing the files.
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

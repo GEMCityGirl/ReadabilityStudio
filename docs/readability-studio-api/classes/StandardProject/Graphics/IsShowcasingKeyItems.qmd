@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `IsShowcasingKeyItems`
+### `IsShowcasingKeyItems`
 
 Returns whether important parts of certain graphs should be highlighted.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 boolean IsShowcasingKeyItems()
 ```
 
-### Return value {-}
+#### Return value {-}
 
 Type: `boolean`
 :::

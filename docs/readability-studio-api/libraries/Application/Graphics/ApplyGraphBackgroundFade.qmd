@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `ApplyGraphBackgroundFade`
+### `ApplyGraphBackgroundFade`
 
 Specifies whether to use a color fade on graph backgrounds.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 ApplyGraphBackgroundFade(boolean useColorFade)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

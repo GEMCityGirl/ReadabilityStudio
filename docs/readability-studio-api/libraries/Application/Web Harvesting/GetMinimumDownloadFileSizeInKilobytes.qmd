@@ -1,16 +1,16 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `GetMinimumDownloadFileSizeInKilobytes`
+### `GetMinimumDownloadFileSizeInKilobytes`
 
 Returns whether files being downloaded\index{web harvester!settings} will replace existing ones.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 number GetMinimumDownloadFileSizeInKilobytes()
 ```
 
 
-### Return value {-}
+#### Return value {-}
 
 Type: `number`
 

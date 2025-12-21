@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `IsIgnoringIndenting`
+### `IsIgnoringIndenting`
 
 Returns whether indenting is being ignored when parsing paragraphs.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 boolean IsIgnoringIndenting()
 ```
 
-### Return value {-}
+#### Return value {-}
 
 Type: `boolean`
 :::

@@ -1,9 +1,9 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `DisableWarning`
+### `DisableWarning`
 
 Disables\index{warnings!disabling} the specified warning.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 DisableWarning(string warningId)

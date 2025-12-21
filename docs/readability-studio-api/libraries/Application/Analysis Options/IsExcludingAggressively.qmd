@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `IsExcludingAggressively`
+### `IsExcludingAggressively`
 
 Returns whether to aggressively exclude for new projects.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 boolean IsExcludingAggressively()
 ```
 
-### Return value {-}
+#### Return value {-}
 
 Type: `boolean`
 :::

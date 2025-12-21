@@ -1,16 +1,16 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `SetLanguage` {#standard-setprojectlanguage}
+### `SetLanguage` {#standard-setprojectlanguage}
 
 Changes the language for project.
 This will affect syllable counting and also which tests are available.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 SetLanguage(Language lang)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

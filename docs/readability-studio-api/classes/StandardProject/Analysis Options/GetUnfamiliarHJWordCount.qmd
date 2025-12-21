@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `GetUnfamiliarHJWordCount`
+### `GetUnfamiliarHJWordCount`
 
 Returns the number of words unfamiliar to the Harris-Jacobson test from the document.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 number GetUnfamiliarHJWordCount()
 ```
 
-### Return value {-}
+#### Return value {-}
 
 Type: `number`
 :::

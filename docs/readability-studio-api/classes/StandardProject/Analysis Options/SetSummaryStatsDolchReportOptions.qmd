@@ -1,9 +1,9 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `SetSummaryStatsDolchReportOptions`
+### `SetSummaryStatsDolchReportOptions`
 
 Sets which results in the Dolch summary report should be included.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 SetSummaryStatsDolchReportOptions(boolean includeCoverage,
@@ -11,7 +11,7 @@ SetSummaryStatsDolchReportOptions(boolean includeCoverage,
                                   boolean includeExplanation)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

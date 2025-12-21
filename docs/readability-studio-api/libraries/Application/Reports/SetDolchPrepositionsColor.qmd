@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `SetDolchPrepositionsColor`
+### `SetDolchPrepositionsColor`
 
 Sets the font color for Dolch prepositions in the formatted Dolch report for new projects.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 SetDolchPrepositionsColor(string colorName)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `ShowcaseKeyItems`
+### `ShowcaseKeyItems`
 
 Specifies whether important parts of certain graphs should be highlighted.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 ShowcaseKeyItems(boolean showcase)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

@@ -1,16 +1,16 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `GetDepthLevel`
+### `GetDepthLevel`
 
 Returns the depth level\index{web harvester!settings} to crawl from the base URL.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 number GetDepthLevel()
 ```
 
 
-### Return value {-}
+#### Return value {-}
 
 Type: `number`
 

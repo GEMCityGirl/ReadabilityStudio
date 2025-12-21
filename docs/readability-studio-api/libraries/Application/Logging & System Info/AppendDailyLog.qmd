@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `AppendDailyLog`
+### `AppendDailyLog`
 
 Toggles whether the current log file should be appended\index{log report!settings} when the program restarts.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 AppendDailyLog(boolean append)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

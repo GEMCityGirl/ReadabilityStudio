@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `AggressivelyExclude` {#batch-aggressivelyexclude}
+### `AggressivelyExclude` {#batch-aggressivelyexclude}
 
 Specifies whether to use aggressive list deduction\index{text exclusion}.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 AggressivelyExclude(boolean beAggressive)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

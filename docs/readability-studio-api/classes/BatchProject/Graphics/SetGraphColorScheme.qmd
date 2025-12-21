@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `SetGraphColorScheme`
+### `SetGraphColorScheme`
 
 Sets the graph color scheme.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 SetGraphColorScheme(string colorScheme)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

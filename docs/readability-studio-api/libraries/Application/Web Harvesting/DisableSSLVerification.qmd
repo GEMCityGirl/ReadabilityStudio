@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `DisableSSLVerification`
+### `DisableSSLVerification`
 
 Toggles whether SSL verification\index{web harvester!settings} used by the web harvester is disabled.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 DisableSSLVerification(boolean disable)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

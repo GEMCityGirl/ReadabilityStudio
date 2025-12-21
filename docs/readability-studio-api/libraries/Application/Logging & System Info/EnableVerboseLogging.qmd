@@ -1,16 +1,16 @@
 {{< pagebreak >}}
 
-## `EnableVerboseLogging`
+### `EnableVerboseLogging`
 
 Toggles whether verbose\index{log report!settings} logging is enabled.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 EnableVerboseLogging(boolean enable)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

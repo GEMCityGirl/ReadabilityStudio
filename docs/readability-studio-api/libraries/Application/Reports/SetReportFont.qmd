@@ -1,9 +1,9 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `SetReportFont`
+### `SetReportFont`
 
 Sets the font for highlighted reports\index{highlighted reports!fonts} for new projects.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 SetReportFont(string fontName,
@@ -12,7 +12,7 @@ SetReportFont(string fontName,
               string color)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

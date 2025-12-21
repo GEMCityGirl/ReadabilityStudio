@@ -1,14 +1,14 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `SetBarChartOrientation`
+### `SetBarChartOrientation`
 
 Sets the orientation for bars\index{graphs!bar charts} for new projects.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 SetBarChartOrientation(Orientation barOrientation)
 ```
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

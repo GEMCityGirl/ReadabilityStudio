@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `SetBarChartBarOpacity`
+### `SetBarChartBarOpacity`
 
 Sets the opacity of the bars within the various bar charts\index{graphs!bar charts}.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 SetBarChartBarOpacity(number opacity)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

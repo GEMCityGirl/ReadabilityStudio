@@ -1,16 +1,16 @@
 {{< pagebreak >}}
 
-## `ExcludeProperNouns` {#standard-excludepropernouns}
+### `ExcludeProperNouns` {#standard-excludepropernouns}
 
 Specifies whether to exclude\index{text exclusion} proper nouns.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 ExcludeProperNouns(boolean exclude)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

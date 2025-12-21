@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `SetRaygorStyle`
+### `SetRaygorStyle`
 
 Sets the visual style for Raygor graphs.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 SetRaygorStyle(RaygorStyle style)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

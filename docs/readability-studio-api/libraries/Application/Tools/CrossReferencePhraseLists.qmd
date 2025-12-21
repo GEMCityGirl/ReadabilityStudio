@@ -1,11 +1,11 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `CrossReferencePhraseLists`
+### `CrossReferencePhraseLists`
 
 Compares two phrase lists\index{word lists!merging} and creates a new one that contains only the phrases that appear in both of them.
 
 These files will be delimited by newlines, so that each line will be parsed as a phrase.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 boolean CrossReferencePhraseLists(string phraseList,
@@ -13,13 +13,13 @@ boolean CrossReferencePhraseLists(string phraseList,
                                   string outputFile)
 ```
 
-### Return value {-}
+#### Return value {-}
 
 Type: `boolean`
 
 Returns `true` if cross reference file was successfully saved.
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

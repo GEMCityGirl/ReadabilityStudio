@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `AggressivelyExclude`
+### `AggressivelyExclude`
 
 Specifies whether to use aggressive text exclusion\index{text exclusion}.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 AggressivelyExclude(boolean beAggressive)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

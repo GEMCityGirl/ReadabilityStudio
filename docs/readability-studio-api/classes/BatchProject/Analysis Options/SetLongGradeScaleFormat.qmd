@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `SetLongGradeScaleFormat`
+### `SetLongGradeScaleFormat`
 
 Sets whether to display test scores in long format.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 SetLongGradeScaleFormat(boolean longFormat)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

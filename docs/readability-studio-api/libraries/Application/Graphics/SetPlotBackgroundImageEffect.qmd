@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `SetPlotBackgroundImageEffect`
+### `SetPlotBackgroundImageEffect`
 
 Sets the effect applied to an image\index{images!effects} when drawn as a graph's background for new projects.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 SetPlotBackgroundImageEffect(ImageEffect effect)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

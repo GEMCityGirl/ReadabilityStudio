@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `SetStippleShapeColor`
+### `SetStippleShapeColor`
 
 If using stipple shapes for bars, sets the color for certain shapes.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 SetStippleShapeColor(string colorName)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

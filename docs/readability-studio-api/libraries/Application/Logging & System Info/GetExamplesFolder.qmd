@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `GetExamplesFolder`
+### `GetExamplesFolder`
 
 Returns the program's example documents' folder path\index{file paths!examples folder}.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 string GetExamplesFolder()
 ```
 
-### Return value {-}
+#### Return value {-}
 
 Type: `string`
 

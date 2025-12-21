@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `ExcludeFileAddress` {#standard-excludefileaddress}
+### `ExcludeFileAddress` {#standard-excludefileaddress}
 
 Specifies whether to exclude\index{text exclusion} file paths\index{file paths!excluding} and URLs.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 ExcludeFileAddress(boolean exclude)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

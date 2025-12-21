@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `GetUnfamiliarSpacheWordCount`
+### `GetUnfamiliarSpacheWordCount`
 
 Returns the number of words unfamiliar to the Spache test from the document.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 number GetUnfamiliarSpacheWordCount()
 ```
 
-### Return value {-}
+#### Return value {-}
 
 Type: `number`
 :::

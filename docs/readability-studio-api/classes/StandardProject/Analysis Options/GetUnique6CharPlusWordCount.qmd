@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `GetUnique6CharPlusWordCount`
+### `GetUnique6CharPlusWordCount`
 
 Returns the number of unique words consisting of six or more characters from the document.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 number GetUnique6CharPlusWordCount()
 ```
 
-### Return value {-}
+#### Return value {-}
 
 Type: `number`
 :::

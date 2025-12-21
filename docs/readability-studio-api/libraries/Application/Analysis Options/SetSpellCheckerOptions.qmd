@@ -1,9 +1,9 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `SetSpellCheckerOptions`
+### `SetSpellCheckerOptions`
 
 Sets which items the spell checker\index{spell checker} should ignore.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 SetSpellCheckerOptions(boolean ignoreProperNouns,
@@ -15,7 +15,7 @@ SetSpellCheckerOptions(boolean ignoreProperNouns,
                        boolean ignoreColloquialisms)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

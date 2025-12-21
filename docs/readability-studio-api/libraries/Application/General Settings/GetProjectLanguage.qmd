@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `GetProjectLanguage`
+### `GetProjectLanguage`
 
 Returns the default language for new projects.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 Language GetProjectLanguage()
 ```
 
-### Return value {-}
+#### Return value {-}
 
 Type: [`Language`](#language)
 

@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `GetGraphCommonImage`
+### `GetGraphCommonImage`
 
 Returns the path to the common image\index{images!bar backgrounds} drawn across all bars.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 string GetGraphCommonImage()
 ```
 
-### Return value {-}
+#### Return value {-}
 
 Type: `string`
 :::

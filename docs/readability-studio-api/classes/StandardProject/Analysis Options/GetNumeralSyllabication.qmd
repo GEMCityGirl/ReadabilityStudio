@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `GetNumeralSyllabication`
+### `GetNumeralSyllabication`
 
 Returns method to determine how to syllabize numerals.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 NumeralSyllabize GetNumeralSyllabication()
 ```
 
-### Return value {-}
+#### Return value {-}
 
 Type: [`NumeralSyllabize`](#numeralsyllabize)
 :::

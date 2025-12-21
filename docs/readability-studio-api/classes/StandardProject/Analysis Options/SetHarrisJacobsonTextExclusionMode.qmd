@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `SetHarrisJacobsonTextExclusionMode`
+### `SetHarrisJacobsonTextExclusionMode`
 
 Sets how text is excluded for the Harris-Jacobson test.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 SetHarrisJacobsonTextExclusionMode(SpecializedTestTextExclusion method)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

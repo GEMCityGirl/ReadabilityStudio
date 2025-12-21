@@ -1,23 +1,23 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `GetAbsoluteFilePath`
+### `GetAbsoluteFilePath`
 
 Combines a base path\index{file paths!getting absolute path} with a relative path and returns the full file path.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 string GetAbsoluteFilePath(string basePath
                            string relativePath)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |
 | `string` basePath | The full base path. |
 | `string` relativePath | The path of the file that is relative to the base path. |
 
-### Return value {-}
+#### Return value {-}
 
 Type: `string`
 

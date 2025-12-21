@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `SetLongSentenceMethod`
+### `SetLongSentenceMethod`
 
 Sets the method to determine what a long sentence is.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 SetLongSentenceMethod(LongSentence method)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

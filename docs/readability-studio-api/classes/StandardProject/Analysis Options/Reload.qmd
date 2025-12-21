@@ -1,10 +1,10 @@
 {{< pagebreak >}}
 
-## `Reload` {#standard-reload}
+### `Reload` {#standard-reload}
 
 Reanalyzes the project's document.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 Reload()

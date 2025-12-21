@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `SetTextSource`
+### `SetTextSource`
 
 Sets where a project should get its content from.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 SetTextSource(TextSource storageMethod)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

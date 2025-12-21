@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `SetReadingAgeDisplay`
+### `SetReadingAgeDisplay`
 
 Sets the age display for test scores to display.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 SetReadingAgeDisplay(ReadingAgeDisplay ageFormat)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

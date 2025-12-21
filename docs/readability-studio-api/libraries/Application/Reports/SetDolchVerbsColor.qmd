@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `SetDolchVerbsColor`
+### `SetDolchVerbsColor`
 
 Sets the font color for Dolch verbs in the formatted Dolch report for new projects.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 SetDolchVerbsColor(string colorName)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

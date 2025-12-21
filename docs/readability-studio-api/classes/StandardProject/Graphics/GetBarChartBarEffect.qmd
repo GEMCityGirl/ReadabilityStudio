@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `GetBarChartBarEffect`
+### `GetBarChartBarEffect`
 
 Returns how bars should be drawn within the various bar charts\index{graphs!bar charts}.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 BoxEffect GetBarChartBarEffect()
 ```
 
-### Return value {-}
+#### Return value {-}
 
 Type: [`BoxEffect`](#boxeffect)
 :::

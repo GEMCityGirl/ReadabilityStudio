@@ -1,21 +1,21 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `ExportSettings`
+### `ExportSettings`
 
 Exports\index{settings!exporting} the program's general settings to the specified file.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 boolean ExportSettings(string settingsFileToExport)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |
 | `string` settingsFileToExport | The filepath to save the program's settings to. |
 
-### Return value {-}
+#### Return value {-}
 
 Type: `boolean`
 

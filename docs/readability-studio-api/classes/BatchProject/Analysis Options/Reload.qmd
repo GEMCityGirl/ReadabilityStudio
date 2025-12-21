@@ -1,10 +1,10 @@
 {{< pagebreak >}}
 
-## `Reload` {#batch-reload}
+### `Reload` {#batch-reload}
 
 Reanalyzes the project's documents.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 Reload()

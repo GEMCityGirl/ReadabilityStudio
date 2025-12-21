@@ -1,16 +1,16 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `SetSummaryStatsResultsOptions`
+### `SetSummaryStatsResultsOptions`
 
 Sets which results in the summary statistics section should be included for new projects.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 SetSummaryStatsResultsOptions(boolean includeFormattedReport,
                               boolean TabularReport)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

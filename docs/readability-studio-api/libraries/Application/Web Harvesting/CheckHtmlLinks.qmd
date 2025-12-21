@@ -1,16 +1,16 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `CheckHtmlLinks`
+### `CheckHtmlLinks`
 
 Checks for broken links\index{web harvester!quality checking files} and bad image sizes in a folder of HTML files.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 CheckHtmlLinks(string folderPath,
                boolean followExternalLinks)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

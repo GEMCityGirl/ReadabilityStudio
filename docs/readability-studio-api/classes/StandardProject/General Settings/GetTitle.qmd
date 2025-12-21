@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `GetTitle`
+### `GetTitle`
 
 Returns the title of the project.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 string GetTitle()
 ```
 
-### Return value {-}
+#### Return value {-}
 
 Type: `string`
 :::

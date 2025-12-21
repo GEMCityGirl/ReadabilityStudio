@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `SetDepthLevel`
+### `SetDepthLevel`
 
 Sets the depth level\index{web harvester!settings} to crawl from the base URL.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 SetDepthLevel(number depthLevel)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `SetFilePathDisplayMode`
+### `SetFilePathDisplayMode`
 
 Sets how file paths are displayed in the lists for batch projects.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 SetFilePathDisplayMode(FilePathDisplayMode mode)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

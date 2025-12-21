@@ -1,9 +1,9 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `SetXAxisFont`
+### `SetXAxisFont`
 
 Sets the font\index{graphs!fonts} for the graphs' X axes for new projects.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 SetXAxisFont(string fontName,
@@ -12,7 +12,7 @@ SetXAxisFont(string fontName,
              string color)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

@@ -1,21 +1,21 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `ImportSettings`
+### `ImportSettings`
 
 Imports\index{settings!importing} the specified settings file, which will configure the general options of the program.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 boolean ImportSettings(string settingsFileToImport)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |
 | `string` settingsFileToImport | The filepath to import the program's settings from. |
 
-### Return value {-}
+#### Return value {-}
 
 Type: `boolean`
 

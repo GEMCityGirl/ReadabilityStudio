@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `GetSentenceCount`
+### `GetSentenceCount`
 
 Returns the number of sentences from the document.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 number GetSentenceCount()
 ```
 
-### Return value {-}
+#### Return value {-}
 
 Type: `number`
 :::

@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `SetGrammarIssuesHighlightColor`
+### `SetGrammarIssuesHighlightColor`
 
 Sets the font color for grammar issues in formatted reports.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 SetGrammarIssuesHighlightColor(string colorName)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

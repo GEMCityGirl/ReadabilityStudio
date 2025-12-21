@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `IsConnectingBoxPlotMiddlePoints`
+### `IsConnectingBoxPlotMiddlePoints`
 
 Returns whether to connect the medians\index{graphs!box plots} between box plots.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 boolean IsConnectingBoxPlotMiddlePoints()
 ```
 
-### Return value {-}
+#### Return value {-}
 
 Type: `boolean`
 :::

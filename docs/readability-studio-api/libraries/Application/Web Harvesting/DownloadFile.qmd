@@ -1,16 +1,16 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `DownloadFile`
+### `DownloadFile`
 
 Downloads a file\index{web harvester!downloading files} into the specified folder.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 DownloadFile(string fileToDownload,
              string folderToDownloadTo)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

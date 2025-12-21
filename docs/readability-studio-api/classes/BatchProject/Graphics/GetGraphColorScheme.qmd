@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `GetGraphColorScheme`
+### `GetGraphColorScheme`
 
 Returns the graph color scheme.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 string GetGraphColorScheme()
 ```
 
-### Return value {-}
+#### Return value {-}
 
 Type: `string`
 :::

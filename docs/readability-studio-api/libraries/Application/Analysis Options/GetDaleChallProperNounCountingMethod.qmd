@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `GetDaleChallProperNounCountingMethod`
+### `GetDaleChallProperNounCountingMethod`
 
 Returns how Dale-Chall counts proper nouns for new projects.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 ProperNounCountingMethod GetDaleChallProperNounCountingMethod()
 ```
 
-### Return value {-}
+#### Return value {-}
 
 Type: [`ProperNounCountingMethod`](#propernouncountingmethod)
 :::

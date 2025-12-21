@@ -1,16 +1,16 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `ExportReport` {#standard-exportreport}
+### `ExportReport` {#standard-exportreport}
 
 Saves\index{reports!exporting} the specified report.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 ExportReport(ReportType type,
              string outputFilePath) 
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

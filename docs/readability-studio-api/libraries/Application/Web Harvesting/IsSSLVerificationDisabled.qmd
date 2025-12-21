@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `IsSSLVerificationDisabled`
+### `IsSSLVerificationDisabled`
 
 Returns whether SSL verification\index{web harvester!settings} used by the web harvester is disabled.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 boolean IsSSLVerificationDisabled()
 ```
 
-### Return value {-}
+#### Return value {-}
 
 Type: `boolean`
 :::

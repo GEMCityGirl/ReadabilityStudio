@@ -1,16 +1,16 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `SetWindowSize` {#batch-setwindowsize}
+### `SetWindowSize` {#batch-setwindowsize}
 
 Resizes the project's window size to the specified width and height.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 SetWindowSize(number width,
               number height)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :--  | :-- |

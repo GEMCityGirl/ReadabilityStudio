@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `SetHistogramBarOpacity`
+### `SetHistogramBarOpacity`
 
 Sets bar opacity (in histograms\index{graphs!histograms}) for new projects.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 SetHistogramBarOpacity(number opacity)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

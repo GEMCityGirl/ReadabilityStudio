@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `IncludeScoreSummaryReport`
+### `IncludeScoreSummaryReport`
 
 Sets whether to include the test score summary report.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 IncludeScoreSummaryReport(boolean include)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

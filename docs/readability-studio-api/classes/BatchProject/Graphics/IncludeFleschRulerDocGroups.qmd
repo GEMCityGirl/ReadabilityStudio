@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `IncludeFleschRulerDocGroups`
+### `IncludeFleschRulerDocGroups`
 
 Sets whether document group labels are drawn next to the syllable ruler on Flesch charts.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 IncludeFleschRulerDocGroups(boolean include)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

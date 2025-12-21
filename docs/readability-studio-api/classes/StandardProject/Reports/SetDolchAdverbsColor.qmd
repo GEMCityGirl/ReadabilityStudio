@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `SetDolchAdverbsColor`
+### `SetDolchAdverbsColor`
 
 Sets the font color for Dolch adverbs in the formatted Dolch report.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 SetDolchAdverbsColor(string colorName)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

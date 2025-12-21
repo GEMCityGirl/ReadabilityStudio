@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `GetActiveBatchProject`
+### `GetActiveBatchProject`
 
 Returns the active batch project\index{projects!getting active}.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 BatchProject GetActiveBatchProject()
 ```
 
-### Return value {-}
+#### Return value {-}
 
 Type: [`BatchProject`](#batchproject)
 

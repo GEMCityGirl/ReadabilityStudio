@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `GetStippleImage`
+### `GetStippleImage`
 
 Returns the stipple image filepath used to draw bars in graphs.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 string GetStippleImage()
 ```
 
-### Return value {-}
+#### Return value {-}
 
 Type: `string`
 :::

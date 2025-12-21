@@ -1,9 +1,9 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `EnableAllWarnings`
+### `EnableAllWarnings`
 
 Enables\index{warnings!enabling} all warnings and prompts throughout the program.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 EnableAllWarnings()

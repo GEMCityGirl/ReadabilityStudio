@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `HighlightDolchPrepositions`
+### `HighlightDolchPrepositions`
 
 Sets whether to highlight Dolch prepositions in the formatted Dolch report.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 HighlightDolchPrepositions(boolean highlight)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

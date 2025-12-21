@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `GetBoxPlotEffect`
+### `GetBoxPlotEffect`
 
 Returns how boxes\index{graphs!box plots} should be drawn within the various box plots for new projects.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 BoxEffect GetBoxPlotEffect()
 ```
 
-### Return value {-}
+#### Return value {-}
 
 Type: [`BoxEffect`](#boxeffect)
 :::

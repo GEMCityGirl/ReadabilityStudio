@@ -1,16 +1,16 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `SetWindowSize`
+### `SetWindowSize`
 
 Sets the size of the project window.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 SetWindowSize(number width,
               number height)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

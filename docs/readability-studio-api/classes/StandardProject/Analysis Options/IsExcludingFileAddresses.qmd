@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `IsExcludingFileAddresses`
+### `IsExcludingFileAddresses`
 
 Returns whether file addresses are being excluded.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 boolean IsExcludingFileAddresses()
 ```
 
-### Return value {-}
+#### Return value {-}
 
 Type: `boolean`
 :::

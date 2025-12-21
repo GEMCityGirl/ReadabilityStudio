@@ -6,11 +6,11 @@ source('R/appdown.r')
 ```
 
 ::: {.minipage data-latex="{\textwidth}"}
-## `ExportList` {#batch-exportlist}
+### `ExportList` {#batch-exportlist}
 
 Saves\index{lists!exporting} the specified list as an HTML, text, or {{< latex >}} file to *outputFilePath*.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 ExportList(ListType type,
@@ -23,7 +23,7 @@ ExportList(ListType type,
            boolean IncludePageBreaks = false)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

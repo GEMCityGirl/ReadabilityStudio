@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `SetWatermark`
+### `SetWatermark`
 
 Sets the watermark to be written across graphs.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 SetWatermark(string watermark)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

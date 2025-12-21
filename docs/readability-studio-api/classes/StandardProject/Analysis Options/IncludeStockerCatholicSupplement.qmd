@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `IncludeStockerCatholicSupplement`
+### `IncludeStockerCatholicSupplement`
 
 Sets whether to include additional Catholic words with the Dale-Chall test.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 IncludeStockerCatholicSupplement(boolean include)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

@@ -1,10 +1,10 @@
 {{< pagebreak >}}
 
-## `ExportGraph` {#standard-exportgraph}
+### `ExportGraph` {#standard-exportgraph}
 
 Saves\index{graphs!exporting} the specified graph as an image\index{images!saving graphs as}.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 ExportGraph(GraphType type,
@@ -14,7 +14,7 @@ ExportGraph(GraphType type,
             number height)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

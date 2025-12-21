@@ -1,16 +1,16 @@
 {{< pagebreak >}}
 
-## `ExcludeTrailingCitations` {#standard-excludetrailingcitations}
+### `ExcludeTrailingCitations` {#standard-excludetrailingcitations}
 
 Specifies whether to exclude\index{text exclusion} trailing citations.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 ExcludeTrailingCitations(boolean exclude)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

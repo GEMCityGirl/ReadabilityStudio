@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `GetParagraphsParsingMethod`
+### `GetParagraphsParsingMethod`
 
 Returns how hard returns help determine how paragraphs and sentences are detected.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 ParagraphParse GetParagraphsParsingMethod()
 ```
 
-### Return value {-}
+#### Return value {-}
 
 Type: [`ParagraphParse`](#paragraphparse)
 

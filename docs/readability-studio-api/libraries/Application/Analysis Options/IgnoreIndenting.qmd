@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `IgnoreIndenting`
+### `IgnoreIndenting`
 
 Sets whether to ignore indenting when parsing paragraphs for new projects.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 IgnoreIndenting(boolean ignore)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

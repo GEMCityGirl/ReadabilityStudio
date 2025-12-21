@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `SetPlotBackgroundImageFit`
+### `SetPlotBackgroundImageFit`
 
 Specifies how to adjust an image to fit within a graph's background for new projects.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 SetPlotBackgroundImageFit(ImageFit fitType)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

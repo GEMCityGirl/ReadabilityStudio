@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `GetTextExclusion`
+### `GetTextExclusion`
 
 Returns how text should be excluded for new projects.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 TextExclusionType GetTextExclusion()
 ```
 
-### Return value {-}
+#### Return value {-}
 
 Type: [`TextExclusionType`](#textexclusiontype)
 :::

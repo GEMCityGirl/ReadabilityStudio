@@ -1,16 +1,16 @@
 {{< pagebreak >}}
 
-## `LogMessage`
+### `LogMessage`
 
 Sends a message\index{log report!sending messages to} to program's logging system.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 LogMessage(string message)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

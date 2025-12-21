@@ -1,10 +1,10 @@
 {{< pagebreak >}}
 
-## `SetGrammarResultsOptions`
+### `SetGrammarResultsOptions`
 
 Sets which grammar results should be included.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 SetGrammarResultsOptions(boolean includeHighlightedReport,
@@ -21,7 +21,7 @@ SetGrammarResultsOptions(boolean includeHighlightedReport,
                          boolean includeLowercasedSentences)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

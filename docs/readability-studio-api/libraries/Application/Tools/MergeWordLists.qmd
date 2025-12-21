@@ -1,6 +1,6 @@
 {{< pagebreak >}}
 
-## `MergeWordLists`
+### `MergeWordLists`
 
 Merges multiple word lists\index{word lists!merging} into a new file.
 
@@ -8,7 +8,7 @@ All white space characters (i.e., space, tabs, newlines) are used as delimiters 
 
 To preserve phrases (i.e., words separated by spaces), use [`MergePhraseLists()`](#mergephraselists) instead.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 boolean MergeWordLists(string input1,
@@ -16,13 +16,13 @@ boolean MergeWordLists(string input1,
                        string outputFilePath)
 ```
 
-### Return value {-}
+#### Return value {-}
 
 Type: `boolean`
 
 Returns `true` if files were successfully merged.
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

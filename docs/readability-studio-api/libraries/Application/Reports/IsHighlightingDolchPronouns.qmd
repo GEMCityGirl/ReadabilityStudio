@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `IsHighlightingDolchPronouns`
+### `IsHighlightingDolchPronouns`
 
 Returns whether Dolch pronouns are being highlighted in the formatted Dolch report for new projects.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 boolean IsHighlightingDolchPronouns()
 ```
 
-### Return value {-}
+#### Return value {-}
 
 Type: `boolean`
 :::

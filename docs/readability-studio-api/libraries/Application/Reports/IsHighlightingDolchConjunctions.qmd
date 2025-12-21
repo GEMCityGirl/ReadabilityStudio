@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `IsHighlightingDolchConjunctions`
+### `IsHighlightingDolchConjunctions`
 
 Returns whether Dolch conjunctions are being highlighted in the formatted Dolch report for new projects.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 boolean IsHighlightingDolchConjunctions()
 ```
 
-### Return value {-}
+#### Return value {-}
 
 Type: `boolean`
 :::

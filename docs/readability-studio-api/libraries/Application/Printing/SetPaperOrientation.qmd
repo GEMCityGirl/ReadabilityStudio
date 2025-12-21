@@ -1,17 +1,17 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `SetPaperOrientation`
+### `SetPaperOrientation`
 
 Sets the printer paper orientation\index{printing!paper orientation}.
 
 [`Orientation.Vertical`](#orientation) is portrait and [`Orientation:Horizontal`](#orientation) is landscape.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 SetPaperOrientation(Orientation orient)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

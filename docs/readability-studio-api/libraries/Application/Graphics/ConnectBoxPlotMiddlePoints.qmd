@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `ConnectBoxPlotMiddlePoints`
+### `ConnectBoxPlotMiddlePoints`
 
 Specifies whether to connect the medians\index{graphs!box plots} between box plots for new projects.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 ConnectBoxPlotMiddlePoints(boolean display)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

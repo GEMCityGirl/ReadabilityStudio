@@ -1,9 +1,9 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `SetGraphTopTitleFont`
+### `SetGraphTopTitleFont`
 
 Sets the font\index{graphs!fonts} for the graphs' top titles for new projects.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 SetGraphTopTitleFont(string fontName,
@@ -12,7 +12,7 @@ SetGraphTopTitleFont(string fontName,
                      string color)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

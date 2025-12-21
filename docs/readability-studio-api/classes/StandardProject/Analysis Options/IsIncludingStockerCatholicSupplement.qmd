@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `IsIncludingStockerCatholicSupplement`
+### `IsIncludingStockerCatholicSupplement`
 
 Returns whether additional Catholic words are being included with the Dale-Chall test.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 boolean IsIncludingStockerCatholicSupplement()
 ```
 
-### Return value {-}
+#### Return value {-}
 
 Type: `boolean`
 :::

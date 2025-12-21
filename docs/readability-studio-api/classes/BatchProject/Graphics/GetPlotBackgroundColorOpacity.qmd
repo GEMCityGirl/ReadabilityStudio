@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `GetPlotBackgroundColorOpacity`
+### `GetPlotBackgroundColorOpacity`
 
 Returns the graph background (plot area) color opacity.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 number GetPlotBackgroundColorOpacity()
 ```
 
-### Return value {-}
+#### Return value {-}
 
 Type: `number`
 :::

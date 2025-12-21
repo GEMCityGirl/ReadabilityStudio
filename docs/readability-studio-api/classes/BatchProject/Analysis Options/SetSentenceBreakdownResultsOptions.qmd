@@ -1,9 +1,9 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `SetSentenceBreakdownResultsOptions`
+### `SetSentenceBreakdownResultsOptions`
 
 Sets which results in the sentences breakdown section should be included.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 SetSentenceBreakdownResultsOptions(boolean includeLongSentences,
@@ -12,7 +12,7 @@ SetSentenceBreakdownResultsOptions(boolean includeLongSentences,
                                    boolean includeLengthsDensity)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

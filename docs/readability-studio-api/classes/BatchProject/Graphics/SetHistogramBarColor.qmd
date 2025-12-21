@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `SetHistogramBarColor`
+### `SetHistogramBarColor`
 
 Sets bar color (in histograms\index{graphs!histograms}).
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 SetHistogramBarColor(string colorName)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

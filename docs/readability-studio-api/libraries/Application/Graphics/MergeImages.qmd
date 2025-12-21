@@ -1,10 +1,10 @@
 {{< pagebreak >}}
 
-## `MergeImages`
+### `MergeImages`
 
 Combines\index{images!editing} a list of images vertically or horizontally.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 boolean MergeImages(string inputImage1,
@@ -13,13 +13,13 @@ boolean MergeImages(string inputImage1,
                     Orientation direction)
 ```
 
-### Return value {-}
+#### Return value {-}
 
 Type: `boolean`
 
 Returns `true` if image was successfully saved.
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

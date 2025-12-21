@@ -1,9 +1,9 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `SortGraph`
+### `SortGraph`
 
 Sorts the bars in the specified bar chart.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 SortGraph(GraphType type,
@@ -11,7 +11,7 @@ SortGraph(GraphType type,
 ```
 
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

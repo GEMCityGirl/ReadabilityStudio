@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `ExcludeTrailingCitations`
+### `ExcludeTrailingCitations`
 
 Specifies whether to exclude\index{text exclusion} trailing citations from the document analysis.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 ExcludeTrailingCitations(boolean exclude)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

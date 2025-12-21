@@ -1,17 +1,17 @@
 {{< pagebreak >}}
 
-## `ExportHighlightedWords`
+### `ExportHighlightedWords`
 
 Saves\index{highlighted reports!exporting} the specified highlighted words as an RTF or HTML report.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 ExportHighlightedWords(HighlightedWordReportType type,
                        string outputFilePath)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

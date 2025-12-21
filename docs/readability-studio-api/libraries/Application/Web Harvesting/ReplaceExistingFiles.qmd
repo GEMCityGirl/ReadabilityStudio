@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `ReplaceExistingFiles`
+### `ReplaceExistingFiles`
 
 Sets whether files being downloaded\index{web harvester!settings} during a web harvest can overwrite each other if they have the same path.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 ReplaceExistingFiles(boolean use)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

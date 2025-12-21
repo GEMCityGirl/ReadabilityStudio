@@ -1,9 +1,9 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `ResetSettings`
+### `ResetSettings`
 
 Resets the program's settings to the factory default.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 ResetSettings()

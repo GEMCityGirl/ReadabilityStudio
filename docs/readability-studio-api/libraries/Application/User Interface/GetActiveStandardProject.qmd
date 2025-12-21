@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `GetActiveStandardProject`
+### `GetActiveStandardProject`
 
 Returns the active standard project\index{projects!getting active}.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 StandardProject GetActiveStandardProject()
 ```
 
-### Return value {-}
+#### Return value {-}
 
 Type: [`StandardProject`](#standardproject)
 

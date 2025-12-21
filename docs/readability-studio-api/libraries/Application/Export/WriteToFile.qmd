@@ -1,24 +1,24 @@
 {{< pagebreak >}}
 
-## `WriteToFile`
+### `WriteToFile`
 
 Writes a string to the specified file path.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 boolean WriteToFile(string filePath,
                     string message)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |
 | `string` filePath | The file to write to (will be overwritten if file exists). |
 | `string` message | The text to write to the file. |
 
-### Return value {-}
+#### Return value {-}
 
 Type: `boolean`
 

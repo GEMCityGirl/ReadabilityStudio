@@ -1,16 +1,16 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `SelectWindow` {#batch-selectwindow}
+### `SelectWindow` {#batch-selectwindow}
 
 Selects a window in the project.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 SelectWindow(SideBarSection section,
              number windowId = -1)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

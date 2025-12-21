@@ -1,16 +1,16 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `GetDomainRestriction`
+### `GetDomainRestriction`
 
 Returns the domains restrictions that the web harvester is using while crawling.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 DomainRestriction GetDomainRestriction()
 ```
 
 
-### Return value {-}
+#### Return value {-}
 
 Type: [`DomainRestriction`](#domainrestriction)
 

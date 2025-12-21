@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `SetTextHighlighting`
+### `SetTextHighlighting`
 
 Sets how to highlight content in formatted reports\index{highlighted reports!how to highlight}.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 SetTextHighlighting(TextHighlight highlighting)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

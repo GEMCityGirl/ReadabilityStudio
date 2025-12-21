@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `IsApplyingGraphBackgroundFade`
+### `IsApplyingGraphBackgroundFade`
 
 Returns whether to apply a fade to graph background colors for new projects.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 boolean IsApplyingGraphBackgroundFade()
 ```
 
-### Return value {-}
+#### Return value {-}
 
 Type: `boolean`
 :::

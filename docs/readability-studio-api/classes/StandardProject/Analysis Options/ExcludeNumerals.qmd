@@ -1,16 +1,16 @@
 {{< pagebreak >}}
 
-## `ExcludeNumerals` {#standard-excludenumerals}
+### `ExcludeNumerals` {#standard-excludenumerals}
 
 Specifies whether to exclude\index{text exclusion} numerals.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 ExcludeNumerals(boolean exclude)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

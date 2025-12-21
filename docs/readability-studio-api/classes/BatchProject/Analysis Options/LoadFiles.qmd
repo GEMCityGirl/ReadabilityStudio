@@ -1,16 +1,16 @@
 {{< pagebreak >}}
 
-## `LoadFiles`
+### `LoadFiles`
 
 Analyses a list of provided file paths.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 LoadFiles(table files)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

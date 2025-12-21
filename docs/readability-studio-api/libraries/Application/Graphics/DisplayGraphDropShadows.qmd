@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `DisplayGraphDropShadows`
+### `DisplayGraphDropShadows`
 
 Specifies whether to use shadows underneath items (such as bars) on all the graphs.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 DisplayGraphDropShadows(boolean useShadows)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

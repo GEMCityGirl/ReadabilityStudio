@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `SetPhraseExclusionList`
+### `SetPhraseExclusionList`
 
 Sets the filepath to the list of phrases and words that should be excluded from analysis.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 SetPhraseExclusionList(string exclusionListPath)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

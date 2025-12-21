@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `GetPlotBackgroundImageFit`
+### `GetPlotBackgroundImageFit`
 
 Returns how to adjust an image to fit within a graph's background.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 ImageFit GetPlotBackgroundImageFit()
 ```
 
-### Return value {-}
+#### Return value {-}
 
 Type: [`ImageFit`](#imagefit)
 :::

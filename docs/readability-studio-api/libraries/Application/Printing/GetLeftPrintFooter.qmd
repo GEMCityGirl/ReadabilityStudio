@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `GetLeftPrintFooter`
+### `GetLeftPrintFooter`
 
 Returns the left print footer\index{printing!headers \& footers}.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 string GetLeftPrintFooter()
 ```
 
-### Return value {-}
+#### Return value {-}
 
 Type: `string`
 

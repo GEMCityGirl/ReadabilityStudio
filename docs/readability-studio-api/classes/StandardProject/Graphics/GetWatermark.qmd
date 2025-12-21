@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `GetWatermark`
+### `GetWatermark`
 
 Returns the watermark drawn on graphs for.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 string GetWatermark()
 ```
 
-### Return value {-}
+#### Return value {-}
 
 Type: `string`
 :::

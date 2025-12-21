@@ -1,16 +1,16 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `SetHistogramBarEffect`
+### `SetHistogramBarEffect`
 
 Sets bar appearance (in histograms\index{graphs!histograms}).
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 SetHistogramBarEffect(BoxEffect barEffect)
 ```
 
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

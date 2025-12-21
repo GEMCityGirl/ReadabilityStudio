@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `HighlightDolchAdverbs`
+### `HighlightDolchAdverbs`
 
 Sets whether to highlight Dolch adverbs in the formatted Dolch report for new projects.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 HighlightDolchAdverbs(boolean highlight)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

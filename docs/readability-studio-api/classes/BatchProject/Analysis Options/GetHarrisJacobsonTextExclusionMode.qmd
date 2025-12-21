@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `GetHarrisJacobsonTextExclusionMode`
+### `GetHarrisJacobsonTextExclusionMode`
 
 Returns how text is excluded for the Harris-Jacobson test.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 SpecializedTestTextExclusion GetHarrisJacobsonTextExclusionMode()
 ```
 
-### Return value {-}
+#### Return value {-}
 
 Type: [`SpecializedTestTextExclusion`](#specializedtesttextexclusion)
 :::

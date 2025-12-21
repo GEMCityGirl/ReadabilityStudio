@@ -1,10 +1,10 @@
 {{< pagebreak >}}
 
-## `ApplyImageEffect`
+### `ApplyImageEffect`
 
 Applies\index{images!editing} an effect to an image and saves the result to another image file.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 boolean ApplyImageEffect(string inputImagePath,
@@ -13,13 +13,13 @@ boolean ApplyImageEffect(string inputImagePath,
 ```
 
 
-### Return value {-}
+#### Return value {-}
 
 Type: `boolean`
 
 Returns `true` if image was successfully saved.
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

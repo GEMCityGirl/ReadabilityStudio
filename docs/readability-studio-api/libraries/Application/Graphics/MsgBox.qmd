@@ -1,9 +1,9 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `MsgBox`
+### `MsgBox`
 
 Displays a message (with optional title).
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 MsgBox(string message,
@@ -13,7 +13,7 @@ MsgBox(boolean value,
        string title = "Readability Studio")
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

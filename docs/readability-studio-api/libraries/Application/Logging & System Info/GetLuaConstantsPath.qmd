@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `GetLuaConstantsPath`
+### `GetLuaConstantsPath`
 
 Returns the path of the file\index{file paths!support files} containing the Lua enumerations used by the program.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 string GetLuaConstantsPath()
 ```
 
-### Return value {-}
+#### Return value {-}
 
 Type: `string`
 :::

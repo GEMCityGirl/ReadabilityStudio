@@ -1,10 +1,10 @@
 {{< pagebreak >}}
 
-## `SetWordsBreakdownResultsOptions`
+### `SetWordsBreakdownResultsOptions`
 
 Sets which results in the words breakdown section should be included for new projects.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 SetWordsBreakdownResultsOptions(boolean includeWordCounts,
@@ -20,7 +20,7 @@ SetWordsBreakdownResultsOptions(boolean includeWordCounts,
                                 boolean includeKeyWords)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

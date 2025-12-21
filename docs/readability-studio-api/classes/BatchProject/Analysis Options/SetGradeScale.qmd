@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `SetGradeScale`
+### `SetGradeScale`
 
 Sets the grade scales\index{grade scales} used to display test scores.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 SetGradeScale(GradeScale scale)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

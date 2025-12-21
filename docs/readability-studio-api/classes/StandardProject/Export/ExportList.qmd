@@ -7,11 +7,11 @@ source('R/appdown.r')
 
 {{< pagebreak >}}
 
-## `ExportList` {#standard-exportlist}
+### `ExportList` {#standard-exportlist}
 
 Saves\index{lists!exporting} the specified list as an HTML, text, or {{< latex >}} file to *outputFilePath*.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 ExportList(ListType type,
@@ -24,7 +24,7 @@ ExportList(ListType type,
            boolean IncludePageBreaks = false)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

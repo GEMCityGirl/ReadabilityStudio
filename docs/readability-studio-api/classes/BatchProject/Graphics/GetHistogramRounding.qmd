@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `GetHistogramRounding`
+### `GetHistogramRounding`
 
 Returns how data are rounded (during binning) in histograms\index{graphs!histograms}.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 Rounding GetHistogramRounding()
 ```
 
-### Return value {-}
+#### Return value {-}
 
 Type: [`Rounding`](#rounding)
 :::

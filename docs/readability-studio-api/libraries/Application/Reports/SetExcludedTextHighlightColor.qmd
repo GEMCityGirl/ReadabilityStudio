@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `SetExcludedTextHighlightColor`
+### `SetExcludedTextHighlightColor`
 
 Sets the font color for excluded\index{text exclusion} text in formatted reports for new projects.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 SetExcludedTextHighlightColor(string colorName)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

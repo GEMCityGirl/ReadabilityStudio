@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `HighlightDolchAdjectives`
+### `HighlightDolchAdjectives`
 
 Sets whether to highlight Dolch adjectives in the formatted Dolch report.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 HighlightDolchAdjectives(boolean highlight)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

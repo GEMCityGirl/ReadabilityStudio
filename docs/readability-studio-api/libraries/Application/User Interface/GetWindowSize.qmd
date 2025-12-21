@@ -1,16 +1,16 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `GetWindowSize`
+### `GetWindowSize`
 
 Returns the current size of the application window (table containing width and height).
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 table GetWindowSize()
 ```
 
 
-### Return value {-}
+#### Return value {-}
 
 Type: `table`
 

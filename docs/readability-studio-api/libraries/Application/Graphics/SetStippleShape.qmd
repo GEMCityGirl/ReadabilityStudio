@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `SetStippleShape` {#app-setstippleshape}
+### `SetStippleShape` {#app-setstippleshape}
 
 Sets the stipple shape used to draw bars in graphs for new projects.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 SetStippleShape(string shapeId)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

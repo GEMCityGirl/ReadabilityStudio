@@ -1,9 +1,9 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `SortList` {#batch-sortlist}
+### `SortList` {#batch-sortlist}
 
 Sorts\index{lists!sorting} the specified list using a series of columns and sorting orders.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 SortList(ListType list,
@@ -12,7 +12,7 @@ SortList(ListType list,
          ...) 
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

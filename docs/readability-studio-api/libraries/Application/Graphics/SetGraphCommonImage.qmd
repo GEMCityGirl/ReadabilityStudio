@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `SetGraphCommonImage`
+### `SetGraphCommonImage`
 
 Sets the common image\index{images!bar backgrounds} drawn across all bars for new projects.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 SetGraphCommonImage(string imagePath)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

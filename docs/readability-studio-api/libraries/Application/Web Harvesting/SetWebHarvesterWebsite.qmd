@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `SetWebHarvesterWebsite`
+### `SetWebHarvesterWebsite`
 
 Sets the website to harvest next.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 SetWebHarvesterWebsite(string Url)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

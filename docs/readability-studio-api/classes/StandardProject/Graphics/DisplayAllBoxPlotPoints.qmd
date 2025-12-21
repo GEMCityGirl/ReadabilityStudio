@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `DisplayAllBoxPlotPoints`
+### `DisplayAllBoxPlotPoints`
 
 Specifies whether to display all points (not just outliers) on box plots.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 DisplayAllBoxPlotPoints(boolean display)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

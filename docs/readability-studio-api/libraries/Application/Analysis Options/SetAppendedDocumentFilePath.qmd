@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `SetAppendedDocumentFilePath`
+### `SetAppendedDocumentFilePath`
 
 Sets the file path to the document being appended for new projects.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 SetAppendedDocumentFilePath(string filePath)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

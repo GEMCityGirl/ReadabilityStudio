@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `IsLoggingVerbose`
+### `IsLoggingVerbose`
 
 Returns whether verbose\index{log report!settings} logging is enabled.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 boolean IsLoggingVerbose()
 ```
 
-### Return value {-}
+#### Return value {-}
 
 Type: `boolean`
 :::

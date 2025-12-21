@@ -1,13 +1,13 @@
 {{< pagebreak >}}
 
-## `MergePhraseLists`
+### `MergePhraseLists`
 
 Merges multiple phrase lists\index{word lists!merging} into a new file.
 
 Newlines are used as delimiters when extracting phrases from the files.
 In other words, each line will be a separate phrase.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 boolean MergePhraseLists(string inputFile1,
@@ -15,13 +15,13 @@ boolean MergePhraseLists(string inputFile1,
                          string outputFile)
 ```
 
-### Return value {-}
+#### Return value {-}
 
 Type: `boolean`
 
 Returns `true` if files were successfully merged.
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

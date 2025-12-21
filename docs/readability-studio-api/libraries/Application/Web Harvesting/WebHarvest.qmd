@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `WebHarvest`
+### `WebHarvest`
 
 Begins crawling the web harvester's currently loaded website.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 boolean WebHarvest()
 ```
 
-### Return value {-}
+#### Return value {-}
 
 Type: `boolean`
 

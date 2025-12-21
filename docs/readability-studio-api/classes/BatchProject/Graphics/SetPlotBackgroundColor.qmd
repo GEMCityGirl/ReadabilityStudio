@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `SetPlotBackgroundColor` {#batch-setplotbackgroundcolor}
+### `SetPlotBackgroundColor` {#batch-setplotbackgroundcolor}
 
 Sets the plot area color for all graphs.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 SetPlotBackgroundColor(string colorName)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

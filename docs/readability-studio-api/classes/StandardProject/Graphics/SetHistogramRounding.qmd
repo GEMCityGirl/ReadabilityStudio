@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `SetHistogramRounding`
+### `SetHistogramRounding`
 
 Sets how data are rounded (during binning) in histograms\index{graphs!histograms}.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 SetHistogramRounding(Rounding method)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

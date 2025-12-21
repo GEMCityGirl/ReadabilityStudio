@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `GetNumeralCount`
+### `GetNumeralCount`
 
 Returns the number of numeric words from the document.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 number GetNumeralCount()
 ```
 
-### Return value {-}
+#### Return value {-}
 
 Type: `number`
 :::

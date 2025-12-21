@@ -1,9 +1,9 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `SetGraphRightTitleFont`
+### `SetGraphRightTitleFont`
 
 Sets the font\index{graphs!fonts} for the graphs' right titles.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 SetGraphRightTitleFont(string fontName,
@@ -12,7 +12,7 @@ SetGraphRightTitleFont(string fontName,
                        string color)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

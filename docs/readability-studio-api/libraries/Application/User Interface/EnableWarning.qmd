@@ -1,10 +1,10 @@
 {{< pagebreak >}}
 
-## `EnableWarning`
+### `EnableWarning`
 
 Enables\index{warnings!enabling} the specified warning.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 EnableWarning(string warningId)

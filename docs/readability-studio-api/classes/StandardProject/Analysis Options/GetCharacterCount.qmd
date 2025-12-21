@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `GetCharacterCount`
+### `GetCharacterCount`
 
 Returns the total number of characters (letters and numbers) from the document.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 number GetCharacterCount()
 ```
 
-### Return value {-}
+#### Return value {-}
 
 Type: `number`
 :::

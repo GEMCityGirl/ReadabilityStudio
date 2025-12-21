@@ -1,11 +1,11 @@
 {{< pagebreak >}}
 
-## `ExportFilteredText` {#standard-exportfilteredtext}
+### `ExportFilteredText` {#standard-exportfilteredtext}
 
 Saves a copy of the project's document with excluded text (and other optional items) filtered out.
 Returns `true` if successful.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 ExportFilteredText(string outputFilePath,
@@ -16,7 +16,7 @@ ExportFilteredText(string outputFilePath,
                    boolean stripAbbreviations)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

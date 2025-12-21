@@ -1,22 +1,22 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `GetTestId`
+### `GetTestId`
 
 Returns the numeric ID of a test, which should be passed in as a string.
 This function can be used to find a custom test's window.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 number GetTestId(string testName)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |
 | `string` testName | The name of the test. |
 
-### Return value {-}
+#### Return value {-}
 
 Type: `number`
 

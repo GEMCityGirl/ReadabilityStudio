@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `GetUnfamiliarDCWordCount`
+### `GetUnfamiliarDCWordCount`
 
 Returns the number of words unfamiliar to the Dale-Chall test from the document.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 number GetUnfamiliarDCWordCount()
 ```
 
-### Return value {-}
+#### Return value {-}
 
 Type: `number`
 :::

@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `IsFogUsingSentenceUnits`
+### `IsFogUsingSentenceUnits`
 
 Returns whether to count independent clauses when calculating Gunning Fog for new projects.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 boolean IsFogUsingSentenceUnits()
 ```
 
-### Return value {-}
+#### Return value {-}
 
 Type: `boolean`
 :::

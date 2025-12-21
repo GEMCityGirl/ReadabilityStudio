@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `IsIncludingFleschRulerDocGroups`
+### `IsIncludingFleschRulerDocGroups`
 
 Returns document group labels are drawn next to the syllable ruler on Flesch charts.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 boolean IsIncludingFleschRulerDocGroups()
 ```
 
-### Return value {-}
+#### Return value {-}
 
 Type: `boolean`
 :::

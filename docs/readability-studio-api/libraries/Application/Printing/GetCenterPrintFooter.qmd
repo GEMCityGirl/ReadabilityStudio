@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `GetCenterPrintFooter`
+### `GetCenterPrintFooter`
 
 Returns the center print footer\index{printing!headers \& footers}.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 string GetCenterPrintFooter()
 ```
 
-### Return value {-}
+#### Return value {-}
 
 Type: `string`
 

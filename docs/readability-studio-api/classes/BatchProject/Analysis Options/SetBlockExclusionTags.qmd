@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `SetBlockExclusionTags` {#batch-setblockexclusiontags}
+### `SetBlockExclusionTags` {#batch-setblockexclusiontags}
 
 Specifies a pair of tags that will exclude all text between them.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 SetBlockExclusionTags(string tagString)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

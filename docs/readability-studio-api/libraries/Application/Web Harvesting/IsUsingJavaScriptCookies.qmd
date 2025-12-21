@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `IsUsingJavaScriptCookies`
+### `IsUsingJavaScriptCookies`
 
 Returns whether the web harvester parses JavaScript\index{web harvester!settings} for cookies needed by the website.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 boolean IsUsingJavaScriptCookies()
 ```
 
-### Return value {-}
+#### Return value {-}
 
 Type: `boolean`
 :::

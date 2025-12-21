@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `SetUserAgent`
+### `SetUserAgent`
 
 Sets the user agent\index{web harvester!settings} used when reading or downloading content from websites.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 SetUserAgent(string userAgent)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

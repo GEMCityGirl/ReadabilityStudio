@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `SetSentenceStartMustBeUppercased`
+### `SetSentenceStartMustBeUppercased`
 
 Sets whether the first word of a sentence must be capitalized for new projects.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 SetSentenceStartMustBeUppercased(boolean caps)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

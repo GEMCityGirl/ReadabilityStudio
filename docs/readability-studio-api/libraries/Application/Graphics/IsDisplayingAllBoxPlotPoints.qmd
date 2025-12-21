@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `IsDisplayingAllBoxPlotPoints`
+### `IsDisplayingAllBoxPlotPoints`
 
 Returns whether to display all points\index{graphs!box plots} (not just outliers) on box plots for new projects.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 boolean IsDisplayingAllBoxPlotPoints()
 ```
 
-### Return value {-}
+#### Return value {-}
 
 Type: `boolean`
 :::

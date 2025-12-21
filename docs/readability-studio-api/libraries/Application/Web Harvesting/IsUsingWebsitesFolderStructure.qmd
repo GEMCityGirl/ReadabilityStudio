@@ -1,16 +1,16 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `IsUsingWebsitesFolderStructure`
+### `IsUsingWebsitesFolderStructure`
 
 Returns whether to mirror websites' folder structure\index{web harvester!settings} when downloading their files.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 boolean IsUsingWebsitesFolderStructure()
 ```
 
 
-### Return value {-}
+#### Return value {-}
 
 Type: `boolean`
 

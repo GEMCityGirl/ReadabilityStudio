@@ -1,22 +1,22 @@
 {{< pagebreak >}}
 
-## `GetImageInfo`
+### `GetImageInfo`
 
 Returns\index{images!getting information about} the details of a given file.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 table GetImageInfo(string imagePath)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |
 | `string` imagePath | The file path of the image. |
 
-### Return value {-}
+#### Return value {-}
 
 Type: `table`
 

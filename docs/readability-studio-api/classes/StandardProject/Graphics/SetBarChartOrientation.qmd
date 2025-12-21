@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `SetBarChartOrientation`
+### `SetBarChartOrientation`
 
 Sets whether the bar charts\index{graphs!bar charts} should be drawn vertically or horizontally.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 SetBarChartOrientation(Orientation orient)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

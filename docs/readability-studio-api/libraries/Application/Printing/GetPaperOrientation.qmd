@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `GetPaperOrientation`
+### `GetPaperOrientation`
 
 Returns the printer paper orientation\index{printing!paper orientation}.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 Orientation GetPaperOrientation()
 ```
 
-### Return value {-}
+#### Return value {-}
 
 Type: [`Orientation`](#orientation)
 :::

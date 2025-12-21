@@ -1,9 +1,9 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `SetGraphBottomTitleFont`
+### `SetGraphBottomTitleFont`
 
 Sets the font\index{graphs!fonts} for the graphs' bottom titles.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 SetGraphBottomTitleFont(string fontName,
@@ -12,7 +12,7 @@ SetGraphBottomTitleFont(string fontName,
                         string color)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `SetBoxPlotEffect`
+### `SetBoxPlotEffect`
 
 Sets box appearance\index{graphs!box plots} (in box plots).
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 SetBoxPlotEffect(BoxEffect barEffect)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

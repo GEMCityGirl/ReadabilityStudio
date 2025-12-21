@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `SentenceStartMustBeUppercased`
+### `SentenceStartMustBeUppercased`
 
 Returns whether the first word of a sentence must be capitalized.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 boolean SentenceStartMustBeUppercased()
 ```
 
-### Return value {-}
+#### Return value {-}
 
 Type: `boolean`
 :::

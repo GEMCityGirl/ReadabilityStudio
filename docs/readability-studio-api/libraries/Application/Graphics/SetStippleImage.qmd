@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `SetStippleImage`
+### `SetStippleImage`
 
 Sets the stipple image\index{images!stippling} used to draw bars in graphs for new projects.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 SetStippleImage(string imagePath)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

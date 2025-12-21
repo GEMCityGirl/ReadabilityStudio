@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `IsDisplayingGraphDropShadows`
+### `IsDisplayingGraphDropShadows`
 
 Returns whether to display shadows on graphs.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 boolean IsDisplayingGraphDropShadows()
 ```
 
-### Return value {-}
+#### Return value {-}
 
 Type: `boolean`
 :::

@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `GetPhraseExclusionList`
+### `GetPhraseExclusionList`
 
 Returns the filepath to the phrase exclusion list.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 string GetPhraseExclusionList()
 ```
 
-### Return value {-}
+#### Return value {-}
 
 Type: `string`
 :::

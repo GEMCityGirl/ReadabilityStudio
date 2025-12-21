@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `GetTextHighlighting`
+### `GetTextHighlighting`
 
 Returns how to highlight content\index{highlighted reports!how to highlight} in formatted reports.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 TextHighlight GetTextHighlighting()
 ```
 
-### Return value {-}
+#### Return value {-}
 
 Type: [`TextHighlight`](#texthighlight)
 :::

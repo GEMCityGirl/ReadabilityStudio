@@ -1,9 +1,9 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `DisableAllWarnings`
+### `DisableAllWarnings`
 
 Suppresses\index{warnings!disabling} most warnings and prompts throughout the program.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 DisableAllWarnings()

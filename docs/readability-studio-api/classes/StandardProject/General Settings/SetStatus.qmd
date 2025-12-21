@@ -1,16 +1,16 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `SetStatus`
+### `SetStatus`
 
 Sets the status of the project.
 This can be freeform text.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 SetStatus(string status)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

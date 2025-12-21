@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `SetMinDocWordCountForBatch`
+### `SetMinDocWordCountForBatch`
 
 Sets the minimum number of words that a document must have to be included in the project.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 SetMinDocWordCountForBatch(number wordCount)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

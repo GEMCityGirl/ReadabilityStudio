@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `Close` {#standard-close}
+### `Close` {#standard-close}
 
 Closes the project.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 Close(boolean saveChanges = false)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

@@ -1,9 +1,9 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `ExportGraph` {#batch-exportgraph}
+### `ExportGraph` {#batch-exportgraph}
 
 Saves\index{graphs!exporting} the specified graph as an image\index{images!saving graphs as}.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 ExportGraph(SideBarSection section,
@@ -14,7 +14,7 @@ ExportGraph(SideBarSection section,
             number height)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

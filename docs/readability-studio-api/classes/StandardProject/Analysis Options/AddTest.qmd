@@ -1,9 +1,9 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `AddTest`
+### `AddTest`
 
 Adds a test to the project.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 boolean AddTest(Test testID)
@@ -11,13 +11,13 @@ boolean AddTest(Test testID)
 boolean AddTest(string testName)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |
 | [`Test`](#test)/`string` testID | The test to add.<br>\linebreak (For a custom test, use the name of the test.) |
 
-### Return value {-}
+#### Return value {-}
 
 Type: `boolean`
 

@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `GetDocumentFilePath`
+### `GetDocumentFilePath`
 
 Returns the path of the document being analyzed by the project.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 string GetDocumentFilePath()
 ```
 
-### Return value {-}
+#### Return value {-}
 
 Type: `string`
 :::

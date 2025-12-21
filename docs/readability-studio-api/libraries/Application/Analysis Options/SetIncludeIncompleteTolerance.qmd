@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `SetIncludeIncompleteTolerance`
+### `SetIncludeIncompleteTolerance`
 
 Specifies the minimum number of words that will make a sentence missing terminating punctuation be considered complete.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 SetIncludeIncompleteTolerance(number wordCount)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

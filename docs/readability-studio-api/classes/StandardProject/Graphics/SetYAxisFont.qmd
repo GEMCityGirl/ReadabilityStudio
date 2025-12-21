@@ -1,9 +1,9 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `SetYAxisFont`
+### `SetYAxisFont`
 
 Sets the font\index{graphs!fonts} for the graphs' Y axes.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 SetYAxisFont(string fontName,
@@ -12,7 +12,7 @@ SetYAxisFont(string fontName,
              string color)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

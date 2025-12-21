@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `IsExcludingTrailingCitations`
+### `IsExcludingTrailingCitations`
 
 Returns whether trailing citations are being excluded.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 boolean IsExcludingTrailingCitations()
 ```
 
-### Return value {-}
+#### Return value {-}
 
 Type: `boolean`
 :::

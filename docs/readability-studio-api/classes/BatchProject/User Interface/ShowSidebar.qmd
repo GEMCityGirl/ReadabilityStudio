@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `ShowSidebar` {#batch-showsidebar}
+### `ShowSidebar` {#batch-showsidebar}
 
 Show or hides the project's sidebar\index{user interface!sidebar}.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 ShowSidebar(boolean show)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

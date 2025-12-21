@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `GetProperNounCount`
+### `GetProperNounCount`
 
 Returns the number of proper nouns from the document.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 number GetProperNounCount()
 ```
 
-### Return value {-}
+#### Return value {-}
 
 Type: `number`
 :::

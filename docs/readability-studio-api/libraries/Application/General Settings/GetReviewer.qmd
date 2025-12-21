@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `GetReviewer`
+### `GetReviewer`
 
 Returns the user name for the software.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 string GetReviewer()
 ```
 
-### Return value {-}
+#### Return value {-}
 
 Type: `string`
 

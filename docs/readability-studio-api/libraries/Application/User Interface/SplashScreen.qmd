@@ -1,14 +1,14 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `SplashScreen`
+### `SplashScreen`
 
 Displays the image from the list of splashscreens at the specified index.
 
-### Syntax {-}
+#### Syntax {-}
 ``` {.lua}
 SplashScreen(number index)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

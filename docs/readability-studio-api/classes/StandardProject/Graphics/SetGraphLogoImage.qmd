@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `SetGraphLogoImage`
+### `SetGraphLogoImage`
 
 Sets the logo image\index{images!logos}, shown in the bottom right corner.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 SetGraphLogoImage(string imagePath)
 ```
 
-### Parameters {-}
+#### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |

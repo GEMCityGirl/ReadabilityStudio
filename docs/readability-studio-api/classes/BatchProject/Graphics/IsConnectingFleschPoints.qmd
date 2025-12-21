@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `IsConnectingFleschPoints`
+### `IsConnectingFleschPoints`
 
 Returns whether connection lines should be drawn between the three rulers in Flesch charts.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 boolean IsConnectingFleschPoints()
 ```
 
-### Return value {-}
+#### Return value {-}
 
 Type: `boolean`
 :::

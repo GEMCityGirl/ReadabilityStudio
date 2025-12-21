@@ -1,15 +1,15 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `GetBarChartBarOpacity`
+### `GetBarChartBarOpacity`
 
 Returns the opacity of the bars within the various bar charts\index{graphs!bar charts} for new projects.
 
-### Syntax {-}
+#### Syntax {-}
 
 ``` {.lua}
 number GetBarChartBarOpacity()
 ```
 
-### Return value {-}
+#### Return value {-}
 
 Type: `number`
 :::
