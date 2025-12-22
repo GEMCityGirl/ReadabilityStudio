@@ -13,6 +13,8 @@ as well as a reference for readability formulas.
 Chapters [-@sec-english-readability-tests], [-@sec-spanish-readability-tests],
 and [-@sec-german-readability-tests] provide overviews for English, Spanish, and German tests, respectively.
 
+All translations are by the author unless otherwise indicated.
+
 ::: {.content-visible when-format="html"}
 <!-- PDF output will have its own copyright page after the title.-->
 

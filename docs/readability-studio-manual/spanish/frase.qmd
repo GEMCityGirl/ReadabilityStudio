@@ -25,7 +25,7 @@ It was trained on eight textbooks representing the four levels of difficulty:
 These textbooks "covered a variety of reading topics which dealt with family life, entertainment, customs, the hispanic people, history, and politics" [@{vari-cartier}143].
 300–350 word excerpts were randomly selected from each book, scored on a FRASE graph, and then objectively and subjectively validated.
 
-These validation involved correlating the FRASE scores against "teacher judgments, Spaulding formula ratings, cloze\index{cloze} test scores, and informal multiple choice tests" [@{vari-cartier}144].
+These validations involved correlating the FRASE scores against "teacher judgments, Spaulding formula ratings, cloze\index{cloze} test scores, and informal multiple choice tests" [@{vari-cartier}144].
 (The "teacher judgments" validation involved 16 secondary-level Spanish teachers ranking the samples into the levels of beginner, intermediate, advanced intermediate, and advanced.)
 The comparisons were significantly correlated, with the following results:
 
