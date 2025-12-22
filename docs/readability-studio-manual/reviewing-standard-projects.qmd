@@ -148,7 +148,7 @@ Danielson-Bryan 2\index{Danielson-Bryan 2!plot}—a variation of Flesch Reading 
 
 ![Danielson-Bryan 2 plot](images/db2-plot.png){width=75% fig-align="center"}
 
-INFLESZ\index{INFLESZ!plot}—another variation— plots a score (based on an adjusted FRE calculation) on a 0–100 scale.
+The INFLESZ Scale\index{INFLESZ!plot}—another variation— plots a score (based on an adjusted FRE calculation) on a 0–100 scale.
 This score can then be compared between three different classification scales: INFLESZ, Szigriszt, and Flesch Reading Ease.
 (INFLESZ is preferred over Szigriszt, and Flesch Reading Ease is only included for reference.)
 Similar to Flesch, it groups its scores from "*MUY DIFÍCIL*" ("very difficult") to "*MUY FÁCIL*" ("very easy").
