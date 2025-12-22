@@ -1223,10 +1223,10 @@ void BaseProject::InitializeStandardSpanishReadabilityTests()
         {
         readability::readability_test test(
             ReadabilityMessages::INFLESZ(), XRCID("ID_INFLESZ"), _DT(L"INFLESZ"), _DT(L"INFLESZ"),
-            _(L"The <a href=\"#inflesz\">INFLESZ graph</a> is a Flesch Reading Ease "
+            _(L"The <a href=\"#inflesz\">INFLESZ Scale</a> is a Flesch Reading Ease "
               "like graph for Spanish. It is designed as a general purpose formula for most text."),
             readability::readability_test_type::index_value, true,
-            // Szigriszt-Pazos Perspicuity scale, which needs to be plotted onto the INFLESZ graph
+            // Szigriszt-Pazos Perspicuity scale, which needs to be plotted onto the INFLESZ Scale
             _DT(L"ROUND(CLAMP(206.835 - (W/S) - (62.3 * (B/W)), 0, 100))"));
         // general purpose test, just like FRE
         test.add_document_classification(readability::document_classification::general_document,

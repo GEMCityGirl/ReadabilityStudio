@@ -709,7 +709,7 @@ void BatchProjectView::UpdateSideBarIcons()
                 (isGraph &&
                  checkGraphType(window, wxCLASSINFO(Wisteria::Graphs::DanielsonBryan2Plot))) ?
                                                                                                27 :
-                (isGraph && checkGraphType(window, wxCLASSINFO(Wisteria::Graphs::InfleszChart))) ?
+                (isGraph && checkGraphType(window, wxCLASSINFO(Wisteria::Graphs::InfleszScale))) ?
                                                                                                31 :
                                                                                                9);
             }

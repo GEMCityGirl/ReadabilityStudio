@@ -505,9 +505,9 @@ class BaseProjectView : public wxView
         }
 
     [[nodiscard]]
-    static wxString GetInfleszChartLabel()
+    static wxString GetInfleszScaleLabel()
         {
-        return _(L"INFLESZ Chart");
+        return _(L"INFLESZ Scale");
         }
 
     [[nodiscard]]

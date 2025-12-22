@@ -3983,8 +3983,8 @@ void BatchProjectDoc::DisplayInfleszGraph()
 
             auto foundGroupId =
                 GetDocumentLabels().find(doc->GetOriginalDocumentDescription().wc_str());
-            assert((!IsShowingGroupLegends() || foundGroupId != GetDocumentLabels().cend()) &&
-                   L"Could not find group label for INFLESZ graph!");
+            wxASSERT_MSG((!IsShowingGroupLegends() || foundGroupId != GetDocumentLabels().cend()),
+                   L"Could not find group label for INFLESZ Scale!");
             scoreDataset->AddRow(
                 Wisteria::Data::RowInfo()
                     .Id(wxFileName(doc->GetOriginalDocumentFilePath()).GetFullName().wc_str())
@@ -3993,10 +3993,10 @@ void BatchProjectDoc::DisplayInfleszGraph()
             }
         }
 
-    // INFLESZ Graph
+    // INFLESZ Scale
     if (GetReadabilityTests().is_test_included(ReadabilityMessages::INFLESZ()) && !m_docs.empty())
         {
-        std::shared_ptr<Wisteria::Graphs::InfleszChart> infleszGraph{ nullptr };
+        std::shared_ptr<Wisteria::Graphs::InfleszScale> infleszGraph{ nullptr };
         auto* infleszGraphCanvas = dynamic_cast<Wisteria::Canvas*>(
             view->GetScoresView().FindWindowById(BaseProjectView::INFLESZ_GRAPH_PAGE_ID));
 
@@ -4006,7 +4006,7 @@ void BatchProjectDoc::DisplayInfleszGraph()
                 new Wisteria::Canvas(view->GetSplitter(), BaseProjectView::INFLESZ_GRAPH_PAGE_ID);
             infleszGraphCanvas->SetFixedObjectsGridSize(1, 1);
 
-            infleszGraph = std::make_shared<Wisteria::Graphs::InfleszChart>(
+            infleszGraph = std::make_shared<Wisteria::Graphs::InfleszScale>(
                 infleszGraphCanvas,
                 std::make_shared<Wisteria::Colors::Schemes::ColorScheme>(
                     *std::make_shared<Wisteria::Colors::Schemes::EarthTones>()));
@@ -4024,7 +4024,7 @@ void BatchProjectDoc::DisplayInfleszGraph()
             }
         else
             {
-            infleszGraph = std::dynamic_pointer_cast<Wisteria::Graphs::InfleszChart>(
+            infleszGraph = std::dynamic_pointer_cast<Wisteria::Graphs::InfleszScale>(
                 view->GetInfleszGraph()->GetFixedObject(0, 0));
             assert(infleszGraph);
             infleszGraph->SetData(scoreDataset, scoresColumnName,

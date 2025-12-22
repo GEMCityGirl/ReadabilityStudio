@@ -3344,7 +3344,7 @@ void MainFrame::OnBlankGraph(const wxCommandEvent& event)
             wxGetApp().GetParentingWindow(), wxID_ANY,
             wxString::Format(_(L"Blank \"%s\" Graph"), _DT(L"INFLESZ")));
         graphDlg.GetCanvas()->SetFixedObject(
-            0, 0, std::make_shared<Wisteria::Graphs::InfleszChart>(graphDlg.GetCanvas()));
+            0, 0, std::make_shared<Wisteria::Graphs::InfleszScale>(graphDlg.GetCanvas()));
         wxGetApp().GetAppOptions()->UpdateGraphOptions(graphDlg.GetCanvas());
         graphDlg.GetCanvas()->ResetResizeDelay();
         graphDlg.ShowModal();

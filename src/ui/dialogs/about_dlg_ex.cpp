@@ -272,10 +272,11 @@ void AboutDialogEx::CreateControls()
             sanitizerInfo.Replace(L"\\n", L"\n");
             sanitizerInfo.Trim();
             sanitizerInfo.Trim(false);
-            // TRANSLATORS: AddressSanitizer options used to compile the program.
-            buildInfo += sanitizerInfo.empty() ?
-                             wxString{} :
-                             _(L"\n\nSanitizer options:\n--------------------\n") + sanitizerInfo;
+            buildInfo +=
+                sanitizerInfo.empty() ?
+                    wxString{} :
+                    // TRANSLATORS: AddressSanitizer options used to compile the program.
+                    _(L"\n\nAddressSanitizer options:\n--------------------\n") + sanitizerInfo;
 #endif
             productInfoGrid->Add(new wxStaticText(mainPage, wxID_ANY, buildInfo));
             }

@@ -2892,7 +2892,7 @@ void ProjectDoc::AddInfleszGraph(const bool setFocus)
 
     scoreDataset->AddRow(Wisteria::Data::RowInfo().Continuous({ static_cast<double>(val) }));
 
-    // INFLESZ graph
+    // INFLESZ Scale
     auto* view = dynamic_cast<ProjectView*>(GetFirstView());
     wxGCDC gdc(view->GetDocFrame());
 
@@ -2900,7 +2900,7 @@ void ProjectDoc::AddInfleszGraph(const bool setFocus)
         view->GetReadabilityResultsView().FindWindowById(BaseProjectView::INFLESZ_GRAPH_PAGE_ID));
     if (infleszGraphView != nullptr)
         {
-        auto infleszGraph = std::dynamic_pointer_cast<Wisteria::Graphs::InfleszChart>(
+        auto infleszGraph = std::dynamic_pointer_cast<Wisteria::Graphs::InfleszScale>(
             infleszGraphView->GetFixedObject(0, 0));
         infleszGraph->SetData(scoreDataset, scoresColumnName);
         }
@@ -2911,11 +2911,11 @@ void ProjectDoc::AddInfleszGraph(const bool setFocus)
         infleszGraphView->SetFixedObjectsGridSize(1, 1);
 
         infleszGraphView->Hide();
-        infleszGraphView->SetLabel(BaseProjectView::GetInfleszChartLabel());
-        infleszGraphView->SetName(BaseProjectView::GetInfleszChartLabel());
+        infleszGraphView->SetLabel(BaseProjectView::GetInfleszScaleLabel());
+        infleszGraphView->SetName(BaseProjectView::GetInfleszScaleLabel());
         infleszGraphView->SetPrinterSettings(*wxGetApp().GetPrintData());
 
-        auto infleszGraph = std::make_shared<Wisteria::Graphs::InfleszChart>(
+        auto infleszGraph = std::make_shared<Wisteria::Graphs::InfleszScale>(
             infleszGraphView,
             std::make_shared<Wisteria::Colors::Schemes::ColorScheme>(
                 Wisteria::Colors::Schemes::ColorScheme{ Wisteria::Colors::ColorBrewer::GetColor(
@@ -3639,7 +3639,7 @@ void ProjectDoc::DisplayReadabilityGraphs()
             view->GetReadabilityResultsView().RemoveWindowById(
                 BaseProjectView::CRAWFORD_GRAPH_PAGE_ID);
             }
-        // remove INFLESZ graph if test is not included (Note that this graph is added by
+        // remove INFLESZ Scale if test is not included (Note that this graph is added by
         // AddInfleszGraph, not here).
         if (!GetReadabilityTests().is_test_included(ReadabilityMessages::INFLESZ()))
             {
