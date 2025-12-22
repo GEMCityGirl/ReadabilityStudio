@@ -2,7 +2,7 @@
 
 Refer to @sec-rix-test.
 
-## Rix\index{Rix!variations!German (fiction)} (German fiction) {#sec-rix-german-fiction}
+## Rix\index{Rix!derivatives!German (fiction)} (German fiction) {#sec-rix-german-fiction}
 
 This test is a German variation of [Rix](#sec-rix-test) designed for fiction books.
 It uses a modified index-score formula from Rix, as well as different logic for assigning a grade-level score.
@@ -42,7 +42,7 @@ kableExtra::kbl(dplyr::as_tibble(read_delim("data/RixGermanFiction.txt", "\t", e
 
 \newpage
 
-## Rix\index{Rix!variations!German (non-fiction)} (German non-fiction) {#sec-rix-german-nonfiction}
+## Rix\index{Rix!derivatives!German (non-fiction)} (German non-fiction) {#sec-rix-german-nonfiction}
 
 This test is a German variation of [Rix](#sec-rix-test) designed for non-fiction books.
 It uses a modified index-score formula from Rix, as well as different logic for assigning a grade-level score.

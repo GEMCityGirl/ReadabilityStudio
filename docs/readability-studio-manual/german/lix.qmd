@@ -2,7 +2,7 @@
 
 Refer to @sec-lix-test.
 
-## Lix\index{Lix!variations!German children's literature} (German children's literature) {#sec-lix-german-childrens-literature}
+## Lix\index{Lix!derivatives!German children's literature} (German children's literature) {#sec-lix-german-childrens-literature}
 
 This test is a German variation of [Läsbarhetsindex (Lix)](#sec-lix-test) designed for children's literature.
 It uses the same index-score formula as Lix, but uses different scales for assigning the difficulty and grade-level scores.
@@ -33,7 +33,7 @@ kableExtra::kbl(dplyr::as_tibble(read_delim("data/LixGermanLixChildrensLit.txt",
 
 \newpage
 
-## Lix\index{Lix!variations!German technical literature} (German technical literature) {#sec-lix-german-technical}
+## Lix\index{Lix!derivatives!German technical literature} (German technical literature) {#sec-lix-german-technical}
 
 This test is a German variation of [Läsbarhetsindex (Lix)](#sec-lix-test) designed for technical literature.
 It uses the same index-score formula as Lix, but uses different scales for assigning the difficulty and grade-level scores.

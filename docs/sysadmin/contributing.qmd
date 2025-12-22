@@ -4,7 +4,6 @@ All are welcome to get involved with *{{< var PROGRAM_NAME >}}* by contributing 
 
 There are two main ways to get involved: reporting issues or requests and contributing changes.
 
-
 ## Report a Bug or Request a Feature {-}
 
 If you encounter a problem or have an idea for improvement, please visit our issue tracker:
@@ -26,8 +25,10 @@ When opening an issue:
 To report an issue, a *GitHub* account is required.
 Creating a *GitHub* account is free and only takes a few minutes.
 
+::: {.warningsection data-latex=""}
 All issues are public.
 Please do not include sensitive or confidential information.
+:::
 
 {{< pagebreak >}}
 

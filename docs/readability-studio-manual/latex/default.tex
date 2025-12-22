@@ -589,6 +589,12 @@ $else$
   \definecolor{cover-color}{RGB}{0, 255, 0}
 $endif$
 
+$if(pdf-cover-background-color)$
+  \definecolor{cover-background-color}{RGB}{$pdf-cover-background-color$}
+$else$
+  \colorlet{cover-background-color}{white}
+$endif$
+
 $if(pdf-cover-author-color)$
   \definecolor{author-color}{RGB}{$pdf-cover-author-color$}
 $else$
@@ -598,6 +604,13 @@ $endif$
 \definecolor{white-smoke}{RGB}{232, 232, 232}
 
 \newgeometry{top=0mm, bottom=0mm, left=0mm, right=0mm}
+
+% fill the background
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[cover-background-color]
+    (current page.south west) rectangle
+    (current page.north east);
+\end{tikzpicture}
 
 \titlepagedecoration
 
@@ -624,13 +637,16 @@ $endif$
 \end{tikzpicture}
 
 % author line at the bottom
-\tikz[overlay, remember picture] \node at (current page.south west)[anchor=south west]
-  {
-  \begin{tcolorbox}[enhanced jigsaw, sharp corners, box align=bottom, halign=right, boxsep=0.5cm,
-                spread outwards, grow sidewards by=5mm,
-                colback=white, colframe=white, colframe=white, opacityback=1, opacityframe=1, boxrule=0mm]
-    {\fontsize{18pt}{22pt} \color{author-color} {\usefont{T1}{qcs}{b}{sc} \capitalizetitle{$author$}} }
-  \end{tcolorbox}
+\tikz[overlay, remember picture]
+\node[
+  anchor=south east,
+  xshift=-5mm,
+  yshift=5mm
+] at (current page.south east)
+{
+  {\fontsize{18pt}{22pt}
+   \color{author-color}
+   {\usefont{T1}{qcs}{b}{sc} \capitalizetitle{$author$}}}
 };
 
 $if(pdf-logo)$

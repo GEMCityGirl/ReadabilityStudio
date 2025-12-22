@@ -49,7 +49,7 @@ With the modern availability of computers, it is recommended to use the higher-p
 
 \index{Flesch-Kincaid|)}
 
-## Flesch-Kincaid (Simplified)\index{Flesch-Kincaid!variations!Flesch-Kincaid (simplified)} {#sec-flesch-kincaid-test-simplified}
+## Flesch-Kincaid (Simplified)\index{Flesch-Kincaid!derivatives!Flesch-Kincaid (simplified)} {#sec-flesch-kincaid-test-simplified}
 
 Refer to @sec-flesch-kincaid-test.
 
