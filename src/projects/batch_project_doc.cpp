@@ -3984,7 +3984,7 @@ void BatchProjectDoc::DisplayInfleszGraph()
             auto foundGroupId =
                 GetDocumentLabels().find(doc->GetOriginalDocumentDescription().wc_str());
             wxASSERT_MSG((!IsShowingGroupLegends() || foundGroupId != GetDocumentLabels().cend()),
-                   L"Could not find group label for INFLESZ Scale!");
+                         L"Could not find group label for INFLESZ Scale!");
             scoreDataset->AddRow(
                 Wisteria::Data::RowInfo()
                     .Id(wxFileName(doc->GetOriginalDocumentFilePath()).GetFullName().wc_str())
