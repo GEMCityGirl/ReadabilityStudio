@@ -86,10 +86,7 @@ namespace readability
 
         /// @brief Constructor.
         /// @param sightWord The string to assign.
-        explicit sight_word(word_type sightWord)
-            : m_word(std::move(sightWord))
-            {
-            }
+        explicit sight_word(word_type sightWord) : m_word(std::move(sightWord)) {}
 
         /// @brief Constructor.
         /// @param sightWord The string to assign.
