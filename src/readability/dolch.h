@@ -85,17 +85,17 @@ namespace readability
         using word_type = traits::case_insensitive_wstring_ex;
 
         /// @brief Constructor.
-        /// @param sightword The string to assign.
-        explicit sight_word(const word_type& sightword)
-            : m_word(sightword), m_sight_word_type(sight_word_type::noun)
+        /// @param sightWord The string to assign.
+        explicit sight_word(word_type sightWord)
+            : m_word(std::move(sightWord))
             {
             }
 
         /// @brief Constructor.
-        /// @param sightword The string to assign.
+        /// @param sightWord The string to assign.
         /// @param wordType The word's part of speech.
-        sight_word(const word_type& sightword, const sight_word_type wordType)
-            : m_word(sightword), m_sight_word_type(wordType)
+        sight_word(word_type sightWord, const sight_word_type wordType)
+            : m_word(std::move(sightWord)), m_sight_word_type(wordType)
             {
             }
 

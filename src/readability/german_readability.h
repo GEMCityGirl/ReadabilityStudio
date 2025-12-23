@@ -514,7 +514,7 @@ namespace readability
                                                    const double range_start, const double range_end,
                                                    const size_t grade_level, double& score) noexcept
         {
-        if (index_score > range_start - .1f /*a bit of wiggle room for trailing precision*/ &&
+        if (index_score > range_start - 0.1 /*a bit of wiggle room for trailing precision*/ &&
             index_score <= range_end)
             {
             // Note that the month level is rounded here, not truncated like the index score.
@@ -524,7 +524,7 @@ namespace readability
                 grade_level +
                 round_decimal_place(safe_divide<double>((index_score - range_start),
                                                         truncate_decimal_place(
-                                                            (range_end + .1f) - range_start, 100)),
+                                                            (range_end + 0.1) - range_start, 100)),
                                     10);
             return true;
             }
@@ -563,7 +563,7 @@ namespace readability
             {
             throw std::domain_error("invalid word or unit count.");
             }
-        const double AUL = safe_divide<double>(number_of_words, number_of_units);
+        const auto AUL = safe_divide<double>(number_of_words, number_of_units);
         // should remain in percentage format
         const double PSP = safe_divide<double>(number_of_polysyllabic_words, number_of_words) * 100;
         // note that the score is truncated, not rounded. The book doesn't say to do that, but
@@ -571,45 +571,45 @@ namespace readability
         index_score = truncate_decimal_place(
             std::clamp<double>(safe_divide<double>((AUL * PSP), 10.0), 2.5, 42.0), 10);
         double grade_score = 0;
-        if (wheeler_smith_get_score_from_range(index_score, 2.5f, 6, 1, grade_score))
+        if (wheeler_smith_get_score_from_range(index_score, 2.5, 6, 1, grade_score))
             {
             return grade_score;
             }
-        else if (wheeler_smith_get_score_from_range(index_score, 6.1f, 9, 2, grade_score))
+        else if (wheeler_smith_get_score_from_range(index_score, 6.1, 9, 2, grade_score))
             {
             return grade_score;
             }
-        else if (wheeler_smith_get_score_from_range(index_score, 9.1f, 12, 3, grade_score))
+        else if (wheeler_smith_get_score_from_range(index_score, 9.1, 12, 3, grade_score))
             {
             return grade_score;
             }
-        else if (wheeler_smith_get_score_from_range(index_score, 12.1f, 16, 4, grade_score))
+        else if (wheeler_smith_get_score_from_range(index_score, 12.1, 16, 4, grade_score))
             {
             return grade_score;
             }
-        else if (wheeler_smith_get_score_from_range(index_score, 16.1f, 20, 5, grade_score))
+        else if (wheeler_smith_get_score_from_range(index_score, 16.1, 20, 5, grade_score))
             {
             return grade_score;
             }
-        else if (wheeler_smith_get_score_from_range(index_score, 20.1f, 24, 6, grade_score))
+        else if (wheeler_smith_get_score_from_range(index_score, 20.1, 24, 6, grade_score))
             {
             return grade_score;
             }
-        else if (wheeler_smith_get_score_from_range(index_score, 24.1f, 29, 7, grade_score))
+        else if (wheeler_smith_get_score_from_range(index_score, 24.1, 29, 7, grade_score))
             {
             return grade_score;
             }
-        else if (wheeler_smith_get_score_from_range(index_score, 29.1f, 34, 8, grade_score))
+        else if (wheeler_smith_get_score_from_range(index_score, 29.1, 34, 8, grade_score))
             {
             return grade_score;
             }
-        else if (wheeler_smith_get_score_from_range(index_score, 34.1f, 38, 9, grade_score))
+        else if (wheeler_smith_get_score_from_range(index_score, 34.1, 38, 9, grade_score))
             {
             return grade_score;
             }
         // the highest index score will add a full year to the score of 10, so truncate it
         // to 10.9 to keep the score with the test's 1-10 grade level specification
-        else if (wheeler_smith_get_score_from_range(index_score, 38.1f, 42, 10, grade_score))
+        else if (wheeler_smith_get_score_from_range(index_score, 38.1, 42, 10, grade_score))
             {
             return std::clamp<double>(grade_score, 1, 10.9);
             }
@@ -636,7 +636,7 @@ namespace readability
             {
             throw std::domain_error("invalid sentence count.");
             }
-        const double sentenceNormalizationFactor = safe_divide<double>(30, number_of_sentences);
+        const auto sentenceNormalizationFactor = safe_divide<double>(30, number_of_sentences);
         return truncate_k12_plus_grade(truncate_decimal_place(
             std::sqrt(number_of_hard_words * sentenceNormalizationFactor) - 2.0, 10));
         }
@@ -658,7 +658,7 @@ namespace readability
             {
             throw std::domain_error("invalid word/sentence count.");
             }
-        const double sampleSizeNormalizationFactor = safe_divide<double>(100, number_of_words);
+        const auto sampleSizeNormalizationFactor = safe_divide<double>(100, number_of_words);
         const double MS = number_of_hard_words * sampleSizeNormalizationFactor;
         const double S100 = number_of_sentences * sampleSizeNormalizationFactor;
         return truncate_k12_plus_grade(

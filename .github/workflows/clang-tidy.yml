@@ -39,6 +39,12 @@ jobs:
         src/Wisteria-Dataviz/tests
         src/Wisteria-Dataviz/demo
 
+      EXCLUDE_FILES: |
+        src/app/version.h
+        /usr/include/gtk-3.0/gtk/gtkshortcutsshortcut.h
+        wxWidgets/include/wx/notebook.h
+        wxWidgets/include/wx/generic/gridctrl.h
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4

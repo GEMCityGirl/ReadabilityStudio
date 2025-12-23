@@ -376,7 +376,7 @@ namespace LuaScripting
 
         // TEST OPTIONS
         int AddTest(lua_State* L /*Test test*/); // Adds a test to the project.
-        int Reload(lua_State*); // Reanalyzes the project's document.
+        int Reload(lua_State* L); // Reanalyzes the project's document.
         int Close(lua_State* L /*boolean saveChanges*/); // Closes the project.
 
         int ExportAll(lua_State* L /*string outputFolder*/); // Exports all the results from the project into a folder.
@@ -412,7 +412,7 @@ namespace LuaScripting
         int /*INTERNAL!!!*/ SelectReadabilityTest(lua_State* L);
         // Opens the properties dialog and the specified page
         int /*INTERNAL!!!*/ ShowProperties(lua_State* L);
-        int /*INTERNAL!!!*/ CloseProperties(lua_State*);
+        int /*INTERNAL!!!*/ CloseProperties(lua_State* L);
         // clang-format on
         // quneiform-suppress-end
         };

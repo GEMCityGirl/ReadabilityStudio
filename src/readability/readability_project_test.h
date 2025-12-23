@@ -83,10 +83,18 @@ namespace readability
         virtual ~readability_project_test() = default;
 
         /// @private
-        void operator=(const readability_project_test& that) noexcept
+        readability_project_test& operator=(const readability_project_test& that) noexcept
             {
+            if (this == &that)
+                {
+                return *this;
+                }
+
             m_test = that.m_test;
             m_included = that.m_included;
+
+            // intentionally do not copy or reset datasets
+            return *this;
             }
 
         /// @private

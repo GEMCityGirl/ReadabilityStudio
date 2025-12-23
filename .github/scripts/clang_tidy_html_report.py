@@ -30,8 +30,21 @@ def load_excluded_prefixes():
 
 EXCLUDED_PATH_PREFIXES = load_excluded_prefixes()
 
+def load_excluded_files():
+    raw = os.environ.get("EXCLUDE_FILES", "")
+    return {
+        line.strip()
+        for line in raw.splitlines()
+        if line.strip()
+    }
+
+EXCLUDED_FILES = load_excluded_files()
+
 def is_excluded_path(path: str) -> bool:
-    return any(path.startswith(p) for p in EXCLUDED_PATH_PREFIXES)
+    return (
+        path in EXCLUDED_FILES or
+        any(path.startswith(p) for p in EXCLUDED_PATH_PREFIXES)
+    )
 
 REPO_ROOT = Path(os.environ.get("GITHUB_WORKSPACE", ".")).resolve()
 

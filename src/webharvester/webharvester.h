@@ -456,7 +456,7 @@ class WebHarvester
     /// @param domain The domain to restrict to.
     void SetRestrictedDomain(const wxString& domain)
         {
-        html_utilities::html_url_format formatUrl(domain.wc_str());
+        const html_utilities::html_url_format formatUrl(domain.wc_str());
         m_domain = formatUrl.get_root_domain().c_str();
         m_domainRestriction = DomainRestriction::RestrictToDomain;
         }
@@ -629,6 +629,7 @@ class WebHarvester
 
     /// @returns The minimum size a file must be to download. Will be `std::nullopt`
     ///     if size constraints are not being enforced.
+    [[nodiscard]]
     std::optional<uint32_t> GetMinimumDownloadFileSizeInKilobytes() const
         {
         return m_minFileDownloadSizeKilobytes;

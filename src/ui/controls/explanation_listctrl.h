@@ -97,6 +97,7 @@ class ExplanationListCtrl final : public wxSplitterWindow
     /** @brief Saves the control.
         @param filePath The path to save the report to.
         @param exportOptions Options for how to format the output.*/
+    // NOLINTNEXTLINE(modernize-use-nodiscard)
     bool Save(const wxFileName& filePath, const ExplanationListExportOptions exportOptions =
                                               ExplanationListExportOptions::ExportBoth) const;
     /** @brief Prints the grid area of the control.*/

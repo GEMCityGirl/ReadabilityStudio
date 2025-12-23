@@ -443,6 +443,7 @@ class word<Tchar_traits, stemming::no_op_stem<std::basic_string<wchar_t, Tchar_t
         return m_sentence_index;
         }
 
+    [[nodiscard]]
     inline size_t get_paragraph_index() const noexcept { return m_paragraph_index; }
 
     [[nodiscard]]

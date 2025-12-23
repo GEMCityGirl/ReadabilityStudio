@@ -1307,7 +1307,7 @@ class document
             grammar::is_end_of_sentence::can_character_begin_or_end_parenthetical_or_quoted_section(
                 tag2))
             {
-            m_exclusion_block_tags.push_back(std::make_pair(tag1, tag2));
+            m_exclusion_block_tags.emplace_back(tag1, tag2);
             }
         }
 
@@ -2127,7 +2127,8 @@ class document
         PROFILE();
         const grammar::phrase_collection& isKnownPhrase = *is_known_phrase;
         auto punctPos = m_punctuation.size() ? m_punctuation.cbegin() : m_punctuation.cend();
-        size_t currentPassiveVoiceWordCount = 0;
+        // NOLINTNEXTLINE(misc-const-correctness): written to as a parameter later
+        size_t currentPassiveVoiceWordCount{ 0 };
         for (size_t sentenceCounter = 0; sentenceCounter < m_sentences.size(); ++sentenceCounter)
             {
             // go through each word in the sentence

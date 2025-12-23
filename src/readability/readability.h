@@ -293,8 +293,9 @@ namespace readability
         {
       public:
         /// @brief Functor interface, simply returns false.
+        /// @param theWord Not used.
         [[nodiscard]]
-        inline bool operator()(const word_typeT&) const noexcept
+        inline bool operator()([[maybe_unused]] const word_typeT& theWord) const noexcept
             {
             return false;
             }
@@ -350,51 +351,51 @@ namespace readability
             }
         const double index = number_of_longwords / static_cast<double>(number_of_sentence_units);
 
-        if (index >= 7.2f)
+        if (index >= 7.2)
             {
             grade_level = 13;
             }
-        else if (index >= 6.2f)
+        else if (index >= 6.2)
             {
             grade_level = 12;
             }
-        else if (index >= 5.3f)
+        else if (index >= 5.3)
             {
             grade_level = 11;
             }
-        else if (index >= 4.5f)
+        else if (index >= 4.5)
             {
             grade_level = 10;
             }
-        else if (index >= 3.7f)
+        else if (index >= 3.7)
             {
             grade_level = 9;
             }
-        else if (index >= 3.0f)
+        else if (index >= 3.0)
             {
             grade_level = 8;
             }
-        else if (index >= 2.4f)
+        else if (index >= 2.4)
             {
             grade_level = 7;
             }
-        else if (index >= 1.8f)
+        else if (index >= 1.8)
             {
             grade_level = 6;
             }
-        else if (index >= 1.3f)
+        else if (index >= 1.3)
             {
             grade_level = 5;
             }
-        else if (index >= 0.8f)
+        else if (index >= 0.8)
             {
             grade_level = 4;
             }
-        else if (index >= 0.5f)
+        else if (index >= 0.5)
             {
             grade_level = 3;
             }
-        else if (index >= 0.2f)
+        else if (index >= 0.2)
             {
             grade_level = 2;
             }
@@ -458,7 +459,7 @@ namespace readability
             {
             throw std::domain_error("invalid word/sentence parameter.");
             }
-        const size_t index = static_cast<size_t>(
+        const auto index = static_cast<size_t>(
             round_to_integer(number_of_words / static_cast<double>(number_of_sentences) +
                              (100 * static_cast<double>(number_of_longwords /
                                                         static_cast<double>(number_of_words)))));

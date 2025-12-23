@@ -103,13 +103,13 @@ namespace LuaScripting
     int /*boolean*/ WebHarvest(lua_State* L); // Begins crawling the web harvester's currently loaded website.
 
     int /*table*/ FindFiles(lua_State* L /*string directory, string filePattern, boolean recursive*/); // Returns a list of all files from a folder matching the provided file pattern.
-    int Close(lua_State*); // Closes the program.
+    int Close(lua_State* L); // Closes the program.
     int /*boolean*/ ExportLogReport(lua_State* L /*string outPath*/); // Saves the program's log report to a tab-delimited text file.
     int LogMessage(lua_State* L /*string message*/); // Sends a message to the program's log report.
     int LogError(lua_State* L /*string errorMessage*/); // Sends a warning message to the program's log report.
     int /*boolean*/ WriteToFile(lua_State* L /*string outputFilePath, string content*/); // Writes a string to a file.
-    int RemoveAllCustomTests(lua_State*); // Clears all custom tests from the program.
-    int RemoveAllCustomTestBundles(lua_State*); // Clears all custom test bundles from the program.
+    int RemoveAllCustomTests(lua_State* L); // Clears all custom tests from the program.
+    int RemoveAllCustomTestBundles(lua_State* L); // Clears all custom test bundles from the program.
     int /*boolean*/ MergeWordLists(lua_State* L /*string inputFile1, string inputFile2, ..., string outputFile*/); // Creates a new word list file from a list of other word list files.
     int /*boolean*/ MergePhraseLists(lua_State* L /*string inputFile1, string inputFile2, ..., string outputFile*/); // Creates a new phrase list file from a list of other phrase list files.
     // Append given suffixes to words in a list.
@@ -129,9 +129,9 @@ namespace LuaScripting
     // GENERAL SETTINGS
     int /*boolean*/ ImportSettings(lua_State* L /*string filePath*/); // Loads the program's settings from a configuration file.
     int /*boolean*/ ExportSettings(lua_State* L /*string outputFilePath*/); // Saves the program's settings to a configuration file.
-    int ResetSettings(lua_State*); // Resets the program's settings to the factory default.
-    int DisableAllWarnings(lua_State*); // Suppresses all warnings that can appear in the program.
-    int EnableAllWarnings(lua_State*); // Enables all warnings that can appear in the program.
+    int ResetSettings(lua_State* L); // Resets the program's settings to the factory default.
+    int DisableAllWarnings(lua_State* L); // Suppresses all warnings that can appear in the program.
+    int EnableAllWarnings(lua_State* L); // Enables all warnings that can appear in the program.
     int EnableWarning(lua_State* L /*string warningId*/); // Enables a specific warning that can appear in the program.
     int DisableWarning(lua_State* L /*string warningId*/); // Disables a specific warning that can appear in the program.
     int SetUserAgent(lua_State* L /*string userAgent*/); // Sets the user agent used by the web harvester.
@@ -176,7 +176,7 @@ namespace LuaScripting
     int IgnoreIndenting(lua_State* L /*boolean ignore*/); // Sets whether to ignore indenting when parsing paragraphs for new projects.
     int /*boolean*/ IsIgnoringIndenting(lua_State* L); // Returns whether to ignore indenting when parsing paragraphs for new projects.
     int SetSentenceStartMustBeUppercased(lua_State* L /*boolean caps*/); // Sets whether the first word of a sentence must be capitalized for new projects.
-    int /*boolean*/ SentenceStartMustBeUppercased(lua_State*); // Returns whether the first word of a sentence must be capitalized for new projects.
+    int /*boolean*/ SentenceStartMustBeUppercased(lua_State* L); // Returns whether the first word of a sentence must be capitalized for new projects.
 
     int SetTextExclusion(lua_State* L /*TextExclusionType exclusionType*/); // Sets how text should be excluded for new projects.
     int /*TextExclusionType*/ GetTextExclusion(lua_State* L); // Returns how text should be excluded for new projects.

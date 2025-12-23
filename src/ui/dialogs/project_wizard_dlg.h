@@ -433,26 +433,26 @@ class ProjectWizardDlg final : public wxDialog
     constexpr static int ID_COMPOSITION_BOX = wxID_HIGHEST + 33;
     constexpr static int ID_LAYOUT_BOX = wxID_HIGHEST + 34;
 
-    void OnHelp([[maybe_unused]] wxCommandEvent&);
-    void OnContextHelp([[maybe_unused]] wxHelpEvent&);
-    void OnFileBrowseButtonClick([[maybe_unused]] wxCommandEvent&);
+    void OnHelp([[maybe_unused]] wxCommandEvent& event);
+    void OnContextHelp([[maybe_unused]] wxHelpEvent& event);
+    void OnFileBrowseButtonClick([[maybe_unused]] wxCommandEvent& event);
     void OnSourceRadioChange(wxCommandEvent& event);
-    void OnTestSelectionMethodChanged([[maybe_unused]] wxCommandEvent&);
-    void OnLanguageChanged([[maybe_unused]] wxCommandEvent&);
-    void OnButtonClick([[maybe_unused]] wxCommandEvent&);
-    void OnOK([[maybe_unused]] wxCommandEvent&);
+    void OnTestSelectionMethodChanged([[maybe_unused]] wxCommandEvent& event);
+    void OnLanguageChanged([[maybe_unused]] wxCommandEvent& event);
+    void OnButtonClick([[maybe_unused]] wxCommandEvent& event);
+    void OnOK([[maybe_unused]] wxCommandEvent& event);
     void OnNavigate(wxCommandEvent& event);
     void OnPageChange(wxBookCtrlEvent& event);
-    void OnAddFolderButtonClick([[maybe_unused]] wxCommandEvent&);
-    void OnAddFileButtonClick([[maybe_unused]] wxCommandEvent&);
-    void OnAddWebPagesButtonClick([[maybe_unused]] wxCommandEvent&);
-    void OnAddWebPageButtonClick([[maybe_unused]] wxCommandEvent&);
-    void OnAddArchiveFileButtonClick([[maybe_unused]] wxCommandEvent&);
-    void OnAddSpreadsheetFileButtonClick([[maybe_unused]] wxCommandEvent&);
-    void OnRandomSampleCheck([[maybe_unused]] wxCommandEvent&);
-    void OnAddToListClick([[maybe_unused]] wxCommandEvent&);
-    void OnGroupClick([[maybe_unused]] wxCommandEvent&);
-    void OnDeleteFromListClick([[maybe_unused]] wxCommandEvent&);
+    void OnAddFolderButtonClick([[maybe_unused]] wxCommandEvent& event);
+    void OnAddFileButtonClick([[maybe_unused]] wxCommandEvent& event);
+    void OnAddWebPagesButtonClick([[maybe_unused]] wxCommandEvent& event);
+    void OnAddWebPageButtonClick([[maybe_unused]] wxCommandEvent& event);
+    void OnAddArchiveFileButtonClick([[maybe_unused]] wxCommandEvent& event);
+    void OnAddSpreadsheetFileButtonClick([[maybe_unused]] wxCommandEvent& event);
+    void OnRandomSampleCheck([[maybe_unused]] wxCommandEvent& event);
+    void OnAddToListClick([[maybe_unused]] wxCommandEvent& event);
+    void OnGroupClick([[maybe_unused]] wxCommandEvent& event);
+    void OnDeleteFromListClick([[maybe_unused]] wxCommandEvent& event);
 
     // batch document entry
     Wisteria::UI::ListCtrlEx* m_fileList{ nullptr };
