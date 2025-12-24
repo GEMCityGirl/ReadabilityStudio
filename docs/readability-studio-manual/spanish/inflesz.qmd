@@ -1,0 +1,64 @@
+## INFLESZ Scale\index{INFLESZ Scale|(idxit} {#sec-inflesz}
+
+The INFLESZ Scale\index{Flesch Reading Ease!derivatives!INFLESZ Scale} is a Spanish test derived from earlier adaptations of Flesch Reading Ease [-@{flesch:1949}213; -@{flesch:1979}23].
+It builds on Szigriszt's *Escala de Nivel de Perspicuidad*, which retained the original Flesch calculation, but adjusted its classifications for Spanish-language texts.
+While Szigriszt's Scale adjusted the difficulty levels for Spanish text, it relied on a relatively small and non-random corpus for validation.
+INFLESZ preserves Szigriszt's score, but realigned the scale boundaries and included fewer categories.
+This realignment was validated on a larger, more systematically sampled corpus.
+Hence, this revised scale is better suited for assessing the readability of a wide range of Spanish-language texts.
+(The authors' stated focus was on health-related materials.)
+
+The INFLESZ Scale was validated using 210 Spanish-language publications drawn from three categories:
+
+- *Publicaciones de quiosco* (newsstand publications), including national, regional, and sports newspapers, popular magazines, and comics
+- *Textos escolares* (primary and secondary school textbooks) from major Spanish publishers
+- *Revistas científicas* (scientific and medical journals aimed at health professionals)
+
+From each publication, three random text fragments of at least 500 words were selected, yielding a total of 630 analyzed fragments.
+
+::: {.callout-note icon=false}
+## INFLESZ index formula
+
+$$
+I = 206.835 - (W/S) - (62.3 * (B/W))
+$$
+:::
+
+Where:
+
++:----+:---------------------+
+| I   | INFLESZ index score  |
++-----+----------------------+
+| W   | Number of words      |
++-----+----------------------+
+| B   | Number of syllables  |
++-----+----------------------+
+| S   | Number of sentences  |
++-----+----------------------+
+
+| INFLESZ Score | Description |
+|--------------:|-------------|
+| 81–100 | *Muy fácil* (Very easy) |
+| 66–80  | *Bastante fácil* (Fairly easy) |
+| 56–65  | *Normal* (Normal) |
+| 41–55  | *Algo difícil* (Fairly difficult) |
+| 0–40   | *Muy difícil* (Very difficult) |
+
+: INFLESZ Scale Table {#tbl-inflesz}
+
+The INFLESZ category boundaries are based on the article's instructions that *Muy Fácil* applies to scores "puntuaciones superiores a 80" [scores greater than 80] [@{barrio-cantalejo-simon-lorda-melguizo-escalona-marijuan-hernando}140].
+This implies a strict greater-than cutoff for the upper boundary, rather than an inclusive threshold.
+As a result, the INFLESZ cutoffs follow a different boundary logic than Flesch Reading Ease, which treats category limits as inclusive.
+
+Below is an example of the INFLESZ Scale:
+
+![INFLESZ Scale](images/inflesz-graph.png){width=75% fig-align="center"}
+
+This chart consists of vertically aligned scales.
+The left scale, INFLESZ, presents which difficulty level the score falls into.
+(This is the primary focus of interpretation.)
+To the right are the original Szigriszt and Flesch Reading Ease scales, respectively.
+(These are only included for comparison.)
+\index{INFLESZ Scale|)}
+
+\newpage
