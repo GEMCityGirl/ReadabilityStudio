@@ -69,7 +69,7 @@ class Banner final : public wxWindow
         Bind(wxEVT_PAINT, &Banner::OnPaint, this);
         }
 
-    void OnPaint([[maybe_unused]] wxPaintEvent& evt)
+    void OnPaint([[maybe_unused]] wxPaintEvent& event)
         {
         wxAutoBufferedPaintDC adc(this);
         adc.Clear();
@@ -1000,7 +1000,7 @@ void ProjectWizardDlg::CreateControls()
     }
 
 //-------------------------------------------------------------
-void ProjectWizardDlg::OnDeleteFromListClick([[maybe_unused]] wxCommandEvent& evt)
+void ProjectWizardDlg::OnDeleteFromListClick([[maybe_unused]] wxCommandEvent& event)
     {
     if (m_fileList != nullptr)
         {
@@ -1009,7 +1009,7 @@ void ProjectWizardDlg::OnDeleteFromListClick([[maybe_unused]] wxCommandEvent& ev
     }
 
 //-------------------------------------------------------------
-void ProjectWizardDlg::OnAddToListClick([[maybe_unused]] wxCommandEvent& evt)
+void ProjectWizardDlg::OnAddToListClick([[maybe_unused]] wxCommandEvent& event)
     {
     if (m_fileList != nullptr)
         {
@@ -1018,7 +1018,7 @@ void ProjectWizardDlg::OnAddToListClick([[maybe_unused]] wxCommandEvent& evt)
     }
 
 //-------------------------------------------------------------
-void ProjectWizardDlg::OnGroupClick([[maybe_unused]] wxCommandEvent& evt)
+void ProjectWizardDlg::OnGroupClick([[maybe_unused]] wxCommandEvent& event)
     {
     if (m_fileList != nullptr)
         {
@@ -1468,7 +1468,7 @@ void ProjectWizardDlg::OnNavigate(wxCommandEvent& event)
     }
 
 //-------------------------------------------------------------
-void ProjectWizardDlg::OnOK([[maybe_unused]] wxCommandEvent& evt)
+void ProjectWizardDlg::OnOK([[maybe_unused]] wxCommandEvent& event)
     {
     Validate();
     TransferDataFromWindow();
@@ -1613,14 +1613,14 @@ void ProjectWizardDlg::OnOK([[maybe_unused]] wxCommandEvent& evt)
     }
 
 //-------------------------------------------------------------
-void ProjectWizardDlg::OnTestSelectionMethodChanged([[maybe_unused]] wxCommandEvent& evt)
+void ProjectWizardDlg::OnTestSelectionMethodChanged([[maybe_unused]] wxCommandEvent& event)
     {
     TransferDataFromWindow();
     UpdateTestSelectionMethodUI();
     }
 
 //-------------------------------------------------------------
-void ProjectWizardDlg::OnButtonClick([[maybe_unused]] wxCommandEvent& evt)
+void ProjectWizardDlg::OnButtonClick([[maybe_unused]] wxCommandEvent& event)
     {
     wxLaunchDefaultBrowser(wxFileName::FileNameToURL(wxGetApp().GetMainFrame()->GetHelpDirectory() +
                                                      wxFileName::GetPathSeparator() +
@@ -1628,7 +1628,7 @@ void ProjectWizardDlg::OnButtonClick([[maybe_unused]] wxCommandEvent& evt)
     }
 
 //-------------------------------------------------------------
-void ProjectWizardDlg::OnLanguageChanged([[maybe_unused]] wxCommandEvent& evt)
+void ProjectWizardDlg::OnLanguageChanged([[maybe_unused]] wxCommandEvent& event)
     {
     TransferDataFromWindow();
     UpdateTestsUI();
@@ -1643,7 +1643,7 @@ void ProjectWizardDlg::OnSourceRadioChange(wxCommandEvent& event)
     }
 
 //-------------------------------------------------------------
-void ProjectWizardDlg::OnFileBrowseButtonClick([[maybe_unused]] wxCommandEvent& evt)
+void ProjectWizardDlg::OnFileBrowseButtonClick([[maybe_unused]] wxCommandEvent& event)
     {
     TransferDataFromWindow();
     wxFileDialog dialog(this, _(L"Select Document to Analyze"), wxString{}, wxString{},
@@ -1661,7 +1661,7 @@ void ProjectWizardDlg::OnFileBrowseButtonClick([[maybe_unused]] wxCommandEvent& 
     }
 
 //-------------------------------------------------------------
-void ProjectWizardDlg::OnRandomSampleCheck([[maybe_unused]] wxCommandEvent& evt)
+void ProjectWizardDlg::OnRandomSampleCheck([[maybe_unused]] wxCommandEvent& event)
     {
     TransferDataFromWindow();
     if ((m_randPercentageCtrl != nullptr) && (m_isRandomSampling != nullptr))
@@ -1671,7 +1671,7 @@ void ProjectWizardDlg::OnRandomSampleCheck([[maybe_unused]] wxCommandEvent& evt)
     }
 
 //-------------------------------------------------------------
-void ProjectWizardDlg::OnAddWebPageButtonClick([[maybe_unused]] wxCommandEvent& evt)
+void ProjectWizardDlg::OnAddWebPageButtonClick([[maybe_unused]] wxCommandEvent& event)
     {
     wxTextEntryDialog textDlg(this, _(L"Enter a web page to analyze:"), _(L"Enter Web Page"));
     if (textDlg.ShowModal() == wxID_OK && !textDlg.GetValue().empty())
@@ -1716,7 +1716,7 @@ void ProjectWizardDlg::OnAddWebPageButtonClick([[maybe_unused]] wxCommandEvent& 
     }
 
 //-------------------------------------------------------------
-void ProjectWizardDlg::OnAddWebPagesButtonClick([[maybe_unused]] wxCommandEvent& evt)
+void ProjectWizardDlg::OnAddWebPagesButtonClick([[maybe_unused]] wxCommandEvent& event)
     {
     WebHarvesterDlg webHarvestDlg(this, wxGetApp().GetLastSelectedWebPages(),
                                   ReadabilityAppOptions::GetDocumentFilter(),
@@ -1830,7 +1830,7 @@ void ProjectWizardDlg::OnAddWebPagesButtonClick([[maybe_unused]] wxCommandEvent&
     }
 
 //-------------------------------------------------------------
-void ProjectWizardDlg::OnAddFolderButtonClick([[maybe_unused]] wxCommandEvent& evt)
+void ProjectWizardDlg::OnAddFolderButtonClick([[maybe_unused]] wxCommandEvent& event)
     {
     Wisteria::UI::GetDirFilterDialog dirDlg(this, ReadabilityAppOptions::GetDocumentFilter());
     dirDlg.SetSelectedFileFilter(wxGetApp().GetLastSelectedDocFilter());
@@ -1935,19 +1935,19 @@ void ProjectWizardDlg::LoadGroupFromLastCommonFolder(const size_t currentFileCou
     }
 
 //-------------------------------------------------------------
-void ProjectWizardDlg::OnAddSpreadsheetFileButtonClick([[maybe_unused]] wxCommandEvent& evt)
+void ProjectWizardDlg::OnAddSpreadsheetFileButtonClick([[maybe_unused]] wxCommandEvent& event)
     {
     LoadSpreadsheet();
     }
 
 //-------------------------------------------------------------
-void ProjectWizardDlg::OnAddArchiveFileButtonClick([[maybe_unused]] wxCommandEvent& evt)
+void ProjectWizardDlg::OnAddArchiveFileButtonClick([[maybe_unused]] wxCommandEvent& event)
     {
     LoadArchive();
     }
 
 //-------------------------------------------------------------
-void ProjectWizardDlg::OnAddFileButtonClick([[maybe_unused]] wxCommandEvent& evt)
+void ProjectWizardDlg::OnAddFileButtonClick([[maybe_unused]] wxCommandEvent& event)
     {
     wxFileDialog dialog(this, _(L"Select Documents to Analyze"), wxString{}, wxString{},
                         ReadabilityAppOptions::GetDocumentFilter(),
@@ -2015,14 +2015,14 @@ void ProjectWizardDlg::OnAddFileButtonClick([[maybe_unused]] wxCommandEvent& evt
     }
 
 //-------------------------------------------------------------
-void ProjectWizardDlg::OnContextHelp([[maybe_unused]] wxHelpEvent& evt)
+void ProjectWizardDlg::OnContextHelp([[maybe_unused]] wxHelpEvent& event)
     {
     wxCommandEvent cmd;
     OnHelp(cmd);
     }
 
 //-------------------------------------------------------------
-void ProjectWizardDlg::OnHelp([[maybe_unused]] wxCommandEvent& evt)
+void ProjectWizardDlg::OnHelp([[maybe_unused]] wxCommandEvent& event)
     {
     wxLaunchDefaultBrowser(wxFileName::FileNameToURL(wxGetApp().GetMainFrame()->GetHelpDirectory() +
                                                      wxFileName::GetPathSeparator() +

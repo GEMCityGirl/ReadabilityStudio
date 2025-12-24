@@ -81,14 +81,10 @@ class WebPageExtension
     [[nodiscard]]
     bool operator()(const wxString& extension) const
         {
-        if (m_knownWebPageExtensions.find(extension.wc_str()) != m_knownWebPageExtensions.cend() ||
-            m_knownWebPageExtensions.find(GetExtensionOrDomain(extension).wc_str()) !=
-                m_knownWebPageExtensions.cend())
-            {
-            return true;
-            }
-
-        return false;
+        return (m_knownWebPageExtensions.find(extension.wc_str()) !=
+                    m_knownWebPageExtensions.cend() ||
+                m_knownWebPageExtensions.find(GetExtensionOrDomain(extension).wc_str()) !=
+                    m_knownWebPageExtensions.cend());
         }
 
     /** @returns @c true if @c extension is a dynamic webpage extension.
@@ -96,14 +92,10 @@ class WebPageExtension
     [[nodiscard]]
     bool IsDynamicExtension(const wxString& extension) const
         {
-        if (m_knownDynamicExtensions.find(extension.wc_str()) != m_knownDynamicExtensions.cend() ||
-            m_knownDynamicExtensions.find(GetExtensionOrDomain(extension).wc_str()) !=
-                m_knownDynamicExtensions.cend())
-            {
-            return true;
-            }
-
-        return false;
+        return (m_knownDynamicExtensions.find(extension.wc_str()) !=
+                    m_knownDynamicExtensions.cend() ||
+                m_knownDynamicExtensions.find(GetExtensionOrDomain(extension).wc_str()) !=
+                    m_knownDynamicExtensions.cend());
         }
 
   private:
@@ -191,6 +183,7 @@ class WebHarvester
         };
 
     /// @private
+    // NOLINTNEXTLINE(hicpp-use-equals-default,modernize-use-equals-default)
     WebHarvester()
         {
         m_downloader.SetUserAgent(GetUserAgent());
@@ -483,7 +476,7 @@ class WebHarvester
             domain.append(L"/");
             }
         html_utilities::html_url_format formatUrl(domain.wc_str());
-        if (formatUrl.get_directory_path().length())
+        if (!formatUrl.get_directory_path().empty())
             {
             m_allowableWebFolders.emplace(formatUrl.get_directory_path().c_str());
             }

@@ -47,8 +47,8 @@
 ||                                                                                              ||
 \*== == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == =*/
 
-#ifndef __READABILITY_H__
-#define __READABILITY_H__
+#ifndef READABILITY_H
+#define READABILITY_H
 
 #include "../OleanderStemmingLibrary/src/stemming.h"
 #include "../Wisteria-Dataviz/src/math/mathematics.h"
@@ -136,17 +136,13 @@ namespace readability
                 }
             // ...else, if we are treating all proper as familiar, then true if familiar;
             // otherwise return whether it is on the list
-            else if (m_properNounMethod ==
-                     proper_noun_counting_method::all_proper_nouns_are_familiar)
+            if (m_properNounMethod == proper_noun_counting_method::all_proper_nouns_are_familiar)
                 {
                 if (the_word.is_proper_noun())
                     {
                     return true;
                     }
-                else
-                    {
-                    return is_on_list(the_word);
-                    }
+                return is_on_list(the_word);
                 }
             // if proper are always unfamiliar, then just return whether it is on the list
             else if (m_properNounMethod ==
@@ -417,22 +413,19 @@ namespace readability
             {
             return lix_difficulty::lix_very_easy;
             }
-        else if (index <= 39)
+        if (index <= 39)
             {
             return lix_difficulty::lix_easy;
             }
-        else if (index <= 49)
+        if (index <= 49)
             {
             return lix_difficulty::lix_average;
             }
-        else if (index <= 59)
+        if (index <= 59)
             {
             return lix_difficulty::lix_difficult;
             }
-        else
-            {
-            return lix_difficulty::lix_very_difficult;
-            }
+        return lix_difficulty::lix_very_difficult;
         }
 
     /** @brief Laesbarhedsindex (Lix) formula by Björnsson (Sweden).
@@ -536,31 +529,29 @@ namespace readability
             {
             return flesch_difficulty::flesch_very_difficult;
             }
-        else if (result <= 49)
+        if (result <= 49)
             {
             return flesch_difficulty::flesch_difficult;
             }
-        else if (result <= 59)
+        if (result <= 59)
             {
             return flesch_difficulty::flesch_fairly_difficult;
             }
-        else if (result <= 69)
+        if (result <= 69)
             {
             return flesch_difficulty::flesch_standard;
             }
-        else if (result <= 79)
+        if (result <= 79)
             {
             return flesch_difficulty::flesch_fairly_easy;
             }
-        else if (result <= 89)
+        if (result <= 89)
             {
             return flesch_difficulty::flesch_easy;
             }
-        else // 90 or above
-            {
-            return flesch_difficulty::flesch_very_easy;
-            }
+        // 90 or above
+        return flesch_difficulty::flesch_very_easy;
         }
     } // namespace readability
 
-#endif //__READABILITY_H__
+#endif // READABILITY_H

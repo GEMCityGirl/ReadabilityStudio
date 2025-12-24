@@ -41,6 +41,8 @@ jobs:
 
       EXCLUDE_FILES: |
         src/app/version.h
+        src/lua-scripting/luna.h
+        src/Wisteria-Dataviz/src/util/donttranslate.h
         /usr/include/gtk-3.0/gtk/gtkshortcutsshortcut.h
         wxWidgets/include/wx/notebook.h
         wxWidgets/include/wx/generic/gridctrl.h

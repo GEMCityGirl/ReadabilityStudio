@@ -162,22 +162,20 @@ namespace readability
             {
             return inflesz_difficulty::very_difficult;
             }
-        else if (result <= 55)
+        if (result <= 55)
             {
             return inflesz_difficulty::fairly_difficult;
             }
-        else if (result <= 65)
+        if (result <= 65)
             {
             return inflesz_difficulty::normal;
             }
-        else if (result <= 80)
+        if (result <= 80)
             {
             return inflesz_difficulty::fairly_easy;
             }
-        else // above 80
-            {
-            return inflesz_difficulty::very_easy;
-            }
+        // above 80
+        return inflesz_difficulty::very_easy;
         }
     } // namespace readability
 

@@ -21,6 +21,7 @@ google-*,-readability-function-cognitive-complexity,-bugprone-branch-clone,-hicp
 -cppcoreguidelines-pro-type-reinterpret-cast,
 -bugprone-empty-catch,
 -bugprone-lambda-function-name,
+-readability-redundant-string-cstr,
 -google-runtime-int'
 HeaderFilterRegex:   '(^|/)ReadabilityStudio/src/'
 FormatStyle:         none

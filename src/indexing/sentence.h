@@ -313,40 +313,35 @@ namespace grammar
                         }
                     return std::make_pair(true, originalLength - text.length());
                     }
-                else
+                // Scan to the next line and see if it starts with a number too. If so,
+                // then this more than likely is a list of some sort (e.g., a recipe).
+                auto nextLine{ text };
+                while (!nextLine.empty() && string_util::is_neither<wchar_t>(nextLine[0], 10, 13))
                     {
-                    // Scan to the next line and see if it starts with a number too. If so,
-                    // then this more than likely is a list of some sort (e.g., a recipe).
-                    auto nextLine{ text };
-                    while (!nextLine.empty() &&
-                           string_util::is_neither<wchar_t>(nextLine[0], 10, 13))
-                        {
-                        nextLine.remove_prefix(1);
-                        }
-                    if (nextLine.empty())
-                        {
-                        return std::make_pair(false, 0);
-                        }
-                    // hit the next newline, so skip to the start of the line
-                    const auto newLineStart = nextLine;
-                    while (!nextLine.empty() && characters::is_character::is_space(nextLine[0]))
-                        {
-                        nextLine.remove_prefix(1);
-                        }
-                    // See how many newlines are after this line. If more than 1, then this is
-                    // probably a bullet.
-                    is_end_of_line isEol;
-                    isEol(newLineStart.data(), nextLine.data());
-                    if (isEol.get_eol_count() > 1)
-                        {
-                        return std::make_pair(true, originalLength - text.length());
-                        }
-                    return (!nextLine.empty() &&
-                            characters::is_character::is_numeric(nextLine[0])) ?
-                               std::pair<bool, size_t>(true, originalLength - text.length()) :
-                               // anything else means that this probably is not a numeric bullet
-                               std::pair<bool, size_t>(false, 0);
+                    nextLine.remove_prefix(1);
                     }
+                if (nextLine.empty())
+                    {
+                    return std::make_pair(false, 0);
+                    }
+                // hit the next newline, so skip to the start of the line
+                const auto newLineStart = nextLine;
+                while (!nextLine.empty() && characters::is_character::is_space(nextLine[0]))
+                    {
+                    nextLine.remove_prefix(1);
+                    }
+                // See how many newlines are after this line. If more than 1, then this is
+                // probably a bullet.
+                is_end_of_line isEol;
+                isEol(newLineStart.data(), nextLine.data());
+                if (isEol.get_eol_count() > 1)
+                    {
+                    return std::make_pair(true, originalLength - text.length());
+                    }
+                return (!nextLine.empty() && characters::is_character::is_numeric(nextLine[0])) ?
+                           std::pair<bool, size_t>(true, originalLength - text.length()) :
+                           // anything else means that this probably is not a numeric bullet
+                           std::pair<bool, size_t>(false, 0);
                 }
             /* ...or a letter bullet point. Note that we only count a single-digit,
                lowercased letter as a bullet point.
