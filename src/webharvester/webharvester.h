@@ -298,7 +298,7 @@ class WebHarvester
     ///     or a full filepath, and it will get the extension from that.
     void AddAllowableFileType(const wxString& fileExtension)
         {
-        if (!fileExtension.Contains(L'.'))
+        if (fileExtension.find(L'.') == std::wstring::npos)
             {
             m_fileExtensions.insert(fileExtension);
             }

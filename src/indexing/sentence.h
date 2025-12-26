@@ -886,9 +886,8 @@ namespace grammar
             }
 
       private:
-        grammar::is_abbreviation isAbbreviation;
-        grammar::is_acronym isAcronym;
-        characters::is_character is_character;
+        is_abbreviation isAbbreviation;
+        is_acronym isAcronym;
         bool m_sentence_start_must_be_uppercased{ true };
         };
 
