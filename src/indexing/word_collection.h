@@ -1818,7 +1818,7 @@ class document
         punctPos = !m_punctuation.empty() ? m_punctuation.begin() :
                                             // reset for final pass
                                             m_punctuation.end();
-        for (unsigned long quoteStartWord : m_quoteStartWords)
+        for (auto quoteStartWord : m_quoteStartWords)
             {
             // move punctuation index to be after the current word, whether it is the next actual
             // word or beyond.
