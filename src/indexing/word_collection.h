@@ -1618,7 +1618,7 @@ class document
                 // really a single sentence paragraph with a "1." in front and this is the first
                 // word after that, then this is a list and this capitalized word is really the
                 // first (real) word in this sentence. Therefore, it may not really be proper.
-                const typename std::vector<Tword_type>::const_iterator previousWord = (wordPos - 1);
+                const auto previousWord = (wordPos - 1);
                 if (wordPos->get_sentence_position() == 1 && previousWord->length() > 0 &&
                     previousWord->is_numeric() &&
                     (characters::is_character::is_period(
@@ -1701,17 +1701,17 @@ class document
         // (first word of sentence, etc.)
         punctPos = !m_punctuation.empty() ? m_punctuation.begin() :
                                             m_punctuation.end(); // reset for second pass
-        for (auto sentPos = m_sentences.cbegin(); sentPos != m_sentences.cend(); ++sentPos)
+        for (const auto& currentSentence : m_sentences)
             {
             /* If an incomplete sentence then go through its words and set them to proper if they
                were capitalized and found to have been proper elsewhere. Because all words in most
                headers are capitalized, we have to do treat these words differently than complete
                sentences. Note that headers may be considered valid sentences, so explicitly look at
                the sentence's type. */
-            if (sentPos->get_type() != grammar::sentence_paragraph_type::complete)
+            if (currentSentence.get_type() != grammar::sentence_paragraph_type::complete)
                 {
-                for (size_t i = sentPos->get_first_word_index();
-                     i <= sentPos->get_last_word_index(); ++i)
+                for (size_t i = currentSentence.get_first_word_index();
+                     i <= currentSentence.get_last_word_index(); ++i)
                     {
                     Tword_type& currentWord = m_words[i];
                     if (!currentWord.is_proper_noun() && !currentWord.is_exclamatory() &&
@@ -1743,11 +1743,12 @@ class document
                 // move punctuation index to be after the current word,
                 // whether it is the next actual word or beyond.
                 while (punctPos != m_punctuation.end() &&
-                       (punctPos->get_word_position() <= sentPos->get_first_word_index()))
+                       (punctPos->get_word_position() <= currentSentence.get_first_word_index()))
                     {
                     ++punctPos;
                     }
-                Tword_type& currentWord = m_words.operator[](sentPos->get_first_word_index());
+                Tword_type& currentWord =
+                    m_words.operator[](currentSentence.get_first_word_index());
                 if (currentWord.is_proper_noun())
                     {
                     continue;
@@ -1783,7 +1784,8 @@ class document
                     // the document, then it will be marked as proper above and we won't get this
                     // far.
                     if (punctPos != m_punctuation.end() &&
-                        punctPos->get_word_position() == sentPos->get_first_word_index() + 1 &&
+                        punctPos->get_word_position() ==
+                            currentSentence.get_first_word_index() + 1 &&
                         traits::case_insensitive_ex::eq(punctPos->get_punctuation_mark(), L':'))
                         {
                         currentWord.set_exclamatory(true);
@@ -1816,16 +1818,16 @@ class document
         punctPos = !m_punctuation.empty() ? m_punctuation.begin() :
                                             // reset for final pass
                                             m_punctuation.end();
-        for (auto quotePos = m_quoteStartWords.cbegin(); quotePos != m_quoteStartWords.cend();
-             ++quotePos)
+        for (unsigned long quoteStartWord : m_quoteStartWords)
             {
             // move punctuation index to be after the current word, whether it is the next actual
             // word or beyond.
-            while (punctPos != m_punctuation.end() && (punctPos->get_word_position() <= *quotePos))
+            while (punctPos != m_punctuation.end() &&
+                   (punctPos->get_word_position() <= quoteStartWord))
                 {
                 ++punctPos;
                 }
-            Tword_type& currentWord = m_words.operator[](*quotePos);
+            Tword_type& currentWord = m_words.operator[](quoteStartWord);
             if (currentWord.is_proper_noun())
                 {
                 continue;
@@ -1847,7 +1849,7 @@ class document
                 // exclamatory word. Note that if "NOTE" was found elsewhere (mid-sentence) in the
                 // document, then it will be marked as proper above and we won't get this far.
                 if (punctPos != m_punctuation.end() &&
-                    punctPos->get_word_position() == (*quotePos) + 1 &&
+                    punctPos->get_word_position() == quoteStartWord + 1 &&
                     traits::case_insensitive_ex::eq(punctPos->get_punctuation_mark(), L':'))
                     {
                     currentWord.set_exclamatory(true);
@@ -1922,13 +1924,13 @@ class document
                "Negated phrase searching should be enabled if searching for negated phrases.");
         m_negating_phrase_indices.clear();
         auto punctPos = !m_punctuation.empty() ? m_punctuation.cbegin() : m_punctuation.cend();
-        for (size_t sentenceCounter = 0; sentenceCounter < m_sentences.size(); ++sentenceCounter)
+        for (const auto& currentSentence : m_sentences)
             {
             // go through each word in the sentence
-            for (size_t wordCounter = m_sentences[sentenceCounter].get_first_word_index();
+            for (size_t wordCounter = currentSentence.get_first_word_index();
                  // analysis that must include two words will go up to the SECOND TO LAST WORD IN
                  // THE SENTENCE
-                 wordCounter < m_sentences[sentenceCounter].get_last_word_index(); ++wordCounter)
+                 wordCounter < currentSentence.get_last_word_index(); ++wordCounter)
                 {
                 // move punctuation index to be AFTER the current word, whether it is the next
                 // actual word or beyond.
@@ -1945,7 +1947,7 @@ class document
                     auto startWord = wordCounter++;
                     // scan the following words until one is not common, or punctuation separates
                     // the words, or we reach the end of the sentence.
-                    while (wordCounter <= m_sentences[sentenceCounter].get_last_word_index() &&
+                    while (wordCounter <= currentSentence.get_last_word_index() &&
                            wordCounter < m_words.size() &&
                            (punctPos == m_punctuation.end() ||
                             punctPos->get_word_position() > wordCounter))
@@ -1960,8 +1962,7 @@ class document
                                 // if next word is proper (if current one is proper too),
                                 // then feed in the rest of the proper nouns after it to complete
                                 // the proper noun phrase that's part of this larger phrase.
-                                while (wordCounter <=
-                                           m_sentences[sentenceCounter].get_last_word_index() &&
+                                while (wordCounter <= currentSentence.get_last_word_index() &&
                                        wordCounter < m_words.size() &&
                                        (punctPos == m_punctuation.end() ||
                                         punctPos->get_word_position() > wordCounter) &&
@@ -2120,11 +2121,11 @@ class document
         auto punctPos = !m_punctuation.empty() ? m_punctuation.cbegin() : m_punctuation.cend();
         // NOLINTNEXTLINE(misc-const-correctness): written to as a parameter later
         size_t currentPassiveVoiceWordCount{ 0 };
-        for (size_t sentenceCounter = 0; sentenceCounter < m_sentences.size(); ++sentenceCounter)
+        for (const auto& currentSentence : m_sentences)
             {
             // go through each word in the sentence
-            for (size_t wordCounter = m_sentences[sentenceCounter].get_first_word_index();
-                 wordCounter <= m_sentences[sentenceCounter].get_last_word_index(); ++wordCounter)
+            for (size_t wordCounter = currentSentence.get_first_word_index();
+                 wordCounter <= currentSentence.get_last_word_index(); ++wordCounter)
                 {
                 // move punctuation index to be after the current word, whether it is the next
                 // actual word or beyond.
@@ -2135,7 +2136,7 @@ class document
                     }
                 // analysis that must include two words will go up to the second to last word in the
                 // sentence
-                if (wordCounter < m_sentences[sentenceCounter].get_last_word_index())
+                if (wordCounter < currentSentence.get_last_word_index())
                     {
                     // double words
                     if ((m_words[wordCounter].length() == m_words[wordCounter + 1].length()) &&
@@ -2202,11 +2203,10 @@ class document
                         }
                     // passive voice (will fall through to other analyses below because this isn't
                     // an error)
-                    else if (is_passive_voice(m_words.begin() + wordCounter,
-                                              (m_sentences[sentenceCounter].get_last_word_index() -
-                                               wordCounter) +
-                                                  1,
-                                              currentPassiveVoiceWordCount))
+                    else if (is_passive_voice(
+                                 m_words.begin() + wordCounter,
+                                 (currentSentence.get_last_word_index() - wordCounter) + 1,
+                                 currentPassiveVoiceWordCount))
                         {
                         // if next word has punctuation in front of it then do not count this.
                         if (!(punctPos != m_punctuation.end() &&
@@ -2235,11 +2235,10 @@ class document
                         (punctPos != m_punctuation.end() &&
                          punctPos->get_word_position() == wordCounter + 1);
                     const size_t phraseResult = isKnownPhrase(
-                        currentWordPos,
-                        (wordCounter - m_sentences[sentenceCounter].get_first_word_index()),
+                        currentWordPos, (wordCounter - currentSentence.get_first_word_index()),
                         searchForSingleWordOnly ?
                             1 :
-                            (m_sentences[sentenceCounter].get_last_word_index() - wordCounter) + 1,
+                            (currentSentence.get_last_word_index() - wordCounter) + 1,
                         true);
                     if (phraseResult != grammar::phrase_collection::npos)
                         {
@@ -2650,7 +2649,7 @@ class document
 
         // if there is a sentence that just consists of a year,
         // or if the first or last sentence end with a year.
-        const auto contains_year_sentence = [this, &theParagraph, &isYear]() noexcept
+        const auto containsYearSentence = [this, &theParagraph, &isYear]() noexcept
         {
             if (theParagraph.get_sentence_count() >= 1 && theParagraph.get_sentence_count() <= 6)
                 {
@@ -2720,7 +2719,7 @@ class document
 
         return (!isShortHeader() && !containsManyLongSentences() &&
                 (theParagraph.get_sentence_count() <= 4 ||
-                 (theParagraph.get_sentence_count() <= 6 && contains_year_sentence())));
+                 (theParagraph.get_sentence_count() <= 6 && containsYearSentence())));
         }
 
     void ignore_tagged_blocks()
